@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+.title_button_celebrate_event {
+  background: var(--third-f5-f6-fa, #f5f6fa);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.dtl_txt_button_vn_event {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 80px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.dtl_txt_vn_event {
+  color: #000;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dtl_txt_btn_vn_event a.dtl_btn_event {
+  color: var(--second-0-0-7-b-f-f, #007bff);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.dtl_box_img_date_departure {
+  position: relative;
+  display: inline-block;
+}
+
+.dtl_img_item_event {
+  width: 100%;
+  height: 100%;
+  border-radius: 60px 4px 0px 0px;
+  display: block;
+}
+
+/* Box thời gian */
+.dtl_box_departure {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: inline-flex;
+  padding: 6px 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 4px;
+  background: var(--chroma-ffffff, #ffff);
+}
+
+.dtl_time_departure {
+  color: var(--primary-0-0-0, #000);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  text-align: end;
+}
+
+.dtl_box_departure p {
+  margin: 0 !important;
+}
+
+.dtl_box_information_departure {
+  border-radius: 0px 0px 12px 12px;
+  background: var(--chroma-ffffff, #ffff);
+  padding: 16px;
+  margin-top: -8px;
 }
