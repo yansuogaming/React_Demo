@@ -1,5 +1,6 @@
 .title_button_celebrate_event {
   background: var(--third-f5-f6-fa, #f5f6fa);
+  padding-bottom: 40px;
 }
 
 .dtl_txt_button_vn_event {
@@ -17,12 +18,27 @@
   line-height: normal;
 }
 
+.dtl_txt_btn_vn_event {
+  display: flex;
+  align-items: center;
+  color: var(--second-0-0-7-b-f-f, #007bff);
+}
+
+.dtl_txt_btn_vn_event a.btn {
+  margin: 0;
+  padding: 0;
+}
+
 .dtl_txt_btn_vn_event a.dtl_btn_event {
   color: var(--second-0-0-7-b-f-f, #007bff);
   font-size: 18px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
+}
+
+.dtl_txt_btn_vn_event i {
+  margin-left: 8px;
 }
 
 .dtl_box_img_date_departure {
@@ -45,10 +61,6 @@
   font-size: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   display: inline-flex;
-  padding: 6px 8px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
   border-radius: 4px;
   background: var(--chroma-ffffff, #ffff);
 }
@@ -71,4 +83,83 @@
   background: var(--chroma-ffffff, #ffff);
   padding: 16px;
   margin-top: -8px;
+  min-height: 235px;
+}
+
+.dtl_box_information_departure a {
+  color: #000;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+  text-decoration: unset;
+}
+
+.dtl_list_item_event_celebrate .dtl_item_event_celebrate {
+  margin-bottom: 40px;
+}
+
+.dtl_box_information_departure a:hover {
+  text-decoration: underline;
+}
+.dtl_time_departure.range {
+  padding: 6px 8px;
+}
+.dtl_txt_to_depart {
+  color: var(--primary-0-0-0, #000);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.dtl_time_departure.time_single {
+  border-radius: 4px;
+  padding: 3px 17px 4px 16px;
+  background: #fff;
+}
+
+.dtl_day_large {
+  color: var(--primary-0-0-0, #000);
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.dtl_txt_location_departure {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dtl_location_departure {
+  margin-bottom: 16px;
+}
+
+.dtl_location_departure p {
+  margin: 0 !important;
+}
+
+/* Expirence Location */
+
+.dtl_expirence_location {
+  margin-top: 80px;
+}
+
+.dtl_box_expirence_location {
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .dtl_txt_button_vn_event {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .dtl_box_information_departure {
+    min-height: auto;
+  }
+}
+
+@media (max-width: 575px) {
 }
