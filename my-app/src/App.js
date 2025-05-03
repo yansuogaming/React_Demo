@@ -92,6 +92,7 @@ function App() {
   return (
     <>
       <Header />
+      <BackgroundHeader />
       {/* Các phần khác của trang */}
       <section className="title_button_celebrate_event">
         <VietnamEventTitle>
@@ -102,6 +103,32 @@ function App() {
       </section>
       <ExpirenceLocation />
     </>
+  );
+}
+
+function BackgroundHeader() {
+  return (
+    <section className="dtl_home_header">
+      <div className="dtl_banner">
+        <img
+          src="/assets/header-bg.png"
+          alt=""
+          className="dtl_img_banner"
+          height={1000}
+        />
+        <div className="dtl_header_content">
+          <h2>Vietnam: Where Every Journey Inspires</h2>
+          <p>
+            Discover UNESCO heritage, vibrant cities, and breathtaking nature
+          </p>
+          <div className="dtl_buttons">
+            <button>Plan Your Trip</button>
+            <button>Explore Destinations</button>
+            <button>Find Experiences</button>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
