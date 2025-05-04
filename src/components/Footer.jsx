@@ -8,111 +8,215 @@ import iconInstagram from '@images/icon-instagram.svg'
 import iconFacebook from '@images/icon-facebook.svg'
 import logo from '@images/logo2.svg'
 import { NavLink } from 'react-router'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 
-export default function () {
+const Footer = () => {
+    const { t } = useTranslation()
+    
     return (
         <footer>
             <img src={bird} alt="" width="100%" />
-            <div className="container mx-auto">
-                <div className="grid grid-cols-12">
-                    <div className="col-span-3">
-                        <p>Regions</p>
-                        <ul>
-                            <li>Northern Vietnam</li>
-                            <li>Central Vietnam</li>
-                            <li>Southern Vietnam</li>
+            <div className="container mx-auto mt-[60px]">
+                <div className="flex">
+                    <div className="w-[28%]">
+                        <p className="text-[18px] font-bold mb-[30px]">{t('regions')}</p>
+                        <ul className="font-normal text-[16px]">
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('northern_vietnam')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('central_vietnam')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('southern_vietnam')}
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
-                    <div className="col-span-3">
-                        <p>Getting to Vietnam</p>
-                        <ul>
-                            <li>Passports & Visa</li>
-                            <li>Accommodation</li>
-                            <li>Itineraries</li>
-                            <li>Tour packages</li>
-                            <li>Travel Agency</li>
-                            <li>App & Tools</li>
-                            <li>Vietnam Calendar</li>
-                            <li>Traditional Festivals</li>
+                    <div className="w-[25%]">
+                        <p className="text-[18px] font-bold mb-[30px]">{t('getting_to_vietnam')}</p>
+                        <ul className="font-normal text-[16px]">
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('passports_and_visa')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('accommodation')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('itineraries')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('tour_packages')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('travel_agency')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('app_and_tools')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('vietnam_calendar')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('traditional_festivals')}
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
-                    <div className="col-span-3">
-                        <p>Experiences</p>
-                        <ul>
-                            <li>Cultural Heritage</li>
-                            <li>Cuisine</li>
-                            <li>Nature & Adventure</li>
-                            <li>Sustainable Travel</li>
-                            <li>City Vibes</li>
-                            <li>Wellness Escapes</li>
-                            <li>Romantic Getaways</li>
-                            <li>Local Life</li>
+                    <div className="w-[25%]">
+                        <p className="text-[18px] font-bold mb-[30px]">{t('experiences')}</p>
+                        <ul className="font-normal text-[16px]">
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('cultural_heritage')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('cuisine')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('nature_and_adventure')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('sustainable_travel')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('city_vibes')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('wellness_escapes')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('romantic_getaways')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('local_life')}
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
-                    <div className="col-span-3">
-                        <p>Discover & Navigate</p>
-                        <ul>
-                            <li>Stories & Inspiration</li>
-                            <li>Map</li>
+                    <div className="w-[22%]">
+                        <p className="text-[18px] font-bold mb-[30px]">
+                            {t('discover_and_navigate')}
+                        </p>
+                        <ul className="font-normal text-[16px]">
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('stories_and_inspiration')}
+                                </NavLink>
+                            </li>
+                            <li className="mb-2">
+                                <NavLink to="/">
+                                    {t('map')}
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div className="flex justify-between mb-[60px]">
                     <div className="w-auto">
-                        <p>Don't Miss Any Updates</p>
+                        <p className="mb-2.5">{t('do_not_miss_any_updates')}</p>
                         <button className="rounded-[80px] py-[15px] px-[20px] bg-[#007BFF] text-white flex">
                             <img className="pr-[10px]" src={iconMail} alt="" />
-                            Inscription newsletter
+                            {t('inscription_newsletter')}
                         </button>
                     </div>
                     <div className="w-[400px]">
-                        <p>Download our apps</p>
+                        <p className="mb-2.5">{t('download_our_apps')}</p>
                         <div className="flex justify-between">
-                            <img src={iconGooglePlay} alt="Google play" />
-                            <img src={iconAppStore} alt="App Store" />
+                            <a href="">
+                                <img src={iconGooglePlay} alt="Google play" />
+                            </a>
+                            <a href="">
+                                <img src={iconAppStore} alt="App Store" />
+                            </a>
                         </div>
                     </div>
                 </div>
-                <hr/>
-                <div className="flex justify-between mt-[20px] mb-[50px]">
+                <hr />
+                <div className="flex justify-between items-center mt-[20px] mb-[50px]">
                     <div className="flex items-center">
                         <img src={logo} alt="" width="102px" className="mr-[30px]" />
                         <div>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                            <p>There are many variations of passages of Lorem Ipsum available</p>
+                            <p className="font-bold text-[18px] mb-[5px]">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                            </p>
+                            <p className="font-normal text-[18px]">
+                                There are many variations of passages of Lorem Ipsum available
+                            </p>
                         </div>
                     </div>
-                    <div className="flex justify-between gap-[20px]">
-                        <a href=""><img src={iconTwitter} alt="Twitter" width="24px" /></a>
-                        <a href=""><img src={iconInstagram} alt="Instagram" width="24px" /></a>
-                        <a href=""><img src={iconYoutube} alt="Youtube" width="24px" /></a>
-                        <a href=""><img src={iconFacebook} alt="Facebook" width="24px" /></a>
+                    <div className="flex justify-between gap-[40px]">
+                        <a href="">
+                            <img src={iconTwitter} alt="Twitter" width="24px" />
+                        </a>
+                        <a href="">
+                            <img src={iconInstagram} alt="Instagram" width="24px" />
+                        </a>
+                        <a href="">
+                            <img src={iconYoutube} alt="Youtube" width="24px" />
+                        </a>
+                        <a href="">
+                            <img src={iconFacebook} alt="Facebook" width="24px" />
+                        </a>
                     </div>
                 </div>
             </div>
             <div className="bg-[#484C52] pt-[32px] pb-[25px]">
                 <div className="container mx-auto flex justify-between text-white">
                     <p>© 2025 Lorem ipsum | All rights reserved</p>
-                    <ul className="flex justify-between gap-[15px]">
+                    <ul className="flex justify-between gap-[32px]">
                         <li>
                             <NavLink to="/">
-                                {t('Terms of Use')}
+                                {t('terms_of_use')}
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/">
-                                {t('Privacy Policy')}
+                                {t('privacy_policy')}
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/">
-                                {t('Cookie Policy')}
+                                {t('cookie_policy')}
                             </NavLink>
                         </li>
                         <li>
                             <NavLink to="/">
-                                {t('Sitemap')}
+                                Sitemap
                             </NavLink>
                         </li>
                     </ul>
@@ -121,3 +225,5 @@ export default function () {
         </footer>
     )
 };
+
+export default Footer

@@ -22,11 +22,11 @@ class HttpClient {
     }
 
     setHeader(key, value) {
-        instance.defaults.headers.common[key] = value;
+        this.instance.defaults.headers.common[key] = value;
     }
 
     setHeaders() {
-        headers.forEach(header => {
+        this.headers.forEach(header => {
             this.setHeader(header.key, header.value)
         })
     }

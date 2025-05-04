@@ -1,6 +1,6 @@
 import imgLogo from '@images/logo.svg'
 import imgLogo2 from '@images/logo2.svg'
-import { t } from 'i18next'
+import { useTranslation } from 'react-i18next'
 import useLanguage from '@hooks/useLanguage'
 import { NavLink } from 'react-router'
 import { useEffect, useState } from 'react'
@@ -12,7 +12,8 @@ import {
     DropdownMenuCheckboxItem,
 } from '@ui/dropdown-menu'
 
-export default function ({ noBackgroundOnScroll = true }) {
+const Header = ({ noBackgroundOnScroll = true }) => {
+    const { t } = useTranslation()
     const { language, setLanguage } = useLanguage()
     const [background, setBackground] = useState('none')
     const [logo, setLogo] = useState(noBackgroundOnScroll ? imgLogo : imgLogo2)
@@ -42,11 +43,9 @@ export default function ({ noBackgroundOnScroll = true }) {
             window.addEventListener('scroll', handleScroll)
 
             // Cleanup khi component unmount
-            return () => {
-                window.removeEventListener('scroll', handleScroll)
-            }
+            return () => window.removeEventListener('scroll', handleScroll)
         }
-    }, [])
+    }, [noBackgroundOnScroll])
 
     return (
         <header
@@ -154,4 +153,6 @@ export default function ({ noBackgroundOnScroll = true }) {
             </div>
         </header>
     )
-};
+}
+
+export default Header
