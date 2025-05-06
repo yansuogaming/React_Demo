@@ -7,11 +7,11 @@ import { useState } from "react";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style
 import "react-date-range/dist/theme/default.css"; // theme
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router";
 
 import { useTranslation } from "react-i18next";
 
-const Tripdetail = () => {
+const TripDetail = () => {
     const { t } = useTranslation();
     const today = new Date();
     const tomorrow = new Date();
@@ -128,14 +128,14 @@ const Tripdetail = () => {
                                     ["🧘", "Relaxation", "/relax"],
                                     ["🍜", "Cuisine", "/cuisine"],
                                 ].map(([icon, label, path]) => (
-                                    <Link
+                                    <NavLink
                                         to={path}
                                         key={label}
                                         className="flex items-center bg-white p-[6px_15px] rounded-[80px] border border-[#D9D9D9] text-sm text-black text-[16px] gap-[8px] hover:shadow transition"
                                     >
                                         <span>{icon}</span>
                                         <span>{label}</span>
-                                    </Link>
+                                    </NavLink>
                                 ))}
                             </div>
                         </div>
@@ -152,4 +152,4 @@ const Tripdetail = () => {
     );
 };
 
-export default Tripdetail;
+export default TripDetail;

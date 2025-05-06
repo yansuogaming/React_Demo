@@ -4,6 +4,9 @@ import City from "@pages/City";
 import NotFound from "@pages/NotFound";
 import Root from "@layouts/Root";
 import Tripdetail from "@pages/Tripdetail";
+import TripDetailResult from "@pages/TripdetailResult";
+import TripDetail from "@pages/Tripdetail";
+import TripDetailLayout from "@layouts/TripDetailLayout";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +23,17 @@ const router = createBrowserRouter([
             },
             {
                 path: "tripdetail",
-                Component: Tripdetail,
+                Component: TripDetail,
+            },
+        ],
+    },
+    {
+        path: "tripdetail/result",
+        Component: TripDetailLayout,
+        children: [
+            {
+                index: true,
+                Component: TripDetailResult,
             },
         ],
     },
