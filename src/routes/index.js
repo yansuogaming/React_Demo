@@ -1,28 +1,33 @@
-import { createBrowserRouter } from 'react-router'
-import Home from '@pages/Home'
-import City from '@pages/City'
-import NotFound from '@pages/NotFound'
-import Root from '@layouts/Root'
+import { createBrowserRouter } from "react-router";
+import Home from "@pages/Home";
+import City from "@pages/City";
+import NotFound from "@pages/NotFound";
+import Root from "@layouts/Root";
+import Tripdetail from "@pages/Tripdetail";
 
 const router = createBrowserRouter([
     {
-        path: '/',
+        path: "/",
         Component: Root,
         children: [
             {
                 index: true,
-                Component: Home
+                Component: Home,
             },
             {
-                path: 'city/:slug',
-                Component: City
-            }
-        ]
+                path: "city/:slug",
+                Component: City,
+            },
+            {
+                path: "tripdetail",
+                Component: Tripdetail,
+            },
+        ],
     },
     {
-        path: '*',
+        path: "*",
         Component: NotFound,
     },
-])
+]);
 
-export default router
+export default router;
