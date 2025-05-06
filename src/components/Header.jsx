@@ -16,35 +16,48 @@ const Header = ({ noBackgroundOnScroll = true }) => {
     const { t } = useTranslation()
     const { language, setLanguage } = useLanguage()
     const [background, setBackground] = useState('none')
-    const [logo, setLogo] = useState(noBackgroundOnScroll ? imgLogo : imgLogo2)
-    const [color, setColor] = useState(noBackgroundOnScroll ? 'white' : 'black')
-    const [colorIcon, setColorIcon] = useState(noBackgroundOnScroll ? 'white' : '#007BFF')
+    const [logo, setLogo] = useState(null)
+    const [color, setColor] = useState(null)
+    const [colorIcon, setColorIcon] = useState(null)
 
     let position = 'sticky'
     if (noBackgroundOnScroll) {
         position = 'fixed'
     }
 
+    // Thay đổi style của header
+    const chanegStyleHeader = (noBackground) => {
+        if (noBackground) {
+            setLogo(imgLogo)
+            setColor('white')
+            setColorIcon('white')
+            setBackground('none')
+            return
+        }
+
+        setBackground('white')
+        setLogo(imgLogo2)
+        setColor('black')
+        setColorIcon('#007BFF')
+    }
+
     useEffect(() => {
         if (noBackgroundOnScroll) {
+            chanegStyleHeader(true)
             const handleScroll = () => {
+                // Nếu scroll xuống thì đổi style header
                 if (window.scrollY > 10) {
-                    setBackground('white')
-                    setLogo(imgLogo2)
-                    setColor('black')
-                    setColorIcon('#007BFF')
+                    chanegStyleHeader(false)
                 } else {
-                    setBackground('none')
-                    setLogo(imgLogo)
-                    setColor('white')
-                    setColorIcon('white')
+                    chanegStyleHeader(true)
                 }
             };
             window.addEventListener('scroll', handleScroll)
-
             // Cleanup khi component unmount
             return () => window.removeEventListener('scroll', handleScroll)
         }
+
+        chanegStyleHeader(false)
     }, [noBackgroundOnScroll])
 
     return (
@@ -55,7 +68,9 @@ const Header = ({ noBackgroundOnScroll = true }) => {
             <div className="flex items-center">
                 {/* Logo */}
                 <div className="mr-[50px]">
-                    <img src={logo} width="123px" alt="" />
+                    <NavLink to="/">
+                        <img src={logo} width="123px" alt="" />
+                    </NavLink>
                 </div>
                 {/* Nav bar */}
                 <ul className="flex h-fit">
@@ -89,7 +104,7 @@ const Header = ({ noBackgroundOnScroll = true }) => {
             <div>
                 <ul className="flex items-center">
                     <li className="p-[15px]">
-                        <div className="flex">
+                        <div className="flex cursor-pointer">
                             <svg className="mr-[10px]" alt={t('search')} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g id="ICON" clipPath="url(#clip0_5249_616)">
                                     <path stroke={color} id="Vector_5" d="M23 23L17.6919 17.6919M17.6919 17.6919C18.5999 16.784 19.3201 15.7061 19.8115 14.5198C20.3029 13.3335 20.5558 12.062 20.5558 10.7779C20.5558 9.49386 20.3029 8.22238 19.8115 7.03607C19.3202 5.84976 18.5999 4.77185 17.6919 3.86389C16.784 2.95592 15.7061 2.23569 14.5198 1.7443C13.3335 1.25291 12.062 1 10.7779 1C9.49386 1 8.22238 1.25291 7.03607 1.7443C5.84976 2.23569 4.77185 2.95592 3.86389 3.86389C2.03017 5.6976 1 8.18465 1 10.7779C1 13.3712 2.03017 15.8582 3.86389 17.6919C5.6976 19.5257 8.18465 20.5558 10.7779 20.5558C13.3712 20.5558 15.8582 19.5257 17.6919 17.6919Z" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
@@ -108,13 +123,16 @@ const Header = ({ noBackgroundOnScroll = true }) => {
                             <DropdownMenuTrigger asChild>
                                 <Button
                                     variant="link"
-                                    className="focus-visible:shadow-none focus-visible:ring-0 font-normal text-base"
+                                    className="focus-visible:shadow-none focus-visible:ring-0 font-normal text-base cursor-pointer"
                                     style={{ color }}
                                 >
                                     {t('language')}
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
+                                        <path d="M4 6L0.535899 -6.52533e-07L7.4641 -4.68497e-08L4 6Z" fill="white"/>
+                                    </svg>
                                 </Button>
                             </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-56">
+                            <DropdownMenuContent className="w-[60px]">
                                 <DropdownMenuCheckboxItem
                                     checked={language === 'en'}
                                     value="en"

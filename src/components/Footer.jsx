@@ -14,7 +14,7 @@ const Footer = () => {
     const { t } = useTranslation()
     
     return (
-        <footer>
+        <footer className="mt-[100px]">
             <img src={bird} alt="" width="100%" />
             <div className="container mx-auto mt-[60px]">
                 <div className="flex">

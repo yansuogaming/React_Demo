@@ -112,7 +112,7 @@
 
 @font-face {
     font-family: 'Visit Qatar';
-    src: url('../fonts/VisitQatar-Medium.woff2') format('woff2');
+    src: url('../fonts/VisitQatar-Medium.ttf');
 }
 
 @layer base {
