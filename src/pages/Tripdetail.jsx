@@ -30,7 +30,7 @@ const TripDetail = () => {
                 <div className="container mx-auto mt-[16px]">
                     <div className="breadcrumb">
                         <nav className="text-sm text-gray-500 mb-[36px]">
-                            <ol className="list-reset flex gap-[10px] text-[14px] items-center d-flex">
+                            <ol className="list-reset flex gap-[10px] text-[14px] items-center d-flex font-normal">
                                 <li>
                                     <a href="/" title="">
                                         {t("home")}
