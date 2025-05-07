@@ -72,7 +72,7 @@ const RegionList = ({ className, ...props }) => {
                                     </div>
                                 </div>
                                 {/* Gradient overlay */}
-                                <div className="rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.7)_100%)] absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0"></div>
+                                <div className="rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)] absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0 transform transition-all duration-500"></div>
                             </NavLink>
                         </CarouselItem>
                         <CarouselItem className="basis-[45%] pl-[20px] relative group">
@@ -96,7 +96,7 @@ const RegionList = ({ className, ...props }) => {
                                     </div>
                                 </div>
                                 {/* Gradient overlay */}
-                                <div className="rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.7)_100%)] absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0"></div>
+                                <div className="rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)] absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0transform transition-all duration-500 "></div>
                             </NavLink>
                         </CarouselItem>
                         <CarouselItem className="basis-[45%] pl-[20px] relative group">
@@ -120,7 +120,7 @@ const RegionList = ({ className, ...props }) => {
                                     </div>
                                 </div>
                                 {/* Gradient overlay */}
-                                <div className="rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.7)_100%)] absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0"></div>
+                                <div className="rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)] absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0 transform transition-all duration-500"></div>
                             </NavLink>
                         </CarouselItem>
                     </CarouselContent>

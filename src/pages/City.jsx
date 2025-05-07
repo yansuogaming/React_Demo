@@ -11,6 +11,9 @@ import VietNamEvent from '@components/VietNamEvent'
 import Weather from '@components/Weather'
 import TopThingsToDo from '@components/TopThingsToDo'
 import PlainYourTrip from '@components/PlainYourTrip'
+import ExperienceActivities from '@components/ExperienceActivities'
+import Impressions from '@components/Impressions'
+import FAQ from '@components/FAQ'
 
 const City = () => {
     const { t } = useTranslation()
@@ -18,7 +21,7 @@ const City = () => {
     const breadcrumdItems = [
         { label: t('home'), href: '/' },
         { label: t('Destinations'), href: '/' },
-        { label: 'Hanoi', href: '/' }
+        { label: 'Hanoi' }
     ]
 
     return (
@@ -80,7 +83,13 @@ const City = () => {
             <Weather />
             <TopThingsToDo className="mt-[120px]" />
             <VietNamEvent className="mt-[80px] bg-[#F5F6FA] py-[80px]" />
+            <ExperienceActivities className="mt-[120px]" />
+            <Impressions className="mt-[120px]" />
             <PlainYourTrip className="mt-[120px]" />
+            <FAQ className="mt-[120px]" />
+            <div className="">
+
+            </div>
         </main>
     )
 }

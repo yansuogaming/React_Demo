@@ -1,16 +1,16 @@
-import { createBrowserRouter } from "react-router";
-import Home from "@pages/Home";
-import City from "@pages/City";
-import NotFound from "@pages/NotFound";
-import Root from "@layouts/Root";
-import Tripdetail from "@pages/Tripdetail";
-import TripDetailResult from "@pages/TripdetailResult";
-import TripDetail from "@pages/Tripdetail";
-import TripDetailLayout from "@layouts/TripDetailLayout";
+import { createBrowserRouter } from 'react-router'
+import Home from '@pages/Home'
+import City from '@pages/City'
+import NotFound from '@pages/NotFound'
+import Root from '@layouts/Root'
+import TripDetailResult from '@pages/TripdetailResult'
+import TripDetail from '@pages/Tripdetail'
+import TripDetailLayout from '@layouts/TripDetailLayout'
+import About from '@pages/About'
 
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: '/',
         Component: Root,
         children: [
             {
@@ -18,17 +18,21 @@ const router = createBrowserRouter([
                 Component: Home,
             },
             {
-                path: "city/:slug",
+                path: 'city/:slug',
                 Component: City,
             },
             {
-                path: "tripdetail",
+                path: 'tripdetail',
                 Component: TripDetail,
+            },
+            {
+                path: 'about',
+                Component: About,
             },
         ],
     },
     {
-        path: "tripdetail/result",
+        path: 'tripdetail/result',
         Component: TripDetailLayout,
         children: [
             {
@@ -38,9 +42,9 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: "*",
+        path: '*',
         Component: NotFound,
     },
-]);
+])
 
-export default router;
+export default router
