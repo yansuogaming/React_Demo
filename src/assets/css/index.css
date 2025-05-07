@@ -112,7 +112,12 @@
 
 @font-face {
     font-family: 'Visit Qatar';
-    src: url('../fonts/VisitQatar-Medium.ttf');
+    src: url('../fonts/VisitQatar-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.ttf');
 }
 
 @layer base {

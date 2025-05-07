@@ -21,7 +21,7 @@ const Story = () => {
             <div className="grid grid-cols-3 gap-[30px]">
                 <div>
                     <NavLink to="" className="rounded-[60px_4px_4px_4px] overflow-hidden">
-                        <img src={image} alt="Cruising Ha Long Bay: A Dream Come True" />
+                        <img src={image} className="w-full" alt="Cruising Ha Long Bay: A Dream Come True" />
                     </NavLink>
                     <h3 className="text-[24px] font-bold mb-[5px] mt-[20px]">
                         <NavLink to="/" className="hover:text-[#3470b2]">
@@ -37,7 +37,7 @@ const Story = () => {
                 </div>
                 <div>
                     <NavLink to="" className="rounded-[60px_4px_4px_4px] overflow-hidden">
-                        <img src={image} alt="Cruising Ha Long Bay: A Dream Come True" />
+                        <img src={image} className="w-full" alt="Cruising Ha Long Bay: A Dream Come True" />
                     </NavLink>
                     <h3 className="text-[24px] font-bold mb-[5px] mt-[20px]">
                         <NavLink to="/" className="hover:text-[#3470b2]">
@@ -53,7 +53,7 @@ const Story = () => {
                 </div>
                 <div>
                     <NavLink to="" className="rounded-[60px_4px_4px_4px] overflow-hidden">
-                        <img src={image} alt="Cruising Ha Long Bay: A Dream Come True" />
+                        <img src={image} className="w-full" alt="Cruising Ha Long Bay: A Dream Come True" />
                     </NavLink>
                     <h3 className="text-[24px] font-bold mb-[5px] mt-[20px]">
                         <NavLink to="/" className="hover:text-[#3470b2]">

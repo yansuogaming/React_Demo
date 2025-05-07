@@ -7,6 +7,11 @@ import TopVietnamExperiences from '@components/TopVietnamExperiences'
 import VietNamEvent from '@components/VietNamEvent'
 import { useState } from 'react'
 import { Skeleton } from '@ui/skeleton'
+import { NavLink } from 'react-router'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons' 
+import RegionList from '@components/RegionList'
+import TravelOffers from '@components/TravelOffers'
 
 const Home = () => {
     const { t } = useTranslation()
@@ -14,6 +19,16 @@ const Home = () => {
     const handleImageLoad = () => {
         setIsLoaded(true)
     }
+
+    const scrollDown = () => {
+        const regionElement = document.getElementById('region')
+        const heightHeader = document.querySelector('header').clientHeight
+        window.scrollTo({
+            top: regionElement.offsetTop - heightHeader,
+            behavior: 'smooth'
+        });
+    }
+
     return (
         <main>
             <section className="relative text-white">
@@ -32,13 +47,24 @@ const Home = () => {
                 <p className="text-center text-[20px] font-normal absolute bottom-[188px] w-full">
                     {t('home.description')}
                 </p>
-                <div className="flex gap-[8px]"></div>
+                <div className="flex gap-[15px] absolute bottom-[85px] left-1/2 translate-[-50%]">
+                    <NavLink to="/" className="p-[15px] border-white border-1 rounded-[80px]">
+                        Plan Your Trip
+                    </NavLink>
+                    <NavLink to="/" className="p-[15px] border-white border-1 rounded-[80px]">
+                        Explore Destinations
+                    </NavLink>
+                    <NavLink to="/" className="p-[15px] border-white border-1 rounded-[80px]">
+                        Find Experiences
+                    </NavLink>
+                </div>
+                <FontAwesomeIcon onClick={scrollDown} className="cursor-pointer absolute bottom-[15px] left-1/2 translate-[-50%] text-[24px]" icon={faArrowDown} />
             </section>
-            <div className="bg-[#F5F6FA] py-[80px]">
-                <VietNamEvent className="mb-[120px]" />
-            </div>
+            <RegionList id="region" className="mt-[135px] mb-[145px]" />
+            <VietNamEvent className="bg-[#F5F6FA] py-[80px]" />
             <TopVietnamExperiences className="mb-[120px] pt-[80px]" />
             <TrendingItinerary className="mb-[120px]" />
+            <TravelOffers className="mb-[120px]" />
             <PlainYourTrip className="mb-[120px]" />
             <Story />
         </main>
