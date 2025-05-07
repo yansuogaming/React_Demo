@@ -31,13 +31,22 @@ const TripDetail = () => {
                     <div className="breadcrumb">
                         <nav className="text-sm text-gray-500 mb-[36px]">
                             <ol className="list-reset flex gap-[10px] text-[14px] items-center d-flex">
-                                <li>{t("home")}</li>
+                                <li>
+                                    <a href="/" title="">
+                                        {t("home")}
+                                    </a>
+                                </li>
+
                                 <FontAwesomeIcon
                                     icon={faChevronRight}
                                     className=""
                                 />
 
-                                <li>{t("plan_your_trip")}</li>
+                                <li>
+                                    <a href="/" title="">
+                                        {t("plan_your_trip")}
+                                    </a>
+                                </li>
                                 <FontAwesomeIcon
                                     icon={faChevronRight}
                                     className=""

@@ -60,12 +60,12 @@ const TripDetailResult = () => {
 
     return (
         <main>
-            <div className="relative grid w-full grid-cols-12 flex-row justify-center">
+            <div className="relative grid w-full grid-cols-12 flex-row justify-center bg-[#F8FAFC]">
                 {/* Left information */}
                 <div className="col-span-12 flex flex-col md:col-span-8">
-                    <div className="flex flex-1 flex-col md:mt-6">
+                    <div className="flex flex-1 flex-col">
                         {/* Tab buttons */}
-                        <div className="sticky top-[20px] flex w-full justify-between gap-2 bg-white md:h-[52px] rounded-t-[16px] md:rounded-t-[30px] border-b border-[#D9D9D9] z-[10]">
+                        <div className="sticky top-[0px] flex w-full justify-between gap-2 bg-white md:h-[52px] rounded-t-[16px] md:rounded-t-[30px] border-b border-[#D9D9D9] z-[10]">
                             {/* List of spots */}
                             <div
                                 onClick={() => setActiveTab("spots")}
@@ -148,7 +148,7 @@ const TripDetailResult = () => {
                                                     type="single"
                                                     collapsible
                                                     defaultValue="item-1"
-                                                    className="bg-white rounded-xl shadow-sm"
+                                                    className="bg-white rounded-[12px] shadow-sm"
                                                 >
                                                     <AccordionItem value="item-1">
                                                         <AccordionTrigger className="text-lg font-semibold px-4 py-3">
@@ -256,7 +256,7 @@ const TripDetailResult = () => {
                                                     type="single"
                                                     collapsible
                                                     defaultValue="item-2"
-                                                    className="bg-white rounded-xl shadow-sm mt-6"
+                                                    className="bg-white rounded-[12px] mt-6"
                                                 >
                                                     <AccordionItem value="item-2">
                                                         <AccordionTrigger className="text-lg font-semibold px-4 py-3">
