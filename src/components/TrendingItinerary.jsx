@@ -30,8 +30,8 @@ const TrendingItinerary = ({ className = ''}) => {
                     </h3>
                     <p className="flex gap-[5px] items-center mb-[15px]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M10 2.5C5.85938 2.5 2.5 5.85938 2.5 10C2.5 14.1406 5.85938 17.5 10 17.5C14.1406 17.5 17.5 14.1406 17.5 10C17.5 5.85938 14.1406 2.5 10 2.5Z" stroke="#494951" stroke-miterlimit="10"/>
-                            <path d="M10 5V10.625H13.75" stroke="#494951" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 2.5C5.85938 2.5 2.5 5.85938 2.5 10C2.5 14.1406 5.85938 17.5 10 17.5C14.1406 17.5 17.5 14.1406 17.5 10C17.5 5.85938 14.1406 2.5 10 2.5Z" stroke="#494951" strokeMiterlimit="10"/>
+                            <path d="M10 5V10.625H13.75" stroke="#494951" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         3 days 2 nights
                     </p>
@@ -50,8 +50,8 @@ const TrendingItinerary = ({ className = ''}) => {
                     </h3>
                     <p className="flex gap-[5px] items-center mb-[15px]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M10 2.5C5.85938 2.5 2.5 5.85938 2.5 10C2.5 14.1406 5.85938 17.5 10 17.5C14.1406 17.5 17.5 14.1406 17.5 10C17.5 5.85938 14.1406 2.5 10 2.5Z" stroke="#494951" stroke-miterlimit="10"/>
-                            <path d="M10 5V10.625H13.75" stroke="#494951" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 2.5C5.85938 2.5 2.5 5.85938 2.5 10C2.5 14.1406 5.85938 17.5 10 17.5C14.1406 17.5 17.5 14.1406 17.5 10C17.5 5.85938 14.1406 2.5 10 2.5Z" stroke="#494951" strokeMiterlimit="10"/>
+                            <path d="M10 5V10.625H13.75" stroke="#494951" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         3 days 2 nights
                     </p>
@@ -70,8 +70,8 @@ const TrendingItinerary = ({ className = ''}) => {
                     </h3>
                     <p className="flex gap-[5px] items-center mb-[15px]">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M10 2.5C5.85938 2.5 2.5 5.85938 2.5 10C2.5 14.1406 5.85938 17.5 10 17.5C14.1406 17.5 17.5 14.1406 17.5 10C17.5 5.85938 14.1406 2.5 10 2.5Z" stroke="#494951" stroke-miterlimit="10"/>
-                            <path d="M10 5V10.625H13.75" stroke="#494951" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 2.5C5.85938 2.5 2.5 5.85938 2.5 10C2.5 14.1406 5.85938 17.5 10 17.5C14.1406 17.5 17.5 14.1406 17.5 10C17.5 5.85938 14.1406 2.5 10 2.5Z" stroke="#494951" strokeMiterlimit="10"/>
+                            <path d="M10 5V10.625H13.75" stroke="#494951" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                         3 days 2 nights
                     </p>

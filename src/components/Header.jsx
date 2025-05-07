@@ -19,6 +19,8 @@ const Header = ({ noBackgroundOnScroll = true }) => {
     const [logo, setLogo] = useState(null)
     const [color, setColor] = useState(null)
     const [colorIcon, setColorIcon] = useState(null)
+    const [isOpenDropdownLanguage, setOpenDropdownLanguage] = useState(false)
+    const [boxShadow, setBoxShadow] = useState(noBackgroundOnScroll ? 'none' : '1px 1px 20px #d1d1d1')
 
     let position = 'sticky'
     if (noBackgroundOnScroll) {
@@ -32,6 +34,7 @@ const Header = ({ noBackgroundOnScroll = true }) => {
             setColor('white')
             setColorIcon('white')
             setBackground('none')
+            setBoxShadow('none')
             return
         }
 
@@ -39,6 +42,7 @@ const Header = ({ noBackgroundOnScroll = true }) => {
         setLogo(imgLogo2)
         setColor('black')
         setColorIcon('#007BFF')
+        setBoxShadow('1px 1px 20px #d1d1d1')
     }
 
     useEffect(() => {
@@ -62,8 +66,8 @@ const Header = ({ noBackgroundOnScroll = true }) => {
 
     return (
         <header
-            className="flex justify-between py-[15px] px-[40px] w-full z-1"
-            style={{ background, position, color }}
+            className="flex justify-between py-[15px] px-[40px] w-full z-1 top-0"
+            style={{ background, position, color, boxShadow }}
         >
             <div className="flex items-center">
                 {/* Logo */}
@@ -119,7 +123,7 @@ const Header = ({ noBackgroundOnScroll = true }) => {
                         </div>
                     </li>
                     <li className="p-[15px]">
-                        <DropdownMenu>
+                        <DropdownMenu onOpenChange={() => setOpenDropdownLanguage(!isOpenDropdownLanguage)}>
                             <DropdownMenuTrigger asChild>
                                 <Button
                                     variant="link"
@@ -127,8 +131,8 @@ const Header = ({ noBackgroundOnScroll = true }) => {
                                     style={{ color }}
                                 >
                                     {t('language')}
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="6" viewBox="0 0 8 6" fill="none">
-                                        <path d="M4 6L0.535899 -6.52533e-07L7.4641 -4.68497e-08L4 6Z" fill="white"/>
+                                    <svg className={`${isOpenDropdownLanguage && 'rotate-[180deg]'} transition-all`} xmlns="http://www.w3.org/2000/svg" viewBox="-3.5 -3 14 12" fill="none">
+                                        <path fill={color} d="M4 6L0.535899 -6.52533e-07L7.4641 -4.68497e-08L4 6Z" />
                                     </svg>
                                 </Button>
                             </DropdownMenuTrigger>
