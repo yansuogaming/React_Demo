@@ -6,7 +6,7 @@ import { NavLink } from 'react-router'
 
 const OtherRegion = ({ className = '' }) => {
     return (
-        <section className={`container mx-auto grid grid-cols-2 gap-[8px] ${className}`}>
+        <section className={`container grid grid-cols-2 gap-[8px] ${className}`}>
             <NavLink to="" className="relative group">
                 <div className="rounded-[60px_0_0_0] overflow-hidden">
                     <img src={imgOtherRegion1} alt="Sapa" />

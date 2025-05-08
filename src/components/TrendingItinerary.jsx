@@ -8,7 +8,7 @@ const TrendingItinerary = ({ className = ''}) => {
     const { t } = useTranslation()
 
     return (
-        <section className={`container mx-auto ${className}`}>
+        <section className={`container ${className}`}>
             <div className="flex items-center justify-between">
                 <h2 className="text-[30px] font-bold text-[#1A2A44] mb-[20px]">
                     Trending Itineraries

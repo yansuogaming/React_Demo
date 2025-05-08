@@ -4,7 +4,7 @@ import { NavLink } from 'react-router'
 
 const ExperienceActivities = ({ className = '' }) => {
     return (
-        <section className={`container mx-auto ${className}`}>
+        <section className={`container ${className}`}>
             <h3 className="text-[#1A2A44] text-[40px] font-bold mb-[15px]">
                 Experiences and Activities
             </h3>

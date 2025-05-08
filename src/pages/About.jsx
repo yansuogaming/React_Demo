@@ -12,6 +12,7 @@ import imageAbout2 from '@images/image-about2.png'
 import imageAbout3 from '@images/image-about3.png'
 import FAQ from '@components/FAQ'
 import PlainYourTrip from '@components/PlainYourTrip'
+import WhyVisit from '@components/WhyVisit'
 
 const About = () => {
     const { t } = useTranslation()
@@ -23,14 +24,14 @@ const About = () => {
 
     return (
         <main>
-            <section className="container mx-auto">
+            <section className="container">
                 <Breadcrumb className="mb-[35px] mt-[15px]" items={breadcrumdItems} />
                 <h1 className="text-[#1A2A44] text-[60px] font-medium mb-[35px]">About Vietnam</h1>
             </section>
             <section>
                 <img src={aboutVietNam} alt="About Vietnam" />
             </section>
-            <section className="container mx-auto mt-[80px]">
+            <section className="container mt-[80px]">
                 <SubHeading className="mb-[16px]">
                     Welcome to Vietnam – where heritage meets wonder.
                 </SubHeading>
@@ -68,7 +69,7 @@ const About = () => {
                     </div>
                 </div>
             </section>
-            <section className="container mx-auto mt-[120px]">
+            <section className="container mt-[120px]">
                 <div className="grid grid-cols-2 gap-[30px] items-center">
                     <div><img src={imageAbout} alt="DISCOVER VIETNAM’S NATURAL WORLD" /></div>
                     <div>
@@ -103,6 +104,7 @@ const About = () => {
                     </div>
                 </div>
             </section>
+            <WhyVisit />
             <FAQ className="mt-[80px]" />
             <PlainYourTrip className="mt-[120px]" />
         </main>

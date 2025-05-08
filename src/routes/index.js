@@ -1,54 +1,46 @@
 import { createBrowserRouter } from 'react-router'
-import Home from '@pages/Home'
-import City from '@pages/City'
-import NotFound from '@pages/NotFound'
-import Root from '@layouts/Root'
-import TripDetailResult from '@pages/TripdetailResult'
-import TripDetail from '@pages/Tripdetail'
-import TripDetailLayout from '@layouts/TripDetailLayout'
-import About from '@pages/About'
-import ExperienceDetail from '@pages/ExperienceDetail'
+import { lazy } from 'react'
 
 const router = createBrowserRouter([
     {
         path: '/',
-        Component: Root,
+        Component: lazy(() => import('@layouts/Root')),
         children: [
             {
                 index: true,
-                Component: Home,
+                Component: lazy(() => import('@pages/Home')),
             },
             {
                 path: 'city/:slug',
-                Component: City,
+                Component: lazy(() => import('@pages/City')),
             },
             {
                 path: 'tripdetail',
-                Component: TripDetail,
+                Component: lazy(() => import('@pages/Tripdetail')),
             },
             {
                 path: 'about',
-                Component: About,
+                Component: lazy(() => import('@pages/About')),
             },
             {
                 path: 'experience/:slug',
-                Component: ExperienceDetail,
+                Component: lazy(() => import('@pages/ExperienceDetail')),
             },
         ],
     },
     {
         path: 'tripdetail/result',
-        Component: TripDetailLayout,
+        Component: lazy(() => import('@layouts/TripDetailLayout')),
         children: [
             {
                 index: true,
-                Component: TripDetailResult,
+                Component: lazy(() => import('@pages/TripDetailResult')),
             },
         ],
     },
     {
         path: '*',
-        Component: NotFound,
+        Component: lazy(() => import('@pages/NotFound')),
     },
 ])
 

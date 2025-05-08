@@ -12,7 +12,7 @@ import travelOffer1 from '@images/travel-offer1.png'
 
 const TravelOffers = ({ className = '' }) => {
     return (
-        <section className={`container mx-auto ${className}`}>
+        <section className={`container ${className}`}>
             <Carousel>
                 <div className="flex justify-between mb-[24px] w-full">
                     <h2 className="text-[#1A2A44] text-[40px] font-bold">Travel Offers</h2>

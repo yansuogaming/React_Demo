@@ -11,7 +11,7 @@ import { NavLink } from 'react-router'
 const TopThingsToDo = ({ className = '' }) => {
     return (
         <section className={className}>
-            <div className="container mx-auto">
+            <div className="container">
                 <h3 className="text-[#1A2A44] text-[40px] font-bold mb-[20px]">
                     Top things to do in Hanoi
                 </h3>

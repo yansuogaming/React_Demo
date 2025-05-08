@@ -2,7 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@u
 
 const FAQ = ({ className = '' }) => {
     return (
-        <section className={`container mx-auto ${className}`}>
+        <section className={`container ${className}`}>
             <h2 className="text-[#1A2A44] text-[40px] font-bold mb-[10px]">FAQs</h2>
             <hr />
             <div className="grid grid-cols-2 gap-[30px]">

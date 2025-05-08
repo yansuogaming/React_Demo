@@ -14,7 +14,7 @@ const CardService = ({ title, widthImage, heightImage, image, children, href = '
             </NavLink>
             <div className="bg-white rounded-[0_0_12px_12px]">
                 <TertiaryHeading
-                    className="text-[24px] mb-[8px] mt-[20px] group-hover:text-[#007BFF] transform transition-all duration-500"
+                    className="text-[24px] mb-[8px] pt-[20px] group-hover:text-[#007BFF] transform transition-all duration-500"
                 >
                     <NavLink to={href}>
                         {title}

@@ -9,7 +9,7 @@ import ViewMoreButton from './button/ViewMoreButton'
 
 const TopVietnamExperiences = ({ className = ''}) => {
     return (
-        <section className={`container mx-auto ${className}`}>
+        <section className={`container ${className}`}>
             <h2 className="mb-[32px] text-[#1A2A44] text-[30px] text-center">Unforgettable Vietnam Experiences</h2>
             <NavLink to="/" className="w-fit mx-auto block relative mt-[10px] group overflow-hidden">
                 <img height="280px" src={image1} alt="Cultural Heritage" />

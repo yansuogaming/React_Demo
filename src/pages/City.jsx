@@ -34,7 +34,7 @@ const City = () => {
                 </p>
             </HeroSection>
             {/* Overview city */}
-            <section className="container mx-auto">
+            <section className="container">
                 <Breadcrumb className="mb-[60px] mt-[30px]" items={breadcrumdItems} />
                 <div className="grid grid-cols-3 gap-[32px]">
                     <div className="col-span-2">

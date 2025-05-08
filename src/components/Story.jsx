@@ -8,7 +8,7 @@ const Story = () => {
     const { t } = useTranslation()
 
     return (
-        <section className="container mx-auto">
+        <section className="container">
             <div className="flex items-center justify-between">
                 <h2 className="text-[30px] font-bold text-[#1A2A44] mb-[20px]">
                     Stories from Vietnam Travelers
@@ -16,7 +16,7 @@ const Story = () => {
                 <ViewMoreButton text={t('Read more')} />
             </div>
             <div className="grid grid-cols-3 gap-[30px]">
-            <CardService
+                <CardService
                     title="Cruising Ha Long Bay: A Dream Come True"
                     widthImage="450px"
                     heightImage="245px"

@@ -16,7 +16,7 @@ const TripDetail = () => {
     return (
         <main>
             <section className="tripDetail">
-                <div className="container mx-auto mt-[16px]">
+                <div className="container mt-[16px]">
                     <Breadcrumb className="mb-[60px] mt-[30px]" items={breadcrumdItems} />
                     <div className="txt_desc_trip_details mb-[40px]">
                         <h2 className="text-[60px] text-center mb-[10px] text-[#1A2A44]">
