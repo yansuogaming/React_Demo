@@ -10,7 +10,6 @@ const TripDetailResult = () => {
     const [activeTab, setActiveTab] = useState("spots");
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
-    // const [toDeleteId, setToDeleteId] = useState(null);
 
     return (
         <main>
@@ -20,13 +19,9 @@ const TripDetailResult = () => {
                         activeTab={activeTab}
                         setActiveTab={setActiveTab}
                     />
-                    <div className="p-4">
+                    <div className="p-[25px_20px]">
                         {activeTab === "spots" && (
-                            <SpotsContent
-                                setShowAddModal={setShowAddModal}
-                                // setShowDeleteModal={setShowDeleteModal}
-                                // setToDeleteId={setToDeleteId}
-                            />
+                            <SpotsContent setShowAddModal={setShowAddModal} />
                         )}
                         {activeTab === "itinerary" && <ItineraryContent />}
                         {activeTab === "notes" && <NotesContent />}
@@ -36,7 +31,7 @@ const TripDetailResult = () => {
                     <img
                         src="https://www.vietnambooking.com/wp-content/uploads/2020/12/thoi-gian-bay-tu-can-tho-den-hanoi-18122020-1.jpg"
                         alt=""
-                        className="w-full h-auto"
+                        className="w-full h-full"
                     />
                 </div>
             </div>

@@ -1,6 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@theme {
+    --breakpoint-xs: 100%;
+    --breakpoint-sm: 540px;
+    --breakpoint-md: 720px;
+    --breakpoint-lg: 960px;
+    --breakpoint-xl: 1140px;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
