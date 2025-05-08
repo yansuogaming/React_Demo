@@ -19,8 +19,8 @@ const RegionList = ({ className, ...props }) => {
     const [desRegion, setDesRegion] = useState('Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s,')
 
     return (
-        <section {...props} className={`flex gap-[35px] container mx-auto ${className}`}>
-            <div className="min-w-[512px] relative">
+        <section {...props} className={`flex gap-[35px] container mx-auto ${className} items-center`}>
+            <div className="min-w-[512px] relative h-fit">
                 <div>
                     <NorthImage />
                 </div>
@@ -55,7 +55,7 @@ const RegionList = ({ className, ...props }) => {
                             <NavLink to="/city/hanoi">
                                 <img src={imageNaNoi} alt="Hanoi" className="w-full rounded-[60px_4px_4px_4px]" />
                                 {/* Overlay */}
-                                <div className="absolute right-0 bottom-0 z-10 w-[calc(100%-20px)] p-[20px_20px_0_20px] overflow-hidden transform transition-all duration-500 translate-y-[125px] group-hover:translate-y-0">
+                                <div className="absolute right-0 top-[calc(100%-70px)] z-10 w-[calc(100%-20px)] p-[20px_20px_0_20px] overflow-hidden transform transition-all duration-500 group-hover:top-[calc(100%-195px)]">
                                     {/* Title */}
                                     <h3 className="text-white text-[28px] font-bold">
                                         Hanoi
@@ -79,7 +79,7 @@ const RegionList = ({ className, ...props }) => {
                             <NavLink to="/city/hanoi">
                                 <img src={imageHaLong} alt="Halong" className="w-full rounded-[60px_4px_4px_4px]" />
                                 {/* Overlay */}
-                                <div className="absolute right-0 bottom-0 z-10 w-[calc(100%-20px)] p-[20px_20px_0_20px] overflow-hidden transform transition-all duration-500 translate-y-[125px] group-hover:translate-y-0">
+                                <div className="absolute right-0 top-[calc(100%-70px)] z-10 w-[calc(100%-20px)] p-[20px_20px_0_20px] overflow-hidden transform transition-all duration-500 group-hover:top-[calc(100%-195px)]">
                                     {/* Title */}
                                     <h3 className="text-white text-[28px] font-bold">
                                         Halong
@@ -103,7 +103,7 @@ const RegionList = ({ className, ...props }) => {
                             <NavLink to="/city/hanoi">
                                 <img src={imageSapa} alt="Sa pa" className="w-full rounded-[60px_4px_4px_4px]" />
                                 {/* Overlay */}
-                                <div className="absolute right-0 bottom-0 z-10 w-[calc(100%-20px)] p-[20px_20px_0_20px] overflow-hidden transform transition-all duration-500 translate-y-[125px] group-hover:translate-y-0">
+                                <div className="absolute right-0 top-[calc(100%-70px)] z-10 w-[calc(100%-20px)] p-[20px_20px_0_20px] overflow-hidden transform transition-all duration-500 group-hover:top-[calc(100%-195px)]">
                                     {/* Title */}
                                     <h3 className="text-white text-[28px] font-bold">
                                         Sa pa

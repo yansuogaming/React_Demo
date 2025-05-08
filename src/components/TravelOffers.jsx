@@ -32,14 +32,14 @@ const TravelOffers = ({ className = '' }) => {
                         </NavLink>
                     </div>
                     <CarouselContent className="-ml-[30px]">
-                        <CarouselItem className="basis-[60%] pl-[30px]">
-                            <NavLink to="" className="overflow-hidden">
-                                <img className="w-[640px] h-[350px] rounded-[0_60px_0_0]" src={travelOffer1} />
+                        <CarouselItem className="basis-[70%] pl-[30px]">
+                            <NavLink to="" className="overflow-hidden w-full">
+                                <img className="w-full h-[350px] rounded-[0_60px_0_0]" src={travelOffer1} />
                             </NavLink>
                         </CarouselItem>
-                        <CarouselItem className="basis-[60%] pl-[30px]">
-                            <NavLink to="" className="overflow-hidden">
-                                <img className="w-[640px] h-[350px] rounded-[60px_0_0_0]" src={travelOffer1} />
+                        <CarouselItem className="basis-[70%] pl-[30px]">
+                            <NavLink to="" className="overflow-hidden w-full">
+                                <img className="w-full h-[350px] rounded-[60px_0_0_0]" src={travelOffer1} />
                             </NavLink>
                         </CarouselItem>
                     </CarouselContent>

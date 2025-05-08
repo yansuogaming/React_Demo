@@ -7,6 +7,8 @@
     --breakpoint-md: 720px;
     --breakpoint-lg: 960px;
     --breakpoint-xl: 1140px;
+    --breakpoint-2xl: 1310px;
+    --breakpoint-3xl: 1310px;
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -121,6 +123,19 @@
 @font-face {
     font-family: 'Visit Qatar';
     src: url('../fonts/VisitQatar-Regular.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Visit Qatar';
+    src: url('../fonts/VisitQatar-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Visit Qatar';
+    src: url('../fonts/VisitQatar-Bold.ttf');
+    font-weight: 700;
 }
 
 @font-face {

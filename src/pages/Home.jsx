@@ -33,7 +33,7 @@ const Home = () => {
         <main>
             <section className="relative text-white">
                 {!isLoaded && (
-                    <Skeleton className="h-[750px] w-full rounded-xl bg-[#989797]" />
+                    <Skeleton className="h-[750px] w-full rounded-0 bg-[#989797] rounded-none" />
                 )}
                 <img
                     src={heroImage}
