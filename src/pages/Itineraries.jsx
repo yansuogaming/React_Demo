@@ -1,5 +1,9 @@
 import Breadcrumb from '@components/Breadcrumb'
+import FAQ from '@components/FAQ'
+import FilterTours from '@components/FilterTours'
 import MostPopularTours from '@components/MostPopularTours'
+import PlainYourTrip from '@components/PlainYourTrip'
+import WhyVisit from '@components/WhyVisit'
 import Reveal from '@components/animation/Reveal'
 import TextNormal from '@components/text/TextNormal'
 import image from '@images/hero-image-itineraries.png'
@@ -36,7 +40,10 @@ const Itineraries = () => {
                 </Reveal>
             </section>
             <MostPopularTours />
-            
+            <FilterTours className="mt-[80px] mb-[160px]" />
+            <WhyVisit />
+            <FAQ />
+            <PlainYourTrip className="mt-[120px]" />
         </main>
     )
 }

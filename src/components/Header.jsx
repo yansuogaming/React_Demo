@@ -81,13 +81,13 @@ const Header = ({ noBackgroundOnScroll = true }) => {
                 {/* Nav bar */}
                 <ul className="flex h-fit font-bold">
                     <li className="p-[15px] h-fit">
-                        <NavLink to="/">{t("destinations")}</NavLink>
+                        <NavLink to="/itineraries">{t("destinations")}</NavLink>
                     </li>
                     <li className="p-[15px] h-fit">
                         <NavLink to="/">{t("experiences")}</NavLink>
                     </li>
                     <li className="p-[15px] h-fit">
-                        <NavLink to="/">{t("events")}</NavLink>
+                        <NavLink to="/events">{t("events")}</NavLink>
                     </li>
                     <li className="p-[15px] h-fit">
                         <NavLink to="/">{t("plan_your_trip")}</NavLink>

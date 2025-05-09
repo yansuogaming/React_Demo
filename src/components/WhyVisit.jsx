@@ -4,19 +4,39 @@ import image from '@images/why-visit.png'
 import CardService from './card/CardService'
 import TextNormal from './text/TextNormal'
 import Reveal from './animation/Reveal'
+import { useEffect, useRef, useState } from 'react'
 
 const WhyVisit = () => {
+    const ref = useRef(null)
+    const [top, setTop] = useState(0)
+
+    useEffect(() => {
+        const img = ref.current.querySelector('img')
+        const onloadImage = (e) => {
+            setTop(e.target.clientHeight)
+        };
+        img.addEventListener('load', onloadImage)
+        return () => img.removeEventListener('load', onloadImage)
+    }, [])
+
     return (
-        <section className="my-[80px] py-[80px] bg-[#F5F6FA]">
+        <section ref={ref} className="my-[80px] py-[80px] bg-[#F5F6FA]">
             <div className="container">
                 <SubHeading className="mb-[40px]">
                     Why visit Vietnam
                 </SubHeading>
                 <Reveal>
-                    <Carousel className="w-full">
+                    <Carousel
+                        className="w-full"
+                        opts={{
+                            align: "start",
+                            skipSnaps: false,
+                            loop: false,
+                        }}
+                    >
                         <CarouselContent className="-ml-[20px]">
                             {Array.from({ length: 5 }).map((_, index) => (
-                                <CarouselItem key={index} className="pl-[20px] basis-1/3">
+                                <CarouselItem key={index} className="pl-[20px] basis-1/4">
                                     <CardService
                                         title="Diverse Natural Landscapes"
                                         widthImage="100%"
@@ -32,8 +52,8 @@ const WhyVisit = () => {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <CarouselPrevious className="left-[20px] cursor-pointer" />
-                        <CarouselNext className="right-[20px] cursor-pointer" />
+                        <CarouselPrevious style={{ top }} className="left-0 cursor-pointer -translate-x-1/2" />
+                        <CarouselNext style={{ top }} className="right-0 cursor-pointer translate-x-1/2" />
                     </Carousel>
                 </Reveal>
             </div>

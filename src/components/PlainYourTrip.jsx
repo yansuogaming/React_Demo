@@ -8,8 +8,9 @@ import InputTripLocation from './input/InputTripLocation'
 
 const PlainYourTrip = ({ className = '' }) => {
     return (
-        <section className={`rounded-[8px] container flex justify-between mx-auto bg-[linear-gradient(104deg,_#F5F6FA_0%,_#EFF4FF_70.01%)] p-[15px_15px_15px_50px] ${className}`}>
-            <Form action="/tripdetail">
+        <section className={`rounded-[8px] container bg-[linear-gradient(104deg,_#F5F6FA_0%,_#EFF4FF_70.01%)] ${className}`}>
+            <div className="items-center flex justify-between p-[15px_15px_15px_50px]">
+            <Form action="/tripdetail" className="h-fit">
                 <h2 className="text-[40px] font-bold mb-[20px]">
                     Plan Your Trip
                 </h2>
@@ -35,6 +36,7 @@ const PlainYourTrip = ({ className = '' }) => {
             </Form>
             <div>
                 <img src={image} alt="Map" width="480px" />
+            </div>
             </div>
         </section>
     )

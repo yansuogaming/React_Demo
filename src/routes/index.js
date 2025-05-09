@@ -1,7 +1,6 @@
-import { createBrowserRouter } from 'react-router'
 import { lazy } from 'react'
 
-const router = createBrowserRouter([
+const router = [
     {
         path: '/',
         Component: lazy(() => import('@layouts/Root')),
@@ -9,6 +8,9 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: lazy(() => import('@pages/Home')),
+                loader() {
+                    return json({ message: "Welcome to React Router!" });
+                }
             },
             {
                 path: 'city/:slug',
@@ -30,6 +32,10 @@ const router = createBrowserRouter([
                 path: 'itineraries',
                 Component: lazy(() => import('@pages/Itineraries')),
             },
+            {
+                path: 'events',
+                Component: lazy(() => import('@pages/Events')),
+            },
         ],
     },
     {
@@ -46,6 +52,6 @@ const router = createBrowserRouter([
         path: '*',
         Component: lazy(() => import('@pages/NotFound')),
     },
-]);
+];
 
 export default router;
