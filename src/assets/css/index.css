@@ -7,8 +7,8 @@
     --breakpoint-md: 720px;
     --breakpoint-lg: 960px;
     --breakpoint-xl: 1140px;
-    --breakpoint-2xl: 1310px;
-    --breakpoint-3xl: 1310px;
+    /* --breakpoint-2xl: 1310px;
+    --breakpoint-3xl: 1310px; */
 }
 
 @custom-variant dark (&:is(.dark *));
@@ -122,20 +122,9 @@
 
 @font-face {
     font-family: "Visit Qatar";
-    src: url("../fonts/VisitQatar-Regular.ttf");
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: "Visit Qatar";
-    src: url("../fonts/VisitQatar-Medium.ttf");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: "Visit Qatar";
-    src: url("../fonts/VisitQatar-Bold.ttf");
+    font-style: normal;
     font-weight: 700;
+    src: url("../fonts/VisitQatar-Bold.woff2") format("woff2");
 }
 
 @font-face {
@@ -166,4 +155,8 @@
         @apply bg-background text-foreground;
         font-family: "Visit Qatar";
     }
+}
+
+html {
+    scroll-behavior: smooth;
 }
