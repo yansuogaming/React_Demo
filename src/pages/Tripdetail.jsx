@@ -1,23 +1,26 @@
-import { NavLink } from 'react-router'
-import { useTranslation } from 'react-i18next'
-import CreateItineraryButton from '@components/button/CreateItineraryButton'
-import InputTripLocation from '@components/input/InputTripLocation'
-import InputDatePickerWithRangeTrip from '@components/input/InputDatePickerWithRangeTrip'
-import Breadcrumb from '@components/Breadcrumb'
+import { NavLink } from "react-router";
+import { useTranslation } from "react-i18next";
+import CreateItineraryButton from "@components/button/CreateItineraryButton";
+import InputTripLocation from "@components/input/InputTripLocation";
+import InputDatePickerWithRangeTrip from "@components/input/InputDatePickerWithRangeTrip";
+import Breadcrumb from "@components/Breadcrumb";
 
 const TripDetail = () => {
-    const { t } = useTranslation()
+    const { t } = useTranslation();
     const breadcrumdItems = [
-        { label: t('home'), href: '/' },
-        { label: t('Plan your trip'), href: '/' },
-        { label: 'Trip Planner with AI' }
-    ]
+        { label: t("home"), href: "/" },
+        { label: t("Plan your trip"), href: "/" },
+        { label: "Trip Planner with AI" },
+    ];
 
     return (
         <main>
             <section className="tripDetail">
-                <div className="container mt-[16px]">
-                    <Breadcrumb className="mb-[60px] mt-[30px]" items={breadcrumdItems} />
+                <div className="container mx-auto mt-[16px]">
+                    <Breadcrumb
+                        className="mb-[60px] mt-[30px]"
+                        items={breadcrumdItems}
+                    />
                     <div className="txt_desc_trip_details mb-[40px]">
                         <h2 className="text-[60px] text-center mb-[10px] text-[#1A2A44]">
                             {t("your_trip_details")}

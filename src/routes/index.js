@@ -42,6 +42,6 @@ const router = createBrowserRouter([
         path: '*',
         Component: lazy(() => import('@pages/NotFound')),
     },
-])
+]);
 
-export default router
+export default router;

@@ -121,26 +121,38 @@
 }
 
 @font-face {
-    font-family: 'Visit Qatar';
-    src: url('../fonts/VisitQatar-Regular.ttf');
+    font-family: "Visit Qatar";
+    src: url("../fonts/VisitQatar-Regular.ttf");
     font-weight: 400;
 }
 
 @font-face {
-    font-family: 'Visit Qatar';
-    src: url('../fonts/VisitQatar-Medium.ttf');
+    font-family: "Visit Qatar";
+    src: url("../fonts/VisitQatar-Medium.ttf");
     font-weight: 500;
 }
 
 @font-face {
-    font-family: 'Visit Qatar';
-    src: url('../fonts/VisitQatar-Bold.ttf');
+    font-family: "Visit Qatar";
+    src: url("../fonts/VisitQatar-Bold.woff2") format("woff2");
     font-weight: 700;
 }
 
 @font-face {
-    font-family: 'Roboto';
-    src: url('../fonts/Roboto-Regular.ttf');
+    font-family: "Visit Qatar";
+    font-weight: 500;
+    src: url("../fonts/VisitQatar-Medium.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Visit Qatar";
+    font-weight: 400;
+    src: url("../fonts/VisitQatar-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf");
 }
 
 @layer base {
@@ -150,7 +162,7 @@
 
     body {
         @apply bg-background text-foreground;
-        font-family: 'Visit Qatar', sans-serif;
+        font-family: "Visit Qatar";
     }
 }
 
