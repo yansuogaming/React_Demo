@@ -16,48 +16,24 @@ const Story = () => {
                 <ViewMoreButton text={t('Read more')} />
             </div>
             <div className="grid grid-cols-3 gap-[30px]">
-                <CardService
-                    title="Cruising Ha Long Bay: A Dream Come True"
-                    widthImage="450px"
-                    heightImage="245px"
-                    image={image}
-                    href="/"
-                >
-                    <NavLink to="/" className="flex items-center gap-[5px]">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                            <path d="M9.12109 2.5L8.92547 2.67563L2.05047 9.55062L1.62109 10L2.05047 10.4494L7.67547 16.0744L8.12484 16.5037L8.57422 16.0744L15.4492 9.19938L15.6248 9.00375V2.5H9.12109ZM9.64859 3.75H14.3748V8.47687L8.12484 14.7269L3.39797 10L9.64859 3.75ZM16.2498 4.375V5.625H16.8748V10.7225L10.9373 16.6213L10.1561 15.84L9.27734 16.7188L10.488 17.9494L10.9373 18.3787L11.3673 17.9494L17.9486 11.445L18.1248 11.25V4.375H16.2498ZM12.4998 5C12.1561 5 11.8748 5.28125 11.8748 5.625C11.8748 5.96875 12.1561 6.25 12.4998 6.25C12.8436 6.25 13.1248 5.96875 13.1248 5.625C13.1248 5.28125 12.8436 5 12.4998 5Z" />
-                        </svg>
-                        #Vietnamtravel
-                    </NavLink>
-                </CardService>
-                <CardService
-                    title="Cruising Ha Long Bay: A Dream Come True"
-                    widthImage="450px"
-                    heightImage="245px"
-                    image={image}
-                    href="/"
-                >
-                    <NavLink to="/" className="flex items-center gap-[5px]">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                            <path d="M9.12109 2.5L8.92547 2.67563L2.05047 9.55062L1.62109 10L2.05047 10.4494L7.67547 16.0744L8.12484 16.5037L8.57422 16.0744L15.4492 9.19938L15.6248 9.00375V2.5H9.12109ZM9.64859 3.75H14.3748V8.47687L8.12484 14.7269L3.39797 10L9.64859 3.75ZM16.2498 4.375V5.625H16.8748V10.7225L10.9373 16.6213L10.1561 15.84L9.27734 16.7188L10.488 17.9494L10.9373 18.3787L11.3673 17.9494L17.9486 11.445L18.1248 11.25V4.375H16.2498ZM12.4998 5C12.1561 5 11.8748 5.28125 11.8748 5.625C11.8748 5.96875 12.1561 6.25 12.4998 6.25C12.8436 6.25 13.1248 5.96875 13.1248 5.625C13.1248 5.28125 12.8436 5 12.4998 5Z" />
-                        </svg>
-                        #Vietnamtravel
-                    </NavLink>
-                </CardService>
-                <CardService
-                    title="Cruising Ha Long Bay: A Dream Come True"
-                    widthImage="450px"
-                    heightImage="245px"
-                    image={image}
-                    href="/"
-                >
-                    <NavLink to="/" className="flex items-center gap-[5px]">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-                            <path d="M9.12109 2.5L8.92547 2.67563L2.05047 9.55062L1.62109 10L2.05047 10.4494L7.67547 16.0744L8.12484 16.5037L8.57422 16.0744L15.4492 9.19938L15.6248 9.00375V2.5H9.12109ZM9.64859 3.75H14.3748V8.47687L8.12484 14.7269L3.39797 10L9.64859 3.75ZM16.2498 4.375V5.625H16.8748V10.7225L10.9373 16.6213L10.1561 15.84L9.27734 16.7188L10.488 17.9494L10.9373 18.3787L11.3673 17.9494L17.9486 11.445L18.1248 11.25V4.375H16.2498ZM12.4998 5C12.1561 5 11.8748 5.28125 11.8748 5.625C11.8748 5.96875 12.1561 6.25 12.4998 6.25C12.8436 6.25 13.1248 5.96875 13.1248 5.625C13.1248 5.28125 12.8436 5 12.4998 5Z" />
-                        </svg>
-                        #Vietnamtravel
-                    </NavLink>
-                </CardService>
+                {Array.from({ length: 3 }).map((_, index) => (
+                    <CardService
+                        key={index}
+                        title="Cruising Ha Long Bay: A Dream Come True"
+                        widthImage="450px"
+                        heightImage="245px"
+                        image={image}
+                        href="/"
+                        padding="20px 0 0 0"
+                    >
+                        <NavLink to="/" className="flex items-center gap-[5px]">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                                <path d="M9.12109 2.5L8.92547 2.67563L2.05047 9.55062L1.62109 10L2.05047 10.4494L7.67547 16.0744L8.12484 16.5037L8.57422 16.0744L15.4492 9.19938L15.6248 9.00375V2.5H9.12109ZM9.64859 3.75H14.3748V8.47687L8.12484 14.7269L3.39797 10L9.64859 3.75ZM16.2498 4.375V5.625H16.8748V10.7225L10.9373 16.6213L10.1561 15.84L9.27734 16.7188L10.488 17.9494L10.9373 18.3787L11.3673 17.9494L17.9486 11.445L18.1248 11.25V4.375H16.2498ZM12.4998 5C12.1561 5 11.8748 5.28125 11.8748 5.625C11.8748 5.96875 12.1561 6.25 12.4998 6.25C12.8436 6.25 13.1248 5.96875 13.1248 5.625C13.1248 5.28125 12.8436 5 12.4998 5Z" />
+                            </svg>
+                            #Vietnamtravel
+                        </NavLink>
+                    </CardService>  
+                ))}
             </div>
         </section>
     )

@@ -26,6 +26,10 @@ const router = createBrowserRouter([
                 path: 'experience/:slug',
                 Component: lazy(() => import('@pages/ExperienceDetail')),
             },
+            {
+                path: 'itineraries',
+                Component: lazy(() => import('@pages/Itineraries')),
+            },
         ],
     },
     {
