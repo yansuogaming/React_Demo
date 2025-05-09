@@ -45,8 +45,8 @@ const Experiences = () => {
 
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
-        { label: t("Destinations"), href: "/" },
-        { label: "Hanoi", href: "/" },
+        { label: t("Experiences"), href: "/" },
+        { label: "Cultural Heritage", href: "/" },
     ];
 
     const items = Array.from({ length: 20 }, (_, i) => ({

@@ -8,6 +8,7 @@ import TripDetailResult from "@pages/TripdetailResult";
 import TripDetail from "@pages/Tripdetail";
 import TripDetailLayout from "@layouts/TripDetailLayout";
 import Expericences from "@pages/Expericences";
+import ExpericencesDetail from "@pages/ExpericencesDetail";
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
             {
                 path: "expericences",
                 Component: Expericences,
+            },
+            {
+                path: "expericences/detail",
+                Component: ExpericencesDetail,
             },
         ],
     },
