@@ -9,6 +9,8 @@ import TripDetail from "@pages/Tripdetail";
 import TripDetailLayout from "@layouts/TripDetailLayout";
 import Expericences from "@pages/Expericences";
 import ExpericencesDetail from "@pages/ExpericencesDetail";
+import About from "@pages/About";
+import ExperienceDetail from "@pages/ExperienceDetail";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +36,15 @@ const router = createBrowserRouter([
             {
                 path: "expericences/detail",
                 Component: ExpericencesDetail,
+            },
+
+            {
+                path: "about",
+                Component: About,
+            },
+            {
+                path: "experience/:slug",
+                Component: ExperienceDetail,
             },
         ],
     },

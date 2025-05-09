@@ -1,7 +1,5 @@
 import imageCity from '@images/hanoi.png'
 import imageCity2 from '@images/image.png'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import Breadcrumb from '@components/Breadcrumb'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router'
@@ -11,6 +9,12 @@ import VietNamEvent from '@components/VietNamEvent'
 import Weather from '@components/Weather'
 import TopThingsToDo from '@components/TopThingsToDo'
 import PlainYourTrip from '@components/PlainYourTrip'
+import ExperienceActivities from '@components/ExperienceActivities'
+import Impressions from '@components/Impressions'
+import FAQ from '@components/FAQ'
+import OtherRegion from '@components/OtherRegion'
+import Share from '@components/Share'
+import HeroSection from '@components/HeroSection'
 
 const City = () => {
     const { t } = useTranslation()
@@ -18,22 +22,17 @@ const City = () => {
     const breadcrumdItems = [
         { label: t('home'), href: '/' },
         { label: t('Destinations'), href: '/' },
-        { label: 'Hanoi', href: '/' }
+        { label: 'Hanoi' }
     ]
 
     return (
         <main>
-            <section className="relative text-white bg-[linear-gradient(180deg,_#F5F6FA_0%,_#EFF4FF_70.01%)]">
-                <img src={imageCity} alt="Hà Nội" />
-                <h1 className="text-center text-[60px] font-bold text-shadow-[0_2px_4px_rgba(0_0_0_/_0.40)] absolute bottom-[285px] w-full">
-                    Hanoi
-                </h1>
-                <p className="text-center text-[20px] font-normal absolute bottom-[220px] w-full">
+            <HeroSection title="Hà Nội" image={imageCity} showArrowDown={true}>
+                <p className="text-center text-[20px] font-normal w-full">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been <br />
                     the industry's standard dummy text ever since the 1500s
                 </p>
-                <FontAwesomeIcon icon={faArrowDown} className="absolute bottom-[20px] text-[24px] left-1/2 translate-[-50%]" />
-            </section>
+            </HeroSection>
             {/* Overview city */}
             <section className="container mx-auto">
                 <Breadcrumb className="mb-[60px] mt-[30px]" items={breadcrumdItems} />
@@ -80,7 +79,12 @@ const City = () => {
             <Weather />
             <TopThingsToDo className="mt-[120px]" />
             <VietNamEvent className="mt-[80px] bg-[#F5F6FA] py-[80px]" />
+            <ExperienceActivities className="mt-[120px]" />
+            <Impressions className="mt-[120px]" />
             <PlainYourTrip className="mt-[120px]" />
+            <FAQ className="mt-[120px]" />
+            <OtherRegion className="mt-[120px]" />
+            <Share color="#007BFF" className="mt-[120px]" />
         </main>
     )
 }

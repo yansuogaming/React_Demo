@@ -5,6 +5,7 @@ import image4 from '@images/image_9.svg'
 import { NavLink } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import ViewMoreButton from './button/ViewMoreButton'
 
 const TopVietnamExperiences = ({ className = ''}) => {
     return (
@@ -70,10 +71,7 @@ const TopVietnamExperiences = ({ className = ''}) => {
                 </div>
                 <div className="w-1/2 h-full absolute top-0 left-0 rounded-[0_0_150px_0] bg-[linear-gradient(90deg,_#2FB22F_0%,_rgba(47,178,47,0)_100%)]"></div>
             </NavLink>
-            <NavLink to="/" className="flex gap-[10px] text-[#007BFF] p-[15px] w-fit mx-auto border-1 border-[#007BFF] mt-[32px] rounded-[80px] items-center">
-                Explore All Experiences
-                <FontAwesomeIcon icon={faArrowRight} />
-            </NavLink>
+            <ViewMoreButton text="Explore All Experiences" className="text-[#007BFF] p-[15px] w-fit mx-auto border-1 border-[#007BFF] mt-[32px] rounded-[80px]" />
         </section>
     )
 }

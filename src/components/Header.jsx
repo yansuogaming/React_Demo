@@ -68,7 +68,7 @@ const Header = ({ noBackgroundOnScroll = true }) => {
 
     return (
         <header
-            className="flex justify-between py-[15px] px-[40px] w-full z-1 top-0"
+            className="flex justify-between py-[15px] px-[40px] w-full z-50 top-0"
             style={{ background, position, color, boxShadow }}
         >
             <div className="flex items-center">

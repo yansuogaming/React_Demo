@@ -2,13 +2,13 @@ import bird from '@images/bird.svg'
 import iconMail from '@images/icon-mail.svg'
 import iconAppStore from '@images/icon-appstore.svg'
 import iconGooglePlay from '@images/icon-googleplay.svg'
-import iconTwitter from '@images/icon-twitter.svg'
-import iconYoutube from '@images/icon-youtube.svg'
-import iconInstagram from '@images/icon-instagram.svg'
-import iconFacebook from '@images/icon-facebook.svg'
 import logo from '@images/logo2.svg'
 import { NavLink } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import FacebookIcon from './icons/FacebookIcon'
+import InstagramIcon from './icons/InstagramIcon'
+import TwitterIcon from './icons/TwitterIcon'
+import YoutubeIcon from './icons/YoutubeIcon'
 
 const Footer = () => {
     const { t } = useTranslation()
@@ -169,7 +169,9 @@ const Footer = () => {
                 <hr />
                 <div className="flex justify-between items-center mt-[20px] mb-[50px]">
                     <div className="flex items-center">
-                        <img src={logo} alt="" width="102px" className="mr-[30px]" />
+                        <NavLink to="">
+                            <img src={logo} alt="" width="102px" className="mr-[30px]" />
+                        </NavLink>
                         <div>
                             <p className="font-bold text-[18px] mb-[5px]">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -181,16 +183,16 @@ const Footer = () => {
                     </div>
                     <div className="flex justify-between gap-[40px]">
                         <a href="">
-                            <img src={iconTwitter} alt="Twitter" width="24px" />
+                            <TwitterIcon />
                         </a>
                         <a href="">
-                            <img src={iconInstagram} alt="Instagram" width="24px" />
+                            <InstagramIcon />
                         </a>
                         <a href="">
-                            <img src={iconYoutube} alt="Youtube" width="24px" />
+                            <YoutubeIcon />
                         </a>
                         <a href="">
-                            <img src={iconFacebook} alt="Facebook" width="24px" />
+                            <FacebookIcon />
                         </a>
                     </div>
                 </div>
