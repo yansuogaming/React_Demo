@@ -40,7 +40,7 @@ const ExperienceActivities = ({ className = '' }) => {
                         <NavLink className="overflow-hidden ">
                             <img src={image} alt="Enjoy Hanoi street food" className="w-full" />
                         </NavLink>
-                        <NavLink to="" className="block text-[#1A2A44] text-[24px] text-bold mt-[15px] mb-[2px]">
+                        <NavLink to="" className="block text-[#1A2A44] text-[24px] font-bold mt-[15px] mb-[2px]">
                             <h3>Enjoy Hanoi street food</h3>
                         </NavLink>
                         <p className="flex gap-[5px] items-center mb-[15px]">
@@ -56,7 +56,7 @@ const ExperienceActivities = ({ className = '' }) => {
                         <NavLink className="overflow-hidden ">
                             <img src={image} alt="Enjoy Hanoi street food" className="w-full" />
                         </NavLink>
-                        <NavLink to="" className="block text-[#1A2A44] text-[24px] text-bold mt-[15px] mb-[2px]">
+                        <NavLink to="" className="block text-[#1A2A44] text-[24px] font-bold mt-[15px] mb-[2px]">
                             <h3>Enjoy Hanoi street food</h3>
                         </NavLink>
                         <p className="flex gap-[5px] items-center mb-[15px]">
@@ -72,7 +72,7 @@ const ExperienceActivities = ({ className = '' }) => {
                         <NavLink className="overflow-hidden ">
                             <img src={image} alt="Enjoy Hanoi street food" className="w-full" />
                         </NavLink>
-                        <NavLink to="" className="block text-[#1A2A44] text-[24px] text-bold mt-[15px] mb-[2px]">
+                        <NavLink to="" className="block text-[#1A2A44] text-[24px] font-bold mt-[15px] mb-[2px]">
                             <h3>Enjoy Hanoi street food</h3>
                         </NavLink>
                         <p className="flex gap-[5px] items-center mb-[15px]">
@@ -88,7 +88,7 @@ const ExperienceActivities = ({ className = '' }) => {
                         <NavLink className="overflow-hidden ">
                             <img src={image} alt="Enjoy Hanoi street food" className="w-full" />
                         </NavLink>
-                        <NavLink to="" className="block text-[#1A2A44] text-[24px] text-bold mt-[15px] mb-[2px]">
+                        <NavLink to="" className="block text-[#1A2A44] text-[24px] font-bold mt-[15px] mb-[2px]">
                             <h3>Enjoy Hanoi street food</h3>
                         </NavLink>
                         <p className="flex gap-[5px] items-center mb-[15px]">

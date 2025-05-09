@@ -1,9 +1,10 @@
+import Reveal from '@components/animation/Reveal'
 import TertiaryHeading from '@components/text/TertiaryHeading'
 import { NavLink } from 'react-router'
 
 const CardService = ({ title, widthImage, heightImage, image, children, href = '/' }) => {
     return (
-        <div className="group">
+        <Reveal className="group">
             <NavLink to={href} className="rounded-[60px_0_0_0] overflow-hidden block">
                 <img
                     src={image}
@@ -22,7 +23,7 @@ const CardService = ({ title, widthImage, heightImage, image, children, href = '
                 </TertiaryHeading>
                 {children}
             </div>
-        </div>
+        </Reveal>
     )
 }
 

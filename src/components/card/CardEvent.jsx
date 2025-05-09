@@ -1,3 +1,4 @@
+import Reveal from '@components/animation/Reveal'
 import TertiaryHeading from '@components/text/TertiaryHeading'
 import useLanguage from '@hooks/useLanguage'
 import { format } from 'date-fns'
@@ -30,7 +31,7 @@ const CardEvent = ({
     }
 
     return (
-        <div className="group">
+        <Reveal className="group">
             <NavLink to={href} className="rounded-[60px_0_0_0] overflow-hidden block relative">
                 <img
                     src={image}
@@ -58,7 +59,7 @@ const CardEvent = ({
                 </TertiaryHeading>
                 {children}
             </div>
-        </div>
+        </Reveal>
     )
 }
 
