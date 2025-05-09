@@ -122,20 +122,9 @@
 
 @font-face {
     font-family: "Visit Qatar";
-    src: url("../fonts/VisitQatar-Regular.ttf");
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: "Visit Qatar";
-    src: url("../fonts/VisitQatar-Medium.ttf");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: "Visit Qatar";
-    src: url("../fonts/VisitQatar-Bold.woff2") format("woff2");
+    font-style: normal;
     font-weight: 700;
+    src: url("../fonts/VisitQatar-Bold.woff2") format("woff2");
 }
 
 @font-face {
@@ -171,4 +160,8 @@
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
+}
+
+html {
+    scroll-behavior: smooth;
 }
