@@ -16,12 +16,15 @@ import {
 const ITEMS_PER_PAGE = 12;
 
 const PostCard = ({ image, title, date, desc, large = false }) => (
-    <div className={large ? "lg:col-span-2" : ""}>
-        <NavLink to="#">
+    <div className={large ? "lg:col-span-2 group" : "group"}>
+        <NavLink
+            to="#"
+            className="overflow-hidden block relative rounded-tl-[60px]"
+        >
             <img
                 src={image}
                 alt={title}
-                className="w-full h-[285px] object-cover rounded-tl-[60px]"
+                className="w-full h-[285px] object-cover group-hover:scale-[1.1] transform transition-all duration-500"
             />
         </NavLink>
         <h3

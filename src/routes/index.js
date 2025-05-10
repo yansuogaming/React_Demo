@@ -11,6 +11,8 @@ import Expericences from "@pages/Expericences";
 import ExpericencesDetail from "@pages/ExpericencesDetail";
 import About from "@pages/About";
 import ExperienceDetail from "@pages/ExperienceDetail";
+import Event from "@pages/EventPage";
+import EventPage from "@pages/EventPage";
 
 const router = createBrowserRouter([
     {
@@ -43,8 +45,8 @@ const router = createBrowserRouter([
                 Component: About,
             },
             {
-                path: "experience/:slug",
-                Component: ExperienceDetail,
+                path: "event",
+                Component: EventPage,
             },
         ],
     },

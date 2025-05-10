@@ -1,10 +1,10 @@
 import { useState } from "react";
-import TabButtons from "@components/TabButtons";
-import SpotsContent from "@components/SpotsContent";
-import ItineraryContent from "@components/ItineraryContent";
-import NotesContent from "@components/NotesContent";
-import ConfirmModal from "@components/ConfirmModal";
-import AddModal from "@components/AddModal";
+import TabButtons from "@components/tripdetailresult/TabButtons";
+import SpotsContent from "@components/tripdetailresult/SpotsContent";
+import ItineraryContent from "@components/tripdetailresult/ItineraryContent";
+import NotesContent from "@components/tripdetailresult/NotesContent";
+import ConfirmModal from "@components/tripdetailresult/ConfirmModal";
+import AddModal from "@components/tripdetailresult/AddModal";
 
 const TripDetailResult = () => {
     const [activeTab, setActiveTab] = useState("spots");
