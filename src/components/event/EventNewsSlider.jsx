@@ -37,10 +37,10 @@ const EventNewsSlider = () => {
                 backgroundSize: "cover",
                 backgroundPosition: "center",
             }}
-            className="py-10 px-4 sm:px-8 rounded-2xl mt-[80px] text-white"
+            className="p-[80px] text-white"
         >
             <div className="container mx-auto">
-                <div className="text-end mb-6">
+                <div className="text-end mb-[17px]">
                     <NavLink
                         to="#"
                         className="text-sm text-white hover:underline"
@@ -50,7 +50,7 @@ const EventNewsSlider = () => {
                 </div>
 
                 <Swiper
-                    spaceBetween={24}
+                    spaceBetween={31}
                     slidesPerView={1}
                     breakpoints={{
                         640: { slidesPerView: 1.2 },
@@ -62,21 +62,26 @@ const EventNewsSlider = () => {
                 >
                     {newsItems.map((item) => (
                         <SwiperSlide key={item.id}>
-                            <div className="bg-white rounded-[32px] p-6 aspect-square shadow-md flex flex-col justify-between">
-                                <div>
-                                    <h3 className="text-xs text-gray-400 font-medium mb-2">
-                                        EVENT NEWS
-                                    </h3>
+                            <div className="bg-white rounded-tl-[60px] rounded-br-[60px] p-[71px_30px] aspect-square shadow-md flex flex-col">
+                                <NavLink
+                                    to="/"
+                                    className="text-[14px] text-[#494951] font-[700]"
+                                >
+                                    EVENT NEWS
+                                </NavLink>
+
+                                <div className="flex-1 flex items-center">
                                     <NavLink
                                         to={item.link}
-                                        className="text-[#0E284E] font-semibold text-base leading-relaxed"
+                                        className="text-[#0E284E] font-semibold text-lg leading-relaxed hover:underline"
                                     >
                                         {item.title}
                                     </NavLink>
                                 </div>
+
                                 <NavLink
                                     to={item.link}
-                                    className="mt-4 text-blue-600 text-sm hover:underline inline-block"
+                                    className="text-blue-600 text-sm hover:underline"
                                 >
                                     Read More →
                                 </NavLink>

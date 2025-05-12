@@ -1,57 +1,61 @@
-import { lazy } from 'react'
+import { lazy } from "react";
 
 const routes = [
     {
-        path: '/',
-        Component: lazy(() => import('@layouts/Root')),
+        path: "/",
+        Component: lazy(() => import("@layouts/Root")),
         children: [
             {
                 index: true,
-                Component: lazy(() => import('@pages/Home'))
+                Component: lazy(() => import("@pages/Home")),
             },
             {
-                path: 'city/:slug',
-                Component: lazy(() => import('@pages/City')),
+                path: "city/:slug",
+                Component: lazy(() => import("@pages/City")),
             },
             {
-                path: 'tripdetail',
-                Component: lazy(() => import('@pages/Tripdetail')),
+                path: "tripdetail",
+                Component: lazy(() => import("@pages/Tripdetail")),
             },
             {
-                path: 'about',
-                Component: lazy(() => import('@pages/About')),
+                path: "about",
+                Component: lazy(() => import("@pages/About")),
             },
             {
-                path: 'experience/:slug',
-                Component: lazy(() => import('@pages/ExperienceDetail')),
+                path: "experience/:slug",
+                Component: lazy(() => import("@pages/Expericences")),
             },
             {
-                path: 'itineraries',
-                Component: lazy(() => import('@pages/Itineraries')),
+                path: "experience/detail",
+                Component: lazy(() => import("@pages/ExpericencesDetail")),
             },
             {
-                path: 'events',
-                Component: lazy(() => import('@pages/Events')),
+                path: "itineraries",
+                Component: lazy(() => import("@pages/Itineraries")),
+            },
+            {
+                path: "events",
+                Component: lazy(() => import("@pages/Events")),
             },
             {
                 path: "event",
-                Component: lazy(() => import('@pages/EventPage')),
+                Component: lazy(() => import("@pages/EventPage")),
             },
         ],
     },
     {
-        path: 'tripdetail/result',
-        Component: lazy(() => import('@layouts/TripDetailLayout')),
+        path: "tripdetail/result",
+        Component: lazy(() => import("@layouts/TripDetailLayout")),
         children: [
             {
                 index: true,
-                Component: lazy(() => import('@pages/TripDetailResult')),
+                Component: lazy(() => import("@pages/TripDetailResult")),
             },
         ],
     },
     {
-        path: '*',
-        Component: lazy(() => import('@pages/NotFound')),
+        path: "*",
+        Component: lazy(() => import("@pages/NotFound")),
     },
 ];
 
