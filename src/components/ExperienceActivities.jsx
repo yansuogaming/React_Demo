@@ -5,11 +5,11 @@ import Reveal from './animation/Reveal'
 
 const ExperienceActivities = ({ className = '' }) => {
     return (
-        <section className={`container ${className}`}>
-            <h3 className="text-[#1A2A44] text-[40px] font-bold mb-[15px]">
+        <section className={`container px-4 md:px-6 ${className}`}>
+            <h3 className="text-[#1A2A44] text-[28px] sm:text-[32px] md:text-[40px] font-bold mb-[10px] sm:mb-[15px]">
                 Experiences and Activities
             </h3>
-            <div className="flex gap-[10px]">
+            <div className="flex flex-wrap gap-[10px]">
                 <button className="p-[8px_16px] text-[#007BFF] rounded-[80px] border-[#007BFF] border-1">
                     Itineraries
                 </button>
@@ -38,7 +38,7 @@ const ExperienceActivities = ({ className = '' }) => {
                     }}
                 >
                     <CarouselContent className="-ml-[20px]">
-                        <CarouselItem className="basis-1/3 pl-[20px] relative group">
+                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 pl-[20px] relative group">
                             <NavLink className="overflow-hidden ">
                                 <img src={image} alt="Enjoy Hanoi street food" className="w-full" />
                             </NavLink>
@@ -54,7 +54,7 @@ const ExperienceActivities = ({ className = '' }) => {
                             </p>
                             <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour</p>
                         </CarouselItem>
-                        <CarouselItem className="basis-1/3 pl-[20px] relative group">
+                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 pl-[20px] relative group">
                             <NavLink className="overflow-hidden ">
                                 <img src={image} alt="Enjoy Hanoi street food" className="w-full" />
                             </NavLink>
@@ -70,7 +70,7 @@ const ExperienceActivities = ({ className = '' }) => {
                             </p>
                             <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour</p>
                         </CarouselItem>
-                        <CarouselItem className="basis-1/3 pl-[20px] relative group">
+                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 pl-[20px] relative group">
                             <NavLink className="overflow-hidden ">
                                 <img src={image} alt="Enjoy Hanoi street food" className="w-full" />
                             </NavLink>
@@ -86,7 +86,7 @@ const ExperienceActivities = ({ className = '' }) => {
                             </p>
                             <p>Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour</p>
                         </CarouselItem>
-                        <CarouselItem className="basis-1/3 pl-[20px] relative group">
+                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 pl-[20px] relative group">
                             <NavLink className="overflow-hidden ">
                                 <img src={image} alt="Enjoy Hanoi street food" className="w-full" />
                             </NavLink>

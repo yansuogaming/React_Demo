@@ -276,12 +276,12 @@ const TourItem = ({ item, index }) => {
   };
   return (
     <>
-      <div className="border border-solid rounded-[8px] md:rounded-tl-[60px] flex flex-col md:flex-row relative p-[16px] pb-[21px]">
-        <div className="w-full md:w-[292px] h-[194px] object-cover md:rounded-tl-[60px] relative overflow-hidden">
+      <div className="border border-solid rounded-[8px] rounded-tl-[60px] flex flex-col md:flex-row relative p-[16px] pb-[21px]">
+        <div className="w-full md:w-[292px] h-[194px] object-cover  relative overflow-hidden">
           <img
             src={item.image}
             alt={item.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover rounded-tl-[60px]"
           />
 
           <img
@@ -331,7 +331,7 @@ const TourItem = ({ item, index }) => {
           </div>
 
           {/* Price and button */}
-          <div className="flex flex-col items-center justify-between mt-6 md:items-start md:items-center lg:absolute lg:right-5 lg:bottom-5">
+          <div className="flex flex-col items-center lg:items-end justify-between mt-6 md:items-start lg:absolute lg:right-5 lg:bottom-5">
             <div className="text-center md:text-left lg:text-right mb-2">
               <div className="text-[14px] text-[#494951] font-normal">from</div>
               <div className="text-[20px] text-[#C81E3A] font-bold">
@@ -341,9 +341,9 @@ const TourItem = ({ item, index }) => {
                 includes taxes & fees
               </div>
             </div>
-            <Button className="w-full lg:w-auto bg-[#007BFF] hover:bg-blue-600 text-white px-6 py-6 rounded-lg text-lg">
+            <button className="w-full lg:w-auto bg-[#007BFF] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-lg">
               Detail tour
-            </Button>
+            </button>
           </div>
         </div>
       </div>
