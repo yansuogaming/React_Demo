@@ -58,7 +58,7 @@ const FilterTours = ({ className = "" }) => {
         <div
           className={`
           fixed xl:relative top-0 left-0 h-full w-[80%] max-w-[300px] xl:w-auto
-          bg-white xl:bg-transparent z-50 transform transition-transform duration-300 ease-in-out
+          bg-white xl:bg-transparent ${isFilterOpen?"z-50":"z-20"} transform transition-transform duration-300 ease-in-out
           ${
             isFilterOpen
               ? "translate-x-0"
@@ -74,7 +74,7 @@ const FilterTours = ({ className = "" }) => {
         {isFilterOpen && (
           <div
          
-            className="fixed inset-0 bg-black opacity-80 z-40 xl:hidden"
+            className="fixed inset-0 bg-black opacity-80 z-10 xl:hidden"
             onClick={() => setIsFilterOpen(false)}
           />
         )}
@@ -96,7 +96,7 @@ export default FilterTours;
 
 const Filter = ({ onClose }) => {
   return (
-    <div className="w-full lg:w-auto ">
+    <div style={{}} className="w-full lg:w-auto">
       <div className="w-full lg:min-w-[297px] mb-[24px] flex items-center justify-between font-bold bg-[#F6F6FA] text-[#1A2A44] rounded-[8px] p-[10px_15px]">
         <div className="flex gap-[12px] items-center">
           <img src={iconFilter} alt="Applied filters" />

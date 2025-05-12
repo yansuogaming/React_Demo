@@ -89,7 +89,8 @@ const Header = ({ noBackgroundOnScroll = true }) => {
             className={cn(
                 'relative flex justify-between',
                 'py-[15px] px-[40px] w-full z-50 top-0',
-                'transition-all duration-500'
+                'transition-all duration-500',
+                
             )}
             style={{ background, position, color, boxShadow }}
         >
