@@ -8,8 +8,7 @@ import VietNamEvent from '@components/VietNamEvent'
 import { useState } from 'react'
 import { Skeleton } from '@ui/skeleton'
 import { NavLink } from 'react-router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { FaArrowDown } from 'react-icons/fa6'
 import RegionList from '@components/RegionList'
 import TravelOffers from '@components/TravelOffers'
 import { cn } from '@lib/utils'
@@ -121,13 +120,12 @@ export default function Home() {
                         </motion.div>
                     </>
                 )}
-                <FontAwesomeIcon
+                <FaArrowDown
                     onClick={scrollDown}
                     className={cn(
                         'cursor-pointer absolute bottom-[15px]',
                         'left-1/2 translate-[-50%] text-[24px]'
                     )}
-                    icon={faArrowDown}
                 />
             </section>
             <RegionList id="region" className="mt-[135px] mb-[145px]" />
@@ -140,3 +138,4 @@ export default function Home() {
         </main>
     )
 }
+

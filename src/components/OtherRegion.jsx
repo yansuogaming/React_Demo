@@ -1,5 +1,4 @@
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FaArrowRight } from 'react-icons/fa6'
 import imgOtherRegion1 from '@images/other-region.png'
 import imgOtherRegion2 from '@images/other-region2.png'
 import { NavLink } from 'react-router'
@@ -15,7 +14,7 @@ const OtherRegion = ({ className = '' }) => {
                     <h3 className="text-white text-[40px] font-bold mb-[10px]">Sapa</h3>
                     <div to="/" className="flex items-center gap-[8px] text-white text-[18px] opacity-0 group-hover:opacity-100 transition-all duration-500">
                         Explore Now
-                        <FontAwesomeIcon icon={faArrowRight} />
+                        <FaArrowRight />
                     </div>
                 </div>
             </NavLink>
@@ -27,7 +26,7 @@ const OtherRegion = ({ className = '' }) => {
                     <h3 className="text-white text-[40px] font-bold mb-[10px]">Ha Long Bay</h3>
                     <div to="/" className="flex items-center gap-[8px] text-white text-[18px] opacity-0 group-hover:opacity-100 transition-all duration-500">
                         Explore Now
-                        <FontAwesomeIcon icon={faArrowRight} />
+                        <FaArrowRight />
                     </div>
                 </div>
             </NavLink>
