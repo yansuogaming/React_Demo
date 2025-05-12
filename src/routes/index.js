@@ -7,10 +7,7 @@ const router = [
         children: [
             {
                 index: true,
-                Component: lazy(() => import('@pages/Home')),
-                loader() {
-                    return json({ message: "Welcome to React Router!" });
-                }
+                Component: lazy(() => import('@pages/Home'))
             },
             {
                 path: 'city/:slug',

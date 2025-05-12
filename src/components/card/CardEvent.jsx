@@ -37,7 +37,8 @@ const CardEvent = ({
                     src={image}
                     alt={title}
                     style={{width: widthImage, height: heightImage }}
-                    className="group-hover:scale-[1.1] transform transition-all duration-500"
+                    className="group-hover:scale-[1.1] transition-all duration-500"
+                    loading="lazy"
                 />
                 <p className="absolute bottom-[15px] bg-white text-right p-[6px_8px] rounded-[4px] left-[15px]">
                     <b>{txtStartTime}</b>
@@ -51,7 +52,7 @@ const CardEvent = ({
             </NavLink>
             <div className="bg-white p-[16px] rounded-[0_0_12px_12px]">
                 <TertiaryHeading
-                    className="text-[20px] mb-[8px] group-hover:text-[#007BFF] transform transition-all duration-500"
+                    className="text-[20px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500"
                 >
                     <NavLink to={href}>
                         {title}

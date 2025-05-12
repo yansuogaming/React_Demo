@@ -1,4 +1,5 @@
 import axios from 'axios'
+import i18next from 'i18next'
 
 class HttpClient {
     constructor() {
@@ -35,8 +36,14 @@ class HttpClient {
         this.loading = loading
     }
 
-    async request(config) {
+    tourdb() {
+        this.setBaseUrl(import.meta.env.VITE_API_TOURDB_URL)
+        return this
+    }
+
+    async request(config = {}) {
         // Handle Loading
+        this.setHeader('Accept-Language', i18next.language == 'vi' ? 'vn' : i18next.language)
         return await this.instance.request(config)
     }
 

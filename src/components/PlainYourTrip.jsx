@@ -5,10 +5,17 @@ import iconItinerary from '@images/icon-itinerary.svg'
 import iconTools from '@images/icon-tools.svg'
 import CreateItineraryButton from './button/CreateItineraryButton'
 import InputTripLocation from './input/InputTripLocation'
+import { cn } from '@lib/utils'
 
 const PlainYourTrip = ({ className = '' }) => {
     return (
-        <section className={`rounded-[8px] container bg-[linear-gradient(104deg,_#F5F6FA_0%,_#EFF4FF_70.01%)] ${className}`}>
+        <section
+            className={cn(
+                'rounded-[8px] container',
+                'bg-[linear-gradient(104deg,_#F5F6FA_0%,_#EFF4FF_70.01%)]',
+                className
+            )}
+        >
             <div className="items-center flex justify-between p-[15px_15px_15px_50px]">
             <Form action="/tripdetail" className="h-fit">
                 <h2 className="text-[40px] font-bold mb-[20px]">
@@ -35,7 +42,7 @@ const PlainYourTrip = ({ className = '' }) => {
                 </div>
             </Form>
             <div>
-                <img src={image} alt="Map" width="480px" />
+                <img src={image} alt="Map" width="480px" loading="lazy" />
             </div>
             </div>
         </section>
