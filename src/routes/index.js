@@ -1,6 +1,6 @@
 import { lazy } from 'react'
 
-const router = [
+const routes = [
     {
         path: '/',
         Component: lazy(() => import('@layouts/Root')),
@@ -55,4 +55,4 @@ const router = [
     },
 ];
 
-export default router;
+export default routes;
