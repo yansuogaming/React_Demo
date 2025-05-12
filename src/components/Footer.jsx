@@ -2,21 +2,21 @@ import bird from '@images/bird.svg'
 import iconMail from '@images/icon-mail.svg'
 import iconAppStore from '@images/icon-appstore.svg'
 import iconGooglePlay from '@images/icon-googleplay.svg'
-import iconTwitter from '@images/icon-twitter.svg'
-import iconYoutube from '@images/icon-youtube.svg'
-import iconInstagram from '@images/icon-instagram.svg'
-import iconFacebook from '@images/icon-facebook.svg'
 import logo from '@images/logo2.svg'
 import { NavLink } from 'react-router'
 import { useTranslation } from 'react-i18next'
+import FacebookIcon from './icons/FacebookIcon'
+import InstagramIcon from './icons/InstagramIcon'
+import TwitterIcon from './icons/TwitterIcon'
+import YoutubeIcon from './icons/YoutubeIcon'
 
 const Footer = () => {
     const { t } = useTranslation()
     
     return (
-        <footer>
+        <footer className="mt-[100px]">
             <img src={bird} alt="" width="100%" />
-            <div className="container mx-auto mt-[60px]">
+            <div className="container mt-[60px]">
                 <div className="flex">
                     <div className="w-[28%]">
                         <p className="text-[18px] font-bold mb-[30px]">{t('regions')}</p>
@@ -39,7 +39,9 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="w-[25%]">
-                        <p className="text-[18px] font-bold mb-[30px]">{t('getting_to_vietnam')}</p>
+                        <p className="text-[18px] font-bold mb-[30px]">
+                            {t('getting_to_vietnam')}
+                        </p>
                         <ul className="font-normal text-[16px]">
                             <li className="mb-2">
                                 <NavLink to="/">
@@ -169,7 +171,9 @@ const Footer = () => {
                 <hr />
                 <div className="flex justify-between items-center mt-[20px] mb-[50px]">
                     <div className="flex items-center">
-                        <img src={logo} alt="" width="102px" className="mr-[30px]" />
+                        <NavLink to="">
+                            <img src={logo} alt="" width="102px" className="mr-[30px]" />
+                        </NavLink>
                         <div>
                             <p className="font-bold text-[18px] mb-[5px]">
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -181,22 +185,22 @@ const Footer = () => {
                     </div>
                     <div className="flex justify-between gap-[40px]">
                         <a href="">
-                            <img src={iconTwitter} alt="Twitter" width="24px" />
+                            <TwitterIcon />
                         </a>
                         <a href="">
-                            <img src={iconInstagram} alt="Instagram" width="24px" />
+                            <InstagramIcon />
                         </a>
                         <a href="">
-                            <img src={iconYoutube} alt="Youtube" width="24px" />
+                            <YoutubeIcon />
                         </a>
                         <a href="">
-                            <img src={iconFacebook} alt="Facebook" width="24px" />
+                            <FacebookIcon />
                         </a>
                     </div>
                 </div>
             </div>
             <div className="bg-[#484C52] pt-[32px] pb-[25px]">
-                <div className="container mx-auto flex justify-between text-white">
+                <div className="container flex justify-between text-white">
                     <p>© 2025 Lorem ipsum | All rights reserved</p>
                     <ul className="flex justify-between gap-[32px]">
                         <li>

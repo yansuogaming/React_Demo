@@ -39,5 +39,12 @@
     "download_our_apps": "Download our apps",
     "cookie_policy": "Cookie Policy",
     "privacy_policy": "Privacy Policy",
-    "terms_of_use": "Terms of Use"
+    "terms_of_use": "Terms of Use",
+    "home":"Home",
+    "trip_planner_with_ai":"Trip Planner With AI",
+    "your_trip_details":"Your trip details",
+    "ai_build_tailored":"AI will build a tailored itinerary and suggest travel deals for you!",
+    "where_to_go":"Where do you want to go?",
+    "trip_long":"How long is your trip?",
+    "travel_interested":"What are your travel interests?"
 }
