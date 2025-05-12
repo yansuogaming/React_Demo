@@ -11,6 +11,7 @@ import CentralImage from './CentralImage'
 import SouthImage from './SouthImage'
 import ParacelIslands from './ParacelIslands'
 import SpratlyIslands from './SpratlyIslands'
+import { cn } from '@lib/utils'
 
 const RegionList = ({ className, ...props }) => {
     // eslint-disable-next-line no-unused-vars
@@ -53,74 +54,151 @@ const RegionList = ({ className, ...props }) => {
                     <CarouselContent className="-ml-[20px]">
                         <CarouselItem className="basis-[45%] pl-[20px] relative group">
                             <NavLink to="/city/hanoi">
-                                <img src={imageNaNoi} alt="Hanoi" className="w-full rounded-[60px_4px_4px_4px]" />
+                                <img
+                                    src={imageNaNoi}
+                                    alt="Hanoi"
+                                    className="w-full rounded-[60px_4px_4px_4px]"
+                                    loading="lazy"
+                                />
                                 {/* Overlay */}
-                                <div className="absolute right-0 top-[calc(100%-70px)] z-10 w-[calc(100%-20px)] p-[20px_20px_0_20px] overflow-hidden transform transition-all duration-500 group-hover:top-[calc(100%-195px)]">
+                                <div
+                                    className={cn(
+                                        'absolute right-0 top-[calc(100%-70px)] z-10 w-[calc(100%-20px)]',
+                                        'p-[20px_20px_0_20px] overflow-hidden transition-all duration-500',
+                                        'group-hover:top-[calc(100%-195px)]'
+                                    )}
+                                >
                                     {/* Title */}
                                     <h3 className="text-white text-[28px] font-bold">
                                         Hanoi
                                     </h3>
                                     {/* Description & Discover */}
-                                    <div className="opacity-0 group-hover:opacity-100 transform transition-all duration-500">
+                                    <div
+                                        className={cn(
+                                            'opacity-0 group-hover:opacity-100',
+                                            'transition-all duration-500'
+                                        )}
+                                    >
                                         <p className="text-white mt-2 font-[16px]">
                                             Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
                                         </p>
-                                        <div className="flex mt-[10px] mb-[20px] text-[17px] font-bold text-white gap-[8px] items-center justify-end">
+                                        <div
+                                            className={cn(
+                                                'flex mt-[10px] mb-[20px] text-[17px] font-bold',
+                                                'text-white gap-[8px] items-center justify-end'
+                                            )}
+                                        >
                                             <span>Discover</span>
                                             <FontAwesomeIcon icon={faArrowRight} />
                                         </div>
                                     </div>
                                 </div>
                                 {/* Gradient overlay */}
-                                <div className="rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)] absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0 transform transition-all duration-500"></div>
+                                <div
+                                    className={cn(
+                                        'rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]',
+                                        'absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0',
+                                        'transition-all duration-500'
+                                    )}
+                                ></div>
                             </NavLink>
                         </CarouselItem>
                         <CarouselItem className="basis-[45%] pl-[20px] relative group">
                             <NavLink to="/city/hanoi">
-                                <img src={imageHaLong} alt="Halong" className="w-full rounded-[60px_4px_4px_4px]" />
+                                <img
+                                    src={imageHaLong}
+                                    alt="Halong"
+                                    className="w-full rounded-[60px_4px_4px_4px]"
+                                    loading="lazy"
+                                />
                                 {/* Overlay */}
-                                <div className="absolute right-0 top-[calc(100%-70px)] z-10 w-[calc(100%-20px)] p-[20px_20px_0_20px] overflow-hidden transform transition-all duration-500 group-hover:top-[calc(100%-195px)]">
+                                <div
+                                    className={cn(
+                                        'absolute right-0 top-[calc(100%-70px)] z-10',
+                                        'w-[calc(100%-20px)] p-[20px_20px_0_20px]',
+                                        'overflow-hidden transition-all duration-500',
+                                        'group-hover:top-[calc(100%-195px)]'
+                                    )}
+                                >
                                     {/* Title */}
                                     <h3 className="text-white text-[28px] font-bold">
                                         Halong
                                     </h3>
                                     {/* Description & Discover */}
-                                    <div className="opacity-0 group-hover:opacity-100 transform transition-all duration-500">
+                                    <div className="opacity-0 group-hover:opacity-100 transition-all duration-500">
                                         <p className="text-white mt-2 font-[16px]">
                                             Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
                                         </p>
-                                        <div className="flex mt-[10px] mb-[20px] text-[17px] font-bold text-white gap-[8px] items-center justify-end">
+                                        <div
+                                            className={cn(
+                                                'flex mt-[10px] mb-[20px] text-[17px] font-bold',
+                                                'text-white gap-[8px] items-center justify-end'
+                                            )}
+                                        >
                                             <span>Discover</span>
                                             <FontAwesomeIcon icon={faArrowRight} />
                                         </div>
                                     </div>
                                 </div>
                                 {/* Gradient overlay */}
-                                <div className="rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)] absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0transform transition-all duration-500 "></div>
+                                <div
+                                    className={cn(
+                                        'rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]',
+                                        'absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px]',
+                                        'transition-all duration-500'
+                                    )}
+                                ></div>
                             </NavLink>
                         </CarouselItem>
                         <CarouselItem className="basis-[45%] pl-[20px] relative group">
                             <NavLink to="/city/hanoi">
-                                <img src={imageSapa} alt="Sa pa" className="w-full rounded-[60px_4px_4px_4px]" />
+                                <img
+                                    src={imageSapa}
+                                    alt="Sa pa"
+                                    className="w-full rounded-[60px_4px_4px_4px]"
+                                    loading="lazy"
+                                />
                                 {/* Overlay */}
-                                <div className="absolute right-0 top-[calc(100%-70px)] z-10 w-[calc(100%-20px)] p-[20px_20px_0_20px] overflow-hidden transform transition-all duration-500 group-hover:top-[calc(100%-195px)]">
+                                <div
+                                    className={cn(
+                                        'absolute right-0 top-[calc(100%-70px)] z-10 w-[calc(100%-20px)]',
+                                        'p-[20px_20px_0_20px] overflow-hidden transition-all duration-500',
+                                        'group-hover:top-[calc(100%-195px)]'
+                                    )}
+                                >
                                     {/* Title */}
                                     <h3 className="text-white text-[28px] font-bold">
                                         Sa pa
                                     </h3>
                                     {/* Description & Discover */}
-                                    <div className="opacity-0 group-hover:opacity-100 transform transition-all duration-500">
+                                    <div
+                                        className={cn(
+                                            'opacity-0 group-hover:opacity-100',
+                                            'transition-all duration-500'  
+                                        )}
+                                    >
                                         <p className="text-white mt-2 font-[16px]">
                                             Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text,
                                         </p>
-                                        <div className="flex mt-[10px] mb-[20px] text-[17px] font-bold text-white gap-[8px] items-center justify-end">
+                                        <div
+                                            className={cn(
+                                                'flex mt-[10px] mb-[20px] text-[17px] font-bold',
+                                                'ext-white gap-[8px] items-center justify-end'
+                                            )}
+                                        >
                                             <span>Discover</span>
                                             <FontAwesomeIcon icon={faArrowRight} />
                                         </div>
                                     </div>
                                 </div>
                                 {/* Gradient overlay */}
-                                <div className="rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)] absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0 transform transition-all duration-500"></div>
+                                <div
+                                    className={cn(
+                                        'rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]',
+                                        'absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px]',
+                                        'transition-all duration-500'
+                                    )}
+                                ></div>
                             </NavLink>
                         </CarouselItem>
                     </CarouselContent>

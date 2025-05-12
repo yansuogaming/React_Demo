@@ -5,11 +5,11 @@ import ViewMoreButton from './button/ViewMoreButton'
 import CardService from './card/CardService'
 import Reveal from './animation/Reveal'
 
-const Story = () => {
+const Story = ({className = ''}) => {
     const { t } = useTranslation()
 
     return (
-        <section className="container">
+        <section className={`container ${className}`}>
             <div className="flex items-center justify-between">
                 <h2 className="text-[30px] font-bold text-[#1A2A44] mb-[20px]">
                     Stories from Vietnam Travelers

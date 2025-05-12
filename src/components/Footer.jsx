@@ -39,7 +39,9 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="w-[25%]">
-                        <p className="text-[18px] font-bold mb-[30px]">{t('getting_to_vietnam')}</p>
+                        <p className="text-[18px] font-bold mb-[30px]">
+                            {t('getting_to_vietnam')}
+                        </p>
                         <ul className="font-normal text-[16px]">
                             <li className="mb-2">
                                 <NavLink to="/">

@@ -9,12 +9,13 @@ const CardService = ({ title, widthImage, heightImage, image, children, href = '
                     src={image}
                     alt={title}
                     style={{width: widthImage, height: heightImage }}
-                    className="group-hover:scale-[1.1] transform transition-all duration-500"
+                    className="group-hover:scale-[1.1] transition-all duration-500"
+                    loading="lazy"
                 />
             </NavLink>
             <div className="bg-white rounded-[0_0_12px_12px]" style={{ padding }}>
                 <TertiaryHeading
-                    className="text-[24px] mb-[8px] group-hover:text-[#007BFF] transform transition-all duration-500"
+                    className="text-[24px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500"
                 >
                     <NavLink to={href}>
                         {title}

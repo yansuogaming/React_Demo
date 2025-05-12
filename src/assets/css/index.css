@@ -7,6 +7,7 @@
     --breakpoint-md: 720px;
     --breakpoint-lg: 960px;
     --breakpoint-xl: 1140px;
+    --breakpoint-xl-md: 1200px;
     --breakpoint-2xl: 1310px;
     --breakpoint-3xl: 1310px;
 }
