@@ -14,7 +14,7 @@ const VietNamEvent = ({ className = '' }) => {
     const endTime = addDays(new Date(), 1)
     return (
         <section className={className}>
-            <div className="container mx-auto">
+            <div className="container">
                 <div className="flex items-center justify-between">
                     <h2 className="text-[30px] font-bold text-[#1A2A44] mb-[20px]">
                         Celebrate Vietnam’s Vibrant Events

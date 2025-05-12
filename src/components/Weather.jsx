@@ -7,7 +7,7 @@ import iconTemperature from '@images/icon-temperature.svg'
 
 const Weather = () => {
     return (
-        <section className="container mx-auto mt-[60px]">
+        <section className="container mt-[60px]">
             <div className="grid grid-cols-3 gap-[30px]">
                 <div className="rounded-[60px_4px_4px_4px] p-[30px] bg-[#F5F6FA] text-center">
                     <h3 className="mb-[30px] text-[#1A2A44] text-[16px] font-bold text-left">

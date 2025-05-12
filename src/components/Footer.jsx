@@ -16,7 +16,7 @@ const Footer = () => {
     return (
         <footer className="mt-[100px]">
             <img src={bird} alt="" width="100%" />
-            <div className="container mx-auto mt-[60px]">
+            <div className="container mt-[60px]">
                 <div className="flex">
                     <div className="w-[28%]">
                         <p className="text-[18px] font-bold mb-[30px]">{t('regions')}</p>
@@ -39,7 +39,9 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="w-[25%]">
-                        <p className="text-[18px] font-bold mb-[30px]">{t('getting_to_vietnam')}</p>
+                        <p className="text-[18px] font-bold mb-[30px]">
+                            {t('getting_to_vietnam')}
+                        </p>
                         <ul className="font-normal text-[16px]">
                             <li className="mb-2">
                                 <NavLink to="/">
@@ -198,7 +200,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="bg-[#484C52] pt-[32px] pb-[25px]">
-                <div className="container mx-auto flex justify-between text-white">
+                <div className="container flex justify-between text-white">
                     <p>© 2025 Lorem ipsum | All rights reserved</p>
                     <ul className="flex justify-between gap-[32px]">
                         <li>

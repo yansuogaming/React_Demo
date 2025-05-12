@@ -18,13 +18,13 @@ const ExperienceDetail = () => {
     return (
         <main>
             <HeroSection title="Cultural Heritage" image={imageCity} />
-            <section className="container mx-auto mb-[40px]">
+            <section className="container mb-[40px]">
                 <Breadcrumb className="mb-[60px] mt-[15px]" items={breadcrumdItems} />
                 <TextNormal className="text-[18px] mb-[40px]">
                     Vietnam is the cradle of long-standing cultural values, from architectural heritage, traditional festivals to unique folk art. This journey of discovery will bring you closer to the stories, people and beauty that make up the identity of Vietnam through each period.
                 </TextNormal>
             </section>
-            <section className="container mx-auto">
+            <section className="container">
                 <Form className="grid grid-cols-3">
                     <div>
                         <label htmlFor=""></label>

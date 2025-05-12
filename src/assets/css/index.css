@@ -7,6 +7,7 @@
     --breakpoint-md: 720px;
     --breakpoint-lg: 960px;
     --breakpoint-xl: 1140px;
+    --breakpoint-xl-md: 1200px;
     --breakpoint-2xl: 1310px;
     --breakpoint-3xl: 1310px;
 }
@@ -129,14 +130,12 @@
 
 @font-face {
     font-family: "Visit Qatar";
-    font-style: normal;
     font-weight: 500;
     src: url("../fonts/VisitQatar-Medium.woff2") format("woff2");
 }
 
 @font-face {
     font-family: "Visit Qatar";
-    font-style: normal;
     font-weight: 400;
     src: url("../fonts/VisitQatar-Regular.woff2") format("woff2");
 }
@@ -155,6 +154,13 @@
         @apply bg-background text-foreground;
         font-family: "Visit Qatar";
     }
+}
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 html {

@@ -14,5 +14,5 @@ export default function useLanguage() {
         changeFontByLang(lang)
     }
 
-    return { language, setLanguage }
+    return [language, setLanguage]
 }

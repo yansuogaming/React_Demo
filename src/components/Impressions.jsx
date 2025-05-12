@@ -9,7 +9,7 @@ const Impressions = ({className = ''}) => {
     const { t } = useTranslation()
 
     return (
-        <section className={`container mx-auto ${className}`}>
+        <section className={`container ${className}`}>
             <div className="flex justify-between mb-[40px]">
                 <h2 className="text-[#1A2A44] text-[40px] font-bold">
                     Impressions
