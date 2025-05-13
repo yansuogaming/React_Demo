@@ -61,8 +61,8 @@ const VietNamEvent = ({ className = "" }) => {
     return (
         <section className={className}>
             <div className="container">
-                <div className="flex items-center justify-between mb-[20px]">
-                    <h2 className="text-[30px] font-bold text-[#1A2A44]">
+                <div className="lg:flex items-center justify-between mb-[20px]">
+                    <h2 className="mb-[10px] lg:mb-[0] text-[30px] font-bold text-[#1A2A44]">
                         Celebrate Vietnam’s Vibrant Events
                     </h2>
                     <ViewMoreButton text={t("See All Events")} />
