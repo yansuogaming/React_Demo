@@ -26,15 +26,15 @@ const MostPopularTours = ({ className = '' }) => {
     }, [])
 
     return (
-        <section ref={ref} className={`container ${className}`}>
-            <SubHeading className="mb-[30px]">
+        <section ref={ref} className={`container px-4 md:px-6 ${className}`}>
+            <SubHeading className="mb-[20px] sm:mb-[30px] text-[28px] sm:text-[32px] md:text-[36px]">
                 Most Popular Tours
             </SubHeading>
             <Reveal>
                 <Carousel className="w-full">
                     <CarouselContent className="-ml-[20px]">
                         {Array.from({ length: 5 }).map((_, index) => (
-                            <CarouselItem key={index} className="pl-[20px] basis-1/3">
+                            <CarouselItem key={index} className="pl-[20px] basis-full md:basis-1/2 lg:basis-1/3">
                                 <CardService
                                     title="Diverse Natural Landscapes"
                                     widthImage="100%"
