@@ -156,8 +156,8 @@ const Footer = () => {
 
                 <hr className="border-gray-300" />
 
-                <div className="flex flex-col gap-y-6 lg:flex-row justify-between items-start lg:items-center mt-[20px] mb-[50px]">
-                    <div className="flex flex-col lg:flex-row items-start lg:items-center">
+                <div className="flex flex-col gap-y-6 lg:flex-row justify-between items-center mt-[20px] mb-[50px]">
+                    <div className="flex flex-col lg:flex-row items-center text-center lg:text-left">
                         <NavLink to="">
                             <img
                                 src={logo}
