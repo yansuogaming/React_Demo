@@ -4,7 +4,10 @@ import vi from '@languages/vi.json'
 import en from '@languages/en.json'
 import { changeFontByLang } from '@lib/utils'
 
-const lang = localStorage.getItem('lang') ?? 'en'
+let lang = 'en';
+if (typeof localStorage !== 'undefined') {
+    lang = localStorage.getItem('lang') ?? 'en'
+}
 changeFontByLang(lang)
 
 i18n

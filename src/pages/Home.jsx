@@ -18,7 +18,7 @@ import { motion } from 'framer-motion'
 export default function Home() {
     const { t } = useTranslation()
     const [isLoaded, setIsLoaded] = useState(false)
-
+    
     const scrollDown = () => {
         const regionElement = document.getElementById('region')
         const heightHeader = document.querySelector('header').clientHeight

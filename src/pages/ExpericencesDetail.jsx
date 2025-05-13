@@ -43,22 +43,22 @@ const ExperiencesDetail = () => {
         return () => current && observer.unobserve(current);
     }, []);
 
-    useEffect(() => {
-        const headings = document.querySelectorAll("[id]");
-        const observer = new IntersectionObserver(
-            (entries) => {
-                for (let entry of entries) {
-                    if (entry.isIntersecting) {
-                        setActiveId(entry.target.id);
-                        break;
-                    }
-                }
-            },
-            { threshold: 0.3, rootMargin: "0px 0px -40% 0px" }
-        );
-        headings.forEach((el) => observer.observe(el));
-        return () => observer.disconnect();
-    }, []);
+    // useEffect(() => {
+    //     const headings = document.querySelectorAll("[id]");
+    //     const observer = new IntersectionObserver(
+    //         (entries) => {
+    //             for (let entry of entries) {
+    //                 if (entry.isIntersecting) {
+    //                     setActiveId(entry.target.id);
+    //                     break;
+    //                 }
+    //             }
+    //         },
+    //         { threshold: 0.3, rootMargin: "0px 0px -40% 0px" }
+    //     );
+    //     headings.forEach((el) => observer.observe(el));
+    //     return () => observer.disconnect();
+    // }, []);
 
     const breadcrumdItems = [
         { label: t("home"), href: "/" },

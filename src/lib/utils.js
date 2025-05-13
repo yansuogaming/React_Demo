@@ -6,10 +6,12 @@ export function cn(...inputs) {
 }
 
 export function changeFontByLang(lang) {
-    const body = document.querySelector('body')
-    if (lang === 'vi') {
-        body.style.fontFamily = 'Roboto, sans-serif';
-    } else {
-        body.style.fontFamily = '"Visit Qatar", sans-serif';
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+        const body = document.querySelector('body')
+        if (lang === 'vi') {
+            body.style.fontFamily = 'Roboto, sans-serif';
+        } else {
+            body.style.fontFamily = '"Visit Qatar", sans-serif';
+        }
     }
 }
