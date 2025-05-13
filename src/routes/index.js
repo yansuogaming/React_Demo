@@ -37,10 +37,6 @@ const routes = [
                 path: "events",
                 Component: lazy(() => import("@pages/Events")),
             },
-            {
-                path: "event",
-                Component: lazy(() => import("@pages/EventPage")),
-            },
         ],
     },
     {
