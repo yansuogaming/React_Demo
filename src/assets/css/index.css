@@ -166,3 +166,9 @@
 html {
     scroll-behavior: smooth;
 }
+
+/* Ẩn Swiper icon mũi tên mặc định */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+    display: none !important;
+}

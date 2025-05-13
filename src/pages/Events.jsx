@@ -1,24 +1,24 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { NavLink } from "react-router";
-import Breadcrumb from "@components/Breadcrumb";
-import CardEvent from "@components/card/CardEvent";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+//
+import Breadcrumb from "@components/Breadcrumb";
+import CardEvent from "@components/card/CardEvent";
 import EventHero from "@components/event/EventHero";
 import EventFilterBar from "@components/event/EventFilterBar";
-import EventPagination from "@components/event/EventPagination";
 import EventNewsSlider from "@components/event/EventNewsSlider";
-
+//
 import imgevent from "@images/3-1595134332.webp";
 import imgevent2 from "@images/4-1708873508769.webp";
 import visaImage from "@images/visa-image.png"; // ảnh bạn cung cấp
-
 import ticketIcon from "@images/great.svg";
 import soldIcon from "@images/ticket.svg";
 import freeIcon from "@images/free.svg";
-
 import iconExp from "@images/ticket2.png";
 import iconSupport from "@images/support.png";
 import iconReview from "@images/telephone.png";
@@ -146,10 +146,10 @@ const Events = () => {
 
                                     {/* Text content */}
                                     <div>
-                                        <h3 className="text-lg font-semibold text-black mb-1">
+                                        <h3 className="text-[24px] font-[700] text-black mb-1">
                                             {feature.title}
                                         </h3>
-                                        <p className="text-sm text-gray-600 leading-relaxed">
+                                        <p className="text-[16px] text-[#494951]">
                                             {feature.description}
                                         </p>
                                     </div>
@@ -164,7 +164,7 @@ const Events = () => {
 
     const AdBanner = () => {
         return (
-            <div className="col-span-full bg-[#1A2A44] text-white rounded-xl xl:p-[23px_40px] flex flex-col xl:flex-row md:items-center md:p-[10px] justify-between gap-4 shadow justify-self-center xl:min-w-[1121px] m-[16px_0] sm:p-[22px] sm:items-center">
+            <div className="p-[22px] items-center col-span-full bg-[#1A2A44] text-white rounded-xl xl:p-[23px_40px] flex flex-col xl:flex-row md:items-center md:p-[10px] justify-between gap-4 shadow justify-self-center xl:min-w-[1121px] m-[16px_0]">
                 {/* Left title */}
                 <div className="text-left">
                     <p className="text-lg md:text-[20px] text-[26px] font-[700]">
@@ -251,13 +251,67 @@ const Events = () => {
         );
     };
 
+    const EventPagination = ({ totalPages, currentPage, setCurrentPage }) => (
+        <div className="flex justify-center items-center gap-[12px] mt-8">
+            {/* Prev */}
+            <button
+                disabled={currentPage === 1}
+                onClick={() => setCurrentPage((p) => p - 1)}
+                className={`w-8 h-8 flex items-center justify-center rounded transition 
+                ${
+                    currentPage === 1
+                        ? "text-gray-300 cursor-default"
+                        : "text-[#0E284E] hover:text-black"
+                }`}
+            >
+                <FontAwesomeIcon icon={faChevronLeft} className="text-[14px]" />
+            </button>
+
+            {/* Page numbers */}
+            {Array.from({ length: totalPages }, (_, i) => {
+                const page = i + 1;
+                const isActive = page === currentPage;
+                return (
+                    <button
+                        key={page}
+                        onClick={() => setCurrentPage(page)}
+                        className={`w-[50px] h-[50px] rounded-[4px] text-[16px] font-[500] transition ${
+                            isActive
+                                ? "bg-[#007BFF] text-white"
+                                : "bg-[#EEF0F5] text-[#1A2A44] hover:bg-gray-200"
+                        }`}
+                    >
+                        {page}
+                    </button>
+                );
+            })}
+
+            {/* Next */}
+            <button
+                disabled={currentPage === totalPages}
+                onClick={() => setCurrentPage((p) => p + 1)}
+                className={`w-[12px] h-[24px] flex items-center justify-center rounded transition 
+                ${
+                    currentPage === totalPages
+                        ? "text-[#D9D9D9] cursor-default"
+                        : "text-[#1A2A44] hover:text-[#1A2A44]"
+                }`}
+            >
+                <FontAwesomeIcon
+                    icon={faChevronRight}
+                    className="text-[14px]"
+                />
+            </button>
+        </div>
+    );
+
     return (
         <>
             <main className="bg-[#F5F6FA] pb-[80px]">
                 <div className="container mx-auto">
                     <section>
                         <Breadcrumb
-                            className="m-[16px_40px_28px] text-[14px]"
+                            className="p-[16px_40px_28px_0] text-[14px]"
                             items={breadcrumdItems}
                         />
                     </section>

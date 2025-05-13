@@ -50,10 +50,10 @@ const EventHero = ({ slides, currentIndex, setCurrentIndex }) => {
                 </div>
 
                 {/* Bottom thumbnails bar */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-[10px] px-3 py-2 rounded-full shadow-md">
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-[10px] px-3 py-2 rounded-full shadow-md max-w-full overflow-x-auto">
                     <button
                         onClick={handlePrev}
-                        className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-700 hover:shadow-md transition"
+                        className="w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-700 hover:shadow-md transition"
                     >
                         <FontAwesomeIcon
                             icon={faChevronLeft}
@@ -61,22 +61,23 @@ const EventHero = ({ slides, currentIndex, setCurrentIndex }) => {
                         />
                     </button>
 
-                    {slides.map((slide, i) => (
-                        <img
-                            key={slide.id}
-                            src={slide.image}
-                            alt=""
-                            className={`w-14 h-10 object-cover rounded transition-all duration-300 cursor-pointer ${
-                                i === currentIndex
-                                    ? "ring-2 ring-white"
-                                    : "opacity-60"
-                            }`}
-                            onClick={() => setCurrentIndex(i)}
-                        />
-                    ))}
+                    <div className="flex items-center gap-[6px] sm:gap-[10px] overflow-x-auto">
+                        {slides.map((slide, i) => (
+                            <img
+                                key={slide.id}
+                                src={slide.image}
+                                alt=""
+                                className={`w-[70px] h-[46px] sm:w-[93px] sm:h-[61px] object-cover rounded transition-all duration-300 cursor-pointer ${
+                                    i === currentIndex ? "" : "opacity-60"
+                                }`}
+                                onClick={() => setCurrentIndex(i)}
+                            />
+                        ))}
+                    </div>
+
                     <button
                         onClick={handleNext}
-                        className="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-700 hover:shadow-md transition"
+                        className="w-[40px] h-[40px] sm:w-[40px] sm:h-[40px] flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-700 hover:shadow-md transition"
                     >
                         <FontAwesomeIcon
                             icon={faChevronRight}
