@@ -1,8 +1,8 @@
-import bird from "@images/bird.svg";
+import bird from "@images/bird.webp";
 import iconMail from "@images/icon-mail.svg";
-import iconAppStore from "@images/icon-appstore.svg";
-import iconGooglePlay from "@images/icon-googleplay.svg";
-import logo from "@images/logo2.svg";
+import iconAppStore from "@images/icon-appstore.webp";
+import iconGooglePlay from "@images/icon-googleplay.webp";
+import logo from "@images/logo2.webp";
 import { NavLink } from "react-router";
 import { useTranslation } from "react-i18next";
 import FacebookIcon from "./icons/FacebookIcon";
