@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,10 +19,13 @@ const ExperienceSidebar = ({
         { id: "museum-yersin", label: "Alexandre Yersin Museum" },
     ];
 
+    // Create refs map
+    const sectionRefs = useRef({});
+
     const handleClick = (id) => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
+        const section = sectionRefs.current[id];
+        if (section && section.scrollIntoView) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
         }
     };
 

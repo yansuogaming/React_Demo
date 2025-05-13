@@ -4,6 +4,7 @@ import ViewMoreButton from "./button/ViewMoreButton";
 import CardEvent from "./card/CardEvent";
 import { NavLink } from "react-router";
 import { addDays } from "date-fns";
+import { useRef } from "react";
 
 // Font Awesome
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,23 +21,13 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import { useEffect } from "react";
-
 const VietNamEvent = ({ className = "" }) => {
     const { t } = useTranslation();
     const startTime = new Date();
     const endTime = addDays(new Date(), 1);
 
-    // Gán class để điều hướng tùy chỉnh hoạt động
-    useEffect(() => {
-        const next = document.querySelector(".custom-next-w");
-        const prev = document.querySelector(".custom-prev-swipper");
-
-        if (next && prev) {
-            next.classList.add("swiper-button-next");
-            prev.classList.add("swiper-button-prev");
-        }
-    }, []);
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
 
     const eventItems = Array.from({ length: 4 }).map((_, idx) => (
         <SwiperSlide key={idx}>
@@ -78,20 +69,32 @@ const VietNamEvent = ({ className = "" }) => {
                 </div>
 
                 <div className="relative">
-                    {/* Custom navigation with FontAwesome only */}
-                    <button className="custom-prev-swipper absolute left-[-16px] top-1/2 z-10 -translate-y-1/2 text-[24px] text-[#1A2A44] hidden md:block">
+                    {/* Custom Navigation Buttons */}
+                    <button
+                        ref={prevRef}
+                        className="absolute left-[-16px] top-1/2 z-10 -translate-y-1/2 text-[24px] text-[#1A2A44] hidden md:block bg-white rounded-full p-2 shadow"
+                        aria-label="Previous"
+                    >
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </button>
 
-                    <button className="custom-next-w absolute right-[-16px] top-1/2 z-10 -translate-y-1/2 text-[24px] text-[#1A2A44] hidden md:block">
+                    <button
+                        ref={nextRef}
+                        className="absolute right-[-16px] top-1/2 z-10 -translate-y-1/2 text-[24px] text-[#1A2A44] hidden md:block bg-white rounded-full p-2 shadow"
+                        aria-label="Next"
+                    >
                         <FontAwesomeIcon icon={faChevronRight} />
                     </button>
 
                     <Swiper
                         modules={[Navigation]}
                         navigation={{
-                            prevEl: ".custom-prev-swipper",
-                            nextEl: ".custom-next-w",
+                            prevEl: prevRef.current,
+                            nextEl: nextRef.current,
+                        }}
+                        onBeforeInit={(swiper) => {
+                            swiper.params.navigation.prevEl = prevRef.current;
+                            swiper.params.navigation.nextEl = nextRef.current;
                         }}
                         spaceBetween={30}
                         slidesPerView={1}

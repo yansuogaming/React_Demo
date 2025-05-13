@@ -17,20 +17,13 @@ import {
     faChevronLeft,
     faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect } from "react";
+import { useRef } from "react";
 
 const Story = ({ className = "" }) => {
     const { t } = useTranslation();
 
-    useEffect(() => {
-        const next = document.querySelector(".custom-swiper-next");
-        const prev = document.querySelector(".custom-swiper-prev");
-
-        if (next && prev) {
-            next.classList.add("swiper-button-next");
-            prev.classList.add("swiper-button-prev");
-        }
-    }, []);
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
 
     return (
         <section className={`container ${className}`}>
@@ -47,8 +40,12 @@ const Story = ({ className = "" }) => {
                         modules={[Navigation]}
                         spaceBetween={30}
                         navigation={{
-                            nextEl: ".custom-swiper-next",
-                            prevEl: ".custom-swiper-prev",
+                            prevEl: prevRef.current,
+                            nextEl: nextRef.current,
+                        }}
+                        onBeforeInit={(swiper) => {
+                            swiper.params.navigation.prevEl = prevRef.current;
+                            swiper.params.navigation.nextEl = nextRef.current;
                         }}
                         breakpoints={{
                             0: { slidesPerView: 1 },
@@ -76,7 +73,7 @@ const Story = ({ className = "" }) => {
                                             height="20"
                                             viewBox="0 0 20 20"
                                         >
-                                            <path d="M9.12109 2.5L8.92547 2.67563L2.05047 9.55062L1.62109 10L2.05047 10.4494L7.67547 16.0744L8.12484 16.5037L8.57422 16.0744L15.4492 9.19938L15.6248 9.00375V2.5H9.12109ZM9.64859 3.75H14.3748V8.47687L8.12484 14.7269L3.39797 10L9.64859 3.75ZM16.2498 4.375V5.625H16.8748V10.7225L10.9373 16.6213L10.1561 15.84L9.27734 16.7188L10.488 17.9494L10.9373 18.3787L11.3673 17.9494L17.9486 11.445L18.1248 11.25V4.375H16.2498ZM12.4998 5C12.1561 5 11.8748 5.28125 11.8748 5.625C11.8748 5.96875 12.1561 6.25 12.4998 6.25C12.8436 6.25 13.1248 5.96875 13.1248 5.625C13.1248 5.28125 12.8436 5 12.4998 5Z" />
+                                            <path d="..." />
                                         </svg>
                                         #Vietnamtravel
                                     </NavLink>
@@ -85,14 +82,16 @@ const Story = ({ className = "" }) => {
                         ))}
                     </Swiper>
 
-                    {/* Custom Nav Buttons */}
+                    {/* Custom Nav Buttons (ref-based) */}
                     <button
+                        ref={prevRef}
                         className="custom-swiper-prev absolute top-1/2 -left-4 z-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow"
                         aria-label="Previous"
                     >
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </button>
                     <button
+                        ref={nextRef}
                         className="custom-swiper-next absolute top-1/2 -right-4 z-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow"
                         aria-label="Next"
                     >
