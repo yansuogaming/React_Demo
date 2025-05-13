@@ -110,6 +110,25 @@ const ExperiencesDetail = () => {
         ],
     };
 
+    const sectionRefs = useRef({});
+    const contentSections = [
+        { id: "po-nagar", label: "Po Nagar Cham Towers" },
+        { id: "museum", label: "National Oceanographic Museum of Vietnam" },
+        { id: "cathedral", label: "Nha Trang Cathedral" },
+        { id: "vinpearl", label: "Vinpearl Amusement Park" },
+        { id: "pagoda", label: "Long Son Pagoda & White Buddha" },
+        { id: "hot-spring", label: "Thap Ba Hot Springs Centre" },
+        { id: "waterfall", label: "Ba Ho Waterfalls" },
+        { id: "museum-yersin", label: "Alexandre Yersin Museum" },
+    ];
+
+    // Khởi tạo ref nếu chưa có
+    contentSections.forEach(({ id }) => {
+        if (!sectionRefs.current[id]) {
+            sectionRefs.current[id] = React.createRef();
+        }
+    });
+
     return (
         <div>
             <ExperienceHeader />
@@ -126,6 +145,8 @@ const ExperiencesDetail = () => {
                     setShowSidebar={setShowSidebar}
                     showToggleButton={showToggleButton}
                     activeId={activeId}
+                    sectionRefs={sectionRefs}
+                    contentSections={contentSections}
                 />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-[29px]">
@@ -133,6 +154,8 @@ const ExperiencesDetail = () => {
                         showMoreSocials={showMoreSocials}
                         setShowMoreSocials={setShowMoreSocials}
                         keepExploringRef={keepExploringRef}
+                        sectionRefs={sectionRefs}
+                        contentSections={contentSections}
                     />
                     <RelatedPostsSidebar
                         relatedPosts={relatedPosts}

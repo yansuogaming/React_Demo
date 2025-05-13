@@ -73,7 +73,7 @@ const EventNewsSlider = () => {
                                 <div className="flex-1 flex items-center">
                                     <NavLink
                                         to={item.link}
-                                        className="text-[#1A2A44] text-[24px] font-[700] hover:underline"
+                                        className="text-[#1A2A44] text-[24px] font-[700] hover:text-[#007BFF]"
                                     >
                                         {item.title}
                                     </NavLink>
