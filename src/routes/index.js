@@ -1,70 +1,77 @@
 import { lazy } from "react";
 
 const routes = [
-    {
-        path: ":lang_id?",
-        Component: lazy(() => import("@layouts/LanguageLayout")), // Layout này sẽ xử lý đổi ngôn ngữ
+  {
+    path: ":lang_id?",
+    Component: lazy(() => import("@layouts/LanguageLayout")), // Layout này sẽ xử lý đổi ngôn ngữ
+    children: [
+      {
+        Component: lazy(() => import("@layouts/Root")),
         children: [
-            {
-                Component: lazy(() => import("@layouts/Root")),
-                children: [
-                    {
-                        index: true,
-                        Component: lazy(() => import("@pages/Home")),
-                        meta: () => {
-                            return [
-                                { title: 'Xin chào' },
-                                { name: 'description', content: 'Welcome to the home page' },
-                            ]
-                        }
-                    },
-                    {
-                        path: "city/:slug",
-                        Component: lazy(() => import("@pages/City")),
-                    },
-                    {
-                        path: "tripdetail",
-                        Component: lazy(() => import("@pages/Tripdetail")),
-                    },
-                    {
-                        path: "about",
-                        Component: lazy(() => import("@pages/About")),
-                    },
-                    {
-                        path: "experience/:slug",
-                        Component: lazy(() => import("@pages/Expericences")),
-                    },
-                    {
-                        path: "experience/detail",
-                        Component: lazy(() => import("@pages/ExpericencesDetail")),
-                    },
-                    {
-                        path: "itineraries",
-                        Component: lazy(() => import("@pages/Itineraries")),
-                    },
-                    {
-                        path: "events",
-                        Component: lazy(() => import("@pages/Events")),
-                    },
-                ],
+          {
+            index: true,
+            Component: lazy(() => import("@pages/Home")),
+            meta: () => {
+              return [
+                { title: "Xin chào" },
+                { name: "description", content: "Welcome to the home page" },
+              ];
             },
-            {
-                path: "tripdetail/result",
-                Component: lazy(() => import("@layouts/TripDetailLayout")),
-                children: [
-                    {
-                        index: true,
-                        Component: lazy(() => import("@pages/TripDetailResult")),
-                    },
-                ],
-            },
+          },
+          {
+            path: "city/:slug",
+            Component: lazy(() => import("@pages/City")),
+          },
+          {
+            path: "tripdetail",
+            Component: lazy(() => import("@pages/Tripdetail")),
+          },
+          {
+            path: "about",
+            Component: lazy(() => import("@pages/About")),
+          },
+          {
+            path: "experience/:slug",
+            Component: lazy(() => import("@pages/Expericences")),
+          },
+          {
+            path: "experience/detail",
+            Component: lazy(() => import("@pages/ExpericencesDetail")),
+          },
+          {
+            path: "itineraries",
+            Component: lazy(() => import("@pages/Itineraries")),
+          },
+          {
+            path: "events",
+            Component: lazy(() => import("@pages/Events")),
+          },
+          {
+            path: "visaguide",
+            Component: lazy(() => import("@pages/VisaGuide")),
+          },
+          {
+            path: "essentials",
+            Component: lazy(() => import("@pages/Essentials")),
+          },
         ],
-    },
-    {
-        path: "*",
-        Component: lazy(() => import("@pages/NotFound")),
-    },
+      },
+      {
+        path: "tripdetail/result",
+        Component: lazy(() => import("@layouts/TripDetailLayout")),
+        children: [
+          {
+            index: true,
+            Component: lazy(() => import("@pages/TripDetailResult")),
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: "*",
+    Component: lazy(() => import("@pages/NotFound")),
+  },
 ];
-
 
 export default routes;

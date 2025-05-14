@@ -22,7 +22,7 @@ const LanguageLayout = memo(() => {
         if (!findLang) {
             setLanguage('en');
         }
-    }, [lang_id, language, setLanguage])
+    }, [lang_id, language])
 
     return (
         <Outlet />
