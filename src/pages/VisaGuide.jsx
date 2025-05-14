@@ -6,6 +6,7 @@ import map from "@images/map.svg";
 import tower from "@images/tower.svg";
 
 export default function VisaGuide() {
+  console.log("AAAAA")
   return (
     <main className="bg-white">
       {/* Hero Section */}

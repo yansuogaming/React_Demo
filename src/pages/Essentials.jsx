@@ -1,30 +1,41 @@
+import { MapPin, Send } from "lucide-react";
 
-
-import { MapPin, Send } from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Link } from "react-router"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Link } from "react-router";
 
 export default function PracticalInformation() {
   return (
     <div className="w-full bg-white">
       {/* Hero Section */}
       <section className="relative">
-        <div className="bg-gray-200 h-[300px] relative">
-          <img
-            src="https://images.pexels.com/photos/2265876/pexels-photo-2265876.jpeg"
-            alt="Noi Bai International Airport Terminal"
-            width={1200}
-            height={300}
-            className="w-full h-full object-cover"
-          />
+        <div className=" p-8">
+          <h1 className="text-5xl  text-black">Practical information</h1>
+        </div>
+        <div className="h-[90vh] bg-gray-200 relative">
+          <iframe
+            className="absolute inset-0 w-full h-full border-0 z-10"
+            src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
           <div className="absolute inset-0 bg-black/10"></div>
-          <div className="absolute top-0 left-0 p-8">
-            <h1 className="text-3xl font-bold text-gray-800">Practical information</h1>
-          </div>
         </div>
       </section>
 
@@ -32,14 +43,18 @@ export default function PracticalInformation() {
       <section className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-8">
           <div className="w-full md:w-2/3">
-            <h2 className="text-xl font-bold mb-2">Quick tips</h2>
-            <p className="text-gray-600 mb-6">Follow these essentials</p>
+            <h2 className="text-5xl font-bold mb-2">Quick tips</h2>
+            <p className="text-gray-600 text-5xl mb-6">
+              Follow these essentials
+            </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div className="border-l-4 border-gray-300 pl-4">
-                  <h3 className="font-semibold text-sm text-gray-500">ESSENTIALS</h3>
-                  <ul className="mt-2 space-y-2 text-sm">
+                  <h3 className="font-semibold text-lg text-gray-500">
+                    ESSENTIALS
+                  </h3>
+                  <ul className="mt-2 space-y-2 text-lg">
                     <li>Currency</li>
                     <li>Timezone</li>
                     <li>Wi-Fi Access</li>
@@ -50,17 +65,24 @@ export default function PracticalInformation() {
               </div>
 
               <div className="space-y-4">
-                <p className="text-sm">
-                  <span className="font-semibold">Viet Nam's official language is Arabic</span>, but English is widely
-                  spoken across the city.
+                <p className="text-base">
+                  <span className="font-semibold">
+                    Viet Nam's official language is Arabic
+                  </span>
+                  , but English is widely spoken across the city.
                 </p>
                 <p className="text-sm">
-                  <span className="font-semibold">The local currency is the UAE dirham (AED)</span>, which is pegged to
-                  the US dollar at a rate of approximately AED 3.67 to 1 USD.
+                  <span className="font-semibold">
+                    The local currency is the UAE dirham (AED)
+                  </span>
+                  , which is pegged to the US dollar at a rate of approximately
+                  AED 3.67 to 1 USD.
                 </p>
                 <p className="text-sm">
-                  <span className="font-semibold">Viet Nam is 4 hours ahead of GMT</span>, and there is no daylight saving
-                  time.
+                  <span className="font-semibold">
+                    Viet Nam is 4 hours ahead of GMT
+                  </span>
+                  , and there is no daylight saving time.
                 </p>
               </div>
             </div>
@@ -80,20 +102,25 @@ export default function PracticalInformation() {
 
       {/* FAQ Section */}
       <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-200">
-        <h2 className="text-xl font-bold mb-6">Frequently asked questions</h2>
+        <h2 className="text-3xl font-bold mb-6">Frequently asked questions</h2>
 
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
             <AccordionTrigger className="text-left font-medium">
               Where can I apply for a visa to Viet Nam?
             </AccordionTrigger>
-            <AccordionContent>Information about visa application process would appear here.</AccordionContent>
+            <AccordionContent>
+              Information about visa application process would appear here.
+            </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-2">
-            <AccordionTrigger className="text-left font-medium">What is a visa on arrival?</AccordionTrigger>
+            <AccordionTrigger className="text-left font-medium">
+              What is a visa on arrival?
+            </AccordionTrigger>
             <AccordionContent>
-              Details about visa on arrival eligibility and process would appear here.
+              Details about visa on arrival eligibility and process would appear
+              here.
             </AccordionContent>
           </AccordionItem>
 
@@ -101,12 +128,19 @@ export default function PracticalInformation() {
             <AccordionTrigger className="text-left font-medium">
               What is the official language in Viet Nam?
             </AccordionTrigger>
-            <AccordionContent>Information about languages spoken in Viet Nam would appear here.</AccordionContent>
+            <AccordionContent>
+              Information about languages spoken in Viet Nam would appear here.
+            </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-4">
-            <AccordionTrigger className="text-left font-medium">Can I drink alcohol in Viet Nam?</AccordionTrigger>
-            <AccordionContent>Information about alcohol regulations in Viet Nam would appear here.</AccordionContent>
+            <AccordionTrigger className="text-left font-medium">
+              Can I drink alcohol in Viet Nam?
+            </AccordionTrigger>
+            <AccordionContent>
+              Information about alcohol regulations in Viet Nam would appear
+              here.
+            </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-5">
@@ -114,37 +148,47 @@ export default function PracticalInformation() {
               Is there anything prohibited in Viet Nam?
             </AccordionTrigger>
             <AccordionContent>
-              Information about prohibited items and activities in Viet Nam would appear here.
+              Information about prohibited items and activities in Viet Nam
+              would appear here.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
 
-        <Link href="#" className="text-blue-600 hover:underline text-sm mt-4 inline-block">
+        <Link
+          href="#"
+          className="text-blue-600 hover:underline text-sm mt-4 inline-block"
+        >
           Read all FAQs
         </Link>
       </section>
 
       {/* Fly with Emirates Section */}
       <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-200">
-        <h2 className="text-xl font-bold mb-6">Fly with Emirates</h2>
+        <h2 className="text-3xl font-bold mb-6">Fly with Emirates</h2>
 
         <div className="bg-gray-50 p-6 rounded-lg">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Arrival airport</label>
+              <label className="block text-base font-medium text-gray-700 mb-1">
+                Arrival airport
+              </label>
               <Select>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Select airport" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="dxb">Viet Nam (DXB)</SelectItem>
-                  <SelectItem value="dwc">Viet Nam World Central (DWC)</SelectItem>
+                  <SelectItem value="dwc">
+                    Viet Nam World Central (DWC)
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Passengers</label>
+              <label className="block text-bassic font-medium text-gray-700 mb-1">
+                Passengers
+              </label>
               <Select>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="1 passenger" />
@@ -159,7 +203,9 @@ export default function PracticalInformation() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Class</label>
+              <label className="block text-bassic font-medium text-gray-700 mb-1">
+                Class
+              </label>
               <Select>
                 <SelectTrigger className="w-full">
                   <SelectValue placeholder="Economy" />
@@ -175,12 +221,16 @@ export default function PracticalInformation() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Depart on</label>
+              <label className="block text-bassic font-medium text-gray-700 mb-1">
+                Depart on
+              </label>
               <Input type="date" className="w-full" />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Return on</label>
+              <label className="block text-bassic font-medium text-gray-700 mb-1">
+                Return on
+              </label>
               <Input type="date" className="w-full" />
             </div>
           </div>
@@ -193,39 +243,46 @@ export default function PracticalInformation() {
 
       {/* What you need to know Section */}
       <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-200">
-        <h2 className="text-xl font-bold mb-1">What you need to know</h2>
-        <p className="text-gray-600 mb-6">Your questions, answered</p>
+        <h2 className="text-5xl font-bold mb-1">What you need to know</h2>
+        <p className="text-gray-600 mb-10 text-5xl">Your questions, answered</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="col-span-2">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-4">
                 <div className="border-l-4 border-gray-300 pl-4">
-                  <h3 className="font-semibold text-sm text-gray-500">ABOUT Viet Nam</h3>
-                  <ul className="mt-2 space-y-2 text-sm">
-                    <li>Overview</li>
-                    <li>Geography</li>
-                    <li>Climate</li>
-                    <li>Religion</li>
-                    <li>Traditions</li>
+                  <h3 className="font-semibold text-lg text-gray-500">
+                    ESSENTIALS
+                  </h3>
+                  <ul className="mt-2 space-y-2 text-lg">
+                    <li>Currency</li>
+                    <li>Timezone</li>
+                    <li>Wi-Fi Access</li>
+                    <li>Embassies & consulates</li>
+                    <li>Emergency numbers</li>
                   </ul>
                 </div>
               </div>
 
               <div className="space-y-4">
+                <p className="text-base">
+                  <span className="font-semibold">
+                    Viet Nam's official language is Arabic
+                  </span>
+                  , but English is widely spoken across the city.
+                </p>
                 <p className="text-sm">
                   <span className="font-semibold">
-                    Viet Nam is considered one of the most cosmopolitan cities in the world
+                    The local currency is the UAE dirham (AED)
                   </span>
-                  , with a diverse population made up of people from all over the globe.
+                  , which is pegged to the US dollar at a rate of approximately
+                  AED 3.67 to 1 USD.
                 </p>
                 <p className="text-sm">
-                  The city is known for its stunning architecture, luxury shopping, and vibrant nightlife. From the
-                  iconic Burj Khalifa to the man-made Palm Jumeirah island, Viet Nam is a city of superlatives.
-                </p>
-                <p className="text-sm">
-                  Viet Nam's economy was historically built on the oil industry, but today the city has diversified and
-                  focuses on tourism, real estate, financial services, and trade.
+                  <span className="font-semibold">
+                    Viet Nam is 4 hours ahead of GMT
+                  </span>
+                  , and there is no daylight saving time.
                 </p>
               </div>
             </div>
@@ -233,7 +290,7 @@ export default function PracticalInformation() {
 
           <div>
             <img
-              src="/placeholder.svg?height=200&width=300"
+              src="https://aeonmall-vietnam.com/wp-content/uploads/2024/09/IMG_8745-1.jpeg"
               alt="People shopping in Viet Nam Mall"
               width={300}
               height={200}
@@ -245,7 +302,7 @@ export default function PracticalInformation() {
 
       {/* Contact Section */}
       <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-200">
-        <h2 className="text-xl font-bold mb-6">Contact us</h2>
+        <h2 className="text-2xl font-bold mb-6">Contact us</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
@@ -259,7 +316,10 @@ export default function PracticalInformation() {
                   className="w-full h-full object-cover rounded-lg"
                 />
               </div>
-              <Button variant="outline" className="absolute bottom-4 left-4 bg-white">
+              <Button
+                variant="outline"
+                className="absolute bottom-4 left-4 bg-white"
+              >
                 <MapPin className="h-4 w-4 mr-2" />
                 View larger map
               </Button>
@@ -267,8 +327,12 @@ export default function PracticalInformation() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Department of Tourism and Commerce Marketing (DTCM)</h3>
-            <p className="text-sm text-gray-600 mb-4">One Central, The Offices 2, Building 2, Level 5, Viet Nam, UAE</p>
+            <h3 className="font-semibold mb-4">
+              Department of Tourism and Commerce Marketing (DTCM)
+            </h3>
+            <p className="text-sm text-gray-600 mb-4">
+              One Central, The Offices 2, Building 2, Level 5, Viet Nam, UAE
+            </p>
 
             <div className="space-y-4">
               <div>
@@ -287,7 +351,9 @@ export default function PracticalInformation() {
               </div>
 
               <div>
-                <h4 className="font-medium text-sm">WhatsApp Chat (24/7 - 8000)</h4>
+                <h4 className="font-medium text-sm">
+                  WhatsApp Chat (24/7 - 8000)
+                </h4>
                 <p className="text-sm">+971 600 55 5559</p>
               </div>
 
@@ -304,10 +370,10 @@ export default function PracticalInformation() {
 
       {/* Start Planning Section */}
       <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-200">
-        <h2 className="text-xl font-bold mb-1">Start planning</h2>
-        <p className="text-gray-600 mb-6">
-          Find all kinds of essential information – from basic visitor info to tips on how to make the most of your
-          trip.
+        <h2 className="text-3xl font-bold mb-1">Start planning</h2>
+        <p className="text-gray-600 mb-6 text-base">
+          Find all kinds of essential information – from basic visitor info to
+          tips on how to make the most of your trip.
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -323,7 +389,9 @@ export default function PracticalInformation() {
               />
             </div>
             <h3 className="font-semibold mb-1">Visa information</h3>
-            <p className="text-sm text-gray-600">Find out if you need a visa to visit Viet Nam and how to apply</p>
+            <p className="text-sm text-gray-600">
+              Find out if you need a visa to visit Viet Nam and how to apply
+            </p>
           </div>
 
           {/* Card 2 */}
@@ -338,7 +406,9 @@ export default function PracticalInformation() {
               />
             </div>
             <h3 className="font-semibold mb-1">Transportation in Viet Nam</h3>
-            <p className="text-sm text-gray-600">Find the best ways to get around the city</p>
+            <p className="text-sm text-gray-600">
+              Find the best ways to get around the city
+            </p>
           </div>
 
           {/* Card 3 */}
@@ -353,7 +423,9 @@ export default function PracticalInformation() {
               />
             </div>
             <h3 className="font-semibold mb-1">Accommodation</h3>
-            <p className="text-sm text-gray-600">Find the perfect place to stay during your visit</p>
+            <p className="text-sm text-gray-600">
+              Find the perfect place to stay during your visit
+            </p>
           </div>
 
           {/* Card 4 */}
@@ -368,7 +440,9 @@ export default function PracticalInformation() {
               />
             </div>
             <h3 className="font-semibold mb-1">Travel accessibility</h3>
-            <p className="text-sm text-gray-600">Information for travelers with special needs</p>
+            <p className="text-sm text-gray-600">
+              Information for travelers with special needs
+            </p>
           </div>
 
           {/* Card 5 */}
@@ -382,8 +456,12 @@ export default function PracticalInformation() {
                 className="w-full h-48 object-cover transition-transform group-hover:scale-105"
               />
             </div>
-            <h3 className="font-semibold mb-1">Viet Nam sightseeing & attractions</h3>
-            <p className="text-sm text-gray-600">Discover the best places to visit in the city</p>
+            <h3 className="font-semibold mb-1">
+              Viet Nam sightseeing & attractions
+            </h3>
+            <p className="text-sm text-gray-600">
+              Discover the best places to visit in the city
+            </p>
           </div>
 
           {/* Card 6 */}
@@ -398,7 +476,9 @@ export default function PracticalInformation() {
               />
             </div>
             <h3 className="font-semibold mb-1">Book your flight to Viet Nam</h3>
-            <p className="text-sm text-gray-600">Find the best deals on flights to Viet Nam</p>
+            <p className="text-sm text-gray-600">
+              Find the best deals on flights to Viet Nam
+            </p>
           </div>
 
           {/* Card 7 */}
@@ -413,7 +493,9 @@ export default function PracticalInformation() {
               />
             </div>
             <h3 className="font-semibold mb-1">Safety in Viet Nam</h3>
-            <p className="text-sm text-gray-600">Learn about safety measures and emergency services</p>
+            <p className="text-sm text-gray-600">
+              Learn about safety measures and emergency services
+            </p>
           </div>
 
           {/* Card 8 */}
@@ -427,8 +509,10 @@ export default function PracticalInformation() {
                 className="w-full h-48 object-cover transition-transform group-hover:scale-105"
               />
             </div>
-            <h3 className="font-semibold mb-1">Weather in Viet Nam</h3>
-            <p className="text-sm text-gray-600">Check the forecast and plan your trip accordingly</p>
+            <h3 className="font-semibold mb-1 ">Weather in Viet Nam</h3>
+            <p className="text-sm text-gray-600">
+              Check the forecast and plan your trip accordingly
+            </p>
           </div>
 
           {/* Card 9 */}
@@ -443,20 +527,28 @@ export default function PracticalInformation() {
               />
             </div>
             <h3 className="font-semibold mb-1">Viet Nam Currency Guide</h3>
-            <p className="text-sm text-gray-600">Everything you need to know about money in Viet Nam</p>
+            <p className="text-sm text-gray-600">
+              Everything you need to know about money in Viet Nam
+            </p>
           </div>
         </div>
       </section>
 
       {/* Weather Section */}
       <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-200">
-        <h2 className="text-xl font-bold mb-6">Weather in Viet Nam</h2>
+        <h2 className="text-2xl font-bold mb-6">Weather in Viet Nam</h2>
 
         <div className="flex items-center mb-6">
           <div className="text-5xl font-bold mr-4">39.2°</div>
           <div className="flex items-center">
             <div className="text-yellow-500 mr-2">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
                 <circle cx="12" cy="12" r="5" />
                 <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
               </svg>
@@ -466,18 +558,28 @@ export default function PracticalInformation() {
         </div>
 
         <div className="grid grid-cols-7 gap-4 mb-4">
-          {["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"].map((day, index) => (
-            <div key={index} className="text-center">
-              <div className="text-xs font-medium text-gray-500">{day}</div>
-              <div className="text-yellow-500 my-1 flex justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                  <circle cx="12" cy="12" r="5" />
-                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-                </svg>
+          {["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"].map(
+            (day, index) => (
+              <div key={index} className="text-center">
+                <div className="text-xs font-medium text-gray-500">{day}</div>
+                <div className="text-yellow-500 my-1 flex justify-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <circle cx="12" cy="12" r="5" />
+                    <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                  </svg>
+                </div>
+                <div className="text-sm font-medium">
+                  {38 + Math.floor(Math.random() * 4)}°
+                </div>
               </div>
-              <div className="text-sm font-medium">{38 + Math.floor(Math.random() * 4)}°</div>
-            </div>
-          ))}
+            )
+          )}
         </div>
 
         <Link href="#" className="text-blue-600 hover:underline text-sm">
@@ -487,7 +589,7 @@ export default function PracticalInformation() {
 
       {/* Stay Updated Section */}
       <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-200">
-        <h2 className="text-xl font-bold mb-6">Stay updated</h2>
+        <h2 className="text-2xl font-bold mb-6">Stay updated</h2>
 
         <div className="flex flex-col md:flex-row gap-4 items-start">
           <div className="text-sm text-gray-600 md:w-1/3">
@@ -495,41 +597,17 @@ export default function PracticalInformation() {
           </div>
 
           <div className="flex w-full md:w-2/3 gap-2">
-            <Input type="email" placeholder="Your email address" className="flex-1" />
+            <Input
+              type="email"
+              placeholder="Your email address"
+              className="flex-1"
+            />
             <Button variant="outline" size="icon">
               <Send className="h-4 w-4" />
             </Button>
           </div>
         </div>
       </section>
-
-      {/* Download App Section */}
-      <section className="max-w-6xl mx-auto px-4 py-8 border-t border-gray-200">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <h2 className="text-xl font-bold mb-4 md:mb-0">Download our apps</h2>
-
-          <div className="flex gap-4">
-            <Link href="#">
-              <img
-                src="/placeholder.svg?height=40&width=120"
-                alt="Download on App Store"
-                width={120}
-                height={40}
-                className="h-10"
-              />
-            </Link>
-            <Link href="#">
-              <img
-                src="/placeholder.svg?height=40&width=120"
-                alt="Get it on Google Play"
-                width={120}
-                height={40}
-                className="h-10"
-              />
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
-  )
+  );
 }

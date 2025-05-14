@@ -91,12 +91,9 @@ const Header = ({ noBackgroundOnScroll = true }) => {
     if (value) {
       setHoverPlanYourTrip(true);
     } else {
-      setTimeout(() => {
-        setHoverPlanYourTrip(false);
-      }, 500);
+      setHoverPlanYourTrip(false);
     }
   };
-
 
   const contextValue = {
     hoverPlanYourTrip,
@@ -106,159 +103,158 @@ const Header = ({ noBackgroundOnScroll = true }) => {
   };
   return (
     <HeaderContext.Provider value={contextValue}>
-      
-    <header>
-      <div
-        style={{ background, position, color, boxShadow }}
-        className={cn(
-          "relative flex flex-col",
-          "py-[15px] px-[40px] w-full z-50 top-0",
-          "transition-all duration-500"
-        )}
-      >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center w-full relative xl-md:w-fit h-full ">
-            {/* Logo */}
-            <motion.div
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="mr-[50px]"
-            >
-              <NavLink to="/">
-                <img src={logo} width="123px" alt="" />
-              </NavLink>
-            </motion.div>
-            {/* Nav bar */}
-            <ul
-              className={cn(
-                "hidden h-fit font-bold absolute top-1/2 left-1/2 lg:flex",
-                "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit"
-              )}
-            >
-              <motion.li
-                initial={{ opacity: 0, y: -100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.3 }}
-                className="p-[15px] h-fit"
-              >
-                <NavLink to="/itineraries">{t("destinations")}</NavLink>
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, y: -100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.4 }}
-                className="p-[15px] h-fit"
-              >
-                <NavLink to="/">{t("experiences")}</NavLink>
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, y: -100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.5 }}
-                className="p-[15px] h-fit"
-              >
-                <NavLink to="/events">{t("events")}</NavLink>
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, y: -100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.6 }}
-                className="p-[15px] h-fit"
-                onMouseEnter={() => hanleHoverPlanYourTrip(true)}
-                onMouseLeave={() => hanleHoverPlanYourTrip(false)}
-              >
-                <NavLink to="/">{t("plan_your_trip")}</NavLink>
-              </motion.li>
-              <motion.li
-                initial={{ opacity: 0, y: -100 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.7 }}
-                className="p-[15px] h-fit"
-              >
-                <NavLink to="/">{t("travel_offers")}</NavLink>
-              </motion.li>
-            </ul>
-          </div>
-          <ul className="items-center font-bold hidden xl-md:flex ">
-            <motion.li
-              className="p-[15px]"
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.8 }}
-            >
-              <SearchHeader color={color} className="flex cursor-pointer" />
-            </motion.li>
-            <motion.li
-              className="p-[15px]"
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.9 }}
-            >
-              <ChangeLangButton color={color} />
-            </motion.li>
-            <motion.li
-              className="p-[15px]"
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 1 }}
-            >
-              <MapIcon color={colorIcon} />
-            </motion.li>
-            <motion.li
-              className="p-[15px]"
-              initial={{ opacity: 0, y: -100 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 1.1 }}
-            >
-              <UserIcon color={colorIcon} />
-            </motion.li>
-          </ul>
-          <button
-            className={cn(
-              "block xl-md:hidden -my-[15px] -mx-[40px] px-[30px]",
-              "border-l-1 border-[#ffffff1a] cursor-pointer z-1"
-            )}
-            onClick={showNavServices}
-          >
-            <Ellipsis
-              className="transition-all duration-500"
-              style={{ transform: `rotate(${rotateEllipsis}deg)` }}
-              size={35}
-            />
-          </button>
-          <AnimatePresence>
-            {isShowNavServices && (
+      <header>
+        <div
+          style={{ background, position, color, boxShadow }}
+          className={cn(
+            "relative flex flex-col",
+            "py-[15px] px-[40px] w-full z-50 top-0",
+            "transition-all duration-500"
+          )}
+        >
+          <div className="flex items-center justify-between">
+            <div className="flex items-center w-full relative xl-md:w-fit h-full ">
+              {/* Logo */}
               <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.7 }}
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                className="mr-[50px]"
+              >
+                <NavLink to="/">
+                  <img src={logo} width="123px" alt="" />
+                </NavLink>
+              </motion.div>
+              {/* Nav bar */}
+              <ul
                 className={cn(
-                  "absolute flex top-full w-full justify-between",
-                  "left-0 px-[55px] bg-[#062f1f] h-[90px] items-center",
-                  "transition-all duration-500 xl-md:hidden"
+                  "hidden h-fit font-bold absolute top-1/2 left-1/2 lg:flex",
+                  "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit"
                 )}
               >
-                <SearchHeader className="flex cursor-pointer" color="white" />
-                <div className="flex gap-[30px]">
-                  <ChangeLangButton color="white" />
-                  <MapIcon />
-                  <UserIcon />
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <motion.li
+                  initial={{ opacity: 0, y: -100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.3 }}
+                  className="p-[15px] h-fit"
+                >
+                  <NavLink to="/itineraries">{t("destinations")}</NavLink>
+                </motion.li>
+                <motion.li
+                  initial={{ opacity: 0, y: -100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.4 }}
+                  className="p-[15px] h-fit"
+                >
+                  <NavLink to="/">{t("experiences")}</NavLink>
+                </motion.li>
+                <motion.li
+                  initial={{ opacity: 0, y: -100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.5 }}
+                  className="p-[15px] h-fit"
+                >
+                  <NavLink to="/events">{t("events")}</NavLink>
+                </motion.li>
+                <motion.li
+                  initial={{ opacity: 0, y: -100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.6 }}
+                  className="p-[15px] h-fit"
+                  onMouseEnter={() => hanleHoverPlanYourTrip(true)}
+                  onMouseLeave={() => hanleHoverPlanYourTrip(false)}
+                >
+                  <NavLink to="/">{t("plan_your_trip")}</NavLink>
+                </motion.li>
+                <motion.li
+                  initial={{ opacity: 0, y: -100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.7 }}
+                  className="p-[15px] h-fit"
+                >
+                  <NavLink to="/">{t("travel_offers")}</NavLink>
+                </motion.li>
+              </ul>
+            </div>
+            <ul className="items-center font-bold hidden xl-md:flex ">
+              <motion.li
+                className="p-[15px]"
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.8 }}
+              >
+                <SearchHeader color={color} className="flex cursor-pointer" />
+              </motion.li>
+              <motion.li
+                className="p-[15px]"
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.9 }}
+              >
+                <ChangeLangButton color={color} />
+              </motion.li>
+              <motion.li
+                className="p-[15px]"
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 1 }}
+              >
+                <MapIcon color={colorIcon} />
+              </motion.li>
+              <motion.li
+                className="p-[15px]"
+                initial={{ opacity: 0, y: -100 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 1.1 }}
+              >
+                <UserIcon color={colorIcon} />
+              </motion.li>
+            </ul>
+            <button
+              className={cn(
+                "block xl-md:hidden -my-[15px] -mx-[40px] px-[30px]",
+                "border-l-1 border-[#ffffff1a] cursor-pointer z-1"
+              )}
+              onClick={showNavServices}
+            >
+              <Ellipsis
+                className="transition-all duration-500"
+                style={{ transform: `rotate(${rotateEllipsis}deg)` }}
+                size={35}
+              />
+            </button>
+            <AnimatePresence>
+              {isShowNavServices && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7 }}
+                  className={cn(
+                    "absolute flex top-full w-full justify-between",
+                    "left-0 px-[55px] bg-[#062f1f] h-[90px] items-center",
+                    "transition-all duration-500 xl-md:hidden"
+                  )}
+                >
+                  <SearchHeader className="flex cursor-pointer" color="white" />
+                  <div className="flex gap-[30px]">
+                    <ChangeLangButton color="white" />
+                    <MapIcon />
+                    <UserIcon />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+          <PlanYourTripContent
+            onMouseLeave={() => setHoverPlanYourTripContent(false)}
+            onMouseEnter={() => setHoverPlanYourTripContent(true)}
+            className={
+              hoverPlanYourTrip || hoverPlanYourTripContent ? "flex" : "hidden"
+            }
+          />
         </div>
-        <PlanYourTripContent
-          onMouseLeave={() => setHoverPlanYourTripContent(false)}
-          onMouseEnter={() => setHoverPlanYourTripContent(true)}
-          className={
-            hoverPlanYourTrip || hoverPlanYourTripContent ? "flex" : "hidden"
-          }
-        />
-      </div>
-    </header>
+      </header>
     </HeaderContext.Provider>
   );
 };
@@ -267,15 +263,16 @@ export default Header;
 
 const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
   const { t } = useTranslation();
- const { setHoverPlanYourTripContent ,setHoverPlanYourTrip } = useContext(HeaderContext);
+  const { setHoverPlanYourTripContent, setHoverPlanYourTrip } =
+    useContext(HeaderContext);
   // Hàm xử lý khi click vào item info card
   const onClickItem = () => {
     setHoverPlanYourTripContent(false);
     setHoverPlanYourTrip(false);
-  }
+  };
 
   // Component info card
-  function InfoCard({ title, description, icon, to}) {
+  function InfoCard({ title, description, icon, to }) {
     return (
       <NavLink
         to={to}
@@ -305,7 +302,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("visa_guide")}
             description={t("plan_ahead_for_travel")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/visaguide"
+            to="/visa-guide"
           />
 
           {/* Essentials */}
@@ -337,7 +334,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("getting_around_vietnam")}
             description={t("navigating_vietnam_is_a_breeze")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/"
+            to="/getting-to-and-around"
           />
 
           {/* Safety */}
@@ -400,5 +397,3 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
     </div>
   );
 };
-
-
