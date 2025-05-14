@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { FaArrowDown } from "react-icons/fa6";
 
 const HeroSection = ({ title, image, children, showArrowDown = false }) => {
     return (
@@ -11,7 +10,9 @@ const HeroSection = ({ title, image, children, showArrowDown = false }) => {
                 </h1>
                 {children}
             </div>
-            {showArrowDown && <FontAwesomeIcon icon={faArrowDown} className="absolute bottom-[20px] text-[24px] left-1/2 translate-[-50%]" />}
+            {showArrowDown && <FaArrowDown
+                className="absolute bottom-[20px] text-[24px] left-1/2 translate-[-50%]"
+            />}
         </section>
     )
 }
