@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import ViewMoreButton from "./button/ViewMoreButton";
 import CardService from "./card/CardService";
 import Reveal from "./animation/Reveal";
-import { CiShoppingTag } from "react-icons/ci";
+import { LiaTagsSolid } from "react-icons/lia";
 
 import {
     Carousel,
@@ -54,7 +54,7 @@ const Story = ({ className = "" }) => {
                                             to="/"
                                             className="flex items-center gap-[5px]"
                                         >
-                                            <CiShoppingTag />
+                                            <LiaTagsSolid />
                                             #Vietnamtravel
                                         </NavLink>
                                     </CardService>
@@ -63,10 +63,10 @@ const Story = ({ className = "" }) => {
                         </CarouselContent>
 
                         {/* Custom Nav Buttons */}
-                        <CarouselPrevious className="absolute top-1/2 -left-4 z-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 hidden md:flex">
+                        <CarouselPrevious className="absolute top-[40%] -left-4 z-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 hidden md:flex">
                             <FaChevronLeft />
                         </CarouselPrevious>
-                        <CarouselNext className="absolute top-1/2 -right-4 z-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 hidden md:flex">
+                        <CarouselNext className="absolute top-[40%] -right-4 z-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 hidden md:flex">
                             <FaChevronRight />
                         </CarouselNext>
                     </Carousel>

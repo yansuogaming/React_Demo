@@ -1,5 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useRef, useEffect } from "react";
+
 import { NavLink } from "react-router";
 import {
     Carousel,
@@ -78,9 +80,19 @@ const Events = () => {
         { label: "Vietnam Calendar" },
     ];
 
+    const eventListRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        if (eventListRef.current) {
+            eventListRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    }, [currentPage]);
 
     const filteredEvents =
         selectedCategory === "All" ? mockEvents : mockEvents.filter(() => true);
@@ -320,7 +332,7 @@ const Events = () => {
                     setCurrentIndex={setCurrentIndex}
                 />
 
-                <section className="mt-[43px]">
+                <section className="mt-[43px]" ref={eventListRef}>
                     <EventFilterBar
                         categories={categories}
                         selectedCategory={selectedCategory}
@@ -342,16 +354,15 @@ const Events = () => {
                                 widthImage="100%"
                                 heightImage="180px"
                             >
-                                <p className="text-sm text-gray-600 line-clamp-2">
-                                    {event.description}
-                                </p>
                                 <p className="text-xs text-gray-500 mt-1">
                                     📍 {event.location}
+                                </p>
+                                <p className="text-sm text-gray-600 line-clamp-2">
+                                    {event.description}
                                 </p>
                             </CardEvent>
                         ))}
 
-                        {/* Quảng cáo */}
                         <AdBanner />
 
                         {bottom8.map((event) => (

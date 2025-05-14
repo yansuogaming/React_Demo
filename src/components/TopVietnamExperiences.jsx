@@ -53,7 +53,7 @@ const TopVietnamExperiences = ({ className = "" }) => {
                                 "duration-500 mt-[15px] text-white text-[25px]"
                             )}
                         >
-                            <faArrowRight />
+                            <FaArrowRight />
                         </div>
                     </div>
                     <div

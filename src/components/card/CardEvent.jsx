@@ -12,6 +12,8 @@ const CardEvent = ({
     href = "/",
     startTime = new Date(),
     endTime = new Date(),
+    widthImage = "100%",
+    heightImage = "auto",
 }) => {
     const { language } = useLanguage();
 
@@ -37,7 +39,7 @@ const CardEvent = ({
                 <img
                     src={image}
                     alt={title}
-                    style={{ width: "100%", height: "100%" }}
+                    style={{ width: widthImage, height: heightImage }}
                     className="group-hover:scale-[1.1] transition-all duration-500"
                     loading="lazy"
                 />

@@ -50,6 +50,14 @@ const routes = [
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
                     },
+                    {
+                        path: "visainformation",
+                        Component: lazy(() => import("@pages/VisaInformation")),
+                    },
+                    {
+                        path: "placetogo",
+                        Component: lazy(() => import("@pages/PlaceToGo")),
+                    },
                 ],
             },
             {

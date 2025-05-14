@@ -5,7 +5,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import "swiper/css";
 import { NavLink } from "react-router";
 import imgbg from "@images/bg_news_event.jpg";
 

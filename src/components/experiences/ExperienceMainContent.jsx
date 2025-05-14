@@ -9,6 +9,8 @@ import {
     FaPinterestP,
 } from "react-icons/fa";
 
+import { FaStar } from "react-icons/fa6";
+
 const ExperienceMainContent = ({
     showMoreSocials,
     setShowMoreSocials,
@@ -176,15 +178,15 @@ const ExperienceMainContent = ({
                     >
                         {/* Left: Read more tags */}
                         <div>
-                            <p className="font-[500] mb-2 text-[#000] text-[16px]">
+                            <p className="font-[500] mb-[10px] text-[#000] text-[16px]">
                                 Read more:
                             </p>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-[8px]">
                                 {["NATURE", "ADVENTURE", "DESTINATIONS"].map(
                                     (tag) => (
                                         <button
                                             key={tag}
-                                            className="border border-blue-500 text-blue-500 text-xs px-4 py-1 rounded-full hover:bg-blue-50 cursor-pointer"
+                                            className="border border-[#007BFF] text-[#1A2A44] text-[14px] p-[6px_12px] rounded-[20px] hover:bg-blue-50 cursor-pointer"
                                         >
                                             {tag}
                                         </button>
@@ -199,17 +201,13 @@ const ExperienceMainContent = ({
                                 Rate this article
                             </p>
                             <div className="flex items-center gap-[4px] justify-end">
-                                {[1, 2, 3, 4, 5].map((i) => (
-                                    <svg
-                                        key={i}
-                                        className="w-5 h-5 text-yellow-400 fill-current"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path d="M10 15l-5.878 3.09L5.52 12.09 1 7.91l6.06-.88L10 2l2.94 5.03L19 7.91l-4.52 4.18 1.398 5.998z" />
-                                    </svg>
+                                {[1, 2, 3, 4, 5].map((_, index) => (
+                                    <FaStar
+                                        key={index}
+                                        className="text-[#F9BA09]"
+                                    />
                                 ))}
-                                <span className="text-xs text-gray-500 ml-2">
+                                <span className="text-[16px] text-[#494951] font-[700] ml-2">
                                     | 2 Voted
                                 </span>
                             </div>

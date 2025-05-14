@@ -25,7 +25,7 @@ const VietNamEvent = ({ className = "" }) => {
         <CarouselItem key={idx} className="sm:basis-1/2 lg:basis-1/4 pl-4">
             <CardEvent
                 title="Enjoy Hanoi street food"
-                widthImage="450px"
+                widthImage="100%"
                 heightImage="245px"
                 image={image}
                 href="/"
