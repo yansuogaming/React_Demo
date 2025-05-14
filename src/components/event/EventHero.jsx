@@ -1,6 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 const EventHero = ({ slides, currentIndex, setCurrentIndex }) => {
     const currentSlide = slides[currentIndex];
@@ -55,10 +53,7 @@ const EventHero = ({ slides, currentIndex, setCurrentIndex }) => {
                         onClick={handlePrev}
                         className="w-10 h-10 sm:w-10 sm:h-10 flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-700 hover:shadow-md transition"
                     >
-                        <FontAwesomeIcon
-                            icon={faChevronLeft}
-                            className="text-[#64646D] text-[12px]"
-                        />
+                        <FaChevronLeft className="text-[#64646D] text-[12px]" />
                     </button>
 
                     <div className="flex items-center gap-[6px] sm:gap-[10px] overflow-x-auto">
@@ -79,10 +74,7 @@ const EventHero = ({ slides, currentIndex, setCurrentIndex }) => {
                         onClick={handleNext}
                         className="w-[40px] h-[40px] sm:w-[40px] sm:h-[40px] flex items-center justify-center rounded-full bg-white border border-gray-300 text-gray-700 hover:shadow-md transition"
                     >
-                        <FontAwesomeIcon
-                            icon={faChevronRight}
-                            className="text-[#64646D] text-[12px]"
-                        />
+                        <FaChevronRight className="text-[#64646D] text-[12px]" />
                     </button>
                 </div>
             </div>

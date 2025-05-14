@@ -29,6 +29,12 @@ export default function Home() {
         });
     };
 
+    useEffect(() => {
+        if (imgRef.current.complete) {
+            setIsLoaded(true);
+        }
+    }, []);
+
     return (
         <main>
             <section className="relative text-white h-screen max-w-screen overflow-hidden">
@@ -122,13 +128,12 @@ export default function Home() {
                         </motion.div>
                     </>
                 )}
-                <FontAwesomeIcon
+                <FaArrowDown
                     onClick={scrollDown}
                     className={cn(
                         "cursor-pointer absolute bottom-[15px]",
                         "left-1/2 translate-[-50%] text-[24px]"
                     )}
-                    icon={faArrowDown}
                 />
             </section>
             <RegionList id="region" className="mt-[135px] mb-[145px]" />

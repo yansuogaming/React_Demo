@@ -49,7 +49,7 @@ const About = () => {
             </section>
             <section className="container mt-[80px]">
                 <SubHeading className="mb-[16px]">
-                    Welcome to Vietnam – where heritage meets wonder.
+                    Welcome to Vietnam - where heritage meets wonder.
                 </SubHeading>
                 <TextNormal>
                     Once a land of ancient kingdoms and storied dynasties,
