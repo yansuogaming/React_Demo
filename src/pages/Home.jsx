@@ -5,7 +5,7 @@ import PlainYourTrip from "@components/PlainYourTrip";
 import TrendingItinerary from "@components/TrendingItinerary";
 import TopVietnamExperiences from "@components/TopVietnamExperiences";
 import VietNamEvent from "@components/VietNamEvent";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Skeleton } from "@ui/skeleton";
 import { NavLink } from "react-router";
 import RegionList from "@components/RegionList";
