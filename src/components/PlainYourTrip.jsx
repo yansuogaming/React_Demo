@@ -1,18 +1,18 @@
-import image from '@images/image_43.png'
-import { Form } from 'react-router'
-import iconVisa from '@images/icon-visa.svg'
-import iconItinerary from '@images/icon-itinerary.svg'
-import iconTools from '@images/icon-tools.svg'
-import CreateItineraryButton from './button/CreateItineraryButton'
-import InputTripLocation from './input/InputTripLocation'
-import { cn } from '@lib/utils'
+import image from "@images/image_43.png";
+import { Form } from "react-router";
+import iconVisa from "@images/icon-visa.svg";
+import iconItinerary from "@images/icon-itinerary.svg";
+import iconTools from "@images/icon-tools.svg";
+import CreateItineraryButton from "./button/CreateItineraryButton";
+import InputTripLocation from "./input/InputTripLocation";
+import { cn } from "@lib/utils";
 
-const PlainYourTrip = ({ className = '' }) => {
+const PlainYourTrip = ({ className = "" }) => {
     return (
         <section
             className={cn(
-                'rounded-[8px] container',
-                'bg-[linear-gradient(104deg,_#F5F6FA_0%,_#EFF4FF_70.01%)]',
+                "rounded-[8px] container",
+                "bg-[linear-gradient(104deg,_#F5F6FA_0%,_#EFF4FF_70.01%)]",
                 className
             )}
         >
@@ -46,7 +46,7 @@ const PlainYourTrip = ({ className = '' }) => {
                 </div>
             </div>
         </section>
-    )
-}
+    );
+};
 
-export default PlainYourTrip
+export default PlainYourTrip;

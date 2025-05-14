@@ -7,31 +7,27 @@ const ExperienceSidebar = ({
     setShowSidebar,
     showToggleButton,
     activeId,
+    sectionRefs,
+    contentSections,
 }) => {
-    const contents = [
-        { id: "po-nagar", label: "Po Nagar Cham Towers" },
-        { id: "museum", label: "National Oceanographic Museum of Vietnam" },
-        { id: "cathedral", label: "Nha Trang Cathedral" },
-        { id: "vinpearl", label: "Vinpearl Amusement Park" },
-        { id: "pagoda", label: "Long Son Pagoda & White Buddha" },
-        { id: "hot-spring", label: "Thap Ba Hot Springs Centre" },
-        { id: "waterfall", label: "Ba Ho Waterfalls" },
-        { id: "museum-yersin", label: "Alexandre Yersin Museum" },
-    ];
-
     const handleClick = (id) => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
+        const section = sectionRefs.current[id]?.current;
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+
+            if (window.innerWidth < 1024) {
+                setShowSidebar(false);
+            }
         }
     };
 
     return (
         <>
+            {/* Toggle Button for mobile */}
             {!showSidebar && showToggleButton && (
                 <button
                     onClick={() => setShowSidebar(true)}
-                    className="fixed left-4 top-[140px] z-50 bg-white border rounded-full shadow-md p-2 hover:bg-gray-100"
+                    className="fixed left-4 top-[140px] z-50 bg-white border rounded-full shadow-md p-2 hover:bg-gray-100 lg:hidden"
                 >
                     <FontAwesomeIcon
                         icon={faBookOpen}
@@ -40,25 +36,39 @@ const ExperienceSidebar = ({
                 </button>
             )}
 
+            {/* === MOBILE/TABLET SIDEBAR === */}
             {showSidebar && (
-                <div className="sticky w-full px-4 mb-6 lg:w-[230px] lg:px-0 lg:mr-[34px] lg:float-left lg:min-h-[1200px] lg:ml-auto 2xl:ml-0 top-[0]">
+                <>
+                    {/* Overlay */}
                     <div
-                        className={`w-full bg-white p-4 text-sm lg:sticky lg:top-[170px]`}
+                        className="fixed inset-0 bg-black/30 z-40 lg:hidden"
+                        onClick={() => setShowSidebar(false)}
+                    />
+                    {/* Drawer Sidebar */}
+                    <div
+                        className={`
+                            fixed top-0 left-0 h-full w-[280px] bg-white z-50 p-4 shadow-lg 
+                            transition-transform duration-300 lg:hidden
+                            ${
+                                showSidebar
+                                    ? "translate-x-0"
+                                    : "-translate-x-full"
+                            }
+                        `}
                     >
-                        <div className="flex items-center gap-[6px] mb-[16px]">
-                            <h3 className="font-[700] text-[#1A2A44] text-[16px]">
+                        <div className="flex items-center justify-between mb-[16px]">
+                            <h3 className="font-bold text-[#1A2A44] text-[16px]">
                                 Content
                             </h3>
                             <button
                                 onClick={() => setShowSidebar(false)}
-                                className="text-[14px] p-[1px_12px] bg-[#F5F6FA] text-gray-500 rounded-[4px] hover:underline"
+                                className="text-[14px] px-3 py-1 bg-[#F5F6FA] text-gray-500 rounded hover:underline"
                             >
-                                hide
+                                Close
                             </button>
                         </div>
-
                         <ol className="border-l-[2px] border-[#D9D9D9] pl-[17px] space-y-3 text-[#1A2A44] text-sm flex flex-col gap-[4px]">
-                            {contents.map((item, idx) => (
+                            {contentSections.map((item, idx) => (
                                 <li key={item.id}>
                                     <button
                                         onClick={() => handleClick(item.id)}
@@ -74,8 +84,35 @@ const ExperienceSidebar = ({
                             ))}
                         </ol>
                     </div>
-                </div>
+                </>
             )}
+
+            {/* === DESKTOP SIDEBAR === */}
+            <div className="hidden lg:block lg:w-[230px] lg:float-left lg:min-h-[1200px] lg:mr-[34px] 2xl:ml-0 lg:sticky lg:top-[170px]">
+                <div className="bg-white p-4 text-sm">
+                    <div className="flex items-center gap-[6px] mb-[16px]">
+                        <h3 className="font-[700] text-[#1A2A44] text-[16px]">
+                            Content
+                        </h3>
+                    </div>
+                    <ol className="border-l-[2px] border-[#D9D9D9] pl-[17px] space-y-3 text-[#1A2A44] text-sm flex flex-col gap-[4px]">
+                        {contentSections.map((item, idx) => (
+                            <li key={item.id}>
+                                <button
+                                    onClick={() => handleClick(item.id)}
+                                    className={`text-left w-full transition text-[15px] cursor-pointer ${
+                                        activeId === item.id
+                                            ? "text-[#007BFF]"
+                                            : "text-[#1A2A44]"
+                                    }`}
+                                >
+                                    {`${idx + 1}. ${item.label}`}
+                                </button>
+                            </li>
+                        ))}
+                    </ol>
+                </div>
+            </div>
         </>
     );
 };

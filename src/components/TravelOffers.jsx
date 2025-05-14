@@ -6,8 +6,7 @@ import {
     CarouselPrevious,
 } from '@ui/carousel'
 import { NavLink } from 'react-router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { FaArrowRight } from 'react-icons/fa6'
 import travelOffer1 from '@images/travel-offer1.png'
 import { cn } from '@lib/utils'
 
@@ -40,7 +39,7 @@ const TravelOffers = ({ className = '' }) => {
                             )}
                         >
                             Find out more
-                            <FontAwesomeIcon icon={faArrowRight} />
+                            <FaArrowRight />
                         </NavLink>
                     </div>
                     <CarouselContent className="-ml-[30px]">
