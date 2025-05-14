@@ -3,7 +3,6 @@ import { lazy } from "react";
 const routes = [
     {
         path: "/",
-        Component: lazy(() => import("@layouts/Root")),
         children: [
             {
                 Component: lazy(() => import("@layouts/Root")),

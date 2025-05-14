@@ -5,7 +5,7 @@ import PlainYourTrip from "@components/PlainYourTrip";
 import TrendingItinerary from "@components/TrendingItinerary";
 import TopVietnamExperiences from "@components/TopVietnamExperiences";
 import VietNamEvent from "@components/VietNamEvent";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Skeleton } from "@ui/skeleton";
 import { NavLink } from "react-router";
 import RegionList from "@components/RegionList";
@@ -122,13 +122,12 @@ export default function Home() {
                         </motion.div>
                     </>
                 )}
-                <FontAwesomeIcon
+                <FaArrowDown
                     onClick={scrollDown}
                     className={cn(
                         "cursor-pointer absolute bottom-[15px]",
                         "left-1/2 translate-[-50%] text-[24px]"
                     )}
-                    icon={faArrowDown}
                 />
             </section>
             <RegionList id="region" className="mt-[135px] mb-[145px]" />

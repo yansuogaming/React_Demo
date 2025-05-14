@@ -3,7 +3,7 @@ import "swiper/css";
 // import "swiper/css/navigation";
 
 // import { Navigation } from "swiper/modules";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import imgbg from "@images/bg_news_event.jpg";
 
 const newsItems = [
