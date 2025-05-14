@@ -58,7 +58,8 @@ app.use('*all', async (req, res) => {
         const { router, context } = await ssrModule.renderRouter(req, res)
         const headContent = ssrModule.renderMetaData(router)
         const { pipe, abort } = ssrModule.render(router, context, {
-            onShellError() {
+            onShellError(error) {
+                console.log(error)
                 res.status(500)
                 res.set({ 'Content-Type': 'text/html' })
                 res.send('<h1>Something went wrong</h1>')
