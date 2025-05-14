@@ -2,7 +2,8 @@ import { lazy } from "react";
 
 const routes = [
     {
-        path: "/",
+        path: ":lang_id?",
+        Component: lazy(() => import("@layouts/LanguageLayout")), // Layout này sẽ xử lý đổi ngôn ngữ
         children: [
             {
                 Component: lazy(() => import("@layouts/Root")),
@@ -13,10 +14,7 @@ const routes = [
                         meta: () => {
                             return [
                                 { title: "Xin chào" },
-                                {
-                                    name: "description",
-                                    content: "Welcome to the home page",
-                                },
+                                { name: "description", content: "Welcome to the home page" },
                             ];
                         },
                     },
@@ -38,9 +36,7 @@ const routes = [
                     },
                     {
                         path: "experience/detail",
-                        Component: lazy(() =>
-                            import("@pages/ExpericencesDetail")
-                        ),
+                        Component: lazy(() => import("@pages/ExpericencesDetail")),
                     },
                     {
                         path: "itineraries",
@@ -50,6 +46,14 @@ const routes = [
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
                     },
+                    {
+                        path: "visaguide",
+                        Component: lazy(() => import("@pages/VisaGuide")),
+                    },
+                    {
+                        path: "essentials",
+                        Component: lazy(() => import("@pages/Essentials")),
+                    },
                 ],
             },
             {
@@ -58,9 +62,7 @@ const routes = [
                 children: [
                     {
                         index: true,
-                        Component: lazy(() =>
-                            import("@pages/TripDetailResult")
-                        ),
+                        Component: lazy(() => import("@pages/TripDetailResult")),
                     },
                 ],
             },

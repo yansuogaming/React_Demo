@@ -30,8 +30,8 @@ export default function Home() {
     };
 
     return (
-        <main>
-            <section className="relative text-white h-screen max-w-screen overflow-hidden">
+        <main >
+            <section className=" text-white h-screen max-w-screen overflow-hidden">
                 {!isLoaded && (
                     <Skeleton
                         className={cn(
