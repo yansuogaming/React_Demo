@@ -58,22 +58,6 @@ const VietNamEvent = ({ className = "" }) => {
         </SwiperSlide>
     ));
 
-<<<<<<< HEAD
-    const getEvents = async function () {
-        const res = await HttpClient
-            .tourdb()
-            .get('')
-        return res.data
-    }
-
-    useEffect(() => {
-        getEvents()
-    }, [])
-
-    const startTime = new Date()
-    const endTime = addDays(new Date(), 1)
-=======
->>>>>>> origin/develop#LongDT
     return (
         <section className={className}>
             <div className="container">

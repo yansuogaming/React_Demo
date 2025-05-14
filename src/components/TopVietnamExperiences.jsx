@@ -3,11 +3,10 @@ import image2 from "@images/image_7.svg";
 import image3 from "@images/image_8.svg";
 import image4 from "@images/image_9.svg";
 import { NavLink } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import ViewMoreButton from "./button/ViewMoreButton";
 import Reveal from "./animation/Reveal";
 import { cn } from "@lib/utils";
+import { FaArrowRight } from "react-icons/fa6";
 
 const TopVietnamExperiences = ({ className = "" }) => {
     return (
