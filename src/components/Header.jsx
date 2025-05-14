@@ -1,5 +1,5 @@
-import imgLogo from "@images/logo.svg";
-import imgLogo2 from "@images/logo2.svg";
+import imgLogo from "@images/logo.webp";
+import imgLogo2 from "@images/logo2.webp";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 import { useEffect, useState } from "react";
@@ -49,14 +49,14 @@ const Header = ({ noBackgroundOnScroll = true }) => {
 
     const showNavServices = () => {
         if (!isShowNavServices) {
-            chanegStyleHeader(false)
-            setRotateEllipsis(90)
-            setShowNavServices(true)
+            chanegStyleHeader(false);
+            setRotateEllipsis(90);
+            setShowNavServices(true);
         } else {
-            setShowNavServices(false)
-            setRotateEllipsis(0)
+            setShowNavServices(false);
+            setRotateEllipsis(0);
             if (noBackgroundOnScroll && window.scrollY <= 10) {
-                chanegStyleHeader(true)
+                chanegStyleHeader(true);
             }
         }
     };
@@ -87,10 +87,9 @@ const Header = ({ noBackgroundOnScroll = true }) => {
     return (
         <header
             className={cn(
-                'relative flex justify-between',
-                'py-[15px] px-[40px] w-full z-50 top-0',
-                'transition-all duration-500',
-                
+                "relative flex justify-between",
+                "py-[15px] px-[40px] w-full z-50 top-0",
+                "transition-all duration-500"
             )}
             style={{ background, position, color, boxShadow }}
         >
@@ -109,8 +108,8 @@ const Header = ({ noBackgroundOnScroll = true }) => {
                 {/* Nav bar */}
                 <ul
                     className={cn(
-                        'hidden h-fit font-bold absolute top-1/2 left-1/2 lg:flex',
-                        '-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit'
+                        "hidden h-fit font-bold absolute top-1/2 left-1/2 lg:flex",
+                        "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit"
                     )}
                 >
                     <motion.li
@@ -162,7 +161,10 @@ const Header = ({ noBackgroundOnScroll = true }) => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7, delay: 0.8 }}
                 >
-                    <SearchHeader color={color} className="flex cursor-pointer" />
+                    <SearchHeader
+                        color={color}
+                        className="flex cursor-pointer"
+                    />
                 </motion.li>
                 <motion.li
                     className="p-[15px]"
@@ -191,8 +193,8 @@ const Header = ({ noBackgroundOnScroll = true }) => {
             </ul>
             <button
                 className={cn(
-                    'block xl-md:hidden -my-[15px] -mx-[40px] px-[30px]',
-                    'border-l-1 border-[#ffffff1a] cursor-pointer z-1'
+                    "block xl-md:hidden -my-[15px] -mx-[40px] px-[30px]",
+                    "border-l-1 border-[#ffffff1a] cursor-pointer z-1"
                 )}
                 onClick={showNavServices}
             >
@@ -210,12 +212,15 @@ const Header = ({ noBackgroundOnScroll = true }) => {
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.7 }}
                         className={cn(
-                            'absolute flex top-full w-full justify-between',
-                            'left-0 px-[55px] bg-[#062f1f] h-[90px] items-center',
-                            'transition-all duration-500 xl-md:hidden'
+                            "absolute flex top-full w-full justify-between",
+                            "left-0 px-[55px] bg-[#062f1f] h-[90px] items-center",
+                            "transition-all duration-500 xl-md:hidden"
                         )}
                     >
-                        <SearchHeader className="flex cursor-pointer" color="white" />
+                        <SearchHeader
+                            className="flex cursor-pointer"
+                            color="white"
+                        />
                         <div className="flex gap-[30px]">
                             <ChangeLangButton color="white" />
                             <MapIcon />

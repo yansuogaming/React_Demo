@@ -43,7 +43,7 @@ const EventNewsSlider = () => {
                 <div className="text-end mb-[17px]">
                     <NavLink
                         to="#"
-                        className="text-sm text-white hover:underline"
+                        className="text-[18px] text-white font-[700] hover:underline"
                     >
                         More event news →
                     </NavLink>
@@ -65,7 +65,7 @@ const EventNewsSlider = () => {
                             <div className="bg-white rounded-tl-[60px] rounded-br-[60px] p-[71px_30px] aspect-square shadow-md flex flex-col">
                                 <NavLink
                                     to="/"
-                                    className="text-[14px] text-[#494951] font-[700]"
+                                    className="text-[14px] text-[#494951] font-[700] hover:underline"
                                 >
                                     EVENT NEWS
                                 </NavLink>
@@ -73,7 +73,7 @@ const EventNewsSlider = () => {
                                 <div className="flex-1 flex items-center">
                                     <NavLink
                                         to={item.link}
-                                        className="text-[#0E284E] font-semibold text-lg leading-relaxed hover:underline"
+                                        className="text-[#1A2A44] text-[24px] font-[700] hover:text-[#007BFF]"
                                     >
                                         {item.title}
                                     </NavLink>
@@ -81,7 +81,7 @@ const EventNewsSlider = () => {
 
                                 <NavLink
                                     to={item.link}
-                                    className="text-blue-600 text-sm hover:underline"
+                                    className="text-[#007BFF] text-[18px] font-[700] hover:underline"
                                 >
                                     Read More →
                                 </NavLink>

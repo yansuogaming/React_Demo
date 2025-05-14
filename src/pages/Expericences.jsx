@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 import Breadcrumb from "@components/Breadcrumb";
@@ -52,86 +52,141 @@ const PostCard = ({ image, title, date, desc, large = false }) => (
 
 const ExploreCard = ({ image, title, desc, link = "#" }) => (
     <div
-        className="
-    relative w-full h-[300px] overflow-hidden cursor-pointer group 
-    transition-all duration-500
-    rounded-[32px] group-hover:rounded-[60px_0px]
-  "
+        className="relative w-full h-[300px] overflow-hidden cursor-pointer 
+        transition-all duration-500 rounded-[32px]"
     >
         {/* Background image */}
-        <img
-            src={image}
-            alt={title}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
-        {/* Custom overlay gradient */}
-        <div className="absolute inset-0 transition-all duration-500">
-            <div
-                className="w-full h-full transition-all duration-500"
-                style={{
-                    borderRadius: "0px", // default
-                    background:
-                        "linear-gradient(180deg, rgba(4, 18, 58, 0.00) 0%, rgba(4, 18, 58, 0.70) 100%)",
-                }}
+        <div className="group w-full h-full relative">
+            <img
+                src={image}
+                alt={title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
-            {/* overlay on hover */}
+            {/* Custom overlay gradient */}
+            <div className="absolute inset-0 transition-all duration-500">
+                <div
+                    className="w-full h-full transition-all duration-500"
+                    style={{
+                        borderRadius: "0px",
+                        background:
+                            "linear-gradient(180deg, rgba(4, 18, 58, 0.00) 0%, rgba(4, 18, 58, 0.70) 100%)",
+                    }}
+                />
+                {/* overlay on hover */}
+                <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                        borderRadius: "0px",
+                        background:
+                            "linear-gradient(180deg, rgba(4, 18, 58, 0.00) 0%, rgba(4, 18, 58, 0.40) 49.04%, #04123A 100%)",
+                    }}
+                />
+            </div>
+            {/* Title */}
             <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{
-                    borderRadius: "0px",
-                    background:
-                        "linear-gradient(180deg, rgba(4, 18, 58, 0.00) 0%, rgba(4, 18, 58, 0.40) 49.04%, #04123A 100%)",
-                }}
-            />
-        </div>
-        {/* Title */}
-        <div
-            className={`absolute bottom-0 left-0 w-full p-6 text-white transition-all duration-500 ${
-                desc ? "group-hover:pb-20" : "group-hover:pb-10"
-            }`}
-        >
-            <h3 className="text-xl font-bold mb-0 transition-transform duration-500 group-hover:-translate-y-5">
-                {title}
-            </h3>
-        </div>
-        {/* Desc + Explore */}
-        <div
-            className={`
-        absolute bottom-6 left-6 right-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500
-        flex flex-col justify-start
-        ${!desc ? "pt-1" : desc.length < 60 ? "pt-2" : "pt-3"}
-      `}
-        >
-            {desc && <p className="text-sm leading-snug mb-2">{desc}</p>}
-            <a
-                href={link}
-                className="text-sm font-medium underline hover:text-blue-300"
+                className={`absolute bottom-0 left-0 w-full p-6 text-white transition-all duration-500 ${
+                    desc ? "group-hover:pb-20" : "group-hover:pb-10"
+                }`}
             >
-                Explore →
-            </a>
+                <h3 className="text-xl font-bold mb-0 transition-transform duration-500 group-hover:-translate-y-5">
+                    {title}
+                </h3>
+            </div>
+            {/* Desc + Explore */}
+            <div
+                className={`
+                    absolute bottom-6 left-6 right-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500
+                    flex flex-col justify-start
+                    ${!desc ? "pt-1" : desc.length < 60 ? "pt-2" : "pt-3"}
+                `}
+            >
+                {desc && <p className="text-sm leading-snug mb-2">{desc}</p>}
+                <a
+                    href={link}
+                    className="text-sm font-medium underline hover:text-blue-300"
+                >
+                    Explore →
+                </a>
+            </div>
         </div>
     </div>
 );
 
 const ExploreSlider = ({ data }) => {
+    const prevRef = useRef(null);
+    const nextRef = useRef(null);
+    const [isBeginning, setIsBeginning] = useState(true);
+    const [isEnd, setIsEnd] = useState(false);
+
     return (
-        <Swiper
-            modules={[Navigation]}
-            navigation
-            spaceBetween={30}
-            slidesPerView={1}
-            breakpoints={{
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-            }}
-            className="mt-10"
-        >
-            {data.map((item, index) => (
-                <SwiperSlide key={index}>
-                    <ExploreCard {...item} />
-                </SwiperSlide>
-            ))}
-        </Swiper>
+        <div className="relative mt-10">
+            <Swiper
+                modules={[Navigation]}
+                onBeforeInit={(swiper) => {
+                    swiper.params.navigation.prevEl = prevRef.current;
+                    swiper.params.navigation.nextEl = nextRef.current;
+                }}
+                onSwiper={(swiper) => {
+                    // Cập nhật trạng thái ban đầu
+                    setIsBeginning(swiper.isBeginning);
+                    setIsEnd(swiper.isEnd);
+                    // Lắng nghe thay đổi slide
+                    swiper.on("slideChange", () => {
+                        setIsBeginning(swiper.isBeginning);
+                        setIsEnd(swiper.isEnd);
+                    });
+                }}
+                navigation={{
+                    prevEl: prevRef.current,
+                    nextEl: nextRef.current,
+                }}
+                spaceBetween={30}
+                slidesPerView={1}
+                breakpoints={{
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                }}
+                className="mt-10"
+            >
+                {data.map((item, index) => (
+                    <SwiperSlide key={index}>
+                        <ExploreCard {...item} />
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+
+            {/* Prev button */}
+            <div
+                ref={prevRef}
+                className={`
+                    custom-prev absolute left-2 top-1/2 -translate-y-1/2 z-10
+                    w-10 h-10 rounded-full bg-white border border-gray-300
+                    flex items-center justify-center shadow-md hover:shadow-lg transition cursor-pointer
+                    ${isBeginning ? "opacity-30 pointer-events-none" : ""}
+                `}
+            >
+                <FontAwesomeIcon
+                    icon={faChevronLeft}
+                    className="text-gray-600 text-sm"
+                />
+            </div>
+
+            {/* Next button */}
+            <div
+                ref={nextRef}
+                className={`
+                    custom-next absolute right-2 top-1/2 -translate-y-1/2 z-10
+                    w-10 h-10 rounded-full bg-white border border-gray-300
+                    flex items-center justify-center shadow-md hover:shadow-lg transition cursor-pointer
+                    ${isEnd ? "opacity-30 pointer-events-none" : ""}
+                `}
+            >
+                <FontAwesomeIcon
+                    icon={faChevronRight}
+                    className="text-gray-600 text-sm"
+                />
+            </div>
+        </div>
     );
 };
 

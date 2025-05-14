@@ -13,6 +13,7 @@ const ExperienceMainContent = ({
     showMoreSocials,
     setShowMoreSocials,
     keepExploringRef,
+    sectionRefs,
 }) => {
     return (
         <div className="lg:col-span-9">
@@ -78,7 +79,11 @@ const ExperienceMainContent = ({
                     </p>
 
                     {/* Section 1 */}
-                    <div id="po-nagar" className="scroll-mt-[180px]">
+                    <div
+                        id="po-nagar"
+                        ref={sectionRefs.current["po-nagar"]}
+                        className="scroll-mt-[180px]"
+                    >
                         <h2 className="text-[18px] font-semibold text-[#1A2A44] mb-4">
                             1. Po Nagar Cham Towers
                         </h2>
@@ -100,7 +105,11 @@ const ExperienceMainContent = ({
                     </div>
 
                     {/* Section 2 */}
-                    <div id="museum" className="mt-10 scroll-mt-[180px]">
+                    <div
+                        id="museum"
+                        ref={sectionRefs.current["museum"]}
+                        className="mt-10 scroll-mt-[180px]"
+                    >
                         <h2 className="text-[18px] font-semibold text-[#1A2A44] mb-4">
                             2. National Oceanographic Museum
                         </h2>
@@ -116,7 +125,11 @@ const ExperienceMainContent = ({
                     </div>
 
                     {/* Section 3 */}
-                    <div id="cathedral" className="mt-10 scroll-mt-[180px]">
+                    <div
+                        id="cathedral"
+                        ref={sectionRefs.current["cathedral"]}
+                        className="mt-10 scroll-mt-[180px]"
+                    >
                         <h2 className="text-[18px] font-semibold text-[#1A2A44] mb-4">
                             3. Nha Trang Cathedral
                         </h2>
@@ -132,7 +145,11 @@ const ExperienceMainContent = ({
                     </div>
 
                     {/* Section 4 */}
-                    <div id="vinpearl" className="mt-10 scroll-mt-[180px]">
+                    <div
+                        id="vinpearl"
+                        ref={sectionRefs.current["vinpearl"]}
+                        className="mt-10 scroll-mt-[180px]"
+                    >
                         <h2 className="text-[18px] font-semibold text-[#1A2A44] mb-4">
                             4. Vinpearl Amusement Park
                         </h2>
