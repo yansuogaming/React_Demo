@@ -8,6 +8,7 @@ import ExploreTopTravelService from "@images/ExploreTopTravelService.png";
 import { useEffect, useState } from "react";
 import Pagination from "./pagination/pagination";
 import advertising from "@images/advertising.png";
+import { Link } from "react-router";
 
 const nileCruisePackage = {
   title: "Pharaohs Nile Cruise Adventure - Return Flights Included",
@@ -276,12 +277,13 @@ const TourItem = ({ item, index }) => {
   };
   return (
     <>
-      <div className="border border-solid rounded-[8px] rounded-tl-[60px] flex flex-col md:flex-row relative p-[16px] pb-[21px]">
-        <div className="w-full md:w-[292px] h-[194px] object-cover  relative overflow-hidden">
+      <Link to={"/"} className="border border-solid rounded-[8px] rounded-tl-[60px] flex flex-col md:flex-row relative p-[16px] pb-[21px] group hover:cursor-pointer">
+        <div className="w-full md:w-[292px] h-[194px] object-cover  relative overflow-hidden ">
           <img
             src={item.image}
             alt={item.title}
-            className="w-full h-full object-cover rounded-tl-[60px]"
+            loading="lazy"
+            className="w-full h-full object-cover rounded-tl-[60px] group-hover:scale-[1.1] transition-all duration-500"
           />
 
           <img
@@ -295,7 +297,7 @@ const TourItem = ({ item, index }) => {
         <div className="mt-4 md:mt-0 md:ml-[19px] flex-1 flex flex-col justify-between">
           <div className="">
             {/* Title */}
-            <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2D53]">
+            <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2D53] group-hover:text-blue-500">
               Pharaohs Nile Cruise Adventure - Return Flights Included
             </h2>
 
@@ -341,13 +343,13 @@ const TourItem = ({ item, index }) => {
                 includes taxes & fees
               </div>
             </div>
-            <button className="w-full lg:w-auto bg-[#007BFF] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-lg">
+            <Link to={"/"} className="w-full lg:w-auto bg-[#007BFF] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-lg">
               Detail tour
-            </button>
+            </Link>
           </div>
         </div>
-      </div>
-      {index === 4 && <img src={ExploreTopTravelService} />}
+      </Link>
+      {index === 4 && <img className="hidden md:flex" src={ExploreTopTravelService} />}
     </>
   );
 };
