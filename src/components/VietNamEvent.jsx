@@ -6,9 +6,22 @@ import ViewMoreButton from './button/ViewMoreButton'
 import CardEvent from './card/CardEvent'
 import { NavLink } from 'react-router'
 import { addDays } from 'date-fns'
+import { useEffect } from 'react'
+import HttpClient from '@services/HttpClient'
 
 const VietNamEvent = ({ className = '' }) => {
     const { t } = useTranslation()
+
+    const getEvents = async function () {
+        const res = await HttpClient
+            .tourdb()
+            .get('')
+        return res.data
+    }
+
+    useEffect(() => {
+        getEvents()
+    }, [])
 
     const startTime = new Date()
     const endTime = addDays(new Date(), 1)

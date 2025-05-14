@@ -5,11 +5,10 @@ import PlainYourTrip from '@components/PlainYourTrip'
 import TrendingItinerary from '@components/TrendingItinerary'
 import TopVietnamExperiences from '@components/TopVietnamExperiences'
 import VietNamEvent from '@components/VietNamEvent'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Skeleton } from '@ui/skeleton'
 import { NavLink } from 'react-router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
+import { FaArrowDown } from 'react-icons/fa6'
 import RegionList from '@components/RegionList'
 import TravelOffers from '@components/TravelOffers'
 import { cn } from '@lib/utils'
@@ -19,6 +18,7 @@ import { motion } from 'framer-motion'
 export default function Home() {
     const { t } = useTranslation()
     const [isLoaded, setIsLoaded] = useState(false)
+    const imgRef = useRef(null);
 
     const scrollDown = () => {
         const regionElement = document.getElementById('region')
@@ -28,6 +28,12 @@ export default function Home() {
             behavior: 'smooth'
         });
     }
+
+    useEffect(() => {
+        if (imgRef.current.complete) {
+            setIsLoaded(true);
+        }
+    }, [])
 
     return (
         <main>
@@ -47,6 +53,7 @@ export default function Home() {
                     src={heroImage}
                     alt={t('home.hero_heading')}
                     style={{ display: isLoaded ? 'inline' : 'none' }}
+                    ref={imgRef}
                     onLoad={() => setIsLoaded(true)}
                     className="h-screen min-w-screen absolute top-0 left-1/2 -translate-x-1/2"
                 />
@@ -121,13 +128,12 @@ export default function Home() {
                         </motion.div>
                     </>
                 )}
-                <FontAwesomeIcon
+                <FaArrowDown
                     onClick={scrollDown}
                     className={cn(
                         'cursor-pointer absolute bottom-[15px]',
                         'left-1/2 translate-[-50%] text-[24px]'
                     )}
-                    icon={faArrowDown}
                 />
             </section>
             <RegionList id="region" className="mt-[135px] mb-[145px]" />
@@ -140,3 +146,4 @@ export default function Home() {
         </main>
     )
 }
+

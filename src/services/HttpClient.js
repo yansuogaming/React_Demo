@@ -14,6 +14,10 @@ class HttpClient {
         this.loading = true
     }
 
+    newInstance() {
+        return new this()
+    }
+
     setTimeout(timeout) {
         this.instance.defaults.timeout = timeout
     }
