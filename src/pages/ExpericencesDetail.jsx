@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
 import Breadcrumb from "@components/Breadcrumb";
 
 import ExperienceHeader from "@components/experiences/ExperienceHeader";
@@ -12,53 +12,46 @@ import KeepExploringSection from "@components/experiences/KeepExploringSection";
 const ExperiencesDetail = () => {
     const { t } = useTranslation();
     const keepExploringRef = useRef(null);
+
     //   const asideRightRef = useRef(null);
 
     const [showSidebar, setShowSidebar] = useState(true);
-    const [showToggleButton, setShowToggleButton] = useState(true);
-    const [stuckRight, setStuckRight] = useState(true);
-    const [activeId, _] = useState("");
+    const [showToggleButton] = useState(true);
+    const [stuckRight] = useState(true);
+    const [activeId, setActiveId] = useState("");
     const [showMoreSocials, setShowMoreSocials] = useState(false);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
-            ([entry]) => {
-                const isVisible = entry.isIntersecting;
-                setShowToggleButton(!isVisible);
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveId(entry.target.id);
+                    }
+                });
             },
-            { rootMargin: "0px 0px -170px 0px", threshold: 0 }
+            {
+                threshold: 0.3,
+                rootMargin: "0px 0px -40% 0px",
+            }
         );
-        const current = keepExploringRef.current;
-        if (current) observer.observe(current);
-        return () => current && observer.unobserve(current);
-    }, []);
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => setStuckRight(!entry.isIntersecting),
-            { rootMargin: "0px 0px -170px 0px", threshold: 0 }
-        );
-        const current = keepExploringRef.current;
-        if (current) observer.observe(current);
-        return () => current && observer.unobserve(current);
-    }, []);
+        const refs = Object.values(sectionRefs.current);
 
-    // useEffect(() => {
-    //     const headings = document.querySelectorAll("[id]");
-    //     const observer = new IntersectionObserver(
-    //         (entries) => {
-    //             for (let entry of entries) {
-    //                 if (entry.isIntersecting) {
-    //                     setActiveId(entry.target.id);
-    //                     break;
-    //                 }
-    //             }
-    //         },
-    //         { threshold: 0.3, rootMargin: "0px 0px -40% 0px" }
-    //     );
-    //     headings.forEach((el) => observer.observe(el));
-    //     return () => observer.disconnect();
-    // }, []);
+        refs.forEach((ref) => {
+            if (ref?.current) {
+                observer.observe(ref.current);
+            }
+        });
+
+        return () => {
+            refs.forEach((ref) => {
+                if (ref?.current) {
+                    observer.unobserve(ref.current);
+                }
+            });
+        };
+    }, []);
 
     const breadcrumdItems = [
         { label: t("home"), href: "/" },

@@ -29,6 +29,12 @@ export default function Home() {
         });
     };
 
+    useEffect(() => {
+        if (imgRef.current.complete) {
+            setIsLoaded(true);
+        }
+    }, []);
+
     return (
         <main >
             <section className=" text-white h-screen max-w-screen overflow-hidden">

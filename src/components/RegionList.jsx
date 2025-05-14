@@ -9,8 +9,8 @@ import imageNaNoi from "@images/image-hanoi.png";
 import imageHaLong from "@images/image-halong.png";
 import imageSapa from "@images/image-sapa.png";
 import { NavLink } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FaArrowRight } from "react-icons/fa6";
+
 import NorthImage from "./NorthImage";
 import CentralImage from "./CentralImage";
 import SouthImage from "./SouthImage";
@@ -114,9 +114,7 @@ const RegionList = ({ className, ...props }) => {
                                                         )}
                                                     >
                                                         <span>Discover</span>
-                                                        <FontAwesomeIcon
-                                                            icon={faArrowRight}
-                                                        />
+                                                        <FaArrowRight />
                                                     </div>
                                                 </div>
                                             </div>

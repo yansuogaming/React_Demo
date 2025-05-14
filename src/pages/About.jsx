@@ -1,6 +1,8 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+} from "@/components/ui/carousel";
 
 import Breadcrumb from "@components/Breadcrumb";
 import FlagIcon from "@components/icons/FlagIcon";
@@ -49,7 +51,7 @@ const About = () => {
             </section>
             <section className="container mt-[80px]">
                 <SubHeading className="mb-[16px]">
-                    Welcome to Vietnam – where heritage meets wonder.
+                    Welcome to Vietnam - where heritage meets wonder.
                 </SubHeading>
                 <TextNormal>
                     Once a land of ancient kingdoms and storied dynasties,
@@ -73,55 +75,48 @@ const About = () => {
                     not only fall in love with its charm but also feel connected
                     to a country on the move.
                 </TextNormal>
-                <Swiper
-                    spaceBetween={30}
-                    slidesPerView={1}
-                    breakpoints={{
-                        640: { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 },
-                        1280: { slidesPerView: 4 },
-                    }}
-                    className="mt-[40px]"
-                >
-                    <SwiperSlide>
-                        <div className="group cursor-pointer">
-                            <LocationIcon className="mb-[30px] mx-auto group-hover:fill-[#007BFF]" />
-                            <TextNormal className="text-[18px] mb-[40px] text-center">
-                                Vietnam is located in <b>Asia</b>, the center of
-                                Southeast Asia.
-                            </TextNormal>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="group cursor-pointer">
-                            <FlagIcon className="mb-[30px] mx-auto group-hover:fill-[#007BFF]" />
-                            <TextNormal className="text-[18px] mb-[40px] text-center">
-                                <b>The red flag with a yellow star</b>
-                                <br />
-                                is the national flag of the Socialist Republic
-                                of Vietnam.
-                            </TextNormal>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="group cursor-pointer">
-                            <NationalLanguageIcon className="mb-[30px] mx-auto group-hover:fill-[#007BFF]" />
-                            <TextNormal className="text-[18px] mb-[40px] text-center">
-                                <b>Vietnamese</b> is the national language (and
-                                official language) of Vietnam.
-                            </TextNormal>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="group cursor-pointer">
-                            <PeopleIcon className="mb-[30px] mx-auto group-hover:fill-[#007BFF]" />
-                            <TextNormal className="text-[18px] mb-[40px] text-center">
-                                By 2024 the population will reach{" "}
-                                <b>100 million people.</b>
-                            </TextNormal>
-                        </div>
-                    </SwiperSlide>
-                </Swiper>
+                <Carousel opts={{ align: "start" }} className="mt-[40px]">
+                    <CarouselContent>
+                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                            <div className="group cursor-pointer">
+                                <LocationIcon className="mb-[30px] mx-auto group-hover:fill-[#007BFF]" />
+                                <TextNormal className="text-[18px] mb-[40px] text-center">
+                                    Vietnam is located in <b>Asia</b>, the
+                                    center of Southeast Asia.
+                                </TextNormal>
+                            </div>
+                        </CarouselItem>
+                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                            <div className="group cursor-pointer">
+                                <FlagIcon className="mb-[30px] mx-auto group-hover:fill-[#007BFF]" />
+                                <TextNormal className="text-[18px] mb-[40px] text-center">
+                                    <b>The red flag with a yellow star</b>
+                                    <br />
+                                    is the national flag of the Socialist
+                                    Republic of Vietnam.
+                                </TextNormal>
+                            </div>
+                        </CarouselItem>
+                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                            <div className="group cursor-pointer">
+                                <NationalLanguageIcon className="mb-[30px] mx-auto group-hover:fill-[#007BFF]" />
+                                <TextNormal className="text-[18px] mb-[40px] text-center">
+                                    <b>Vietnamese</b> is the national language
+                                    (and official language) of Vietnam.
+                                </TextNormal>
+                            </div>
+                        </CarouselItem>
+                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+                            <div className="group cursor-pointer">
+                                <PeopleIcon className="mb-[30px] mx-auto group-hover:fill-[#007BFF]" />
+                                <TextNormal className="text-[18px] mb-[40px] text-center">
+                                    By 2024 the population will reach{" "}
+                                    <b>100 million people.</b>
+                                </TextNormal>
+                            </div>
+                        </CarouselItem>
+                    </CarouselContent>
+                </Carousel>
             </section>
             <section className="container mt-[120px]">
                 <Reveal className="grid grid-cols-2 gap-[30px] items-center">

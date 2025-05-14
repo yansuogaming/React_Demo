@@ -4,50 +4,39 @@ import ViewMoreButton from "./button/ViewMoreButton";
 import CardEvent from "./card/CardEvent";
 import { NavLink } from "react-router";
 import { addDays } from "date-fns";
-import { useRef } from "react";
 
-// Font Awesome
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IoTicketOutline } from "react-icons/io5";
+import { CiLocationOn } from "react-icons/ci";
+
 import {
-    faLocationDot,
-    faTicket,
-    faChevronLeft,
-    faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
-
-// Swiper imports
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const VietNamEvent = ({ className = "" }) => {
     const { t } = useTranslation();
     const startTime = new Date();
     const endTime = addDays(new Date(), 1);
 
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
-
     const eventItems = Array.from({ length: 4 }).map((_, idx) => (
-        <SwiperSlide key={idx}>
+        <CarouselItem key={idx} className="sm:basis-1/2 lg:basis-1/4 pl-4">
             <CardEvent
                 title="Enjoy Hanoi street food"
-                widthImage="450px"
+                widthImage="100%"
                 heightImage="245px"
                 image={image}
                 href="/"
                 startTime={startTime}
                 endTime={endTime}
             >
-                <NavLink className="bg-white rounded-[0_0_12px_12px] block p-4">
+                <NavLink className="bg-white rounded-[0_0_12px_12px] block">
                     <p className="flex gap-[8px] items-center text-[#1A2A44]">
-                        <FontAwesomeIcon
-                            icon={faLocationDot}
-                            className="w-5 h-5"
-                        />
+                        <CiLocationOn className="text-[20px]" />
                         <span>Nha Trang</span>
-                        <FontAwesomeIcon icon={faTicket} className="w-5 h-5" />
+                        <IoTicketOutline className="text-[20px]" />
                     </p>
                     <p className="text-[16px] font-normal mt-[16px]">
                         Various versions have evolved over the years, sometimes
@@ -55,7 +44,7 @@ const VietNamEvent = ({ className = "" }) => {
                     </p>
                 </NavLink>
             </CardEvent>
-        </SwiperSlide>
+        </CarouselItem>
     ));
 
     return (
@@ -63,48 +52,21 @@ const VietNamEvent = ({ className = "" }) => {
             <div className="container">
                 <div className="lg:flex items-center justify-between mb-[20px]">
                     <h2 className="mb-[10px] lg:mb-[0] text-[30px] font-bold text-[#1A2A44]">
-                        Celebrate Vietnam’s Vibrant Events
+                        Celebrate Vietnam's Vibrant Events
                     </h2>
                     <ViewMoreButton text={t("See All Events")} />
                 </div>
 
                 <div className="relative">
-                    {/* Custom Navigation Buttons */}
-                    <button
-                        ref={prevRef}
-                        className="absolute left-[-16px] top-1/2 z-10 -translate-y-1/2 text-[24px] text-[#1A2A44] hidden md:block bg-white rounded-full p-2 shadow"
-                        aria-label="Previous"
-                    >
-                        <FontAwesomeIcon icon={faChevronLeft} />
-                    </button>
+                    {/* Carousel with hidden nav on mobile */}
+                    <Carousel opts={{ align: "start" }} className="w-full">
+                        <CarouselContent className="-ml-4">
+                            {eventItems}
+                        </CarouselContent>
 
-                    <button
-                        ref={nextRef}
-                        className="absolute right-[-16px] top-1/2 z-10 -translate-y-1/2 text-[24px] text-[#1A2A44] hidden md:block bg-white rounded-full p-2 shadow"
-                        aria-label="Next"
-                    >
-                        <FontAwesomeIcon icon={faChevronRight} />
-                    </button>
-
-                    <Swiper
-                        modules={[Navigation]}
-                        navigation={{
-                            prevEl: prevRef.current,
-                            nextEl: nextRef.current,
-                        }}
-                        onBeforeInit={(swiper) => {
-                            swiper.params.navigation.prevEl = prevRef.current;
-                            swiper.params.navigation.nextEl = nextRef.current;
-                        }}
-                        spaceBetween={30}
-                        slidesPerView={1}
-                        breakpoints={{
-                            768: { slidesPerView: 2 },
-                            1024: { slidesPerView: 4 },
-                        }}
-                    >
-                        {eventItems}
-                    </Swiper>
+                        <CarouselPrevious className="absolute left-[-16px] top-[120px] -translate-y-1/2 z-10 hidden md:flex bg-white text-[#1A2A44] rounded-full p-2 shadow" />
+                        <CarouselNext className="absolute right-[-16px] top-[120px] -translate-y-1/2 z-10 hidden md:flex bg-white text-[#1A2A44] rounded-full p-2 shadow" />
+                    </Carousel>
                 </div>
             </div>
         </section>

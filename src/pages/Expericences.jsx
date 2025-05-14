@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 import Breadcrumb from "@components/Breadcrumb";
@@ -9,17 +9,21 @@ import PageFaqs from "@components/FAQ";
 import PlanYourTrip from "@components/PlainYourTrip";
 import WhyVisit from "@components/WhyVisit";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 import {
-    faMagnifyingGlass,
-    faClock,
-    faChevronLeft,
-    faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+    FaMagnifyingGlass,
+    FaChevronLeft,
+    FaChevronRight,
+} from "react-icons/fa6";
+
+import { CiClock2 } from "react-icons/ci";
+
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const ITEMS_PER_PAGE = 12;
 
@@ -42,8 +46,8 @@ const PostCard = ({ image, title, date, desc, large = false }) => (
         >
             <NavLink to="#">{title}</NavLink>
         </h3>
-        <p className="text-sm text-gray-500 mt-1">
-            <FontAwesomeIcon icon={faClock} className="mr-1" />
+        <p className="text-sm text-gray-500 mt-1 flex items-center">
+            <CiClock2 className="mr-1" />
             {date}
         </p>
         <p className="mt-4 text-gray-700 text-[15px] leading-relaxed">{desc}</p>
@@ -113,79 +117,30 @@ const ExploreCard = ({ image, title, desc, link = "#" }) => (
 );
 
 const ExploreSlider = ({ data }) => {
-    const prevRef = useRef(null);
-    const nextRef = useRef(null);
-    const [isBeginning, setIsBeginning] = useState(true);
-    const [isEnd, setIsEnd] = useState(false);
-
     return (
         <div className="relative mt-10">
-            <Swiper
-                modules={[Navigation]}
-                onBeforeInit={(swiper) => {
-                    swiper.params.navigation.prevEl = prevRef.current;
-                    swiper.params.navigation.nextEl = nextRef.current;
-                }}
-                onSwiper={(swiper) => {
-                    // Cập nhật trạng thái ban đầu
-                    setIsBeginning(swiper.isBeginning);
-                    setIsEnd(swiper.isEnd);
-                    // Lắng nghe thay đổi slide
-                    swiper.on("slideChange", () => {
-                        setIsBeginning(swiper.isBeginning);
-                        setIsEnd(swiper.isEnd);
-                    });
-                }}
-                navigation={{
-                    prevEl: prevRef.current,
-                    nextEl: nextRef.current,
-                }}
-                spaceBetween={30}
-                slidesPerView={1}
-                breakpoints={{
-                    768: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 },
-                }}
-                className="mt-10"
-            >
-                {data.map((item, index) => (
-                    <SwiperSlide key={index}>
-                        <ExploreCard {...item} />
-                    </SwiperSlide>
-                ))}
-            </Swiper>
+            <Carousel opts={{ align: "start" }} className="w-full">
+                <CarouselContent>
+                    {data.map((item, index) => (
+                        <CarouselItem
+                            key={index}
+                            className="basis-full sm:basis-1/2 lg:basis-1/3 px-2"
+                        >
+                            <ExploreCard {...item} />
+                        </CarouselItem>
+                    ))}
+                </CarouselContent>
 
-            {/* Prev button */}
-            <div
-                ref={prevRef}
-                className={`
-                    custom-prev absolute left-2 top-1/2 -translate-y-1/2 z-10
-                    w-10 h-10 rounded-full bg-white border border-gray-300
-                    flex items-center justify-center shadow-md hover:shadow-lg transition cursor-pointer
-                    ${isBeginning ? "opacity-30 pointer-events-none" : ""}
-                `}
-            >
-                <FontAwesomeIcon
-                    icon={faChevronLeft}
-                    className="text-gray-600 text-sm"
-                />
-            </div>
+                {/* Prev button */}
+                <CarouselPrevious className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow-md hover:shadow-lg transition">
+                    <FaChevronLeft className="text-gray-600 text-sm" />
+                </CarouselPrevious>
 
-            {/* Next button */}
-            <div
-                ref={nextRef}
-                className={`
-                    custom-next absolute right-2 top-1/2 -translate-y-1/2 z-10
-                    w-10 h-10 rounded-full bg-white border border-gray-300
-                    flex items-center justify-center shadow-md hover:shadow-lg transition cursor-pointer
-                    ${isEnd ? "opacity-30 pointer-events-none" : ""}
-                `}
-            >
-                <FontAwesomeIcon
-                    icon={faChevronRight}
-                    className="text-gray-600 text-sm"
-                />
-            </div>
+                {/* Next button */}
+                <CarouselNext className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full bg-white border border-gray-300 flex items-center justify-center shadow-md hover:shadow-lg transition">
+                    <FaChevronRight className="text-gray-600 text-sm" />
+                </CarouselNext>
+            </Carousel>
         </div>
     );
 };
@@ -295,10 +250,7 @@ const Experiences = () => {
                                         placeholder="Keyword"
                                         className={inputClass}
                                     />
-                                    <FontAwesomeIcon
-                                        icon={faMagnifyingGlass}
-                                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm"
-                                    />
+                                    <FaMagnifyingGlass className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
                                 </div>
                             ) : (
                                 <select
@@ -356,8 +308,7 @@ const Experiences = () => {
                         }
                         className="w-[12px] h-[24px] flex items-center justify-center"
                     >
-                        <FontAwesomeIcon
-                            icon={faChevronLeft}
+                        <FaChevronLeft
                             className={`mr-[16px] ${
                                 currentPage === 1
                                     ? "text-[#D9D9D9]"
@@ -389,8 +340,7 @@ const Experiences = () => {
                         }
                         className="w-[12px] h-[24px] flex items-center justify-center"
                     >
-                        <FontAwesomeIcon
-                            icon={faChevronRight}
+                        <FaChevronRight
                             className={`ml-[16px] ${
                                 currentPage === totalPages
                                     ? "text-[#D9D9D9]"

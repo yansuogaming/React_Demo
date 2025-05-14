@@ -1,11 +1,17 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useRef, useEffect } from "react";
+
 import { NavLink } from "react-router";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+
 //
 import Breadcrumb from "@components/Breadcrumb";
 import CardEvent from "@components/card/CardEvent";
@@ -15,7 +21,7 @@ import EventNewsSlider from "@components/event/EventNewsSlider";
 //
 import imgevent from "@images/3-1595134332.webp";
 import imgevent2 from "@images/4-1708873508769.webp";
-import visaImage from "@images/visa-image.png"; // ảnh bạn cung cấp
+import visaImage from "@images/visa-image.png";
 import ticketIcon from "@images/great.svg";
 import soldIcon from "@images/ticket.svg";
 import freeIcon from "@images/free.svg";
@@ -74,9 +80,19 @@ const Events = () => {
         { label: "Vietnam Calendar" },
     ];
 
+    const eventListRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
+
+    useEffect(() => {
+        if (eventListRef.current) {
+            eventListRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    }, [currentPage]);
 
     const filteredEvents =
         selectedCategory === "All" ? mockEvents : mockEvents.filter(() => true);
@@ -117,46 +133,47 @@ const Events = () => {
         },
     ];
 
-    const FeatureSwiper = () => {
+    const FeatureCarousel = () => {
         return (
-            <section className="p-[101px_0_71px_0] bg-white">
+            <section className="py-[101px] bg-white">
                 <div className="container mx-auto">
-                    <Swiper
-                        spaceBetween={24}
-                        slidesPerView={1.1}
-                        breakpoints={{
-                            640: { slidesPerView: 1.5 },
-                            768: { slidesPerView: 2 },
-                            1024: { slidesPerView: 3 },
-                        }}
-                    >
-                        {features.map((feature) => (
-                            <SwiperSlide key={feature.id}>
-                                <div className="flex gap-4 items-start max-w-sm">
-                                    {/* Gradient icon box */}
-                                    <div
-                                        className={`p-[24px] rounded-md flex items-center justify-center ${feature.bg}`}
-                                    >
-                                        <img
-                                            src={feature.icon}
-                                            alt={feature.title}
-                                            className="w-full h-full"
-                                        />
-                                    </div>
+                    <Carousel opts={{ align: "start" }} className="w-full">
+                        <CarouselContent className="-ml-4">
+                            {features.map((feature) => (
+                                <CarouselItem
+                                    key={feature.id}
+                                    className="pl-4 sm:basis-1/2 md:basis-1/2 lg:basis-1/3"
+                                >
+                                    <div className="flex gap-4 items-start max-w-sm">
+                                        {/* Gradient icon box */}
+                                        <div
+                                            className={`p-[24px] rounded-md flex items-center justify-center ${feature.bg}`}
+                                        >
+                                            <img
+                                                src={feature.icon}
+                                                alt={feature.title}
+                                                className="w-full h-full"
+                                            />
+                                        </div>
 
-                                    {/* Text content */}
-                                    <div>
-                                        <h3 className="text-[24px] font-[700] text-black mb-1">
-                                            {feature.title}
-                                        </h3>
-                                        <p className="text-[16px] text-[#494951]">
-                                            {feature.description}
-                                        </p>
+                                        {/* Text content */}
+                                        <div>
+                                            <h3 className="text-[24px] font-[700] text-black mb-1">
+                                                {feature.title}
+                                            </h3>
+                                            <p className="text-[16px] text-[#494951]">
+                                                {feature.description}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+
+                        {/* Ẩn trên mobile */}
+                        <CarouselPrevious className="left-0 hidden" />
+                        <CarouselNext className="right-0 hidden" />
+                    </Carousel>
                 </div>
             </section>
         );
@@ -220,7 +237,6 @@ const Events = () => {
             <section className="bg-[#F6F6FB] p-[48px_0_35px_0]">
                 <div className="flex justify-center px-4">
                     <div className="flex flex-col lg:flex-row items-stretch max-w-[1100px] w-full overflow-hidden rounded-[40px] lg:rounded-[0_0_40px_0]">
-                        {/* Left image - KHÔNG có nền trắng */}
                         <div className="lg:w-[272px] lg:h-[272px] shrink-0">
                             <img
                                 src={visaImage}
@@ -229,7 +245,6 @@ const Events = () => {
                             />
                         </div>
 
-                        {/* Right content - CÓ nền trắng */}
                         <div className="bg-white p-[66px_35px] flex flex-col justify-center w-full">
                             <h3 className="text-[26px] font-[500] text-[#1A2A44] mb-[12px]">
                                 Vietnam offers easy entry for travelers
@@ -264,7 +279,7 @@ const Events = () => {
                         : "text-[#0E284E] hover:text-black"
                 }`}
             >
-                <FontAwesomeIcon icon={faChevronLeft} className="text-[14px]" />
+                <FaChevronLeft className="text-[14px]" />
             </button>
 
             {/* Page numbers */}
@@ -297,99 +312,93 @@ const Events = () => {
                         : "text-[#1A2A44] hover:text-[#1A2A44]"
                 }`}
             >
-                <FontAwesomeIcon
-                    icon={faChevronRight}
-                    className="text-[14px]"
-                />
+                <FaChevronRight className="text-[14px]" />
             </button>
         </div>
     );
 
     return (
-        <>
-            <main className="bg-[#F5F6FA] pb-[80px]">
-                <div className="container mx-auto">
-                    <section>
-                        <Breadcrumb
-                            className="p-[16px_40px_28px_0] text-[14px]"
-                            items={breadcrumdItems}
-                        />
-                    </section>
-                    <EventHero
-                        slides={mockSlides}
-                        currentIndex={currentIndex}
-                        setCurrentIndex={setCurrentIndex}
+        <main className="bg-[#F5F6FA]">
+            <div className="container mx-auto pb-[80px]">
+                <section>
+                    <Breadcrumb
+                        className="p-[16px_40px_28px_0] text-[14px]"
+                        items={breadcrumdItems}
+                    />
+                </section>
+                <EventHero
+                    slides={mockSlides}
+                    currentIndex={currentIndex}
+                    setCurrentIndex={setCurrentIndex}
+                />
+
+                <section className="mt-[43px]" ref={eventListRef}>
+                    <EventFilterBar
+                        categories={categories}
+                        selectedCategory={selectedCategory}
+                        setSelectedCategory={(cat) => {
+                            setSelectedCategory(cat);
+                            setCurrentPage(1);
+                        }}
                     />
 
-                    <section className="mt-[43px]">
-                        <EventFilterBar
-                            categories={categories}
-                            selectedCategory={selectedCategory}
-                            setSelectedCategory={(cat) => {
-                                setSelectedCategory(cat);
-                                setCurrentPage(1);
-                            }}
-                        />
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {top8.map((event) => (
+                            <CardEvent
+                                key={event.id}
+                                title={event.title}
+                                image={event.image}
+                                startTime={event.startTime}
+                                endTime={event.endTime}
+                                href={event.href}
+                                widthImage="100%"
+                                heightImage="180px"
+                            >
+                                <p className="text-xs text-gray-500 mt-1">
+                                    📍 {event.location}
+                                </p>
+                                <p className="text-sm text-gray-600 line-clamp-2">
+                                    {event.description}
+                                </p>
+                            </CardEvent>
+                        ))}
 
-                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {top8.map((event) => (
-                                <CardEvent
-                                    key={event.id}
-                                    title={event.title}
-                                    image={event.image}
-                                    startTime={event.startTime}
-                                    endTime={event.endTime}
-                                    href={event.href}
-                                    widthImage="100%"
-                                    heightImage="180px"
-                                >
-                                    <p className="text-sm text-gray-600 line-clamp-2">
-                                        {event.description}
-                                    </p>
-                                    <p className="text-xs text-gray-500 mt-1">
-                                        📍 {event.location}
-                                    </p>
-                                </CardEvent>
-                            ))}
+                        <AdBanner />
 
-                            {/* Quảng cáo */}
-                            <AdBanner />
+                        {bottom8.map((event) => (
+                            <CardEvent
+                                key={event.id}
+                                title={event.title}
+                                image={event.image}
+                                startTime={event.startTime}
+                                endTime={event.endTime}
+                                href={event.href}
+                                widthImage="100%"
+                                heightImage="180px"
+                            >
+                                <p className="text-sm text-gray-600 line-clamp-2">
+                                    {event.description}
+                                </p>
+                                <p className="text-xs text-gray-500 mt-1">
+                                    📍 {event.location}
+                                </p>
+                            </CardEvent>
+                        ))}
+                    </div>
 
-                            {bottom8.map((event) => (
-                                <CardEvent
-                                    key={event.id}
-                                    title={event.title}
-                                    image={event.image}
-                                    startTime={event.startTime}
-                                    endTime={event.endTime}
-                                    href={event.href}
-                                    widthImage="100%"
-                                    heightImage="180px"
-                                >
-                                    <p className="text-sm text-gray-600 line-clamp-2">
-                                        {event.description}
-                                    </p>
-                                    <p className="text-xs text-gray-500 mt-1">
-                                        📍 {event.location}
-                                    </p>
-                                </CardEvent>
-                            ))}
-                        </div>
-
-                        <EventPagination
-                            totalPages={totalPages}
-                            currentPage={currentPage}
-                            setCurrentPage={setCurrentPage}
-                        />
-                    </section>
-                </div>
-            </main>
+                    <EventPagination
+                        totalPages={totalPages}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                    />
+                </section>
+            </div>
             <EventNewsSlider />
 
-            <FeatureSwiper />
+            <FeatureCarousel />
 
             <VisaBanner />
-        </>
+        </main>
     );
 };
 
