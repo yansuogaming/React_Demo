@@ -9,12 +9,13 @@ import {
     DropdownMenuCheckboxItem,
 } from "@ui/dropdown-menu"
 import { FaAngleDown } from "react-icons/fa6"
-import { cn } from '@lib/utils'
+import { cn, getListLanguages } from '@lib/utils'
 
 export default function ChangeLangButton({ color = 'black' }) {
     const { t } = useTranslation()
     const [isOpenDropdownLanguage, setOpenDropdownLanguage] = useState(false)
     const [language, setLanguage] = useLanguage()
+    const languages = getListLanguages()
 
     return (
         <DropdownMenu
@@ -42,20 +43,18 @@ export default function ChangeLangButton({ color = 'black' }) {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-[60px]">
-                <DropdownMenuCheckboxItem
-                    checked={language === "en"}
-                    value="en"
-                    onCheckedChange={() => setLanguage("en")}
-                >
-                    {t("english")}
-                </DropdownMenuCheckboxItem>
-                <DropdownMenuCheckboxItem
-                    checked={language === "vi"}
-                    value="vi"
-                    onCheckedChange={() => setLanguage("vi")}
-                >
-                    {t("vietnamese")}
-                </DropdownMenuCheckboxItem>
+                {languages.map((item, index) => {
+                    return (
+                        <DropdownMenuCheckboxItem
+                            key={index}
+                            checked={item.key === language}
+                            value={item.key}
+                            onCheckedChange={() => setLanguage(item.key)}
+                        >
+                            {item.text}
+                        </DropdownMenuCheckboxItem>
+                    )
+                })}
             </DropdownMenuContent>
         </DropdownMenu>
     )

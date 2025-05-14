@@ -17,7 +17,7 @@ const ExperiencesDetail = () => {
     const [showSidebar, setShowSidebar] = useState(true);
     const [showToggleButton, setShowToggleButton] = useState(true);
     const [stuckRight, setStuckRight] = useState(true);
-    const [activeId, setActiveId] = useState("");
+    const [activeId, _] = useState("");
     const [showMoreSocials, setShowMoreSocials] = useState(false);
 
     useEffect(() => {

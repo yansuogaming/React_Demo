@@ -6,7 +6,7 @@ import { Transform } from 'node:stream'
 const isProduction = process.env.NODE_ENV === 'production'
 const port = process.env.PORT || 5173
 const base = process.env.BASE || '/'
-const ABORT_DELAY = 10000
+const ABORT_DELAY = 60000
 
 // Cached production assets
 const templateHtml = isProduction
@@ -56,6 +56,7 @@ app.use('*all', async (req, res) => {
         let didError = false
 
         const { router, context } = await ssrModule.renderRouter(req, res)
+        const headContent = ssrModule.renderMetaData(router)
         const { pipe, abort } = ssrModule.render(router, context, {
             onShellError() {
                 res.status(500)
@@ -72,19 +73,17 @@ app.use('*all', async (req, res) => {
                         callback()
                     },
                 })
-
                 const [htmlStart, htmlEnd] = template.split(`<!--app-html-->`)
-
-                res.write(htmlStart)
-
+                const finalHtmlStart = htmlStart.replace('<!--app-head-->', headContent)
+                
+                res.write(finalHtmlStart)
                 transformStream.on('finish', () => {
                     res.end(htmlEnd)
                 })
                 pipe(transformStream)
             },
-            onError(error) {
+            onError() {
                 didError = true
-                console.error(error)
             },
         })
 
@@ -93,7 +92,6 @@ app.use('*all', async (req, res) => {
         }, ABORT_DELAY)
     } catch (e) {
         vite?.ssrFixStacktrace(e)
-        console.log(e.stack)
         res.status(500).end(e.stack)
     }
 })

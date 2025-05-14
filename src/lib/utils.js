@@ -1,5 +1,6 @@
-import { clsx } from "clsx";
-import { twMerge } from "tailwind-merge"
+import { clsx } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+import { t } from 'i18next'
 
 export function cn(...inputs) {
     return twMerge(clsx(inputs));
@@ -14,4 +15,18 @@ export function changeFontByLang(lang) {
             body.style.fontFamily = '"Visit Qatar", sans-serif';
         }
     }
+}
+
+export function getListLanguages()
+{
+    return [
+        {
+            'key': 'en',
+            'text': t('english'),
+        },
+        {
+            'key': 'vi',
+            'text': t('vietnamese'),
+        }
+    ]
 }

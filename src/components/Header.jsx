@@ -93,7 +93,7 @@ const Header = ({ noBackgroundOnScroll = true }) => {
             )}
             style={{ background, position, color, boxShadow }}
         >
-            <div className="flex items-center w-full relative xl-md:w-fit">
+            <div className="flex items-center w-full relative xl-md:w-fit h-full">
                 {/* Logo */}
                 <motion.div
                     initial={{ opacity: 0, y: -100 }}

@@ -5,7 +5,7 @@ import PlainYourTrip from '@components/PlainYourTrip'
 import TrendingItinerary from '@components/TrendingItinerary'
 import TopVietnamExperiences from '@components/TopVietnamExperiences'
 import VietNamEvent from '@components/VietNamEvent'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Skeleton } from '@ui/skeleton'
 import { NavLink } from 'react-router'
 import { FaArrowDown } from 'react-icons/fa6'
@@ -18,7 +18,8 @@ import { motion } from 'framer-motion'
 export default function Home() {
     const { t } = useTranslation()
     const [isLoaded, setIsLoaded] = useState(false)
-    
+    const imgRef = useRef(null);
+
     const scrollDown = () => {
         const regionElement = document.getElementById('region')
         const heightHeader = document.querySelector('header').clientHeight
@@ -27,6 +28,12 @@ export default function Home() {
             behavior: 'smooth'
         });
     }
+
+    useEffect(() => {
+        if (imgRef.current.complete) {
+            setIsLoaded(true);
+        }
+    }, [])
 
     return (
         <main>
@@ -46,6 +53,7 @@ export default function Home() {
                     src={heroImage}
                     alt={t('home.hero_heading')}
                     style={{ display: isLoaded ? 'inline' : 'none' }}
+                    ref={imgRef}
                     onLoad={() => setIsLoaded(true)}
                     className="h-screen min-w-screen absolute top-0 left-1/2 -translate-x-1/2"
                 />
