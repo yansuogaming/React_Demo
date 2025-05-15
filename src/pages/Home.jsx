@@ -36,7 +36,7 @@ export default function Home() {
     }, []);
 
     return (
-        <main >
+        <main>
             <section className=" text-white h-screen max-w-screen overflow-hidden">
                 {!isLoaded && (
                     <Skeleton
@@ -55,7 +55,7 @@ export default function Home() {
                     style={{ display: isLoaded ? "inline" : "none" }}
                     ref={imgRef}
                     onLoad={() => setIsLoaded(true)}
-                    className="h-screen min-w-screen absolute top-0 left-1/2 -translate-x-1/2"
+                    className="h-screen min-w-screen absolute top-0 left-1/2 -translate-x-1/2 object-cover"
                 />
                 {isLoaded && (
                     <>
@@ -66,7 +66,7 @@ export default function Home() {
                             className={cn(
                                 "text-center text-[30px] md:text-[40px] lg:text-[50px] xl:text-[60px]",
                                 "text-shadow-[0_2px_4px_rgba(0_0_0_/_0.40)]",
-                                "absolute bottom-[220px] w-full font-bold"
+                                "absolute lg:bottom-[220px] bottom-[260px] w-full font-bold"
                             )}
                         >
                             {t("home.hero_heading")}
@@ -78,7 +78,7 @@ export default function Home() {
                             transition={{ duration: 0.7, delay: 0.4 }}
                             className={cn(
                                 "text-center text-[20px] font-normal",
-                                "absolute bottom-[188px] w-full"
+                                "absolute bottom-[188px] w-full container mx-auto"
                             )}
                         >
                             {t("home.description")}
@@ -96,7 +96,7 @@ export default function Home() {
                                 to="/"
                                 className={cn(
                                     "transition-all duration-500",
-                                    "p-[15px] border-white border-1 rounded-[80px]",
+                                    "p-[15px] border-white border-2 rounded-[80px]",
                                     "hover:bg-[#153b33] hover:border-[#153b33] focus:ring-4",
                                     "focus:outline-none focus:ring-blue-300"
                                 )}
@@ -107,7 +107,7 @@ export default function Home() {
                                 to="/"
                                 className={cn(
                                     "transition-all duration-500",
-                                    "p-[15px] border-white border-1 rounded-[80px]",
+                                    "p-[15px] border-white border-2 rounded-[80px]",
                                     "hover:bg-[#153b33] hover:border-[#153b33] focus:ring-4",
                                     "focus:outline-none focus:ring-blue-300"
                                 )}
@@ -118,7 +118,7 @@ export default function Home() {
                                 to="/"
                                 className={cn(
                                     "transition-all duration-500",
-                                    "p-[15px] border-white border-1 rounded-[80px]",
+                                    "p-[15px] border-white border-2 rounded-[80px]",
                                     "hover:bg-[#153b33] hover:border-[#153b33] focus:ring-4",
                                     "focus:outline-none focus:ring-blue-300"
                                 )}
@@ -136,8 +136,11 @@ export default function Home() {
                     )}
                 />
             </section>
-            <RegionList id="region" className="mt-[135px] mb-[145px]" />
-            <VietNamEvent className="bg-[#F5F6FA] py-[80px]" />
+            <RegionList
+                id="region"
+                className="lg:mt-[135px] mt-[80px] lg:mb-[145px] mb-[60px]"
+            />
+            <VietNamEvent className="bg-[#F5F6FA] py-[80px] pt-[48px]" />
             <TopVietnamExperiences className="mb-[120px] pt-[80px]" />
             <TrendingItinerary className="mb-[120px]" />
             <TravelOffers className="mb-[120px]" />

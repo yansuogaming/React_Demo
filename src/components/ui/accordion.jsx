@@ -43,8 +43,7 @@ function AccordionContent({ className, isHtml = false, children, ...props }) {
       {...props}
     >
       {isHtml ? (
-        <div className={cn("pt-0 pb-4", className)} dangerouslySetInnerHTML={{ __html: children }}>
-        </div>
+        <div className={cn("pt-0 pb-4", className)} dangerouslySetInnerHTML={{ __html: children }}></div>
       ) : (
         <div className={cn("pt-0 pb-4", className)}>{children}</div>
       )}

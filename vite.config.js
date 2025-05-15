@@ -28,6 +28,7 @@ export default defineConfig({
             "@services": path.join(__dirname, "src", "services"),
             "@lib": path.join(__dirname, "src", "lib"),
             "@ui": path.join(__dirname, "src", "components", "ui"),
+            "@data": path.join(__dirname, "src", "data"),
         },
     },
 });
