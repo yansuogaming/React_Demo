@@ -13,7 +13,7 @@ import { cn } from "@lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
 const HeaderContext = createContext();
-const Header = ({ noBackgroundOnScroll = true }) => {
+const Header = ({ noBackgroundOnScroll = false }) => {
   const { t } = useTranslation();
   const [background, setBackground] = useState("none");
   const [logo, setLogo] = useState(null);
@@ -103,7 +103,7 @@ const Header = ({ noBackgroundOnScroll = true }) => {
   };
   return (
     <HeaderContext.Provider value={contextValue}>
-      <header>
+      <header >
         <div
           style={{ background, position, color, boxShadow }}
           className={cn(
@@ -122,7 +122,7 @@ const Header = ({ noBackgroundOnScroll = true }) => {
                 className="mr-[50px]"
               >
                 <NavLink to="/">
-                  <img src={logo} width="123px" alt="" />
+                  <img src={logo} width="123px"  alt="" />
                 </NavLink>
               </motion.div>
               {/* Nav bar */}
@@ -160,7 +160,7 @@ const Header = ({ noBackgroundOnScroll = true }) => {
                   initial={{ opacity: 0, y: -100 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.7, delay: 0.6 }}
-                  className="p-[15px] h-fit"
+                  className="p-[15px] h-fit "
                   onMouseEnter={() => hanleHoverPlanYourTrip(true)}
                   onMouseLeave={() => hanleHoverPlanYourTrip(false)}
                 >
@@ -293,9 +293,9 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
     <div
       onMouseLeave={onMouseLeave}
       onMouseEnter={onMouseEnter} 
-      className={`container w-full mt-[-15px] pt-[15px] z-50 ${className}`}
+      className={`container absolute left-1/2 -translate-x-1/2 top-full w-full mt-[-30px] pt-[15px] z-50 ${className}`}
     >
-      <div className="container  mx-auto px-4 sm:px-6 lg:px-8  bg-white py-8  border-t border-gray-100 shadow-lg">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8  bg-white py-8  border-t border-gray-100 shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Visa Guide */}
           <InfoCard
@@ -366,7 +366,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("accessibility")}
             description={t("for_travelers_with_special_needs")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/"
+            to="/accessibility"
           />
 
           {/* Vietnam attractions passes */}

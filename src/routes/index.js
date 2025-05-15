@@ -59,6 +59,10 @@ const routes = [
                         Component: lazy(() => import("@pages/GettingToAndAround")),
                     },
                     {
+                        path: "accessibility",
+                        Component: lazy(() => import("@pages/Accessibility")),
+                    },
+                    {
                         path: "visainformation",
                         Component: lazy(() => import("@pages/VisaInformation")),
                     },

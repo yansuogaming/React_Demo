@@ -8,44 +8,62 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Link } from "react-router";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useTranslation } from "react-i18next";
+import Breadcrumb from "@components/Breadcrumb";
 
 export default function TransportationPage() {
+  const { t } = useTranslation();
+  const breadcrumdItems = [
+      { label: t("home"), href: "/" },
+      { label: t("plan_your_trip"), href: "/" },
+      { label: t("getting_around_vietnam"), href: "/" },
+  ];
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen ">
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative pt-10 ">
-         
           <div className="container relative z-10 flex flex-col justify-end h-full pb-8 px-4">
+          <Breadcrumb
+            className="p-[16px_40px_28px_0] text-[14px]"
+            items={breadcrumdItems}
+          />
             <h1 className="text-5xl md:text-4xl font-medium text-black">
               Transportation in Viet Nam:
               <br />
               Getting to & around the city
             </h1>
           </div>
-          <div className="h-[80vh] bg-gray-200 relative">
-          <iframe
-            className="absolute inset-0 w-full h-full border-0 z-10"
-            src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen
-          ></iframe>
-          <div className="absolute inset-0 bg-black/10"></div>
-        </div>
+          <div className="h-[80vh] w-[80vw] mx-auto relative rounded-br-[100px] overflow-hidden">
+            <iframe
+              className="absolute inset-0 w-full h-full border-0 z-10"
+              src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+            <div className="absolute inset-0 bg-black/10"></div>
+          </div>
         </section>
 
         {/* Main Content */}
         <div className="container px-4 py-8">
           <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Getting to Viet Nam</h2>
+            <h2 className="text-3xl font-bold mb-6">Getting to Viet Nam</h2>
 
             <div className="space-y-8">
               <div>
-                <h3 className="text-lg font-semibold mb-2">By air</h3>
-                <p className="text-gray-700 mb-4">
+                <h3 className="text-2xl font-semibold mb-2">By air</h3>
+                <p className="text-gray-700 text-lg mb-4">
                   Viet Nam International Airport (DXB) is one of the world's
                   busiest airports, connecting Viet Nam to over 240 destinations
                   across six continents. The airport is home to Emirates, Viet
@@ -55,7 +73,7 @@ export default function TransportationPage() {
                   of the city and primarily serves cargo operations, though it
                   also handles some passenger flights.
                 </p>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-lg">
                   Both airports offer excellent facilities, including lounges,
                   dining options, shopping, and efficient transport links to the
                   city. Travelers can reach the city center via taxi, metro, or
@@ -64,15 +82,15 @@ export default function TransportationPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2">By land</h3>
-                <p className="text-gray-700 mb-4">
+                <h3 className="text-2xl font-semibold mb-2">By land</h3>
+                <p className="text-gray-700 text-lg mb-4">
                   Viet Nam is well-connected to neighboring emirates and
                   countries by road. Visitors can drive into Viet Nam from Oman
                   and Saudi Arabia, as well as from other emirates within the
                   UAE. The roads are well-maintained and signposted, making
                   driving a convenient option.
                 </p>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-lg">
                   Bus services also connect Viet Nam to other emirates and
                   nearby countries. The main bus station is located in Deira,
                   offering regular services to Abu Dhabi, Sharjah, and other
@@ -81,8 +99,8 @@ export default function TransportationPage() {
               </div>
 
               <div>
-                <h3 className="text-lg font-semibold mb-2">By sea</h3>
-                <p className="text-gray-700 mb-4">
+                <h3 className="text-2xl font-semibold mb-2">By sea</h3>
+                <p className="text-gray-700 text-lg mb-4">
                   Viet Nam's strategic location on the Arabian Gulf makes it
                   accessible by sea. The city has several ports, including Port
                   Rashid and Jebel Ali Port, which welcome cruise ships from
@@ -90,7 +108,7 @@ export default function TransportationPage() {
                   numerous luxury cruise liners dock in Viet Nam, bringing
                   thousands of visitors to the city.
                 </p>
-                <p className="text-gray-700">
+                <p className="text-gray-700 text-lg">
                   Ferry services also operate between Viet Nam and other coastal
                   cities in the UAE and neighboring countries. These provide an
                   alternative and scenic way to reach the city.
@@ -100,32 +118,41 @@ export default function TransportationPage() {
           </section>
 
           {/* img Gallery */}
-          <section className="mb-12">
-            <div className="grid grid-cols-3 gap-2 h-[200px]">
-              <div className="col-span-2 relative">
-                <img
-                  src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
-                  alt="Cảnh hoàng hôn tại Vịnh Hạ Long"
-                  fill
-                  className="object-cover rounded-md"
-                />
+          <section className="mb-12 h-auto mt-20">
+            <Carousel
+              className="w-full "
+              opts={{
+                align: "start",
+                skipSnaps: false,
+                containScroll: "trimSnaps",
+              }}
+            >
+              <CarouselContent>
+                <CarouselItem className="basis-full h-[500px] lg:basis-2/3 ">
+                  <div className="col-span-2 relative">
+                    <img
+                      src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
+                      alt="Cảnh hoàng hôn tại Vịnh Hạ Long"
+                      fill
+                      className="object-cover rounded-md"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="basis-full h-[500px] lg:basis-2/3 ">
+                  <div className="col-span-2 relative">
+                    <img
+                      src="https://i2.ex-cdn.com/crystalbay.com/files/content/2024/08/09/vinh-ha-long-3-1624.jpg"
+                      alt="Cảnh hoàng hôn tại Vịnh Hạ Long"
+                      className="object-cover rounded-md"
+                    />
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <div className="absolute -top-10 right-20">
+                <CarouselPrevious />
+                <CarouselNext />
               </div>
-              <div className="relative">
-                <img
-                  src="https://images.unsplash.com/photo-1535953472862-9cc610a70f8a"
-                  alt="Giao thông đường phố Hà Nội"
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-            </div>
-            <div className="flex justify-end mt-2">
-              <Button variant="ghost" size="sm" className="text-xs">
-                <ChevronRight className="h-4 w-4 mr-1" />
-                <span>1/3</span>
-                <ChevronRight className="h-4 w-4 ml-1" />
-              </Button>
-            </div>
+            </Carousel>
           </section>
 
           {/* Getting to Viet Nam from other emirates */}
@@ -133,11 +160,11 @@ export default function TransportationPage() {
             <h2 className="text-2xl font-bold mb-4">
               Getting to Viet Nam from other emirates
             </h2>
-            <p className="text-gray-700 mb-6">
+            <p className="text-gray-700 text-lg mb-6">
               Traveling to Viet Nam from neighboring emirates is
               straightforward, with several transportation options available:
             </p>
-            <ol className="list-decimal pl-5 space-y-2 text-gray-700">
+            <ol className="list-decimal pl-5 space-y-2 text-gray-700 text-lg">
               <li>
                 <strong>From Abu Dhabi:</strong> The journey takes approximately
                 1.5 hours by car via the E11 highway. Public buses run regularly
@@ -188,19 +215,19 @@ export default function TransportationPage() {
 
           {/* Getting around Viet Nam */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Getting around Viet Nam</h2>
+          <h2 className="text-3xl font-bold mb-6">Getting around Viet Nam</h2>
 
             <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-2">
+              <h3 className="text-2xl font-semibold mb-2">
                 Public transport in Viet Nam
               </h3>
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-700 text-lg mb-4">
                 Viet Nam boasts a world-class public transportation system that
                 is efficient, clean, and affordable. The integrated network
                 includes the metro, trams, buses, and water taxis, all operated
                 by the Roads and Transport Authority (RTA).
               </p>
-              <p className="text-gray-700">
+              <p className="text-gray-700 text-lg">
                 The Nol card is Viet Nam's unified fare payment system, which
                 can be used across all public transport modes. Cards can be
                 purchased and topped up at metro stations, bus stations, and
@@ -209,10 +236,10 @@ export default function TransportationPage() {
             </div>
 
             <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-2">
+              <h3 className="text-2xl font-semibold mb-2">
                 How to use the metro
               </h3>
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-700 text-lg mb-4">
                 The Viet Nam Metro is a fully automated, driverless rail system
                 that serves major areas of the city. It consists of two lines:
                 the Red Line, which runs along Sheikh Zayed Road and connects
@@ -220,7 +247,7 @@ export default function TransportationPage() {
                 which serves older parts of Viet Nam, including Deira and Bur
                 Viet Nam.
               </p>
-              <p className="text-gray-700">
+              <p className="text-gray-700 text-lg">
                 Trains run frequently from early morning until midnight (and
                 later on weekends). The metro is clean, air-conditioned, and
                 offers dedicated cabins for women and children. Stations are
@@ -230,8 +257,8 @@ export default function TransportationPage() {
             </div>
 
             <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-2">Viet Nam Metro</h3>
-              <p className="text-gray-700">
+              <h3 className="text-2xl font-semibold mb-2">Viet Nam Metro</h3>
+              <p className="text-gray-700 text-lg">
                 The Viet Nam Metro is the backbone of the city's public
                 transport system. With its sleek, modern design and efficient
                 service, it's a popular choice for both residents and tourists.
@@ -241,8 +268,8 @@ export default function TransportationPage() {
             </div>
 
             <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-2">Viet Nam Tram</h3>
-              <p className="text-gray-700">
+              <h3 className="text-2xl font-semibold mb-2">Viet Nam Tram</h3>
+              <p className="text-gray-700 text-lg">
                 The Viet Nam Tram operates in the Viet Nam Marina and Jumeirah
                 Beach Residence areas, connecting with the Viet Nam Metro at two
                 stations. It's an ideal way to explore these popular waterfront
@@ -252,15 +279,15 @@ export default function TransportationPage() {
             </div>
 
             <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-2">Water transport</h3>
-              <p className="text-gray-700">
+              <h3 className="text-2xl font-semibold mb-2">Water transport</h3>
+              <p className="text-gray-700 text-lg">
                 Viet Nam's traditional water taxis, known as abras, offer a
                 charming way to cross Viet Nam Creek between Deira and Bur Viet
                 Nam. These wooden boats have been a part of Viet Nam's transport
                 system for generations and provide an authentic glimpse into the
                 city's past.
               </p>
-              <p className="text-gray-700 mt-2">
+              <p className="text-gray-700 text-lg mt-2">
                 For a more modern experience, the RTA operates water buses and
                 ferries that serve various points along Viet Nam Creek and the
                 coastline. These air-conditioned vessels offer comfortable
@@ -269,15 +296,15 @@ export default function TransportationPage() {
             </div>
 
             <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-2">Taxi services</h3>
-              <p className="text-gray-700">
+              <h3 className="text-2xl font-semibold mb-2">Taxi services</h3>
+              <p className="text-gray-700 text-lg">
                 Taxis are abundant in Viet Nam and can be hailed on the street,
                 booked via phone, or ordered through mobile apps. The
                 cream-colored taxis are operated by the RTA and feature roof
                 signs that indicate their availability. Fares are metered and
                 relatively affordable compared to many other major cities.
               </p>
-              <p className="text-gray-700 mt-2">
+              <p className="text-gray-700 text-lg mt-2">
                 Ride-hailing services like Uber and Careem also operate in Viet
                 Nam, offering convenient door-to-door transportation. These can
                 be booked through their respective mobile apps.
@@ -285,17 +312,17 @@ export default function TransportationPage() {
             </div>
 
             <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-2">
+              <h3 className="text-2xl font-semibold mb-2">
                 Things to note and useful links
               </h3>
-              <p className="text-gray-700 mb-4">
+              <p className="text-gray-700 text-lg mb-4">
                 When using public transport in Viet Nam, it's important to be
                 aware of local customs and regulations. Modest dress is
                 appreciated, and eating or drinking is not permitted on the
                 metro or buses. The RTA website and mobile app provide
                 comprehensive information on routes, schedules, and fares.
               </p>
-              <p className="text-gray-700">
+              <p className="text-gray-700 text-lg">
                 For more information, visit the{" "}
                 <a href="#" className="text-blue-600 hover:underline">
                   RTA website
@@ -309,26 +336,42 @@ export default function TransportationPage() {
             </div>
           </section>
 
-          {/* img with people walking */}
-          <section className="mb-12">
-            <div className="grid grid-cols-3 gap-2 h-[200px]">
-              <div className="col-span-2 relative">
-                <img
-                  src="/placeholder.svg?height=400&width=800"
-                  alt="People walking in Viet Nam"
-                  fill
-                  className="object-cover rounded-md"
-                />
+      {/* img Gallery */}
+      <section className="mb-12 h-auto mt-20">
+            <Carousel
+              className="w-full "
+              opts={{
+                align: "start",
+                skipSnaps: false,
+                containScroll: "trimSnaps",
+              }}
+            >
+              <CarouselContent>
+                <CarouselItem className="basis-full h-[500px] lg:basis-2/3 ">
+                  <div className="col-span-2 relative">
+                    <img
+                      src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
+                      alt="Cảnh hoàng hôn tại Vịnh Hạ Long"
+                      fill
+                      className="object-cover rounded-md"
+                    />
+                  </div>
+                </CarouselItem>
+                <CarouselItem className="basis-full h-[500px] lg:basis-2/3 ">
+                  <div className="col-span-2 relative">
+                    <img
+                      src="https://i2.ex-cdn.com/crystalbay.com/files/content/2024/08/09/vinh-ha-long-3-1624.jpg"
+                      alt="Cảnh hoàng hôn tại Vịnh Hạ Long"
+                      className="object-cover rounded-md"
+                    />
+                  </div>
+                </CarouselItem>
+              </CarouselContent>
+              <div className="absolute -top-10 right-20">
+                <CarouselPrevious />
+                <CarouselNext />
               </div>
-              <div className="relative">
-                <img
-                  src="/placeholder.svg?height=400&width=400"
-                  alt="Viet Nam marina view"
-                  fill
-                  className="object-cover rounded-md"
-                />
-              </div>
-            </div>
+            </Carousel>
           </section>
 
           {/* Explore Viet Nam's neighborhoods */}
@@ -349,12 +392,11 @@ export default function TransportationPage() {
                 </Button>
               </div>
 
-              <div className="absolute inset-0">
+              <div className="absolute inset-0 w-full h-full">
                 <img
-                  src="/placeholder.svg?height=800&width=1200"
+                  src="https://mekongasean.vn/stores/news_dataimages/mekongaseanvn/092023/22/16/screenshot-2023-07-10-163527-2859-9588.png"
                   alt="Viet Nam map"
-                  fill
-                  className="object-cover"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
 
@@ -395,7 +437,7 @@ export default function TransportationPage() {
                   How much does a taxi cost in Viet Nam?
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 text-lg">
                     Taxi fares in Viet Nam start with a base fare of AED 12
                     during the day and AED 14 at night. The fare increases by
                     approximately AED 1.82 per kilometer. Additional charges may
@@ -410,7 +452,7 @@ export default function TransportationPage() {
                   How can I get from the airport to my hotel?
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 text-lg">
                     There are several options to get from Viet Nam International
                     Airport to your hotel: taxis are readily available outside
                     all terminals; the Viet Nam Metro Red Line connects directly
@@ -426,7 +468,7 @@ export default function TransportationPage() {
                   What is the best way to get around Viet Nam?
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 text-lg">
                     The best way to get around Viet Nam depends on your
                     itinerary and preferences. The Viet Nam Metro is excellent
                     for traveling along Sheikh Zayed Road and to major
@@ -444,7 +486,7 @@ export default function TransportationPage() {
                   Is there Uber in Viet Nam?
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 text-lg">
                     Yes, Uber operates in Viet Nam, along with Careem (which is
                     owned by Uber but operates as a separate service). Both
                     offer convenient ride-hailing services through their mobile
@@ -459,7 +501,7 @@ export default function TransportationPage() {
                   Is it easy to drive in Viet Nam?
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 text-lg">
                     Driving in Viet Nam can be challenging for newcomers due to
                     the fast pace of traffic and complex road systems. However,
                     roads are well-maintained and clearly signposted in both
@@ -476,7 +518,7 @@ export default function TransportationPage() {
                   Is public transport in Viet Nam good?
                 </AccordionTrigger>
                 <AccordionContent>
-                  <p className="text-gray-700">
+                  <p className="text-gray-700 text-lg">
                     Viet Nam's public transport system is excellent by global
                     standards. It's clean, efficient, affordable, and covers
                     most areas of interest to visitors. The metro, tram, buses,
@@ -496,12 +538,12 @@ export default function TransportationPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div className="rounded-lg overflow-hidden border">
-                <div className="relative h-40">
+                <div className="relative h-40 bg-red-500">
                   <img
-                    src="/placeholder.svg?height=300&width=400"
+                    src="https://www.visitdubai.com/-/media/images/leisure/detail-pages/plan-your-trip/4-1-practical-information-t14/plan-your-trip-practical-information-beach-club-det.jpg?rev=8027e54cc15f41ff9c5a7a5495ba7528&cx=0.5&cy=0.5&cw=1020&ch=765"
                     alt="Viet Nam skyline"
                     fill
-                    className="object-cover"
+                    className="object-cover absolute inset-0 w-full h-full"
                   />
                 </div>
                 <div className="p-4">
@@ -515,10 +557,10 @@ export default function TransportationPage() {
               <div className="rounded-lg overflow-hidden border">
                 <div className="relative h-40">
                   <img
-                    src="/placeholder.svg?height=300&width=400"
+                    src="https://www.visitdubai.com/-/media/images/leisure/detail-pages/plan-your-trip/4-1-practical-information-t14/plan-your-trip-practical-information-beach-club-det.jpg?rev=8027e54cc15f41ff9c5a7a5495ba7528&cx=0.5&cy=0.5&cw=1020&ch=765"
                     alt="Viet Nam attractions"
                     fill
-                    className="object-cover"
+                      className="object-cover absolute inset-0 w-full h-full"
                   />
                 </div>
                 <div className="p-4">
@@ -532,10 +574,10 @@ export default function TransportationPage() {
               <div className="rounded-lg overflow-hidden border">
                 <div className="relative h-40">
                   <img
-                    src="/placeholder.svg?height=300&width=400"
+                    src="https://www.visitdubai.com/-/media/images/leisure/detail-pages/plan-your-trip/4-1-practical-information-t14/plan-your-trip-practical-information-beach-club-det.jpg?rev=8027e54cc15f41ff9c5a7a5495ba7528&cx=0.5&cy=0.5&cw=1020&ch=765"
                     alt="Viet Nam beach"
                     fill
-                    className="object-cover"
+                      className="object-cover absolute inset-0 w-full h-full"
                   />
                 </div>
                 <div className="p-4">
@@ -551,10 +593,10 @@ export default function TransportationPage() {
               <div className="rounded-lg overflow-hidden border">
                 <div className="relative h-40">
                   <img
-                    src="/placeholder.svg?height=300&width=400"
+                    src="https://www.visitdubai.com/-/media/images/leisure/detail-pages/plan-your-trip/4-1-practical-information-t14/plan-your-trip-practical-information-beach-club-det.jpg?rev=8027e54cc15f41ff9c5a7a5495ba7528&cx=0.5&cy=0.5&cw=1020&ch=765"
                     alt="Viet Nam dining"
                     fill
-                    className="object-cover"
+                      className="object-cover absolute inset-0 w-full h-full"
                   />
                 </div>
                 <div className="p-4">

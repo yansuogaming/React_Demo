@@ -147,6 +147,7 @@ function CarouselPrevious({
   className,
   variant = "outline",
   size = "icon",
+  classNameArrow,
   ...props
 }) {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
@@ -162,7 +163,7 @@ function CarouselPrevious({
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}>
-      <ArrowLeft />
+      <ArrowLeft className={classNameArrow} />
       <span className="sr-only">Previous slide</span>
     </Button>
   );
@@ -172,6 +173,7 @@ function CarouselNext({
   className,
   variant = "outline",
   size = "icon",
+  classNameArrow,
   ...props
 }) {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
@@ -187,7 +189,7 @@ function CarouselNext({
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}>
-      <ArrowRight />
+      <ArrowRight className={classNameArrow} />
       <span className="sr-only">Next slide</span>
     </Button>
   );
