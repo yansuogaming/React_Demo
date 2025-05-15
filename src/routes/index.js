@@ -1,6 +1,8 @@
 import { lazy } from "react";
+import routesAdmin from "./admin";
 
 const routes = [
+    ...routesAdmin,
     {
         path: ":lang_id?",
         Component: lazy(() => import("@layouts/LanguageLayout")), // Layout này sẽ xử lý đổi ngôn ngữ
