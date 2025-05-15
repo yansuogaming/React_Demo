@@ -1,15 +1,14 @@
 import { Outlet } from "react-router";
 import Footer from "@components/Footer";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { faCalendar } from "@fortawesome/free-solid-svg-icons";
-import { faShareNodes } from "@fortawesome/free-solid-svg-icons";
+import { CiLocationOn, CiCalendar } from "react-icons/ci";
+import { FaShareNodes } from "react-icons/fa6";
+
 import Breadcrumb from "@components/Breadcrumb";
 
 import imgLogo2 from "@images/logo2.svg";
-import { Link } from "react-router-dom";
 
 const TripDetailLayout = () => {
     const { t } = useTranslation();
@@ -52,13 +51,11 @@ const TripDetailLayout = () => {
                                 {/* Location and duration */}
                                 <div className="text-gray-700 flex items-center gap-6">
                                     <span className="flex items-center gap-[8px] text-[#1A2A44] text-[16px]">
-                                        <FontAwesomeIcon icon={faLocationDot} />
+                                        <CiLocationOn />
                                         Hanoi, Nha Trang
                                     </span>
                                     <span className="flex items-center gap-[8px] text-[#1A2A44] text-[16px]">
-                                        <FontAwesomeIcon
-                                            icon={faCalendar}
-                                            className=""
+                                        <CiCalendar
                                             style={{ color: "#494951" }}
                                         />
                                         4 days 3 nights
@@ -69,7 +66,7 @@ const TripDetailLayout = () => {
 
                         <div className="flex items-center gap-2">
                             <button className="rounded-[50%] border p-[13px] w-[50px]">
-                                <FontAwesomeIcon icon={faShareNodes} />
+                                <FaShareNodes />
                             </button>
                             <button className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700">
                                 💾 Save itinerary

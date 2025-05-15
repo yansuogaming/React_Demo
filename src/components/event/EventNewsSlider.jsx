@@ -1,9 +1,11 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-// import "swiper/css/navigation";
-
-// import { Navigation } from "swiper/modules";
-import { NavLink } from "react-router-dom";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel";
+import { NavLink } from "react-router";
 import imgbg from "@images/bg_news_event.jpg";
 
 const newsItems = [
@@ -19,7 +21,7 @@ const newsItems = [
     },
     {
         id: 3,
-        title: "Indochina Restaurant – a culinary space with a strong ancient touch",
+        title: "Indochina Restaurant - a culinary space with a strong ancient touch",
         link: "#",
     },
     {
@@ -42,53 +44,51 @@ const EventNewsSlider = () => {
             <div className="container mx-auto">
                 <div className="text-end mb-[17px]">
                     <NavLink
-                        to="#"
+                        to=""
                         className="text-[18px] text-white font-[700] hover:underline"
                     >
                         More event news →
                     </NavLink>
                 </div>
 
-                <Swiper
-                    spaceBetween={31}
-                    slidesPerView={1}
-                    breakpoints={{
-                        640: { slidesPerView: 1.2 },
-                        768: { slidesPerView: 2 },
-                        1024: { slidesPerView: 3 },
-                    }}
-                    // navigation
-                    // modules={[Navigation]}
-                >
-                    {newsItems.map((item) => (
-                        <SwiperSlide key={item.id}>
-                            <div className="bg-white rounded-tl-[60px] rounded-br-[60px] p-[71px_30px] aspect-square shadow-md flex flex-col">
-                                <NavLink
-                                    to="/"
-                                    className="text-[14px] text-[#494951] font-[700] hover:underline"
-                                >
-                                    EVENT NEWS
-                                </NavLink>
+                <Carousel opts={{ align: "start" }} className="w-full">
+                    <CarouselContent className="-ml-4">
+                        {newsItems.map((item) => (
+                            <CarouselItem
+                                key={item.id}
+                                className="pl-4 sm:basis-1 md:basis-1/2 lg:basis-1/3"
+                            >
+                                <div className="bg-white rounded-tl-[60px] rounded-br-[60px] p-[71px_30px] aspect-square shadow-md flex flex-col">
+                                    <NavLink
+                                        to="/"
+                                        className="text-[14px] text-[#494951] font-[700] hover:underline"
+                                    >
+                                        EVENT NEWS
+                                    </NavLink>
 
-                                <div className="flex-1 flex items-center">
+                                    <div className="flex-1 flex items-center">
+                                        <NavLink
+                                            to={item.link}
+                                            className="text-[#1A2A44] text-[24px] font-[700] hover:text-[#007BFF]"
+                                        >
+                                            {item.title}
+                                        </NavLink>
+                                    </div>
+
                                     <NavLink
                                         to={item.link}
-                                        className="text-[#1A2A44] text-[24px] font-[700] hover:text-[#007BFF]"
+                                        className="text-[#007BFF] text-[18px] font-[700] hover:underline"
                                     >
-                                        {item.title}
+                                        Read More →
                                     </NavLink>
                                 </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
 
-                                <NavLink
-                                    to={item.link}
-                                    className="text-[#007BFF] text-[18px] font-[700] hover:underline"
-                                >
-                                    Read More →
-                                </NavLink>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                    <CarouselPrevious className="left-0 hidden sm:flex" />
+                    <CarouselNext className="right-0 hidden sm:flex" />
+                </Carousel>
             </div>
         </section>
     );

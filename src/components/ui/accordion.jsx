@@ -1,7 +1,6 @@
 import * as React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "lucide-react";
-import ReactHtmlParser from "react-html-parser";
 import { cn } from "@/lib/utils";
 
 function Accordion({ ...props }) {
@@ -44,8 +43,7 @@ function AccordionContent({ className, isHtml = false, children, ...props }) {
       {...props}
     >
       {isHtml ? (
-        <div className={cn("pt-0 pb-4", className)}>
-          {ReactHtmlParser(children)}
+        <div className={cn("pt-0 pb-4", className)} dangerouslySetInnerHTML={{ __html: children }}>
         </div>
       ) : (
         <div className={cn("pt-0 pb-4", className)}>{children}</div>

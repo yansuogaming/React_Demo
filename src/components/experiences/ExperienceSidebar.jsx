@@ -1,6 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import { FaBookOpen } from "react-icons/fa6";
 
 const ExperienceSidebar = ({
     showSidebar,
@@ -29,10 +28,7 @@ const ExperienceSidebar = ({
                     onClick={() => setShowSidebar(true)}
                     className="fixed left-4 top-[140px] z-50 bg-white border rounded-full shadow-md p-2 hover:bg-gray-100 lg:hidden"
                 >
-                    <FontAwesomeIcon
-                        icon={faBookOpen}
-                        className="text-[#1A2A44]"
-                    />
+                    <FaBookOpen className="text-[#1A2A44]" />
                 </button>
             )}
 

@@ -33,7 +33,7 @@ export default function Home() {
         if (imgRef.current.complete) {
             setIsLoaded(true);
         }
-    }, [])
+    }, []);
 
     return (
         <main >
@@ -51,8 +51,8 @@ export default function Home() {
                     loading="eager"
                     decoding="async"
                     src={heroImage}
-                    alt={t('home.hero_heading')}
-                    style={{ display: isLoaded ? 'inline' : 'none' }}
+                    alt={t("home.hero_heading")}
+                    style={{ display: isLoaded ? "inline" : "none" }}
                     ref={imgRef}
                     onLoad={() => setIsLoaded(true)}
                     className="h-screen min-w-screen absolute top-0 left-1/2 -translate-x-1/2"
@@ -146,4 +146,3 @@ export default function Home() {
         </main>
     );
 }
-
