@@ -9,6 +9,11 @@ import WeatherSection from "@components/weathertrip/WeatherSection";
 import WeatherForecast from "@components/weathertrip/WeatherForecast";
 import WeatherTabs from "@components/weathertrip/WeatherTabs";
 import WinterTrip from "@components/weathertrip/WinterTrip";
+import WinterTipsBox from "@components/weathertrip/WinterTipsBox";
+import SummerCarousel from "@components/weathertrip/SummerCarousel";
+import SummerLinkCarousel from "@components/weathertrip/SummerLinkCarousel";
+import BestTimeToVisit from "@components/weathertrip/BestTimeToVisit";
+import MonthlyActivities from "@components/weathertrip/MonthlyActivities";
 
 const WeatherTrip = () => {
     const { t } = useTranslation();
@@ -31,6 +36,11 @@ const WeatherTrip = () => {
                 <WeatherForecast />
                 <WeatherTabs />
                 <WinterTrip />
+                <WinterTipsBox />
+                <SummerCarousel />
+                <SummerLinkCarousel />
+                <BestTimeToVisit />
+                <MonthlyActivities />
             </div>
         </main>
     );

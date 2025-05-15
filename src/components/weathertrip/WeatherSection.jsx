@@ -4,10 +4,10 @@ const WeatherSection = () => {
             {/* Header */}
             <div className="mb-6">
                 <h1 className="text-[32px] sm:text-[36px] md:text-[40px] font-bold text-[#1A2A44]">
-                    Weather in Hanoi
+                    Weather in Dubai
                 </h1>
                 <p className="text-gray-600 mt-2 max-w-xl text-sm sm:text-base">
-                    Learn about Hanoi's climate now and throughout the year, and
+                    Learn about Dubai's climate now and throughout the year, and
                     discover the best times to visit with our weather guide.
                 </p>
             </div>

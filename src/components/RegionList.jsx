@@ -50,7 +50,7 @@ const RegionList = ({ className, ...props }) => {
             </div>
 
             {/* Thông tin + Carousel */}
-            <div className="w-full text-center lg:text-left">
+            <div className="w-full text-left">
                 <h2 className="text-[#1A2A44] text-[40px] md:text-[56px] lg:text-[72px] font-bold">
                     {curentRegion}
                 </h2>
@@ -131,8 +131,8 @@ const RegionList = ({ className, ...props }) => {
                             }
                         )}
                     </CarouselContent>
-                    <CarouselPrevious className="left-[10px] md:left-[20px] cursor-pointer" />
-                    <CarouselNext className="right-[10px] md:right-[20px] cursor-pointer" />
+                    <CarouselPrevious className="hidden md:flex left-[10px] md:left-[20px] cursor-pointer" />
+                    <CarouselNext className="hidden md:flex right-[10px] md:right-[20px] cursor-pointer" />
                 </Carousel>
             </div>
         </section>
