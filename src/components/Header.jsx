@@ -292,10 +292,10 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
   return (
     <div
       onMouseLeave={onMouseLeave}
-      onMouseEnter={onMouseEnter}
-      className={`w-full mt-[-15px] pt-[15px] z-50 ${className}`}
+      onMouseEnter={onMouseEnter} 
+      className={`container w-full mt-[-15px] pt-[15px] z-50 ${className}`}
     >
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8  bg-white py-8  border-t border-gray-100 shadow-lg">
+      <div className="container  mx-auto px-4 sm:px-6 lg:px-8  bg-white py-8  border-t border-gray-100 shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Visa Guide */}
           <InfoCard
