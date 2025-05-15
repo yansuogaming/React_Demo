@@ -23,7 +23,7 @@ const TopVietnamExperiences = ({ className = "" }) => {
                     )}
                 >
                     <img
-                        height="280px"
+                        className="w-full h-[280px] object-cover rounded-[60px_0_0_0]"
                         src={image1}
                         alt="Cultural Heritage"
                         loading="lazy"
@@ -58,7 +58,7 @@ const TopVietnamExperiences = ({ className = "" }) => {
                     </div>
                     <div
                         className={cn(
-                            "w-1/2 h-full absolute top-0 left-0 rounded-[150px_0_0_0]",
+                            "w-1/2 h-full absolute top-0 left-0 rounded-[60px_0_0_0]",
                             "bg-[linear-gradient(90deg,_#F258BE_0%,_rgba(242,88,190,0.5)_56.25%,_rgba(242,88,190,0)_100%)]"
                         )}
                     ></div>
@@ -73,7 +73,7 @@ const TopVietnamExperiences = ({ className = "" }) => {
                     )}
                 >
                     <img
-                        height="280px"
+                        className="w-full h-[280px] object-cover"
                         src={image2}
                         alt="Cultural Heritage"
                         loading="lazy"
@@ -123,7 +123,7 @@ const TopVietnamExperiences = ({ className = "" }) => {
                     )}
                 >
                     <img
-                        height="280px"
+                        className="w-full h-[280px] object-cover"
                         src={image3}
                         alt="Cultural Heritage"
                         loading="lazy"
@@ -173,7 +173,7 @@ const TopVietnamExperiences = ({ className = "" }) => {
                     )}
                 >
                     <img
-                        height="280px"
+                        className="w-full h-[280px] object-cover rounded-[0_0_60px_0]"
                         src={image4}
                         alt="Cultural Heritage"
                         loading="lazy"

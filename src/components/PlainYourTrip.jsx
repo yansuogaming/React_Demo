@@ -19,7 +19,7 @@ const PlainYourTrip = ({ className = "" }) => {
             <div className="flex flex-col lg:flex-row items-center justify-between p-4 lg:p-[15px_15px_15px_50px] gap-8">
                 <Form
                     action="/tripdetail"
-                    className="h-fit w-full lg:w-1/2 flex flex-col items-center lg:items-start"
+                    className="h-fit w-full lg:w-1/2 flex flex-col items-start lg:items-start"
                 >
                     <h2 className="text-[28px] md:text-[32px] lg:text-[40px] font-bold mb-[15px] lg:mb-[20px]">
                         Plan Your Trip

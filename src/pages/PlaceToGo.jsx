@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { useTranslation } from "react-i18next";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
 
 import Breadcrumb from "@components/Breadcrumb";
 
+import AccommodationImage from "@components/placetogo/AccommodationImage";
+import InformationHotel from "@components/placetogo/InformationHotel";
+import HotelCarousel from "@components/placetogo/HotelCarousel";
+import HotelApartmentSection from "@components/placetogo/HotelApartmentSection";
+import ApartmentRentalSection from "@components/placetogo/ApartmentRentalSection";
+import RecommendationCarousel from "@components/placetogo/RecommendationCarousel";
+import EmiratesBookingBox from "@components/EmiratesBookingBox";
+import StartPlanningSection from "@components/StartPlanningSection";
+import WeatherSubscribe from "@components/WeatherSubscribe";
+
+// Import Show
 const PlaceToGo = () => {
     const { t } = useTranslation();
 
@@ -27,7 +31,18 @@ const PlaceToGo = () => {
                         items={breadcrumdItems}
                     />
                 </section>
+                <AccommodationImage />
+                <InformationHotel />
+                <HotelCarousel />
+                <HotelApartmentSection />
+                <ApartmentRentalSection />
+                <RecommendationCarousel />
+                <EmiratesBookingBox />
             </div>
+            <StartPlanningSection />
+            <WeatherSubscribe />
         </main>
     );
 };
+
+export default PlaceToGo;

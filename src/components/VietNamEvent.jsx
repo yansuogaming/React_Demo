@@ -22,7 +22,10 @@ const VietNamEvent = ({ className = "" }) => {
     const endTime = addDays(new Date(), 1);
 
     const eventItems = Array.from({ length: 4 }).map((_, idx) => (
-        <CarouselItem key={idx} className="sm:basis-1/2 lg:basis-1/4 pl-4">
+        <CarouselItem
+            key={idx}
+            className="basis-[70%] sm:basis-1/2 lg:basis-1/4 pl-4"
+        >
             <CardEvent
                 title="Enjoy Hanoi street food"
                 widthImage="100%"
@@ -38,7 +41,7 @@ const VietNamEvent = ({ className = "" }) => {
                         <span>Nha Trang</span>
                         <IoTicketOutline className="text-[20px]" />
                     </p>
-                    <p className="text-[16px] font-normal mt-[16px]">
+                    <p className="hidden sm:block text-[16px] font-normal mt-[16px]">
                         Various versions have evolved over the years, sometimes
                         by accident, sometimes on purpose (injected humour)
                     </p>
