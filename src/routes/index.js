@@ -14,7 +14,10 @@ const routes = [
                         meta: () => {
                             return [
                                 { title: "Xin chào" },
-                                { name: "description", content: "Welcome to the home page" },
+                                {
+                                    name: "description",
+                                    content: "Welcome to the home page",
+                                },
                             ];
                         },
                     },
@@ -36,7 +39,9 @@ const routes = [
                     },
                     {
                         path: "experience/detail",
-                        Component: lazy(() => import("@pages/ExpericencesDetail")),
+                        Component: lazy(() =>
+                            import("@pages/ExpericencesDetail")
+                        ),
                     },
                     {
                         path: "itineraries",
@@ -56,7 +61,9 @@ const routes = [
                     },
                     {
                         path: "getting-to-and-around",
-                        Component: lazy(() => import("@pages/GettingToAndAround")),
+                        Component: lazy(() =>
+                            import("@pages/GettingToAndAround")
+                        ),
                     },
                     {
                         path: "visainformation",
@@ -66,6 +73,10 @@ const routes = [
                         path: "placetogo",
                         Component: lazy(() => import("@pages/PlaceToGo")),
                     },
+                    {
+                        path: "weathertrip",
+                        Component: lazy(() => import("@pages/WeatherTrip")),
+                    },
                 ],
             },
             {
@@ -74,7 +85,9 @@ const routes = [
                 children: [
                     {
                         index: true,
-                        Component: lazy(() => import("@pages/TripDetailResult")),
+                        Component: lazy(() =>
+                            import("@pages/TripDetailResult")
+                        ),
                     },
                 ],
             },
