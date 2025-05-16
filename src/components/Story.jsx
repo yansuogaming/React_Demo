@@ -5,7 +5,6 @@ import ViewMoreButton from "./button/ViewMoreButton";
 import CardService from "./card/CardService";
 import Reveal from "./animation/Reveal";
 import { LiaTagsSolid } from "react-icons/lia";
-
 import {
     Carousel,
     CarouselContent,
@@ -13,7 +12,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 const Story = ({ className = "" }) => {
@@ -29,7 +27,31 @@ const Story = ({ className = "" }) => {
             </div>
 
             <Reveal>
-                <div className="relative">
+                {/* Mobile: List */}
+                <div className="block sm:hidden space-y-4">
+                    {Array.from({ length: 3 }).map((_, index) => (
+                        <CardService
+                            key={index}
+                            title="Cruising Ha Long Bay: A Dream Come True"
+                            widthImage="100%"
+                            heightImage="100%"
+                            image={image}
+                            href="/"
+                            padding="20px 0 0 0"
+                        >
+                            <NavLink
+                                to="/"
+                                className="flex items-center gap-[5px]"
+                            >
+                                <LiaTagsSolid />
+                                #Vietnamtravel
+                            </NavLink>
+                        </CardService>
+                    ))}
+                </div>
+
+                {/* Tablet & Desktop: Carousel */}
+                <div className="hidden sm:block relative">
                     <Carousel
                         opts={{
                             align: "start",
@@ -62,7 +84,6 @@ const Story = ({ className = "" }) => {
                             ))}
                         </CarouselContent>
 
-                        {/* Custom Nav Buttons */}
                         <CarouselPrevious className="absolute top-[40%] -left-4 z-10 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 hidden md:flex">
                             <FaChevronLeft />
                         </CarouselPrevious>

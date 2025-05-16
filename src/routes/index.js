@@ -91,6 +91,10 @@ const routes = [
                         path: "weathertrip",
                         Component: lazy(() => import("@pages/WeatherTrip")),
                     },
+                    {
+                        path: "currency",
+                        Component: lazy(() => import("@pages/CurrencyGuide")),
+                    },
                 ],
             },
             {

@@ -42,10 +42,10 @@ const RecommendationCarousel = () => {
             <div className="relative">
                 <Carousel opts={{ align: "start" }}>
                     {/* Navigation buttons */}
-                    <div className="absolute -left-6 top-[40%] z-10 hidden sm:flex">
+                    <div className="sm:hidden absolute -left-6 top-[40%] z-10 flex">
                         <CarouselPrevious className="bg-white text-black border shadow-sm rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100" />
                     </div>
-                    <div className="absolute -right-6 top-[40%] z-10 hidden sm:flex">
+                    <div className="sm:hidden absolute -right-6 top-[40%] z-10 flex">
                         <CarouselNext className="bg-white text-black border shadow-sm rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100" />
                     </div>
 

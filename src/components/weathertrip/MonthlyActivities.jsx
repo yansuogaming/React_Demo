@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { NavLink } from "react-router";
 import dubaiImage from "@images/about-vietnam.png";
+import imgDemo from "@images/3-1595134332.webp";
 
 const months = [
     "January",
@@ -48,8 +49,63 @@ const contentData = {
                 . Don’t miss Dubai Shopping Festival too.
             </>
         ),
+        image: dubaiImage,
     },
-    // 👉 Add other months similarly if needed
+    February: {
+        temp: "23°C",
+        content: <>February content coming soon...</>,
+        image: imgDemo,
+    },
+    March: {
+        temp: "26°C",
+        content: <>March content coming soon...</>,
+        image: dubaiImage,
+    },
+    April: {
+        temp: "29°C",
+        content: <>April content coming soon...</>,
+        image: dubaiImage,
+    },
+    May: {
+        temp: "33°C",
+        content: <>May content coming soon...</>,
+        image: dubaiImage,
+    },
+    June: {
+        temp: "38°C",
+        content: <>June content coming soon...</>,
+        image: dubaiImage,
+    },
+    July: {
+        temp: "41°C",
+        content: <>July content coming soon...</>,
+        image: dubaiImage,
+    },
+    August: {
+        temp: "40°C",
+        content: <>August content coming soon...</>,
+        image: dubaiImage,
+    },
+    September: {
+        temp: "38°C",
+        content: <>September content coming soon...</>,
+        image: dubaiImage,
+    },
+    October: {
+        temp: "34°C",
+        content: <>October content coming soon...</>,
+        image: dubaiImage,
+    },
+    November: {
+        temp: "29°C",
+        content: <>November content coming soon...</>,
+        image: dubaiImage,
+    },
+    December: {
+        temp: "24°C",
+        content: <>December content coming soon...</>,
+        image: dubaiImage,
+    },
 };
 
 const MonthlyActivities = () => {
@@ -63,7 +119,7 @@ const MonthlyActivities = () => {
         });
     };
 
-    const { temp, content } = contentData[activeMonth];
+    const { temp, content, image } = contentData[activeMonth];
 
     return (
         <section className="container mx-auto px-4 py-12">
@@ -75,9 +131,9 @@ const MonthlyActivities = () => {
                     Find something to do whenever you visit
                 </p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     {/* Tabs */}
-                    <div className="flex lg:flex-col flex-wrap gap-3 text-left border-r pr-4">
+                    <div className="flex lg:flex-col flex-wrap gap-3 text-left border-r pr-4 w-full lg:w-[120px] lg:col-span-2 shrink-0">
                         {months.map((month) => (
                             <button
                                 key={month}
@@ -94,7 +150,7 @@ const MonthlyActivities = () => {
                     </div>
 
                     {/* Content */}
-                    <div className="lg:col-span-1 flex flex-col gap-4">
+                    <div className="lg:col-span-6 flex flex-col gap-4">
                         <p className="text-[#1A2A44] font-semibold">
                             Average temperature: {temp}
                         </p>
@@ -112,11 +168,11 @@ const MonthlyActivities = () => {
                     </div>
 
                     {/* Image */}
-                    <div className="hidden lg:block">
+                    <div className="hidden lg:block lg:col-span-4">
                         <img
-                            src={dubaiImage}
-                            alt="Dubai"
-                            className="rounded-md w-full object-cover"
+                            src={image}
+                            alt={activeMonth}
+                            className="rounded-md w-full object-cover max-h-[300px]"
                         />
                     </div>
                 </div>

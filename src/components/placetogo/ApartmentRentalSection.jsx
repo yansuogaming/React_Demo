@@ -52,7 +52,7 @@ const ApartmentRentalSection = () => {
             <div className="relative mt-8">
                 <Carousel opts={{ align: "start" }}>
                     {/* Nav buttons */}
-                    <div className="absolute top-0 right-0 z-10 flex gap-2">
+                    <div className="sm:hidden absolute top-0 right-0 z-10 flex gap-2">
                         <CarouselPrevious className="bg-white text-black border shadow-sm rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100" />
                         <CarouselNext className="bg-white text-black border shadow-sm rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100" />
                     </div>
