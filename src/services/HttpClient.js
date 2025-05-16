@@ -8,7 +8,7 @@ class HttpClient {
             headers: {
                 'Content-Type': 'application/json',
             },
-            timeout: import.meta.env.VITE_API_TIMEOUT
+            timeout: import.meta.env.VITE_API_TIMEOUT, 
         })
 
         this.loading = true
@@ -53,30 +53,35 @@ class HttpClient {
 
     async get(url, config = {}) {
         config.url = url;
+        config.method = 'GET';
         return await this.instance.request(config)
     }
 
     async post(url, data, config = {}) {
         config.url = url;
         config.data = data;
-        return await this.instance.request(url, data, config)
+        config.method = 'POST';
+        return await this.instance.request(config)
     }
 
     async put(url, data, config = {}) {
         config.url = url;
         config.data = data;
-        return await this.instance.request(url, data, config)
+        config.method = 'PUT';
+        return await this.instance.request(config)
     }
 
     async delete(url, config = {}) {
         config.url = url;
-        return await this.instance.delete(url, config)
+        config.method = 'DELETE';
+        return await this.instance.delete(config)
     }
 
     async patch(url, data, config = {}) {
         config.url = url;
         config.data = data;
-        return await this.instance.patch(url, data, config)
+        config.method = 'PATCH';
+        return await this.instance.patch(config)
     }
 }
 
