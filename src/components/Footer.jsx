@@ -78,7 +78,7 @@ const Footer = () => {
             <img src={bird} alt="" width="100%" />
             <div className="container mt-[60px]">
                 {/* Mobile: Accordion */}
-                <div className="sm:block md:hidden">
+                <div className="block md:hidden">
                     <Accordion type="multiple">
                         {footerSections.map((section, idx) => (
                             <AccordionItem value={`item-${idx}`} key={idx}>
@@ -102,15 +102,15 @@ const Footer = () => {
                 </div>
 
                 {/* Tablet & Desktop: Grid layout */}
-                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 md:gap-x-8 lg:gap-x-6">
+                <div className="hidden md:block md:columns-2 md:gap-x-12 lg:grid lg:grid-cols-4 gap-y-8 gap-x-6">
                     {footerSections.map((section, idx) => (
-                        <div key={idx}>
-                            <p className="text-[18px] font-bold mb-[30px]">
+                        <div key={idx} className="break-inside-avoid mb-8">
+                            <p className="text-[18px] font-bold mb-[20px] text-[#1A2A44]">
                                 {section.title}
                             </p>
-                            <ul className="font-normal text-[16px]">
+                            <ul className="font-normal text-[16px] text-[#1A2A44] space-y-2">
                                 {section.links.map((link, i) => (
-                                    <li className="mb-2" key={i}>
+                                    <li key={i}>
                                         <NavLink to={link.href}>
                                             {link.label}
                                         </NavLink>
@@ -123,13 +123,13 @@ const Footer = () => {
 
                 {/* Newsletter + Apps */}
                 <div className="flex flex-col gap-y-6 md:flex-row md:justify-between mt-[40px] mb-[28px] lg:mb-[60px]">
-                    <div className="w-full md:w-1/2 lg:w-auto">
-                        <p className="mb-2.5 hidden md:block">
+                    <div className="w-full md:w-[250px] lg:w-auto">
+                        <p className="mb-2.5 hidden md:block font-[700] text-[16px]">
                             {t("do_not_miss_any_updates")}
                         </p>
                         <Dialog>
                             <DialogTrigger asChild>
-                                <button className="w-full lg:w-auto rounded-[80px] p-[15px_20px] bg-[#007BFF] text-white flex items-center justify-center gap-[9px]">
+                                <button className="w-full md:w-auto rounded-[80px] p-[15px_20px] bg-[#007BFF] text-white flex items-center justify-center gap-[9px]">
                                     <img src={iconMail} alt="" />
                                     {t("inscription_newsletter")}
                                 </button>
@@ -188,7 +188,36 @@ const Footer = () => {
                             </DialogContent>
                         </Dialog>
 
-                        <div className="flex lg:hidden justify-center gap-[40px] mt-[32px]">
+                        <div className="flex md:hidden justify-center gap-[40px] mt-[32px]">
+                            <a href="">
+                                <TwitterIcon />
+                            </a>
+                            <a href="">
+                                <InstagramIcon />
+                            </a>
+                            <a href="">
+                                <YoutubeIcon />
+                            </a>
+                            <a href="">
+                                <FacebookIcon />
+                            </a>
+                        </div>
+
+                        <div className="flex sm:hidden justify-start gap-[9px] lg:gap-x-4 mt-[40px] lg:mt-0">
+                            <a href="">
+                                <img src={iconGooglePlay} alt="Google play" />
+                            </a>
+                            <a href="">
+                                <img src={iconAppStore} alt="App Store" />
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="hidden md:block lg:hidden w-1/2">
+                        <p className="font-[700] text-[16px] text-[#1A2A44]">
+                            Follow us
+                        </p>
+                        <div className="flex gap-[40px] mt-[32px]">
                             <a href="">
                                 <TwitterIcon />
                             </a>
@@ -204,8 +233,8 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    <div className="w-full md:w-1/2 lg:w-[400px]">
-                        <p className="mb-2.5 hidden md:block">
+                    <div className="hidden lg:block w-full md:w-1/2 lg:w-[400px]">
+                        <p className="mb-2.5 hidden md:block font-[700] text-[16px]">
                             {t("download_our_apps")}
                         </p>
                         <div className="flex justify-start gap-[9px] lg:gap-x-4 mt-[40px] lg:mt-0">
@@ -216,6 +245,20 @@ const Footer = () => {
                                 <img src={iconAppStore} alt="App Store" />
                             </a>
                         </div>
+                    </div>
+                </div>
+
+                <div className="sm:hidden md:block lg:hidden w-full md:w-1/2 lg:w-[400px] mb-[32px]">
+                    <p className="mb-[10px] hidden md:block font-[700] text-[16px]">
+                        {t("download_our_apps")}
+                    </p>
+                    <div className="flex justify-start gap-[9px] lg:gap-x-4 lg:mt-0">
+                        <a href="">
+                            <img src={iconGooglePlay} alt="Google play" />
+                        </a>
+                        <a href="">
+                            <img src={iconAppStore} alt="App Store" />
+                        </a>
                     </div>
                 </div>
 
@@ -263,7 +306,7 @@ const Footer = () => {
 
             {/* Bottom bar */}
             <div className="bg-[#484C52] pt-[32px] pb-[25px]">
-                <div className="container flex flex-col justify-between items-center gap-y-4 text-white text-center md:text-left">
+                <div className="container flex flex-col lg:flex-row justify-between items-center gap-y-4 text-white text-center md:text-left">
                     <p className="hidden lg:block">
                         © 2025 Lorem ipsum | All rights reserved
                     </p>

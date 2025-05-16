@@ -1,9 +1,6 @@
 import { useTranslation } from "react-i18next";
 
 import Breadcrumb from "@components/Breadcrumb";
-// import FAQ from "@components/FAQ";
-// import EmiratesBookingBox from "@components/EmiratesBookingBox";
-// import WeatherSubscribe from "@components/WeatherSubscribe";
 
 import WeatherSection from "@components/weathertrip/WeatherSection";
 import WeatherForecast from "@components/weathertrip/WeatherForecast";
@@ -14,6 +11,9 @@ import SummerCarousel from "@components/weathertrip/SummerCarousel";
 import SummerLinkCarousel from "@components/weathertrip/SummerLinkCarousel";
 import BestTimeToVisit from "@components/weathertrip/BestTimeToVisit";
 import MonthlyActivities from "@components/weathertrip/MonthlyActivities";
+import FAQ from "@components/FAQ";
+import StartPlanningSection from "@components/StartPlanningSection";
+import WeatherSubscribe from "@components/WeatherSubscribe";
 
 const WeatherTrip = () => {
     const { t } = useTranslation();
@@ -41,6 +41,9 @@ const WeatherTrip = () => {
                 <SummerLinkCarousel />
                 <BestTimeToVisit />
                 <MonthlyActivities />
+                <FAQ />
+                <StartPlanningSection />
+                <WeatherSubscribe />
             </div>
         </main>
     );
