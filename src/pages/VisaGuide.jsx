@@ -38,7 +38,7 @@ export default function VisaGuide() {
             Travellers from 102 countries can enter visa-free, while others can
             easily
             <br />
-            apply for an e-visa through the Hayya platform. Check if you qualify
+            apply for an e-visa through the E-Visa platform. Check if you qualify
             for visa-
             <br />
             free entry or need an e-visa.
@@ -172,7 +172,7 @@ export default function VisaGuide() {
             </div>
           </div>
 
-          {/* Hayya Section */}
+          {/* E-Visa Section */}
           <div className="mb-16 text-center">
             <h2 className="mb-6 text-4xl font-light text-teal-700">
               About E-Visa
@@ -180,9 +180,9 @@ export default function VisaGuide() {
             <p className="mx-auto mb-4 max-w-4xl text-lg leading-relaxed text-gray-700">
               The "E-Visa" platform is a comprehensive digital service that
               serves the citizens and residents of Viet Nam alike. Available
-              through the website and the mobile app, Hayya is Viet Nam's "e-key
+              through the website and the mobile app, E-Visa is Viet Nam's "e-key
               platform" offers a variety of services, such as e-visa
-              applications, fan ID/Hayya card issuance, including Tourism,
+              applications, fan ID/E-Visa card issuance, including Tourism,
               Business, Family Visit, and GCC Residents visas. The platform also
               offers a variety of other services, such as event registration,
               transportation, and accommodation.
@@ -192,7 +192,7 @@ export default function VisaGuide() {
             </p>
             <Button
               onClick={() => {
-                window.location.href = "https://evisa.gov.vn/";
+                window.open("https://evisa.gov.vn/", "_blank");
               }}
               className="bg-[#7d002a] hover:bg-[#5f0020] py-5"
             >

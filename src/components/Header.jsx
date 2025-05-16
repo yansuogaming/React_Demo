@@ -326,7 +326,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("safety")}
             description={t("guide_to_enjoying_safely")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/"
+            to="/safety"
           />
 
           {/* Weather */}
@@ -358,7 +358,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("vietnam_attractions_passes")}
             description={t("unlock_savings_with_passes")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/"
+            to="/vietnam-pass"
           />
 
           {/* Download apps */}
