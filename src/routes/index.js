@@ -72,6 +72,14 @@ const routes = [
                         Component: lazy(() => import("@pages/Accessibility")),
                     },
                     {
+                        path: "vietnam-pass",
+                        Component: lazy(() => import("@pages/Pass")),
+                    },
+                    {
+                        path: "safety",
+                        Component: lazy(() => import("@pages/Safety")),
+                    },
+                    {
                         path: "visainformation",
                         Component: lazy(() => import("@pages/VisaInformation")),
                     },

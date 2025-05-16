@@ -504,9 +504,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("visa_guide")}
                         description={t("plan_ahead_for_travel")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/visa-guide"
                     />
 
@@ -514,9 +512,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("essentials")}
                         description={t("from_etiquette_to_currency")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/essentials"
                     />
 
@@ -524,9 +520,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("flights")}
                         description={t("book_flight_tickets")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/"
                     />
 
@@ -534,9 +528,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("accommodation")}
                         description={t("incredible_range_of_stay_options")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/"
                     />
 
@@ -544,9 +536,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("getting_around_vietnam")}
                         description={t("navigating_vietnam_is_a_breeze")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/getting-to-and-around"
                     />
 
@@ -554,19 +544,15 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("safety")}
                         description={t("guide_to_enjoying_safely")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
-                        to="/"
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        to="/safety"
                     />
 
                     {/* Weather */}
                     <InfoCard
                         title={t("weather")}
                         description={t("vietnam_climate_guide")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/"
                     />
 
@@ -574,9 +560,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("currency")}
                         description={t("all_about_vietnam_currency")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/"
                     />
 
@@ -584,9 +568,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("accessibility")}
                         description={t("for_travelers_with_special_needs")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/accessibility"
                     />
 
@@ -594,9 +576,15 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("vietnam_attractions_passes")}
                         description={t("unlock_savings_with_passes")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        to="/vietnam-pass"
+                    />
+
+                    {/* Download apps */}
+                    <InfoCard
+                        title={t("download_apps")}
+                        description={t("get_apps_for_attractions")}
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/"
                     />
 
@@ -604,19 +592,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("download_apps")}
                         description={t("get_apps_for_attractions")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
-                        to="/"
-                    />
-
-                    {/* Download apps */}
-                    <InfoCard
-                        title={t("download_apps")}
-                        description={t("get_apps_for_attractions")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
+                        icon={<ChevronRight color="black" className="h-5 w-5" />}
                         to="/"
                     />
                 </div>
