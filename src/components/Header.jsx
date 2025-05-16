@@ -28,9 +28,6 @@ const Header = ({ noBackgroundOnScroll = false }) => {
   const [hoverPlanYourTripContent, setHoverPlanYourTripContent] =
     useState(false);
   let position = "sticky";
-  if (noBackgroundOnScroll) {
-    position = "fixed";
-  }
 
   // Thay đổi style của header
   const chanegStyleHeader = (noBackground) => {
@@ -58,7 +55,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
     } else {
       setShowNavServices(false);
       setRotateEllipsis(0);
-      if (noBackgroundOnScroll && window.scrollY <= 10) {
+      if (noBackgroundOnScroll) {
         chanegStyleHeader(true);
       }
     }
@@ -66,25 +63,12 @@ const Header = ({ noBackgroundOnScroll = false }) => {
 
   useEffect(() => {
     if (noBackgroundOnScroll) {
-      if (!isShowNavServices && window.scrollY <= 10) {
+      if (!isShowNavServices) {
         chanegStyleHeader(true);
       }
-      const handleScroll = () => {
-        if (!isShowNavServices) {
-          // Nếu scroll xuống thì đổi style header
-          if (window.scrollY > 10) {
-            chanegStyleHeader(false);
-          } else {
-            chanegStyleHeader(true);
-          }
-        }
-      };
-      window.addEventListener("scroll", handleScroll);
-      // Cleanup khi component unmount
-      return () => window.removeEventListener("scroll", handleScroll);
+    } else {
+      chanegStyleHeader(false);
     }
-
-    chanegStyleHeader(false);
   }, [noBackgroundOnScroll, isShowNavServices]);
 
   const hanleHoverPlanYourTrip = (value) => {
@@ -108,8 +92,8 @@ const Header = ({ noBackgroundOnScroll = false }) => {
           style={{ background, position, color, boxShadow }}
           className={cn(
             "relative flex flex-col",
-            "py-[15px] px-[40px] w-full z-50 top-0",
-            "transition-all duration-500"
+            "py-[15px] px-[20px] w-full z-50 top-0",
+            "transition-all duration-500 lg:px-[40px]"
           )}
         >
           <div className="flex items-center justify-between">
@@ -122,7 +106,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                 className="mr-[50px]"
               >
                 <NavLink to="/">
-                  <img src={logo} width="123px"  alt="" />
+                  <img src={logo} className="w-[80px]" width={123} height={80}  alt="" />
                 </NavLink>
               </motion.div>
               {/* Nav bar */}
@@ -212,7 +196,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
             </ul>
             <button
               className={cn(
-                "block xl-md:hidden -my-[15px] -mx-[40px] px-[30px]",
+                "block xl-md:hidden -my-[15px] pl-[30px]",
                 "border-l-1 border-[#ffffff1a] cursor-pointer z-1"
               )}
               onClick={showNavServices}

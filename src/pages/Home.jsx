@@ -58,15 +58,15 @@ export default function Home() {
                     className="h-screen min-w-screen absolute top-0 left-1/2 -translate-x-1/2 object-cover"
                 />
                 {isLoaded && (
-                    <>
+                    <div className="absolute bottom-[80px] lg:bottom-[120px] text-center w-full px-[20px]">
                         <motion.h1
                             initial={{ opacity: 0, y: 100 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.2 }}
                             className={cn(
-                                "text-center text-[30px] md:text-[40px] lg:text-[50px] xl:text-[60px]",
+                                "text-center text-[25px] md:text-[40px] lg:text-[50px] xl:text-[60px]",
                                 "text-shadow-[0_2px_4px_rgba(0_0_0_/_0.40)]",
-                                "absolute lg:bottom-[220px] bottom-[260px] w-full font-bold"
+                                "w-full font-bold px-[20px] mb-[5px]"
                             )}
                         >
                             {t("home.hero_heading")}
@@ -77,15 +77,15 @@ export default function Home() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.4 }}
                             className={cn(
-                                "text-center text-[20px] font-normal",
-                                "absolute bottom-[188px] w-full container mx-auto"
+                                "text-center text-[16px] lg:text-[20px] font-normal px-[20px]",
+                                "w-full container mx-auto mb-[20px] lg:mb-[50px]"
                             )}
                         >
                             {t("home.description")}
                         </motion.p>
                         <motion.div
                             className={cn(
-                                "flex gap-[15px] absolute bottom-[85px]",
+                                "flex gap-[15px] flex-wrap",
                                 "translate-t-[-50%] w-full justify-center"
                             )}
                             initial={{ opacity: 0, y: 100 }}
@@ -95,8 +95,8 @@ export default function Home() {
                             <NavLink
                                 to="/"
                                 className={cn(
-                                    "transition-all duration-500",
-                                    "p-[15px] border-white border-2 rounded-[80px]",
+                                    "transition-all duration-500 text-[14px] lg:text-[16px]",
+                                    "p-[10px] lg:p-[15px] border-white border-2 rounded-[80px]",
                                     "hover:bg-[#153b33] hover:border-[#153b33] focus:ring-4",
                                     "focus:outline-none focus:ring-blue-300"
                                 )}
@@ -106,8 +106,8 @@ export default function Home() {
                             <NavLink
                                 to="/"
                                 className={cn(
-                                    "transition-all duration-500",
-                                    "p-[15px] border-white border-2 rounded-[80px]",
+                                    "transition-all duration-500 text-[14px] lg:text-[16px]",
+                                    "p-[10px] lg:p-[15px] border-white border-2 rounded-[80px]",
                                     "hover:bg-[#153b33] hover:border-[#153b33] focus:ring-4",
                                     "focus:outline-none focus:ring-blue-300"
                                 )}
@@ -117,8 +117,8 @@ export default function Home() {
                             <NavLink
                                 to="/"
                                 className={cn(
-                                    "transition-all duration-500",
-                                    "p-[15px] border-white border-2 rounded-[80px]",
+                                    "transition-all duration-500 text-[14px] lg:text-[16px]",
+                                    "p-[10px] lg:p-[15px] border-white border-2 rounded-[80px]",
                                     "hover:bg-[#153b33] hover:border-[#153b33] focus:ring-4",
                                     "focus:outline-none focus:ring-blue-300"
                                 )}
@@ -126,7 +126,7 @@ export default function Home() {
                                 Find Experiences
                             </NavLink>
                         </motion.div>
-                    </>
+                    </div>
                 )}
                 <FaArrowDown
                     onClick={scrollDown}
