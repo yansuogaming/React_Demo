@@ -307,13 +307,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     </button>
 
                     <AnimatePresence initial={false}>
-                        {isVisible && (
+                        {isVisible ? (
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.7 }}
-                                className="w-full h-screen fixed top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll"
+                                className="w-full h-screen fixed top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll hidden"
                             >
                                 <div className="bg-[#28B8F8] px-[16px] pt-[16px] pb-[10px] flex flex-col gap-[58px]">
                                     <div className="flex items-center justify-between">
@@ -323,12 +323,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                 Search
                                             </span>
                                         </div>
-                                        <button
-                                            className="text-[20px]"
-                                            onClick={() =>
-                                                setIsVisible(!isVisible)
-                                            }
-                                        >
+                                        <button className="text-[20px]">
                                             <RiCloseLargeLine />
                                         </button>
                                     </div>
@@ -452,7 +447,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </div>
                                 </div>
                             </motion.div>
-                        )}
+                        ) : null}
                     </AnimatePresence>
                 </div>
             </header>

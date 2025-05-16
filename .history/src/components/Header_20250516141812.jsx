@@ -6,14 +6,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { ChevronRight, Ellipsis } from "lucide-react";
 import { LuTextSearch } from "react-icons/lu";
 import { FiSearch } from "react-icons/fi";
-import {
-    RiCloseLargeLine,
-    RiArrowRightSLine,
-    RiQuestionLine,
-} from "react-icons/ri";
-import { TbWorld } from "react-icons/tb";
-import "/node_modules/flag-icons/css/flag-icons.min.css";
-
+import { RiCloseLargeLine } from "react-icons/ri";
 import ChangeLangButton from "./button/ChangeLangButton";
 import SearchHeader from "./button/SearchHeader";
 import MapIcon from "./icons/MapIcon";
@@ -95,8 +88,6 @@ const Header = ({ noBackgroundOnScroll = false }) => {
         hoverPlanYourTripContent,
         setHoverPlanYourTripContent,
     };
-
-    const [isVisible, setIsVisible] = useState(false);
     return (
         <HeaderContext.Provider value={contextValue}>
             <header>
@@ -279,7 +270,6 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     />
                 </div>
 
-                {/*HNV  */}
                 <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-1">
                     <div className="absolute w-full h-[100px] top-0 left-0 z-[-1] bg-gradient-to-b from-[rgba(4,18,58,0.40)] via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]"></div>
                     {/* Logo */}
@@ -299,161 +289,67 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             />
                         </NavLink>
                     </motion.div>
-                    <button
-                        className="text-[30px] text-[#fff]"
-                        onClick={() => setIsVisible(!isVisible)}
-                    >
+                    <button className="text-[30px] text-[#fff]">
                         <LuTextSearch />
                     </button>
-
-                    <AnimatePresence initial={false}>
-                        {isVisible && (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.7 }}
-                                className="w-full h-screen fixed top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll"
-                            >
-                                <div className="bg-[#28B8F8] px-[16px] pt-[16px] pb-[10px] flex flex-col gap-[58px]">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-[12px]">
-                                            <FiSearch className="text-[24px]" />
-                                            <span className="text-[20px]">
-                                                Search
-                                            </span>
-                                        </div>
-                                        <button
-                                            className="text-[20px]"
-                                            onClick={() =>
-                                                setIsVisible(!isVisible)
-                                            }
-                                        >
-                                            <RiCloseLargeLine />
-                                        </button>
-                                    </div>
-                                    <NavLink
-                                        to="/"
-                                        className="text-[30px] font-bold"
-                                    >
-                                        Home
-                                    </NavLink>
+                    <div className="w-full h-screen fixed top-0 left-0 bg-[#fff]">
+                        <div className="bg-[#28B8F8] px-[16px] pt-[16px] pb-[10px] text-[#fff] flex flex-col gap-[58px]">
+                            <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-[12px]">
+                                    <FiSearch className="text-[24px]" />
+                                    <span className="text-[20px]">Search</span>
                                 </div>
-                                <ul>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#03A9F4]"
-                                        >
-                                            Destinations <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0288D1]"
-                                        >
-                                            Experiences <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0277BD]"
-                                        >
-                                            Events <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#01579B]"
-                                        >
-                                            Travel Offers <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#003F73]"
-                                        >
-                                            Plan Your Trip <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                                <div className="flex flex-col justify-between pt-[50px] px-[16px] pb-[16px] gap-[82px]">
-                                    <ul className="flex flex-col gap-[5px]">
-                                        <li>
-                                            <NavLink
-                                                to="/"
-                                                className="text-[16px] font-bold flex items-center gap-[10px]"
-                                            >
-                                                <RiQuestionLine /> Contact
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink
-                                                to="/"
-                                                className="text-[16px] font-bold flex items-center justify-between"
-                                            >
-                                                <div className="flex items-center gap-[10px]">
-                                                    <TbWorld /> Language
-                                                </div>
-                                                <RiArrowRightSLine className="text-[20px]" />
-                                            </NavLink>
-                                            <ul className="pl-[30px] mt-[10px]">
-                                                <li>
-                                                    <NavLink
-                                                        to="/"
-                                                        className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
-                                                    >
-                                                        <span className="fi fi-vn"></span>
-                                                        Vietnam
-                                                    </NavLink>
-                                                </li>
-                                                <li>
-                                                    <NavLink
-                                                        to="/"
-                                                        className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
-                                                    >
-                                                        <span className="fi fi-gb"></span>
-                                                        English
-                                                    </NavLink>
-                                                </li>
-                                                <li>
-                                                    <NavLink
-                                                        to="/"
-                                                        className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
-                                                    >
-                                                        <span className="fi fi-cn"></span>
-                                                        Chinese
-                                                    </NavLink>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <div className="flex items-center gap-[8px] justify-between">
-                                        <div className="flex-1 bg-[#ffffff1c] pt-[20px] pb-[14px] px-[28px] rounded-[8px]">
-                                            <NavLink
-                                                to="/"
-                                                className="text-[16px] font-bold flex flex-col items-center gap-[5px]"
-                                            >
-                                                <MapIcon /> Map
-                                            </NavLink>
-                                        </div>
-                                        <div className="flex-1 bg-[#ffffff1c] pt-[20px] pb-[14px] px-[28px] rounded-[8px]">
-                                            <NavLink
-                                                to="/"
-                                                className="text-[16px] font-bold flex flex-col items-center gap-[5px]"
-                                            >
-                                                <UserIcon /> Login/Register
-                                            </NavLink>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                                <button className="text-[20px]">
+                                    <RiCloseLargeLine />
+                                </button>
+                            </div>
+                            <NavLink to="/" className="text-[30px] font-bold">
+                                Home
+                            </NavLink>
+                        </div>
+                        <ul>
+                            <li>
+                                <NavLink
+                                    to="/"
+                                    className="text-[30px] font-bold"
+                                >
+                                    Destinations
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/"
+                                    className="text-[30px] font-bold"
+                                >
+                                    Experiences
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/"
+                                    className="text-[30px] font-bold"
+                                >
+                                    Events
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/"
+                                    className="text-[30px] font-bold"
+                                >
+                                    Travel Offers
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/"
+                                    className="text-[30px] font-bold"
+                                >
+                                    Plan Your Trip
+                                </NavLink>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </header>
         </HeaderContext.Provider>
