@@ -10,7 +10,7 @@ export default function AppQuill({ value = '', className = '', placeholder = '' 
             quill.clipboard.dangerouslyPasteHTML(value);
 
             quill.on('text-change', () => {
-                onChange(quill.getContents());
+                onChange(quill.root.innerHTML);
             });
         }
     }, [quill, value]);

@@ -4,6 +4,7 @@ import { SidebarProvider } from "@components/ui/sidebar";
 import { SearchProvider } from "@contexts/SearchContext";
 import { cn } from "@lib/utils";
 import Cookies from "js-cookie";
+import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router";
 
 export default function AdminLayout() {
@@ -27,6 +28,7 @@ export default function AdminLayout() {
                 >
                     <Outlet />
                 </div>
+                <Toaster />
             </SidebarProvider>
         </SearchProvider>
     )
