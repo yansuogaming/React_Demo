@@ -15,36 +15,18 @@ import {
 } from "@components/ui/form";
 import { Input } from "@components/ui/input";
 import { Tabs, TabsContent } from "@components/ui/tabs";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { lazy, useEffect, useState } from 'react';
+import { lazy, useState } from 'react';
+import { cn } from "@lib/utils";
 
-const AppLexical = lazy(() => import('@components/admin/AppLexical'));
-
-const formSchema = z.object({
-    username: z.string().min(2, {
-        message: "Username must be at least 2 characters.",
-    }),
-})
+const AppQuill = lazy(() => import('@components/admin/AppQuill'));
 
 export default function AddExperience() {
-    const [inClient, setInClient] = useState(false);
+    const [title, setTitle] = useState("");
+    const [image, setImage] = useState("");
+    const [content, setContent] = useState("");
 
-    const form = useForm({
-        resolver: zodResolver(formSchema),
-        defaultValues: {
-            email: '',
-            password: '',
-        },
-    });
-
-    useEffect(() => {
-        setInClient(true);
-    }, [inClient]);
-
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = () => {
+        console.log(image);
     }
 
     return (
@@ -70,40 +52,47 @@ export default function AddExperience() {
                     defaultValue='overview'
                 >
                     <TabsContent value='overview' className='space-y-4'>
-                        <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                                <FormField
-                                    control={form.control}
-                                    name="username"
-                                    render={({ field }) => (
-                                        <FormItem>
-                                            <FormLabel>Tiêu đề</FormLabel>
-                                            <FormControl>
-                                                <Input placeholder="shadcn" {...field} />
-                                            </FormControl>
-                                            <FormMessage />
-                                        </FormItem>
-                                    )}
-                                />
+                        <form onSubmit={onSubmit} className="space-y-8">
+                            <div>
+                                <label>Tiêu đề</label>
+                                <div>
+                                    <Input placeholder="shadcn" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                </div>
+                            </div>
 
-                                <FormField
-                                    control={form.control}
-                                    name="username"
-                                    render={({ field }) => {
-                                        return inClient && (
-                                            <FormItem>
-                                                <FormLabel>Nội dung</FormLabel>
-                                                <FormControl>
-                                                    <AppLexical placeholder={field.value} />
-                                                </FormControl>
-                                                <FormMessage />
-                                            </FormItem>
-                                        )
-                                    }}
-                                />
-                                <Button type="submit">Submit</Button>
-                            </form>
-                        </Form>
+                            <div>
+                                <label>Ảnh</label>
+                                <div className="max-w-md flex w-[400px]">
+                                    <div className="w-full">
+                                        <input
+                                            type="file"
+                                            className={cn(
+                                                'w-full text-slate-500 font-medium text-sm',
+                                                'bg-white border file:cursor-pointer cursor-pointer',
+                                                'file:border-0 file:py-3 file:px-4 file:mr-4',
+                                                'file:bg-gray-100 file:hover:bg-gray-200',
+                                                'file:text-slate-500 rounded'
+                                            )}
+                                            onChange={(e) => setImage(e.target.files[0])}
+                                        />
+                                        <p
+                                            className="text-xs text-slate-500 mt-2"
+                                        >
+                                            PNG, JPG SVG, WEBP are Allowed.
+                                        </p>
+                                    </div>
+                                    <div></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label>Nội dung</label>
+                                <div>
+                                    <AppQuill value={content} onChange={(value) => setContent(value)} />
+                                </div>
+                            </div>
+                            <Button type="submit">Submit</Button>
+                        </form>
                     </TabsContent>
                 </Tabs>
             </Main>
