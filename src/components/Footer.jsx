@@ -129,7 +129,7 @@ const Footer = () => {
                         </p>
                         <Dialog>
                             <DialogTrigger asChild>
-                                <button className="w-full md:w-auto rounded-[80px] p-[15px_20px] bg-[#007BFF] text-white flex items-center justify-center gap-[9px]">
+                                <button className="w-full lg:w-auto rounded-[80px] p-[15px_20px] bg-[#007BFF] text-white flex items-center justify-center gap-[9px]">
                                     <img src={iconMail} alt="" />
                                     {t("inscription_newsletter")}
                                 </button>
