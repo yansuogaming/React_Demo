@@ -37,7 +37,17 @@ const routesAdmin = [
             },
             {
                 path: 'experience/add',
-                Component: lazy(() => import("@pages/admin/Experience/AddExperience")),
+                Component: lazy(() => import("@pages/admin/Experience/EditExperience")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
+            {
+                path: 'experience/edit/:id',
+                Component: lazy(() => import("@pages/admin/Experience/EditExperience")),
                 meta: () => {
                     return [
                         { title: "Experience" },

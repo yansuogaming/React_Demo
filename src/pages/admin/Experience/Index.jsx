@@ -6,7 +6,7 @@ import Search from '@components/admin/Search'
 import ThemeSwitch from '@components/admin/ThemeSwitch'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@components/ui/table'
 import { Checkbox } from '@components/ui/checkbox'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
     flexRender,
     getCoreRowModel,
@@ -16,8 +16,6 @@ import {
     useReactTable
 } from '@tanstack/react-table'
 import { Button } from '@components/ui/button'
-import { GoArrowDown } from "react-icons/go";
-import { MoreHorizontal } from 'lucide-react'
 import { Input } from '@components/ui/input'
 import { RxMixerHorizontal } from "react-icons/rx";
 import {
@@ -29,13 +27,129 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '@components/ui/dropdown-menu'
-import { Link } from 'react-router'
+import { Link, useNavigate } from 'react-router'
+import HttpClient from '@services/HttpClient'
+import toast from 'react-hot-toast'
+import { IoIosWarning } from 'react-icons/io'
+import { HiDotsHorizontal } from "react-icons/hi"
 
 export default function Experience() {
     const [sorting, setSorting] = useState([])
     const [columnFilters, setColumnFilters] = useState([])
     const [columnVisibility, setColumnVisibility] = useState({})
     const [rowSelection, setRowSelection] = useState({})
+    const [data, setData] = useState([]);
+    let navigate = useNavigate();
+
+    const columns = [
+        {
+            id: "select",
+            size: 30,
+            header: ({ table }) => (
+                <div className="w-[20px]">
+                    <Checkbox
+                        checked={
+                            table.getIsAllPageRowsSelected() ||
+                            (table.getIsSomePageRowsSelected() && "indeterminate")
+                        }
+                        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+                        aria-label="Select all"
+                    />
+                </div>
+            ),
+            cell: ({ row }) => (
+                <Checkbox
+                    checked={row.getIsSelected()}
+                    onCheckedChange={(value) => row.toggleSelected(!!value)}
+                    aria-label="Select row"
+                />
+            ),
+            enableSorting: false,
+            enableHiding: false,
+        },
+        {
+            accessorKey: "title",
+            header: "Tiêu đề",
+            size: 300,
+            cell: ({ row }) => (
+                <p className="text-sm font-medium text-gray-900">
+                    {row.getValue("title")}
+                </p>
+            ),
+        },
+        {
+            accessorKey: "created_at",
+            header: () => <div className="text-center">Ngày tạo</div>,
+            size: 100,
+            cell: ({ row }) => (
+                <p className="text-center">{row.getValue("created_at")}</p>
+            ),
+        },
+        {
+            accessorKey: "status",
+            header: () => <div className="text-center">Tình trạng</div>,
+            size: 100,
+            cell: ({ row }) => (
+                row.getValue("status") === 1 ? (
+                    <CiCircleCheck className="text-[green] text-[20px] mx-auto" />
+                ) : (
+                    <IoIosWarning className="text-[#a75615] text-[20px] mx-auto" />
+                )
+            ),
+        },
+        {
+            accessorKey: 'id',
+            header: '',
+            size: 20,
+            cell: ({ row }) => {
+                console.log(row.getValue('id'));
+                return (
+                    <DropdownMenu modal={false}>
+                        <DropdownMenuTrigger asChild>
+                            <Button
+                                variant='ghost'
+                                className='data-[state=open]:bg-muted flex h-8 w-8 p-0'
+                            >
+                                <HiDotsHorizontal className='h-4 w-4' />
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align='end' className='w-[120px]'>
+                            <DropdownMenuItem onClick={() => navigate(`/admin/experience/edit/${row.getValue('id')}`)}>
+                                Sửa
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => deleteExperience(row.getValue('id'))}>
+                                Xoá
+                            </DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                )
+            }
+        },
+    ];
+
+    const getExperience = async (params = {}) => {
+        const res = await HttpClient.get('/experience', {
+            params
+        })
+
+        if (res.status === 200) {
+            const data = res.data;
+            setData(data.data);
+        } else {
+            toast.error('Lấy danh sách trải nghiệm thất bại!')
+        }
+    };
+
+    const deleteExperience = async (id) => {
+        const res = await HttpClient.delete(`/experience/${id}`)
+
+        if (res.status === 200) {
+            toast.success('Xoá trải nghiệm thành công!')
+            getExperience();
+        } else {
+            toast.error('Xoá trải nghiệm thất bại!')
+        }
+    };
 
     const table = useReactTable({
         data,
@@ -55,6 +169,10 @@ export default function Experience() {
             rowSelection,
         },
     })
+
+    useEffect(() => {
+        getExperience();
+    }, []);
 
     return (
         <>
@@ -89,7 +207,7 @@ export default function Experience() {
                                         <TableRow key={headerGroup.id}>
                                             {headerGroup.headers.map((header) => {
                                                 return (
-                                                    <TableHead key={header.id}>
+                                                    <TableHead width={header.getSize()} key={header.id}>
                                                         {header.isPlaceholder
                                                             ? null
                                                             : flexRender(
@@ -162,130 +280,6 @@ export default function Experience() {
         </>
     )
 }
-
-const data = [
-    {
-        id: "m5gr84i9",
-        amount: 316,
-        status: "success",
-        email: "ken99@example.com",
-    },
-    {
-        id: "3u1reuv4",
-        amount: 242,
-        status: "success",
-        email: "Abe45@example.com",
-    },
-    {
-        id: "derv1ws0",
-        amount: 837,
-        status: "processing",
-        email: "Monserrat44@example.com",
-    },
-    {
-        id: "5kma53ae",
-        amount: 874,
-        status: "success",
-        email: "Silas22@example.com",
-    },
-    {
-        id: "bhqecj4p",
-        amount: 721,
-        status: "failed",
-        email: "carmella@example.com",
-    },
-]
-
-const columns = [
-    {
-        id: "select",
-        header: ({ table }) => (
-            <Checkbox
-                checked={
-                    table.getIsAllPageRowsSelected() ||
-                    (table.getIsSomePageRowsSelected() && "indeterminate")
-                }
-                onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-                aria-label="Select all"
-            />
-        ),
-        cell: ({ row }) => (
-            <Checkbox
-                checked={row.getIsSelected()}
-                onCheckedChange={(value) => row.toggleSelected(!!value)}
-                aria-label="Select row"
-            />
-        ),
-        enableSorting: false,
-        enableHiding: false,
-    },
-    {
-        accessorKey: "status",
-        header: "Status",
-        cell: ({ row }) => (
-            <div className="capitalize">{row.getValue("status")}</div>
-        ),
-    },
-    {
-        accessorKey: "email",
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant="ghost"
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Email
-                    <GoArrowDown />
-                </Button>
-            )
-        },
-        cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-    },
-    {
-        accessorKey: "amount",
-        header: () => <div className="text-right">Amount</div>,
-        cell: ({ row }) => {
-            const amount = parseFloat(row.getValue("amount"))
-
-            // Format the amount as a dollar amount
-            const formatted = new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-            }).format(amount)
-
-            return <div className="text-right font-medium">{formatted}</div>
-        },
-    },
-    {
-        id: "actions",
-        enableHiding: false,
-        cell: ({ row }) => {
-            const payment = row.original
-
-            return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(payment.id)}
-                        >
-                            Copy payment ID
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>View customer</DropdownMenuItem>
-                        <DropdownMenuItem>View payment details</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            )
-        },
-    },
-]
 
 function DataTableToolbar({ table }) {
     return (

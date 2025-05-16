@@ -12,16 +12,19 @@ const TrendingItinerary = ({ className = "" }) => {
     return (
         <section className={`container ${className}`}>
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-[20px] gap-4 sm:gap-0">
-                <h2 className="text-[24px] sm:text-[28px] lg:text-[30px] font-bold text-[#1A2A44]">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between lg:mb-[40px] mb-[64px] gap-[12px] lg:gap-[0px]">
+                <h2 className="text-[34px] sm:text-[28px] lg:text-[40px] font-[700] text-[#1A2A44]">
                     Trending Itineraries
                 </h2>
-                <ViewMoreButton text={t("Create Trip Plan")} />
+                <ViewMoreButton
+                    className="font-[700] text-[18px]"
+                    text={t("Create Trip Plan")}
+                />
             </div>
 
             {/* Cards */}
             <Reveal>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-[30px] gap-[16px] lg:gap-y-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-[40px] gap-[16px] lg:gap-y-8">
                     {Array.from({ length: 6 }).map((_, index) => (
                         <CardService
                             title="Enjoy Hanoi street food"

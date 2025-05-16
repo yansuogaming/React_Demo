@@ -37,7 +37,7 @@ export default function Home() {
 
     return (
         <main>
-            <section className=" text-white h-screen max-w-screen overflow-hidden">
+            <section className="relative text-white h-screen max-w-screen overflow-hidden">
                 {!isLoaded && (
                     <Skeleton
                         className={cn(
@@ -140,11 +140,11 @@ export default function Home() {
                 id="region"
                 className="lg:mt-[135px] mt-[80px] lg:mb-[145px] mb-[60px]"
             />
-            <VietNamEvent className="bg-[#F5F6FA] py-[80px] pt-[48px]" />
-            <TopVietnamExperiences className="mb-[120px] pt-[80px]" />
-            <TrendingItinerary className="mb-[120px]" />
-            <TravelOffers className="mb-[120px]" />
-            <PlainYourTrip className="mb-[120px]" />
+            <VietNamEvent className="bg-[#F5F6FA] py-[48px] lg:py-[80px] pt-[48px] lg:pt-[80px]" />
+            <TopVietnamExperiences className="mb-[80px] lg:mb-[120px] pt-[60px] lg:pt-[80px]" />
+            <TrendingItinerary className="mb-[80px] lg:mb-[120px]" />
+            <TravelOffers className="mb-[60px] lg:mb-[120px]" />
+            <PlainYourTrip className="mb-[80px] lg:mb-[120px]" />
             <Story />
         </main>
     );
