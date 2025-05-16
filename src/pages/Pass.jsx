@@ -28,9 +28,10 @@ import Breadcrumb from "@components/Breadcrumb";
 
 // Components
 const HeroSection = () => {
+
   return (
     <Reveal>
-      <div className="h-[80vh] relative rounded-br-[100px] overflow-hidden -mx-20 my-5">
+      <div className="h-[200px] md:h-[80vh] relative rounded-0 md:rounded-br-[100px] overflow-hidden  md:-mx-20 my-5">
         <iframe
           className="absolute inset-0 w-full h-full border-0 z-10"
           src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
@@ -128,8 +129,8 @@ const VietNamPassInfo = () => {
         </p>
 
         <ul className="mt-4 space-y-4">
-          <li className="flex gap-2">
-            <div className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold">
+        <li className="flex flex-col items-center md:flex-row gap-2">
+        <div className="bg-blue-600 w-auto text-white px-2 py-1 rounded text-xs font-semibold">
               Viet Nam Pass
             </div>
             <div className="text-gray-700">
@@ -137,8 +138,8 @@ const VietNamPassInfo = () => {
               across Viet Nam.
             </div>
           </li>
-          <li className="flex gap-2">
-            <div className="bg-blue-600 text-white px-2 py-1 rounded text-xs font-semibold">
+          <li className="flex flex-col items-center md:flex-row gap-2">
+            <div className="bg-blue-600 w-auto text-white px-2 py-1 rounded text-xs font-semibold">
               Go Viet Nam Pass
             </div>
             <div className="text-gray-700">
@@ -551,7 +552,7 @@ export default function VietNamPass() {
           items={breadcrumdItems}
         />
         {/* Title */}
-        <h1 className="text-5xl font-bold mb-6">
+        <h1 className="text-xl lg:text-5xl font-bold mb-6">
           Viet Nam sightseeing & attractions passes
         </h1>
         <HeroSection />
