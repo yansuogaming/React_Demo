@@ -323,12 +323,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                 Search
                                             </span>
                                         </div>
-                                        <button
-                                            className="text-[20px]"
-                                            onClick={() =>
-                                                setIsVisible(!isVisible)
-                                            }
-                                        >
+                                        <button className="text-[20px]">
                                             <RiCloseLargeLine />
                                         </button>
                                     </div>

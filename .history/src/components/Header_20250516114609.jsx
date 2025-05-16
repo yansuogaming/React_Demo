@@ -4,16 +4,6 @@ import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router";
 import { createContext, useContext, useEffect, useState } from "react";
 import { ChevronRight, Ellipsis } from "lucide-react";
-import { LuTextSearch } from "react-icons/lu";
-import { FiSearch } from "react-icons/fi";
-import {
-    RiCloseLargeLine,
-    RiArrowRightSLine,
-    RiQuestionLine,
-} from "react-icons/ri";
-import { TbWorld } from "react-icons/tb";
-import "/node_modules/flag-icons/css/flag-icons.min.css";
-
 import ChangeLangButton from "./button/ChangeLangButton";
 import SearchHeader from "./button/SearchHeader";
 import MapIcon from "./icons/MapIcon";
@@ -95,8 +85,6 @@ const Header = ({ noBackgroundOnScroll = false }) => {
         hoverPlanYourTripContent,
         setHoverPlanYourTripContent,
     };
-
-    const [isVisible, setIsVisible] = useState(false);
     return (
         <HeaderContext.Provider value={contextValue}>
             <header>
@@ -279,9 +267,8 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     />
                 </div>
 
-                {/*HNV  */}
-                <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-1">
-                    <div className="absolute w-full h-[100px] top-0 left-0 z-[-1] bg-gradient-to-b from-[rgba(4,18,58,0.40)] via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]"></div>
+                <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-50">
+                    <div className="absolute w-full h-[100px] top-0 left-0 bg-gradient-to-b from-[rgba(4,18,58,0.40)] via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]"></div>
                     {/* Logo */}
                     <motion.div
                         initial={{ opacity: 0, y: -100 }}
@@ -299,161 +286,39 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             />
                         </NavLink>
                     </motion.div>
-                    <button
-                        className="text-[30px] text-[#fff]"
-                        onClick={() => setIsVisible(!isVisible)}
-                    >
-                        <LuTextSearch />
-                    </button>
-
-                    <AnimatePresence initial={false}>
-                        {isVisible && (
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.7 }}
-                                className="w-full h-screen fixed top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll"
+                    <div>
+                        <button>
+                            <svg
+                                className="mr-[10px]"
+                                alt={t("search")}
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
                             >
-                                <div className="bg-[#28B8F8] px-[16px] pt-[16px] pb-[10px] flex flex-col gap-[58px]">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-[12px]">
-                                            <FiSearch className="text-[24px]" />
-                                            <span className="text-[20px]">
-                                                Search
-                                            </span>
-                                        </div>
-                                        <button
-                                            className="text-[20px]"
-                                            onClick={() =>
-                                                setIsVisible(!isVisible)
-                                            }
-                                        >
-                                            <RiCloseLargeLine />
-                                        </button>
-                                    </div>
-                                    <NavLink
-                                        to="/"
-                                        className="text-[30px] font-bold"
-                                    >
-                                        Home
-                                    </NavLink>
-                                </div>
-                                <ul>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#03A9F4]"
-                                        >
-                                            Destinations <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0288D1]"
-                                        >
-                                            Experiences <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0277BD]"
-                                        >
-                                            Events <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#01579B]"
-                                        >
-                                            Travel Offers <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink
-                                            to="/"
-                                            className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#003F73]"
-                                        >
-                                            Plan Your Trip <RiArrowRightSLine />
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                                <div className="flex flex-col justify-between pt-[50px] px-[16px] pb-[16px] gap-[82px]">
-                                    <ul className="flex flex-col gap-[5px]">
-                                        <li>
-                                            <NavLink
-                                                to="/"
-                                                className="text-[16px] font-bold flex items-center gap-[10px]"
-                                            >
-                                                <RiQuestionLine /> Contact
-                                            </NavLink>
-                                        </li>
-                                        <li>
-                                            <NavLink
-                                                to="/"
-                                                className="text-[16px] font-bold flex items-center justify-between"
-                                            >
-                                                <div className="flex items-center gap-[10px]">
-                                                    <TbWorld /> Language
-                                                </div>
-                                                <RiArrowRightSLine className="text-[20px]" />
-                                            </NavLink>
-                                            <ul className="pl-[30px] mt-[10px]">
-                                                <li>
-                                                    <NavLink
-                                                        to="/"
-                                                        className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
-                                                    >
-                                                        <span className="fi fi-vn"></span>
-                                                        Vietnam
-                                                    </NavLink>
-                                                </li>
-                                                <li>
-                                                    <NavLink
-                                                        to="/"
-                                                        className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
-                                                    >
-                                                        <span className="fi fi-gb"></span>
-                                                        English
-                                                    </NavLink>
-                                                </li>
-                                                <li>
-                                                    <NavLink
-                                                        to="/"
-                                                        className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
-                                                    >
-                                                        <span className="fi fi-cn"></span>
-                                                        Chinese
-                                                    </NavLink>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <div className="flex items-center gap-[8px] justify-between">
-                                        <div className="flex-1 bg-[#ffffff1c] pt-[20px] pb-[14px] px-[28px] rounded-[8px]">
-                                            <NavLink
-                                                to="/"
-                                                className="text-[16px] font-bold flex flex-col items-center gap-[5px]"
-                                            >
-                                                <MapIcon /> Map
-                                            </NavLink>
-                                        </div>
-                                        <div className="flex-1 bg-[#ffffff1c] pt-[20px] pb-[14px] px-[28px] rounded-[8px]">
-                                            <NavLink
-                                                to="/"
-                                                className="text-[16px] font-bold flex flex-col items-center gap-[5px]"
-                                            >
-                                                <UserIcon /> Login/Register
-                                            </NavLink>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                                <g id="ICON" clipPath="url(#clip0_5249_616)">
+                                    <path
+                                        stroke={color}
+                                        id="Vector_5"
+                                        d="M23 23L17.6919 17.6919M17.6919 17.6919C18.5999 16.784 19.3201 15.7061 19.8115 14.5198C20.3029 13.3335 20.5558 12.062 20.5558 10.7779C20.5558 9.49386 20.3029 8.22238 19.8115 7.03607C19.3202 5.84976 18.5999 4.77185 17.6919 3.86389C16.784 2.95592 15.7061 2.23569 14.5198 1.7443C13.3335 1.25291 12.062 1 10.7779 1C9.49386 1 8.22238 1.25291 7.03607 1.7443C5.84976 2.23569 4.77185 2.95592 3.86389 3.86389C2.03017 5.6976 1 8.18465 1 10.7779C1 13.3712 2.03017 15.8582 3.86389 17.6919C5.6976 19.5257 8.18465 20.5558 10.7779 20.5558C13.3712 20.5558 15.8582 19.5257 17.6919 17.6919Z"
+                                        strokeWidth="1.2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_5249_616">
+                                        <rect
+                                            width="24"
+                                            height="24"
+                                            fill="white"
+                                        />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                        </button>
+                    </div>
                 </div>
             </header>
         </HeaderContext.Provider>
