@@ -9,141 +9,206 @@ import FacebookIcon from "./icons/FacebookIcon";
 import InstagramIcon from "./icons/InstagramIcon";
 import TwitterIcon from "./icons/TwitterIcon";
 import YoutubeIcon from "./icons/YoutubeIcon";
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@components/ui/accordion";
+
+import {
+    Dialog,
+    DialogTrigger,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogDescription,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 
 const Footer = () => {
     const { t } = useTranslation();
+
+    const footerSections = [
+        {
+            title: t("regions"),
+            links: [
+                { label: t("northern_vietnam"), href: "/" },
+                { label: t("central_vietnam"), href: "/" },
+                { label: t("southern_vietnam"), href: "/" },
+            ],
+        },
+        {
+            title: t("getting_to_vietnam"),
+            links: [
+                { label: t("passports_and_visa"), href: "/" },
+                { label: t("accommodation"), href: "/" },
+                { label: t("itineraries"), href: "/" },
+                { label: t("tour_packages"), href: "/" },
+                { label: t("travel_agency"), href: "/" },
+                { label: t("app_and_tools"), href: "/" },
+                { label: t("vietnam_calendar"), href: "/" },
+                { label: t("traditional_festivals"), href: "/" },
+            ],
+        },
+        {
+            title: t("experiences"),
+            links: [
+                { label: t("cultural_heritage"), href: "/" },
+                { label: t("cuisine"), href: "/" },
+                { label: t("nature_and_adventure"), href: "/" },
+                { label: t("sustainable_travel"), href: "/" },
+                { label: t("city_vibes"), href: "/" },
+                { label: t("wellness_escapes"), href: "/" },
+                { label: t("romantic_getaways"), href: "/" },
+                { label: t("local_life"), href: "/" },
+            ],
+        },
+        {
+            title: t("discover_and_navigate"),
+            links: [
+                { label: t("stories_and_inspiration"), href: "/" },
+                { label: t("map"), href: "/" },
+            ],
+        },
+    ];
 
     return (
         <footer className="mt-[100px]">
             <img src={bird} alt="" width="100%" />
             <div className="container mt-[60px]">
-                <div className="flex flex-col md:flex-row md:flex-wrap lg:flex-nowrap gap-y-10">
-                    <div className="w-full md:w-1/2 lg:w-[28%]">
-                        <p className="text-[18px] font-bold mb-[30px]">
-                            {t("regions")}
-                        </p>
-                        <ul className="font-normal text-[16px]">
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("northern_vietnam")}
-                                </NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("central_vietnam")}</NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("southern_vietnam")}
-                                </NavLink>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="w-full md:w-1/2 lg:w-[25%]">
-                        <p className="text-[18px] font-bold mb-[30px]">
-                            {t("getting_to_vietnam")}
-                        </p>
-                        <ul className="font-normal text-[16px]">
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("passports_and_visa")}
-                                </NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("accommodation")}</NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("itineraries")}</NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("tour_packages")}</NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("travel_agency")}</NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("app_and_tools")}</NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("vietnam_calendar")}
-                                </NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("traditional_festivals")}
-                                </NavLink>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="w-full md:w-1/2 lg:w-[25%]">
-                        <p className="text-[18px] font-bold mb-[30px]">
-                            {t("experiences")}
-                        </p>
-                        <ul className="font-normal text-[16px]">
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("cultural_heritage")}
-                                </NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("cuisine")}</NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("nature_and_adventure")}
-                                </NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("sustainable_travel")}
-                                </NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("city_vibes")}</NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("wellness_escapes")}
-                                </NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("romantic_getaways")}
-                                </NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("local_life")}</NavLink>
-                            </li>
-                        </ul>
-                    </div>
-                    <div className="w-full md:w-1/2 lg:w-[22%]">
-                        <p className="text-[18px] font-bold mb-[30px]">
-                            {t("discover_and_navigate")}
-                        </p>
-                        <ul className="font-normal text-[16px]">
-                            <li className="mb-2">
-                                <NavLink to="/">
-                                    {t("stories_and_inspiration")}
-                                </NavLink>
-                            </li>
-                            <li className="mb-2">
-                                <NavLink to="/">{t("map")}</NavLink>
-                            </li>
-                        </ul>
-                    </div>
+                {/* Mobile: Accordion */}
+                <div className="sm:block md:hidden">
+                    <Accordion type="multiple">
+                        {footerSections.map((section, idx) => (
+                            <AccordionItem value={`item-${idx}`} key={idx}>
+                                <AccordionTrigger className="text-[18px] font-bold">
+                                    {section.title}
+                                </AccordionTrigger>
+                                <AccordionContent>
+                                    <ul className="mt-3 space-y-2 text-[16px] font-normal">
+                                        {section.links.map((link, i) => (
+                                            <li key={i}>
+                                                <NavLink to={link.href}>
+                                                    {link.label}
+                                                </NavLink>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
                 </div>
 
-                <div className="flex flex-col gap-y-6 md:flex-row md:justify-between mt-[40px] mb-[60px]">
+                {/* Tablet & Desktop: Grid layout */}
+                <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 md:gap-x-8 lg:gap-x-6">
+                    {footerSections.map((section, idx) => (
+                        <div key={idx}>
+                            <p className="text-[18px] font-bold mb-[30px]">
+                                {section.title}
+                            </p>
+                            <ul className="font-normal text-[16px]">
+                                {section.links.map((link, i) => (
+                                    <li className="mb-2" key={i}>
+                                        <NavLink to={link.href}>
+                                            {link.label}
+                                        </NavLink>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Newsletter + Apps */}
+                <div className="flex flex-col gap-y-6 md:flex-row md:justify-between mt-[40px] mb-[28px] lg:mb-[60px]">
                     <div className="w-full md:w-1/2 lg:w-auto">
-                        <p className="mb-2.5">{t("do_not_miss_any_updates")}</p>
-                        <button className="rounded-[80px] py-[15px] px-[20px] bg-[#007BFF] text-white flex items-center">
-                            <img className="pr-[10px]" src={iconMail} alt="" />
-                            {t("inscription_newsletter")}
-                        </button>
+                        <p className="mb-2.5 hidden md:block">
+                            {t("do_not_miss_any_updates")}
+                        </p>
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <button className="w-full md:w-auto rounded-[80px] p-[15px_20px] bg-[#007BFF] text-white flex items-center justify-center gap-[9px]">
+                                    <img src={iconMail} alt="" />
+                                    {t("inscription_newsletter")}
+                                </button>
+                            </DialogTrigger>
+
+                            <DialogContent className="w-full rounded-xl p-6">
+                                <DialogHeader>
+                                    <DialogTitle className="text-[20px] font-[500] text-[#1A2A44] leading-[150%]">
+                                        Subscribe to the Vietnam Tourism
+                                        newsletter now!
+                                    </DialogTitle>
+                                    <DialogDescription className="text-[#1A2A44] mt-2 text-[16px] font-[400] leading-[150%]">
+                                        By entering your email address, you
+                                        confirm that you have read and accept
+                                        the{" "}
+                                        <NavLink
+                                            to="#"
+                                            className="underline hover:text-blue-600"
+                                        >
+                                            Data Protection Policy
+                                        </NavLink>
+                                        .
+                                    </DialogDescription>
+                                </DialogHeader>
+
+                                <input
+                                    type="email"
+                                    placeholder="name@example.com"
+                                    className="w-full mt-[16px] p-[10px] border-b border-gray-300 focus:outline-none focus:border-[#007BFF]"
+                                />
+
+                                <Button className="mt-[18px] w-full bg-[#007BFF] text-white rounded-full hover:bg-[#2f46c6] p-[11px_27px]">
+                                    Submit
+                                </Button>
+
+                                <p className="text-[12px] text-gray-500 mt-4 leading-snug">
+                                    This site is protected by reCAPTCHA and the
+                                    Google{" "}
+                                    <NavLink
+                                        to="https://policies.google.com/privacy"
+                                        target="_blank"
+                                        className="underline"
+                                    >
+                                        Privacy Policy
+                                    </NavLink>{" "}
+                                    and{" "}
+                                    <NavLink
+                                        to="https://policies.google.com/terms"
+                                        target="_blank"
+                                        className="underline"
+                                    >
+                                        Terms of Service
+                                    </NavLink>{" "}
+                                    apply.
+                                </p>
+                            </DialogContent>
+                        </Dialog>
+
+                        <div className="flex lg:hidden justify-center gap-[40px] mt-[32px]">
+                            <a href="">
+                                <TwitterIcon />
+                            </a>
+                            <a href="">
+                                <InstagramIcon />
+                            </a>
+                            <a href="">
+                                <YoutubeIcon />
+                            </a>
+                            <a href="">
+                                <FacebookIcon />
+                            </a>
+                        </div>
                     </div>
+
                     <div className="w-full md:w-1/2 lg:w-[400px]">
-                        <p className="mb-2.5">{t("download_our_apps")}</p>
-                        <div className="flex justify-start gap-x-4">
+                        <p className="mb-2.5 hidden md:block">
+                            {t("download_our_apps")}
+                        </p>
+                        <div className="flex justify-start gap-[9px] lg:gap-x-4 mt-[40px] lg:mt-0">
                             <a href="">
                                 <img src={iconGooglePlay} alt="Google play" />
                             </a>
@@ -156,14 +221,15 @@ const Footer = () => {
 
                 <hr className="border-gray-300" />
 
-                <div className="flex flex-col gap-y-6 lg:flex-row justify-between items-center mt-[20px] mb-[50px]">
-                    <div className="flex flex-col lg:flex-row items-center text-center lg:text-left">
+                {/* Logo & Socials */}
+                <div className="flex flex-col gap-y-6 lg:flex-row justify-between items-center mt-[28px] mb-[36px] lg:mt-[20px] lg:mb-[50px]">
+                    <div className="flex flex-col md:flex-row items-center text-left md">
                         <NavLink to="">
                             <img
                                 src={logo}
                                 alt="Logo"
                                 width="102px"
-                                className="mb-4 lg:mb-0 lg:mr-[30px]"
+                                className="mb-4 lg:mb-0 md:mr-[30px] hidden md:block"
                             />
                         </NavLink>
                         <div>
@@ -177,7 +243,8 @@ const Footer = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="flex justify-start gap-[24px]">
+
+                    <div className="lg:flex hidden justify-start gap-[24px]">
                         <a href="">
                             <TwitterIcon />
                         </a>
@@ -194,10 +261,27 @@ const Footer = () => {
                 </div>
             </div>
 
+            {/* Bottom bar */}
             <div className="bg-[#484C52] pt-[32px] pb-[25px]">
-                <div className="container flex flex-col md:flex-row justify-between items-center gap-y-4 text-white text-center md:text-left">
-                    <p>© 2025 Lorem ipsum | All rights reserved</p>
-                    <ul className="flex flex-wrap justify-center md:justify-end gap-[16px] md:gap-[32px]">
+                <div className="container flex flex-col justify-between items-center gap-y-4 text-white text-center md:text-left">
+                    <p className="hidden lg:block">
+                        © 2025 Lorem ipsum | All rights reserved
+                    </p>
+
+                    <div className="grid md:hidden grid-cols-1 gap-y-2 text-white text-center md:text-left">
+                        <div className="flex justify-center lg:justify-start gap-x-2">
+                            <NavLink to="/">{t("terms_of_use")}</NavLink>
+                            <span className="px-2">|</span>
+                            <NavLink to="/">{t("privacy_policy")}</NavLink>
+                        </div>
+                        <div className="flex justify-center lg:justify-start gap-x-2">
+                            <NavLink to="/">{t("cookie_policy")}</NavLink>
+                            <span className="px-2">|</span>
+                            <NavLink to="/">Sitemap</NavLink>
+                        </div>
+                    </div>
+
+                    <ul className="hidden md:flex flex-wrap justify-center md:justify-end gap-[16px] md:gap-[32px]">
                         <li>
                             <NavLink to="/">{t("terms_of_use")}</NavLink>
                         </li>
@@ -211,6 +295,10 @@ const Footer = () => {
                             <NavLink to="/">Sitemap</NavLink>
                         </li>
                     </ul>
+
+                    <p className="block lg:hidden">
+                        © 2025 Lorem ipsum | All rights reserved
+                    </p>
                 </div>
             </div>
         </footer>

@@ -11,7 +11,7 @@ import { FaArrowRight } from "react-icons/fa6";
 const TopVietnamExperiences = ({ className = "" }) => {
     return (
         <section className={`container ${className}`}>
-            <h2 className="mb-[32px] text-[#1A2A44] lg:text-[40px] text-[30px] font-[700] text-center">
+            <h2 className="mb-[32px] text-[#1A2A44] lg:text-[40px] text-[34px] font-[700] lg:text-center">
                 Unforgettable Vietnam Experiences
             </h2>
             <Reveal>
@@ -219,7 +219,7 @@ const TopVietnamExperiences = ({ className = "" }) => {
                     text="Explore All Experiences"
                     className={cn(
                         "text-[#007BFF] p-[15px] w-fit mx-auto border-1",
-                        "border-[#007BFF] mt-[32px] rounded-[80px]"
+                        "border-[#007BFF] mt-[32px] rounded-[80px] font-[700] text-[16px] lg:text-[18px]"
                     )}
                 />
             </Reveal>
