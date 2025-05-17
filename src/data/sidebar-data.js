@@ -13,6 +13,11 @@ import { TbTool } from "react-icons/tb";
 import { IoColorPaletteOutline } from "react-icons/io5";
 import { RiNotificationBadgeLine } from "react-icons/ri";
 import { TbBrowserCheck } from "react-icons/tb";
+import { BsUmbrella } from "react-icons/bs";
+import { MdOutlineMap } from "react-icons/md";
+import { FaTreeCity } from "react-icons/fa6";
+import { CiViewList } from "react-icons/ci";
+import { CiCircleList } from "react-icons/ci";
 
 export const sidebarData = {
     user: {
@@ -58,13 +63,39 @@ export const sidebarData = {
                 },
                 {
                     title: 'Trải nghiệm',
-                    url: '/admin/experiences',
                     icon: IoCompassOutline,
+                    items: [
+                        {
+                            title: 'Trải nghiệm',
+                            url: '/admin/experiences',
+                            icon: CiViewList,
+                        },
+                        {
+                            title: 'Loại hình trải nghiệm',
+                            url: '/admin/experience-types',
+                            icon: CiCircleList,
+                        },
+                    ]
+                },
+                {
+                    title: 'Vùng Miền',
+                    url: '/admin/regions',
+                    icon: MdOutlineMap,
+                },
+                {
+                    title: 'Thành phố',
+                    url: '/admin/cities',
+                    icon: FaTreeCity,
                 },
                 {
                     title: 'Ưu đãi du lịch',
                     url: '/admin/travel-offers',
                     icon: RiShoppingBag4Line,
+                },
+                {
+                    title: 'Mùa du lịch',
+                    url: '/admin/reasons',
+                    icon: BsUmbrella,
                 },
             ],
         },

@@ -13,7 +13,7 @@ export default function AppQuill({ value = '', className = '', placeholder = '' 
                 onChange(quill.root.innerHTML);
             });
         }
-    }, [quill, value]);
+    }, [quill, value, onChange]);
 
     return (
         <div className={`app-quill ${className}`} style={{ height: "400px", width: "100%" }}>

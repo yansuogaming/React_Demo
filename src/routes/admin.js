@@ -56,19 +56,39 @@ const routesAdmin = [
                 },
             },
             {
-                path: 'settings',
-                Component: lazy(() => import("@pages/admin/Settings/Index")),
-                children: [
-                    {
-                        meta: () => {
-                            return [
-                                { title: "Experience" },
-                                { name: "description", content: "Experience" },
-                            ];
-                        },
-                    }
-                ]
-            }
+                path: 'experience-types',
+                Component: lazy(() => import("@pages/admin/Experience/ExperienceTypes")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
+            {
+                path: 'experience-types/add',
+                Component: lazy(() => import("@pages/admin/Experience/EditExperienceType")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
+            // {
+            //     path: 'settings',
+            //     Component: lazy(() => import("@pages/admin/Settings/Index")),
+            //     children: [
+            //         {
+            //             meta: () => {
+            //                 return [
+            //                     { title: "Experience" },
+            //                     { name: "description", content: "Experience" },
+            //                 ];
+            //             },
+            //         }
+            //     ]
+            // }
         ]
     }
 ];
