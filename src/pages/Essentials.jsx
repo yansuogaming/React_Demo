@@ -34,7 +34,7 @@ const HeroSection = ({ breadcrumdItems }) => {
         <h1 className="text-5xl  text-black">Practical information</h1>
       </div>
       <Reveal>
-        <div className="h-[80vh] relative rounded-br-[100px] overflow-hidden -mx-20 my-5">
+      <div className="h-[250px] md:h-[400px] lg:h-[80vh] relative lg:rounded-br-[100px] overflow-hidden mx-0  xl:-mx-15 my-5">
           <iframe
             className="absolute inset-0 w-full h-full border-0 z-10"
             src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"

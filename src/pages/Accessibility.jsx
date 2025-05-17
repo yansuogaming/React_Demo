@@ -58,7 +58,7 @@ const HeroSection = () => {
       <Reveal>
         <section className="mb-12 h-auto ">
           <Carousel
-            className="w-[80vw] mx-auto "
+            className="w-full xl:w-[80vw] mt-10 xl:mt-0  mx-auto "
             opts={{
               align: "start",
               skipSnaps: false,
@@ -69,9 +69,9 @@ const HeroSection = () => {
               {Array.from({ length: 2 }).map((_, index) => (
                 <CarouselItem
                   key={index}
-                  className="basis-full w-[80vw] h-[80vh] "
+                  className="basis-full w-[80vw] h-[50vh] lg:h-[80vh] "
                 >
-                  <div className="h-[80vh] relative rounded-br-[100px] overflow-hidden">
+                  <div className="h-full relative lg:rounded-br-[100px] overflow-hidden mx-0 ">
                     <iframe
                       className="absolute inset-0 w-full h-full border-0 z-10"
                       src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
@@ -86,7 +86,7 @@ const HeroSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex flex-col absolute gap-5 top-30 right-20">
+            <div className="flex xl:flex-col absolute gap-5  -top-10 right-0 xl:top-30 xl:right-20">
               <CarouselPrevious
                 className={
                   "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-blue-500 before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10"
