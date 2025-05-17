@@ -9,8 +9,11 @@ import { FiSearch } from "react-icons/fi";
 import {
     RiCloseLargeLine,
     RiArrowRightSLine,
+    RiArrowLeftSLine,
     RiQuestionLine,
 } from "react-icons/ri";
+import { MdArrowDropDown } from "react-icons/md";
+
 import { TbWorld } from "react-icons/tb";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 
@@ -97,6 +100,8 @@ const Header = ({ noBackgroundOnScroll = false }) => {
     };
 
     const [isVisible, setIsVisible] = useState(false);
+    const [isVisibleLang, setIsVisibleLang] = useState(false);
+    const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
     return (
         <HeaderContext.Provider value={contextValue}>
             <header>
@@ -279,7 +284,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     />
                 </div>
 
-                {/*HNV  */}
+                {/* Mobile header */}
                 <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-1">
                     <div className="absolute w-full h-[100px] top-0 left-0 z-[-1] bg-gradient-to-b from-[rgba(4,18,58,0.40)] via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]"></div>
                     {/* Logo */}
@@ -299,6 +304,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             />
                         </NavLink>
                     </motion.div>
+                    {/* Hamburger */}
                     <button
                         className="text-[30px] text-[#fff]"
                         onClick={() => setIsVisible(!isVisible)}
@@ -306,14 +312,18 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <LuTextSearch />
                     </button>
 
+                    {/* Mobile menu */}
                     <AnimatePresence initial={false}>
                         {isVisible && (
                             <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.7 }}
-                                className="w-full h-screen fixed top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll"
+                                initial={{ x: "100%", opacity: 0 }}
+                                animate={{ x: 0, opacity: 1 }}
+                                exit={{ x: "100%", opacity: 0 }}
+                                transition={{
+                                    duration: 0.4,
+                                    ease: "easeInOut",
+                                }}
+                                className="w-full h-screen absolute top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll"
                             >
                                 <div className="bg-[#28B8F8] px-[16px] pt-[16px] pb-[10px] flex flex-col gap-[58px]">
                                     <div className="flex items-center justify-between">
@@ -376,6 +386,11 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                         <NavLink
                                             to="/"
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#003F73]"
+                                            onClick={() => {
+                                                setIsVisibleSubMenu(
+                                                    !isVisibleSubMenu
+                                                );
+                                            }}
                                         >
                                             Plan Your Trip <RiArrowRightSLine />
                                         </NavLink>
@@ -392,44 +407,77 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink
-                                                to="/"
+                                            <button
                                                 className="text-[16px] font-bold flex items-center justify-between"
+                                                onClick={() =>
+                                                    setIsVisibleLang(
+                                                        !isVisibleLang
+                                                    )
+                                                }
                                             >
                                                 <div className="flex items-center gap-[10px]">
                                                     <TbWorld /> Language
                                                 </div>
-                                                <RiArrowRightSLine className="text-[20px]" />
-                                            </NavLink>
-                                            <ul className="pl-[30px] mt-[10px]">
-                                                <li>
-                                                    <NavLink
-                                                        to="/"
-                                                        className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
+                                                <MdArrowDropDown
+                                                    className={`text-[20px] transition-transform duration-300 ${
+                                                        isVisibleLang
+                                                            ? "rotate-180"
+                                                            : ""
+                                                    }`}
+                                                />
+                                            </button>
+                                            <AnimatePresence initial={false}>
+                                                {isVisibleLang && (
+                                                    <motion.div
+                                                        initial={{
+                                                            height: 0,
+                                                            opacity: 0,
+                                                        }}
+                                                        animate={{
+                                                            height: "auto",
+                                                            opacity: 1,
+                                                        }}
+                                                        exit={{
+                                                            height: 0,
+                                                            opacity: 0,
+                                                        }}
+                                                        transition={{
+                                                            duration: 0.4,
+                                                            ease: "easeInOut",
+                                                        }}
                                                     >
-                                                        <span className="fi fi-vn"></span>
-                                                        Vietnam
-                                                    </NavLink>
-                                                </li>
-                                                <li>
-                                                    <NavLink
-                                                        to="/"
-                                                        className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
-                                                    >
-                                                        <span className="fi fi-gb"></span>
-                                                        English
-                                                    </NavLink>
-                                                </li>
-                                                <li>
-                                                    <NavLink
-                                                        to="/"
-                                                        className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
-                                                    >
-                                                        <span className="fi fi-cn"></span>
-                                                        Chinese
-                                                    </NavLink>
-                                                </li>
-                                            </ul>
+                                                        <ul className="pl-[30px] mt-[10px]">
+                                                            <li>
+                                                                <NavLink
+                                                                    to="/"
+                                                                    className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
+                                                                >
+                                                                    <span className="fi fi-vn"></span>
+                                                                    Vietnam
+                                                                </NavLink>
+                                                            </li>
+                                                            <li>
+                                                                <NavLink
+                                                                    to="/"
+                                                                    className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
+                                                                >
+                                                                    <span className="fi fi-gb"></span>
+                                                                    English
+                                                                </NavLink>
+                                                            </li>
+                                                            <li>
+                                                                <NavLink
+                                                                    to="/"
+                                                                    className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
+                                                                >
+                                                                    <span className="fi fi-cn"></span>
+                                                                    Chinese
+                                                                </NavLink>
+                                                            </li>
+                                                        </ul>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
                                         </li>
                                     </ul>
                                     <div className="flex items-center gap-[8px] justify-between">
@@ -449,6 +497,120 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                 <UserIcon /> Login/Register
                                             </NavLink>
                                         </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                    {/* Submenu */}
+                    <AnimatePresence initial={false}>
+                        {isVisibleSubMenu && (
+                            <motion.div
+                                initial={{
+                                    x: "100%",
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    x: 0,
+                                    opacity: 1,
+                                }}
+                                exit={{
+                                    x: "100%",
+                                    opacity: 0,
+                                }}
+                                transition={{
+                                    duration: 0.4,
+                                    ease: "easeInOut",
+                                }}
+                                className="w-full h-screen absolute top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll"
+                            >
+                                <div className="bg-[#003F73] fixed top-0 left-0 w-full h-screen">
+                                    <div className="flex items-center justify-between px-[16px] py-[16px] border-b border-gray-300/53">
+                                        <div
+                                            className="flex items-center gap-[12px]"
+                                            onClick={() =>
+                                                setIsVisibleSubMenu(
+                                                    !isVisibleSubMenu
+                                                )
+                                            }
+                                        >
+                                            <RiArrowLeftSLine className="text-[24px]" />
+                                            <span className="text-[20px]">
+                                                Main menu
+                                            </span>
+                                        </div>
+                                        <button
+                                            className="text-[20px]"
+                                            onClick={() => {
+                                                setIsVisible(!isVisible);
+                                                setIsVisibleSubMenu(
+                                                    !isVisibleSubMenu
+                                                );
+                                            }}
+                                        >
+                                            <RiCloseLargeLine />
+                                        </button>
+                                    </div>
+                                    <div className="pt-[50px] pb-[64px]">
+                                        <h2 className="px-[16px] text-[36px] font-bold mb-[16px]">
+                                            Plan Your Trip
+                                        </h2>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink to="/">
+                                                    Visa guide
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink to="/">
+                                                    Essentials
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink to="/">
+                                                    Flights
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink to="/">
+                                                    Accommodation
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink to="/">
+                                                    Getting to & around Vietnam
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink to="/visainformation">
+                                                    Visa Information
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink to="/placetogo">
+                                                    Place To Go
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink to="/weathertrip">
+                                                    Weather Trip
+                                                </NavLink>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
                             </motion.div>
@@ -504,7 +666,9 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("visa_guide")}
                         description={t("plan_ahead_for_travel")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/visa-guide"
                     />
 
@@ -512,7 +676,9 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("essentials")}
                         description={t("from_etiquette_to_currency")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/essentials"
                     />
 
@@ -520,7 +686,9 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("flights")}
                         description={t("book_flight_tickets")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/"
                     />
 
@@ -528,7 +696,9 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("accommodation")}
                         description={t("incredible_range_of_stay_options")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/"
                     />
 
@@ -536,7 +706,9 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("getting_around_vietnam")}
                         description={t("navigating_vietnam_is_a_breeze")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/getting-to-and-around"
                     />
 
@@ -544,7 +716,9 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("safety")}
                         description={t("guide_to_enjoying_safely")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/safety"
                     />
 
@@ -552,15 +726,19 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("weather")}
                         description={t("vietnam_climate_guide")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
-                        to="/"
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
+                        to="/weathertrip"
                     />
 
                     {/* Currency */}
                     <InfoCard
                         title={t("currency")}
                         description={t("all_about_vietnam_currency")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/"
                     />
 
@@ -568,7 +746,9 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("accessibility")}
                         description={t("for_travelers_with_special_needs")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/accessibility"
                     />
 
@@ -576,23 +756,39 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                     <InfoCard
                         title={t("vietnam_attractions_passes")}
                         description={t("unlock_savings_with_passes")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/vietnam-pass"
                     />
 
-                    {/* Download apps */}
+                    {/* Visa Information */}
                     <InfoCard
-                        title={t("download_apps")}
-                        description={t("get_apps_for_attractions")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
-                        to="/"
+                        title={t("visa_information")}
+                        description={t("visa_information")}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
+                        to="/visainformation"
+                    />
+
+                    {/* Place to go */}
+                    <InfoCard
+                        title={t("place_to_go")}
+                        description={t("place_to_go")}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
+                        to="/placetogo"
                     />
 
                     {/* Download apps */}
                     <InfoCard
                         title={t("download_apps")}
                         description={t("get_apps_for_attractions")}
-                        icon={<ChevronRight color="black" className="h-5 w-5" />}
+                        icon={
+                            <ChevronRight color="black" className="h-5 w-5" />
+                        }
                         to="/"
                     />
                 </div>

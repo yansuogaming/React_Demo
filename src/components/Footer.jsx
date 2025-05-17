@@ -248,7 +248,7 @@ const Footer = () => {
                     </div>
                 </div>
 
-                <div className="sm:hidden md:block lg:hidden w-full md:w-1/2 lg:w-[400px] mb-[32px]">
+                <div className="hidden md:block lg:hidden w-full md:w-1/2 lg:w-[400px] mb-[32px]">
                     <p className="mb-[10px] hidden md:block font-[700] text-[16px]">
                         {t("download_our_apps")}
                     </p>

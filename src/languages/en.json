@@ -2,7 +2,12 @@
   "home.hero_heading": "Vietnam: Where Every Journey Inspires",
   "home.description": "Discover UNESCO heritage, vibrant cities, and breathtaking nature",
   "destinations": "Destinations",
+
   "experiences": "Experiences",
+  "add_experience": "Add Experience",
+  "add_experience_type": "Add experience type",
+  "experience_types": "Experience Types",
+  
   "events": "Events",
   "plan_your_trip": "Plan Your Trip",
   "travel_offers": "Travel Offers",

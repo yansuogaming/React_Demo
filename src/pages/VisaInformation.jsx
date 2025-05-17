@@ -334,7 +334,7 @@ const VisaInformation = () => {
                         items={breadcrumdItems}
                     />
                 </section>
-                <section>
+                <section className="container">
                     <h2 className="text-[56px] text-[#000] font-[700] mb-[20px]">
                         Visa information
                     </h2>

@@ -4,19 +4,9 @@ import Main from '@components/admin/Main'
 import ProfileDropdown from '@components/admin/ProfileDropdown'
 import Search from '@components/admin/Search'
 import ThemeSwitch from '@components/admin/ThemeSwitch'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@components/ui/table'
 import { Checkbox } from '@components/ui/checkbox'
 import { useEffect, useState } from 'react'
-import {
-    flexRender,
-    getCoreRowModel,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    useReactTable
-} from '@tanstack/react-table'
 import { Button } from '@components/ui/button'
-import { Input } from '@components/ui/input'
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -29,13 +19,12 @@ import toast from 'react-hot-toast'
 import { IoIosWarning } from 'react-icons/io'
 import { HiDotsHorizontal } from "react-icons/hi"
 import { Plus } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import DataTable from '@components/admin/DataTable'
 
 export default function Experience() {
-    const [sorting, setSorting] = useState([])
-    const [columnFilters, setColumnFilters] = useState([])
-    const [columnVisibility, setColumnVisibility] = useState({})
-    const [rowSelection, setRowSelection] = useState({})
     const [data, setData] = useState([]);
+    const { t } = useTranslation();
     let navigate = useNavigate();
 
     const columns = [
@@ -110,7 +99,7 @@ export default function Experience() {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align='end' className='w-[120px]'>
-                            <DropdownMenuItem onClick={() => navigate(`/admin/experience/edit/${row.getValue('id')}`)}>
+                            <DropdownMenuItem onClick={() => navigate(`/admin/experiences/edit/${row.getValue('id')}`)}>
                                 Sửa
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => deleteExperience(row.getValue('id'))}>
@@ -147,25 +136,6 @@ export default function Experience() {
         }
     };
 
-    const table = useReactTable({
-        data,
-        columns,
-        onSortingChange: setSorting,
-        onColumnFiltersChange: setColumnFilters,
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-        getFilteredRowModel: getFilteredRowModel(),
-        onColumnVisibilityChange: setColumnVisibility,
-        onRowSelectionChange: setRowSelection,
-        state: {
-            sorting,
-            columnFilters,
-            columnVisibility,
-            rowSelection,
-        },
-    })
-
     useEffect(() => {
         getExperience();
     }, []);
@@ -185,8 +155,26 @@ export default function Experience() {
 
             {/* ===== Main ===== */}
             <Main>
-                <div className='mb-2'>
-                    <h1 className='text-2xl font-bold tracking-tight'>Trải nghiệm</h1>
+                <div className='mb-2 flex justify-between'>
+                    <h1 className='text-2xl font-bold tracking-tight'>{t('experiences')}</h1>
+                    <div className="flex gap-3">
+                        <Button
+                            className="gap-2 cursor-pointer"
+                            variant='outline'
+                            onClick={() => navigate('/admin/experience-types/add')}
+                        >
+                            {t('add_experience_type')}
+                            <Plus className="w-4 h-4" />
+                        </Button>
+                        <Button
+                            className="gap-2 cursor-pointer"
+                            variant="default"
+                            onClick={() => navigate('/admin/experiences/add')}
+                        >
+                            {t('add_experience')}
+                            <Plus className="w-4 h-4" />
+                        </Button>
+                    </div>
                 </div>
                 <Tabs
                     orientation='vertical'
@@ -194,81 +182,7 @@ export default function Experience() {
                     className='space-y-4'
                 >
                     <TabsContent value='overview' className='space-y-4'>
-                        <DataTableToolbar table={table} />
-                        <div className="rounded-md border">
-                            <Table>
-                                <TableHeader>
-                                    {table.getHeaderGroups().map((headerGroup) => (
-                                        <TableRow key={headerGroup.id}>
-                                            {headerGroup.headers.map((header) => {
-                                                return (
-                                                    <TableHead width={header.getSize()} key={header.id}>
-                                                        {header.isPlaceholder
-                                                            ? null
-                                                            : flexRender(
-                                                                header.column.columnDef.header,
-                                                                header.getContext()
-                                                            )}
-                                                    </TableHead>
-                                                )
-                                            })}
-                                        </TableRow>
-                                    ))}
-                                </TableHeader>
-                                <TableBody>
-                                    {table.getRowModel().rows?.length ? (
-                                        table.getRowModel().rows.map((row) => (
-                                            <TableRow
-                                                key={row.id}
-                                                data-state={row.getIsSelected() && "selected"}
-                                            >
-                                                {row.getVisibleCells().map((cell) => (
-                                                    <TableCell key={cell.id}>
-                                                        {flexRender(
-                                                            cell.column.columnDef.cell,
-                                                            cell.getContext()
-                                                        )}
-                                                    </TableCell>
-                                                ))}
-                                            </TableRow>
-                                        ))
-                                    ) : (
-                                        <TableRow>
-                                            <TableCell
-                                                colSpan={columns.length}
-                                                className="h-24 text-center"
-                                            >
-                                                No results.
-                                            </TableCell>
-                                        </TableRow>
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </div>
-                        <div className="flex items-center justify-end space-x-2 py-4">
-                            <div className="flex-1 text-sm text-muted-foreground">
-                                {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                                {table.getFilteredRowModel().rows.length} row(s) selected.
-                            </div>
-                            <div className="space-x-2">
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={() => table.previousPage()}
-                                    disabled={!table.getCanPreviousPage()}
-                                >
-                                    Previous
-                                </Button>
-                                <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={() => table.nextPage()}
-                                    disabled={!table.getCanNextPage()}
-                                >
-                                    Next
-                                </Button>
-                            </div>
-                        </div>
+                        <DataTable columns={columns} data={data} />
                     </TabsContent>
                 </Tabs>
             </Main>
@@ -276,28 +190,5 @@ export default function Experience() {
     )
 }
 
-function DataTableToolbar({ table }) {
-    let navigate = useNavigate();
-    return (
-        <div className='flex items-center justify-between'>
-            <Input
-                placeholder='Filter tasks...'
-                value={(table.getColumn('title')?.getFilterValue()) ?? ''}
-                onChange={(event) =>
-                    table.getColumn('title')?.setFilterValue(event.target.value)
-                }
-                className='h-8 w-[150px] lg:w-[250px]'
-            />
-            <Button
-                className="gap-2 cursor-pointer"
-                variant="default"
-                onClick={() => navigate('/admin/experiences/add')}
-            >
-                <Plus className="w-4 h-4" />
-                Thêm trải nghiệm
-            </Button>
-        </div>
-    )
-}
 
 

@@ -37,7 +37,7 @@ if (!isProduction) {
 // Serve HTML
 app.use('*all', async (req, res) => {
     try {
-        const url = req.originalUrl.replace(base, '')
+        const url = encodeURI(req.originalUrl.replace(base, ''))
 
         /** @type {string} */
         let template
@@ -92,8 +92,7 @@ app.use('*all', async (req, res) => {
             abort()
         }, ABORT_DELAY)
     } catch (e) {
-        vite?.ssrFixStacktrace(e)
-        res.status(500).end(e.stack)
+        res.status(500).end()
     }
 })
 
