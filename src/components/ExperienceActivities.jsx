@@ -15,7 +15,7 @@ const ExperienceActivities = ({ className = "" }) => {
             <h3 className="text-[#1A2A44] text-[28px] sm:text-[32px] md:text-[40px] font-bold mb-[10px] sm:mb-[15px]">
                 Experiences and Activities
             </h3>
-            <div className="flex flex-wrap gap-[10px]">
+            <div className="flex gap-[10px] overflow-x-auto no-scrollbar whitespace-nowrap py-2">
                 <button className="p-[8px_16px] text-[#007BFF] rounded-[80px] border-[#007BFF] border-1">
                     Itineraries
                 </button>
@@ -44,7 +44,7 @@ const ExperienceActivities = ({ className = "" }) => {
                     }}
                 >
                     <CarouselContent className="-ml-[20px]">
-                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 pl-[20px] relative group">
+                        <CarouselItem className="basis-[83.3333%] sm:basis-[45.45%] lg:basis-1/3 pl-[20px] relative group">
                             <NavLink className="overflow-hidden ">
                                 <img
                                     src={image}
@@ -86,7 +86,7 @@ const ExperienceActivities = ({ className = "" }) => {
                                 (injected humour
                             </p>
                         </CarouselItem>
-                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 pl-[20px] relative group">
+                        <CarouselItem className="basis-[83.3333%] sm:basis-[45.45%] lg:basis-1/3 pl-[20px] relative group">
                             <NavLink className="overflow-hidden ">
                                 <img
                                     src={image}
@@ -128,7 +128,7 @@ const ExperienceActivities = ({ className = "" }) => {
                                 (injected humour
                             </p>
                         </CarouselItem>
-                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 pl-[20px] relative group">
+                        <CarouselItem className="basis-[83.3333%] sm:basis-[45.45%] lg:basis-1/3 pl-[20px] relative group">
                             <NavLink className="overflow-hidden ">
                                 <img
                                     src={image}
@@ -170,7 +170,7 @@ const ExperienceActivities = ({ className = "" }) => {
                                 (injected humour
                             </p>
                         </CarouselItem>
-                        <CarouselItem className="basis-full sm:basis-1/2 lg:basis-1/3 pl-[20px] relative group">
+                        <CarouselItem className="basis-[83.3333%] sm:basis-[45.45%] lg:basis-1/3 pl-[20px] relative group">
                             <NavLink className="overflow-hidden ">
                                 <img
                                     src={image}
@@ -213,8 +213,8 @@ const ExperienceActivities = ({ className = "" }) => {
                             </p>
                         </CarouselItem>
                     </CarouselContent>
-                    <CarouselPrevious className="left-[20px] cursor-pointer" />
-                    <CarouselNext className="right-[20px] cursor-pointer" />
+                    <CarouselPrevious className="hidden lg:flex items-center justify-center absolute top-[40%] -translate-y-1/2 left-0 z-10 rounded-full bg-white shadow-md" />
+                    <CarouselNext className="hidden lg:flex items-center justify-center absolute top-[40%] -translate-y-1/2 right-0 z-10 rounded-full bg-white shadow-md" />
                 </Carousel>
             </Reveal>
         </section>
