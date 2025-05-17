@@ -56,18 +56,6 @@ export default function EditExperience() {
         }
     }
 
-    const getExperience = async () => {
-        const res = await HttpClient.get(`/experience/${id}`);
-        if (res.status === 200) {
-            const data = res.data.data;
-            setTitle(data.title);
-            setContent(data.content);
-            setImage(data.image);
-        } else {
-            toast.error('Lấy trải nghiệm thất bại!')
-        }
-    };
-
     const removeImage = (e) => {
         e.preventDefault();
         setImage("");
@@ -89,9 +77,21 @@ export default function EditExperience() {
 
     useEffect(() => {
         if (id) {
+            const getExperience = async () => {
+                const res = await HttpClient.get(`/experience/${id}`);
+                if (res.status === 200) {
+                    const data = res.data.data;
+                    setTitle(data.title);
+                    setContent(data.content);
+                    setImage(data.image);
+                } else {
+                    toast.error('Lấy trải nghiệm thất bại!')
+                }
+            };
+
             getExperience();
         }
-    }, []);
+    }, [id]);
 
     return (
         <>

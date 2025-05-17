@@ -1,8 +1,3 @@
-import {
-    AudioWaveform,
-    Command,
-    GalleryVerticalEnd
-} from 'lucide-react'
 import { IoCompassOutline } from "react-icons/io5";
 import { TbLayoutDashboard } from "react-icons/tb";
 import { BsPinMap } from "react-icons/bs";
@@ -25,23 +20,6 @@ export const sidebarData = {
         email: 'satnaingdev@gmail.com',
         avatar: '/avatars/shadcn.jpg',
     },
-    teams: [
-        {
-            name: 'Shadcn Admin',
-            logo: Command,
-            plan: 'Vite + ShadcnUI',
-        },
-        {
-            name: 'Acme Inc',
-            logo: GalleryVerticalEnd,
-            plan: 'Enterprise',
-        },
-        {
-            name: 'Acme Corp.',
-            logo: AudioWaveform,
-            plan: 'Startup',
-        },
-    ],
     navGroups: [
         {
             title: 'General',
