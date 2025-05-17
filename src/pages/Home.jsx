@@ -55,7 +55,7 @@ export default function Home() {
                     style={{ display: isLoaded ? "inline" : "none" }}
                     ref={imgRef}
                     onLoad={() => setIsLoaded(true)}
-                    className="h-screen min-w-screen absolute top-0 left-1/2 -translate-x-1/2 object-cover"
+                    className="h-screen w-full absolute top-0 left-1/2 -translate-x-1/2 object-cover"
                 />
                 {isLoaded && (
                     <div className="absolute bottom-[80px] lg:bottom-[120px] text-center w-full px-[20px]">
