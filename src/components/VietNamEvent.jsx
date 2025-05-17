@@ -72,8 +72,8 @@ const VietNamEvent = ({ className = "" }) => {
                             ))}
                         </CarouselContent>
 
-                        <CarouselPrevious className="absolute left-[-16px] top-[120px] -translate-y-1/2 z-10 bg-white text-[#1A2A44] rounded-full p-2 shadow" />
-                        <CarouselNext className="absolute right-[-16px] top-[120px] -translate-y-1/2 z-10 bg-white text-[#1A2A44] rounded-full p-2 shadow" />
+                        <CarouselPrevious className="hidden absolute left-[-16px] top-[120px] -translate-y-1/2 z-10 bg-white text-[#1A2A44] rounded-full p-2 shadow" />
+                        <CarouselNext className="hidden absolute right-[-16px] top-[120px] -translate-y-1/2 z-10 bg-white text-[#1A2A44] rounded-full p-2 shadow" />
                     </Carousel>
                 </div>
 

@@ -29,7 +29,7 @@ const PlainYourTrip = ({ className = "" }) => {
                         local experiences!
                     </p>
                     <InputTripLocation />
-                    <CreateItineraryButton className="mt-[12px] mx-auto lg:mx-0" />
+                    <CreateItineraryButton className="mt-[12px] mx-auto lg:mx-0 " />
                     <div className="flex justify-start flex-wrap gap-[8px] lg:gap-[12px] mt-[20px] lg:mt-[30px]">
                         <button className="flex gap-[8px] bg-white rounded-[80px] p-[9px_16px] text-[16px] lg:[20px] font-[500]">
                             <img src={iconVisa} alt="Visa" />
