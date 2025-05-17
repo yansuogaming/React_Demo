@@ -84,8 +84,8 @@ const City = () => {
                         </p>
                     </div>
 
-                    <div className="pt-[10px]">
-                        <div className="relative w-full h-auto max-w-[400px] mx-auto lg:mx-0 pt-[100px]">
+                    <div className="lg:pt-[10px]">
+                        <div className="relative w-full h-auto max-w-[400px] mx-auto lg:mx-0 pt-[32px] lg:pt-[100px]">
                             <div className="h-[296px] overflow-hidden rounded-[60px_12px_12px_12px]">
                                 <img
                                     src={imageMapCountry}
@@ -98,7 +98,7 @@ const City = () => {
                                 </button>
                             </div>
 
-                            <div className="absolute -translate-x-1/2 top-0 left-1/2 w-[260px] sm:w-[300px] h-[180px] sm:h-[200px]">
+                            <div className="hidden lg:block absolute -translate-x-1/2 top-0 left-1/2 w-[260px] sm:w-[300px] h-[180px] sm:h-[200px]">
                                 <img
                                     src={imageCity2}
                                     alt="Temple of Literature"
@@ -124,7 +124,7 @@ const City = () => {
             <PlainYourTrip className="mt-[120px]" />
             <FAQ className="mt-[120px]" />
             <OtherRegion className="mt-[120px]" />
-            <Share color="#007BFF" className="mt-[120px]" />
+            <Share color="#007BFF" className="mt-[60px] lg:mt-[120px]" />
         </main>
     );
 };
