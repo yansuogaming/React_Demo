@@ -102,7 +102,6 @@ const Header = ({ noBackgroundOnScroll = false }) => {
     const [isVisible, setIsVisible] = useState(false);
     const [isVisibleLang, setIsVisibleLang] = useState(false);
     const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
-    let navigate = useNavigate();
     return (
         <HeaderContext.Provider value={contextValue}>
             <header>
@@ -560,160 +559,99 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                         <ul>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                                                 <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/visainformation"
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
+                                                    to="/"
+                                                    onClick={() =>
+                                                        setIsVisible(!isVisible)
+                                                    }
+                                                >
+                                                    Visa guide
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink
+                                                    to="/"
+                                                    onClick={() =>
+                                                        setIsVisible(!isVisible)
+                                                    }
+                                                >
+                                                    Essentials
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink
+                                                    to="/"
+                                                    onClick={() =>
+                                                        setIsVisible(!isVisible)
+                                                    }
+                                                >
+                                                    Flights
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink
+                                                    to="/"
+                                                    onClick={() =>
+                                                        setIsVisible(!isVisible)
+                                                    }
+                                                >
+                                                    Accommodation
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink
+                                                    to="/"
+                                                    onClick={() =>
+                                                        setIsVisible(!isVisible)
+                                                    }
+                                                >
+                                                    Getting to & around Vietnam
+                                                </NavLink>
+                                            </li>
+                                        </ul>
+                                        <ul>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink
+                                                    to="/visainformation"
+                                                    onClick={() =>
+                                                        setIsVisible(!isVisible)
+                                                    }
                                                 >
                                                     Visa Information
                                                 </NavLink>
                                             </li>
+                                        </ul>
+                                        <ul>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                                                 <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/visainformation"
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
-                                                >
-                                                    Visa Information
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/visainformation"
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
-                                                >
-                                                    Visa Information
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/visainformation"
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
-                                                >
-                                                    Visa Information
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/visainformation"
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
-                                                >
-                                                    Visa Information
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/visainformation"
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
-                                                >
-                                                    Visa Information
-                                                </NavLink>
-                                            </li>
-
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/visainformation"
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
-                                                >
-                                                    Visa Information
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate("/placetogo");
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
+                                                    to="/placetogo"
+                                                    onClick={() =>
+                                                        setIsVisible(!isVisible)
+                                                    }
                                                 >
                                                     Place To Go
                                                 </NavLink>
                                             </li>
+                                        </ul>
+                                        <ul>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                                                 <button></button>
                                                 <NavLink
+                                                    to="/weathertrip"
                                                     onClick={(e) => {
                                                         e.preventDefault();
-                                                        navigate(
-                                                            "/weathertrip"
-                                                        );
                                                         setIsVisible(
                                                             !isVisible
                                                         );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                        navigate(
+                                                            "/weathertrip"
                                                         );
                                                     }}
                                                 >
