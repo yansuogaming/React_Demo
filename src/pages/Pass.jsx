@@ -31,7 +31,7 @@ const HeroSection = () => {
 
   return (
     <Reveal>
-      <div className="h-[200px] md:h-[80vh] relative rounded-0 md:rounded-br-[100px] overflow-hidden  md:-mx-20 my-5">
+     <div className="h-[250px] md:h-[400px] lg:h-[80vh] relative lg:rounded-br-[100px] overflow-hidden mx-0  xl:-mx-15 my-5">
         <iframe
           className="absolute inset-0 w-full h-full border-0 z-10"
           src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
@@ -571,7 +571,7 @@ export default function VietNamPass() {
 
 const CardPass = ({ backgroundColor = "#b5256d" }) => {
   return (
-    <div className="border rounded-lg overflow-hidden">
+    <div className="border rounded-lg overflow-hidden ">
       <div className="relative h-48">
         <img
           src="https://hoiana.com/wp-content/uploads/2024/09/what-to-do-on-vietnam-national-day.jpg"

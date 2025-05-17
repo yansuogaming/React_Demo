@@ -36,7 +36,7 @@ const HeroSection = () => {
           items={breadcrumdItems}
         />
       </div>
-      <div className="relative h-[80vh] w-[90vw] rounded-br-[100px] mx-auto ">
+      <div className="relative lg:h-[80vh] w-[90vw] rounded-br-[100px] mx-auto ">
         <Reveal className="w-full h-full ">
           <img
             src="https://cdn.baogialai.com.vn/images/822863faa89937513fac62d7aa33eaf61a699ca6d1cb942c5dd210083a40d96956455cd5a5ab96b6d00ad1efa949e7568cef72d796776500468ad8dc73944b05/images2596564_a_3.jpg"
@@ -45,9 +45,9 @@ const HeroSection = () => {
           />
         </Reveal>
         <Reveal>
-          <div className="absolute -bottom-15 left-20 right-0">
-            <div className="bg-[#006699] text-white p-6  md:p-12 max-w-3xl rounded-tr-4xl">
-              <h1 className="text-3xl md:text-3xl font-bold mb-2">
+          <div className=" lg:absolute -bottom-15 left-20 right-0">
+            <div className="bg-[#006699] text-white p-6  md:p-12 max-w-3xl lg:rounded-tr-4xl">
+              <h1 className="text-xl lg:text-3xl md:text-3xl font-bold mb-2">
                 Safety in Viet Nam
               </h1>
               <p className="text-base md:text-lg">
@@ -90,19 +90,19 @@ const IntroSection = () => {
 const CardInfor = () => {
   return (
     <div className="bg-[#006699] text-white rounded-xl overflow-hidden">
-      <div className="flex items-end pl-10 gap-10 my-10">
+      <div className="flex items-center lg:items-end pl-10 gap-10 my-4 lg:my-10 lg:py-3">
         <div className="p-4 flex items-center justify-center">
-          <img src={phone} alt="Phone" className="h-20 w-20" />
+          <img src={phone} alt="Phone" className="w-12 h-12 lg:h-20 lg:w-20" />
         </div>
-        <div className="text-left py-3 flex flex-col gap-2  ">
-          <div className="text-5xl font-bold">113</div>
-          <div className="text-2xl">Viet Nam Police</div>
+        <div className="text-left  flex flex-col gap-2  ">
+          <div className="text-3xl lg:text-5xl font-bold">113</div>
+          <div className="text-xl lg:text-2xl">Viet Nam Police</div>
         </div>
       </div>
       <div
-        className="text-3xl text-left hover:underline
+        className="text-lg lg:text-3xl text-left hover:underline
       hover:cursor-pointer
-      pl-10 pb-10 "
+      pl-10 pb-3 lg:pb-10 "
       >
         CALL NOW
       </div>
@@ -205,7 +205,7 @@ const SafetyTopicsSection = () => {
       <Reveal>
         <section className="mb-12 h-auto mt-20">
           <Carousel
-            className="w-full "
+            className="w-full  "
             opts={{
               align: "start",
               skipSnaps: false,
@@ -216,7 +216,7 @@ const SafetyTopicsSection = () => {
               {Array.from({ length: 5 }, (_, index) => (
                 <CarouselItem
                   key={index}
-                  className="basis-full h-[500px] lg:basis-2/3 "
+                  className="basis-full h-auto  lg:basis-2/3 "
                 >
                   <div className="col-span-2 relative">
                     <img
@@ -319,7 +319,7 @@ const PlanAhead = () => {
     <div className="">
       <h2 className="text-xl font-semibold mb-6">More about</h2>
       <Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {Array.from({ length: 3 }, (_, index) => (
             <CardPass backgroundColor="#006699" key={index} />
           ))}

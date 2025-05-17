@@ -39,7 +39,7 @@ const HeroSection = () => {
           Getting to & around the city
         </h1>
       </div>
-      <div className="h-[80vh] w-[80vw] mx-auto relative rounded-br-[100px] overflow-hidden">
+      <div className="h-[250px] md:h-[400px] lg:h-[80vh] relative lg:rounded-br-[100px] overflow-hidden mx-0  xl:-mx-15 my-5">
         <iframe
           className="absolute inset-0 w-full h-full border-0 z-10"
           src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
@@ -88,19 +88,19 @@ const ImgGalery = () => {
           </CarouselItem>
         </CarouselContent>
         <div className="absolute -top-10 right-0 flex gap-5">
-              <CarouselPrevious
-                className={
-                  "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-blue-500 before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10 shadow-xl"
-                }
-                classNameArrow={"group-hover:text-white transition-colors"}
-              />
-              <CarouselNext
-                className={
-                  "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-blue-500 before:origin-left before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-300 before:-z-10 shadow-xl"
-                }
-                classNameArrow={"group-hover:text-white transition-colors"}
-              />
-            </div>
+          <CarouselPrevious
+            className={
+              "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-blue-500 before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10 shadow-xl"
+            }
+            classNameArrow={"group-hover:text-white transition-colors"}
+          />
+          <CarouselNext
+            className={
+              "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-blue-500 before:origin-left before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-300 before:-z-10 shadow-xl"
+            }
+            classNameArrow={"group-hover:text-white transition-colors"}
+          />
+        </div>
       </Carousel>
     </section>
   );
@@ -391,7 +391,7 @@ const KeepExploring = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="rounded-lg overflow-hidden border">
-          <div className="relative h-40 bg-red-500">
+          <div className="relative h-40 ">
             <img
               src="https://www.visitdubai.com/-/media/images/leisure/detail-pages/plan-your-trip/4-1-practical-information-t14/plan-your-trip-practical-information-beach-club-det.jpg?rev=8027e54cc15f41ff9c5a7a5495ba7528&cx=0.5&cy=0.5&cw=1020&ch=765"
               alt="Viet Nam skyline"
@@ -607,42 +607,41 @@ const GettingToVietnam = () => {
 };
 export default function TransportationPage() {
   return (
-    <div className="flex flex-col min-h-screen ">
-      <main className="flex-1">
+    <div className="w-full">
+      <main className="container flex-1">
         {/* Hero Section */}
         <HeroSection />
 
         {/* Main Content */}
-        <div className="container px-4 py-8">
-          {/* Getting to Viet Nam */}
-          <GettingToVietnam />
 
-          {/* img Gallery */}
-          <ImgGalery />
+        {/* Getting to Viet Nam */}
+        <GettingToVietnam />
 
-          {/* Getting to Viet Nam from other emirates */}
-          <GettingVietNamOther />
+        {/* img Gallery */}
+        <ImgGalery />
 
-          {/* Getting around Viet Nam */}
+        {/* Getting to Viet Nam from other emirates */}
+        <GettingVietNamOther />
 
-          <GettingAroundVietnam />
-          {/* img Gallery */}
-          <ImgGalery />
+        {/* Getting around Viet Nam */}
 
-          {/* Explore Viet Nam's neighborhoods */}
+        <GettingAroundVietnam />
+        {/* img Gallery */}
+        <ImgGalery />
 
-          <ExploreVietnam />
-          {/* FAQ Section */}
-          <FAQSection />
-          {/* Keep exploring */}
-          <KeepExploring />
+        {/* Explore Viet Nam's neighborhoods */}
 
-          {/* Weather in Viet Nam */}
-          <Weather />
+        <ExploreVietnam />
+        {/* FAQ Section */}
+        <FAQSection />
+        {/* Keep exploring */}
+        <KeepExploring />
 
-          {/* Stay updated */}
-          <StayUpdate />
-        </div>
+        {/* Weather in Viet Nam */}
+        <Weather />
+
+        {/* Stay updated */}
+        <StayUpdate />
       </main>
     </div>
   );

@@ -12,68 +12,85 @@ const Weather = () => {
     };
 
     return (
-        <section className="container mx-auto mt-8 sm:mt-16 px-4 sm:px-0">
-            {/* Desktop layout: 3 columns */}
-            <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
-                {/* WEATHER */}
-                <div className="rounded-[20px_4px_4px_4px] sm:rounded-[60px_4px_4px_4px] p-[30px_20px] lg:p-4 sm:p-8 bg-[#F5F6FA] text-center rounded-br-3xl">
-                    <h3 className="mb-4 sm:mb-8 text-[#1A2A44] text-base sm:text-lg font-bold text-left">
+        <section className="container mt-[60px] px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px] md:gap-[30px]">
+                {/* Weather Card */}
+                <div className="rounded-[30px_4px_4px_4px] md:rounded-[60px_4px_4px_4px] p-[20px] md:p-[30px] bg-[#F5F6FA] text-center">
+                    <h3 className="mb-[30px] text-[#1A2A44] text-[16px] font-bold text-left">
                         WEATHER
                     </h3>
-                    <div className="flex gap-2 sm:gap-3 items-center justify-center mb-2 sm:mb-4">
-                        <SunnyIcon
-                            fill="#FD6050"
-                            className="w-8 h-8 sm:w-12 sm:h-12"
-                            width={64}
-                            height={64}
-                        />
-                        <p className="text-4xl sm:text-5xl text-[#1A2A44] font-bold font-[Roboto]">
-                            {formatTemperature(31.9)}
-                        </p>
+                    <div className="flex gap-[12px] items-center justify-center mb-[5px]">
+                        <SunnyIcon fill="#FD6050" />
+                        <p className="text-[36px] md:text-[48px] text-[#1A2A44] font-bold font-[Roboto]">31,9°C</p>
                     </div>
-                    <p className="text-[#494951] font-normal text-sm sm:text-base mb-4 sm:mb-8">
-                        Cloudy
-                    </p>
-                    <div className="overflow-x-auto">
-                        <table className="w-full text-[#1A2A44] text-xs sm:text-base font-medium">
-                            <tbody>
-                                {["Winter", "Spring", "Summer", "Fall"].map(
-                                    (season, index) => (
-                                        <tr key={index}>
-                                            <td className="text-left py-1 sm:py-2">
-                                                {season}
-                                            </td>
-                                            <td className="py-1 sm:py-2 min-w-[80px]">
-                                                <div className="flex gap-1 sm:gap-2 justify-end">
-                                                    <img
-                                                        src={iconTemperature}
-                                                        alt="21°C"
-                                                        className="w-4 h-4 sm:w-5 sm:h-5"
-                                                    />
-                                                    {formatTemperature(21)}
-                                                </div>
-                                            </td>
-                                            <td className="py-1 sm:py-2 min-w-[80px]">
-                                                <div className="flex gap-1 sm:gap-2 justify-end">
-                                                    <img
-                                                        src={iconTemperature}
-                                                        alt="31°C"
-                                                        className="w-4 h-4 sm:w-5 sm:h-5"
-                                                    />
-                                                    {formatTemperature(31)}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    )
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
+                    <p className="text-[#494951] font-normal text-[16px] mb-[30px]">Cloudy</p>
+                    <table className="w-full text-[#1A2A44] text-[14px] md:text-[16px] font-medium">
+                        <tbody>
+                            <tr>
+                                <td className="text-left pb-[5px]">Winter</td>
+                                <td width="100px" className="pb-[5px]">
+                                    <div className="flex gap-[8px] justify-end">
+                                        <img src={iconTemperature} alt="21°C" />
+                                        21°C
+                                    </div>
+                                </td>
+                                <td width="100px" className="pb-[5px]">
+                                    <div className="flex gap-[8px] justify-end">
+                                        <img src={iconTemperature} alt="21°C" />
+                                        31°C
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="text-left pb-[5px]">Spring</td>
+                                <td width="100px" className="pb-[5px]">
+                                    <div className="flex gap-[8px] justify-end">
+                                        <img src={iconTemperature} alt="21°C" />
+                                        21°C
+                                    </div>
+                                </td>
+                                <td width="100px" className="pb-[5px]">
+                                    <div className="flex gap-[8px] justify-end">
+                                        <img src={iconTemperature} alt="21°C" />
+                                        31°C
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="text-left pb-[5px]">Summer</td>
+                                <td width="100px" className="pb-[5px]">
+                                    <div className="flex gap-[8px] justify-end">
+                                        <img src={iconTemperature} alt="21°C" />
+                                        21°C
+                                    </div>
+                                </td>
+                                <td width="100px" className="pb-[5px]">
+                                    <div className="flex gap-[8px] justify-end">
+                                        <img src={iconTemperature} alt="21°C" />
+                                        31°C
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td className="text-left">Fall</td>
+                                <td width="100px">
+                                    <div className="flex gap-[8px] justify-end">
+                                        <img src={iconTemperature} alt="21°C" />
+                                        21°C
+                                    </div>
+                                </td>
+                                <td width="100px">
+                                    <div className="flex gap-[8px] justify-end">
+                                        <img src={iconTemperature} alt="21°C" />
+                                        31°C
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-
-                {/* BEST TIME TO VISIT (only visible on desktop) */}
-                <div className="hidden lg:block rounded-[4px] p-4 sm:p-8 bg-[#F5F6FA] rounded-tl-3xl rounded-br-3xl">
-                    <h3 className="mb-4 sm:mb-8 text-[#1A2A44] text-base sm:text-lg font-bold text-left">
+                <div className="rounded-[4px] p-[20px] md:p-[30px] bg-[#F5F6FA]">
+                    <h3 className="mb-[30px] text-[#1A2A44] text-[16px] font-bold text-left">
                         BEST TIME TO VISIT
                     </h3>
                     <div className="flex gap-3 sm:gap-6 mb-4 sm:mb-6">
@@ -108,10 +125,8 @@ const Weather = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* TRANSPORTATION (only visible on desktop) */}
-                <div className="hidden lg:block rounded-[4px_4px_20px_4px] sm:rounded-[4px_4px_60px_4px] p-4 sm:p-8 bg-[#F5F6FA] rounded-tl-3xl rounded-br-3xl">
-                    <h3 className="mb-4 sm:mb-8 text-[#1A2A44] text-base sm:text-lg font-bold text-left">
+                <div className="rounded-[4px_4px_30px_4px] md:rounded-[4px_4px_60px_4px] p-[20px] md:p-[30px] bg-[#F5F6FA]">
+                    <h3 className="mb-[30px] text-[#1A2A44] text-[16px] font-bold text-left">
                         TRANSPORTATION
                     </h3>
                     <div className="flex gap-3 sm:gap-6 items-center mb-4 sm:mb-6">
