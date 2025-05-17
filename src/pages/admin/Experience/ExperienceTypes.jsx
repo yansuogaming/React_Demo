@@ -22,7 +22,7 @@ import { Plus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import DataTable from '@components/admin/DataTable'
 
-export default function Experience() {
+export default function ExperienceTypes() {
     const [data, setData] = useState([]);
     const { t } = useTranslation();
     let navigate = useNavigate();
@@ -189,6 +189,3 @@ export default function Experience() {
         </>
     )
 }
-
-
-
