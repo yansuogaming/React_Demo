@@ -74,14 +74,14 @@ class HttpClient {
     async delete(url, config = {}) {
         config.url = url;
         config.method = 'DELETE';
-        return await this.instance.delete(config)
+        return await this.instance.request(config)
     }
 
     async patch(url, data, config = {}) {
         config.url = url;
         config.data = data;
         config.method = 'PATCH';
-        return await this.instance.patch(config)
+        return await this.instance.request(config)
     }
 }
 

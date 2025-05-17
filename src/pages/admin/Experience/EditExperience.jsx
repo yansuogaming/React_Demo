@@ -12,6 +12,7 @@ import { cn } from "@lib/utils";
 import HttpClient from "@services/HttpClient";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
+import { IoIosCloseCircle } from "react-icons/io";
 
 const AppQuill = lazy(() => import('@components/admin/AppQuill'));
 
@@ -26,12 +27,26 @@ export default function EditExperience() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('title', title);
-        formData.append('image', image);
-        formData.append('content', content);
-        const res = await HttpClient.post('/experience', formData, {
-            headers: { "Content-Type": "multipart/form-data" },
+
+        if (id) {
+            const res = await HttpClient.post(`/experience/${id}`, {
+                title,
+                image,
+                content
+            });
+            if (res.status === 200) {
+                toast.success('Cập nhật trải nghiệm thành công!')
+                navigate('/admin/experience');
+            } else {
+                toast.error('Cập nhật trải nghiệm thất bại!')
+            }
+            return;
+        }
+
+        const res = await HttpClient.post('/experience', {
+            title,
+            image,
+            content
         });
         if (res.status === 201) {
             toast.success('Thêm trải nghiệm thành công!')
@@ -52,6 +67,25 @@ export default function EditExperience() {
             toast.error('Lấy trải nghiệm thất bại!')
         }
     };
+
+    const removeImage = (e) => {
+        e.preventDefault();
+        setImage("");
+    }
+
+    const uploadImage = async (image) => {
+        const formData = new FormData();
+        formData.append('image', image);
+        const res = await HttpClient.post('/experience/image', formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+        });
+
+        if (res.status === 200) {
+            setImage(res.data.image);
+        } else {
+            toast.error('Tải ảnh lên thất bại!')
+        }
+    }
 
     useEffect(() => {
         if (id) {
@@ -106,7 +140,7 @@ export default function EditExperience() {
                                                     'file:bg-gray-100 file:hover:bg-gray-200',
                                                     'file:text-slate-500 rounded'
                                                 )}
-                                                onChange={(e) => setImage(e.target.files[0])}
+                                                onChange={(e) => uploadImage(e.target.files[0])}
                                             />
                                             <p
                                                 className="text-xs text-slate-500 mt-2"
@@ -118,7 +152,19 @@ export default function EditExperience() {
                                 </div>
                                 <div className="shadow-lg">
                                     {image && (
-                                        <a href={image} target="_blank">
+                                        <a href={image} className="group relative rounded-md overflow-hidden" target="_blank">
+                                            <div
+                                                className={cn(
+                                                    'hidden group-hover:block rounded-md text-[25px]',
+                                                    'top-0 right-0 w-full h-full absolute',
+                                                    'bg-[linear-gradient(180deg,_rgb(64_61_61_/_80%),_rgb(29_26_26_/_46%)_70.71%)]'
+                                                )}
+                                            >
+                                                <IoIosCloseCircle
+                                                    className="absolute top-[10px] left-[10px] text-white"
+                                                    onClick={(e) => removeImage(e)}
+                                                />
+                                            </div>
                                             <img
                                                 src={image}
                                                 alt="preview"

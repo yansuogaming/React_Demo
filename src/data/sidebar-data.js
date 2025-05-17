@@ -1,5 +1,18 @@
-import { AudioWaveform, Command, GalleryVerticalEnd } from 'lucide-react'
-import { TbLayoutDashboard, TbChecklist } from "react-icons/tb";
+import {
+    AudioWaveform,
+    Command,
+    GalleryVerticalEnd
+} from 'lucide-react'
+import { IoCompassOutline } from "react-icons/io5";
+import { TbLayoutDashboard } from "react-icons/tb";
+import { BsPinMap } from "react-icons/bs";
+import { IoCalendarNumberOutline } from "react-icons/io5";
+import { RiShoppingBag4Line } from "react-icons/ri";
+import { TbUserCog } from "react-icons/tb";
+import { TbTool } from "react-icons/tb";
+import { IoColorPaletteOutline } from "react-icons/io5";
+import { RiNotificationBadgeLine } from "react-icons/ri";
+import { TbBrowserCheck } from "react-icons/tb";
 
 export const sidebarData = {
     user: {
@@ -30,118 +43,60 @@ export const sidebarData = {
             items: [
                 {
                     title: 'Dashboard',
-                    url: '/',
+                    url: '/admin',
                     icon: TbLayoutDashboard,
                 },
                 {
-                    title: 'Tasks',
-                    url: '/tasks',
-                    icon: TbChecklist,
-                }
+                    title: 'Điểm đến',
+                    url: '/admin/itineraries',
+                    icon: BsPinMap,
+                },
+                {
+                    title: 'Sự kiện',
+                    url: '/admin/events',
+                    icon: IoCalendarNumberOutline,
+                },
+                {
+                    title: 'Trải nghiệm',
+                    url: '/admin/experiences',
+                    icon: IoCompassOutline,
+                },
+                {
+                    title: 'Ưu đãi du lịch',
+                    url: '/admin/travel-offers',
+                    icon: RiShoppingBag4Line,
+                },
             ],
         },
-        // {
-        //     title: 'Pages',
-        //     items: [
-        //         {
-        //             title: 'Auth',
-        //             icon: IconLockAccess,
-        //             items: [
-        //                 {
-        //                     title: 'Sign In',
-        //                     url: '/sign-in',
-        //                 },
-        //                 {
-        //                     title: 'Sign In (2 Col)',
-        //                     url: '/sign-in-2',
-        //                 },
-        //                 {
-        //                     title: 'Sign Up',
-        //                     url: '/sign-up',
-        //                 },
-        //                 {
-        //                     title: 'Forgot Password',
-        //                     url: '/forgot-password',
-        //                 },
-        //                 {
-        //                     title: 'OTP',
-        //                     url: '/otp',
-        //                 },
-        //             ],
-        //         },
-        //         {
-        //             title: 'Errors',
-        //             icon: IconBug,
-        //             items: [
-        //                 {
-        //                     title: 'Unauthorized',
-        //                     url: '/401',
-        //                     icon: IconLock,
-        //                 },
-        //                 {
-        //                     title: 'Forbidden',
-        //                     url: '/403',
-        //                     icon: IconUserOff,
-        //                 },
-        //                 {
-        //                     title: 'Not Found',
-        //                     url: '/404',
-        //                     icon: IconError404,
-        //                 },
-        //                 {
-        //                     title: 'Internal Server Error',
-        //                     url: '/500',
-        //                     icon: IconServerOff,
-        //                 },
-        //                 {
-        //                     title: 'Maintenance Error',
-        //                     url: '/503',
-        //                     icon: IconBarrierBlock,
-        //                 },
-        //             ],
-        //         },
-        //     ],
-        // },
-        // {
-        //     title: 'Other',
-        //     items: [
-        //         {
-        //             title: 'Settings',
-        //             icon: IconSettings,
-        //             items: [
-        //                 {
-        //                     title: 'Profile',
-        //                     url: '/settings',
-        //                     icon: IconUserCog,
-        //                 },
-        //                 {
-        //                     title: 'Account',
-        //                     url: '/settings/account',
-        //                     icon: IconTool,
-        //                 },
-        //                 {
-        //                     title: 'Appearance',
-        //                     url: '/settings/appearance',
-        //                     icon: IconPalette,
-        //                 },
-        //                 {
-        //                     title: 'Notifications',
-        //                     url: '/settings/notifications',
-        //                     icon: IconNotification,
-        //                 },
-        //                 {
-        //                     title: 'Display',
-        //                     url: '/settings/display',
-        //                     icon: IconBrowserCheck,
-        //                 },
-        //             ],
-        //         },
-        //         {
-        //             title: 'Help Center',
-        //             url: '/help-center',
-        //             icon: IconHelp,
-        //         },
-        //     ],
-        // },
+        {
+            title: 'Other',
+            items: [
+                {
+                    title: 'Hồ sơ',
+                    url: '/settings',
+                    icon: TbUserCog,
+                },
+                {
+                    title: 'Account',
+                    url: '/settings/account',
+                    icon: TbTool,
+                },
+                {
+                    title: 'Appearance',
+                    url: '/settings/appearance',
+                    icon: IoColorPaletteOutline,
+                },
+                {
+                    title: 'Notifications',
+                    url: '/settings/notifications',
+                    icon: RiNotificationBadgeLine,
+                },
+                {
+                    title: 'Display',
+                    url: '/settings/display',
+                    icon: TbBrowserCheck,
+                },
+            ],
+        },
     ],
 }

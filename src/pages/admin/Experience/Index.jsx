@@ -17,21 +17,18 @@ import {
 } from '@tanstack/react-table'
 import { Button } from '@components/ui/button'
 import { Input } from '@components/ui/input'
-import { RxMixerHorizontal } from "react-icons/rx";
 import {
     DropdownMenu,
-    DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '@components/ui/dropdown-menu'
-import { Link, useNavigate } from 'react-router'
+import { useNavigate } from 'react-router'
 import HttpClient from '@services/HttpClient'
 import toast from 'react-hot-toast'
 import { IoIosWarning } from 'react-icons/io'
 import { HiDotsHorizontal } from "react-icons/hi"
+import { Plus } from 'lucide-react'
 
 export default function Experience() {
     const [sorting, setSorting] = useState([])
@@ -102,7 +99,6 @@ export default function Experience() {
             header: '',
             size: 20,
             cell: ({ row }) => {
-                console.log(row.getValue('id'));
                 return (
                     <DropdownMenu modal={false}>
                         <DropdownMenuTrigger asChild>
@@ -189,9 +185,8 @@ export default function Experience() {
 
             {/* ===== Main ===== */}
             <Main>
-                <div className='mb-2 flex items-center justify-between space-y-2'>
-                    <h1 className='text-2xl font-bold tracking-tight'>Experience</h1>
-                    <Link href="/experience/add">Thêm trải nghiệm</Link>
+                <div className='mb-2'>
+                    <h1 className='text-2xl font-bold tracking-tight'>Trải nghiệm</h1>
                 </div>
                 <Tabs
                     orientation='vertical'
@@ -282,59 +277,27 @@ export default function Experience() {
 }
 
 function DataTableToolbar({ table }) {
+    let navigate = useNavigate();
     return (
         <div className='flex items-center justify-between'>
-            <div className='flex flex-1 flex-col-reverse items-start gap-y-2 sm:flex-row sm:items-center sm:space-x-2'>
-                <Input
-                    placeholder='Filter tasks...'
-                    value={(table.getColumn('title')?.getFilterValue()) ?? ''}
-                    onChange={(event) =>
-                        table.getColumn('title')?.setFilterValue(event.target.value)
-                    }
-                    className='h-8 w-[150px] lg:w-[250px]'
-                />
-            </div>
-            <DataTableViewOptions table={table} />
+            <Input
+                placeholder='Filter tasks...'
+                value={(table.getColumn('title')?.getFilterValue()) ?? ''}
+                onChange={(event) =>
+                    table.getColumn('title')?.setFilterValue(event.target.value)
+                }
+                className='h-8 w-[150px] lg:w-[250px]'
+            />
+            <Button
+                className="gap-2 cursor-pointer"
+                variant="default"
+                onClick={() => navigate('/admin/experiences/add')}
+            >
+                <Plus className="w-4 h-4" />
+                Thêm trải nghiệm
+            </Button>
         </div>
     )
 }
 
-function DataTableViewOptions({ table }) {
-    return (
-        <DropdownMenu modal={false}>
-            <DropdownMenuTrigger asChild>
-                <Button
-                    variant='outline'
-                    size='sm'
-                    className='ml-auto hidden h-8 lg:flex'
-                >
-                    <RxMixerHorizontal className='mr-2 h-4 w-4' />
-                    View
-                </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align='end' className='w-[150px]'>
-                <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {table
-                    .getAllColumns()
-                    .filter(
-                        (column) =>
-                            typeof column.accessorFn !== 'undefined' && column.getCanHide()
-                    )
-                    .map((column) => {
-                        return (
-                            <DropdownMenuCheckboxItem
-                                key={column.id}
-                                className='capitalize'
-                                checked={column.getIsVisible()}
-                                onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                            >
-                                {column.id}
-                            </DropdownMenuCheckboxItem>
-                        )
-                    })}
-            </DropdownMenuContent>
-        </DropdownMenu>
-    )
-}
 

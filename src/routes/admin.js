@@ -26,7 +26,7 @@ const routesAdmin = [
                 },
             },
             {
-                path: 'experience',
+                path: 'experiences',
                 Component: lazy(() => import("@pages/admin/Experience/Index")),
                 meta: () => {
                     return [
@@ -36,7 +36,7 @@ const routesAdmin = [
                 },
             },
             {
-                path: 'experience/add',
+                path: 'experiences/add',
                 Component: lazy(() => import("@pages/admin/Experience/EditExperience")),
                 meta: () => {
                     return [
@@ -46,7 +46,7 @@ const routesAdmin = [
                 },
             },
             {
-                path: 'experience/edit/:id',
+                path: 'experiences/edit/:id',
                 Component: lazy(() => import("@pages/admin/Experience/EditExperience")),
                 meta: () => {
                     return [
@@ -54,6 +54,20 @@ const routesAdmin = [
                         { name: "description", content: "Experience" },
                     ];
                 },
+            },
+            {
+                path: 'settings',
+                Component: lazy(() => import("@pages/admin/Settings/Index")),
+                children: [
+                    {
+                        meta: () => {
+                            return [
+                                { title: "Experience" },
+                                { name: "description", content: "Experience" },
+                            ];
+                        },
+                    }
+                ]
             }
         ]
     }
