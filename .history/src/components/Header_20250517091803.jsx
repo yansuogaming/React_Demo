@@ -394,7 +394,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                             Plan Your Trip <RiArrowRightSLine />
                                         </NavLink>
                                         {/* Submenu */}
-                                        <AnimatePresence initial={false}>
+                                        {/* <AnimatePresence initial={false}>
                                             {isVisibleSubMenu && (
                                                 <motion.div
                                                     initial={{
@@ -487,7 +487,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     </div>
                                                 </motion.div>
                                             )}
-                                        </AnimatePresence>
+                                        </AnimatePresence> */}
                                     </li>
                                 </ul>
                                 <div className="flex flex-col justify-between pt-[50px] px-[16px] pb-[16px] gap-[82px]">

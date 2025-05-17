@@ -418,11 +418,11 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         <div className="flex items-center justify-between px-[16px] py-[16px] border-b border-gray-300/53">
                                                             <div
                                                                 className="flex items-center gap-[12px]"
-                                                                onClick={() =>
-                                                                    setIsVisibleSubMenu(
-                                                                        !isVisibleSubMenu
-                                                                    )
-                                                                }
+                                                                // onClick={() =>
+                                                                //     setIsVisibleSubMenu(
+                                                                //         !isVisibleSubMenu
+                                                                //     )
+                                                                // }
                                                             >
                                                                 <RiArrowLeftSLine className="text-[24px]" />
                                                                 <span className="text-[20px]">

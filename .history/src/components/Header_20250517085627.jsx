@@ -101,7 +101,6 @@ const Header = ({ noBackgroundOnScroll = false }) => {
 
     const [isVisible, setIsVisible] = useState(false);
     const [isVisibleLang, setIsVisibleLang] = useState(false);
-    const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
     return (
         <HeaderContext.Provider value={contextValue}>
             <header>
@@ -385,109 +384,64 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                         <NavLink
                                             to="/"
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#003F73]"
-                                            onClick={() =>
-                                                setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu
-                                                )
-                                            }
                                         >
                                             Plan Your Trip <RiArrowRightSLine />
                                         </NavLink>
-                                        {/* Submenu */}
-                                        <AnimatePresence initial={false}>
-                                            {isVisibleSubMenu && (
-                                                <motion.div
-                                                    initial={{
-                                                        x: "100%",
-                                                        opacity: 0,
-                                                    }}
-                                                    animate={{
-                                                        x: 0,
-                                                        opacity: 1,
-                                                    }}
-                                                    exit={{
-                                                        x: "100%",
-                                                        opacity: 0,
-                                                    }}
-                                                    transition={{
-                                                        duration: 0.4,
-                                                        ease: "easeInOut",
-                                                    }}
+                                        <div className="bg-[#003F73] fixed top-0 left-0 w-full h-screen">
+                                            <div className="flex items-center justify-between px-[16px] py-[16px] border-b border-gray-300/53">
+                                                <div className="flex items-center gap-[12px]">
+                                                    <RiArrowLeftSLine className="text-[24px]" />
+                                                    <span className="text-[20px]">
+                                                        Main menu
+                                                    </span>
+                                                </div>
+                                                <button
+                                                    className="text-[20px]"
+                                                    onClick={() =>
+                                                        setIsVisible(!isVisible)
+                                                    }
                                                 >
-                                                    <div className="bg-[#003F73] fixed top-0 left-0 w-full h-screen">
-                                                        <div className="flex items-center justify-between px-[16px] py-[16px] border-b border-gray-300/53">
-                                                            <div
-                                                                className="flex items-center gap-[12px]"
-                                                                onClick={() =>
-                                                                    setIsVisibleSubMenu(
-                                                                        !isVisibleSubMenu
-                                                                    )
-                                                                }
-                                                            >
-                                                                <RiArrowLeftSLine className="text-[24px]" />
-                                                                <span className="text-[20px]">
-                                                                    Main menu
-                                                                </span>
-                                                            </div>
-                                                            <button
-                                                                className="text-[20px]"
-                                                                onClick={() =>
-                                                                    setIsVisible(
-                                                                        !isVisible
-                                                                    )
-                                                                }
-                                                            >
-                                                                <RiCloseLargeLine />
-                                                            </button>
-                                                        </div>
-                                                        <div className="pt-[50px] pb-[64px]">
-                                                            <h2 className="px-[16px] text-[36px] font-bold mb-[16px]">
-                                                                Plan Your Trip
-                                                            </h2>
-                                                            <ul>
-                                                                <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                                    <NavLink to="/">
-                                                                        Visa
-                                                                        guide
-                                                                    </NavLink>
-                                                                </li>
-                                                            </ul>
-                                                            <ul>
-                                                                <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                                    <NavLink to="/">
-                                                                        Essentials
-                                                                    </NavLink>
-                                                                </li>
-                                                            </ul>
-                                                            <ul>
-                                                                <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                                    <NavLink to="/">
-                                                                        Flights
-                                                                    </NavLink>
-                                                                </li>
-                                                            </ul>
-                                                            <ul>
-                                                                <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                                    <NavLink to="/">
-                                                                        Accommodation
-                                                                    </NavLink>
-                                                                </li>
-                                                            </ul>
-                                                            <ul>
-                                                                <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                                    <NavLink to="/">
-                                                                        Getting
-                                                                        to &
-                                                                        around
-                                                                        Vietnam
-                                                                    </NavLink>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </motion.div>
-                                            )}
-                                        </AnimatePresence>
+                                                    <RiCloseLargeLine />
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <h2>Plan Your Trip</h2>
+                                                <ul>
+                                                    <li>
+                                                        <a href="">
+                                                            Visa guide
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <a href="">
+                                                            Essentials
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <a href="">Flights</a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <a href="">
+                                                            Accommodation
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li>
+                                                        <a href="">
+                                                            Getting to & around
+                                                            Vietnam
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
                                 <div className="flex flex-col justify-between pt-[50px] px-[16px] pb-[16px] gap-[82px]">
