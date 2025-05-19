@@ -29,33 +29,37 @@ const links = [
     },
 ];
 
-const SummerLinkCard = ({ image, title, desc }) => (
+const SmarterLinkCard = ({ image, title, desc, showButton = true }) => (
     <NavLink
         to="/"
-        className="group block rounded-md overflow-hidden bg-white shadow-sm border transition hover:shadow-md"
+        className="group flex flex-col h-full rounded-md overflow-hidden bg-white shadow-sm border transition hover:shadow-md"
     >
-        <div className="overflow-hidden">
+        <div className="h-48 overflow-hidden">
             <img
                 src={image}
                 alt={title}
-                className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
+                className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
             />
         </div>
-        <div className="bg-[#0077B6] text-white p-4 flex flex-col justify-between h-[180px]">
+
+        <div className="bg-[#005B8E] text-white p-4 flex flex-col justify-between flex-1">
             <div>
-                <h3 className="text-base font-semibold mb-2 group-hover:underline group-hover:text-white/80 transition">
+                <h3 className="text-base font-semibold leading-snug group-hover:underline group-hover:text-white/80 transition">
                     {title}
                 </h3>
-                <p className="text-sm">{desc}</p>
+                <p className="text-sm leading-relaxed mt-1">{desc}</p>
             </div>
-            <div className="mt-4 text-sm font-semibold border border-white px-3 py-1 rounded text-center w-max transition group-hover:bg-white group-hover:text-[#0077B6]">
-                Discover more
-            </div>
+
+            {showButton && (
+                <div className="mt-4 text-sm font-semibold border border-white px-3 py-1 rounded text-center w-max transition group-hover:bg-white group-hover:text-[#005B8E]">
+                    Discover more
+                </div>
+            )}
         </div>
     </NavLink>
 );
 
-const SummerLinkCarousel = () => {
+const SpendSmarter = () => {
     const [emblaRef, emblaApi] = useEmblaCarousel({
         align: "start",
         loop: false,
@@ -80,9 +84,16 @@ const SummerLinkCarousel = () => {
         <section className="container mx-auto px-4 py-10">
             {/* Header & Nav */}
             <div className="flex justify-between items-start mb-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-[#1A2A44]">
-                    Useful links for summertime in Dubai
-                </h2>
+                <div className="max-w-3xl">
+                    <h2 className="text-xl sm:text-2xl font-bold text-[#1A2A44] mb-2">
+                        Spend smarter and save in Dubai
+                    </h2>
+                    <p className="text-sm text-gray-600 leading-relaxed">
+                        Do you have more questions about getting the most out of
+                        your money in Dubai? If so, check out our comprehensive
+                        guides.
+                    </p>
+                </div>
 
                 <div className="hidden lg:flex gap-2">
                     <button
@@ -110,7 +121,10 @@ const SummerLinkCarousel = () => {
                             key={index}
                             className="flex-none w-[80%] sm:w-[45%] lg:w-1/4"
                         >
-                            <SummerLinkCard {...item} />
+                            <SmarterLinkCard
+                                {...item}
+                                showButton={index === 1}
+                            />
                         </div>
                     ))}
                 </div>
@@ -135,4 +149,4 @@ const SummerLinkCarousel = () => {
     );
 };
 
-export default SummerLinkCarousel;
+export default SpendSmarter;

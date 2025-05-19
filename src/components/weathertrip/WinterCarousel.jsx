@@ -1,69 +1,40 @@
 import React, { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-import { NavLink } from "react-router";
 import { cn } from "@/lib/utils";
 
-import imageDemo from "@images/wp12060285.webp";
+import imgDemo from "@images/3-1595134332.webp";
 
-const links = [
+const items = [
     {
-        image: imageDemo,
-        title: "Make the most of summer in Dubai",
-        desc: "How to enjoy a truly epic season in the city",
+        image: imgDemo,
+        caption: "Explore an indoor rainforest at The Green Planet",
     },
     {
-        image: imageDemo,
-        title: "Dubai's top 10 summer attractions for children",
-        desc: "The best spots for your kids to burn energy and learn new skills",
+        image: imgDemo,
+        caption: "Let your kids play & learn at OliOli® Interactive Museum",
     },
     {
-        image: imageDemo,
-        title: "Cooler than cool ways to beat the heat in Dubai",
-        desc: "Our pick of the top activities for summer fun in the city",
+        image: imgDemo,
+        caption: "Go skiing indoors at Ski Dubai",
     },
     {
-        image: imageDemo,
-        title: "99 things to do this summer in Dubai",
-        desc: "Roller discos, roller coasters, restaurant deals and more",
+        image: imgDemo,
+        caption: "Marvel at the magic of Dubai Creek",
     },
 ];
 
-const SummerLinkCard = ({ image, title, desc }) => (
-    <NavLink
-        to="/"
-        className="group block rounded-md overflow-hidden bg-white shadow-sm border transition hover:shadow-md"
-    >
-        <div className="overflow-hidden">
-            <img
-                src={image}
-                alt={title}
-                className="w-full h-40 object-cover transition-transform duration-300 group-hover:scale-105"
-            />
-        </div>
-        <div className="bg-[#0077B6] text-white p-4 flex flex-col justify-between h-[180px]">
-            <div>
-                <h3 className="text-base font-semibold mb-2 group-hover:underline group-hover:text-white/80 transition">
-                    {title}
-                </h3>
-                <p className="text-sm">{desc}</p>
-            </div>
-            <div className="mt-4 text-sm font-semibold border border-white px-3 py-1 rounded text-center w-max transition group-hover:bg-white group-hover:text-[#0077B6]">
-                Discover more
-            </div>
-        </div>
-    </NavLink>
-);
-
-const SummerLinkCarousel = () => {
+const WinterCarousel = () => {
     const [emblaRef, emblaApi] = useEmblaCarousel({
         align: "start",
         loop: false,
         containScroll: "trimSnaps",
     });
-
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState([]);
+
+    const scrollPrev = () => emblaApi?.scrollPrev();
+    const scrollNext = () => emblaApi?.scrollNext();
 
     useEffect(() => {
         if (!emblaApi) return;
@@ -73,15 +44,11 @@ const SummerLinkCarousel = () => {
         });
     }, [emblaApi]);
 
-    const scrollPrev = () => emblaApi?.scrollPrev();
-    const scrollNext = () => emblaApi?.scrollNext();
-
     return (
         <section className="container mx-auto px-4 py-10">
-            {/* Header & Nav */}
             <div className="flex justify-between items-start mb-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-[#1A2A44]">
-                    Useful links for summertime in Dubai
+                    Great days out during winter in Dubai
                 </h2>
 
                 <div className="hidden lg:flex gap-2">
@@ -105,14 +72,29 @@ const SummerLinkCarousel = () => {
             {/* Carousel */}
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex gap-4">
-                    {links.map((item, index) => (
-                        <div
-                            key={index}
-                            className="flex-none w-[80%] sm:w-[45%] lg:w-1/4"
-                        >
-                            <SummerLinkCard {...item} />
-                        </div>
-                    ))}
+                    {items.map((item, index) => {
+                        const isActive = index === selectedIndex;
+                        return (
+                            <div
+                                key={index}
+                                className={cn(
+                                    "flex-none w-[80%] sm:w-1/2 lg:w-[55%] transition-all duration-500",
+                                    isActive ? "opacity-100" : "opacity-40"
+                                )}
+                            >
+                                <div className="relative overflow-hidden rounded-md group">
+                                    <img
+                                        src={item.image}
+                                        alt={item.caption}
+                                        className="w-full h-full object-cover transition-opacity duration-300"
+                                    />
+                                    <p className="mt-2 text-[12px] text-[#1A2A44] uppercase tracking-wide">
+                                        {item.caption}
+                                    </p>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 
@@ -135,4 +117,4 @@ const SummerLinkCarousel = () => {
     );
 };
 
-export default SummerLinkCarousel;
+export default WinterCarousel;

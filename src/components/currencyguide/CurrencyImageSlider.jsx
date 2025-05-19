@@ -2,29 +2,24 @@ import React, { useState, useEffect } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
+import img1 from "@images/4-1708873508769.webp";
 
-import imgDemo from "@images/3-1595134332.webp";
-
-const items = [
+const slides = [
     {
-        image: imgDemo,
-        caption: "Explore an indoor rainforest at The Green Planet",
+        image: img1,
+        caption: "Coins ranging from 25 fils to AED 1",
     },
     {
-        image: imgDemo,
-        caption: "Let your kids play & learn at OliOli® Interactive Museum",
+        image: img1,
+        caption: "Colorful UAE banknotes from 5 to 1000",
     },
     {
-        image: imgDemo,
-        caption: "Go skiing indoors at Ski Dubai",
-    },
-    {
-        image: imgDemo,
-        caption: "Marvel at the magic of Dubai Creek",
+        image: img1,
+        caption: "Dirham coins used daily in Dubai",
     },
 ];
 
-const SummerCarousel = () => {
+const CurrencyImageSlider = () => {
     const [emblaRef, emblaApi] = useEmblaCarousel({
         align: "start",
         loop: false,
@@ -46,11 +41,21 @@ const SummerCarousel = () => {
 
     return (
         <section className="container mx-auto px-4 py-10">
+            {/* Header */}
             <div className="flex justify-between items-start mb-4">
-                <h2 className="text-xl sm:text-2xl font-bold text-[#1A2A44]">
-                    Great days out during summer in Dubai
-                </h2>
+                <div>
+                    <h2 className="text-xl sm:text-2xl font-bold text-[#1A2A44] mb-2">
+                        What do dirhams look like?
+                    </h2>
+                    <p className="text-gray-700 text-sm sm:text-base max-w-3xl">
+                        The AED1 coin is silver and has a traditional Arabic
+                        coffee pot (<em>dallah</em>) on one side. Otherwise,
+                        dirhams come in colourful banknotes ranging from AED5 to
+                        AED1,000. Check out the intricate artwork on each note.
+                    </p>
+                </div>
 
+                {/* Navigation */}
                 <div className="hidden lg:flex gap-2">
                     <button
                         onClick={scrollPrev}
@@ -72,7 +77,7 @@ const SummerCarousel = () => {
             {/* Carousel */}
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex gap-4">
-                    {items.map((item, index) => {
+                    {slides.map((item, index) => {
                         const isActive = index === selectedIndex;
                         return (
                             <div
@@ -82,13 +87,13 @@ const SummerCarousel = () => {
                                     isActive ? "opacity-100" : "opacity-40"
                                 )}
                             >
-                                <div className="relative overflow-hidden rounded-md group">
+                                <div className="overflow-hidden rounded-md">
                                     <img
                                         src={item.image}
                                         alt={item.caption}
-                                        className="w-full h-full object-cover transition-opacity duration-300"
+                                        className="w-full h-[350px] object-cover"
                                     />
-                                    <p className="mt-2 text-[12px] text-[#1A2A44] uppercase tracking-wide">
+                                    <p className="mt-2 text-xs text-[#1A2A44] uppercase tracking-wide">
                                         {item.caption}
                                     </p>
                                 </div>
@@ -105,10 +110,10 @@ const SummerCarousel = () => {
                         key={index}
                         onClick={() => emblaApi?.scrollTo(index)}
                         className={cn(
-                            "h-[10px] transition rounded-full",
+                            "h-[6px] transition-all rounded-full",
                             selectedIndex === index
-                                ? "w-[30px] bg-gray-800"
-                                : "w-[10px] bg-gray-300"
+                                ? "w-[24px] bg-gray-800"
+                                : "w-[6px] bg-gray-300"
                         )}
                     />
                 ))}
@@ -117,4 +122,4 @@ const SummerCarousel = () => {
     );
 };
 
-export default SummerCarousel;
+export default CurrencyImageSlider;

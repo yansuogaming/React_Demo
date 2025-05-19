@@ -46,7 +46,7 @@ const WinterCard = ({ icon, title, description, cta }) => (
     </div>
 );
 
-const WinterTrip = () => {
+const SummerTrip = () => {
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop: false,
         align: "start",
@@ -71,7 +71,7 @@ const WinterTrip = () => {
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 gap-4">
                 <div className="max-w-4xl">
                     <h2 className="text-3xl font-bold text-[#1A2A44] mb-2">
-                        Winter in Dubai
+                        Summer in Dubai
                     </h2>
                     <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                         From October until April, beautiful weather and a packed
@@ -131,4 +131,4 @@ const WinterTrip = () => {
     );
 };
 
-export default WinterTrip;
+export default SummerTrip;
