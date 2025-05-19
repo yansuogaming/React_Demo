@@ -34,6 +34,8 @@ import Reveal from "@components/animation/Reveal";
 import TextNormal from "@components/text/TextNormal";
 import { useTranslation } from "react-i18next";
 import Breadcrumb from "@components/Breadcrumb";
+import { FaPlay } from "react-icons/fa6";
+import { useRef, useState } from "react";
 
 const HeroSection = () => {
   const { t } = useTranslation();
@@ -89,13 +91,13 @@ const HeroSection = () => {
             <div className="flex xl:flex-col absolute gap-5  -top-10 right-0 xl:top-30 xl:right-20">
               <CarouselPrevious
                 className={
-                  "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-blue-500 before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10"
+                  "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-[#035E88] before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10"
                 }
                 classNameArrow={"group-hover:text-white transition-colors"}
               />
               <CarouselNext
                 className={
-                  "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-blue-500 before:origin-left before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-300 before:-z-10"
+                  "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-[#035E88] before:origin-left before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-300 before:-z-10"
                 }
                 classNameArrow={"group-hover:text-white transition-colors"}
               />
@@ -116,6 +118,13 @@ const HeroSection = () => {
   );
 };
 const FitnessAndActivities = () => {
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const iframeRef = useRef(null);
+
+  const handlePlayVideo = () => {
+    setIsPlaying(true);
+  }
   return (
     <section className="my-12">
       <h2 className="text-4xl font-bold mb-6">
@@ -136,18 +145,37 @@ const FitnessAndActivities = () => {
         .
       </p>
 
-      <div className="h-[80vh] bg-gray-200 relative">
-        <iframe
-          className="absolute inset-0 w-full h-full border-0 z-10"
-          src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-        <div className="absolute inset-0 bg-black/10"></div>
-      </div>
+      <Reveal>
+        <div className="h-[250px] md:h-[400px] lg:h-[80vh] relative lg:rounded-br-[100px] overflow-hidden mx-0  xl:-mx-10 my-5">
+          {isPlaying ? (
+            <iframe
+              ref={iframeRef}
+              className="absolute inset-0 w-full h-full border-0 z-10"
+              src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6&autoplay=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          ) : (
+            <>
+              <img
+                src="https://a.tcnn.vn//Images/images/images5452377_DJI_0724.jpg"
+                alt="Vietnam"
+                className="w-full h-full object-cover"
+              ></img>
+              <button
+                onClick={handlePlayVideo}
+                className="absolute top-8 overflow-hidden group right-8 w-15 h-15 bg-white text-black rounded-md flex items-center justify-center shadow-md hover:scale-105 transition z-20 before:absolute before:inset-0 before:bg-[#035E88] before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10"
+              >
+                <FaPlay className="text-sm w-5 h-5 group-hover:text-white" />
+              </button>
+            </>
+          )}
+          <div className="absolute inset-0 bg-black/10"></div>
+        </div>
+      </Reveal>
     </section>
   );
 };
@@ -278,13 +306,13 @@ const HearFromTheExpertsSection = () => {
           <div className="flex flex-col absolute gap-5 top-15 right-0">
             <CarouselPrevious
               className={
-                "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-blue-500 before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10"
+                "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-[#035E88] before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10"
               }
               classNameArrow={"group-hover:text-white transition-colors"}
             />
             <CarouselNext
               className={
-                "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-blue-500 before:origin-left before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-300 before:-z-10"
+                "group w-14 h-14 rounded-xl static  overflow-hidden before:absolute before:inset-0 before:bg-[#035E88] before:origin-left before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-300 before:-z-10"
               }
               classNameArrow={"group-hover:text-white transition-colors"}
             />

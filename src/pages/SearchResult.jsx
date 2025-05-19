@@ -1,11 +1,20 @@
 import { Search, X, ChevronDown } from "lucide-react";
-import { Link } from "react-router";
+import { Link, useParams, useNavigate } from "react-router";
 import file from "@images/file.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SearchResults() {
-  const [selectedFilter, setSelectedFilter] = useState("Experiences");
+  const { keyword } = useParams();
+  const [selectedFilter, setSelectedFilter] = useState("All");
+  const [keySearch, setKeySearch] = useState(keyword);
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (keySearch!==undefined) {
+      navigate(`/search-result/${keySearch}`);
+    }
+  }, [keySearch, navigate]);
   const filters = [
     "All",
     "Restaurant",
@@ -30,11 +39,16 @@ export default function SearchResults() {
             <Search className="ml-3 h-5 w-5 text-black" />
             <input
               type="text"
-              defaultValue="passport"
+           
+              onChange={(e) => setKeySearch(e.target.value)}
+              
+              value={keySearch}
               className="w-full py-3 px-3 bg-transparent text-xl text-black focus:outline-none"
               placeholder="Search..."
             />
-            <button className="mr-3">
+            <button onClick={()=>{
+              setKeySearch("")
+            }} className="mr-3">
               <X className="h-5 w-5 text-black" />
             </button>
           </div>
@@ -71,14 +85,14 @@ export default function SearchResults() {
           {Array.from({ length: 10 }).map((_, index) => (
             <div
               key={index}
-              className="flex hover:bg-gray-200  duration-300
-                group hover:cursor-pointer"
+              className="flex hover:bg-blue-100 duration-300
+                group hover:cursor-pointer transform transition-transform hover:translate-x-10"
             >
-              <div className="container group-hover:translate-x-20 duration-300
+              <div className="container duration-300
                gap-4 py-6 border-t border-gray-400 flex flex-col md:flex-row">
                 <div className="flex-1">
                   <h2
-                    className="text-xl font-semibold mb-2
+                    className="text-2xl font-semibold mb-2
                  group-hover:text-blue-700
                 "
                   >
@@ -93,53 +107,19 @@ export default function SearchResults() {
                     jobs.
                   </p>
                 </div>
-                <div className="w-full md:w-64 h-36 relative overflow-hidden rounded-2xl">
+                <div className="w-full md:w-80 h-50 relative overflow-hidden rounded-2xl">
                   <img
                     src="https://vietnamtravel.com/images/2020/09/halong-vietnam-overview-1.jpg"
                     alt="Swiss passport"
-                    fill
-                    className="object-cover  group-hover:scale-130 transition-transform duration-300"
+                 
+                    className="object-cover w-full h-full group-hover:scale-130 transition-transform duration-300"
                   />
                 </div>
               </div>
             </div>
           ))}
 
-             {/* Result 1 */}
-             {Array.from({ length: 2 }).map((_, index) => (
-            <div
-              key={index}
-              className="flex hover:bg-gray-200   group hover:cursor-pointer"
-            >
-              <div className="container gap-4 py-6 border-t border-gray-400 flex flex-col md:flex-row">
-                <div className="flex-1">
-                  <h2
-                    className="text-xl font-semibold mb-2
-                 group-hover:text-blue-500
-                "
-                  >
-                    Passports and Jobs
-                  </h2>
-                  <div className="flex items-center text-xs text-black mb-1">
-                    <img src={file} alt="File" className="h-5 w-5 mr-2" />
-                    <span className="mr-2 text-base">Passports and Jobs</span>
-                  </div>
-                  <p className="text-lg text-black mb-2">
-                    The Swiss Passport has different categories, valid entry for
-                    jobs.
-                  </p>
-                </div>
-                <div className="w-full md:w-64 h-36 relative overflow-hidden rounded-2xl">
-                  <img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Flag_of_Vietnam.svg/800px-Flag_of_Vietnam.svg.png"
-                    alt="Swiss passport"
-                    fill
-                    className="object-cover  group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+  
           {/* Load More Button */}
           <div className="flex justify-center mt-12">
             <button className="flex items-center text-black bg-transparent border border-gray-700 rounded-md px-6 py-2 hover:bg-gray-800">
@@ -149,17 +129,7 @@ export default function SearchResults() {
         </div>
       </main>
 
-      {/* Search Modal (Mobile) */}
-      <div className="fixed bottom-4 left-0 right-0 mx-auto w-11/12 max-w-lg md:hidden">
-        <div className="bg-white rounded-full border border-gray-700 flex items-center">
-          <Search className="ml-4 h-5 w-5 text-black" />
-          <input
-            type="text"
-            className="w-full py-3 px-3 bg-transparent text-black focus:outline-none"
-            placeholder="Search..."
-          />
-        </div>
-      </div>
+ 
     </div>
   );
 }

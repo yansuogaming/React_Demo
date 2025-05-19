@@ -96,7 +96,7 @@ const routes = [
                         Component: lazy(() => import("@pages/CurrencyGuide")),
                     },
                     {
-                        path: "search-result",
+                        path: "search-result/:keyword?",
                         Component: lazy(() => import("@pages/SearchResult")),
                     },
                 ],

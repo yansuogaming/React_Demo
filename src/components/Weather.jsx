@@ -6,10 +6,10 @@ import MotobikeIcon from "@components/icons/MotobikeIcon";
 import iconTemperature from "@images/icon-temperature.svg";
 
 const Weather = () => {
-    const formatTemperature = (temp) => {
-        const num = parseFloat(temp);
-        return Number.isInteger(num) ? `${num}°C` : `${num.toFixed(1)}°C`;
-    };
+    // const formatTemperature = (temp) => {
+    //     const num = parseFloat(temp);
+    //     return Number.isInteger(num) ? `${num}°C` : `${num.toFixed(1)}°C`;
+    // };
 
     return (
         <section className="container mt-[60px] px-4 sm:px-6 lg:px-8">

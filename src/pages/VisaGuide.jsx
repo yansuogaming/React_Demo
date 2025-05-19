@@ -9,6 +9,8 @@ import Breadcrumb from "@components/Breadcrumb";
 import imageCity from "@images/hanoi.png";
 import HeroSection from "@components/HeroSection";
 import Reveal from "@components/animation/Reveal";
+import { FaPlay } from "react-icons/fa6";
+import { useRef, useState } from "react";
 
 // Visa Free Entry Section Component
 const VisaFreeSection = () => {
@@ -277,28 +279,45 @@ const ThingsToKnowSection = () => {
 
 // Video Section Component
 const VideoSection = () => {
+  const iframeRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const handlePlayVideo = () => {
+    setIsPlaying(true);
+  };
+
+  console.log("iframeRef: ", iframeRef);
+
   return (
     <div className="mb-16">
       <Reveal>
         <div className="relative mx-auto aspect-video max-w-4xl overflow-hidden rounded-lg shadow-lg">
-          <div className="h-full w-full object-cover">
+          {isPlaying ? (
             <iframe
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                border: "0",
-              }}
-              src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
+              ref={iframeRef}
+              className="absolute inset-0 w-full h-full border-0 z-10"
+              src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6&autoplay=1"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerpolicy="strict-origin-when-cross-origin"
               allowfullscreen
             ></iframe>
-          </div>
+          ) : (
+            <>
+              <img
+                src="https://a.tcnn.vn//Images/images/images5452377_DJI_0724.jpg"
+                alt="Vietnam"
+                className="w-full h-full object-cover"
+              ></img>
+              <button
+                onClick={handlePlayVideo}
+                className="absolute top-8 overflow-hidden group right-8 w-15 h-15 bg-white text-black rounded-md flex items-center justify-center shadow-md hover:scale-105 transition z-20 before:absolute before:inset-0 before:bg-[#035E88] before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10"
+              >
+                <FaPlay className="text-sm w-5 h-5 group-hover:text-white" />
+              </button>
+            </>
+          )}
+          <div className="absolute inset-0 bg-black/10"></div>
         </div>
       </Reveal>
     </div>
