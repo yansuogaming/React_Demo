@@ -162,6 +162,7 @@ const SidebarMenuCollapsedDropdown = ({
 
 function checkIsActive(href, item, mainNav = false) {
     const url = href.pathname
+
     return (
         url === item.url || // /endpint?search=param
         url.split('?')[0] === item.url || // endpoint

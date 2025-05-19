@@ -12,8 +12,18 @@ const routesAdmin = [
         },
     },
     {
+        path: "/admin/forgot-password",
+        Component: lazy(() => import("@pages/admin/ForgotPassword")),
+        meta: () => {
+            return [
+                { title: "Quên mật khẩu" },
+                { name: "description", content: "Đăng nhập vào tài khoản của bạn" },
+            ];
+        },
+    },
+    {
         path: "/admin",
-        Component: lazy(() => import("@layouts/AdminLayout")),
+        Component: lazy(() => import("@layouts/AuthLayout")),
         children: [
             {
                 index: true,
@@ -75,20 +85,26 @@ const routesAdmin = [
                     ];
                 },
             },
-            // {
-            //     path: 'settings',
-            //     Component: lazy(() => import("@pages/admin/Settings/Index")),
-            //     children: [
-            //         {
-            //             meta: () => {
-            //                 return [
-            //                     { title: "Experience" },
-            //                     { name: "description", content: "Experience" },
-            //                 ];
-            //             },
-            //         }
-            //     ]
-            // }
+            {
+                path: 'experience-types/edit/:id',
+                Component: lazy(() => import("@pages/admin/Experience/EditExperienceType")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
+            {
+                path: 'regions',
+                Component: lazy(() => import("@pages/admin/Region/Index")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
         ]
     }
 ];

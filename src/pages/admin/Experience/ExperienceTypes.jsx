@@ -21,6 +21,7 @@ import { HiDotsHorizontal } from "react-icons/hi"
 import { Plus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import DataTable from '@components/admin/DataTable'
+import { FaCheckCircle, FaMinusCircle } from 'react-icons/fa'
 
 export default function ExperienceTypes() {
     const [data, setData] = useState([]);
@@ -72,16 +73,21 @@ export default function ExperienceTypes() {
             ),
         },
         {
-            accessorKey: "status",
+            accessorKey: "is_active",
             header: () => <div className="text-center">Tình trạng</div>,
             size: 100,
-            cell: ({ row }) => (
-                row.getValue("status") === 1 ? (
-                    <CiCircleCheck className="text-[green] text-[20px] mx-auto" />
+            cell: ({ row }) =>
+                row.getValue("is_active") === 1 ? (
+                    <FaCheckCircle
+                        className="cursor-pointer text-[green] text-[20px] mx-auto"
+                        onClick={() => changeStatus(row.getValue('id'))}
+                    />
                 ) : (
-                    <IoIosWarning className="text-[#a75615] text-[20px] mx-auto" />
-                )
-            ),
+                    <FaMinusCircle
+                        className="cursor-pointer text-[red] text-[20px] mx-auto"
+                        onClick={() => changeStatus(row.getValue('id'))}
+                    />
+                ),
         },
         {
             accessorKey: 'id',
@@ -99,10 +105,10 @@ export default function ExperienceTypes() {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align='end' className='w-[120px]'>
-                            <DropdownMenuItem onClick={() => navigate(`/admin/experiences/edit/${row.getValue('id')}`)}>
+                            <DropdownMenuItem onClick={() => navigate(`/admin/experience-types/edit/${row.getValue('id')}`)}>
                                 Sửa
                             </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => deleteExperience(row.getValue('id'))}>
+                            <DropdownMenuItem onClick={() => deleteExperienceType(row.getValue('id'))}>
                                 Xoá
                             </DropdownMenuItem>
                         </DropdownMenuContent>
@@ -112,8 +118,8 @@ export default function ExperienceTypes() {
         },
     ];
 
-    const getExperience = async (params = {}) => {
-        const res = await HttpClient.get('/experience', {
+    const getExperienceTypes = async (params = {}) => {
+        const res = await HttpClient.get('/experience-type', {
             params
         })
 
@@ -125,19 +131,27 @@ export default function ExperienceTypes() {
         }
     };
 
-    const deleteExperience = async (id) => {
-        const res = await HttpClient.delete(`/experience/${id}`)
+    const deleteExperienceType = async (id) => {
+        const res = await HttpClient.delete(`/experience-type/${id}`)
 
         if (res.status === 200) {
-            toast.success('Xoá trải nghiệm thành công!')
-            getExperience();
+            toast.success('Xoá loại hình trải nghiệm thành công!')
+            getExperienceTypes();
         } else {
-            toast.error('Xoá trải nghiệm thất bại!')
+            toast.error('Xoá loại hình trải nghiệm thất bại!')
         }
     };
 
+    const changeStatus = async (id) => {
+        const res = await HttpClient.put(`/experience-type/status/${id}`);
+        if (res.status === 200) {
+            toast.success("Cập nhật tình trang thành công");
+            getExperienceTypes();
+        }
+    }
+
     useEffect(() => {
-        getExperience();
+        getExperienceTypes();
     }, []);
 
     return (

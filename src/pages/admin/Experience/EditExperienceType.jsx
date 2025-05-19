@@ -8,17 +8,15 @@ import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
 import { Tabs, TabsContent } from "@components/ui/tabs";
 import { lazy, useEffect, useState } from 'react';
-import { cn } from "@lib/utils";
 import HttpClient from "@services/HttpClient";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
-import { IoIosCloseCircle } from "react-icons/io";
+import UploadImage from "@components/button/UploadImage";
 
 const AppQuill = lazy(() => import('@components/admin/AppQuill'));
 
 export default function EditExperienceType() {
     let navigate = useNavigate();
-
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
     const [intro, setIntro] = useState("");
@@ -35,10 +33,10 @@ export default function EditExperienceType() {
                 intro
             });
             if (res.status === 200) {
-                toast.success('Cập nhật trải nghiệm thành công!')
-                navigate('/admin/experience');
+                toast.success('Cập nhật looại hình trải nghiệm thành công!')
+                navigate('/admin/experience-types');
             } else {
-                toast.error('Cập nhật trải nghiệm thất bại!')
+                toast.error('Cập nhật loại hình trải nghiệm thất bại!')
             }
             return;
         }
@@ -49,16 +47,16 @@ export default function EditExperienceType() {
             intro
         });
         if (res.status === 201) {
-            toast.success('Thêm trải nghiệm thành công!')
-            navigate('/admin/experience');
+            toast.success('Thêm loại hình trải nghiệm thành công!')
+            navigate('/admin/experience-types');
         } else {
-            toast.error('Thêm trải nghiệm thất bại!')
+            toast.error('Thêm loại hình trải nghiệm thất bại!')
         }
     }
 
-    const uploadImage = async (image) => {
+    const uploadImage = async (e) => {
         const formData = new FormData();
-        formData.append('image', image);
+        formData.append('image', e.target.files[0]);
         const res = await HttpClient.post('/experience/image', formData, {
             headers: { "Content-Type": "multipart/form-data" },
         });
@@ -73,7 +71,7 @@ export default function EditExperienceType() {
     useEffect(() => {
         if (id) {
             const getExperience = async () => {
-                const res = await HttpClient.get(`/experience/${id}`);
+                const res = await HttpClient.get(`/experience-type/${id}`);
                 if (res.status === 200) {
                     const data = res.data.data;
                     setTitle(data.title);
@@ -105,7 +103,7 @@ export default function EditExperienceType() {
             <Main>
                 <div className='mb-2 flex items-center justify-between space-y-2'>
                     <h1 className='text-2xl font-bold tracking-tight mb-[30px]'>
-                        {id ? "Chỉnh sửa trải nghiệm" : "Thêm trải nghiệm"}
+                        {id ? "Chỉnh sửa loại hình trải nghiệm" : "Thêm loại hình trải nghiệm"}
                     </h1>
                 </div>
                 <Tabs
@@ -115,64 +113,17 @@ export default function EditExperienceType() {
                     <TabsContent value='overview' className='space-y-4'>
                         <form onSubmit={onSubmit} className="space-y-8">
                             <div>
-                                <label>Tiêu đề</label>
+                                <label className="mb-1 block">Tiêu đề</label>
                                 <div>
                                     <Input placeholder="shadcn" value={title} onChange={(e) => setTitle(e.target.value)} />
                                 </div>
                             </div>
-
-                            <UploadImage label="Ảnh" imagePreview={image} onChange={uploadImage} />
-                            {/* <div className="flex items-center gap-[100px]">
-                                <div>
-                                    <label>Ảnh</label>
-                                    <div className="max-w-md flex w-full">
-                                        <div className="w-[400px]">
-                                            <input
-                                                type="file"
-                                                className={cn(
-                                                    'w-full text-slate-500 font-medium text-sm',
-                                                    'bg-white border file:cursor-pointer cursor-pointer',
-                                                    'file:border-0 file:py-3 file:px-4 file:mr-4',
-                                                    'file:bg-gray-100 file:hover:bg-gray-200',
-                                                    'file:text-slate-500 rounded'
-                                                )}
-                                                onChange={(e) => uploadImage(e.target.files[0])}
-                                            />
-                                            <p
-                                                className="text-xs text-slate-500 mt-2"
-                                            >
-                                                PNG, JPG SVG, WEBP are Allowed.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="shadow-lg">
-                                    {image && (
-                                        <a href={image} className="group relative rounded-md overflow-hidden" target="_blank">
-                                            <div
-                                                className={cn(
-                                                    'hidden group-hover:block rounded-md text-[25px]',
-                                                    'top-0 right-0 w-full h-full absolute',
-                                                    'bg-[linear-gradient(180deg,_rgb(64_61_61_/_80%),_rgb(29_26_26_/_46%)_70.71%)]'
-                                                )}
-                                            >
-                                                <IoIosCloseCircle
-                                                    className="absolute top-[10px] left-[10px] text-white"
-                                                    onClick={(e) => removeImage(e)}
-                                                />
-                                            </div>
-                                            <img
-                                                src={image}
-                                                alt="preview"
-                                                className="w-[250px] h-auto object-cover rounded-md"
-                                            />
-                                        </a>
-                                    )}
-                                </div>
-                            </div> */}
-
                             <div>
-                                <label>Nội dung</label>
+                                <label className="mb-1 block">Ảnh</label>
+                                <UploadImage className="w-[400px]" imagePreview={image} onChange={uploadImage} />
+                            </div>
+                            <div>
+                                <label className="mb-1 block">Nội dung</label>
                                 <div>
                                     <AppQuill value={intro} onChange={(value) => setIntro(value)} />
                                 </div>

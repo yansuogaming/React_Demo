@@ -1,6 +1,9 @@
 import fs from "node:fs/promises";
 import express from "express";
 import { Transform } from "node:stream";
+import axios from "axios";
+import 'dotenv/config'
+import cookieParser from 'cookie-parser';
 
 // Constants
 const isProduction = process.env.NODE_ENV === "production";
@@ -15,6 +18,7 @@ const templateHtml = isProduction
 
 // Create http server
 const app = express();
+app.use(cookieParser());
 
 // Add Vite or respective production middlewares
 /** @type {import('vite').ViteDevServer | undefined} */
@@ -36,6 +40,54 @@ if (!isProduction) {
 
 // Serve HTML
 app.use("*all", async (req, res) => {
+    if (req.originalUrl.startsWith('/admin')) {
+        const token = req.cookies['token']
+        if (
+            !token
+            && !req.originalUrl.startsWith('/admin/login')
+            && !req.originalUrl.startsWith('/admin/forgot-password')
+        ) {
+            res.redirect('/admin/login');
+            return;
+        }
+       
+        if (token) {
+            let response = null
+            try {
+                response = await axios.get(`${process.env.VITE_API_URL}/check-login`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Cookie': `token=${token}`, // Truyền cookie trong header
+                    },
+                    timeout: process.env.VITE_API_TIMEOUT,
+                    validateStatus: () => true,
+                });
+            } catch (error) {
+                response = error.response
+            }
+
+            if (
+                response.status === 200
+                && (
+                    req.originalUrl.startsWith('/admin/login')
+                    || req.originalUrl.startsWith('/admin/forgot-password')
+                )
+            ) {
+                res.redirect('/admin');
+                return;
+            }
+
+            if (
+                response.status !== 200
+                && !req.originalUrl.startsWith('/admin/login')
+                && !req.originalUrl.startsWith('/admin/forgot-password')
+            ) {
+                res.redirect('/admin/login');
+                return;
+            }
+        }
+    }
+
     try {
         const url = encodeURI(req.originalUrl.replace(base, ""));
 
