@@ -52,7 +52,6 @@ const RecommendationCarousel = () => {
             </h2>
 
             <div className="relative">
-                {/* Prev / Next buttons inside items row */}
                 <button
                     onClick={scrollPrev}
                     disabled={!emblaApi?.canScrollPrev()}
@@ -68,7 +67,6 @@ const RecommendationCarousel = () => {
                     <FaChevronRight />
                 </button>
 
-                {/* Carousel */}
                 <div className="overflow-hidden" ref={emblaRef}>
                     <div className="flex gap-4">
                         {recommendations.map((item, index) => (
@@ -87,7 +85,6 @@ const RecommendationCarousel = () => {
                                                 />
                                             </NavLink>
                                         </div>
-                                        {/* Heart button */}
                                         <button className="absolute bottom-2 right-2 w-10 h-10 rounded-lg bg-white shadow-md flex items-center justify-center text-blue-700">
                                             <CiHeart />
                                         </button>
@@ -109,7 +106,6 @@ const RecommendationCarousel = () => {
                     </div>
                 </div>
 
-                {/* Dots */}
                 <div className="flex justify-end mt-4 gap-2">
                     {scrollSnaps.map((_, index) => (
                         <button
@@ -126,7 +122,6 @@ const RecommendationCarousel = () => {
                 </div>
             </div>
 
-            {/* CTA */}
             <div className="mt-6">
                 <a
                     href="#"
