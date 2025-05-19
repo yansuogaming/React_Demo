@@ -96,6 +96,10 @@ const routes = [
                         Component: lazy(() => import("@pages/CurrencyGuide")),
                     },
                     {
+                        path: "downloadapp",
+                        Component: lazy(() => import("@pages/DownloadApp")),
+                    },
+                    {
                         path: "search-result",
                         Component: lazy(() => import("@pages/SearchResult")),
                     },
