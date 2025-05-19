@@ -1,23 +1,12 @@
-import {
-    AudioWaveform,
-    Command,
-    GalleryVerticalEnd
-} from 'lucide-react'
-import { IoCompassOutline } from "react-icons/io5";
-import { TbLayoutDashboard } from "react-icons/tb";
-import { BsPinMap } from "react-icons/bs";
-import { IoCalendarNumberOutline } from "react-icons/io5";
+import { IoCompassOutline, IoCalendarNumberOutline, IoSearchOutline } from "react-icons/io5";
+import { BsPinMap, BsEnvelopeAt, BsUmbrella, BsQuestionCircle } from "react-icons/bs";
 import { RiShoppingBag4Line } from "react-icons/ri";
-import { TbUserCog } from "react-icons/tb";
-import { TbTool } from "react-icons/tb";
-import { IoColorPaletteOutline } from "react-icons/io5";
-import { RiNotificationBadgeLine } from "react-icons/ri";
-import { TbBrowserCheck } from "react-icons/tb";
-import { BsUmbrella } from "react-icons/bs";
+import { TbUserCog, TbTool, TbLayoutDashboard } from "react-icons/tb";
 import { MdOutlineMap } from "react-icons/md";
 import { FaTreeCity } from "react-icons/fa6";
-import { CiViewList } from "react-icons/ci";
-import { CiCircleList } from "react-icons/ci";
+import { CiViewList, CiCircleList } from "react-icons/ci";
+import { SiGoogletranslate } from "react-icons/si";
+
 
 export const sidebarData = {
     user: {
@@ -25,23 +14,6 @@ export const sidebarData = {
         email: 'satnaingdev@gmail.com',
         avatar: '/avatars/shadcn.jpg',
     },
-    teams: [
-        {
-            name: 'Shadcn Admin',
-            logo: Command,
-            plan: 'Vite + ShadcnUI',
-        },
-        {
-            name: 'Acme Inc',
-            logo: GalleryVerticalEnd,
-            plan: 'Enterprise',
-        },
-        {
-            name: 'Acme Corp.',
-            logo: AudioWaveform,
-            plan: 'Startup',
-        },
-    ],
     navGroups: [
         {
             title: 'General',
@@ -97,6 +69,11 @@ export const sidebarData = {
                     url: '/admin/reasons',
                     icon: BsUmbrella,
                 },
+                {
+                    title: 'FAQs',
+                    url: '/admin/faqs',
+                    icon: BsQuestionCircle,
+                },
             ],
         },
         {
@@ -113,19 +90,19 @@ export const sidebarData = {
                     icon: TbTool,
                 },
                 {
-                    title: 'Appearance',
-                    url: '/settings/appearance',
-                    icon: IoColorPaletteOutline,
+                    title: 'Mail',
+                    url: '/settings/mails',
+                    icon: BsEnvelopeAt,
                 },
                 {
-                    title: 'Notifications',
-                    url: '/settings/notifications',
-                    icon: RiNotificationBadgeLine,
+                    title: 'Ngôn ngữ',
+                    url: '/settings/languages',
+                    icon: SiGoogletranslate,
                 },
                 {
-                    title: 'Display',
-                    url: '/settings/display',
-                    icon: TbBrowserCheck,
+                    title: 'Seo tools',
+                    url: '/settings/seo-tools',
+                    icon: IoSearchOutline,
                 },
             ],
         },

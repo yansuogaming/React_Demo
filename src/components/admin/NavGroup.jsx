@@ -160,10 +160,15 @@ const SidebarMenuCollapsedDropdown = ({
     )
 }
 
-// function checkIsActive(href, item, mainNav = false) {
-//     return true
-// }
+function checkIsActive(href, item, mainNav = false) {
+    const url = href.pathname
 
-function checkIsActive() {
-    return true
+    return (
+        url === item.url || // /endpint?search=param
+        url.split('?')[0] === item.url || // endpoint
+        !!item?.items?.filter((i) => i.url === url).length || // if child nav is active
+        (mainNav &&
+            url.split('/')[1] !== '' &&
+            url.split('/')[1] === item?.url?.split('/')[1])
+    )
 }

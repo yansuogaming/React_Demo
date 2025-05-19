@@ -1,5 +1,6 @@
 import axios from 'axios'
 import i18next from 'i18next'
+import toast from 'react-hot-toast'
 
 class HttpClient {
     constructor() {
@@ -8,6 +9,7 @@ class HttpClient {
             headers: {
                 'Content-Type': 'application/json',
             },
+            withCredentials: true,
             timeout: import.meta.env.VITE_API_TIMEOUT, 
         })
 
@@ -48,40 +50,51 @@ class HttpClient {
     async request(config = {}) {
         // Handle Loading
         this.setHeader('Accept-Language', i18next.language == 'vi' ? 'vn' : i18next.language)
-        return await this.instance.request(config)
+        let res = null;
+        try {
+            res = await this.instance.request(config)
+        } catch (error) {
+            res = error.response
+        }
+
+        if (res.status === 500) {
+            toast.error('Lỗi server.');
+        }
+
+        return res;
     }
 
     async get(url, config = {}) {
         config.url = url;
         config.method = 'GET';
-        return await this.instance.request(config)
+        return await this.request(config)
     }
 
     async post(url, data, config = {}) {
         config.url = url;
         config.data = data;
         config.method = 'POST';
-        return await this.instance.request(config)
+        return await this.request(config)
     }
 
     async put(url, data, config = {}) {
         config.url = url;
         config.data = data;
         config.method = 'PUT';
-        return await this.instance.request(config)
+        return await this.request(config)
     }
 
     async delete(url, config = {}) {
         config.url = url;
         config.method = 'DELETE';
-        return await this.instance.request(config)
+        return await this.request(config)
     }
 
     async patch(url, data, config = {}) {
         config.url = url;
         config.data = data;
         config.method = 'PATCH';
-        return await this.instance.request(config)
+        return await this.request(config)
     }
 }
 

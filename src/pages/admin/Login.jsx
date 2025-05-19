@@ -1,6 +1,6 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@components/ui/form";
-import AuthLayout from "@layouts/AuthLayout";
+import GuestLayout from "@layouts/GuestLayout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from "zod";
@@ -9,20 +9,20 @@ import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
 import { PasswordInput } from "@components/ui/password-input";
 import { Link, useNavigate } from "react-router";
-
+import AuthService from "@services/AuthService";
 
 const formSchema = z.object({
     email: z
         .string()
-        .min(1, { message: 'Please enter your email' })
-        .email({ message: 'Invalid email address' }),
+        .min(1, { message: 'Vui lòng nhập email.' })
+        .email({ message: 'Email không hợp lệ.' }),
     password: z
         .string()
         .min(1, {
-            message: 'Please enter your password',
+            message: 'Vui lòng nhập password.',
         })
         .min(8, {
-            message: 'Password must be at least 7 characters long',
+            message: 'Mật khẩu phải lớn hơn 8 ký tự.',
         }),
 })
 
@@ -37,12 +37,13 @@ export default function Login() {
         },
     });
 
-    function onSubmit() {
-        navigate('/admin');
+    async function onSubmit(values) {
+        const success = await AuthService.login(values.email, values.password);
+        if (success) navigate('/admin');
     }
 
     return (
-        <AuthLayout>
+        <GuestLayout>
             <Card className='gap-4'>
                 <CardHeader>
                     <CardTitle className='text-lg tracking-tight'>Login</CardTitle>
@@ -81,8 +82,12 @@ export default function Login() {
                                         </FormControl>
                                         <FormMessage />
                                         <Link
-                                            to='/forgot-password'
-                                            className='text-muted-foreground absolute -top-0.5 right-0 text-sm font-medium hover:opacity-75'
+                                            to='/admin/forgot-password'
+                                            className={cn(
+                                                'text-muted-foreground absolute',
+                                                '-top-0.5 right-0 text-sm',
+                                                'font-medium hover:opacity-75'
+                                            )}
                                         >
                                             Forgot password?
                                         </Link>
@@ -115,6 +120,6 @@ export default function Login() {
                     </p>
                 </CardFooter>
             </Card>
-        </AuthLayout>
+        </GuestLayout>
     )
 }
