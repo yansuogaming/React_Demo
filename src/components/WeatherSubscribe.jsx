@@ -68,12 +68,9 @@ const WeatherSubscribe = () => {
                 </div>
             </div>
 
-            {/* Divider */}
-            <hr className="border-t-2 border-pink-600 my-8" />
+            {/* <hr className="border-t-2 border-pink-600 my-8" /> */}
 
-            {/* Bottom Section */}
-            <div className="container mx-auto max-w-screen-xl flex flex-col lg:flex-row justify-between gap-[50px]">
-                {/* Stay Updated */}
+            {/* <div className="container mx-auto max-w-screen-xl flex flex-col lg:flex-row justify-between gap-[50px]">
                 <div className="flex-1">
                     <h3 className="text-lg font-semibold mb-2">Stay updated</h3>
                     <p className="text-sm mb-4">
@@ -104,7 +101,6 @@ const WeatherSubscribe = () => {
                     </p>
                 </div>
 
-                {/* App Download */}
                 <div className="flex-1">
                     <h3 className="text-lg font-semibold mb-4">
                         Download our apps
@@ -132,7 +128,7 @@ const WeatherSubscribe = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </section>
     );
 };
