@@ -15,10 +15,9 @@ const routes = [
                         index: true,
                         Component: lazy(() => import("@pages/Home")),
                         loader: async () => {
-                            const experienceTypes =
-                                await ExperienceService.getExperienceTypes();
+                            const experienceTypes = await ExperienceService.getExperienceTypes();
                             return {
-                                experienceTypes,
+                                experienceTypes
                             };
                         },
                         meta: () => {
@@ -111,13 +110,6 @@ const routes = [
                         path: "downloadapp",
                         Component: lazy(() => import("@pages/DownloadApp")),
                     },
-                    {
-                        path: "itineraries/detail",
-                        Component: lazy(() =>
-                            import("@pages/ItinerariesDetail")
-                        ),
-                    },
-
                     {
                         path: "search-result/:keyword?",
                         Component: lazy(() => import("@pages/SearchResult")),

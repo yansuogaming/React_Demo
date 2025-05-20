@@ -57,7 +57,7 @@ class HttpClient {
             res = error.response
         }
 
-        if (res.status === 500) {
+        if (res?.status === 500) {
             toast.error('Lỗi server.');
         }
 

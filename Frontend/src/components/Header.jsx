@@ -25,11 +25,13 @@ import { cn } from "@lib/utils";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router";
+import ModalSearch from "./modal/ModalSearch";
 const HeaderContext = createContext();
 
 const Header = ({ noBackgroundOnScroll = false }) => {
     const { t } = useTranslation();
     const [background, setBackground] = useState("none");
+    const [showSearch, setShowSearch] = useState(false);
     const [logo, setLogo] = useState(null);
     const [color, setColor] = useState(null);
     const [colorIcon, setColorIcon] = useState(null);
@@ -207,6 +209,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                 <SearchHeader
                                     color={color}
                                     className="flex cursor-pointer"
+                                    onClick={() => setShowSearch(true)}
                                 />
                             </motion.li>
                             <motion.li
@@ -314,6 +317,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <span className="text-[18px]">Menu</span>
                         <LuTextSearch />
                     </button>
+
                     {/* Mobile menu */}
                     <AnimatePresence initial={false}>
                         {isVisible && (
@@ -325,7 +329,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     duration: 0.4,
                                     ease: "easeInOut",
                                 }}
-                                className="w-full h-screen fixed top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll flex flex-col z-2"
+                                className="w-full h-screen absolute top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll"
                             >
                                 <div className="bg-[#28B8F8] px-[16px] pt-[16px] pb-[10px] flex flex-col gap-[58px]">
                                     <div className="flex items-center justify-between">
@@ -398,7 +402,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                         </NavLink>
                                     </li>
                                 </ul>
-                                <div className="flex flex-col justify-between flex-1 pt-[50px] px-[16px] pb-[16px] gap-[82px]">
+                                <div className="flex flex-col justify-between pt-[50px] px-[16px] pb-[16px] gap-[82px]">
                                     <ul className="flex flex-col gap-[5px]">
                                         <li>
                                             <NavLink
@@ -562,7 +566,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                 <NavLink
                                                     onClick={(e) => {
                                                         e.preventDefault();
-                                                        navigate("/visa-guide");
+                                                        navigate(
+                                                            "/visainformation"
+                                                        );
                                                         setIsVisible(
                                                             !isVisible
                                                         );
@@ -571,7 +577,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Visa Guide
+                                                    Visa Information
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -589,7 +595,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Essentials
+                                                    Visa Information
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -597,7 +603,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/getting-to-and-around"
+                                                            "/visainformation"
                                                         );
                                                         setIsVisible(
                                                             !isVisible
@@ -607,23 +613,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Getting to & around Vietnam
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate("/safety");
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
-                                                >
-                                                    Safety
+                                                    Visa Information
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -631,7 +621,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/accessibility"
+                                                            "/visainformation"
                                                         );
                                                         setIsVisible(
                                                             !isVisible
@@ -641,7 +631,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Accessibility
+                                                    Visa Information
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -649,7 +639,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/vietnam-pass"
+                                                            "/visainformation"
                                                         );
                                                         setIsVisible(
                                                             !isVisible
@@ -659,7 +649,25 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Vietnam attractions passes
+                                                    Visa Information
+                                                </NavLink>
+                                            </li>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate(
+                                                            "/visainformation"
+                                                        );
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    Visa Information
                                                 </NavLink>
                                             </li>
 
@@ -723,6 +731,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         )}
                     </AnimatePresence>
                 </div>
+                <ModalSearch
+                isOpen={showSearch}
+                onClose={() => setShowSearch(false)}
+                />
             </header>
         </HeaderContext.Provider>
     );
