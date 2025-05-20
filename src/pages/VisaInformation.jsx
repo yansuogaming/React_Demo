@@ -1,12 +1,9 @@
-import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
+
+import { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import { cn } from "@lib/utils";
 
 import Breadcrumb from "@components/Breadcrumb";
 import FAQ from "@components/FAQ";
@@ -237,81 +234,123 @@ const residencyItems = [
         description:
             "Dubai’s cutting-edge research and facilities attract the brightest minds from around the world. Explore the five and ten-year visas supporting exceptional student talent.",
     },
-    {
-        icon: "💻",
-        title: "Work remotely programme",
-        description:
-            "Do you want to mix business with pleasure in Dubai? With a new one-year virtual working programme, you can live and work by the beach.",
-        cta: "Apply now",
-    },
-    {
-        icon: "🧑‍💼",
-        title: "Residency for investors and entrepreneurs",
-        description:
-            "If you wish to open a business or invest in property in Dubai, you can apply for five and ten-year residency visas, with a possibility to also bring your business partners and family.",
-    },
-    {
-        icon: "🚀",
-        title: "Residency for specialist talent",
-        description:
-            "If you are a specialist in science, medicine, sport, culture, or art, Dubai offers state-of-the-art facilities to grow your talent. Apply for this ten-year visa and reach your potential.",
-    },
-    {
-        icon: "📚",
-        title: "Residency for outstanding students",
-        description:
-            "Dubai’s cutting-edge research and facilities attract the brightest minds from around the world. Explore the five and ten-year visas supporting exceptional student talent.",
-    },
 ];
-
 const RelocateToDubai = () => {
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        loop: false,
+        align: "start",
+    });
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [scrollSnaps, setScrollSnaps] = useState([]);
+    const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
+    const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
+
+    const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
+    const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+    const onSelect = useCallback(() => {
+        if (!emblaApi) return;
+        setSelectedIndex(emblaApi.selectedScrollSnap());
+        setPrevBtnDisabled(!emblaApi.canScrollPrev());
+        setNextBtnDisabled(!emblaApi.canScrollNext());
+    }, [emblaApi]);
+
+    useEffect(() => {
+        if (!emblaApi) return;
+        setScrollSnaps(emblaApi.scrollSnapList());
+        onSelect();
+        emblaApi.on("select", onSelect);
+    }, [emblaApi, onSelect]);
+
+    const items = [...residencyItems, ...residencyItems];
+
     return (
         <section className="container mx-auto px-4 py-10">
             <h2 className="text-3xl font-semibold text-[#1A2A44] mb-2">
                 Relocate to Dubai
             </h2>
-            <p className="text-gray-600 mb-6 max-w-2xl">
-                Whether working remotely from Dubai, permanently moving your
-                business, or coming for retirement, there are lots of options
-                for you to enjoy the full benefits of being a Dubai resident.
-            </p>
 
-            {/* Carousel navigation */}
-            <div className="relative">
-                <Carousel className="w-full">
-                    <CarouselContent>
-                        {residencyItems.map((item, index) => (
-                            <CarouselItem
-                                key={index}
-                                className="basis-full sm:basis-1/2 lg:basis-1/4 px-2"
-                            >
-                                <div className="bg-[#005B88] text-white rounded-md p-6 h-full flex flex-col justify-between">
-                                    <div>
-                                        <div className="text-2xl mb-2 flex gap-[10px]">
-                                            {item.icon}
-                                            <h3 className="font-semibold text-lg mb-2">
-                                                {item.title}
-                                            </h3>
-                                        </div>
+            <div className="flex justify-between items-center mb-6 flex-wrap gap-2">
+                <p className="text-gray-600 max-w-2xl">
+                    Whether working remotely from Dubai, permanently moving your
+                    business, or coming for retirement, there are lots of
+                    options for you to enjoy the full benefits of being a Dubai
+                    resident.
+                </p>
+                <div className="hidden sm:flex gap-2">
+                    <button
+                        onClick={scrollPrev}
+                        disabled={prevBtnDisabled}
+                        className={cn(
+                            "w-8 h-8 rounded shadow bg-white flex items-center justify-center",
+                            prevBtnDisabled
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
+                        )}
+                    >
+                        <FaChevronLeft className="text-blue-500" />
+                    </button>
+                    <button
+                        onClick={scrollNext}
+                        disabled={nextBtnDisabled}
+                        className={cn(
+                            "w-8 h-8 rounded shadow bg-white flex items-center justify-center",
+                            nextBtnDisabled
+                                ? "opacity-50 cursor-not-allowed"
+                                : ""
+                        )}
+                    >
+                        <FaChevronRight className="text-blue-500" />
+                    </button>
+                </div>
+            </div>
 
-                                        <p className="text-sm leading-relaxed">
-                                            {item.description}
-                                        </p>
+            {/* Carousel */}
+            <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex">
+                    {items.map((item, index) => (
+                        <div
+                            key={index}
+                            className="flex-none px-2 w-[80%] sm:w-1/2 sm:max-w-[45%] lg:w-1/4"
+                        >
+                            <div className="bg-[#005B88] text-white rounded-md p-6 h-full flex flex-col justify-between">
+                                <div>
+                                    <div className="text-2xl mb-2 flex gap-[10px]">
+                                        <span>{item.icon}</span>
+                                        <h3 className="font-[400] text-[24px]">
+                                            {item.title}
+                                        </h3>
                                     </div>
-                                    {item.cta && (
-                                        <button className="mt-6 text-sm border border-white py-2 px-4 rounded hover:bg-white hover:text-[#005B88] transition">
-                                            {item.cta}
-                                        </button>
-                                    )}
+                                    <p className="text-[20px] font-[300] m-[14px_0_16px_0]">
+                                        {item.description}
+                                    </p>
                                 </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
+                                {item.cta && (
+                                    <button className="mt-6 text-sm border border-white py-2 px-4 rounded hover:bg-white hover:text-[#005B88] hover:cursor-pointer transition">
+                                        {item.cta}
+                                    </button>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
-                    {/* Optional nav buttons */}
-                    <CarouselPrevious className="left-[-20px]" />
-                    <CarouselNext className="right-[-20px]" />
-                </Carousel>
+            {/* Dots */}
+            <div className="flex justify-end mt-4 gap-2">
+                {scrollSnaps.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => emblaApi?.scrollTo(index)}
+                        className={cn(
+                            "h-[10px] transition rounded-full",
+                            selectedIndex === index
+                                ? "w-[30px] bg-gray-800"
+                                : "w-[10px] bg-gray-300"
+                        )}
+                    />
+                ))}
             </div>
         </section>
     );

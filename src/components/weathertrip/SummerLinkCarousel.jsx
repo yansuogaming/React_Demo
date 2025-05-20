@@ -1,12 +1,8 @@
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
-
+import React, { useState, useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { NavLink } from "react-router";
+import { cn } from "@/lib/utils";
 
 import imageDemo from "@images/wp12060285.webp";
 
@@ -60,33 +56,81 @@ const SummerLinkCard = ({ image, title, desc }) => (
 );
 
 const SummerLinkCarousel = () => {
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        align: "start",
+        loop: false,
+        containScroll: "trimSnaps",
+    });
+
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [scrollSnaps, setScrollSnaps] = useState([]);
+
+    useEffect(() => {
+        if (!emblaApi) return;
+        setScrollSnaps(emblaApi.scrollSnapList());
+        emblaApi.on("select", () => {
+            setSelectedIndex(emblaApi.selectedScrollSnap());
+        });
+    }, [emblaApi]);
+
+    const scrollPrev = () => emblaApi?.scrollPrev();
+    const scrollNext = () => emblaApi?.scrollNext();
+
     return (
         <section className="container mx-auto px-4 py-10">
-            {/* Header + Nav */}
-            <div className="flex justify-between items-center mb-4">
+            {/* Header & Nav */}
+            <div className="flex justify-between items-start mb-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-[#1A2A44]">
                     Useful links for summertime in Dubai
                 </h2>
+
+                <div className="hidden lg:flex gap-2">
+                    <button
+                        onClick={scrollPrev}
+                        disabled={!emblaApi?.canScrollPrev()}
+                        className="bg-white border shadow rounded w-10 h-10 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50"
+                    >
+                        <FaChevronLeft />
+                    </button>
+                    <button
+                        onClick={scrollNext}
+                        disabled={!emblaApi?.canScrollNext()}
+                        className="bg-white border shadow rounded w-10 h-10 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50"
+                    >
+                        <FaChevronRight />
+                    </button>
+                </div>
             </div>
 
             {/* Carousel */}
-            <Carousel opts={{ align: "start", loop: true }} className="w-full">
-                <div className="hidden lg:flex gap-2">
-                    <CarouselPrevious className="bg-white border rounded shadow w-10 h-10 flex items-center justify-center hover:bg-gray-100" />
-                    <CarouselNext className="bg-white border rounded shadow w-10 h-10 flex items-center justify-center hover:bg-gray-100" />
-                </div>
-
-                <CarouselContent className="gap-4">
+            <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex gap-4">
                     {links.map((item, index) => (
-                        <CarouselItem
+                        <div
                             key={index}
-                            className="sm:basis-1/2 lg:basis-1/4"
+                            className="flex-none w-[80%] sm:w-[45%] lg:w-1/4"
                         >
                             <SummerLinkCard {...item} />
-                        </CarouselItem>
+                        </div>
                     ))}
-                </CarouselContent>
-            </Carousel>
+                </div>
+            </div>
+
+            {/* Dot Indicator */}
+            <div className="flex justify-center mt-4 gap-2">
+                {scrollSnaps.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => emblaApi?.scrollTo(index)}
+                        className={cn(
+                            "h-[10px] transition rounded-full",
+                            selectedIndex === index
+                                ? "w-[30px] bg-gray-800"
+                                : "w-[10px] bg-gray-300"
+                        )}
+                    />
+                ))}
+            </div>
         </section>
     );
 };

@@ -1,12 +1,8 @@
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
-
+import React, { useState, useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { NavLink } from "react-router";
+import { cn } from "@/lib/utils";
 
 const winterItems = [
     {
@@ -51,10 +47,28 @@ const WinterCard = ({ icon, title, description, cta }) => (
 );
 
 const WinterTrip = () => {
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        loop: false,
+        align: "start",
+    });
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [scrollSnaps, setScrollSnaps] = useState([]);
+
+    const scrollPrev = () => emblaApi?.scrollPrev();
+    const scrollNext = () => emblaApi?.scrollNext();
+
+    useEffect(() => {
+        if (!emblaApi) return;
+        setScrollSnaps(emblaApi.scrollSnapList());
+        emblaApi.on("select", () => {
+            setSelectedIndex(emblaApi.selectedScrollSnap());
+        });
+    }, [emblaApi]);
+
     return (
         <section className="container mx-auto px-4 py-10">
-            {/* Header */}
-            <div className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            {/* Header + navigation buttons */}
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 gap-4">
                 <div className="max-w-4xl">
                     <h2 className="text-3xl font-bold text-[#1A2A44] mb-2">
                         Winter in Dubai
@@ -65,26 +79,54 @@ const WinterTrip = () => {
                         season in Dubai...
                     </p>
                 </div>
+
+                <div className="hidden lg:flex gap-2">
+                    <button
+                        onClick={scrollPrev}
+                        disabled={!emblaApi?.canScrollPrev()}
+                        className="bg-white border rounded-full shadow w-10 h-10 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50"
+                    >
+                        <FaChevronLeft />
+                    </button>
+                    <button
+                        onClick={scrollNext}
+                        disabled={!emblaApi?.canScrollNext()}
+                        className="bg-white border rounded-full shadow w-10 h-10 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50"
+                    >
+                        <FaChevronRight />
+                    </button>
+                </div>
             </div>
 
-            {/* Carousel including nav buttons INSIDE */}
-            <Carousel opts={{ align: "start" }} className="w-full">
-                <div className="flex justify-end mb-4 gap-2">
-                    <CarouselPrevious className="hidden lg:flex bg-white border rounded-full shadow w-10 h-10 items-center justify-center hover:bg-gray-100" />
-                    <CarouselNext className="hidden lg:flex bg-white border rounded-full shadow w-10 h-10 items-center justify-center hover:bg-gray-100" />
-                </div>
-
-                <CarouselContent className="gap-4">
+            {/* Carousel */}
+            <div className="overflow-hidden" ref={emblaRef}>
+                <div className="flex gap-4">
                     {winterItems.map((item, index) => (
-                        <CarouselItem
+                        <div
                             key={index}
-                            className="sm:basis-1/2 lg:basis-1/3"
+                            className="flex-none w-[80%] sm:w-1/2 lg:w-1/3"
                         >
                             <WinterCard {...item} />
-                        </CarouselItem>
+                        </div>
                     ))}
-                </CarouselContent>
-            </Carousel>
+                </div>
+            </div>
+
+            {/* Dots */}
+            <div className="flex justify-center mt-6 gap-2">
+                {scrollSnaps.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => emblaApi?.scrollTo(index)}
+                        className={cn(
+                            "h-[10px] transition rounded-full",
+                            selectedIndex === index
+                                ? "w-[30px] bg-gray-800"
+                                : "w-[10px] bg-gray-300"
+                        )}
+                    />
+                ))}
+            </div>
         </section>
     );
 };
