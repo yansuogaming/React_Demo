@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import routesAdmin from "./admin";
-// import ExperienceService from "@services/ExperienceService";
+import ExperienceService from "@services/ExperienceService";
 
 const routes = [
     ...routesAdmin,
@@ -17,7 +17,7 @@ const routes = [
                         loader: async () => {
                             // const experienceTypes = await ExperienceService.getExperienceTypes();
                             return {
-                                experienceTypes: [],
+                                experienceTypes: [];
                             };
                         },
                         meta: () => {

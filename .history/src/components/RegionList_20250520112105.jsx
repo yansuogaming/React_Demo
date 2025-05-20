@@ -162,6 +162,7 @@ const RegionList = ({ className, ...props }) => {
             <div className="flex flex-col lg:flex-row items-center gap-[35px]">
                 {/* Bản đồ region */}
                 <div className="min-w-[512px] relative h-fit">
+                    {" "}
                     {/*hidden lg:block*/}
                     {regions.map((region, index) => {
                         const Component = region.component;

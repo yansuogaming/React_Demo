@@ -250,6 +250,10 @@ html {
     stroke: #007bff;
     z-index: 1;
 }
+.hnv_region_active_map path {
+    fill: #439eff;
+    stroke: #007bff;
+}
 .hnv_region_active_map .hnv_region_active_map_icon,
 .hnv_region_active_map .hnv_region_active_map_title {
     color: #fff;

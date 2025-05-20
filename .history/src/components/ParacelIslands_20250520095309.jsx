@@ -5,11 +5,8 @@ const ParacelIslands = ({ className = "" }) => {
     return (
         <div className={`relative ${className}`}>
             {/* Marker and label */}
-            <div className="absolute top-[-30px] left-1/2 transform -translate-x-1/2 whitespace-nowrap flex items-center flex flex-col gap-[4px] z-2 cursor-pointer">
-                <span
-                    className="hnv_region_active_map_title text-[14px] font-medium"
-                    style={{ color: "#1A2A44 !important" }}
-                >
+            <div className="absolute top-[-30px] left-1/2  whitespace-nowrap flex items-center flex flex-col gap-[4px] z-2 cursor-pointer">
+                <span className="hnv_region_active_map_title text-[#1A2A44] text-[14px] font-medium">
                     {t("Paracel Islands")}
                 </span>
             </div>

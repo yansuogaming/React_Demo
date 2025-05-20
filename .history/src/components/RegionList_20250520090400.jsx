@@ -26,8 +26,8 @@ const RegionList = ({ className, ...props }) => {
     const regions = [
         {
             id: 0,
-            title: "North",
             component: NorthImage,
+            title: "North",
             description:
                 "Northern Vietnam is a region rich in history, culture, and breathtaking landscapes. It is home to the capital city, Hanoi, where ancient traditions blend seamlessly with modern life. The area boasts stunning natural wonders such as Ha Long Bay, with its emerald waters and limestone islands, and the terraced rice fields of Sapa, offering picturesque views. Northern Vietnam is also known for its diverse ethnic communities, each contributing unique customs and traditions. With its vibrant street food scene, historical sites, and scenic beauty, Northern Vietnam is a must-visit destination for travelers seeking an authentic experience",
             className: "",
@@ -119,7 +119,7 @@ const RegionList = ({ className, ...props }) => {
                         </li>
                     ))}
                 </ul>
-                <Carousel
+                {/* <Carousel
                     className="w-full block md:hidden relative"
                     opts={{
                         align: "start",
@@ -156,13 +156,12 @@ const RegionList = ({ className, ...props }) => {
 
                     <CarouselPrevious className="flex left-[10px] md:left-[20px] cursor-pointer" />
                     <CarouselNext className="flex right-[10px] md:right-[20px] cursor-pointer" />
-                </Carousel>
+                </Carousel> */}
             </div>
 
             <div className="flex flex-col lg:flex-row items-center gap-[35px]">
                 {/* Bản đồ region */}
-                <div className="min-w-[512px] relative h-fit">
-                    {/*hidden lg:block*/}
+                <div className="hidden lg:block min-w-[512px] relative h-fit">
                     {regions.map((region, index) => {
                         const Component = region.component;
                         return (

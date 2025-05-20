@@ -247,7 +247,7 @@ html {
 }
 .hnv_region_active_map {
     fill: #439eff;
-    stroke: #007bff;
+    /* stroke: #007bff; */
     z-index: 1;
 }
 .hnv_region_active_map .hnv_region_active_map_icon,
