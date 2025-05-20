@@ -4,7 +4,7 @@ const FAQService = {
     getListFAQs: async () => {
         const res = await HttpClient.get("/faq", {
             params: {
-                lang_id: 
+                // lang_id: 
             }
         });
         if (res.status === 200) {
