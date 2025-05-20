@@ -173,11 +173,6 @@
   resolved "https://registry.npmjs.org/@date-fns/tz/-/tz-1.2.0.tgz"
   integrity sha512-LBrd7MiJZ9McsOgxqWX7AaxrDjcFVjWH/tIKJd7pnR7McaslGYOP1QmmiBXdJH/H/yLCT+rcQ7FaPBUxRGUtrg==
 
-"@esbuild/darwin-x64@0.25.4":
-  version "0.25.4"
-  resolved "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.25.4.tgz"
-  integrity sha512-CJsry8ZGM5VFVeyUYB3cdKpd/H69PYez4eJh1W/t38vzutdjEjtP7hB6eLKBoOdxcAlCtEYHzQ/PJ/oU9I4u0A==
-
 "@esbuild/win32-x64@0.25.4":
   version "0.25.4"
   resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.25.4.tgz"
@@ -795,11 +790,6 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@rollup/rollup-darwin-x64@4.40.2":
-  version "4.40.2"
-  resolved "https://registry.npmjs.org/@rollup/rollup-darwin-x64/-/rollup-darwin-x64-4.40.2.tgz"
-  integrity sha512-47N4hxa01a4x6XnJoskMKTS8XZ0CZMd8YTbINbi+w03A2w4j1RTlnGHOz/P0+Bg1LaVL6ufZyNprSg+fW5nYQQ==
-
 "@rollup/rollup-win32-x64-msvc@4.40.2":
   version "4.40.2"
   resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.40.2.tgz"
@@ -833,11 +823,6 @@
     jiti "^2.4.2"
     lightningcss "1.29.2"
     tailwindcss "4.1.5"
-
-"@tailwindcss/oxide-darwin-x64@4.1.5":
-  version "4.1.5"
-  resolved "https://registry.npmjs.org/@tailwindcss/oxide-darwin-x64/-/oxide-darwin-x64-4.1.5.tgz"
-  integrity sha512-XQorp3Q6/WzRd9OalgHgaqgEbjP3qjHrlSUb5k1EuS1Z9NE9+BbzSORraO+ecW432cbCN7RVGGL/lSnHxcd+7Q==
 
 "@tailwindcss/oxide-win32-x64-msvc@4.1.5":
   version "4.1.5"
@@ -1876,11 +1861,6 @@ fs-extra@^11.1.0:
     jsonfile "^6.0.1"
     universalify "^2.0.0"
 
-fsevents@~2.3.2, fsevents@~2.3.3:
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
-  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
-
 function-bind@^1.1.2:
   version "1.1.2"
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.2.tgz"
@@ -2173,11 +2153,6 @@ levn@^0.4.1:
   dependencies:
     prelude-ls "^1.2.1"
     type-check "~0.4.0"
-
-lightningcss-darwin-x64@1.29.2:
-  version "1.29.2"
-  resolved "https://registry.npmjs.org/lightningcss-darwin-x64/-/lightningcss-darwin-x64-1.29.2.tgz"
-  integrity sha512-j5qYxamyQw4kDXX5hnnCKMf3mLlHvG44f24Qyi2965/Ycz829MYqjrVg2H8BidybHBp9kom4D7DR5VqCKDXS0w==
 
 lightningcss-win32-x64-msvc@1.29.2:
   version "1.29.2"
