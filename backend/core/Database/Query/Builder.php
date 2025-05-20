@@ -1004,13 +1004,17 @@ class Builder
     protected function buildInsert(): string
     {
         $firstKey = key($this->fields);
+        // Trg hợp insert nhiều bản ghi
         if (is_array($this->fields[$firstKey])) {
             $fields = str_repeat('?, ', count($this->fields[$firstKey]) - 1);
             $fields = '(' . substr($fields, 0, -2) . ')';
             $fields = str_repeat("$fields, ", count($this->fields));
             $fields = substr($fields, 0, -2);
             $columns = join(', ', $this->backtick(array_keys($this->fields[$firstKey])));
-        } else {
+        }
+        
+        // Trg hợp insert 1 bản ghi
+        else {
             $fields = '(' . substr(str_repeat('?, ', count($this->fields)), 0, -2) . ')';
             $columns = join(', ', $this->backtick(array_keys($this->fields)));
         }

@@ -10,13 +10,11 @@ use Vietiso\Core\Route\Attributes\Group;
 use Vietiso\Core\Route\Attributes\Post;
 use Vietiso\Core\Route\Attributes\Put;
 use Vietiso\Modules\Admin\Middlewares\Authenticate;
-use Vietiso\Modules\Common\DTOs\UploadImageDTO;
 use Vietiso\Modules\Experience\DTOs\ExperienceDTO;
 use Vietiso\Modules\Experience\Models\Experience;
 
 #[Group(
     prefix: 'api/experience',
-    middlewares: [Authenticate::class]
 )]
 class ExperienceController
 {
@@ -64,22 +62,6 @@ class ExperienceController
 
         return Response::json([
             'message' => 'Server error',
-        ], 500);
-    }
-
-    #[Post('image')]
-    public function uploadImage(UploadImageDTO $uploadImageDTO)
-    {
-        $image = $uploadImageDTO->image->move('experiences');
-        if (!empty($image)) {
-            return Response::json([
-                'message' => 'Upload ảnh thành công',
-                'image' => config('app.url') . $image
-            ], 200);
-        }
-
-        return Response::json([
-            'message' => 'Upload ảnh thất bại',
         ], 500);
     }
 
