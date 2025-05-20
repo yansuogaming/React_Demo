@@ -11,74 +11,87 @@ import { lazy, useEffect, useState } from 'react';
 import HttpClient from "@services/HttpClient";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
+import InputLanguage from "@components/input/InputLanguage";
 import UploadImage from "@components/button/UploadImage";
+import RegionService from "@services/RegionService";
 import CommonService from "@services/CommonService";
 
 const AppEditor = lazy(() => import('@components/admin/AppEditor'));
 
-export default function EditExperienceType() {
+export default function Edit() {
     let navigate = useNavigate();
-    const [title, setTitle] = useState("");
-    const [image, setImage] = useState("");
-    const [intro, setIntro] = useState("");
-
     const { id } = useParams();
+    const [title, setTitle] = useState("");
+    const [langId, setLangId] = useState("");
+    const [intro, setIntro] = useState("");
+    const [image, setImage] = useState("");
+    const [translationOf, setTranslationOf] = useState(0);
+    const [currentId, setCurrentId] = useState(id);
 
     const onSubmit = async (e) => {
         e.preventDefault();
 
         if (id) {
-            const res = await HttpClient.post(`/experience-type/${id}`, {
+            const result = await RegionService.update(currentId, {
                 title,
+                intro,
                 image,
-                intro
+                lang_id: langId,
+                translation_of: translationOf
             });
-            if (res.status === 200) {
-                toast.success('Cập nhật looại hình trải nghiệm thành công!')
-                navigate('/admin/experience-types');
-            } else {
-                toast.error('Cập nhật loại hình trải nghiệm thất bại!')
-            }
+            if (result) navigate('/admin/regions');
             return;
         }
 
-        const res = await HttpClient.post('/experience-type', {
+        const result = await RegionService.create({
             title,
+            intro,
             image,
-            intro
+            lang_id: langId,
+            translation_of: translationOf
         });
-        if (res.status === 201) {
-            toast.success('Thêm loại hình trải nghiệm thành công!')
-            navigate('/admin/experience-types');
-        } else {
-            toast.error('Thêm loại hình trải nghiệm thất bại!')
+        if (result) {
+            navigate('/admin/regions');
         }
     }
 
+    const changeLanguage = (langId) => {
+        // Thêm mới thì khi change language k cần phải call api lang
+        setLangId(langId);
+        if (currentId) {
+            getRegions({
+                params: {
+                    lang_id: langId
+                }
+            });
+        }
+    };
+
+    const getRegions = async (config = {}) => {
+        const res = await HttpClient.get(`/region/${currentId}`, config);
+        if (res.status === 200) {
+            const data = res.data.data;
+            setCurrentId(data.id == data.translation_of ? data.id : currentId);
+            setTitle(data.title);
+            setIntro(data.intro);
+            setImage(data.image);
+            setLangId(data.lang_id);
+            setTranslationOf(data.translation_of);
+        } else if (res.status !== 401) {
+            toast.error('Lấy vùng miền thất bại!')
+        }
+    };
+
     const uploadImage = async (e) => {
-        const image = await CommonService.uploadImage(e.target.files[0], 'experiences');
-        if (image == null) {
-            toast.error("Tải ảnh lên thất bại!");
-        } else {
+        const image = await CommonService.uploadImage(e.target.files[0], 'regions');
+        if (image) {
             setImage(image);
         }
-    }
+    };
 
     useEffect(() => {
         if (id) {
-            const getExperience = async () => {
-                const res = await HttpClient.get(`/experience-type/${id}`);
-                if (res.status === 200) {
-                    const data = res.data.data;
-                    setTitle(data.title);
-                    setIntro(data.intro);
-                    setImage(data.image);
-                } else {
-                    toast.error('Lấy trải nghiệm thất bại!')
-                }
-            };
-
-            getExperience();
+            getRegions();
         }
     }, [id]);
 
@@ -99,7 +112,7 @@ export default function EditExperienceType() {
             <Main>
                 <div className='mb-2 flex items-center justify-between space-y-2'>
                     <h1 className='text-2xl font-bold tracking-tight mb-[30px]'>
-                        {id ? "Chỉnh sửa loại hình trải nghiệm" : "Thêm loại hình trải nghiệm"}
+                        {id ? "Chỉnh sửa vùng miền" : "Thêm vùng miền"}
                     </h1>
                 </div>
                 <Tabs
@@ -111,15 +124,29 @@ export default function EditExperienceType() {
                             <div>
                                 <label className="mb-1 block">Tiêu đề</label>
                                 <div>
-                                    <Input placeholder="shadcn" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                    <Input
+                                        placeholder="shadcn"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="mb-1 block">Ngôn ngữ</label>
+                                <div>
+                                    <InputLanguage langId={langId} onChange={changeLanguage} />
                                 </div>
                             </div>
                             <div>
                                 <label className="mb-1 block">Ảnh</label>
-                                <UploadImage className="w-[400px]" imagePreview={image} onChange={uploadImage} />
+                                <UploadImage
+                                    className="w-[400px]"
+                                    imagePreview={image}
+                                    onChange={uploadImage}
+                                />
                             </div>
                             <div>
-                                <label className="mb-1 block">Nội dung</label>
+                                <label className="mb-1 block">Giới thiệu</label>
                                 <div>
                                     <AppEditor value={intro} onChange={(value) => setIntro(value)} />
                                 </div>

@@ -1,10 +1,10 @@
 import HttpClient from "./HttpClient";
 
 const FAQService = {
-    getListFAQs: async () => {
+    getListFAQs: async (langId) => {
         const res = await HttpClient.get("/faq", {
             params: {
-                // lang_id: 
+                lang_id: langId
             }
         });
         if (res.status === 200) {

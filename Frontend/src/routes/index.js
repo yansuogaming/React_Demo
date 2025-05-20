@@ -1,6 +1,9 @@
 import { lazy } from "react";
 import routesAdmin from "./admin";
 import ExperienceService from "@services/ExperienceService";
+import FAQService from "@services/FAQService";
+import EventService from "@services/EventService";
+import WeatherService from "@services/WeatherService";
 
 const routes = [
     ...routesAdmin,
@@ -15,10 +18,13 @@ const routes = [
                         index: true,
                         Component: lazy(() => import("@pages/Home")),
                         loader: async () => {
-                            const experienceTypes =
-                                await ExperienceService.getExperienceTypes();
+                            const res = await Promise.all([
+                                ExperienceService.getExperienceTypes(),
+                                EventService.getListGoingOn()
+                            ]);
                             return {
-                                experienceTypes,
+                                experienceTypes: res[0],
+                                events: res[1]
                             };
                         },
                         meta: () => {
@@ -34,6 +40,18 @@ const routes = [
                     {
                         path: "city/:slug",
                         Component: lazy(() => import("@pages/City")),
+                        loader: async () => {
+                            const res = await Promise.all([
+                                FAQService.getListFAQs(),
+                                EventService.getListGoingOn(),
+                                WeatherService.getCityWeather('Hà Nội')
+                            ]);
+                            return {
+                                FAQs: res[0],
+                                events: res[1],
+                                weather: res[2]
+                            };
+                        },
                     },
                     {
                         path: "expericences",

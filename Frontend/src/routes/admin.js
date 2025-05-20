@@ -107,7 +107,7 @@ const routesAdmin = [
             },
             {
                 path: 'faqs/add',
-                Component: lazy(() => import("@pages/admin/FAQ/EditFAQ")),
+                Component: lazy(() => import("@pages/admin/FAQ/Edit")),
                 meta: () => {
                     return [
                         { title: "FAQ" },
@@ -117,7 +117,7 @@ const routesAdmin = [
             },
             {
                 path: 'faqs/:id',
-                Component: lazy(() => import("@pages/admin/FAQ/EditFAQ")),
+                Component: lazy(() => import("@pages/admin/FAQ/Edit")),
                 meta: () => {
                     return [
                         { title: "FAQ" },
@@ -137,7 +137,7 @@ const routesAdmin = [
             },
             {
                 path: 'regions/add',
-                Component: lazy(() => import("@pages/admin/Region/Index")),
+                Component: lazy(() => import("@pages/admin/Region/Edit")),
                 meta: () => {
                     return [
                         { title: "Experience" },
@@ -146,8 +146,8 @@ const routesAdmin = [
                 },
             },
             {
-                path: 'regions',
-                Component: lazy(() => import("@pages/admin/Region/Index")),
+                path: 'regions/:id',
+                Component: lazy(() => import("@pages/admin/Region/Edit")),
                 meta: () => {
                     return [
                         { title: "Experience" },

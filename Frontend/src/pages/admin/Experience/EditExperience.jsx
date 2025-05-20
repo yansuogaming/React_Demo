@@ -11,6 +11,7 @@ import HttpClient from "@services/HttpClient";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
 import UploadImage from "@components/button/UploadImage";
+import CommonService from "@services/CommonService";
 
 const AppEditor = lazy(() => import("@components/admin/AppEditor"));
 
@@ -55,16 +56,11 @@ export default function EditExperience() {
     };
 
     const uploadImage = async (e) => {
-        const formData = new FormData();
-        formData.append("image", e.target.files[0]);
-        const res = await HttpClient.post("/experience/image", formData, {
-            headers: { "Content-Type": "multipart/form-data" },
-        });
-
-        if (res.status === 200) {
-            setImage(res.data.image);
-        } else {
+        const image = await CommonService.uploadImage(e.target.files[0], 'experiences');
+        if (image == null) {
             toast.error("Tải ảnh lên thất bại!");
+        } else {
+            setImage(image);
         }
     };
 

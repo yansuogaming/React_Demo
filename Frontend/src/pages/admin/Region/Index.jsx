@@ -20,6 +20,7 @@ import { HiDotsHorizontal } from "react-icons/hi";
 import { Plus } from "lucide-react";
 import DataTable from "@components/admin/DataTable";
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
+import RegionService from "@services/RegionService";
 
 export default function Index() {
     const [data, setData] = useState([]);
@@ -108,18 +109,14 @@ export default function Index() {
                             <DropdownMenuItem
                                 onClick={() =>
                                     navigate(
-                                        `/admin/experiences/${row.getValue(
-                                            "id"
-                                        )}`
+                                        `/admin/regions/${row.getValue('id')}`
                                     )
                                 }
                             >
                                 Sửa
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                                onClick={() =>
-                                    deleteExperience(row.getValue("id"))
-                                }
+                                onClick={() => deleteExperience(row.getValue('id'))}
                             >
                                 Xoá
                             </DropdownMenuItem>
@@ -131,39 +128,30 @@ export default function Index() {
     ];
 
     const changeStatus = async (id) => {
-        const res = await HttpClient.put(`/experience/status/${id}`);
-        if (res.status === 200) {
-            toast.success("Cập nhật tình trang thành công");
-            getExperience();
+        const success = await RegionService.changeStatus(id);
+        if (success) {
+            getRegion();
         }
     }
 
-    const getExperience = async (params = {}) => {
-        const res = await HttpClient.get("/experience", {
-            params,
-        });
-
-        if (res.status === 200) {
-            const data = res.data;
-            setData(data.data);
-        } else {
-            toast.error("Lấy danh sách trải nghiệm thất bại!");
-        }
+    const getRegion = async () => {
+        const regions = await RegionService.getListRegion();
+        setData(regions);
     };
 
     const deleteExperience = async (id) => {
-        const res = await HttpClient.delete(`/experience/${id}`);
+        const res = await HttpClient.delete(`/region/${id}`);
 
         if (res.status === 200) {
             toast.success("Xoá trải nghiệm thành công!");
-            getExperience();
+            getRegion();
         } else {
             toast.error("Xoá trải nghiệm thất bại!");
         }
     };
 
     useEffect(() => {
-        getExperience();
+        getRegion();
     }, []);
 
     return (

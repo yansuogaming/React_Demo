@@ -1,4 +1,3 @@
-import FAQService from "@services/FAQService";
 import {
     Accordion,
     AccordionContent,
@@ -6,27 +5,10 @@ import {
     AccordionTrigger,
 } from "@ui/accordion";
 import { decode } from "html-entities";
-import { useEffect, useMemo, useState } from "react";
 
-const FAQ = ({ className = "" }) => {
-    const [listFAQs, setListFAQs] = useState([]);
-    useEffect(() => {
-        const getData = async () => {
-            const res = await FAQService.getListFAQs();
-            setListFAQs(res.list_faqs);
-        };
-        getData();
-    }, []);
-
-    const listFaqs1 = useMemo(
-        () => listFAQs.filter((_, i) => i % 2 === 0),
-        [listFAQs]
-    );
-
-    const listFaqs2 = useMemo(
-        () => listFAQs.filter((_, i) => i % 2 === 1),
-        [listFAQs]
-    );
+const FAQ = ({ className = '', data = [] }) => {
+    const listFaqs1 = data.filter((_, i) => i % 2 === 0);
+    const listFaqs2 = data.filter((_, i) => i % 2 === 1);
 
     return (
         <section className={`container ${className}`}>
@@ -39,7 +21,7 @@ const FAQ = ({ className = "" }) => {
                     <Accordion type="single" collapsible className="w-full">
                         {listFaqs1.map((faq, i) => (
                             <AccordionItem
-                                key={faq?.faq_id}
+                                key={faq.id}
                                 value={`item-${i}`}
                             >
                                 <AccordionTrigger className="text-[#1A2A44] text-[20px] font-normal cursor-pointer">
