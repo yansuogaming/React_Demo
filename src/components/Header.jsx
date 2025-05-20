@@ -25,11 +25,13 @@ import { cn } from "@lib/utils";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router";
+import ModalSearch from "./modal/ModalSearch";
 const HeaderContext = createContext();
 
 const Header = ({ noBackgroundOnScroll = false }) => {
     const { t } = useTranslation();
     const [background, setBackground] = useState("none");
+    const [showSearch, setShowSearch] = useState(false);
     const [logo, setLogo] = useState(null);
     const [color, setColor] = useState(null);
     const [colorIcon, setColorIcon] = useState(null);
@@ -207,6 +209,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                 <SearchHeader
                                     color={color}
                                     className="flex cursor-pointer"
+                                    onClick={() => setShowSearch(true)}
                                 />
                             </motion.li>
                             <motion.li
@@ -728,6 +731,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         )}
                     </AnimatePresence>
                 </div>
+                <ModalSearch
+                isOpen={showSearch}
+                onClose={() => setShowSearch(false)}
+                />
             </header>
         </HeaderContext.Provider>
     );
