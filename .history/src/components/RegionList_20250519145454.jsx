@@ -1,0 +1,213 @@
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@ui/carousel";
+import imageNaNoi from "@images/image-hanoi.png";
+import imageHaLong from "@images/image-halong.png";
+import imageSapa from "@images/image-sapa.png";
+import { NavLink } from "react-router";
+import { FaArrowRight } from "react-icons/fa6";
+
+import NorthImage from "./NorthImage";
+import CentralImage from "./CentralImage";
+import SouthImage from "./SouthImage";
+import ParacelIslands from "./ParacelIslands";
+import SpratlyIslands from "./SpratlyIslands";
+import { cn } from "@lib/utils";
+import { useState } from "react";
+const RegionList = ({ className, ...props }) => {
+    const curentRegion = "North";
+    const desRegion =
+        "West Vietnam features a distinctive landscape of rugged mountains, lush forests, and beautiful waterfalls. It also offers historical landmarks like the famous River Kwai Bridge, ancient temples, and intriguing cultural heritage sites, making it a diverse and captivating travel destination.";
+    const [activeRegion, setActiveRegion] = useState(0);
+    const regions = [
+        {
+            id: 0,
+            component: NorthImage,
+            title: "North",
+            description:
+                "Northern Vietnam is a region rich in history, culture, and breathtaking landscapes. It is home to the capital city, Hanoi, where ancient traditions blend seamlessly with modern life. The area boasts stunning natural wonders such as Ha Long Bay, with its emerald waters and limestone islands, and the terraced rice fields of Sapa, offering picturesque views. Northern Vietnam is also known for its diverse ethnic communities, each contributing unique customs and traditions. With its vibrant street food scene, historical sites, and scenic beauty, Northern Vietnam is a must-visit destination for travelers seeking an authentic experience",
+            className: "",
+        },
+        {
+            id: 1,
+            component: CentralImage,
+            title: "Central",
+            description:
+                "Central Vietnam is a region of stunning landscapes, rich history, and vibrant culture. It is home to ancient cities like Hue, the former imperial capital, and Hoi An, a UNESCO World Heritage site known for its charming old town and lantern-lit streets. The region boasts breathtaking coastal scenery, including the pristine beaches of Da Nang and Nha Trang. Central Vietnam also features the majestic caves of Phong Nha-Ke Bang and the lush highlands of Da Lat. With its diverse cuisine, historical landmarks, and natural beauty, Central Vietnam offers a unique and unforgettable experience for travelers.",
+            className: "translate-x-[69px] translate-y-[-32px]",
+        },
+        {
+            id: 2,
+            component: SouthImage,
+            title: "South",
+            description:
+                "Southern Vietnam is a dynamic region known for its bustling cities, lush landscapes, and rich cultural heritage. Ho Chi Minh City, the largest metropolis, offers a mix of modern skyscrapers and historic landmarks, reflecting the country's rapid development. The Mekong Delta is a vast network of rivers, floating markets, and fertile farmland, providing a glimpse into traditional Vietnamese life. The region also boasts stunning coastal destinations like Phu Quoc and Con Dao, known for their pristine beaches and marine biodiversity. With its vibrant street food, warm hospitality, and diverse scenery, Southern Vietnam is a captivating destination for travelers.",
+            className: "translate-x-[93px] translate-y-[-44px]",
+        },
+        {
+            id: 3,
+            component: ParacelIslands,
+            title: "Paracel Islands",
+            description:
+                "The Paracel Islands (Quần đảo Hoàng Sa) are a group of around 130 small coral islands and reefs located in the South China Sea, approximately 400 km east of central Vietnam. The islands are known for their rich marine biodiversity, including sea turtles and seabirds, but they lack fresh water and permanent human settlements. Historically, the Paracel Islands have been a point of geopolitical interest, with multiple nations claiming sovereignty over them2. Despite their remote nature, the islands are surrounded by productive fishing grounds and are believed to contain potential oil and gas reserves. The Paracel Islands remain an important part of Vietnam's maritime heritage and territorial identity.",
+            className: "absolute top-[282px] right-[82px]",
+        },
+        {
+            id: 4,
+            component: SpratlyIslands,
+            title: "Spratly Islands",
+            className: "absolute top-[528px] right-[12px]",
+        },
+    ];
+    return (
+        <section {...props} className={cn("container", className)}>
+            {/* Menu Region */}
+            <div className="text-center">
+                <h2 className="text-[#1A2A44] text-[40px] font-bold mb-[24px]">
+                    Destination by Region
+                </h2>
+                <ul className="inline-flex items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[70px] py-[16px] pb-[20px] mb-[66px]">
+                    {regions.map((region, index) => (
+                        <li>
+                            <NavLink
+                                key={index}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setActiveRegion(index);
+                                }}
+                                className={`relative ${
+                                    activeRegion === index
+                                        ? "hnv_region_active_menu"
+                                        : ""
+                                }
+                                    `}
+                            >
+                                {region.title}
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+            <div className="flex flex-col lg:flex-row items-center gap-[35px]">
+                {/* Bản đồ vùng - chỉ hiển thị desktop */}
+                <div className="hidden lg:block min-w-[512px] relative h-fit">
+                    {regions.map((region, index) => {
+                        const Component = region.component;
+                        return (
+                            <div
+                                key={index}
+                                className={region.className}
+                                onClick={() => setActiveRegion(index)}
+                            >
+                                <Component
+                                    className={
+                                        index === activeRegion
+                                            ? "hnv_region_active_map"
+                                            : ""
+                                    }
+                                />
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* Thông tin + Carousel */}
+                <div className="w-full text-left">
+                    <h2 className="text-[#1A2A44] text-[40px] md:text-[56px] lg:text-[72px] font-bold">
+                        {curentRegion}
+                    </h2>
+                    <p className="text-[#494951] text-[16px] md:text-[18px] lg:text-[20px] font-normal mb-[30px] md:mb-[40px] lg:mb-[50px]">
+                        {desRegion}
+                    </p>
+
+                    <Carousel
+                        className="w-full"
+                        opts={{
+                            align: "start",
+                            skipSnaps: false,
+                            containScroll: "trimSnaps",
+                            loop: false,
+                            dragFree: false,
+                        }}
+                    >
+                        <CarouselContent className="-ml-[20px]">
+                            {[imageNaNoi, imageHaLong, imageSapa].map(
+                                (img, index) => {
+                                    const titles = ["Hanoi", "Halong", "Sa pa"];
+                                    return (
+                                        <CarouselItem
+                                            key={index}
+                                            className="basis-[80%] sm:basis-[45%] pl-[20px] relative group"
+                                        >
+                                            <NavLink to="/city/hanoi">
+                                                <img
+                                                    src={img}
+                                                    alt={titles[index]}
+                                                    className="w-full rounded-[60px_4px_4px_4px]"
+                                                    loading="lazy"
+                                                />
+                                                <div
+                                                    className={cn(
+                                                        "absolute right-0 top-[calc(100%-70px)] z-10 w-[calc(100%-20px)]",
+                                                        "p-[20px_20px_0_20px] overflow-hidden transition-all duration-500",
+                                                        "group-hover:top-[calc(100%-195px)]"
+                                                    )}
+                                                >
+                                                    <h3 className="text-white text-[28px] font-bold">
+                                                        {titles[index]}
+                                                    </h3>
+                                                    <div
+                                                        className={cn(
+                                                            "opacity-0 group-hover:opacity-100",
+                                                            "transition-all duration-500"
+                                                        )}
+                                                    >
+                                                        <p className="text-white mt-2 font-[16px]">
+                                                            Many desktop
+                                                            publishing packages
+                                                            and web page editors
+                                                            now use Lorem Ipsum
+                                                            as their default
+                                                            model text,
+                                                        </p>
+                                                        <div
+                                                            className={cn(
+                                                                "flex mt-[10px] mb-[20px] text-[17px] font-bold",
+                                                                "text-white gap-[8px] items-center justify-end"
+                                                            )}
+                                                        >
+                                                            <span>
+                                                                Discover
+                                                            </span>
+                                                            <FaArrowRight />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className={cn(
+                                                        "rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]",
+                                                        "absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0",
+                                                        "transition-all duration-500"
+                                                    )}
+                                                ></div>
+                                            </NavLink>
+                                        </CarouselItem>
+                                    );
+                                }
+                            )}
+                        </CarouselContent>
+                        <CarouselPrevious className="hidden md:flex left-[10px] md:left-[20px] cursor-pointer" />
+                        <CarouselNext className="hidden md:flex right-[10px] md:right-[20px] cursor-pointer" />
+                    </Carousel>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default RegionList;
