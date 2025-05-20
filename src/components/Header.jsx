@@ -26,6 +26,7 @@ import { cn } from "@lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router";
 const HeaderContext = createContext();
+
 const Header = ({ noBackgroundOnScroll = false }) => {
     const { t } = useTranslation();
     const [background, setBackground] = useState("none");

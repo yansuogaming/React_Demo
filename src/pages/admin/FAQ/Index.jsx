@@ -18,13 +18,11 @@ import HttpClient from "@services/HttpClient";
 import toast from "react-hot-toast";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { Plus } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import DataTable from "@components/admin/DataTable";
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
 
-export default function Experience() {
+export default function Index() {
     const [data, setData] = useState([]);
-    const { t } = useTranslation();
     let navigate = useNavigate();
 
     const columns = [
@@ -57,12 +55,12 @@ export default function Experience() {
             enableHiding: false,
         },
         {
-            accessorKey: "title",
-            header: "Tiêu đề",
+            accessorKey: "question",
+            header: "Câu hỏi",
             size: 300,
             cell: ({ row }) => (
                 <p className="text-sm font-medium text-gray-900">
-                    {row.getValue("title")}
+                    {row.getValue("question")}
                 </p>
             ),
         },
@@ -82,12 +80,12 @@ export default function Experience() {
                 row.getValue("is_active") === 1 ? (
                     <FaCheckCircle
                         className="cursor-pointer text-[green] text-[20px] mx-auto"
-                        onClick={() => changeStatus(row.getValue('id'))}
+                        onClick={() => changeStatus(row.getValue("id"))}
                     />
                 ) : (
                     <FaMinusCircle
                         className="cursor-pointer text-[red] text-[20px] mx-auto"
-                        onClick={() => changeStatus(row.getValue('id'))}
+                        onClick={() => changeStatus(row.getValue("id"))}
                     />
                 ),
         },
@@ -110,7 +108,7 @@ export default function Experience() {
                             <DropdownMenuItem
                                 onClick={() =>
                                     navigate(
-                                        `/admin/experiences/${row.getValue(
+                                        `/admin/faqs/${row.getValue(
                                             "id"
                                         )}`
                                     )
@@ -120,7 +118,7 @@ export default function Experience() {
                             </DropdownMenuItem>
                             <DropdownMenuItem
                                 onClick={() =>
-                                    deleteExperience(row.getValue("id"))
+                                    deleteFAQ(row.getValue("id"))
                                 }
                             >
                                 Xoá
@@ -133,15 +131,17 @@ export default function Experience() {
     ];
 
     const changeStatus = async (id) => {
-        const res = await HttpClient.put(`/experience/status/${id}`);
+        const res = await HttpClient.put(`/faq/status/${id}`);
         if (res.status === 200) {
-            toast.success("Cập nhật tình trang thành công");
-            getExperience();
+            toast.success("Cập nhật tình trạng thành công");
+            getListFAQ({
+                lang_id: "en"
+            });
         }
-    }
+    };
 
-    const getExperience = async (params = {}) => {
-        const res = await HttpClient.get("/experience", {
+    const getListFAQ = async (params = {}) => {
+        const res = await HttpClient.get("/faq", {
             params,
         });
 
@@ -153,19 +153,23 @@ export default function Experience() {
         }
     };
 
-    const deleteExperience = async (id) => {
-        const res = await HttpClient.delete(`/experience/${id}`);
+    const deleteFAQ = async (id) => {
+        const res = await HttpClient.delete(`/faq/${id}`);
 
         if (res.status === 200) {
             toast.success("Xoá trải nghiệm thành công!");
-            getExperience();
+            getListFAQ({
+                lang_id: "en"
+            });
         } else {
             toast.error("Xoá trải nghiệm thất bại!");
         }
     };
 
     useEffect(() => {
-        getExperience();
+        getListFAQ({
+            lang_id: "en"
+        });
     }, []);
 
     return (
@@ -184,16 +188,14 @@ export default function Experience() {
             {/* ===== Main ===== */}
             <Main>
                 <div className="mb-2 flex justify-between">
-                    <h1 className="text-2xl font-bold tracking-tight">
-                        {t("experiences")}
-                    </h1>
+                    <h1 className="text-2xl font-bold tracking-tight">FAQs</h1>
                     <div className="flex gap-3">
                         <Button
                             className="gap-2 cursor-pointer"
                             variant="default"
-                            onClick={() => navigate("/admin/experiences/add")}
+                            onClick={() => navigate("/admin/faqs/add")}
                         >
-                            {t("add_experience")}
+                            Thêm FAQ
                             <Plus className="w-4 h-4" />
                         </Button>
                     </div>
