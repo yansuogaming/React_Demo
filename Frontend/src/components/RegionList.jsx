@@ -19,7 +19,7 @@ import SpratlyIslands from "./SpratlyIslands";
 import { cn } from "@lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import MapsRegion from "@components/MapsRegion";
+// import MapsRegion from "@components/MapsRegion";
 
 const RegionList = ({ className, ...props }) => {
     const { t } = useTranslation();
