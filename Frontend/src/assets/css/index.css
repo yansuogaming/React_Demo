@@ -248,8 +248,10 @@ html {
 .hnv_region_active_map {
     fill: #439eff;
     stroke: #007bff;
-    stroke-width: 2px;
     z-index: 1;
+    /* transition: all 0.5s; */
 }
-/* active : 439eff */
-/* hover: cee6ff */
+.hnv_region_active_map .hnv_region_active_map_icon,
+.hnv_region_active_map .hnv_region_active_map_title {
+    color: #fff;
+}
