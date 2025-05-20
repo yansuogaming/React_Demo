@@ -1,6 +1,11 @@
 import React from "react";
 
-import { FaClock, FaMapMarkerAlt, FaCheckCircle } from "react-icons/fa";
+import {
+    FaClock,
+    FaMapMarkerAlt,
+    FaCheckCircle,
+    FaCheck,
+} from "react-icons/fa";
 
 const TourContent = () => {
     return (
@@ -14,9 +19,15 @@ const TourContent = () => {
                 <span className="text-gray-400 hidden sm:inline m-[0_13px]">
                     |
                 </span>
-                <span className="text-orange-500">
-                    Recommended by 96% travelers
-                </span>
+
+                <div className="flex items-center rounded-md ">
+                    <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center mr-2">
+                        <FaCheck className="text-white text-sm" />
+                    </div>
+                    <span className="text-gray-700 font-medium text-sm">
+                        Recommended by 96% travelers
+                    </span>
+                </div>
             </div>
 
             <div className="mt-4 sm:mt-6 border-t border-b border-[#D9D9D9] py-3 text-sm text-[#1A2A44]">

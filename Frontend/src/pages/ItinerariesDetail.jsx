@@ -1,5 +1,4 @@
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router";
 import Breadcrumb from "@components/Breadcrumb";
 
 import GalleryCarousel from "@components/itinerariesdetail/GalleryCarousel";

@@ -4,18 +4,17 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { TbShieldCancel } from "react-icons/tb";
+import { RiSecurePaymentLine } from "react-icons/ri";
+import { LuNotebookPen } from "react-icons/lu";
+import { FaPassport } from "react-icons/fa";
+
+import { CiMenuBurger } from "react-icons/ci";
 
 const accordionData = [
     {
         id: "item-1",
-        icon: (
-            <div className="flex flex-col">
-                <div className="h-1 w-5 bg-blue-500 mb-1"></div>
-                <div className="h-1 w-5 bg-blue-500 mb-1"></div>
-                <div className="h-1 w-5 bg-blue-500"></div>
-            </div>
-        ),
+        icon: <TbShieldCancel size={28} />,
         title: "Cancellation Policy",
         content:
             "Cancel within 24 hours for a full refund. Even up to 7 days before your experience, you'll receive a refund, minus the service fee.",
@@ -23,34 +22,19 @@ const accordionData = [
     },
     {
         id: "item-2",
-        icon: (
-            <div className="flex flex-col">
-                <div className="h-1 w-5 bg-blue-500 mb-1"></div>
-                <div className="h-1 w-5 bg-blue-500"></div>
-            </div>
-        ),
+        icon: <RiSecurePaymentLine size={28} />,
         title: "Payment Policy",
         content: "Payment details go here.",
     },
     {
         id: "item-3",
-        icon: (
-            <div className="flex flex-col">
-                <div className="h-1 w-5 bg-blue-500 mb-1"></div>
-                <div className="h-1 w-5 bg-blue-500 mb-1"></div>
-                <div className="h-1 w-5 bg-blue-500"></div>
-            </div>
-        ),
+        icon: <LuNotebookPen size={28} />,
         title: "Notes",
         content: "Notes content goes here.",
     },
     {
         id: "item-4",
-        icon: (
-            <div className="rounded-full border-2 border-blue-500 p-1">
-                <div className="w-3 h-3 border-t-2 border-l-2 border-blue-500 rounded-full"></div>
-            </div>
-        ),
+        icon: <FaPassport size={28} />,
         title: "Visa Application Documents",
         content: "Visa application document details go here.",
     },
@@ -70,17 +54,21 @@ const AdditionalInfo = () => {
             >
                 {accordionData.map(({ id, icon, title, content }) => (
                     <AccordionItem value={id} key={id}>
-                        <AccordionTrigger className="flex items-center justify-between py-3 px-0">
-                            <div className="flex items-center text-left">
-                                <div className="w-10 h-10 bg-blue-100 rounded-md flex items-center justify-center text-blue-500 mr-4">
+                        <AccordionTrigger className="px-0 py-3">
+                            <div className="flex items-center gap-4">
+                                {/* Icon bên trái */}
+                                <div className="min-w-[28px] text-blue-500 mt-1">
                                     {icon}
                                 </div>
-                                <h3 className="text-xl font-medium text-gray-900 font-[Visit_Qatar]">
+
+                                {/* Tiêu đề bên phải icon */}
+                                <h3 className="text-xl font-bold text-gray-900 font-[Visit_Qatar]">
                                     {title}
                                 </h3>
                             </div>
                         </AccordionTrigger>
-                        <AccordionContent className="pl-14 pr-4 pb-4 text-lg text-gray-700 font-[Visit_Qatar]">
+
+                        <AccordionContent className="pl-[40px] pr-4 pb-4 text-lg text-gray-700 font-[Visit_Qatar]">
                             {content}
                         </AccordionContent>
                     </AccordionItem>
