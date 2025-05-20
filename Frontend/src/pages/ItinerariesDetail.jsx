@@ -5,6 +5,11 @@ import Breadcrumb from "@components/Breadcrumb";
 import GalleryCarousel from "@components/itinerariesdetail/GalleryCarousel";
 import TourContent from "@components/itinerariesdetail/TourContent";
 import TourSidebar from "@components/itinerariesdetail/TourSidebar";
+import BookTour from "@components/itinerariesdetail/BookTour";
+import VietnamItinerary from "@components/itinerariesdetail/ExpectMap";
+import ExpectMap from "@components/itinerariesdetail/ExpectMap";
+import ExperienceDetails from "@components/itinerariesdetail/ExperienceDetails";
+import AdditionalInfo from "@components/itinerariesdetail/AdditionalInfo";
 
 const ItinerariesDetail = () => {
     const { t } = useTranslation();
@@ -26,6 +31,10 @@ const ItinerariesDetail = () => {
                 <div>
                     <GalleryCarousel />
                     <TourContent />
+                    <BookTour/>
+                    <ExpectMap/>
+                    <ExperienceDetails/>
+                    <AdditionalInfo/>
                 </div>
 
                 <TourSidebar />
