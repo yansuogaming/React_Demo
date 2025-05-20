@@ -8,10 +8,12 @@ const TourContent = () => {
             <h1 className="text-[18px] sm:text-[20px] md:text-[24px] font-semibold mb-2">
                 Hoi An/ Da Nang - Ba Na Hills - Golden Bridge Deluxe
             </h1>
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
+            <div className="flex flex-wrap items-center gap-[6px] text-sm">
                 <div className="text-yellow-400">⭐⭐⭐⭐⭐</div>
                 <span className="text-gray-600">4.5 (879)</span>
-                <span className="text-gray-400 hidden sm:inline">|</span>
+                <span className="text-gray-400 hidden sm:inline m-[0_13px]">
+                    |
+                </span>
                 <span className="text-orange-500">
                     Recommended by 96% travelers
                 </span>

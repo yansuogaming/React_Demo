@@ -6,7 +6,6 @@ import GalleryCarousel from "@components/itinerariesdetail/GalleryCarousel";
 import TourContent from "@components/itinerariesdetail/TourContent";
 import TourSidebar from "@components/itinerariesdetail/TourSidebar";
 import BookTour from "@components/itinerariesdetail/BookTour";
-import VietnamItinerary from "@components/itinerariesdetail/ExpectMap";
 import ExpectMap from "@components/itinerariesdetail/ExpectMap";
 import ExperienceDetails from "@components/itinerariesdetail/ExperienceDetails";
 import AdditionalInfo from "@components/itinerariesdetail/AdditionalInfo";
@@ -20,6 +19,7 @@ const ItinerariesDetail = () => {
         { label: t("Nature & Adventure"), href: "/" },
         { label: "Unmissable attractions in Nha Trang" },
     ];
+
     return (
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <Breadcrumb
@@ -27,17 +27,18 @@ const ItinerariesDetail = () => {
                 items={breadcrumdItems}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[2fr_1fr] gap-8">
-                <div>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div className="lg:col-span-8">
                     <GalleryCarousel />
                     <TourContent />
-                    <BookTour/>
-                    <ExpectMap/>
-                    <ExperienceDetails/>
-                    <AdditionalInfo/>
+                    <BookTour />
+                    <ExpectMap />
+                    <ExperienceDetails />
+                    <AdditionalInfo />
                 </div>
-
-                <TourSidebar />
+                <div className="lg:col-span-4">
+                    <TourSidebar />
+                </div>
             </div>
         </main>
     );

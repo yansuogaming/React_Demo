@@ -107,100 +107,91 @@ const GalleryCarousel = () => {
                                 />
                             )}
 
-                            {/* Controls */}
-                            <div className="absolute bottom-3 right-3 flex gap-2 z-10">
-                                {slide.type === "video" &&
-                                    selectedIndex === idx && (
-                                        <button
-                                            onClick={toggleMute}
-                                            className="bg-white/80 p-2 rounded text-gray-800"
-                                        >
-                                            {isMuted ? (
-                                                <FaVolumeMute />
-                                            ) : (
-                                                <FaVolumeUp />
-                                            )}
-                                        </button>
-                                    )}
-                                <Dialog
-                                    open={zoomSlide === slide}
-                                    onOpenChange={(open) => {
-                                        const video = videoRefs.current[idx];
-
-                                        if (slide.type === "video" && video) {
-                                            if (open) {
-                                                video.pause(); // ❗ Tạm dừng không reset
-                                            } else {
-                                                // ✅ Nếu đang ở slide này thì phát tiếp
-                                                if (selectedIndex === idx) {
-                                                    video
-                                                        .play()
-                                                        .catch(() => {});
-                                                    video.muted = isMuted;
-                                                }
-                                            }
-                                        }
-
-                                        setZoomSlide(open ? slide : null);
-                                    }}
-                                    onPointerDownOutside={() =>
-                                        setZoomSlide(null)
-                                    }
-                                    onEscapeKeyDown={() => setZoomSlide(null)}
-                                >
-                                    <DialogTrigger asChild>
-                                        <button
-                                            onClick={() => setZoomSlide(slide)}
-                                            className="bg-white/80 p-2 rounded text-gray-800"
-                                        >
-                                            <FaExpand />
-                                        </button>
-                                    </DialogTrigger>
-
-                                    <DialogPortal>
-                                        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
-                                            <div className="relative w-full h-full flex items-center justify-center">
-                                                {slide.type === "image" ? (
-                                                    <img
-                                                        src={slide.src}
-                                                        alt="Zoomed"
-                                                        className="max-w-full max-h-full object-contain"
-                                                    />
-                                                ) : (
-                                                    <video
-                                                        ref={(el) => {
-                                                            if (
-                                                                el &&
-                                                                slide ===
-                                                                    zoomSlide
-                                                            ) {
-                                                                el.muted =
-                                                                    isMuted;
-                                                                el.play().catch(
-                                                                    () => {}
-                                                                );
-                                                            }
-                                                        }}
-                                                        src={slide.src}
-                                                        controls
-                                                        autoPlay
-                                                        muted={isMuted}
-                                                        className="max-w-full max-h-full object-contain"
-                                                    />
-                                                )}
-                                                <DialogClose className="absolute top-4 right-4 text-white text-3xl z-50">
-                                                    ×
-                                                </DialogClose>
-                                            </div>
-                                        </div>
-                                    </DialogPortal>
-                                </Dialog>
-                            </div>
+                            {/* Volume button (chỉ khi là video và đang được chọn) */}
+                            {slide.type === "video" &&
+                                selectedIndex === idx && (
+                                    <button
+                                        onClick={toggleMute}
+                                        className="absolute bottom-3 right-14 bg-white/20 p-2 rounded-[4px] z-10"
+                                    >
+                                        {isMuted ? (
+                                            <FaVolumeMute className="text-white hover:cursor-pointer" />
+                                        ) : (
+                                            <FaVolumeUp className="text-white hover:cursor-pointer" />
+                                        )}
+                                    </button>
+                                )}
                         </div>
                     ))}
                 </div>
 
-                {/* Prev/Next */}
+                {/* Nút Zoom cố định cho slide đang active */}
+                <Dialog
+                    open={zoomSlide === slides[selectedIndex]}
+                    onOpenChange={(open) => {
+                        const video = videoRefs.current[selectedIndex];
+                        const slide = slides[selectedIndex];
+
+                        if (slide.type === "video" && video) {
+                            if (open) {
+                                video.pause();
+                            } else {
+                                video.play().catch(() => {});
+                                video.muted = isMuted;
+                            }
+                        }
+
+                        setZoomSlide(open ? slide : null);
+                    }}
+                    onPointerDownOutside={() => setZoomSlide(null)}
+                    onEscapeKeyDown={() => setZoomSlide(null)}
+                >
+                    <DialogTrigger asChild>
+                        <button
+                            onClick={() => setZoomSlide(slides[selectedIndex])}
+                            className="absolute bottom-3 right-3 bg-white/20 p-2 rounded-[4px] z-10"
+                        >
+                            <FaExpand className="text-white hover:cursor-pointer" />
+                        </button>
+                    </DialogTrigger>
+
+                    <DialogPortal>
+                        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
+                            <div className="relative w-full h-full flex items-center justify-center">
+                                {slides[selectedIndex].type === "image" ? (
+                                    <img
+                                        src={slides[selectedIndex].src}
+                                        alt="Zoomed"
+                                        className="max-w-full max-h-full object-contain"
+                                    />
+                                ) : (
+                                    <video
+                                        ref={(el) => {
+                                            if (
+                                                el &&
+                                                slides[selectedIndex] ===
+                                                    zoomSlide
+                                            ) {
+                                                el.muted = isMuted;
+                                                el.play().catch(() => {});
+                                            }
+                                        }}
+                                        src={slides[selectedIndex].src}
+                                        controls
+                                        autoPlay
+                                        muted={isMuted}
+                                        className="max-w-full max-h-full object-contain"
+                                    />
+                                )}
+                                <DialogClose className="absolute top-4 right-4 text-white text-3xl z-50">
+                                    ×
+                                </DialogClose>
+                            </div>
+                        </div>
+                    </DialogPortal>
+                </Dialog>
+
+                {/* Prev button */}
                 <button
                     onClick={scrollPrev}
                     disabled={prevBtnDisabled}
@@ -211,6 +202,7 @@ const GalleryCarousel = () => {
                     <FaChevronLeft className="text-gray-700 text-[14px]" />
                 </button>
 
+                {/* Next button */}
                 <button
                     onClick={scrollNext}
                     disabled={nextBtnDisabled}
