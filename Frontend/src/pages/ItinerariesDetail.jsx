@@ -10,6 +10,7 @@ import VietnamItinerary from "@components/itinerariesdetail/ExpectMap";
 import ExpectMap from "@components/itinerariesdetail/ExpectMap";
 import ExperienceDetails from "@components/itinerariesdetail/ExperienceDetails";
 import AdditionalInfo from "@components/itinerariesdetail/AdditionalInfo";
+import TravelerPhotos from "@components/itinerariesdetail/TravelerPhotos";
 
 const ItinerariesDetail = () => {
     const { t } = useTranslation();
@@ -35,6 +36,7 @@ const ItinerariesDetail = () => {
                     <ExpectMap/>
                     <ExperienceDetails/>
                     <AdditionalInfo/>
+                    <TravelerPhotos/>
                 </div>
 
                 <TourSidebar />
