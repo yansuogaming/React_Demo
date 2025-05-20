@@ -1,0 +1,1360 @@
+[2024-12-15 03:04:31 *3613.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\ExitException: swoole exit in /var/www/html/core/Http/Exception/Handler.php:18
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(19): Vietiso\Core\Http\Exception\Handler->render()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:21
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(21): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 21
+[2024-12-15 03:04:31 $3604.0]	WARNING	Server::check_worker_exit_status(): worker(pid=3613, id=3) abnormal exit, status=255, signal=0
+[2024-12-15 03:07:03 *3874.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Swoole\Http\Response::write(): data to send is empty in /var/www/html/core/Http/StreamedResponse.php:79
+Stack trace:
+#0 [internal function]: Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/Http/StreamedResponse.php(79): Swoole\Http\Response->write()
+#2 /var/www/html/core/Http/Response.php(359): Vietiso\Core\Http\StreamedResponse->sendContent()
+#3 /var/www/html/core/Server/Events/RequestEvent.php(22): Vietiso\Core\Http\Response->send()
+#4 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#5 {main}
+  thrown in /var/www/html/core/Http/StreamedResponse.php on line 79
+[2024-12-15 03:07:03 $3861.0]	WARNING	Server::check_worker_exit_status(): worker(pid=3874, id=4) abnormal exit, status=255, signal=0
+[2024-12-15 03:08:07 *3901.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Swoole\Http\Response::write(): data to send is empty in /var/www/html/core/Http/StreamedResponse.php:79
+Stack trace:
+#0 [internal function]: Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/Http/StreamedResponse.php(79): Swoole\Http\Response->write()
+#2 /var/www/html/core/Http/Response.php(359): Vietiso\Core\Http\StreamedResponse->sendContent()
+#3 /var/www/html/core/Server/Events/RequestEvent.php(22): Vietiso\Core\Http\Response->send()
+#4 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#5 {main}
+  thrown in /var/www/html/core/Http/StreamedResponse.php on line 79
+[2024-12-15 03:08:07 $3890.0]	WARNING	Server::check_worker_exit_status(): worker(pid=3901, id=3) abnormal exit, status=255, signal=0
+[2024-12-15 03:09:03 *3929.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Swoole\Http\Response::write(): data to send is empty in /var/www/html/core/Http/StreamedResponse.php:79
+Stack trace:
+#0 [internal function]: Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/Http/StreamedResponse.php(79): Swoole\Http\Response->write()
+#2 /var/www/html/core/Http/Response.php(359): Vietiso\Core\Http\StreamedResponse->sendContent()
+#3 /var/www/html/core/Server/Events/RequestEvent.php(22): Vietiso\Core\Http\Response->send()
+#4 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#5 {main}
+  thrown in /var/www/html/core/Http/StreamedResponse.php on line 79
+[2024-12-15 03:09:04 $3918.0]	WARNING	Server::check_worker_exit_status(): worker(pid=3929, id=3) abnormal exit, status=255, signal=0
+[2024-12-15 03:10:38 *3994.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Swoole\Http\Response::write(): data to send is empty in /var/www/html/core/Http/StreamedResponse.php:79
+Stack trace:
+#0 [internal function]: Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/Http/StreamedResponse.php(79): Swoole\Http\Response->write()
+#2 /var/www/html/core/Http/Response.php(359): Vietiso\Core\Http\StreamedResponse->sendContent()
+#3 /var/www/html/core/Server/Events/RequestEvent.php(22): Vietiso\Core\Http\Response->send()
+#4 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#5 {main}
+  thrown in /var/www/html/core/Http/StreamedResponse.php on line 79
+[2024-12-15 03:10:38 $3982.0]	WARNING	Server::check_worker_exit_status(): worker(pid=3994, id=3) abnormal exit, status=255, signal=0
+[2024-12-15 17:52:13 *6441.7]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Error: Access to undeclared static property Vietiso\Core\ErrorHandler\ErrorRenderer\HtmlErrorRenderer::$whoops in /var/www/html/core/ErrorHandler/ErrorRenderer/HtmlErrorRenderer.php:39
+Stack trace:
+#0 /var/www/html/core/Http/Exception/Handler.php(24): Vietiso\Core\ErrorHandler\ErrorRenderer\HtmlErrorRenderer::render()
+#1 /var/www/html/core/Server/Events/RequestEvent.php(19): Vietiso\Core\Http\Exception\Handler->render()
+#2 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#3 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:21
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(21): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 21
+[2024-12-15 17:52:13 $6425.0]	WARNING	Server::check_worker_exit_status(): worker(pid=6441, id=7) abnormal exit, status=255, signal=0
+[2024-12-15 17:52:48 *6510.7]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Error: Access to undeclared static property Vietiso\Core\ErrorHandler\ErrorRenderer\HtmlErrorRenderer::$whoops in /var/www/html/core/ErrorHandler/ErrorRenderer/HtmlErrorRenderer.php:39
+Stack trace:
+#0 /var/www/html/core/Http/Exception/Handler.php(24): Vietiso\Core\ErrorHandler\ErrorRenderer\HtmlErrorRenderer::render()
+#1 /var/www/html/core/Server/Events/RequestEvent.php(19): Vietiso\Core\Http\Exception\Handler->render()
+#2 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#3 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:21
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(21): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 21
+[2024-12-15 17:52:48 $6494.0]	WARNING	Server::check_worker_exit_status(): worker(pid=6510, id=7) abnormal exit, status=255, signal=0
+[2024-12-24 14:20:10 *18099.0]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught TypeError: Vietiso\Core\Http\Response::redirect(): Argument #1 ($url) must be of type string, null given, called in /var/www/html/core/ValidatedDTO/ValidatedDTO.php on line 56 and defined in /var/www/html/core/Http/Response.php:199
+Stack trace:
+#0 /var/www/html/core/ValidatedDTO/ValidatedDTO.php(56): Vietiso\Core\Http\Response::redirect()
+#1 /var/www/html/core/Http/Exception/Handler.php(34): Vietiso\Core\ValidatedDTO\ValidatedDTO::failedValidation()
+#2 /var/www/html/core/Server/Events/RequestEvent.php(19): Vietiso\Core\Http\Exception\Handler->render()
+#3 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#4 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:21
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(21): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 21
+[2024-12-24 14:20:10 $18098.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18099, id=0) abnormal exit, status=255, signal=0
+[2024-12-24 14:20:36 *18131.0]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught TypeError: Vietiso\Core\Http\Response::redirect(): Argument #1 ($url) must be of type string, null given, called in /var/www/html/core/ValidatedDTO/ValidatedDTO.php on line 56 and defined in /var/www/html/core/Http/Response.php:199
+Stack trace:
+#0 /var/www/html/core/ValidatedDTO/ValidatedDTO.php(56): Vietiso\Core\Http\Response::redirect()
+#1 /var/www/html/core/Http/Exception/Handler.php(34): Vietiso\Core\ValidatedDTO\ValidatedDTO::failedValidation()
+#2 /var/www/html/core/Server/Events/RequestEvent.php(19): Vietiso\Core\Http\Exception\Handler->render()
+#3 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#4 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:21
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(21): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 21
+[2024-12-24 14:20:36 $18098.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18131, id=0) abnormal exit, status=255, signal=0
+[2024-12-25 06:43:56 *19471.6]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught TypeError: Vietiso\Core\ValidatedDTO\ValidatedDTO::failedValidation(): Return value must be of type Vietiso\Core\Http\Response, null returned in /var/www/html/core/ValidatedDTO/ValidatedDTO.php:56
+Stack trace:
+#0 /var/www/html/core/Http/Exception/Handler.php(34): Vietiso\Core\ValidatedDTO\ValidatedDTO::failedValidation()
+#1 /var/www/html/core/Server/Events/RequestEvent.php(19): Vietiso\Core\Http\Exception\Handler->render()
+#2 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#3 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:21
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(21): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 21
+[2024-12-25 06:43:56 $19456.0]	WARNING	Server::check_worker_exit_status(): worker(pid=19471, id=6) abnormal exit, status=255, signal=0
+[2024-12-26 03:22:41 *21929.6]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key -1 in /var/www/html/core/Session/Session.php:280
+Stack trace:
+#0 /var/www/html/core/Session/Session.php(280): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/Support/Facade.php(23): Vietiso\Core\Session\Session->getPreviousUrl()
+#2 /var/www/html/core/Http/RedirectResponse.php(48): Vietiso\Core\Support\Facade::__callStatic()
+#3 /var/www/html/core/ValidatedDTO/ValidatedDTO.php(56): Vietiso\Core\Http\RedirectResponse->back()
+#4 /var/www/html/core/Http/Exception/Handler.php(34): Vietiso\Core\ValidatedDTO\ValidatedDTO::failedValidation()
+#5 /var/www/html/core/Server/Events/RequestEvent.php(19): Vietiso\Core\Http\Exception\Handler->render()
+#6 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#7 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:21
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(21): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 21
+[2024-12-26 03:22:41 $21914.0]	WARNING	Server::check_worker_exit_status(): worker(pid=21929, id=6) abnormal exit, status=255, signal=0
+[2024-12-26 03:26:18 *22086.6]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /var/www/html/core/functions.php:49
+Stack trace:
+#0 /var/www/html/core/ValidatedDTO/ValidatedDTO.php(55): dd()
+#1 /var/www/html/core/Http/Exception/Handler.php(34): Vietiso\Core\ValidatedDTO\ValidatedDTO::failedValidation()
+#2 /var/www/html/core/Server/Events/RequestEvent.php(19): Vietiso\Core\Http\Exception\Handler->render()
+#3 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#4 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:21
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(21): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 21
+[2024-12-26 03:26:18 $22071.0]	WARNING	Server::check_worker_exit_status(): worker(pid=22086, id=6) abnormal exit, status=255, signal=0
+[2024-12-29 06:49:29 *26076.7]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /var/www/html/core/functions.php:49
+Stack trace:
+#0 /var/www/html/core/Session/Middleware/StartSession.php(24): dd()
+#1 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#2 {main}
+  thrown in /var/www/html/core/functions.php on line 49
+[2024-12-29 06:49:29 $26060.0]	WARNING	Server::check_worker_exit_status(): worker(pid=26076, id=7) abnormal exit, status=255, signal=0
+[2024-12-29 06:49:30 *26093.7]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /var/www/html/core/functions.php:49
+Stack trace:
+#0 /var/www/html/core/Session/Middleware/StartSession.php(24): dd()
+#1 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#2 {main}
+  thrown in /var/www/html/core/functions.php on line 49
+[2024-12-29 06:49:30 $26060.0]	WARNING	Server::check_worker_exit_status(): worker(pid=26093, id=7) abnormal exit, status=255, signal=0
+[2024-12-29 06:51:13 *26126.7]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /var/www/html/core/functions.php:49
+Stack trace:
+#0 /var/www/html/core/Session/Middleware/StartSession.php(24): dd()
+#1 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#2 {main}
+  thrown in /var/www/html/core/functions.php on line 49
+[2024-12-29 06:51:14 $26110.0]	WARNING	Server::check_worker_exit_status(): worker(pid=26126, id=7) abnormal exit, status=255, signal=0
+[2024-12-30 23:06:11 *4954.6]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined variable $request in /var/www/html/core/Server/Events/RequestEvent.php:20
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(20): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:22
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(22): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 22
+[2024-12-30 23:06:11 $4939.0]	WARNING	Server::check_worker_exit_status(): worker(pid=4954, id=6) abnormal exit, status=255, signal=0
+[2024-12-30 23:07:42 *5026.7]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined variable $request in /var/www/html/core/Server/Events/RequestEvent.php:21
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(21): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+
+Next ErrorException: Undefined variable $response in /var/www/html/core/Server/Events/RequestEvent.php:23
+Stack trace:
+#0 /var/www/html/core/Server/Events/RequestEvent.php(23): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#2 {main}
+  thrown in /var/www/html/core/Server/Events/RequestEvent.php on line 23
+[2024-12-30 23:07:42 $5010.0]	WARNING	Server::check_worker_exit_status(): worker(pid=5026, id=7) abnormal exit, status=255, signal=0
+[2024-12-30 23:08:43 $5083.0]	WARNING	Server::check_worker_exit_status(): worker(pid=5098, id=6) abnormal exit, status=0, signal=11
+A bug occurred in Swoole-v5.1.5, please report it.
+The Swoole developers probably don't know about it,
+and unless you report it, chances are it won't be fixed.
+You can read How to report a bug doc before submitting any bug reports:
+>> https://github.com/swoole/swoole-src/blob/master/.github/ISSUE.md 
+Please do not send bug reports in the mailing list or personal letters.
+The issue page is also suitable to submit feature requests.
+
+OS: Linux 6.6.12-linuxkit #1 SMP Thu Feb  8 06:36:34 UTC 2024 aarch64
+GCC_VERSION: 12.2.0
+OPENSSL_VERSION: OpenSSL 3.0.15 3 Sep 2024
+PHP_VERSION : 8.3.14
+
+[2024-12-30 23:09:00 $5083.0]	WARNING	Server::check_worker_exit_status(): worker(pid=5099, id=7) abnormal exit, status=0, signal=11
+A bug occurred in Swoole-v5.1.5, please report it.
+The Swoole developers probably don't know about it,
+and unless you report it, chances are it won't be fixed.
+You can read How to report a bug doc before submitting any bug reports:
+>> https://github.com/swoole/swoole-src/blob/master/.github/ISSUE.md 
+Please do not send bug reports in the mailing list or personal letters.
+The issue page is also suitable to submit feature requests.
+
+OS: Linux 6.6.12-linuxkit #1 SMP Thu Feb  8 06:36:34 UTC 2024 aarch64
+GCC_VERSION: 12.2.0
+OPENSSL_VERSION: OpenSSL 3.0.15 3 Sep 2024
+PHP_VERSION : 8.3.14
+
+[2025-01-01 05:05:13 *8902.7]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Cannot use string as default value for parameter $highlighter of type Doctrine\SqlFormatter\Highlighter in /var/www/html/core/Database/Query/Builder.php on line 1107
+[2025-01-01 05:05:13 $8886.0]	WARNING	Server::check_worker_exit_status(): worker(pid=8902, id=7) abnormal exit, status=255, signal=0
+Start running on [http://localhost]
+Press Ctr+C to stop the server
+Start running on [http://localhost]
+Press Ctr+C to stop the server
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>httpbin.org</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/flasgger_static/swagger-ui.css">
+    <link rel="icon" type="image/png" href="/static/favicon.ico" sizes="64x64 32x32 16x16" />
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="https://github.com/requests/httpbin" class="github-corner" aria-label="View source on Github">
+        <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;"
+            aria-hidden="true">
+            <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+            <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+                fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+            <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+                fill="currentColor" class="octo-body"></path>
+        </svg>
+    </a>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position:absolute;width:0;height:0">
+        <defs>
+            <symbol viewBox="0 0 20 20" id="unlocked">
+                <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z"></path>
+            </symbol>
+
+            <symbol viewBox="0 0 20 20" id="locked">
+                <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z"
+                />
+            </symbol>
+
+            <symbol viewBox="0 0 20 20" id="close">
+                <path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z"
+                />
+            </symbol>
+
+            <symbol viewBox="0 0 20 20" id="large-arrow">
+                <path d="M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z"
+                />
+            </symbol>
+
+            <symbol viewBox="0 0 20 20" id="large-arrow-down">
+                <path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z"
+                />
+            </symbol>
+
+
+            <symbol viewBox="0 0 24 24" id="jump-to">
+                <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z" />
+            </symbol>
+
+            <symbol viewBox="0 0 24 24" id="expand">
+                <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z" />
+            </symbol>
+
+        </defs>
+    </svg>
+
+
+    <div id="swagger-ui">
+        <div data-reactroot="" class="swagger-ui">
+            <div>
+                <div class="information-container wrapper">
+                    <section class="block col-12">
+                        <div class="info">
+                            <hgroup class="main">
+                                <h2 class="title">httpbin.org
+                                    <small>
+                                        <pre class="version">0.9.2</pre>
+                                    </small>
+                                </h2>
+                                <pre class="base-url">[ Base URL: httpbin.org/ ]</pre>
+                            </hgroup>
+                            <div class="description">
+                                <div class="markdown">
+                                    <p>A simple HTTP Request &amp; Response Service.
+                                        <br>
+                                        <br>
+                                        <b>Run locally: </b>
+                                        <code>$ docker run -p 80:80 kennethreitz/httpbin</code>
+                                    </p>
+                                </div>
+                            </div>
+                            <div>
+                                <div>
+                                    <a href="https://kennethreitz.org" target="_blank">the developer - Website</a>
+                                </div>
+                                <a href="mailto:me@kennethreitz.org">Send email to the developer</a>
+                            </div>
+                        </div>
+                        <!-- ADDS THE LOADER SPINNER -->
+                        <div class="loading-container">
+                            <div class="loading"></div>
+                        </div>
+
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='swagger-ui'>
+        <div class="wrapper">
+            <section class="clear">
+                <span style="float: right;">
+                    [Powered by
+                    <a target="_blank" href="https://github.com/rochacbruno/flasgger">Flasgger</a>]
+                    <br>
+                </span>
+            </section>
+        </div>
+    </div>
+
+
+
+    <script src="/flasgger_static/swagger-ui-bundle.js"> </script>
+    <script src="/flasgger_static/swagger-ui-standalone-preset.js"> </script>
+    <script src='/flasgger_static/lib/jquery.min.js' type='text/javascript'></script>
+    <script>
+
+        window.onload = function () {
+            
+
+            fetch("/spec.json")
+                .then(function (response) {
+                    response.json()
+                        .then(function (json) {
+                            var current_protocol = window.location.protocol.slice(0, -1);
+                            if (json.schemes[0] != current_protocol) {
+                                // Switches scheme to the current in use
+                                var other_protocol = json.schemes[0];
+                                json.schemes[0] = current_protocol;
+                                json.schemes[1] = other_protocol;
+
+                            }
+                            json.host = window.location.host;  // sets the current host
+
+                            const ui = SwaggerUIBundle({
+                                spec: json,
+                                validatorUrl: null,
+                                dom_id: '#swagger-ui',
+                                deepLinking: true,
+                                jsonEditor: true,
+                                docExpansion: "none",
+                                apisSorter: "alpha",
+                                //operationsSorter: "alpha",
+                                presets: [
+                                    SwaggerUIBundle.presets.apis,
+                                    // yay ES6 modules ↘
+                                    Array.isArray(SwaggerUIStandalonePreset) ? SwaggerUIStandalonePreset : SwaggerUIStandalonePreset.default
+                                ],
+                                plugins: [
+                                    SwaggerUIBundle.plugins.DownloadUrl
+                                ],
+            
+            // layout: "StandaloneLayout"  // uncomment to enable the green top header
+        })
+
+        window.ui = ui
+
+        // uncomment to rename the top brand if layout is enabled
+        // $(".topbar-wrapper .link span").replaceWith("<span>httpbin</span>");
+        })
+    })
+}
+    </script>  <div class='swagger-ui'>
+    <div class="wrapper">
+        <section class="block col-12 block-desktop col-12-desktop">
+            <div>
+
+                <h2>Other Utilities</h2>
+
+                <ul>
+                    <li>
+                        <a href="/forms/post">HTML form</a> that posts to /post /forms/post</li>
+                </ul>
+
+                <br />
+                <br />
+            </div>
+        </section>
+    </div>
+</div>
+</body>
+
+</html>Start running on [http://localhost]
+Press Ctr+C to stop the server
+Start running on [http://localhost]
+Press Ctr+C to stop the server
+[2025-01-05 16:53:58 *8437.7]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 16:54:54 *8472.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 16:59:55 *8608.0]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:01:15 *8686.2]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:01:41 *8686.2]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:04:49 *8869.5]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:04:56 *8870.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:05:48 *8908.5]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:06:01 *8949.5]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:06:16 *8984.4]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:08:23 *9052.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:08:48 *9052.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:12:20 *9088.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:12:20 *9088.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:14:05 *9176.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:14:07 *9176.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:14:40 *9213.7]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:15:12 *9213.7]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:15:54 *9248.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-05 17:16:10 *9341.7]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-01-11 14:26:24 *11327.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:24 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11327, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:24 *11330.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:24 *11349.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:24 *11328.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:24 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11328, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:24 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11330, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:24 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11349, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:25 *11374.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:25 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11374, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:25 *11375.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:25 *11385.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:25 *11376.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:25 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11385, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:25 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11375, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:25 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11376, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:26 *11410.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:26 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11410, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:26 *11421.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:26 *11412.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:26 *11411.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:26 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11421, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:26 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11412, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:26 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11411, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:27 *11448.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:27 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11448, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:27 *11457.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:27 *11447.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:27 *11446.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:27 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11457, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:27 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11447, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:27 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11446, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:28 *11484.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:28 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11484, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:28 *11493.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:28 *11482.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:28 *11483.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:28 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11493, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:28 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11482, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:28 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11483, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:28 *11518.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:28 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11518, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:29 *11519.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:29 *11529.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:29 *11520.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:29 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11519, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:29 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11520, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:29 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11529, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:29 *11555.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:29 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11555, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:29 *11565.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:30 *11556.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:30 *11554.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:30 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11565, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:30 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11556, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:30 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11554, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:30 *11592.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:30 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11592, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:30 *11590.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:30 *11601.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:30 *11591.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:30 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11590, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:30 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11591, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:30 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11601, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:31 *11626.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:31 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11626, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:31 *11637.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:31 *11628.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:31 *11627.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:31 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11637, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:31 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11627, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:31 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11628, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:32 *11663.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:32 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11663, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:32 *11664.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:32 *11673.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:32 *11662.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:32 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11664, id=5) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:32 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11673, id=4) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:32 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11662, id=3) abnormal exit, status=255, signal=0
+[2025-01-11 14:26:36 *11698.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Swoole\Exception: FileLock and SemLock is no longer supported, please use mutex lock in /var/www/html/core/Session/FileSessionHandler.php:36
+Stack trace:
+#0 /var/www/html/core/Session/FileSessionHandler.php(36): Swoole\Lock->__construct()
+#1 /var/www/html/core/Session/Session.php(177): Vietiso\Core\Session\FileSessionHandler->write()
+#2 /var/www/html/core/Session/Middleware/StartSession.php(24): Vietiso\Core\Session\Session->save()
+#3 [internal function]: Vietiso\Core\Session\Middleware\StartSession->Vietiso\Core\Session\Middleware\{closure}()
+#4 {main}
+  thrown in /var/www/html/core/Session/FileSessionHandler.php on line 36
+[2025-01-11 14:26:36 $11316.0]	WARNING	Server::check_worker_exit_status(): worker(pid=11698, id=5) abnormal exit, status=255, signal=0
+[2025-02-05 09:11:10 *18703.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "path" in /var/www/html/core/HttpClient/Http.php:108
+Stack trace:
+#0 /var/www/html/core/HttpClient/Http.php(108): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/HttpClient/Http.php(30): Vietiso\Core\HttpClient\Http->sendRequest()
+#2 /var/www/html/core/Support/Facade.php(23): Vietiso\Core\HttpClient\Http->get()
+#3 /var/www/html/modules/user/src/Controllers/AuthController.php(24): Vietiso\Core\Support\Facade::__callStatic()
+#4 @swoole/library/core/Coroutine/functions.php(43): Vietiso\Modules\User\Controllers\AuthController->Vietiso\Modules\User\Controllers\{closure}()
+#5 [internal function]: Swoole\Coroutine\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/HttpClient/Http.php on line 108
+[2025-02-05 09:11:10 $18690.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18703, id=4) abnormal exit, status=255, signal=0
+[2025-02-05 09:35:18 *18740.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "path" in /var/www/html/core/HttpClient/Http.php:108
+Stack trace:
+#0 /var/www/html/core/HttpClient/Http.php(108): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/HttpClient/Http.php(30): Vietiso\Core\HttpClient\Http->sendRequest()
+#2 /var/www/html/core/Support/Facade.php(23): Vietiso\Core\HttpClient\Http->get()
+#3 /var/www/html/modules/user/src/Controllers/AuthController.php(24): Vietiso\Core\Support\Facade::__callStatic()
+#4 @swoole/library/core/Coroutine/functions.php(43): Vietiso\Modules\User\Controllers\AuthController->Vietiso\Modules\User\Controllers\{closure}()
+#5 [internal function]: Swoole\Coroutine\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/HttpClient/Http.php on line 108
+[2025-02-05 09:35:18 $18727.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18740, id=4) abnormal exit, status=255, signal=0
+[2025-02-05 09:36:12 *18769.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /var/www/html/core/functions.php:50
+Stack trace:
+#0 /var/www/html/core/HttpClient/Http.php(106): dd()
+#1 /var/www/html/core/HttpClient/Http.php(30): Vietiso\Core\HttpClient\Http->sendRequest()
+#2 /var/www/html/core/Support/Facade.php(23): Vietiso\Core\HttpClient\Http->get()
+#3 /var/www/html/modules/user/src/Controllers/AuthController.php(24): Vietiso\Core\Support\Facade::__callStatic()
+#4 @swoole/library/core/Coroutine/functions.php(43): Vietiso\Modules\User\Controllers\AuthController->Vietiso\Modules\User\Controllers\{closure}()
+#5 [internal function]: Swoole\Coroutine\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/functions.php on line 50
+[2025-02-05 09:36:12 $18763.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18769, id=3) abnormal exit, status=255, signal=0
+[2025-02-05 09:37:22 *18796.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "path" in /var/www/html/core/HttpClient/Http.php:109
+Stack trace:
+#0 /var/www/html/core/HttpClient/Http.php(109): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/HttpClient/Http.php(30): Vietiso\Core\HttpClient\Http->sendRequest()
+#2 /var/www/html/core/Support/Facade.php(23): Vietiso\Core\HttpClient\Http->get()
+#3 /var/www/html/modules/user/src/Controllers/AuthController.php(24): Vietiso\Core\Support\Facade::__callStatic()
+#4 @swoole/library/core/Coroutine/functions.php(43): Vietiso\Modules\User\Controllers\AuthController->Vietiso\Modules\User\Controllers\{closure}()
+#5 [internal function]: Swoole\Coroutine\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/HttpClient/Http.php on line 109
+[2025-02-05 09:37:22 $18792.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18796, id=3) abnormal exit, status=255, signal=0
+[2025-02-05 09:38:36 *18867.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "path" in /var/www/html/core/HttpClient/Http.php:107
+Stack trace:
+#0 /var/www/html/core/HttpClient/Http.php(107): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/HttpClient/Http.php(30): Vietiso\Core\HttpClient\Http->sendRequest()
+#2 /var/www/html/core/Support/Facade.php(23): Vietiso\Core\HttpClient\Http->get()
+#3 /var/www/html/modules/user/src/Controllers/AuthController.php(24): Vietiso\Core\Support\Facade::__callStatic()
+#4 @swoole/library/core/Coroutine/functions.php(43): Vietiso\Modules\User\Controllers\AuthController->Vietiso\Modules\User\Controllers\{closure}()
+#5 [internal function]: Swoole\Coroutine\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/HttpClient/Http.php on line 107
+[2025-02-05 09:38:36 $18863.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18867, id=3) abnormal exit, status=255, signal=0
+[2025-02-05 09:39:25 *18901.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "path" in /var/www/html/core/HttpClient/Http.php:106
+Stack trace:
+#0 /var/www/html/core/HttpClient/Http.php(106): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/HttpClient/Http.php(30): Vietiso\Core\HttpClient\Http->sendRequest()
+#2 /var/www/html/core/Support/Facade.php(23): Vietiso\Core\HttpClient\Http->get()
+#3 /var/www/html/modules/user/src/Controllers/AuthController.php(24): Vietiso\Core\Support\Facade::__callStatic()
+#4 @swoole/library/core/Coroutine/functions.php(43): Vietiso\Modules\User\Controllers\AuthController->Vietiso\Modules\User\Controllers\{closure}()
+#5 [internal function]: Swoole\Coroutine\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/HttpClient/Http.php on line 106
+[2025-02-05 09:39:25 $18891.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18901, id=3) abnormal exit, status=255, signal=0
+[2025-02-05 09:41:27 *18924.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "path" in /var/www/html/core/HttpClient/Http.php:107
+Stack trace:
+#0 /var/www/html/core/HttpClient/Http.php(107): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/HttpClient/Http.php(30): Vietiso\Core\HttpClient\Http->sendRequest()
+#2 /var/www/html/core/Support/Facade.php(23): Vietiso\Core\HttpClient\Http->get()
+#3 /var/www/html/modules/user/src/Controllers/AuthController.php(24): Vietiso\Core\Support\Facade::__callStatic()
+#4 @swoole/library/core/Coroutine/functions.php(43): Vietiso\Modules\User\Controllers\AuthController->Vietiso\Modules\User\Controllers\{closure}()
+#5 [internal function]: Swoole\Coroutine\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/HttpClient/Http.php on line 107
+[2025-02-05 09:41:27 $18920.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18924, id=3) abnormal exit, status=255, signal=0
+[2025-02-05 09:43:20 *18953.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "path" in /var/www/html/core/HttpClient/Http.php:110
+Stack trace:
+#0 /var/www/html/core/HttpClient/Http.php(110): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/HttpClient/Http.php(30): Vietiso\Core\HttpClient\Http->sendRequest()
+#2 /var/www/html/core/Support/Facade.php(23): Vietiso\Core\HttpClient\Http->get()
+#3 /var/www/html/modules/user/src/Controllers/AuthController.php(24): Vietiso\Core\Support\Facade::__callStatic()
+#4 @swoole/library/core/Coroutine/functions.php(43): Vietiso\Modules\User\Controllers\AuthController->Vietiso\Modules\User\Controllers\{closure}()
+#5 [internal function]: Swoole\Coroutine\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/HttpClient/Http.php on line 110
+[2025-02-05 09:43:20 $18949.0]	WARNING	Server::check_worker_exit_status(): worker(pid=18953, id=3) abnormal exit, status=255, signal=0
+[2025-02-05 10:45:19 *19616.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Allowed memory size of 134217728 bytes exhausted (tried to allocate 32768 bytes) in /var/www/html/core/ErrorHandler/ErrorRenderer/CliErrorRenderer.php on line 1
+[2025-02-05 10:45:19 $19612.0]	WARNING	Server::check_worker_exit_status(): worker(pid=19616, id=3) abnormal exit, status=0, signal=6
+[2025-02-05 11:14:06 *19849.3]	TRACE	ProcessFactory::finish() (ERRNO 1005): session#1 does not exists
+[2025-02-05 11:14:06 *19849.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Allowed memory size of 134217728 bytes exhausted (tried to allocate 1564672 bytes) in /var/www/html/core/ErrorHandler/ErrorRenderer/HtmlErrorRenderer.php on line 34
+[2025-02-05 11:14:06 $19845.0]	WARNING	Server::check_worker_exit_status(): worker(pid=19849, id=3) abnormal exit, status=255, signal=0
+[2025-02-05 16:15:55 *20556.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Cannot use positional argument after argument unpacking in /var/www/html/core/Database/Model/Builder.php on line 31
+[2025-02-05 16:15:55 $20552.0]	WARNING	Server::check_worker_exit_status(): worker(pid=20556, id=3) abnormal exit, status=255, signal=0
+[2025-02-15 03:33:59 *722.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: syntax error, unexpected token "(", expecting variable in /var/www/html/core/Mail/Facade/Mail.php on line 15
+[2025-02-15 03:33:59 $716.0]	WARNING	Server::check_worker_exit_status(): worker(pid=722, id=3) abnormal exit, status=255, signal=0
+[2025-02-17 02:59:43 *1556.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Cannot use null as default value for parameter $from of type Vietiso\Core\Mail\Mailables\Address|string in /var/www/html/core/Mail/Mailables/Envelope.php on line 13
+[2025-02-17 02:59:43 $1547.0]	WARNING	Server::check_worker_exit_status(): worker(pid=1556, id=3) abnormal exit, status=255, signal=0
+[2025-02-17 03:01:59 *1592.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Cannot use null as default value for parameter $subject of type string in /var/www/html/core/Mail/Mailables/Envelope.php on line 13
+[2025-02-17 03:01:59 $1583.0]	WARNING	Server::check_worker_exit_status(): worker(pid=1592, id=3) abnormal exit, status=255, signal=0
+[2025-02-17 03:03:07 *1623.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Cannot use null as default value for parameter $subject of type string in /var/www/html/core/Mail/Mailables/Envelope.php on line 13
+[2025-02-17 03:03:07 $1619.0]	WARNING	Server::check_worker_exit_status(): worker(pid=1623, id=3) abnormal exit, status=255, signal=0
+[2025-02-17 03:04:15 *1665.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Cannot use null as default value for parameter $subject of type string in /var/www/html/core/Mail/Mailables/Envelope.php on line 15
+[2025-02-17 03:04:15 $1655.0]	WARNING	Server::check_worker_exit_status(): worker(pid=1665, id=3) abnormal exit, status=255, signal=0
+[2025-02-17 03:06:50 *1698.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Cannot use null as default value for parameter $subject of type string in /var/www/html/core/Mail/Mailables/Envelope.php on line 15
+[2025-02-17 03:06:50 $1691.0]	WARNING	Server::check_worker_exit_status(): worker(pid=1698, id=3) abnormal exit, status=255, signal=0
+[2025-02-17 03:23:26 *1766.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: fopen(/thuan): Failed to open stream: No such file or directory in /var/www/html/core/Mail/Mailables/Attachment.php:15
+Stack trace:
+#0 [internal function]: Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/Mail/Mailables/Attachment.php(15): fopen()
+#2 /var/www/html/core/Mail/MailTest.php(34): Vietiso\Core\Mail\Mailables\Attachment::fromPath()
+#3 /var/www/html/core/Mail/Mailer.php(86): Vietiso\Core\Mail\MailTest->attachments()
+#4 /var/www/html/modules/user/src/Controllers/UserController.php(57): Vietiso\Core\Mail\Mailer->send()
+#5 [internal function]: Vietiso\Modules\User\Controllers\UserController->Vietiso\Modules\User\Controllers\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/Mail/Mailables/Attachment.php on line 15
+[2025-02-17 03:23:26 $1762.0]	WARNING	Server::check_worker_exit_status(): worker(pid=1766, id=3) abnormal exit, status=255, signal=0
+[2025-02-17 03:27:11 *1803.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: fopen(/thuan): Failed to open stream: No such file or directory in /var/www/html/core/Mail/Mailables/Attachment.php:15
+Stack trace:
+#0 [internal function]: Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}()
+#1 /var/www/html/core/Mail/Mailables/Attachment.php(15): fopen()
+#2 /var/www/html/core/Mail/MailTest.php(34): Vietiso\Core\Mail\Mailables\Attachment::fromPath()
+#3 /var/www/html/core/Mail/Mailer.php(86): Vietiso\Core\Mail\MailTest->attachments()
+#4 /var/www/html/modules/user/src/Controllers/UserController.php(57): Vietiso\Core\Mail\Mailer->send()
+#5 [internal function]: Vietiso\Modules\User\Controllers\UserController->Vietiso\Modules\User\Controllers\{closure}()
+#6 {main}
+  thrown in /var/www/html/core/Mail/Mailables/Attachment.php on line 15
+[2025-02-17 03:27:11 $1799.0]	WARNING	Server::check_worker_exit_status(): worker(pid=1803, id=3) abnormal exit, status=255, signal=0
+[2025-02-17 03:46:30 *1973.4]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 03:48:17 *1972.3]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 03:48:57 *1972.3]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 03:50:28 *1973.4]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 03:51:18 *1972.3]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 03:53:35 *2015.3]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 03:54:13 *2056.3]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 03:54:29 *2056.3]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 04:42:15 *2186.3]	WARNING	Context::build_header() (ERRNO 7105): The client has set 'Accept-Encoding', 'Content-Length' will be ignored
+[2025-02-17 04:42:18 *2186.3]	WARNING	Context::build_header() (ERRNO 7105): The client has set 'Accept-Encoding', 'Content-Length' will be ignored
+[2025-02-17 04:43:00 *2218.3]	WARNING	Context::build_header() (ERRNO 7105): The client has set 'Accept-Encoding', 'Content-Length' will be ignored
+[2025-02-17 04:47:14 *2471.3]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 05:06:54 *2513.4]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-02-17 05:21:20 *2712.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Symfony\Component\Mime\Exception\LogicException: A message must have a text or an HTML part or attachments. in /var/www/html/vendor/symfony/mime/Email.php:405
+Stack trace:
+#0 /var/www/html/vendor/symfony/mime/Email.php(393): Symfony\Component\Mime\Email->ensureBodyValid()
+#1 /var/www/html/vendor/symfony/mailer/SentMessage.php(33): Symfony\Component\Mime\Email->ensureValidity()
+#2 /var/www/html/vendor/symfony/mailer/Transport/AbstractTransport.php(68): Symfony\Component\Mailer\SentMessage->__construct()
+#3 /var/www/html/vendor/symfony/mailer/Transport/Smtp/SmtpTransport.php(137): Symfony\Component\Mailer\Transport\AbstractTransport->send()
+#4 /var/www/html/core/Mail/Mailer.php(113): Symfony\Component\Mailer\Transport\Smtp\SmtpTransport->send()
+#5 /var/www/html/modules/user/src/Controllers/UserController.php(57): Vietiso\Core\Mail\Mailer->send()
+#6 [internal function]: Vietiso\Modules\User\Controllers\UserController->Vietiso\Modules\User\Controllers\{closure}()
+#7 {main}
+  thrown in /var/www/html/vendor/symfony/mime/Email.php on line 405
+[2025-02-17 05:21:20 $2702.0]	WARNING	Server::check_worker_exit_status(): worker(pid=2712, id=4) abnormal exit, status=255, signal=0
+[2025-02-17 05:55:38 *3220.3]	NOTICE	Socket::ssl_connect(fd=30) to server[54.158.84.126:465] failed. Error: error:0A00010B:SSL routines::wrong version number[1|267]
+[2025-02-17 05:55:38 *3220.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Symfony\Component\Mailer\Exception\TransportException: Connection could not be established with host "ssl://sandbox.smtp.mailtrap.io:465": stream_socket_client(): Unable to connect to ssl://sandbox.smtp.mailtrap.io:465 (SSL handshake failed) in /var/www/html/vendor/symfony/mailer/Transport/Smtp/Stream/SocketStream.php:154
+Stack trace:
+#0 [internal function]: Symfony\Component\Mailer\Transport\Smtp\Stream\SocketStream->Symfony\Component\Mailer\Transport\Smtp\Stream\{closure}()
+#1 /var/www/html/vendor/symfony/mailer/Transport/Smtp/Stream/SocketStream.php(157): stream_socket_client()
+#2 /var/www/html/vendor/symfony/mailer/Transport/Smtp/SmtpTransport.php(279): Symfony\Component\Mailer\Transport\Smtp\Stream\SocketStream->initialize()
+#3 /var/www/html/vendor/symfony/mailer/Transport/Smtp/SmtpTransport.php(211): Symfony\Component\Mailer\Transport\Smtp\SmtpTransport->start()
+#4 /var/www/html/vendor/symfony/mailer/Transport/AbstractTransport.php(69): Symfony\Component\Mailer\Transport\Smtp\SmtpTransport->doSend()
+#5 /var/www/html/vendor/symfony/mailer/Transport/Smtp/SmtpTransport.php(138): Symfony\Component\Mailer\Transport\AbstractTransport->send()
+#6 /var/www/html/core/Mail/Mailer.php(113): Symfony\Component\Mailer\Transport\Smtp\SmtpTransport->send()
+#7 /var/www/html/modules/user/src/Controllers/UserController.php(57): Vietiso\Core\Mail\Mailer->send()
+#8 [internal function]: Vietiso\Modules\User\Controllers\UserController->Vietiso\Modules\User\Controllers\{closure}()
+#9 {main}
+  thrown in /var/www/html/vendor/symfony/mailer/Transport/Smtp/Stream/SocketStream.php on line 154
+[2025-02-17 05:55:38 $3216.0]	WARNING	Server::check_worker_exit_status(): worker(pid=3220, id=3) abnormal exit, status=255, signal=0
+[2025-02-18 02:09:19 *3799.7]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ArgumentCountError: Too few arguments to function Vietiso\Core\Server\Taskable::finish(), 1 passed in /var/www/html/core/Server/Server.php on line 49 and at least 2 expected in /var/www/html/core/Server/Taskable.php:9
+Stack trace:
+#0 /var/www/html/core/Server/Server.php(49): Vietiso\Core\Server\Taskable->finish()
+#1 [internal function]: Vietiso\Core\Server\Server->Vietiso\Core\Server\{closure}()
+#2 {main}
+  thrown in /var/www/html/core/Server/Taskable.php on line 9
+[2025-02-18 02:09:19 #3781.0]	WARNING	Server::check_worker_exit_status(): worker(pid=3799, id=7) abnormal exit, status=255, signal=0
+[2025-02-18 03:23:55 *4188.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 03:28:17 *4225.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:03:50 *4702.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:04:10 *4739.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:04:10 *4739.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:04:14 *4739.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:06:26 *4776.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:06:26 *4776.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:06:27 *4776.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:06:27 *4776.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:06:30 *4776.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:06:30 *4776.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:07:21 ^4826.9]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: A void function must not return a value in /var/www/html/modules/user/src/Tasks/SendMailTest.php on line 19
+[2025-02-18 04:07:21 ^4825.8]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: A void function must not return a value in /var/www/html/modules/user/src/Tasks/SendMailTest.php on line 19
+[2025-02-18 04:07:21 #4824.0]	WARNING	Server::check_worker_exit_status(): worker(pid=4825, id=8) abnormal exit, status=255, signal=0
+[2025-02-18 04:07:21 #4824.0]	WARNING	Server::check_worker_exit_status(): worker(pid=4826, id=9) abnormal exit, status=255, signal=0
+[2025-02-18 04:07:21 ^4860.9]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: A void function must not return a value in /var/www/html/modules/user/src/Tasks/SendMailTest.php on line 19
+[2025-02-18 04:07:21 #4824.0]	WARNING	Server::check_worker_exit_status(): worker(pid=4860, id=9) abnormal exit, status=255, signal=0
+[2025-02-18 04:08:09 *4883.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:08:09 *4883.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:08:09 *4883.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:08:09 *4883.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:08:13 *4883.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:08:13 *4883.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:10:11 *4924.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:10:11 *4924.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:10:15 *4924.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:11:01 *4961.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:11:01 *4961.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:11:06 *4961.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:11:45 *4998.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:11:46 *4998.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:11:48 *4998.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:12:23 *5035.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:12:23 *5035.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:12:28 *5035.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:14:21 *5076.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:14:22 *5076.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:14:25 *5076.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:15:10 *5113.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[1] has expired
+[2025-02-18 04:15:10 *5113.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[0] has expired
+[2025-02-18 04:15:14 *5113.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[2] has expired
+[2025-02-18 04:17:49 *5211.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[5] has expired
+[2025-02-18 04:17:52 *5211.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[6] has expired
+[2025-02-18 04:17:52 *5211.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[7] has expired
+[2025-02-18 04:17:54 *5211.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[8] has expired
+[2025-02-18 04:18:50 *5253.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[4] has expired
+[2025-02-18 04:18:53 *5253.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[5] has expired
+[2025-02-18 04:18:56 *5253.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[6] has expired
+[2025-02-18 04:19:00 *5253.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[7] has expired
+[2025-02-18 04:19:03 *5253.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[8] has expired
+[2025-02-18 04:19:41 *5290.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[4] has expired
+[2025-02-18 04:19:44 *5290.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[5] has expired
+[2025-02-18 04:19:48 *5290.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[6] has expired
+[2025-02-18 04:19:52 *5290.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[7] has expired
+[2025-02-18 04:19:55 *5290.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[8] has expired
+[2025-02-18 04:19:59 *5290.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[9] has expired
+[2025-02-18 04:20:38 *5327.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[5] has expired
+[2025-02-18 04:20:41 *5327.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[6] has expired
+[2025-02-18 04:20:44 *5327.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[7] has expired
+[2025-02-18 04:20:47 *5327.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[8] has expired
+[2025-02-18 04:20:50 *5327.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[9] has expired
+[2025-02-18 04:30:46 *5356.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[5] has expired
+[2025-02-18 04:30:46 *5356.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[4] has expired
+[2025-02-18 04:31:12 *5401.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[4] has expired
+[2025-02-18 04:31:15 *5401.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[5] has expired
+[2025-02-18 04:31:18 *5401.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[6] has expired
+[2025-02-18 04:31:22 *5401.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[7] has expired
+[2025-02-18 04:31:26 *5401.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[8] has expired
+[2025-02-18 04:31:30 *5401.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[9] has expired
+[2025-02-18 04:32:53 #5418.8]	WARNING	Server::timer_callback() (ERRNO 9007): No idle task worker is available
+[2025-02-18 04:33:03 *5438.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[9] has expired
+[2025-02-18 04:33:04 *5438.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[4] has expired
+[2025-02-18 04:33:08 *5438.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[5] has expired
+[2025-02-18 04:33:11 *5438.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[6] has expired
+[2025-02-18 04:33:14 *5438.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[7] has expired
+[2025-02-18 04:33:17 *5438.7]	WARNING	php_swoole_server_onFinish() (ERRNO 2003): task[8] has expired
+[2025-02-18 10:10:04 #283.0]	WARNING	Server::check_worker_exit_status(): worker(pid=301, id=7) abnormal exit, status=0, signal=11
+A bug occurred in Swoole-v5.1.5, please report it.
+The Swoole developers probably don't know about it,
+and unless you report it, chances are it won't be fixed.
+You can read How to report a bug doc before submitting any bug reports:
+>> https://github.com/swoole/swoole-src/blob/master/.github/ISSUE.md 
+Please do not send bug reports in the mailing list or personal letters.
+The issue page is also suitable to submit feature requests.
+
+OS: Linux 6.6.12-linuxkit #1 SMP Thu Feb  8 06:36:34 UTC 2024 aarch64
+GCC_VERSION: 12.2.0
+OPENSSL_VERSION: OpenSSL 3.0.15 3 Sep 2024
+PHP_VERSION : 8.3.14
+
+[2025-04-10 15:57:31 *2842.7]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-04-10 15:58:45 *2842.7]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-04-10 15:59:12 *2842.7]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-04-10 15:59:47 *2887.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-04-10 16:09:30 *2925.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-04-10 16:09:30 *2925.6]	TRACE	ProcessFactory::finish() (ERRNO 1005): session#1 does not exists
+[2025-04-10 16:09:30 *2925.6]	TRACE	ProcessFactory::finish() (ERRNO 1005): session#1 does not exists
+[2025-04-10 16:09:30 *2925.6]	TRACE	ProcessFactory::end() (ERRNO 1005): session#1 does not exists
+[2025-04-10 16:09:35 *2926.7]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-04-10 16:09:55 *2925.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-04-11 06:07:38 *2925.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-04-11 06:07:38 *2926.7]	TRACE	ProcessFactory::finish() (ERRNO 1005): session#17 does not exists
+[2025-04-11 06:07:38 *2926.7]	TRACE	ProcessFactory::finish() (ERRNO 1005): session#17 does not exists
+[2025-04-11 06:07:38 *2926.7]	TRACE	ProcessFactory::end() (ERRNO 1005): session#17 does not exists
+[2025-04-19 14:21:32 *7388.6]	WARNING	Context::build_header() (ERRNO 7105): You have set 'Transfer-Encoding', 'Content-Length' will be ignored
+[2025-05-03 00:21:00 *12224.3]	NOTICE	Socket::ssl_connect(fd=79) to server[96.7.128.175:443] failed. Error: error:0A000119:SSL routines::decryption failed or bad record mac[1|281]
+[2025-05-03 00:21:04 *12223.2]	TRACE	ProcessFactory::finish() (ERRNO 1005): session#1 does not exists
+[2025-05-03 00:21:04 *12223.2]	TRACE	ProcessFactory::finish() (ERRNO 1005): session#1 does not exists
+[2025-05-03 00:21:04 *12223.2]	TRACE	ProcessFactory::end() (ERRNO 1005): session#1 does not exists
+[2025-05-03 23:18:26 $56091.0]	INFO	Server is reloading all workers now
+[2025-05-03 23:18:39 $56091.0]	INFO	Server is reloading all workers now
+[2025-05-04 02:09:52 *61883.0]	WARNING	Server::stop_async_worker(): failed to push WORKER_STOP message, Error: No such process[3]
+[2025-05-04 02:10:25 *61884.1]	WARNING	Server::stop_async_worker(): failed to push WORKER_STOP message, Error: No such process[3]
+[2025-05-04 02:10:34 *61885.2]	WARNING	Server::stop_async_worker(): failed to push WORKER_STOP message, Error: No such process[3]
+[2025-05-04 02:10:39 *61886.3]	WARNING	Server::stop_async_worker(): failed to push WORKER_STOP message, Error: No such process[3]
+[2025-05-04 02:10:45 *61887.4]	WARNING	Server::stop_async_worker(): failed to push WORKER_STOP message, Error: No such process[3]
+[2025-05-04 02:10:57 *61888.5]	WARNING	Server::stop_async_worker(): failed to push WORKER_STOP message, Error: No such process[3]
+[2025-05-04 02:11:04 *61889.6]	WARNING	Server::stop_async_worker(): failed to push WORKER_STOP message, Error: No such process[3]
+[2025-05-04 02:11:08 *61890.7]	WARNING	Server::stop_async_worker(): failed to push WORKER_STOP message, Error: No such process[3]
+[2025-05-15 07:21:44 *38219.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Declaration of Vietiso\Core\ValidatedDTO\Rules\Required::check(mixed &$value, array &$values, Vietiso\Core\ValidatedDTO\Property $property): bool must be compatible with Vietiso\Core\ValidatedDTO\Rule::check(mixed $value, array $values, Vietiso\Core\ValidatedDTO\Property $property): bool in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/ValidatedDTO/Rules/Required.php on line 15
+[2025-05-15 07:21:44 $38211.0]	WARNING	Server::check_worker_exit_status(): worker(pid=38219, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 08:19:37 *58422.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Constant expression contains invalid operations in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/ValidatedDTO/Rules/Image.php on line 17
+[2025-05-16 08:19:37 $58414.0]	WARNING	Server::check_worker_exit_status(): worker(pid=58422, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 08:21:01 *58722.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Trait "Rakit\Validation\Rules\Traits\SizeTrait" not found in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/ValidatedDTO/Rules/Size.php on line 12
+[2025-05-16 08:21:01 $58714.0]	WARNING	Server::check_worker_exit_status(): worker(pid=58722, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 08:41:24 *60867.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php:33
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(349): dd(Array)
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(378): Vietiso\Core\Http\Response->sendHeaders(Object(Swoole\Http\Response))
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(23): Vietiso\Core\Http\Response->send(Object(Swoole\Http\Response))
+#3 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#4 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php on line 33
+[2025-05-16 08:41:24 $60859.0]	WARNING	Server::check_worker_exit_status(): worker(pid=60867, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 08:41:44 *60873.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php:33
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(349): dd(Array)
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(378): Vietiso\Core\Http\Response->sendHeaders(Object(Swoole\Http\Response))
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(23): Vietiso\Core\Http\Response->send(Object(Swoole\Http\Response))
+#3 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#4 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php on line 33
+[2025-05-16 08:41:44 $60859.0]	WARNING	Server::check_worker_exit_status(): worker(pid=60873, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 08:41:47 *60893.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php:33
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(349): dd(Array)
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(378): Vietiso\Core\Http\Response->sendHeaders(Object(Swoole\Http\Response))
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(23): Vietiso\Core\Http\Response->send(Object(Swoole\Http\Response))
+#3 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#4 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php on line 33
+[2025-05-16 08:41:47 $60859.0]	WARNING	Server::check_worker_exit_status(): worker(pid=60893, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 08:41:58 *60933.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php:33
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(349): dd(Object(Vietiso\Core\Http\ResponseHeaderBag))
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(378): Vietiso\Core\Http\Response->sendHeaders(Object(Swoole\Http\Response))
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(23): Vietiso\Core\Http\Response->send(Object(Swoole\Http\Response))
+#3 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#4 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php on line 33
+[2025-05-16 08:41:59 $60925.0]	WARNING	Server::check_worker_exit_status(): worker(pid=60933, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 08:42:24 *61185.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught Vietiso\Core\ErrorHandler\Exception\DumperException in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php:33
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(349): dd(Array)
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(378): Vietiso\Core\Http\Response->sendHeaders(Object(Swoole\Http\Response))
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(23): Vietiso\Core\Http\Response->send(Object(Swoole\Http\Response))
+#3 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#4 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/functions.php on line 33
+[2025-05-16 08:42:24 $61177.0]	WARNING	Server::check_worker_exit_status(): worker(pid=61185, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 10:23:28 ^73531.11]	WARNING	swoole_signal_callback() (ERRNO 721): Unable to find callback function for signal Hangup: 1
+[2025-05-16 10:23:28 $73529.0]	WARNING	swoole_signal_callback() (ERRNO 721): Unable to find callback function for signal Hangup: 1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73541, id=9) abnormal exit, status=0, signal=1
+[2025-05-16 10:23:28 ^73530.10]	WARNING	swoole_signal_callback() (ERRNO 721): Unable to find callback function for signal Hangup: 1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73540, id=8) abnormal exit, status=0, signal=1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73539, id=7) abnormal exit, status=0, signal=1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73538, id=6) abnormal exit, status=0, signal=1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73537, id=5) abnormal exit, status=0, signal=1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73536, id=4) abnormal exit, status=0, signal=1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73535, id=3) abnormal exit, status=0, signal=1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73534, id=2) abnormal exit, status=0, signal=1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73533, id=1) abnormal exit, status=0, signal=1
+[2025-05-16 10:23:28 $73529.0]	WARNING	Server::check_worker_exit_status(): worker(pid=73532, id=0) abnormal exit, status=0, signal=1
+[2025-05-16 11:21:45 *82000.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "getOriginals" in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php:96
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(96): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined array...', '/Users/thuanvp0...', 96)
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(106): Vietiso\Core\Database\Model\Model->getAttribute('getOriginals')
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Model.php(116): Vietiso\Core\Database\Model\Model->__get('getOriginals')
+#3 [internal function]: Vietiso\Core\Database\Model\Model->jsonSerialize()
+#4 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(104): json_encode(Array, 15)
+#5 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(28): Vietiso\Core\Http\JsonResponse->setData(Array)
+#6 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(197): Vietiso\Core\Http\JsonResponse->__construct(Array, 200, Array, false)
+#7 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/ErrorHandler/ErrorRenderer/JsonErrorRenderer.php(17): Vietiso\Core\Http\Response::json(Array)
+#8 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(50): Vietiso\Core\ErrorHandler\ErrorRenderer\JsonErrorRenderer::render(Object(ErrorException))
+#9 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(42): Vietiso\Core\Http\Exception\Handler->handlerServerError(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#10 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(20): Vietiso\Core\Http\Exception\Handler->render(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#11 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#12 {main}
+
+Next ErrorException: Undefined variable $response in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php:29
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(29): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined varia...', '/Users/thuanvp0...', 29)
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#2 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php on line 29
+[2025-05-16 11:21:45 $81992.0]	WARNING	Server::check_worker_exit_status(): worker(pid=82000, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 11:23:20 *82064.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "getOriginals" in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php:96
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(96): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined array...', '/Users/thuanvp0...', 96)
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(106): Vietiso\Core\Database\Model\Model->getAttribute('getOriginals')
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Model.php(116): Vietiso\Core\Database\Model\Model->__get('getOriginals')
+#3 [internal function]: Vietiso\Core\Database\Model\Model->jsonSerialize()
+#4 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(104): json_encode(Array, 15)
+#5 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(28): Vietiso\Core\Http\JsonResponse->setData(Array)
+#6 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(197): Vietiso\Core\Http\JsonResponse->__construct(Array, 200, Array, false)
+#7 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/ErrorHandler/ErrorRenderer/JsonErrorRenderer.php(17): Vietiso\Core\Http\Response::json(Array)
+#8 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(50): Vietiso\Core\ErrorHandler\ErrorRenderer\JsonErrorRenderer::render(Object(ErrorException))
+#9 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(42): Vietiso\Core\Http\Exception\Handler->handlerServerError(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#10 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(20): Vietiso\Core\Http\Exception\Handler->render(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#11 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#12 {main}
+
+Next ErrorException: Undefined variable $response in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php:29
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(29): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined varia...', '/Users/thuanvp0...', 29)
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#2 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php on line 29
+[2025-05-16 11:23:20 $82056.0]	WARNING	Server::check_worker_exit_status(): worker(pid=82064, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 11:23:39 *82167.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "originals" in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php:96
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(96): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined array...', '/Users/thuanvp0...', 96)
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(106): Vietiso\Core\Database\Model\Model->getAttribute('originals')
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Model.php(116): Vietiso\Core\Database\Model\Model->__get('originals')
+#3 [internal function]: Vietiso\Core\Database\Model\Model->jsonSerialize()
+#4 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(104): json_encode(Array, 15)
+#5 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(28): Vietiso\Core\Http\JsonResponse->setData(Array)
+#6 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(197): Vietiso\Core\Http\JsonResponse->__construct(Array, 200, Array, false)
+#7 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/ErrorHandler/ErrorRenderer/JsonErrorRenderer.php(17): Vietiso\Core\Http\Response::json(Array)
+#8 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(50): Vietiso\Core\ErrorHandler\ErrorRenderer\JsonErrorRenderer::render(Object(ErrorException))
+#9 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(42): Vietiso\Core\Http\Exception\Handler->handlerServerError(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#10 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(20): Vietiso\Core\Http\Exception\Handler->render(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#11 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#12 {main}
+
+Next ErrorException: Undefined variable $response in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php:29
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(29): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined varia...', '/Users/thuanvp0...', 29)
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#2 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php on line 29
+[2025-05-16 11:23:39 $82159.0]	WARNING	Server::check_worker_exit_status(): worker(pid=82167, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 11:24:30 *82277.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "originals" in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php:96
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(96): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined array...', '/Users/thuanvp0...', 96)
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(106): Vietiso\Core\Database\Model\Model->getAttribute('originals')
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Model.php(116): Vietiso\Core\Database\Model\Model->__get('originals')
+#3 [internal function]: Vietiso\Core\Database\Model\Model->jsonSerialize()
+#4 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(104): json_encode(Array, 15)
+#5 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(28): Vietiso\Core\Http\JsonResponse->setData(Array)
+#6 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(197): Vietiso\Core\Http\JsonResponse->__construct(Array, 200, Array, false)
+#7 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/ErrorHandler/ErrorRenderer/JsonErrorRenderer.php(17): Vietiso\Core\Http\Response::json(Array)
+#8 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(50): Vietiso\Core\ErrorHandler\ErrorRenderer\JsonErrorRenderer::render(Object(ErrorException))
+#9 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(42): Vietiso\Core\Http\Exception\Handler->handlerServerError(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#10 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(20): Vietiso\Core\Http\Exception\Handler->render(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#11 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#12 {main}
+
+Next ErrorException: Undefined variable $response in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php:29
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(29): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined varia...', '/Users/thuanvp0...', 29)
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#2 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php on line 29
+[2025-05-16 11:24:30 $82269.0]	WARNING	Server::check_worker_exit_status(): worker(pid=82277, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 11:24:39 *82311.5]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Undefined array key "originals" in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php:96
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(96): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined array...', '/Users/thuanvp0...', 96)
+#1 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Traits/HasAttributes.php(106): Vietiso\Core\Database\Model\Model->getAttribute('originals')
+#2 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Database/Model/Model.php(121): Vietiso\Core\Database\Model\Model->__get('originals')
+#3 [internal function]: Vietiso\Core\Database\Model\Model->jsonSerialize()
+#4 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(104): json_encode(Array, 15)
+#5 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/JsonResponse.php(28): Vietiso\Core\Http\JsonResponse->setData(Array)
+#6 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Response.php(197): Vietiso\Core\Http\JsonResponse->__construct(Array, 200, Array, false)
+#7 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/ErrorHandler/ErrorRenderer/JsonErrorRenderer.php(17): Vietiso\Core\Http\Response::json(Array)
+#8 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(50): Vietiso\Core\ErrorHandler\ErrorRenderer\JsonErrorRenderer::render(Object(ErrorException))
+#9 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Http/Exception/Handler.php(42): Vietiso\Core\Http\Exception\Handler->handlerServerError(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#10 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(20): Vietiso\Core\Http\Exception\Handler->render(Object(Vietiso\Core\Http\Request), Object(ErrorException))
+#11 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#12 {main}
+
+Next ErrorException: Undefined variable $response in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php:29
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php(29): Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(2, 'Undefined varia...', '/Users/thuanvp0...', 29)
+#1 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#2 {main}
+  thrown in /Users/thuanvp012/Documents/Code/Backend_Timeless/core/Server/Events/RequestEvent.php on line 29
+[2025-05-16 11:24:39 $82303.0]	WARNING	Server::check_worker_exit_status(): worker(pid=82311, id=5) abnormal exit, status=255, signal=0
+[2025-05-16 14:48:15 #94010.2]	WARNING	Port_onRead_http() (ERRNO 7102): Request Entity Too Large: header-length (781) + content-length (6505272) is greater than the package_max_length(2097152) from session#4 on 0.0.0.0:80
+[2025-05-16 20:23:35 #12068.1]	WARNING	Port_onRead_http() (ERRNO 7102): Request Entity Too Large: header-length (738) + content-length (5719157) is greater than the package_max_length(2097152) from session#3 on 0.0.0.0:80
+[2025-05-16 20:24:23 #12068.1]	WARNING	Port_onRead_http() (ERRNO 7102): Request Entity Too Large: header-length (781) + content-length (5719157) is greater than the package_max_length(2097152) from session#4 on 0.0.0.0:80
+[2025-05-18 09:49:07 *86148.4]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught TypeError: array_merge(): Argument #2 must be of type array, null given in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php:101
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php(101): array_merge(Array, NULL)
+#1 /Users/thuanvp012/Documents/Code/timeless/backend/core/Server/Events/RequestEvent.php(16): Vietiso\Core\Http\Request->initRequest(Object(Swoole\Http\Request))
+#2 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 {main}
+  thrown in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php on line 101
+[2025-05-18 09:49:07 $86141.0]	WARNING	Server::check_worker_exit_status(): worker(pid=86148, id=4) abnormal exit, status=255, signal=0
+[2025-05-18 09:49:32 *87005.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught TypeError: array_merge(): Argument #2 must be of type array, null given in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php:101
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php(101): array_merge(Array, NULL)
+#1 /Users/thuanvp012/Documents/Code/timeless/backend/core/Server/Events/RequestEvent.php(16): Vietiso\Core\Http\Request->initRequest(Object(Swoole\Http\Request))
+#2 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 {main}
+  thrown in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php on line 101
+[2025-05-18 09:49:32 $86999.0]	WARNING	Server::check_worker_exit_status(): worker(pid=87005, id=3) abnormal exit, status=255, signal=0
+[2025-05-18 09:50:35 *87298.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught TypeError: array_merge(): Argument #2 must be of type array, null given in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php:101
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php(101): array_merge(Array, NULL)
+#1 /Users/thuanvp012/Documents/Code/timeless/backend/core/Server/Events/RequestEvent.php(16): Vietiso\Core\Http\Request->initRequest(Object(Swoole\Http\Request))
+#2 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 {main}
+  thrown in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php on line 101
+[2025-05-18 09:50:35 $87292.0]	WARNING	Server::check_worker_exit_status(): worker(pid=87298, id=3) abnormal exit, status=255, signal=0
+[2025-05-18 16:16:15 *27872.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught ErrorException: Swoole\Http\Response::setCookie(): Passing null to parameter #5 ($domain) of type string is deprecated in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Response.php:353
+Stack trace:
+#0 [internal function]: Vietiso\Core\ErrorHandler\Handler->Vietiso\Core\ErrorHandler\{closure}(8192, 'Swoole\\Http\\Res...', '/Users/thuanvp0...', 353)
+#1 /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Response.php(353): Swoole\Http\Response->setCookie('token', 'eyJ0eXAiOiJKV1Q...', 0, '/', NULL, true, true, 'none')
+#2 /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Response.php(390): Vietiso\Core\Http\Response->sendHeaders(Object(Swoole\Http\Response))
+#3 /Users/thuanvp012/Documents/Code/timeless/backend/core/Server/Events/RequestEvent.php(19): Vietiso\Core\Http\Response->send(Object(Swoole\Http\Response))
+#4 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#5 {main}
+  thrown in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Response.php on line 353
+[2025-05-18 16:16:15 $27866.0]	WARNING	Server::check_worker_exit_status(): worker(pid=27872, id=3) abnormal exit, status=255, signal=0
+[2025-05-18 19:38:47 *60795.3]	ERROR	php_swoole_server_rshutdown() (ERRNO 503): Fatal error: Uncaught TypeError: array_merge(): Argument #2 must be of type array, null given in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php:101
+Stack trace:
+#0 /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php(101): array_merge(Array, NULL)
+#1 /Users/thuanvp012/Documents/Code/timeless/backend/core/Server/Events/RequestEvent.php(16): Vietiso\Core\Http\Request->initRequest(Object(Swoole\Http\Request))
+#2 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle(Object(Swoole\Http\Request), Object(Swoole\Http\Response))
+#3 {main}
+  thrown in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php on line 101
+[2025-05-18 19:38:47 $60789.0]	WARNING	Server::check_worker_exit_status(): worker(pid=60795, id=3) abnormal exit, status=255, signal=0
+[2025-05-18 22:22:47 #79507.7]	WARNING	Port_onRead_http() (ERRNO 7102): Request Entity Too Large: header-length (1728) + content-length (12108351) is greater than the package_max_length(10485760) from session#51 on 0.0.0.0:8080

@@ -1,0 +1,25 @@
+<?php
+
+return [
+    \Vietiso\Core\Environment\EnvironmentServiceProvider::class,
+    \Vietiso\Core\Config\ConfigServiceProvider::class,
+    \Vietiso\Core\Hashing\HashServiceProvider::class,
+    \Vietiso\Core\Log\LogServiceProvider::class,
+    \Vietiso\Core\Event\EventServiceProvider::class,
+    \Vietiso\Core\Database\DatabaseServiceProvider::class,
+    \Vietiso\Core\ErrorHandler\ErrorHandlerProvider::class,
+    \Vietiso\Core\Console\ConsoleServiceProvider::class,
+    \Vietiso\Core\Server\ServerServiceProvider::class,
+    \Vietiso\Core\Http\HttpServiceProvider::class,
+    \Vietiso\Core\Middleware\MiddlewareServiceProvider::class,
+    \Vietiso\Core\Route\RoutingServiceProvider::class,
+    \Vietiso\Core\ValidatedDTO\ValidatorServiceProvider::class,
+    \Vietiso\Core\Module\ModuleServiceProvider::class,
+    \Vietiso\Core\Twig\TwigServiceProvider::class,
+    \Vietiso\Core\Session\SessionServiceProvider::class,
+    \Vietiso\Core\Mail\MailServiceProvider::class,
+    \Vietiso\Core\HttpClient\HttpClientServiceProvider::class,
+    \Vietiso\Core\Asset\AssetServiceProvider::class,
+    \Vietiso\Core\Queue\QueueServiceProvider::class,
+    \Vietiso\Core\Process\ProcessServiceProvider::class,
+];

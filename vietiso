@@ -1,0 +1,38 @@
+<?php
+
+use Vietiso\Core\Middleware\ConvertEmptyStringsToNull;
+use Vietiso\Core\Container\ServiceProviderManager;
+use Vietiso\Core\Middleware\MiddlewareCollection;
+// use Vietiso\Core\Session\Middleware\StartSession;
+use Vietiso\Core\Middleware\TrustProxies;
+use Vietiso\Core\Middleware\TrimStrings;
+use Vietiso\Core\App;
+use Vietiso\Core\Http\Middleware\HandleException;
+use Vietiso\Core\Middleware\HandleCors;
+
+require __DIR__ . '/core/constants.php';
+require __DIR__ . '/core/functions.php';
+require __DIR__ . '/vendor/autoload.php';
+
+$status = App::getInstance()
+    ->setBasePath(__DIR__)
+    ->withMiddleware(function (MiddlewareCollection $middlewares): void {
+        $middlewares->use([
+            TrustProxies::class,
+            HandleCors::class,
+            HandleException::class,
+            TrimStrings::class,
+            ConvertEmptyStringsToNull::class,
+            // StartSession::class,
+            // ShareErrorsFromSession::class,
+        ]);
+    })
+    ->withProviders(function (ServiceProviderManager $providers): void {
+        
+    })
+    ->terminateRequest(function (App $app): void {
+        $app->get('database')?->disconnect();
+    })
+    ->start();
+
+exit($status);
