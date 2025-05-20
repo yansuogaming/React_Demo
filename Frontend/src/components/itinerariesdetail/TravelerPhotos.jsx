@@ -3,8 +3,8 @@ import imgDemo from "@images/about-vietnam.png";
 
 const TravelerPhotos = () => {
   return (
-    <div className="max-w-7xl mx-auto font-[Visit_Qatar] mt-10">
-      <h1 className="text-4xl font-bold text-gray-900 mb-6 font-[Visit_Qatar]">Traveler Photos</h1>
+    <div className="max-w-7xl mx-auto font-[Visit_Qatar] mt-20">
+      <h1 className="text-3xl font-bold text-gray-900 mb-6 font-[Visit_Qatar]">Traveler Photos</h1>
       
       <div className="grid grid-cols-12 gap-2">
         {/* Large image on the left */}

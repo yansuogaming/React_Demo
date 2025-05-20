@@ -31,7 +31,7 @@ const BookTour = () => {
   return (
     <div className="py-10 bg-white-50 mt-10">
       {/* Tiêu đề */}
-      <div className="md:text-[24px] text-[20px] font-bold font-[Visit_Qatar] text-gray-800 mb-6">
+      <div className="md:text-[24px] text-[20px] text-3xl font-bold font-[Visit_Qatar] text-gray-800 mb-6">
         6 reasons to book this tour
       </div>
 

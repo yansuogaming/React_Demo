@@ -38,7 +38,7 @@ const AccordionItem = ({ icon, title, content, defaultOpen = false }) => {
 const AdditionalInfo = () => {
   return (
     <div className="max-w-4xl mx-auto font-[Visit_Qatar] mt-20">
-      <h2 className="text-2xl font-bold mb-8 text-gray-900 font-[Visit_Qatar]">Additional Info</h2>
+      <h2 className="text-3xl font-bold mb-8 text-gray-900 font-[Visit_Qatar]">Additional Info</h2>
       
       <AccordionItem 
         icon={<div className="flex flex-col">
