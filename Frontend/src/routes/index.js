@@ -1,8 +1,8 @@
 import { lazy } from "react";
 import routesAdmin from "./admin";
 import ExperienceService from "@services/ExperienceService";
-import FAQService from "@services/FAQService";
 import EventService from "@services/EventService";
+import FAQService from "@services/FAQService";
 import WeatherService from "@services/WeatherService";
 
 const routes = [
@@ -82,6 +82,15 @@ const routes = [
                     {
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
+                        meta: () => {
+                            return [
+                                { title: "Xin chào" },
+                                {
+                                    name: "description",
+                                    content: "Welcome to the home page",
+                                },
+                            ];
+                        },
                     },
                     {
                         path: "visa-guide",
@@ -130,17 +139,14 @@ const routes = [
                         Component: lazy(() => import("@pages/DownloadApp")),
                     },
                     {
-                        path: "itineraries/detail",
-                        Component: lazy(() =>
-                            import("@pages/ItinerariesDetail")
-                        ),
-                    },
-
-                    {
                         path: "search-result/:keyword?",
                         Component: lazy(() => import("@pages/SearchResult")),
                     },
                 ],
+            },
+            {
+                path: "map-ha-noi",
+                Component: lazy(() => import("@pages/Map")),
             },
             {
                 path: "tripdetail/result",

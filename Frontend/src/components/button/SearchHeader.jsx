@@ -1,11 +1,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 
-export default function SearchHeader({ className = '', color = 'black'}) {
+export default function SearchHeader({ className = '', color = 'black',onClick=()=>{}}) {
     const { t } = useTranslation()
 
     return (
-        <div className={className} style={{color}}>
+        <button onClick={onClick} className={className} style={{color}}>
             <svg
                 className="mr-[10px]"
                 alt={t("search")}
@@ -36,6 +36,6 @@ export default function SearchHeader({ className = '', color = 'black'}) {
                 </defs>
             </svg>
             {t("search")}
-        </div>
+        </button>
     )
 }
