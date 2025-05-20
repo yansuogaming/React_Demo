@@ -19,6 +19,7 @@ import SpratlyIslands from "./SpratlyIslands";
 import { cn } from "@lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import MapsRegion from "./MapsRegion";
 
 const RegionList = ({ className, ...props }) => {
     const { t } = useTranslation();
@@ -158,6 +159,7 @@ const RegionList = ({ className, ...props }) => {
                     <CarouselNext className="flex right-[10px] md:right-[20px] cursor-pointer" />
                 </Carousel>
             </div>
+            <MapsRegion className="" />
 
             <div className="flex flex-col lg:flex-row items-center gap-[35px]">
                 {/* Bản đồ region */}

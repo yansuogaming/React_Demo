@@ -112,6 +112,13 @@ const routes = [
                         Component: lazy(() => import("@pages/DownloadApp")),
                     },
                     {
+                        path: "itineraries/detail",
+                        Component: lazy(() =>
+                            import("@pages/ItinerariesDetail")
+                        ),
+                    },
+
+                    {
                         path: "search-result/:keyword?",
                         Component: lazy(() => import("@pages/SearchResult")),
                     },
