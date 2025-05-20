@@ -56,7 +56,7 @@ const routesAdmin = [
                 },
             },
             {
-                path: 'experiences/edit/:id',
+                path: 'experiences/:id',
                 Component: lazy(() => import("@pages/admin/Experience/EditExperience")),
                 meta: () => {
                     return [
@@ -86,8 +86,58 @@ const routesAdmin = [
                 },
             },
             {
-                path: 'experience-types/edit/:id',
+                path: 'experience-types/:id',
                 Component: lazy(() => import("@pages/admin/Experience/EditExperienceType")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
+            {
+                path: 'faqs',
+                Component: lazy(() => import("@pages/admin/FAQ/Index")),
+                meta: () => {
+                    return [
+                        { title: "FAQ" },
+                        { name: "FAQ", content: "FAQ" },
+                    ];
+                },
+            },
+            {
+                path: 'faqs/add',
+                Component: lazy(() => import("@pages/admin/FAQ/EditFAQ")),
+                meta: () => {
+                    return [
+                        { title: "FAQ" },
+                        { name: "FAQ", content: "FAQ" },
+                    ];
+                },
+            },
+            {
+                path: 'faqs/:id',
+                Component: lazy(() => import("@pages/admin/FAQ/EditFAQ")),
+                meta: () => {
+                    return [
+                        { title: "FAQ" },
+                        { name: "FAQ", content: "FAQ" },
+                    ];
+                },
+            },
+            {
+                path: 'regions',
+                Component: lazy(() => import("@pages/admin/Region/Index")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
+            {
+                path: 'regions/add',
+                Component: lazy(() => import("@pages/admin/Region/Index")),
                 meta: () => {
                     return [
                         { title: "Experience" },
@@ -98,6 +148,16 @@ const routesAdmin = [
             {
                 path: 'regions',
                 Component: lazy(() => import("@pages/admin/Region/Index")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
+            {
+                path: 'events',
+                Component: lazy(() => import("@pages/admin/Event/Index")),
                 meta: () => {
                     return [
                         { title: "Experience" },

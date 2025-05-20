@@ -1,15 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router";
 import { CiHeart } from "react-icons/ci";
-import { FaArrowUp } from "react-icons/fa";
-
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
+import { FaArrowUp, FaChevronLeft, FaChevronRight } from "react-icons/fa6";
+import useEmblaCarousel from "embla-carousel-react";
+import { cn } from "@/lib/utils";
 
 import imgHotel1 from "@images/photo-hotel1.jpeg";
 import imgHotel2 from "@images/photo-hotel2.jpeg";
@@ -33,6 +27,24 @@ const recommendations = [
 ];
 
 const RecommendationCarousel = () => {
+    const [emblaRef, emblaApi] = useEmblaCarousel({
+        loop: false,
+        align: "start",
+    });
+    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [scrollSnaps, setScrollSnaps] = useState([]);
+
+    const scrollPrev = () => emblaApi?.scrollPrev();
+    const scrollNext = () => emblaApi?.scrollNext();
+
+    useEffect(() => {
+        if (!emblaApi) return;
+        setScrollSnaps(emblaApi.scrollSnapList());
+        emblaApi.on("select", () => {
+            setSelectedIndex(emblaApi.selectedScrollSnap());
+        });
+    }, [emblaApi]);
+
     return (
         <section className="container mx-auto px-4 py-12">
             <h2 className="text-[32px] font-bold text-[#1A2A44] mb-6">
@@ -40,31 +52,39 @@ const RecommendationCarousel = () => {
             </h2>
 
             <div className="relative">
-                <Carousel opts={{ align: "start" }}>
-                    {/* Navigation buttons */}
-                    <div className="hidden absolute -left-6 top-[40%] z-10 lg:flex ">
-                        <CarouselPrevious className="bg-white text-black border shadow-sm rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100" />
-                    </div>
-                    <div className="hidden absolute -right-6 top-[40%] z-10 lg:flex">
-                        <CarouselNext className="bg-white text-black border shadow-sm rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-100" />
-                    </div>
+                <button
+                    onClick={scrollPrev}
+                    disabled={!emblaApi?.canScrollPrev()}
+                    className="hidden lg:flex absolute left-[-24px] top-[40%] -translate-y-1/2 z-10 bg-white text-black border shadow-sm rounded-full w-10 h-10 items-center justify-center hover:bg-gray-100 disabled:opacity-50"
+                >
+                    <FaChevronLeft />
+                </button>
+                <button
+                    onClick={scrollNext}
+                    disabled={!emblaApi?.canScrollNext()}
+                    className="hidden lg:flex absolute right-[-24px] top-[40%] -translate-y-1/2 z-10 bg-white text-black border shadow-sm rounded-full w-10 h-10 items-center justify-center hover:bg-gray-100 disabled:opacity-50"
+                >
+                    <FaChevronRight />
+                </button>
 
-                    <CarouselContent className="gap-4">
+                <div className="overflow-hidden" ref={emblaRef}>
+                    <div className="flex gap-4">
                         {recommendations.map((item, index) => (
-                            <CarouselItem
+                            <div
                                 key={index}
-                                className="md:basis-1/3 sm:basis-1/2 basis-full"
+                                className="flex-none w-[80%] sm:w-1/2 lg:w-1/3 transition-all duration-300"
                             >
                                 <div className="bg-white rounded-lg shadow-sm overflow-hidden group">
                                     <div className="relative overflow-hidden">
-                                        <NavLink to="">
-                                            <img
-                                                src={item.image}
-                                                alt={item.title}
-                                                className="w-full h-[200px] object-cover transition-transform duration-300 group-hover:scale-105"
-                                            />
-                                        </NavLink>
-                                        {/* Heart button */}
+                                        <div className="aspect-square">
+                                            <NavLink to="">
+                                                <img
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                                                />
+                                            </NavLink>
+                                        </div>
                                         <button className="absolute bottom-2 right-2 w-10 h-10 rounded-lg bg-white shadow-md flex items-center justify-center text-blue-700">
                                             <CiHeart />
                                         </button>
@@ -81,10 +101,25 @@ const RecommendationCarousel = () => {
                                         </p>
                                     </div>
                                 </div>
-                            </CarouselItem>
+                            </div>
                         ))}
-                    </CarouselContent>
-                </Carousel>
+                    </div>
+                </div>
+
+                <div className="flex justify-end mt-4 gap-2">
+                    {scrollSnaps.map((_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => emblaApi?.scrollTo(index)}
+                            className={cn(
+                                "h-[10px] transition rounded-full",
+                                selectedIndex === index
+                                    ? "w-[30px] bg-gray-800"
+                                    : "w-[10px] bg-gray-300"
+                            )}
+                        />
+                    ))}
+                </div>
             </div>
 
             <div className="mt-6">

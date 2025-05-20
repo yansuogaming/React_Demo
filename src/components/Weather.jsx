@@ -21,9 +21,13 @@ const Weather = () => {
                     </h3>
                     <div className="flex gap-[12px] items-center justify-center mb-[5px]">
                         <SunnyIcon fill="#FD6050" />
-                        <p className="text-[36px] md:text-[48px] text-[#1A2A44] font-bold font-[Roboto]">31,9°C</p>
+                        <p className="text-[36px] md:text-[48px] text-[#1A2A44] font-bold font-[Roboto]">
+                            31,9°C
+                        </p>
                     </div>
-                    <p className="text-[#494951] font-normal text-[16px] mb-[30px]">Cloudy</p>
+                    <p className="text-[#494951] font-normal text-[16px] mb-[30px]">
+                        Cloudy
+                    </p>
                     <table className="w-full text-[#1A2A44] text-[14px] md:text-[16px] font-medium">
                         <tbody>
                             <tr>

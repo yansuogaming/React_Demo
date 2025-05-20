@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 import imgHotel1 from "@images/photo-hotel1.jpeg";
 import imgHotel2 from "@images/photo-hotel2.jpeg";
@@ -34,6 +35,7 @@ const StartPlanningSection = () => {
     return (
         <section className="container mx-auto px-4 py-12">
             {/* Heading */}
+
             <h2 className="text-[28px] md:text-[32px] font-bold text-[#1A2A44] mb-2">
                 Start planning
             </h2>
@@ -49,14 +51,21 @@ const StartPlanningSection = () => {
                         key={index}
                         className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition"
                     >
-                        <img
-                            src={item.image}
-                            alt={item.title}
-                            className="w-full h-[180px] object-cover"
-                        />
+                        <NavLink to="/" className="block group">
+                            <img
+                                src={item.image}
+                                alt={item.title}
+                                className="w-full h-[180px] object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                        </NavLink>
                         <div className="p-4">
                             <h3 className="font-semibold text-[#1A2A44] text-[16px] mb-2">
-                                {item.title}
+                                <NavLink
+                                    to="/"
+                                    className="transition-colors duration-300 group-hover:text-[#007BFF] group-hover:underline"
+                                >
+                                    {item.title}
+                                </NavLink>
                             </h3>
                             <p className="text-[14px] text-[#505050]">
                                 {item.description}

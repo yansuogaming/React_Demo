@@ -12,7 +12,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
 import UploadImage from "@components/button/UploadImage";
 
-const AppQuill = lazy(() => import("@components/admin/AppQuill"));
+const AppEditor = lazy(() => import("@components/admin/AppEditor"));
 
 export default function EditExperience() {
     let navigate = useNavigate();
@@ -132,7 +132,7 @@ export default function EditExperience() {
                             <div>
                                 <label>Nội dung</label>
                                 <div>
-                                    <AppQuill
+                                    <AppEditor
                                         value={content}
                                         onChange={(value) => setContent(value)}
                                     />

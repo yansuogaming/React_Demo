@@ -120,6 +120,7 @@ const MonthlyActivities = () => {
     };
 
     const { temp, content, image } = contentData[activeMonth];
+    const buttonRefs = useRef({});
 
     return (
         <section className="container mx-auto px-4 py-12">
@@ -133,16 +134,26 @@ const MonthlyActivities = () => {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     {/* Tabs */}
-                    <div className="flex lg:flex-col flex-wrap gap-3 text-left border-r pr-4 w-full lg:w-[120px] lg:col-span-2 shrink-0">
+                    <div className="flex lg:flex-col overflow-x-auto overflow-y-hidden whitespace-nowrap gap-3 text-left border-b border-gray-200 w-full lg:w-[120px] lg:col-span-2 shrink-0 no-scrollbar">
                         {months.map((month) => (
                             <button
                                 key={month}
-                                onClick={() => setActiveMonth(month)}
-                                className={`text-sm font-semibold ${
-                                    activeMonth === month
-                                        ? "text-[#0077B6] border-l-2 border-[#0077B6] pl-2"
-                                        : "text-gray-600 hover:text-[#0077B6]"
-                                } transition`}
+                                ref={(el) => (buttonRefs.current[month] = el)}
+                                onClick={() => {
+                                    setActiveMonth(month);
+                                    buttonRefs.current[month]?.scrollIntoView({
+                                        behavior: "smooth",
+                                        inline: "center",
+                                        block: "nearest",
+                                    });
+                                }}
+                                className={`relative flex-shrink-0 text-sm font-semibold px-3 py-2 transition
+            ${
+                activeMonth === month
+                    ? "text-[#0077B6] lg:border-l-2 lg:pl-2 lg:border-[#0077B6] after:absolute after:left-3 after:right-3 after:-bottom-[1px] after:h-[2px] after:bg-[#0077B6] lg:after:content-none"
+                    : "text-gray-600 hover:text-[#0077B6]"
+            }
+        `}
                             >
                                 {month}
                             </button>

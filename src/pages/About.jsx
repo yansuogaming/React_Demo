@@ -119,14 +119,15 @@ const About = () => {
                 </Carousel>
             </section>
             <section className="container mt-[120px]">
-                <Reveal className="grid grid-cols-2 gap-[30px] items-center">
-                    <div>
+                {/* Item 1: Tiêu đề trước, ảnh sau trên mobile */}
+                <Reveal className="grid grid-cols-1 md:grid-cols-2 gap-[30px] items-center">
+                    <div className="order-2 md:order-none">
                         <img
                             src={imageAbout}
                             alt="DISCOVER VIETNAM’S NATURAL WORLD"
                         />
                     </div>
-                    <div>
+                    <div className="order-1 md:order-none">
                         <SubHeading className="mb-[15px] font-bold uppercase">
                             DISCOVER VIETNAM’S NATURAL WORLD
                         </SubHeading>
@@ -137,7 +138,9 @@ const About = () => {
                         </TextNormal>
                     </div>
                 </Reveal>
-                <Reveal className="grid grid-cols-2 gap-[30px] items-center mt-[80px]">
+
+                {/* Item 2: Giữ nguyên */}
+                <Reveal className="grid grid-cols-1 md:grid-cols-2 gap-[30px] items-center mt-[80px]">
                     <div>
                         <SubHeading className="mb-[15px] font-bold uppercase">
                             Traditions that last for centuries
@@ -157,14 +160,16 @@ const About = () => {
                         />
                     </div>
                 </Reveal>
-                <Reveal className="grid grid-cols-2 gap-[30px] items-center mt-[80px]">
-                    <div>
+
+                {/* Item 3: Tiêu đề trước, ảnh sau trên mobile */}
+                <Reveal className="grid grid-cols-1 md:grid-cols-2 gap-[30px] items-center mt-[80px]">
+                    <div className="order-2 md:order-none">
                         <img
                             src={imageAbout3}
                             alt="DISCOVER VIETNAM’S NATURAL WORLD"
                         />
                     </div>
-                    <div>
+                    <div className="order-1 md:order-none">
                         <SubHeading className="mb-[15px] font-bold uppercase">
                             DISCOVER VIETNAM’S NATURAL WORLD
                         </SubHeading>
@@ -176,6 +181,7 @@ const About = () => {
                     </div>
                 </Reveal>
             </section>
+
             <WhyVisit />
             <FAQ className="mt-[80px]" />
             <PlainYourTrip className="mt-[120px]" />

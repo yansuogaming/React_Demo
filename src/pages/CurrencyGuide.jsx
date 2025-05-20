@@ -1,6 +1,11 @@
 import { useTranslation } from "react-i18next";
 
 import Breadcrumb from "@components/Breadcrumb";
+import CurrencyConverter from "@components/currencyguide/CurrencyConverter";
+import CostComparison from "@components/currencyguide/CostComparison";
+import CurrencyFactSlider from "@components/currencyguide/CurrencyFactSlider";
+import CurrencyImageSlider from "@components/currencyguide/CurrencyImageSlider";
+import SpendSmarter from "@components/currencyguide/SpendSmarter";
 
 import FAQ from "@components/FAQ";
 import WeatherSubscribe from "@components/WeatherSubscribe";
@@ -15,18 +20,18 @@ const CurrencyGuide = () => {
     ];
     return (
         <main>
-            <div className="container mx-auto">
-                <section>
+            <section className="container mx-auto">
+                <div>
                     <Breadcrumb
                         className="p-[16px_40px_28px_0] text-[14px]"
                         items={breadcrumdItems}
                     />
-                </section>
+                </div>
                 <section>
-                    <h2 className="text-[56px] font-[700]">
+                    <h2 className="text-[56px] font-[700] mb-[20px]">
                         Dubai Currency Guide
                     </h2>
-                    <p className="text-[20px] font-[300] text-[#505050]">
+                    <p className="text-[20px] font-[300] text-[#505050] mb-[20px]">
                         All you need to know about the dirham, from exchange
                         rates to helpful tips.
                     </p>
@@ -46,8 +51,13 @@ const CurrencyGuide = () => {
                         pound.
                     </p>
                 </section>
-            </div>
+            </section>
+            <CurrencyConverter />
+            <CostComparison />
+            <CurrencyFactSlider />
+            <CurrencyImageSlider />
             <FAQ />
+            <SpendSmarter />
             <WeatherSubscribe />
         </main>
     );

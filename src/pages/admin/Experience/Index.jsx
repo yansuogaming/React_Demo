@@ -110,7 +110,7 @@ export default function Experience() {
                             <DropdownMenuItem
                                 onClick={() =>
                                     navigate(
-                                        `/admin/experiences/edit/${row.getValue(
+                                        `/admin/experiences/${row.getValue(
                                             "id"
                                         )}`
                                     )
@@ -188,16 +188,6 @@ export default function Experience() {
                         {t("experiences")}
                     </h1>
                     <div className="flex gap-3">
-                        <Button
-                            className="gap-2 cursor-pointer"
-                            variant="outline"
-                            onClick={() =>
-                                navigate("/admin/experience-types/add")
-                            }
-                        >
-                            {t("add_experience_type")}
-                            <Plus className="w-4 h-4" />
-                        </Button>
                         <Button
                             className="gap-2 cursor-pointer"
                             variant="default"

@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
 import UploadImage from "@components/button/UploadImage";
 
-const AppQuill = lazy(() => import('@components/admin/AppQuill'));
+const AppEditor = lazy(() => import('@components/admin/AppEditor'));
 
 export default function EditExperienceType() {
     let navigate = useNavigate();
@@ -125,7 +125,7 @@ export default function EditExperienceType() {
                             <div>
                                 <label className="mb-1 block">Nội dung</label>
                                 <div>
-                                    <AppQuill value={intro} onChange={(value) => setIntro(value)} />
+                                    <AppEditor value={intro} onChange={(value) => setIntro(value)} />
                                 </div>
                             </div>
                             <Button type="submit">Submit</Button>

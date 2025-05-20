@@ -5,8 +5,14 @@ import Breadcrumb from "@components/Breadcrumb";
 import WeatherSection from "@components/weathertrip/WeatherSection";
 import WeatherForecast from "@components/weathertrip/WeatherForecast";
 import WeatherTabs from "@components/weathertrip/WeatherTabs";
+
 import WinterTrip from "@components/weathertrip/WinterTrip";
 import WinterTipsBox from "@components/weathertrip/WinterTipsBox";
+import WinterCarousel from "@components/weathertrip/WinterCarousel";
+import WinterLinkCarousel from "@components/weathertrip/WinterLinkCarousel";
+
+import SummerTrip from "@components/weathertrip/SummerTrip";
+import SummerTipsBox from "@components/weathertrip/SummerTipsBox";
 import SummerCarousel from "@components/weathertrip/SummerCarousel";
 import SummerLinkCarousel from "@components/weathertrip/SummerLinkCarousel";
 import BestTimeToVisit from "@components/weathertrip/BestTimeToVisit";
@@ -35,10 +41,17 @@ const WeatherTrip = () => {
                 <WeatherSection />
                 <WeatherForecast />
                 <WeatherTabs />
+
                 <WinterTrip />
                 <WinterTipsBox />
+                <WinterCarousel />
+                <WinterLinkCarousel />
+
+                <SummerTrip />
+                <SummerTipsBox />
                 <SummerCarousel />
                 <SummerLinkCarousel />
+
                 <BestTimeToVisit />
                 <MonthlyActivities />
                 <FAQ />

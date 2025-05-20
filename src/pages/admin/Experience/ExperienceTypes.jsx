@@ -16,7 +16,6 @@ import {
 import { useNavigate } from 'react-router'
 import HttpClient from '@services/HttpClient'
 import toast from 'react-hot-toast'
-import { IoIosWarning } from 'react-icons/io'
 import { HiDotsHorizontal } from "react-icons/hi"
 import { Plus } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
@@ -105,7 +104,7 @@ export default function ExperienceTypes() {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align='end' className='w-[120px]'>
-                            <DropdownMenuItem onClick={() => navigate(`/admin/experience-types/edit/${row.getValue('id')}`)}>
+                            <DropdownMenuItem onClick={() => navigate(`/admin/experience-types/${row.getValue('id')}`)}>
                                 Sửa
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => deleteExperienceType(row.getValue('id'))}>
@@ -170,22 +169,16 @@ export default function ExperienceTypes() {
             {/* ===== Main ===== */}
             <Main>
                 <div className='mb-2 flex justify-between'>
-                    <h1 className='text-2xl font-bold tracking-tight'>{t('experiences')}</h1>
+                    <h1 className='text-2xl font-bold tracking-tight'>
+                        Loại hình trải nghiệm
+                    </h1>
                     <div className="flex gap-3">
                         <Button
                             className="gap-2 cursor-pointer"
-                            variant='outline'
+                            variant="default"
                             onClick={() => navigate('/admin/experience-types/add')}
                         >
                             {t('add_experience_type')}
-                            <Plus className="w-4 h-4" />
-                        </Button>
-                        <Button
-                            className="gap-2 cursor-pointer"
-                            variant="default"
-                            onClick={() => navigate('/admin/experiences/add')}
-                        >
-                            {t('add_experience')}
                             <Plus className="w-4 h-4" />
                         </Button>
                     </div>
