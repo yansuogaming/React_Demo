@@ -25,25 +25,49 @@ import {
 } from "@components/ui/carousel";
 import { useTranslation } from "react-i18next";
 import Breadcrumb from "@components/Breadcrumb";
+import { FaPlay } from "react-icons/fa6";
+import { useRef, useState } from "react";
 
 // Components
 const HeroSection = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const iframeRef = useRef(null);
+  const handlePlayVideo = () => {
+    setIsPlaying(true);
+  }
 
   return (
     <Reveal>
-     <div className="h-[250px] md:h-[400px] lg:h-[80vh] relative lg:rounded-br-[100px] overflow-hidden mx-0  xl:-mx-15 my-5">
-        <iframe
-          className="absolute inset-0 w-full h-full border-0 z-10"
-          src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-        <div className="absolute inset-0 bg-black/10"></div>
-      </div>
-    </Reveal>
+        <div className="h-[250px] md:h-[400px] lg:h-[80vh] relative lg:rounded-br-[100px] overflow-hidden mx-0  xl:-mx-10 my-5">
+          {isPlaying ? (
+            <iframe
+              ref={iframeRef}
+              className="absolute inset-0 w-full h-full border-0 z-10"
+              src="https://www.youtube.com/embed/SrqPSxkCNFI?si=CJL69ZgrJupBwrX6&autoplay=1"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          ) : (
+            <>
+              <img
+                src="https://a.tcnn.vn//Images/images/images5452377_DJI_0724.jpg"
+                alt="Vietnam"
+                className="w-full h-full object-cover"
+              ></img>
+              <button
+                onClick={handlePlayVideo}
+                className="absolute top-8 overflow-hidden group right-8 w-15 h-15 bg-white text-black rounded-md flex items-center justify-center shadow-md hover:scale-105 transition z-20 before:absolute before:inset-0 before:bg-[#035E88] before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10"
+              >
+                <FaPlay className="text-sm w-5 h-5 group-hover:text-white" />
+              </button>
+            </>
+          )}
+          <div className="absolute inset-0 bg-black/10"></div>
+        </div>
+      </Reveal>
   );
 };
 
@@ -280,7 +304,10 @@ const VietNamPassOption = () => {
               Choose the Pass
             </Link>
             <span>or</span>
-            <Link href="#" className="text-blue-600 hover:underline text-lg">
+            <Link onClick={(e)=>{
+              e.preventDefault();
+              document.getElementById('faq').scrollIntoView({ behavior:'smooth' });
+            }} href="#faq" className="text-blue-600 hover:underline text-lg">
               Read the FAQs
             </Link>
           </div>
@@ -386,7 +413,7 @@ const GoVietNamPassOption = () => {
 
 const FAQSection = () => {
   return (
-    <section className="mb-12">
+    <section id="faq" className="mb-12">
     <h2 className="text-3xl font-bold mb-6">
       Common Viet Nam pass questions
     </h2>

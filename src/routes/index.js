@@ -111,7 +111,7 @@ const routes = [
                         Component: lazy(() => import("@pages/DownloadApp")),
                     },
                     {
-                        path: "search-result",
+                        path: "search-result/:keyword?",
                         Component: lazy(() => import("@pages/SearchResult")),
                     },
                 ],
