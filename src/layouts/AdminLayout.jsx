@@ -3,7 +3,7 @@ import SkipToMain from "@components/admin/SkipToMain";
 import { SidebarProvider } from "@components/ui/sidebar";
 import { useAuth } from "@contexts/AuthContext";
 import { SearchProvider } from "@contexts/SearchContext";
-import { cn } from "@lib/utils";
+import { cn, setNavigate } from "@lib/utils";
 import HttpClient from "@services/HttpClient";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
@@ -33,6 +33,7 @@ export default function AdminLayout() {
             }
             checkLogin()
         }
+        setNavigate(navigate);
     }, [auth, navigate])
 
     return (

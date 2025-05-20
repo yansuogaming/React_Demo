@@ -15,7 +15,7 @@ import InputLanguage from "@components/input/InputLanguage";
 
 const AppEditor = lazy(() => import('@components/admin/AppEditor'));
 
-export default function EditFAQ() {
+export default function Edit() {
     let navigate = useNavigate();
     const { id } = useParams();
     const [question, setQuestion] = useState("");
@@ -23,6 +23,7 @@ export default function EditFAQ() {
     const [answers, setAnswers] = useState("");
     const [translationOf, setTranslationOf] = useState(0);
     const [currentId, setCurrentId] = useState(id);
+    const [titlePage, setTitlePage] = useState(id ? "Chỉnh sửa FAQ" : "Thêm FAQ");
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -78,9 +79,16 @@ export default function EditFAQ() {
             setAnswers(data.answers);
             setLangId(data.lang_id);
             setTranslationOf(data.translation_of);
+
+            if (data.question) {
+                setTitlePage('Chỉnh sửa FAQ - ' + data.question);
+            }
+
+            return data;
         } else {
             toast.error('Lấy faq thất bại!')
         }
+        return null;
     };
 
     useEffect(() => {
@@ -105,9 +113,7 @@ export default function EditFAQ() {
             {/* ===== Main ===== */}
             <Main>
                 <div className='mb-2 flex items-center justify-between space-y-2'>
-                    <h1 className='text-2xl font-bold tracking-tight mb-[30px]'>
-                        {id ? "Chỉnh sửa FAQ" : "Thêm FAQ"}
-                    </h1>
+                    <h1 className='text-2xl font-bold tracking-tight mb-[30px]'>{titlePage}</h1>
                 </div>
                 <Tabs
                     orientation='vertical'

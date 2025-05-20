@@ -2,7 +2,7 @@ import imageCity from "@images/hanoi.png";
 import imageCity2 from "@images/image.png";
 import Breadcrumb from "@components/Breadcrumb";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router";
+import { NavLink, useLoaderData } from "react-router";
 import imageMapCountry from "@images/map-country.png";
 import iconFullscreen from "@images/icon-fullscreen.svg";
 import VietNamEvent from "@components/VietNamEvent";
@@ -18,6 +18,7 @@ import HeroSection from "@components/HeroSection";
 
 const City = () => {
     const { t } = useTranslation();
+    const { FAQs, events, weather } = useLoaderData();
 
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
@@ -116,13 +117,13 @@ const City = () => {
                 </div>
             </section>
 
-            <Weather />
+            <Weather data={weather} />
             <TopThingsToDo className="mt-[120px]" />
-            <VietNamEvent className="mt-[80px] bg-[#F5F6FA] py-[80px]" />
+            <VietNamEvent events={events} className="mt-[80px] bg-[#F5F6FA] py-[80px]" />
             <ExperienceActivities className="mt-[120px]" />
             <Impressions className="mt-[120px]" />
             <PlainYourTrip className="mt-[120px]" />
-            <FAQ className="mt-[120px]" />
+            <FAQ data={FAQs} className="mt-[120px]" />
             <OtherRegion className="mt-[120px]" />
             <Share color="#007BFF" className="mt-[60px] lg:mt-[120px]" />
         </main>

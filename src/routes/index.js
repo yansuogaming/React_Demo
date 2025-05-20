@@ -2,6 +2,8 @@ import { lazy } from "react";
 import routesAdmin from "./admin";
 import ExperienceService from "@services/ExperienceService";
 import EventService from "@services/EventService";
+import FAQService from "@services/FAQService";
+import WeatherService from "@services/WeatherService";
 
 const routes = [
     ...routesAdmin,
@@ -38,6 +40,18 @@ const routes = [
                     {
                         path: "city/:slug",
                         Component: lazy(() => import("@pages/City")),
+                        loader: async () => {
+                            const res = await Promise.all([
+                                FAQService.getListFAQs(),
+                                EventService.getListGoingOn(),
+                                WeatherService.getCityWeather('Hà Nội')
+                            ]);
+                            return {
+                                FAQs: res[0],
+                                events: res[1],
+                                weather: res[2]
+                            };
+                        },
                     },
                     {
                         path: "expericences",
@@ -68,6 +82,15 @@ const routes = [
                     {
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
+                        meta: () => {
+                            return [
+                                { title: "Xin chào" },
+                                {
+                                    name: "description",
+                                    content: "Welcome to the home page",
+                                },
+                            ];
+                        },
                     },
                     {
                         path: "visa-guide",
