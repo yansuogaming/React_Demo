@@ -1,4 +1,5 @@
-import { getListFAQs } from "@services/FAQService";
+
+import FAQService from "@services/FAQService";
 import {
     Accordion,
     AccordionContent,
@@ -12,7 +13,7 @@ const FAQ = ({ className = "" }) => {
     const [listFAQs, setListFAQs] = useState([]);
     useEffect(() => {
         const getData = async () => {
-            const res = await getListFAQs();
+            const res = await FAQService.getListFAQs();
             setListFAQs(res.list_faqs);
         };
         getData();

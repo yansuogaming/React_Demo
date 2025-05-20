@@ -102,6 +102,7 @@ const routes = [
                         path: "weathertrip",
                         Component: lazy(() => import("@pages/WeatherTrip")),
                     },
+            
                     {
                         path: "currency",
                         Component: lazy(() => import("@pages/CurrencyGuide")),
@@ -115,6 +116,10 @@ const routes = [
                         Component: lazy(() => import("@pages/SearchResult")),
                     },
                 ],
+            },
+            {
+                path: "map-ha-noi",
+                Component: lazy(() => import("@pages/Map")),
             },
             {
                 path: "tripdetail/result",
