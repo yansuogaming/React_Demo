@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import routesAdmin from "./admin";
 import ExperienceService from "@services/ExperienceService";
+import EventService from "@services/EventService";
 
 const routes = [
     ...routesAdmin,
@@ -15,9 +16,13 @@ const routes = [
                         index: true,
                         Component: lazy(() => import("@pages/Home")),
                         loader: async () => {
-                            const experienceTypes = await ExperienceService.getExperienceTypes();
+                            const res = await Promise.all([
+                                ExperienceService.getExperienceTypes(),
+                                EventService.getListGoingOn()
+                            ]);
                             return {
-                                experienceTypes
+                                experienceTypes: res[0],
+                                events: res[1]
                             };
                         },
                         meta: () => {
