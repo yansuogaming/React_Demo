@@ -142,6 +142,10 @@ const routes = [
                         path: "search-result/:keyword?",
                         Component: lazy(() => import("@pages/SearchResult")),
                     },
+                    {
+                        path: "attractions",
+                        Component: lazy(() => import("@pages/Attractions")),
+                    }
                 ],
             },
             {
