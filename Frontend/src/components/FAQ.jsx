@@ -19,12 +19,12 @@ const FAQ = ({ className = "" }) => {
     }, []);
 
     const listFaqs1 = useMemo(
-        () => listFAQs.filter((_, i) => i % 2 === 0),
+        () => listFAQs?.filter((_, i) => i % 2 === 0),
         [listFAQs]
     );
 
     const listFaqs2 = useMemo(
-        () => listFAQs.filter((_, i) => i % 2 === 1),
+        () => listFAQs?.filter((_, i) => i % 2 === 1),
         [listFAQs]
     );
 
@@ -37,7 +37,7 @@ const FAQ = ({ className = "" }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-[30px]">
                 <div>
                     <Accordion type="single" collapsible className="w-full">
-                        {listFaqs1.map((faq, i) => (
+                        {listFaqs1?.map((faq, i) => (
                             <AccordionItem
                                 key={faq?.faq_id}
                                 value={`item-${i}`}
@@ -57,7 +57,7 @@ const FAQ = ({ className = "" }) => {
                 </div>
                 <div>
                     <Accordion type="single" collapsible className="w-full">
-                        {listFaqs2.map((faq, i) => (
+                        {listFaqs2?.map((faq, i) => (
                             <AccordionItem
                                 key={faq?.faq_id}
                                 value={`item-${i}`}

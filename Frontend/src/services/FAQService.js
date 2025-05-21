@@ -7,8 +7,8 @@ const FAQService = {
                 // lang_id: 
             }
         });
-        if (res.status === 200) {
-            return res.data.data;
+        if (res?.status === 200) {
+            return res?.data?.data;
         }
 
         return [];
