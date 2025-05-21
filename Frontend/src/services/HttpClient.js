@@ -1,3 +1,4 @@
+import { navigateTo } from '@lib/utils'
 import axios from 'axios'
 import i18next from 'i18next'
 import toast from 'react-hot-toast'
@@ -57,7 +58,14 @@ class HttpClient {
             res = error.response
         }
 
-        if (res?.status === 500) {
+        if (res.status === 401) {
+            navigateTo('/admin/login');
+            if (config.url !== '/login') {
+                toast.error('Phiên đăng nhập đã hết hạn.');
+            }
+        }
+
+        if (res.status === 500) {
             toast.error('Lỗi server.');
         }
 

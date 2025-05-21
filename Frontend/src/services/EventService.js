@@ -1,10 +1,11 @@
 import HttpClient from '@services/HttpClient'
 
-export default EventService = {
-    getCurrentEvents: async () => {
+const EventService = {
+    getListGoingOn: async () => {
         const res = await HttpClient
-            .tourdb()
-            .get('/app/event/list_dash')
-        return res.data
-    }
+            .get('/event/list-going-on')
+        return res.data.events
+    },
 }
+
+export default EventService

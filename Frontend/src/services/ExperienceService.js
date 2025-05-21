@@ -7,7 +7,7 @@ const ExperienceService = {
                 per_page: 4
             }
         });
-        if (res?.status === 200) {
+        if (res.status === 200) {
             return res.data.data;
         }
 

@@ -5,11 +5,10 @@ import BusIcon from "@components/icons/BusIcon";
 import MotobikeIcon from "@components/icons/MotobikeIcon";
 import iconTemperature from "@images/icon-temperature.svg";
 
-const Weather = () => {
-    // const formatTemperature = (temp) => {
-    //     const num = parseFloat(temp);
-    //     return Number.isInteger(num) ? `${num}°C` : `${num.toFixed(1)}°C`;
-    // };
+const Weather = ({ data }) => {
+    const temp = data.main.temp;
+    const weather = data.weather[0].main;
+    const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
     return (
         <section className="container mt-[60px] px-4 sm:px-6 lg:px-8">
@@ -20,13 +19,13 @@ const Weather = () => {
                         WEATHER
                     </h3>
                     <div className="flex gap-[12px] items-center justify-center mb-[5px]">
-                        <SunnyIcon fill="#FD6050" />
+                        <img src={icon} />
                         <p className="text-[36px] md:text-[48px] text-[#1A2A44] font-bold font-[Roboto]">
-                            31,9°C
+                            {temp}°C
                         </p>
                     </div>
                     <p className="text-[#494951] font-normal text-[16px] mb-[30px]">
-                        Cloudy
+                        {weather}
                     </p>
                     <table className="w-full text-[#1A2A44] text-[14px] md:text-[16px] font-medium">
                         <tbody>

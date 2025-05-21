@@ -1,4 +1,4 @@
-import { IoCompassOutline, IoCalendarNumberOutline, IoSearchOutline } from "react-icons/io5";
+import { IoCompassOutline, IoCalendarNumberOutline, IoSearchOutline, IoNewspaperOutline } from "react-icons/io5";
 import { BsPinMap, BsEnvelopeAt, BsUmbrella, BsQuestionCircle } from "react-icons/bs";
 import { RiShoppingBag4Line } from "react-icons/ri";
 import { TbUserCog, TbTool, TbLayoutDashboard } from "react-icons/tb";
@@ -68,6 +68,11 @@ export const sidebarData = {
                     title: 'Mùa du lịch',
                     url: '/admin/reasons',
                     icon: BsUmbrella,
+                },
+                {
+                    title: 'Blog',
+                    url: '/admin/blogs',
+                    icon: IoNewspaperOutline,
                 },
                 {
                     title: 'FAQs',
