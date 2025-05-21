@@ -231,7 +231,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.7, delay: 1.1 }}
                             >
-                                <UserIcon color={colorIcon} />
+                                <NavLink to="/signin">
+                                    <UserIcon color={colorIcon} />
+                                </NavLink>
                             </motion.li>
                         </ul>
                         <button

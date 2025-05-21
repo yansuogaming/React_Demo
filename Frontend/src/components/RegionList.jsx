@@ -19,7 +19,6 @@ import SpratlyIslands from "./SpratlyIslands";
 import { cn } from "@lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import MapsRegion from "@components/MapsRegion";
 
 const RegionList = ({ className, ...props }) => {
     const { t } = useTranslation();
@@ -94,12 +93,12 @@ const RegionList = ({ className, ...props }) => {
     ];
     return (
         <section {...props} className={cn("container", className)}>
-            {/* Menu Region */}
+            {/* Menu Region Destop */}
             <div className="text-center">
-                <h2 className="text-[#1A2A44] text-[28px] md:text-[40px] font-bold mb-[24px]  md:mb-[20px]">
+                <h2 className="text-[#1A2A44] text-[28px] md:text-[40px] font-bold mb-[20px] md:mb-[24px]">
                     {t("Destination by Region")}
                 </h2>
-                <ul className="hidden md:inline-flex flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[70px] py-[16px] pb-[20px] mb-[66px]">
+                <ul className="hidden xl:inline-flex flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[70px] py-[16px] pb-[20px] mb-[66px]">
                     {regions.map((region, index) => (
                         <li key={index} className="flex-shrink-0">
                             <NavLink
@@ -119,59 +118,20 @@ const RegionList = ({ className, ...props }) => {
                         </li>
                     ))}
                 </ul>
-                <Carousel
-                    className="w-full block md:hidden relative"
-                    opts={{
-                        align: "start",
-                        skipSnaps: false,
-                        containScroll: "trimSnaps",
-                        loop: false,
-                        dragFree: false,
-                    }}
-                >
-                    <CarouselContent key="" className="">
-                        {regions.map((region, index) => (
-                            <CarouselItem
-                                key={index}
-                                // Hiển thị 3 phần tử trong 1 khung
-                                className="basis-1/3 pl-[20px] relative group"
-                                onClick={() => setActiveRegion(index)}
-                            >
-                                <NavLink
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        setActiveRegion(index);
-                                    }}
-                                    className={`relative ${
-                                        activeRegion === index
-                                            ? "hnv_region_active_menu"
-                                            : ""
-                                    }`}
-                                >
-                                    {region.title}
-                                </NavLink>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-
-                    <CarouselPrevious className="flex left-[10px] md:left-[20px] cursor-pointer" />
-                    <CarouselNext className="flex right-[10px] md:right-[20px] cursor-pointer" />
-                </Carousel>
             </div>
-            <div className="grid grid-cols-12 gap-[34px]">
-                <div className="col-span-5">
-                    {/* Bản đồ region */}
-                    {/* <MapsRegion className="" /> */}
 
-                    {/* {console.log(regions)} */}
-                    <div className="relative w-fit h-fit">
+            {/* Bản đồ và Thông tin Region */}
+            <div className="grid grid-cols-12 gap-[34px]">
+                {/* Bản đồ region */}
+                <div className="col-span-12 xl:col-span-5">
+                    <div className="relative max-w-full w-full overflow-hidden mx-auto">
                         <svg
                             width="512"
                             height="643"
                             viewBox="0 0 512 643"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
-                            className={className}
+                            className="max-w-full w-fit h-fit"
                         >
                             <g clipPath="url(#clip0_6678_3258)">
                                 {regions.map((region, index) => {
@@ -179,43 +139,16 @@ const RegionList = ({ className, ...props }) => {
                                     return (
                                         <Component
                                             key={region.id}
-                                            className={cn(
-                                                "relative group cursor-pointer hover:z-1",
+                                            className={
                                                 index === activeRegion &&
-                                                    "hnv_region_active_map"
-                                            )}
+                                                "hnv_region_active_map"
+                                            }
                                             onClick={() =>
                                                 setActiveRegion(index)
                                             }
                                         />
                                     );
                                 })}
-
-                                {/* <NorthImage />
-                                <CentralImage />
-                                <SouthImage />
-                                <ParacelIslands />
-                                <SpratlyIslands /> */}
-                                {/* {regions.map((region, index) => {
-                                    const Component = region.component;
-                                    return (
-                                        <div
-                                            key={index}
-                                            className={region.className}
-                                            onClick={() =>
-                                                setActiveRegion(index)
-                                            }
-                                        >
-                                            <Component
-                                                className={
-                                                    index === activeRegion
-                                                        ? "hnv_region_active_map"
-                                                        : ""
-                                                }
-                                            />
-                                        </div>
-                                    );
-                                })} */}
                             </g>
                             <defs>
                                 <clipPath id="clip0_6678_3258">
@@ -228,9 +161,69 @@ const RegionList = ({ className, ...props }) => {
                             </defs>
                         </svg>
                     </div>
+
+                    {/* Menu Region tablet - mobile */}
+                    <div className="flex items-center justify-center mt-[42px]">
+                        <ul className="hidden md:inline-flex xl:hidden flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[70px] py-[16px] pb-[20px]">
+                            {regions.map((region, index) => (
+                                <li key={index} className="flex-shrink-0">
+                                    <NavLink
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setActiveRegion(index);
+                                        }}
+                                        className={`relative ${
+                                            activeRegion === index
+                                                ? "hnv_region_active_menu"
+                                                : ""
+                                        }
+                                    `}
+                                    >
+                                        {region.title}
+                                    </NavLink>
+                                </li>
+                            ))}
+                        </ul>
+                        <Carousel
+                            className="w-full block md:hidden relative px-[60px] pt-[12px] pb-[10px] rounded-[80px] bg-white shadow-[0_4px_12px_0_rgba(54,133,143,0.15)]"
+                            opts={{
+                                align: "start",
+                                skipSnaps: false,
+                                containScroll: "trimSnaps",
+                                loop: false,
+                                dragFree: false,
+                            }}
+                        >
+                            <CarouselContent key="" className="">
+                                {regions.map((region, index) => (
+                                    <CarouselItem
+                                        key={index}
+                                        className="basis-1/3 relative group pb-[10px]"
+                                        onClick={() => setActiveRegion(index)}
+                                    >
+                                        <NavLink
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                setActiveRegion(index);
+                                            }}
+                                            className={`relative ${
+                                                activeRegion === index
+                                                    ? "hnv_region_active_menu"
+                                                    : ""
+                                            }`}
+                                        >
+                                            {region.title}
+                                        </NavLink>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                            <CarouselPrevious className="flex left-[10px] md:left-[20px] cursor-pointer" />
+                            <CarouselNext className="flex right-[10px] md:right-[20px] cursor-pointer" />
+                        </Carousel>
+                    </div>
                 </div>
-                <div className="col-span-7">
-                    {/* Thông tin + Carousel */}
+                {/* Thông tin + Carousel */}
+                <div className="col-span-12 xl:col-span-7">
                     <div className="w-full text-left">
                         {regions.map((region, index) => (
                             <div
@@ -239,7 +232,7 @@ const RegionList = ({ className, ...props }) => {
                                     activeRegion === index ? "" : "hidden"
                                 }
                             >
-                                <h2 className="text-[#1A2A44] text-[40px] md:text-[56px] lg:text-[72px] font-bold">
+                                <h2 className="text-[#1A2A44] text-[28px] md:text-[56px] lg:text-[72px] font-bold text-center xl:text-left mb-[8px] md:mb-0">
                                     {region.title}
                                 </h2>
                                 <div className="text-[#494951] text-[16px] md:text-[18px] lg:text-[20px] font-normal mb-[30px] md:mb-[40px] lg:mb-[50px] truncate_5">
@@ -247,7 +240,6 @@ const RegionList = ({ className, ...props }) => {
                                 </div>
                             </div>
                         ))}
-
                         <Carousel
                             className="w-full"
                             opts={{

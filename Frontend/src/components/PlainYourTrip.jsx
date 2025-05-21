@@ -1,4 +1,4 @@
-import image from "@images/image_43.png";
+// import image from "@images/image_43.png";
 import { Form } from "react-router";
 import iconVisa from "@images/icon-visa.svg";
 import iconItinerary from "@images/icon-itinerary.svg";
@@ -6,6 +6,7 @@ import iconTools from "@images/icon-tools.svg";
 import CreateItineraryButton from "./button/CreateItineraryButton";
 import InputTripLocation from "./input/InputTripLocation";
 import { cn } from "@lib/utils";
+import MapHomePlanYourTrip from "./MapHomePlanYourTrip";
 
 const PlainYourTrip = ({ className = "" }) => {
     return (
@@ -46,12 +47,7 @@ const PlainYourTrip = ({ className = "" }) => {
                     </div>
                 </Form>
                 <div className="w-full lg:w-1/2">
-                    <img
-                        src={image}
-                        alt="Map"
-                        className="w-full max-w-[480px] mx-auto"
-                        loading="lazy"
-                    />
+                    <MapHomePlanYourTrip />
                 </div>
             </div>
         </section>
