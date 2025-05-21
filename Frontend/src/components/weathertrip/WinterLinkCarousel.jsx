@@ -3,8 +3,8 @@ import useEmblaCarousel from "embla-carousel-react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { NavLink } from "react-router";
 import { cn } from "@/lib/utils";
-
 import imageDemo from "@images/wp12060285.webp";
+import { fetchCurrentWeatherByCoords } from "@components/weathertrip/weatherApi";
 
 const links = [
     {
@@ -64,6 +64,7 @@ const WinterLinkCarousel = () => {
 
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState([]);
+    const [city, setCity] = useState("your city");
 
     useEffect(() => {
         if (!emblaApi) return;
@@ -73,15 +74,37 @@ const WinterLinkCarousel = () => {
         });
     }, [emblaApi]);
 
+    useEffect(() => {
+        if (!navigator.geolocation) return;
+
+        navigator.geolocation.getCurrentPosition(
+            async ({ coords }) => {
+                try {
+                    const data = await fetchCurrentWeatherByCoords(
+                        coords.latitude,
+                        coords.longitude
+                    );
+                    if (data?.location?.name) {
+                        setCity(data.location.name);
+                    }
+                } catch (err) {
+                    console.error("Failed to fetch city name:", err);
+                }
+            },
+            (err) => {
+                console.error("Geolocation error:", err);
+            }
+        );
+    }, []);
+
     const scrollPrev = () => emblaApi?.scrollPrev();
     const scrollNext = () => emblaApi?.scrollNext();
 
     return (
         <section className="container mx-auto px-4 py-10">
-            {/* Header & Nav */}
             <div className="flex justify-between items-start mb-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-[#1A2A44]">
-                    Useful links for wintertime in Dubai
+                    Useful links for wintertime in {city}
                 </h2>
 
                 <div className="hidden lg:flex gap-2">
@@ -102,7 +125,6 @@ const WinterLinkCarousel = () => {
                 </div>
             </div>
 
-            {/* Carousel */}
             <div className="overflow-hidden" ref={emblaRef}>
                 <div className="flex gap-4">
                     {links.map((item, index) => (
@@ -116,7 +138,6 @@ const WinterLinkCarousel = () => {
                 </div>
             </div>
 
-            {/* Dot Indicator */}
             <div className="flex justify-center mt-4 gap-2">
                 {scrollSnaps.map((_, index) => (
                     <button

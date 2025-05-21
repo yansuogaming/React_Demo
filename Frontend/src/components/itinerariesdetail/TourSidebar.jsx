@@ -1,4 +1,4 @@
-import { FaRegHeart, FaCheck } from "react-icons/fa";
+import { FaRegHeart, FaCheck, FaCreditCard, FaTags } from "react-icons/fa";
 import { NavLink } from "react-router";
 
 import { MdOutlineTouchApp } from "react-icons/md";
@@ -40,35 +40,40 @@ const TourSidebar = () => {
                 </div>
             </div>
 
-            <div className="bg-[#FFF1D9] p-[16px_20px] rounded-[8px] border border-yellow-100">
-                <h3 className="text-[#494951] font-[400] text-[14px] mb-[12px]">
-                    CONTACT TO BOOKING
-                </h3>
-                <p className="text-[#000] text-[20px] font-[700]">
-                    VietISO Joint Stock Company
+            <div className="rounded-[8px] bg-white shadow-[0px_1px_2px_0px_rgba(3,54,63,0.40)] p-[20px]">
+                <div className="flex justify-between items-start text-[14px] text-[#6B7280] mb-[5px]">
+                    <span className="text-[#666] text-[16px] font-[400]">
+                        From
+                    </span>
+                    <span className="text-[#666] text-[16px] font-[400]">
+                        Trip Code: SEGF
+                    </span>
+                </div>
+
+                <div className="text-[#1A2A44] text-[24px] font-[500] mb-[4px]">
+                    US <span className="text-[36px]">$710</span>
+                </div>
+
+                <p className="text-[16px] text-[#494951] font-[500] mb-[17px]">
+                    Valid on <span className="text-[#007BFF]">5 Jul 2025</span>
                 </p>
-                <p className="text-[#000] text-[16px] font-[400] mb-[4  px]">
-                    18th Floor, VTC Online Building, 18 Tam Trinh, Hanoi,
-                    Vietnam
-                </p>
-                <p className="text-[16px] font-[400] text-[#000] mb-[6px]">
-                    Phone:{" "}
-                    <NavLink
-                        to="tel:02438293838"
-                        className="text-[#007BFF] font-[700] hover:underline"
-                    >
-                        (024) 3829 3838
-                    </NavLink>
-                </p>
-                <p className="text-[16px] font-[400] text-[#000]">
-                    Email:{" "}
-                    <NavLink
-                        to="mailto:info@vietiso.com"
-                        className="text-[#007BFF] font-[700] hover:underline"
-                    >
-                        info@vietiso.com
-                    </NavLink>
-                </p>
+
+                <button className="w-full bg-[#007BFF] hover:bg-[#0065d1] text-white py-[14px] rounded-[90px] font-[700] text-[20px] hover:cursor-pointer mb-[24px]">
+                    Check Availability
+                </button>
+
+                <div className="flex items-start gap-[12px] text-[16px] text-[#494951] mb-[10px]">
+                    <FaCreditCard className="text-[20px]" />
+                    <p>
+                        <span className="font-[700]">Payment plan</span> $149
+                        now to reserve your trip
+                    </p>
+                </div>
+
+                <div className="flex items-start gap-[12px] text-[16px] text-[#494951] mb-[7px]">
+                    <FaTags className="text-[20px]" />
+                    <p>Best price guarantee</p>
+                </div>
             </div>
 
             {/* Benefits */}

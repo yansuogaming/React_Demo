@@ -4,6 +4,8 @@ import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { NavLink } from "react-router";
 import { cn } from "@/lib/utils";
 
+import { fetchCurrentWeatherByCoords } from "@components/weathertrip/weatherApi";
+
 const winterItems = [
     {
         icon: "🌊",
@@ -53,6 +55,7 @@ const SummerTrip = () => {
     });
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState([]);
+    const [city, setCity] = useState("your city");
 
     const scrollPrev = () => emblaApi?.scrollPrev();
     const scrollNext = () => emblaApi?.scrollNext();
@@ -65,13 +68,36 @@ const SummerTrip = () => {
         });
     }, [emblaApi]);
 
+    useEffect(() => {
+        if (!navigator.geolocation) return;
+
+        navigator.geolocation.getCurrentPosition(
+            async ({ coords }) => {
+                try {
+                    const data = await fetchCurrentWeatherByCoords(
+                        coords.latitude,
+                        coords.longitude
+                    );
+                    if (data?.location?.name) {
+                        setCity(data.location.name);
+                    }
+                } catch (err) {
+                    console.error("Failed to fetch city name:", err);
+                }
+            },
+            (err) => {
+                console.error("Geolocation error:", err);
+            }
+        );
+    }, []);
+
     return (
         <section className="container mx-auto px-4 py-10">
             {/* Header + navigation buttons */}
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 gap-4">
                 <div className="max-w-4xl">
                     <h2 className="text-3xl font-bold text-[#1A2A44] mb-2">
-                        Summer in Dubai
+                        Summer in {city}
                     </h2>
                     <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                         From October until April, beautiful weather and a packed

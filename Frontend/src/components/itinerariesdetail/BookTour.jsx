@@ -1,56 +1,34 @@
 import React from "react";
 
 const reasons = [
-  {
-    number: 1,
-    description: "Pay your experience with longest cable car in Asia ",
-  },
-  {
-    number: 2,
-    description: "Golden Bridge on Huge Hand of Budda",
-  },
-  {
-    number: 3,
-    description: "Legend view from mountain to Hai Van Pass - Da Nang city",
-  },
-  {
-    number: 4,
-    description: "Enjoy a more personalized experience with fewer travelers.",
-  },
-  {
-    number: 5,
-    description: "Engage with local traditions and communities authentically.",
-  },
-  {
-    number: 6,
-    description: "Our team is available around the clock to assist you.",
-  },
+    "Pay your experience with longest cable car in Asia",
+    "Golden Bridge on Huge Hand of Budda",
+    "Legend view from mountain to Hai Van Pass - Da Nang city",
+    "90 activities in Fantasy Park",
+    "Take in breathtaking sceneries & panoramas",
+    "Can be 100% personalized to your wishes",
 ];
 
 const BookTour = () => {
-  return (
-    <div className="py-10 bg-white-50 mt-10">
-      {/* Tiêu đề */}
-      <div className="md:text-[24px] text-[20px] font-bold font-[Visit_Qatar] text-gray-800 mb-6">
-        6 reasons to book this tour
-      </div>
+    return (
+        <div className="mt-[60px] mb-[60px]">
+            <h2 className="text-[20px] md:text-[28px] font-[700] text-[#1A2A44] mb-[16px]">
+                6 reasons to book this tour
+            </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 ">
-        {reasons.map((reason) => (
-          <div key={reason.number} className="flex items-start space-x-4">
-            <div className="flex-shrink-0 w-10 h-10 rounded-full text-gray flex items-center justify-center font-[Visit_Qatar] text-lg">
-              -
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 md:gap-x-[31px] text-[#1A2A44]">
+                {reasons.map((desc, idx) => (
+                    <div
+                        key={idx}
+                        className="flex items-start gap-[8px] text-[16px]"
+                    >
+                        <span className="text-[#1A2A44] leading-[24px]">-</span>
+                        <p>{desc}</p>
+                    </div>
+                ))}
             </div>
-            <div className="flex-1 mt-2 font-[Visit_Qatar]">
-              <p className="text-gray-600 text-sm">
-                {reason.description}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+        </div>
+    );
 };
 
 export default BookTour;

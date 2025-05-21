@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 
 import imageDemo from "@images/wp12060285.webp";
 
+import { fetchCurrentWeatherByCoords } from "@components/weathertrip/weatherApi";
+
 const links = [
     {
         image: imageDemo,
@@ -64,6 +66,7 @@ const SummerLinkCarousel = () => {
 
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState([]);
+    const [city, setCity] = useState("your city");
 
     useEffect(() => {
         if (!emblaApi) return;
@@ -76,12 +79,35 @@ const SummerLinkCarousel = () => {
     const scrollPrev = () => emblaApi?.scrollPrev();
     const scrollNext = () => emblaApi?.scrollNext();
 
+    useEffect(() => {
+        if (!navigator.geolocation) return;
+
+        navigator.geolocation.getCurrentPosition(
+            async ({ coords }) => {
+                try {
+                    const data = await fetchCurrentWeatherByCoords(
+                        coords.latitude,
+                        coords.longitude
+                    );
+                    if (data?.location?.name) {
+                        setCity(data.location.name);
+                    }
+                } catch (err) {
+                    console.error("Failed to fetch city name:", err);
+                }
+            },
+            (err) => {
+                console.error("Geolocation error:", err);
+            }
+        );
+    }, []);
+
     return (
         <section className="container mx-auto px-4 py-10">
             {/* Header & Nav */}
             <div className="flex justify-between items-start mb-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-[#1A2A44]">
-                    Useful links for summertime in Dubai
+                    Useful links for summertime in {city}
                 </h2>
 
                 <div className="hidden lg:flex gap-2">

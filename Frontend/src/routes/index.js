@@ -20,11 +20,11 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 ExperienceService.getExperienceTypes(),
-                                EventService.getListGoingOn()
+                                EventService.getListGoingOn(),
                             ]);
                             return {
                                 experienceTypes: res[0],
-                                events: res[1]
+                                events: res[1],
                             };
                         },
                         meta: () => {
@@ -44,12 +44,12 @@ const routes = [
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
                                 EventService.getListGoingOn(),
-                                WeatherService.getCityWeather('Hà Nội')
+                                WeatherService.getCityWeather("Hà Nội"),
                             ]);
                             return {
                                 FAQs: res[0],
                                 events: res[1],
-                                weather: res[2]
+                                weather: res[2],
                             };
                         },
                     },
@@ -78,6 +78,12 @@ const routes = [
                     {
                         path: "itineraries",
                         Component: lazy(() => import("@pages/Itineraries")),
+                    },
+                    {
+                        path: "itineraries/detail",
+                        Component: lazy(() =>
+                            import("@pages/ItinerariesDetail")
+                        ),
                     },
                     {
                         path: "events",
