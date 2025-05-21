@@ -25,13 +25,11 @@ import { cn } from "@lib/utils";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router";
-import ModalSearch from "./modal/ModalSearch";
 const HeaderContext = createContext();
 
 const Header = ({ noBackgroundOnScroll = false }) => {
     const { t } = useTranslation();
     const [background, setBackground] = useState("none");
-    const [showSearch, setShowSearch] = useState(false);
     const [logo, setLogo] = useState(null);
     const [color, setColor] = useState(null);
     const [colorIcon, setColorIcon] = useState(null);
@@ -114,16 +112,16 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     className={cn(
                         "relative flex flex-col",
                         "py-[15px] px-[20px] w-full z-50 top-0",
-                        "lg:px-[40px] hidden lg:block"
+                        "transition-all duration-500 lg:px-[40px] hidden lg:block"
                     )}
                 >
                     <div className="flex items-center justify-between">
                         <div className="flex items-center w-full relative xl-md:w-fit h-full ">
                             {/* Logo */}
                             <motion.div
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.2 } : false}
+                                initial={{ opacity: 0, y: -100 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7, delay: 0.2 }}
                                 className="mr-[50px]"
                             >
                                 <NavLink to="/">
@@ -144,9 +142,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                 )}
                             >
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.3 } : false}
+                                    initial={{ opacity: 0, y: -100 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.7, delay: 0.3 }}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/itineraries">
@@ -154,17 +152,17 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.4 } : false}
+                                    initial={{ opacity: 0, y: -100 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.7, delay: 0.4 }}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/">{t("experiences")}</NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.5 } : false}
+                                    initial={{ opacity: 0, y: -100 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.7, delay: 0.5 }}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/events">
@@ -172,9 +170,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.6 } : false}
+                                    initial={{ opacity: 0, y: -100 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.7, delay: 0.6 }}
                                     className="p-[15px] h-fit "
                                     onMouseEnter={() =>
                                         hanleHoverPlanYourTrip(true)
@@ -188,9 +186,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.7 } : false}
+                                    initial={{ opacity: 0, y: -100 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.7, delay: 0.7 }}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/">
@@ -202,39 +200,40 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <ul className="items-center font-bold hidden xl-md:flex ">
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.8 } : false}
+                                initial={{ opacity: 0, y: -100 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7, delay: 0.8 }}
                             >
                                 <SearchHeader
                                     color={color}
                                     className="flex cursor-pointer"
-                                    onClick={() => setShowSearch(true)}
                                 />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.9 } : false}
+                                initial={{ opacity: 0, y: -100 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7, delay: 0.9 }}
                             >
                                 <ChangeLangButton color={color} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1 } : false}
+                                initial={{ opacity: 0, y: -100 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7, delay: 1 }}
                             >
                                 <MapIcon color={colorIcon} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1.1 } : false}
+                                initial={{ opacity: 0, y: -100 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.7, delay: 1.1 }}
                             >
-                                <UserIcon color={colorIcon} />
+                                <NavLink to="/signin">
+                                    <UserIcon color={colorIcon} />
+                                </NavLink>
                             </motion.li>
                         </ul>
                         <button
@@ -317,7 +316,6 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <span className="text-[18px]">Menu</span>
                         <LuTextSearch />
                     </button>
-
                     {/* Mobile menu */}
                     <AnimatePresence initial={false}>
                         {isVisible && (
@@ -329,7 +327,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     duration: 0.4,
                                     ease: "easeInOut",
                                 }}
-                                className="w-full h-screen absolute top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll"
+                                className="w-full h-screen fixed top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll flex flex-col z-2"
                             >
                                 <div className="bg-[#28B8F8] px-[16px] pt-[16px] pb-[10px] flex flex-col gap-[58px]">
                                     <div className="flex items-center justify-between">
@@ -402,7 +400,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                         </NavLink>
                                     </li>
                                 </ul>
-                                <div className="flex flex-col justify-between pt-[50px] px-[16px] pb-[16px] gap-[82px]">
+                                <div className="flex flex-col justify-between flex-1 pt-[50px] px-[16px] pb-[16px] gap-[82px]">
                                     <ul className="flex flex-col gap-[5px]">
                                         <li>
                                             <NavLink
@@ -566,9 +564,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                 <NavLink
                                                     onClick={(e) => {
                                                         e.preventDefault();
-                                                        navigate(
-                                                            "/visainformation"
-                                                        );
+                                                        navigate("/visa-guide");
                                                         setIsVisible(
                                                             !isVisible
                                                         );
@@ -577,7 +573,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Visa Information
+                                                    Visa Guide
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -595,7 +591,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Visa Information
+                                                    Essentials
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -603,7 +599,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/visainformation"
+                                                            "/getting-to-and-around"
                                                         );
                                                         setIsVisible(
                                                             !isVisible
@@ -613,7 +609,23 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Visa Information
+                                                    Getting to & around Vietnam
+                                                </NavLink>
+                                            </li>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate("/safety");
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    Safety
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -621,7 +633,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/visainformation"
+                                                            "/accessibility"
                                                         );
                                                         setIsVisible(
                                                             !isVisible
@@ -631,7 +643,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Visa Information
+                                                    Accessibility
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -639,7 +651,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/visainformation"
+                                                            "/vietnam-pass"
                                                         );
                                                         setIsVisible(
                                                             !isVisible
@@ -649,25 +661,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Visa Information
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/visainformation"
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
-                                                >
-                                                    Visa Information
+                                                    Vietnam attractions passes
                                                 </NavLink>
                                             </li>
 
@@ -731,10 +725,6 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         )}
                     </AnimatePresence>
                 </div>
-                <ModalSearch
-                isOpen={showSearch}
-                onClose={() => setShowSearch(false)}
-                />
             </header>
         </HeaderContext.Provider>
     );
