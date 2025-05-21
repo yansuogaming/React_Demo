@@ -28,6 +28,8 @@ const accessToken = import.meta.env.VITE_MAP_BOX_ACCESS_TOKEN;
 export default function MapHaNoi() {
   const [activeTab, setActiveTab] = useState("welcome");
   const { list_resources, list_categories } = useLoaderData() || {};
+  console.log('list_resources', list_resources);
+  console.log('list_categories', list_categories);
   const [selectedMarker, setSelectedMarker] = useState(list_resources[0]);
   const [listResources, setListResources] = useState(list_resources);
   const [listCategorySelected, setListCategorySelected] = useState([]);

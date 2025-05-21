@@ -23,36 +23,38 @@ class HttpClient {
 
     setTimeout(timeout) {
         this.instance.defaults.timeout = timeout
+        return this;
     }
 
     setBaseUrl(baseURL) {
         this.instance.defaults.baseURL = baseURL
+        return this;
     }
 
     setHeader(key, value) {
         this.instance.defaults.headers.common[key] = value;
-        return this
+        return this;
     }
 
     setHeaders() {
         this.headers.forEach(header => {
             this.setHeader(header.key, header.value)
         })
-        return this
+        return this;
     }
 
     setLoading(loading = true) {
-        this.loading = loading
+        this.loading = loading;
+        return this;
     }
 
     tourdb() {
-        this.setBaseUrl(import.meta.env.VITE_API_TOURDB_URL)
-        return this
+        return this.setBaseUrl(import.meta.env.VITE_API_TOURDB_URL)
     }
 
     travelIndex() {
-        this.setBaseUrl(import.meta.env.VITE_API_TRAVEL_INDEX_URL)
-        return this
+        return this.setBaseUrl(import.meta.env.VITE_API_TRAVEL_INDEX_URL)
+            .setHeader("x-Api-key", "762f93615641162accd66ed831d8e507")
     }
 
     async request(config = {}) {

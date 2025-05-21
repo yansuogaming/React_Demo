@@ -48,6 +48,16 @@ class Http extends Facade
             ->withToken(env('LICENSE_KEY'));
     }
 
+    public static function travelIndex(string $langId)
+    {
+        return Http::baseUrl('http://travelindex.itourism.vn/api')
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'Accept-Language' => $langId
+            ])
+            ->withToken(env('LICENSE_KEY'));
+    }
+
     protected static function getFacadeAccessor(): string
     {
         return 'http.client';
