@@ -1,9 +1,7 @@
-import image from "@images/image_10.png";
 import { useTranslation } from "react-i18next";
 import ViewMoreButton from "./button/ViewMoreButton";
 import CardEvent from "./card/CardEvent";
 import { NavLink } from "react-router";
-import { addDays } from "date-fns";
 import { IoTicketOutline } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
 
@@ -15,32 +13,30 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 
-const VietNamEvent = ({ className = "" }) => {
+const VietNamEvent = ({ className = "", data = [] }) => {
     const { t } = useTranslation();
-    const startTime = new Date();
-    const endTime = addDays(new Date(), 1);
-
-    const events = Array.from({ length: 4 }).map((_, idx) => (
+    const events = data.map((item, idx) => (
         <CardEvent
             key={idx}
-            title="Enjoy Hanoi street food"
+            title={item.title}
             widthImage="100%"
             heightImage="245px"
-            image={image}
+            image={item.image}
             href="/"
-            startTime={startTime}
-            endTime={endTime}
+            startTime={new Date(item.start_date * 1000)}
+            endTime={new Date(item.due_date * 1000)}
         >
             <NavLink className="bg-white rounded-[0_0_12px_12px] block">
                 <p className="flex gap-[8px] items-center text-[#1A2A44]">
                     <CiLocationOn className="text-[20px]" />
-                    <span>Nha Trang</span>
+                    <span>{item.city}</span>
                     <IoTicketOutline className="text-[20px]" />
                 </p>
-                <p className="hidden sm:block text-[16px] font-normal mt-[16px]">
-                    Various versions have evolved over the years, sometimes by
-                    accident, sometimes on purpose (injected humour)
-                </p>
+                <div
+                    className="hidden sm:block text-[16px] font-normal mt-[16px] truncate_3"
+                    dangerouslySetInnerHTML={{ __html: item.intro }}
+                >
+                </div>
             </NavLink>
         </CardEvent>
     ));

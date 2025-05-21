@@ -1,4 +1,4 @@
-import { navigateTo } from '@lib/utils'
+import { handleLoading, navigateTo } from '@lib/utils'
 import axios from 'axios'
 import i18next from 'i18next'
 import toast from 'react-hot-toast'
@@ -53,11 +53,10 @@ class HttpClient {
         this.setHeader('Accept-Language', i18next.language == 'vi' ? 'vn' : i18next.language)
         let res = null;
         try {
-            res = await this.instance.request(config)
+            res = await handleLoading(() => this.instance.request(config));
         } catch (error) {
             res = error.response
         }
-
         if (res.status === 401) {
             navigateTo('/admin/login');
             if (config.url !== '/login') {

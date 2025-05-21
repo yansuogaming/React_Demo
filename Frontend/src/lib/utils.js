@@ -30,6 +30,7 @@ export function getListLanguages() {
     ];
 }
 
+// Navigate
 let navigate;
 
 export const setNavigate = (nav) => {
@@ -40,4 +41,29 @@ export const navigateTo = (path) => {
     if (navigate) {
         navigate(path);
     }
+};
+
+// Loading bar
+let startLoading;
+let completeLoading;
+
+export const setStartLoading = (loading) => {
+    startLoading = loading;
+};
+
+export const setCompleteLoading = (loading) => {
+    completeLoading = loading;
+};
+
+export const handleLoading = async (callback) => {
+    let res = null;
+    if (startLoading && completeLoading) {
+        startLoading();
+        res = await callback();
+        completeLoading();
+    } else {
+        res = await callback();
+    }
+
+    return res;
 };

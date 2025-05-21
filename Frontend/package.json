@@ -58,6 +58,7 @@
         "react-map-gl": "^8.0.4",
         "react-router": "^7.5.3",
         "react-router-dom": "^7.5.3",
+        "react-top-loading-bar": "^3.0.2",
         "react-world-flags": "^1.6.0",
         "sirv": "^3.0.1",
         "tailwind-merge": "^3.2.0",

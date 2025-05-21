@@ -43,7 +43,7 @@ class ModuleInstaller
                 if ($module->getName()) {
                     $this->registerAutoload($module->getPath());
                     $this->modules->add($key, $module);
-    
+
                     foreach ($module->getCommands() as $command) {
                         $this->console->add(new $command($this->consoleInput, $this->consoleOutput));
                     }

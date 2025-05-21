@@ -20,7 +20,7 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 ExperienceService.getExperienceTypes(),
-                                EventService.getListGoingOn()
+                                EventService.getOngoingAndUpcomingEvents()
                             ]);
                             return {
                                 experienceTypes: res[0],
@@ -43,7 +43,7 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
-                                EventService.getListGoingOn(),
+                                EventService.getOngoingAndUpcomingEvents(),
                                 WeatherService.getCityWeather('Hà Nội')
                             ]);
                             return {
@@ -82,6 +82,16 @@ const routes = [
                     {
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
+                        loader: async () => {
+                            const res = await Promise.all([
+                                EventService.getOngoingAndUpcomingEvents(),
+                                EventService.getEvents(),
+                            ]);
+                            return {
+                                ongoingAndUpcomingEvents: res[0],
+                                events: res[1],
+                            };
+                        },
                         meta: () => {
                             return [
                                 { title: "Xin chào" },

@@ -19,7 +19,6 @@ import HeroSection from "@components/HeroSection";
 const City = () => {
     const { t } = useTranslation();
     const { FAQs, events, weather } = useLoaderData();
-
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
         { label: t("Destinations"), href: "/" },
@@ -119,7 +118,7 @@ const City = () => {
 
             <Weather data={weather} />
             <TopThingsToDo className="mt-[120px]" />
-            <VietNamEvent events={events} className="mt-[80px] bg-[#F5F6FA] py-[80px]" />
+            <VietNamEvent data={events} className="mt-[80px] bg-[#F5F6FA] py-[80px]" />
             <ExperienceActivities className="mt-[120px]" />
             <Impressions className="mt-[120px]" />
             <PlainYourTrip className="mt-[120px]" />

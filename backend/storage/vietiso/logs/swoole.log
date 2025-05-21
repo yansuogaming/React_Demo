@@ -1358,3 +1358,5 @@ Stack trace:
   thrown in /Users/thuanvp012/Documents/Code/timeless/backend/core/Http/Request.php on line 101
 [2025-05-18 19:38:47 $60789.0]	WARNING	Server::check_worker_exit_status(): worker(pid=60795, id=3) abnormal exit, status=255, signal=0
 [2025-05-18 22:22:47 #79507.7]	WARNING	Port_onRead_http() (ERRNO 7102): Request Entity Too Large: header-length (1728) + content-length (12108351) is greater than the package_max_length(10485760) from session#51 on 0.0.0.0:8080
+[2025-05-20 15:09:29 *41.7]	TRACE	ProcessFactory::finish() (ERRNO 1005): session#23 does not exists
+[2025-05-20 15:09:29 *41.7]	TRACE	ProcessFactory::end() (ERRNO 1005): session#23 does not exists

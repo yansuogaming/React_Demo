@@ -31,6 +31,8 @@ class Http
 
     protected array $files = [];
 
+    protected string $baseUrl = '';
+
     public function get(string $url, array $params = []): Response
     {
         return $this->sendRequest($url, 'GET', $params);
@@ -64,6 +66,12 @@ class Http
     public function timeout(float $timeout): static
     {
         $this->configs['timeout'] = $timeout;
+        return $this;
+    }
+
+    public function baseUrl(string $url): static
+    {
+        $this->baseUrl = rtrim(trim($url), '/');
         return $this;
     }
 
@@ -152,7 +160,10 @@ class Http
 
     protected function sendRequest(string $url, string $method, array $params = []): Response
     {
-        $urlInfo = parse_url($url);
+        $this->baseUrl = !empty($this->baseUrl)
+            ? $this->baseUrl . '/'
+            : '';
+        $urlInfo = parse_url($this->baseUrl . ltrim(trim($url), '/'));
         $host = $urlInfo['host'] ?? $urlInfo['path'];
         if (
             (empty($urlInfo['host']) && !empty($urlInfo['path']))
@@ -167,6 +178,7 @@ class Http
             parse_str($urlInfo['query'], $query);
             $this->query = array_merge($this->query, $query, $params);
         }
+
 
         if ($this->version == 2) {
             $swooleClient = new Http2Client($host);
@@ -193,7 +205,8 @@ class Http
             $swooleClient->setBasicAuth($this->username, $this->password);
         }
 
-        $swooleClient->execute($path);
+        $query = !empty($this->query) ? '?' . http_build_query($this->query) : '';
+        $swooleClient->execute($path . $query);
         $swooleClient->close();
 
         return new Response($swooleClient);
