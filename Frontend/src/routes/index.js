@@ -180,6 +180,10 @@ const routes = [
                         path: "signin",
                         Component: lazy(() => import("@pages/SignIn")),
                     },
+                    {
+                        path: "attractions",
+                        Component: lazy(() => import("@pages/Attractions")),
+                    }
                 ],
             },
             {
