@@ -30,7 +30,7 @@ class Http extends Facade
                 'Content-Type' => 'application/json',
                 'Accept-Language' => $langId
             ])
-            ->withToken(env('EVENTDB_TOKEN'));
+            ->withToken(env('LICENSE_KEY'));
     }
 
     public static function weather(string $cityName)
@@ -40,12 +40,12 @@ class Http extends Facade
 
     public static function tourdb(string $langId)
     {
-        return Http::baseUrl('http://eventdb.itourism.vn/api')
+        return Http::baseUrl('https://ilooca-tourdb.itourism.vn/api')
             ->withHeaders([
                 'Content-Type' => 'application/json',
                 'Accept-Language' => $langId
             ])
-            ->withToken(env('EVENTDB_TOKEN'));
+            ->withToken(env('LICENSE_KEY'));
     }
 
     protected static function getFacadeAccessor(): string

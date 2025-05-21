@@ -19,6 +19,7 @@ import toast from "react-hot-toast";
 import { HiDotsHorizontal } from "react-icons/hi";
 import DataTable from "@components/admin/DataTable";
 import { FaCheckCircle, FaMinusCircle } from "react-icons/fa";
+import CityService from "@services/CityService";
 
 export default function Index() {
     const [data, setData] = useState([]);
@@ -117,7 +118,7 @@ export default function Index() {
                             </DropdownMenuItem>
                             <DropdownMenuItem
                                 onClick={() =>
-                                    deleteExperience(row.getValue("id"))
+                                    deleteCity(row.getValue("id"))
                                 }
                             >
                                 Xoá
@@ -133,36 +134,28 @@ export default function Index() {
         const res = await HttpClient.put(`/experience/status/${id}`);
         if (res.status === 200) {
             toast.success("Cập nhật tình trang thành công");
-            getExperience();
+            getCities();
         }
     }
 
-    const getExperience = async (params = {}) => {
-        const res = await HttpClient.get("/experience", {
-            params,
-        });
-
-        if (res.status === 200) {
-            const data = res.data;
-            setData(data.data);
-        } else {
-            toast.error("Lấy danh sách trải nghiệm thất bại!");
-        }
+    const getCities = async (params = {}) => {
+        const cities = await CityService.getListCities(params);
+        setData(cities);
     };
 
-    const deleteExperience = async (id) => {
-        const res = await HttpClient.delete(`/experience/${id}`);
+    const deleteCity = async (id) => {
+        const res = await HttpClient.delete(`/city/${id}`);
 
         if (res.status === 200) {
             toast.success("Xoá trải nghiệm thành công!");
-            getExperience();
+            getCities();
         } else {
             toast.error("Xoá trải nghiệm thất bại!");
         }
     };
 
     useEffect(() => {
-        getExperience();
+        getCities();
     }, []);
 
     return (

@@ -4,25 +4,26 @@ namespace Vietiso\Modules\City\Models;
 
 use Vietiso\Core\Context\Context;
 use Vietiso\Core\Database\Model\Model;
+use Vietiso\Modules\Common\Traits\AccessImage;
 
 class City extends Model
 {
+    use AccessImage;
+
     protected string $table = 'cities';
 
     protected ?string $primaryKey = 'id';
 
     protected static function booted(): void
     {
-        static::creating(function (City $admin) {
+        static::creating(function (City $city) {
             $now = date('Y-m-d H:i:s');
-            $admin->created_at = $now;
-            $admin->created_user_id = Context::get('admin')['id'];
+            $city->created_at = $now;
         });
 
-        static::updating(function (City $admin) {
+        static::updating(function (City $city) {
             $now = date('Y-m-d H:i:s');
-            $admin->updated_at = $now;
-            $admin->updated_user_id = Context::get('admin')['id'];
+            $city->updated_at = $now;
         });
     }
 }

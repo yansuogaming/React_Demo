@@ -37,11 +37,6 @@
             'commands' => [
                 
             ],
-
-            // Field này nhằm cho biết alias của một class thông qua hàm class_alias của php https://www.php.net/manual/en/function.class-alias.php
-            'aliases' => [
-                
-            ]
         ];
     ```
 

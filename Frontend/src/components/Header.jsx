@@ -114,16 +114,16 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     className={cn(
                         "relative flex flex-col",
                         "py-[15px] px-[20px] w-full z-50 top-0",
-                        "transition-all duration-500 lg:px-[40px] hidden lg:block"
+                        "lg:px-[40px] hidden lg:block"
                     )}
                 >
                     <div className="flex items-center justify-between">
                         <div className="flex items-center w-full relative xl-md:w-fit h-full ">
                             {/* Logo */}
                             <motion.div
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 0.2 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.2 } : false}
                                 className="mr-[50px]"
                             >
                                 <NavLink to="/">
@@ -144,9 +144,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                 )}
                             >
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.3 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.3 } : false}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/itineraries">
@@ -154,17 +154,17 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.4 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.4 } : false}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/">{t("experiences")}</NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.5 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.5 } : false}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/events">
@@ -172,9 +172,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.6 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.6 } : false}
                                     className="p-[15px] h-fit "
                                     onMouseEnter={() =>
                                         hanleHoverPlanYourTrip(true)
@@ -188,9 +188,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.7 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.7 } : false}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/">
@@ -202,9 +202,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <ul className="items-center font-bold hidden xl-md:flex ">
                             <motion.li
                                 className="p-[15px]"
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 0.8 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.8 } : false}
                             >
                                 <SearchHeader
                                     color={color}
@@ -214,25 +214,25 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 0.9 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.9 } : false}
                             >
                                 <ChangeLangButton color={color} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 1 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1 } : false}
                             >
                                 <MapIcon color={colorIcon} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 1.1 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1.1 } : false}
                             >
                                 <UserIcon color={colorIcon} />
                             </motion.li>

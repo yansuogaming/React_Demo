@@ -19,7 +19,7 @@ class EventServiceProvider extends ServiceProvider
                     'Content-Type' => 'application/json',
                     'Accept-Language' => $langId
                 ])
-                ->withToken(env('EVENTDB_TOKEN'));
+                ->withToken(env('LICENSE_KEY'));
         });
     }
 }

@@ -4,6 +4,8 @@ import ExperienceService from "@services/ExperienceService";
 import EventService from "@services/EventService";
 import FAQService from "@services/FAQService";
 import WeatherService from "@services/WeatherService";
+import CityService from "@services/CityService";
+import TourService from "@services/TourService";
 
 const routes = [
     ...routesAdmin,
@@ -20,11 +22,13 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 ExperienceService.getExperienceTypes(),
-                                EventService.getOngoingAndUpcomingEvents()
+                                EventService.getOngoingAndUpcomingEvents(),
+                                TourService.getListTrending(),
                             ]);
                             return {
                                 experienceTypes: res[0],
-                                events: res[1]
+                                events: res[1],
+                                listTrendingTours: res[2],
                             };
                         },
                         meta: () => {
@@ -40,16 +44,20 @@ const routes = [
                     {
                         path: "city/:slug",
                         Component: lazy(() => import("@pages/City")),
-                        loader: async () => {
+                        loader: async ({ params }) => {
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
                                 EventService.getOngoingAndUpcomingEvents(),
-                                WeatherService.getCityWeather('Hà Nội')
+                                WeatherService.getCityWeather('Hà Nội'),
+                                CityService.getCityBySlug(params.slug),
                             ]);
+                                
+                            
                             return {
                                 FAQs: res[0],
                                 events: res[1],
-                                weather: res[2]
+                                weather: res[2],
+                                city: res[3]
                             };
                         },
                     },
