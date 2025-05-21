@@ -31,12 +31,14 @@ class HttpClient {
 
     setHeader(key, value) {
         this.instance.defaults.headers.common[key] = value;
+        return this
     }
 
     setHeaders() {
         this.headers.forEach(header => {
             this.setHeader(header.key, header.value)
         })
+        return this
     }
 
     setLoading(loading = true) {
@@ -48,16 +50,24 @@ class HttpClient {
         return this
     }
 
+    travelIndex() {
+        this.setBaseUrl(import.meta.env.VITE_API_TRAVEL_INDEX_URL)
+        return this
+    }
+
     async request(config = {}) {
         // Handle Loading
         this.setHeader('Accept-Language', i18next.language == 'vi' ? 'vn' : i18next.language)
         let res = null;
         try {
             res = await this.instance.request(config)
+       
         } catch (error) {
             res = error.response
+    
         }
 
+   
         if (res.status === 401) {
             navigateTo('/admin/login');
             if (config.url !== '/login') {
