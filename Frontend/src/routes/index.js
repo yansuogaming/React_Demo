@@ -88,6 +88,12 @@ const routes = [
                         Component: lazy(() => import("@pages/Itineraries")),
                     },
                     {
+                        path: "itineraries/detail",
+                        Component: lazy(() =>
+                            import("@pages/ItinerariesDetail")
+                        ),
+                    },
+                    {
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
                         loader: async () => {

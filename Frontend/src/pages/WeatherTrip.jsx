@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 import Breadcrumb from "@components/Breadcrumb";
 
@@ -23,11 +24,12 @@ import WeatherSubscribe from "@components/WeatherSubscribe";
 
 const WeatherTrip = () => {
     const { t } = useTranslation();
+    const [locationName, setLocationName] = useState("...");
 
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
         { label: t("Plan your trip"), href: "planyourtrip" },
-        { label: "Weather in Hanoi" },
+        { label: `Weather in ${locationName}` },
     ];
     return (
         <main>
@@ -38,7 +40,7 @@ const WeatherTrip = () => {
                         items={breadcrumdItems}
                     />
                 </section>
-                <WeatherSection />
+                <WeatherSection onLocationChange={setLocationName} />
                 <WeatherForecast />
                 <WeatherTabs />
 

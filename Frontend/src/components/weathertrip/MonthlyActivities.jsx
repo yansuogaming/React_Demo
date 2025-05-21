@@ -1,5 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router";
+import {
+    fetchMonthlyForecastSummary,
+    fetchWeatherAlerts,
+    getMockMonthlyWeatherData,
+} from "@components/weathertrip/weatherApi";
 import dubaiImage from "@images/about-vietnam.png";
 import imgDemo from "@images/3-1595134332.webp";
 
@@ -18,99 +23,67 @@ const months = [
     "December",
 ];
 
-const contentData = {
-    January: {
-        temp: "21°C",
-        content: (
-            <>
-                January is typically the coolest month of the year in Dubai,
-                with an average temperature of 21°C, making it the perfect time
-                to explore the great outdoors. Check out{" "}
-                <NavLink
-                    to="#"
-                    className="text-[#0077B6] underline hover:text-[#005f8c]"
-                >
-                    Palm West Beach
-                </NavLink>{" "}
-                on Palm Jumeirah, see flamingoes at{" "}
-                <NavLink
-                    to="#"
-                    className="text-[#0077B6] underline hover:text-[#005f8c]"
-                >
-                    Ras Al Khor Wildlife Sanctuary
-                </NavLink>
-                , or zipline at{" "}
-                <NavLink
-                    to="#"
-                    className="text-[#0077B6] underline hover:text-[#005f8c]"
-                >
-                    Aventura Parks
-                </NavLink>
-                . Don’t miss Dubai Shopping Festival too.
-            </>
-        ),
-        image: dubaiImage,
-    },
-    February: {
-        temp: "23°C",
-        content: <>February content coming soon...</>,
-        image: imgDemo,
-    },
-    March: {
-        temp: "26°C",
-        content: <>March content coming soon...</>,
-        image: dubaiImage,
-    },
-    April: {
-        temp: "29°C",
-        content: <>April content coming soon...</>,
-        image: dubaiImage,
-    },
-    May: {
-        temp: "33°C",
-        content: <>May content coming soon...</>,
-        image: dubaiImage,
-    },
-    June: {
-        temp: "38°C",
-        content: <>June content coming soon...</>,
-        image: dubaiImage,
-    },
-    July: {
-        temp: "41°C",
-        content: <>July content coming soon...</>,
-        image: dubaiImage,
-    },
-    August: {
-        temp: "40°C",
-        content: <>August content coming soon...</>,
-        image: dubaiImage,
-    },
-    September: {
-        temp: "38°C",
-        content: <>September content coming soon...</>,
-        image: dubaiImage,
-    },
-    October: {
-        temp: "34°C",
-        content: <>October content coming soon...</>,
-        image: dubaiImage,
-    },
-    November: {
-        temp: "29°C",
-        content: <>November content coming soon...</>,
-        image: dubaiImage,
-    },
-    December: {
-        temp: "24°C",
-        content: <>December content coming soon...</>,
-        image: dubaiImage,
-    },
+const contentImages = {
+    January: dubaiImage,
+    February: imgDemo,
+    March: dubaiImage,
+    April: dubaiImage,
+    May: dubaiImage,
+    June: dubaiImage,
+    July: dubaiImage,
+    August: dubaiImage,
+    September: dubaiImage,
+    October: dubaiImage,
+    November: dubaiImage,
+    December: dubaiImage,
 };
 
 const MonthlyActivities = () => {
     const [activeMonth, setActiveMonth] = useState("January");
+    const [monthlyData, setMonthlyData] = useState({});
+    const [alerts, setAlerts] = useState([]);
+    const [locationError, setLocationError] = useState(null);
     const scrollRef = useRef(null);
+    const buttonRefs = useRef({});
+
+    useEffect(() => {
+        if (!navigator.geolocation) {
+            setLocationError("Geolocation is not supported by your browser.");
+            setMonthlyData(getMockMonthlyWeatherData());
+            return;
+        }
+
+        navigator.geolocation.getCurrentPosition(
+            async ({ coords }) => {
+                try {
+                    const [monthly, alertList] = await Promise.all([
+                        fetchMonthlyForecastSummary(
+                            coords.latitude,
+                            coords.longitude
+                        ),
+                        fetchWeatherAlerts(coords.latitude, coords.longitude),
+                    ]);
+
+                    if (Object.keys(monthly).length < 12) {
+                        setMonthlyData(getMockMonthlyWeatherData());
+                    } else {
+                        setMonthlyData(monthly);
+                    }
+
+                    setAlerts(alertList);
+                } catch (err) {
+                    console.error("Failed to load weather data:", err);
+                    setLocationError("Could not fetch weather data.");
+                    setMonthlyData(getMockMonthlyWeatherData());
+                }
+            },
+            (err) => {
+                console.error("Geolocation error:", err);
+                setLocationError("Unable to retrieve your location.");
+                setMonthlyData(getMockMonthlyWeatherData());
+            }
+        );
+    }, []);
 
     const handleScroll = () => {
         scrollRef.current?.scrollIntoView({
@@ -119,41 +92,63 @@ const MonthlyActivities = () => {
         });
     };
 
-    const { temp, content, image } = contentData[activeMonth];
-    const buttonRefs = useRef({});
+    const weather = monthlyData[activeMonth];
+    const description =
+        weather?.description ||
+        "Discover seasonal experiences throughout the city.";
+    const temp = weather?.avg || "--";
+    const icon = weather?.icon ? `https:${weather.icon}` : null;
+    const image = contentImages[activeMonth];
 
     return (
         <section className="container mx-auto px-4 py-12">
             <div ref={scrollRef} className="mt-24" id="things-to-do">
                 <h2 className="text-[28px] md:text-[36px] font-bold text-[#1A2A44]">
-                    Things to do in Dubai each month
+                    Things to do each month
                 </h2>
-                <p className="text-xl text-gray-500 mb-8">
+                <p className="text-xl text-gray-500 mb-2">
                     Find something to do whenever you visit
                 </p>
+                {locationError && (
+                    <p className="text-sm text-red-500 mb-4">{locationError}</p>
+                )}
+
+                {alerts.length > 0 && (
+                    <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6">
+                        <h4 className="font-bold text-yellow-700 mb-2">
+                            Weather Alerts
+                        </h4>
+                        {alerts.map((alert, i) => (
+                            <div key={i} className="mb-3">
+                                <p className="text-sm font-semibold text-red-600">
+                                    {alert.event}
+                                </p>
+                                <p className="text-sm text-gray-700 whitespace-pre-line">
+                                    {alert.desc}
+                                </p>
+                                {alert.instruction && (
+                                    <p className="text-sm italic text-gray-600 mt-1">
+                                        {alert.instruction}
+                                    </p>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                )}
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     {/* Tabs */}
-                    <div className="flex lg:flex-col overflow-x-auto overflow-y-hidden whitespace-nowrap gap-3 text-left border-b border-gray-200 w-full lg:w-[120px] lg:col-span-2 shrink-0 no-scrollbar">
+                    <div className="flex lg:flex-col overflow-x-auto gap-3 text-left border-b border-gray-200 w-full lg:w-[120px] lg:col-span-2 no-scrollbar">
                         {months.map((month) => (
                             <button
                                 key={month}
                                 ref={(el) => (buttonRefs.current[month] = el)}
-                                onClick={() => {
-                                    setActiveMonth(month);
-                                    buttonRefs.current[month]?.scrollIntoView({
-                                        behavior: "smooth",
-                                        inline: "center",
-                                        block: "nearest",
-                                    });
-                                }}
-                                className={`relative flex-shrink-0 text-sm font-semibold px-3 py-2 transition
-            ${
-                activeMonth === month
-                    ? "text-[#0077B6] lg:border-l-2 lg:pl-2 lg:border-[#0077B6] after:absolute after:left-3 after:right-3 after:-bottom-[1px] after:h-[2px] after:bg-[#0077B6] lg:after:content-none"
-                    : "text-gray-600 hover:text-[#0077B6]"
-            }
-        `}
+                                onClick={() => setActiveMonth(month)}
+                                className={`text-sm font-semibold px-3 py-2 transition ${
+                                    activeMonth === month
+                                        ? "text-[#0077B6] lg:border-l-2 lg:pl-2 lg:border-[#0077B6]"
+                                        : "text-gray-600 hover:text-[#0077B6]"
+                                }`}
                             >
                                 {month}
                             </button>
@@ -162,13 +157,20 @@ const MonthlyActivities = () => {
 
                     {/* Content */}
                     <div className="lg:col-span-6 flex flex-col gap-4">
-                        <p className="text-[#1A2A44] font-semibold">
-                            Average temperature: {temp}
-                        </p>
-                        <p className="text-[16px] text-[#505050] leading-relaxed">
-                            {content}
+                        <p className="text-[#1A2A44] font-semibold flex items-center">
+                            Forecasted temperature: {temp}
+                            {icon && (
+                                <img
+                                    src={icon}
+                                    alt="Weather icon"
+                                    className="w-10 h-10"
+                                />
+                            )}
                         </p>
 
+                        <p className="text-[16px] text-[#505050] leading-relaxed">
+                            {description}
+                        </p>
                         <button
                             onClick={handleScroll}
                             className="mt-6 bg-[#0077B6] hover:bg-[#005f8c] text-white text-sm font-semibold px-6 py-3 rounded transition w-fit"
