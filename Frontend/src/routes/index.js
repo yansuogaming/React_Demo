@@ -6,6 +6,7 @@ import FAQService from "@services/FAQService";
 import WeatherService from "@services/WeatherService";
 import CityService from "@services/CityService";
 import TourService from "@services/TourService";
+import MapService from "@services/MapService";
 
 const routes = [
     ...routesAdmin,
@@ -48,16 +49,15 @@ const routes = [
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
                                 EventService.getOngoingAndUpcomingEvents(),
-                                WeatherService.getCityWeather('Hà Nội'),
+                                WeatherService.getCityWeather("Hà Nội"),
                                 CityService.getCityBySlug(params.slug),
                             ]);
-                                
-                            
+
                             return {
                                 FAQs: res[0],
                                 events: res[1],
                                 weather: res[2],
-                                city: res[3]
+                                city: res[3],
                             };
                         },
                     },
@@ -183,12 +183,16 @@ const routes = [
                     {
                         path: "attractions",
                         Component: lazy(() => import("@pages/Attractions")),
-                    }
+                    },
                 ],
             },
             {
                 path: "map-ha-noi",
                 Component: lazy(() => import("@pages/Map")),
+                loader: async () => {
+                    const res = await MapService.getListDestination();
+                    return res;
+                },
             },
             {
                 path: "tripdetail/result",

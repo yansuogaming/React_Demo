@@ -83,6 +83,7 @@ const City = () => {
                         <div className="relative w-full h-auto max-w-[400px] mx-auto lg:mx-0 pt-[32px] lg:pt-[100px]">
                             <div className="h-[296px] overflow-hidden rounded-[60px_12px_12px_12px]">
                                 <img
+                                    loading="lazy"
                                     src={imageMapCountry}
                                     alt="Hà Nội"
                                     className="w-full h-full object-cover"
@@ -95,6 +96,7 @@ const City = () => {
 
                             <div className="hidden lg:block absolute -translate-x-1/2 top-0 left-1/2 w-[260px] sm:w-[300px] h-[180px] sm:h-[200px]">
                                 <img
+                                    loading="lazy"
                                     src={imageCity2}
                                     alt="Temple of Literature"
                                     className="w-full h-full object-cover rounded-t-[12px]"

@@ -64,10 +64,11 @@ const HeroSection = () => {
           ) : (
             <>
               <img
+                loading="lazy"
                 src="https://a.tcnn.vn//Images/images/images5452377_DJI_0724.jpg"
                 alt="Vietnam"
                 className="w-full h-full object-cover"
-              ></img>
+              />
               <button
                 onClick={handlePlayVideo}
                 className="absolute top-8 overflow-hidden group right-8 w-15 h-15 bg-white text-black rounded-md flex items-center justify-center shadow-md hover:scale-105 transition z-20 before:absolute before:inset-0 before:bg-[#035E88] before:origin-right before:scale-x-0 hover:before:scale-x-100 before:transition-transform before:duration-200 before:-z-10"
@@ -98,6 +99,7 @@ const ImgGalery = () => {
           <CarouselItem className="basis-full h-[500px] lg:basis-2/3 ">
             <div className="col-span-2 relative">
               <img
+                loading="lazy"
                 src="https://images.unsplash.com/photo-1583417319070-4a69db38a482"
                 alt="Cảnh hoàng hôn tại Vịnh Hạ Long"
                 fill
@@ -108,6 +110,7 @@ const ImgGalery = () => {
           <CarouselItem className="basis-full h-[500px] lg:basis-2/3 ">
             <div className="col-span-2 relative">
               <img
+                loading="lazy"
                 src="https://i2.ex-cdn.com/crystalbay.com/files/content/2024/08/09/vinh-ha-long-3-1624.jpg"
                 alt="Cảnh hoàng hôn tại Vịnh Hạ Long"
                 className="object-cover rounded-md"
