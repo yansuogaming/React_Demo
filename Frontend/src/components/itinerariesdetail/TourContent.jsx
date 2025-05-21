@@ -31,7 +31,6 @@ const TourContent = () => {
             </div>
 
             <div className="mt-4 sm:mt-6 border-t border-b border-[#D9D9D9] py-3 text-sm text-[#1A2A44]">
-                {/* Row 1: Free cancellation + Duration */}
                 <div className="flex flex-wrap gap-x-8 gap-y-2">
                     <div className="flex items-center gap-2 text-green-600">
                         <FaCheckCircle />
@@ -44,7 +43,6 @@ const TourContent = () => {
                     </div>
                 </div>
 
-                {/* Row 2: Places to visit */}
                 <div className="mt-3 flex items-start gap-2">
                     <FaMapMarkerAlt className="mt-1" />
                     <div>
@@ -53,7 +51,6 @@ const TourContent = () => {
                 </div>
             </div>
 
-            {/* Tags */}
             <div className="mt-4 flex flex-wrap gap-2 text-xs sm:text-sm">
                 {[
                     "Family Travel",
@@ -69,7 +66,6 @@ const TourContent = () => {
                 ))}
             </div>
 
-            {/* Description */}
             <div className="mt-5 sm:mt-6 text-sm sm:text-base text-gray-700 leading-relaxed">
                 Imagine this: a scenic road trip from Hanoi to explore Halong
                 Bay with stops along the way to discover viewpoints, villages,
