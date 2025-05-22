@@ -37,212 +37,176 @@ const nileCruisePackage = {
   provider: "travel",
   providerImage: providerImage,
   actions: ["Detail tour"],
-  isVideo: 1,
-  isVr: 1
 };
 
 const FilterTours = ({ className = "" }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   useEffect(() => {
-    if (isFilterOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+      if (isFilterOpen) {
+          document.body.style.overflow = 'hidden';
+      } else {
+          document.body.style.overflow = 'auto';
+      }
   }, [isFilterOpen]);
 
   return (
     <section className={`container ${className} flex flex-col gap-[30px] items-center lg:items-end`}>
-      <MenuFilter />
-      <div className="flex flex-col lg:flex-row gap-[30px] relative mt-[10px]">
+      <div className="flex flex-col lg:flex-row gap-[30px] relative">
         {/* Mobile filter button */}
 
         {/* Filter sidebar */}
         <div
           className={`
           fixed xl:relative top-0 left-0 h-full w-[80%] max-w-[300px] xl:w-auto
-          bg-white xl:bg-transparent ${isFilterOpen ? "z-50" : "z-20"} transform transition-transform duration-300 ease-in-out
-          ${isFilterOpen
+          bg-white xl:bg-transparent ${isFilterOpen?"z-50":"z-20"} transform transition-transform duration-300 ease-in-out
+          ${
+            isFilterOpen
               ? "translate-x-0"
               : "-translate-x-full xl:translate-x-0"
-            }
+          }
           p-4 xl:p-0 overflow-y-auto
         `}
         >
-
           <Filter onClose={() => setIsFilterOpen(false)} />
         </div>
 
         {/* Overlay */}
         {isFilterOpen && (
           <div
+         
             className="fixed inset-0 bg-black opacity-80 z-10 xl:hidden"
             onClick={() => setIsFilterOpen(false)}
           />
         )}
-        <div className="mt-[10px]">
-          <ListTourResult
-            isFilterOpen={isFilterOpen}
-            setIsFilterOpen={setIsFilterOpen}
-            listTour={Array(14).fill(nileCruisePackage)}
-          />
-        </div>
 
+        <ListTourResult
+          isFilterOpen={isFilterOpen}
+          setIsFilterOpen={setIsFilterOpen}
+          listTour={Array(10).fill(nileCruisePackage)}
+        />
 
+        
       </div>
-      <Pagination />
+      <Pagination/>
     </section>
   );
 };
 
 export default FilterTours;
 
-const MenuFilter = () => {
-
-  return (
-    <div className="w-full">
-      <h1 className="text-[#1A2A44] font-bold text-[22px] md:text-[32px]">
-        Hanoi Attractions
-      </h1>
-      <h1 className="text-[#1A2A44] text-[14px] md:text-[16px] mb-4">
-        Pick a category to filter your recs
-      </h1>
-      <div className="flex flex-row overflow-x-auto flex-nowrap gap-4">
-        {[
-          { name: "Cultural tourism resources", count: 104 },
-          { name: "Natural tourism resources", count: 122 },
-          { name: "National-Level", count: 24 },
-          { name: "Provincial-Level", count: 11 },
-        ].map((category, index) => (
-          <button
-            key={index}
-            className="h-[40px] flex-shrink-0 bg-white border border-gray-300 rounded-full flex items-center justify-center text-[#1A2A44] text-sm font-medium hover:bg-gray-300 transition-colors duration-200"
-          >
-            <text className="px-5">
-              {`${category.name} (${category.count})`}
-            </text>
-          </button>
-        ))}
-      </div>
-    </div>
-  )
-}
-
 const Filter = ({ onClose }) => {
   return (
-    <div>
-      <div style={{}} className="w-full lg:w-auto">
-        <div className="w-full lg:min-w-[297px] mb-[24px] flex items-center justify-between font-bold bg-[#F6F6FA] text-[#1A2A44] rounded-[8px] p-[10px_15px]">
-          <div className="flex gap-[12px] items-center">
-            <img src={iconFilter} alt="Applied filters" />
-            <h3>Applied filters</h3>
-          </div>
-          <button
-            onClick={onClose}
-            className="xl:hidden lg:pr-5 text-gray-500 hover:text-gray-700"
-          >
-            ✕
-          </button>
+    <div style={{}} className="w-full lg:w-auto">
+      <div className="w-full lg:min-w-[297px] mb-[24px] flex items-center justify-between font-bold bg-[#F6F6FA] text-[#1A2A44] rounded-[8px] p-[10px_15px]">
+        <div className="flex gap-[12px] items-center">
+          <img src={iconFilter} alt="Applied filters" />
+          <h3>Applied filters</h3>
         </div>
-        <div>
-          <p className="text-[18px] font-bold mb-[16px]">Duration</p>
-          <ul className="flex flex-col gap-[15px]">
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                Full day
-              </label>
-            </li>
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />1 to 3 days
-              </label>
-            </li>
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />4 to 7 days
-              </label>
-            </li>
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                &gt; 7 days
-              </label>
-            </li>
-          </ul>
-        </div>
-        <hr className="my-[24px]" />
-        <div>
-          <p className="text-[18px] font-bold mb-[16px]">Departure point</p>
-          <ul className="flex flex-col gap-[15px]">
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                Hanoi
-              </label>
-            </li>
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                Ho Chi Minh City
-              </label>
-            </li>
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                Da Nang
-              </label>
-            </li>
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                Phu Quoc
-              </label>
-            </li>
-          </ul>
-        </div>
-        <hr className="my-[24px]" />
-        <div>
-          <p className="text-[18px] font-bold mb-[16px]">Travel styles</p>
-          <ul className="flex flex-col gap-[15px]">
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                Festival & Events
-              </label>
-            </li>
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                In-depth Cultural
-              </label>
-            </li>
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                Explorer
-              </label>
-            </li>
-            <li>
-              <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                <Checkbox />
-                Hiking & Trekking
-              </label>
-            </li>
-          </ul>
-        </div>
-        <hr className="my-[24px]" />
-        <div>
-          <p className="text-[18px] font-bold mb-[16px]">Travel agency</p>
-        </div>
-        <input
-          type="text"
-          className="w-full rounded-[8px] border border-solid border-[#C8CBD0] p-[10px_15px] text-[16px] text-[#1A2A44]"
-          placeholder="Search"
-        />
-        <img src={advertising} alt="Advertising" className="w-full mt-[32px] rounded-[8px]" />
+        <button
+          onClick={onClose}
+          className="xl:hidden lg:pr-5 text-gray-500 hover:text-gray-700"
+        >
+          ✕
+        </button>
       </div>
+      <div>
+        <p className="text-[18px] font-bold mb-[16px]">Duration</p>
+        <ul className="flex flex-col gap-[15px]">
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              Full day
+            </label>
+          </li>
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />1 to 3 days
+            </label>
+          </li>
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />4 to 7 days
+            </label>
+          </li>
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              &gt; 7 days
+            </label>
+          </li>
+        </ul>
+      </div>
+      <hr className="my-[24px]" />
+      <div>
+        <p className="text-[18px] font-bold mb-[16px]">Departure point</p>
+        <ul className="flex flex-col gap-[15px]">
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              Hanoi
+            </label>
+          </li>
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              Ho Chi Minh City
+            </label>
+          </li>
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              Da Nang
+            </label>
+          </li>
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              Phu Quoc
+            </label>
+          </li>
+        </ul>
+      </div>
+      <hr className="my-[24px]" />
+      <div>
+        <p className="text-[18px] font-bold mb-[16px]">Travel styles</p>
+        <ul className="flex flex-col gap-[15px]">
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              Festival & Events
+            </label>
+          </li>
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              In-depth Cultural
+            </label>
+          </li>
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              Explorer
+            </label>
+          </li>
+          <li>
+            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+              <Checkbox />
+              Hiking & Trekking
+            </label>
+          </li>
+        </ul>
+      </div>
+      <hr className="my-[24px]" />
+      <div>
+        <p className="text-[18px] font-bold mb-[16px]">Travel agency</p>
+      </div>
+      <input
+        type="text"
+        className="w-full rounded-[8px] border border-solid border-[#C8CBD0] p-[10px_15px] text-[16px] text-[#1A2A44]"
+        placeholder="Search"
+        />
+        <img src={advertising} alt="Advertising" className="w-full mt-[32px] rounded-[8px]"/>
     </div>
   );
 };
@@ -277,21 +241,22 @@ const TourItem = ({ item, index }) => {
   const tourDetails = [
     {
       id: 1,
-      icon: <MapPin className="w-4 h-4 mt-1 text-gray-600 flex-shrink-0" />,
-      label: "Hanoi Old Quarter, Hoan Kiem, Hanoi",
-      content: "",
+      icon: <Navigation className="w-4 h-4 mt-1 text-gray-600 flex-shrink-0" />,
+      label: "Places to visit:",
+      content: "Cairo, Giza, Luxor,",
+      extraButton: "+ 2 more",
     },
     {
       id: 2,
-      icon: <Clock className="w-4 h-4 mt-1 text-gray-600 flex-shrink-0" />,
-      label: "Open now",
-      content: "",
+      icon: <MapPin className="w-4 h-4 mt-1 text-gray-600 flex-shrink-0" />,
+      label: "Start:",
+      content: "Hanoi, Vietnam",
     },
     {
       id: 3,
-      // icon: <Navigation className="w-4 h-4 mt-1 text-gray-600 flex-shrink-0" />,
-      label: "Admission tickets from ",
-      content: "$3",
+      icon: <Clock className="w-4 h-4 mt-1 text-gray-600 flex-shrink-0" />,
+      label: "Duration:",
+      content: "3 days 2 nights",
     },
   ];
   const TourDetailItem = ({ icon, label, content, extraButton }) => {
@@ -299,7 +264,7 @@ const TourItem = ({ item, index }) => {
       <div className="flex items-start gap-2">
         {icon}
         <div>
-          <span className="text-[14px] text-[#1A2A44]">{label}</span>{" "}
+          <span className="text-[14px] font-bold text-[#1A2A44]">{label}</span>{" "}
           <span>{content}</span>
           {extraButton && (
             <button className="text-[14px] font-normal text-blue-500">
@@ -313,12 +278,18 @@ const TourItem = ({ item, index }) => {
   return (
     <>
       <Link to={"/"} className="border border-solid rounded-[8px] rounded-tl-[60px] flex flex-col md:flex-row relative p-[16px] pb-[21px] group hover:cursor-pointer">
-        <div className="w-full md:w-[292px] h-[230px] object-cover  relative overflow-hidden ">
+        <div className="w-full md:w-[292px] h-[194px] object-cover  relative overflow-hidden ">
           <img
             src={item.image}
             alt={item.title}
             loading="lazy"
             className="w-full h-full object-cover rounded-tl-[60px] group-hover:scale-[1.1] transition-all duration-500"
+          />
+
+          <img
+            src={item.providerImage}
+            alt={item.title}
+            className="w-[85px] h-[48px] absolute left-[12px] bottom-[12px] object-cover rounded-br-[4px] px-[12px] py-[10px] bg-white"
           />
         </div>
 
@@ -326,24 +297,9 @@ const TourItem = ({ item, index }) => {
         <div className="mt-4 md:mt-0 md:ml-[19px] flex-1 flex flex-col justify-between">
           <div className="">
             {/* Title */}
-            <div className="flex flex-row items-center justify-between">
-              <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2D53] group-hover:text-blue-500">
-                Old Quarter
-              </h2>
-              <div className="flex flex-row gap-2">
-                <div>
-                  <span className="border border-gray-300 bg-white rounded-3xl px-2 py-1 text-sm text-[#1A2A44]">
-                    Video
-                  </span>
-                </div>
-                <div>
-                  <span className="border border-gray-300 bg-white rounded-3xl px-2 py-1 text-sm text-[#1A2A44]">
-                    VR
-                  </span>
-                </div>
-              </div>
-            </div>
-
+            <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2D53] group-hover:text-blue-500">
+              Pharaohs Nile Cruise Adventure - Return Flights Included
+            </h2>
 
             {/* Rating */}
             <div className="flex items-center mt-[8px] mb-[16px]">
@@ -363,36 +319,21 @@ const TourItem = ({ item, index }) => {
               </span>
             </div>
 
-            <div className="flex flex-row">
-              <div className="flex flex-col gap-2">
-                {tourDetails.map((detail) => (
-                  <TourDetailItem
-                    key={detail.id}
-                    icon={detail.icon}
-                    label={detail.label}
-                    content={detail.content}
-                    extraButton={detail.extraButton}
-                  />
-                ))}
-
-              </div>
-              <div className="w-[300px] ml-[40px]">
-                <text className="text-[14px] font-[Visit_qatar]">{`“I visited the lake while in Hanoi. Walked around and saw the important sites on the perimeter. I was surprised to see that the entire perimeter...”`}</text>
-              </div>
+            <div className="flex flex-col gap-2">
+              {tourDetails.map((detail) => (
+                <TourDetailItem
+                  key={detail.id}
+                  icon={detail.icon}
+                  label={detail.label}
+                  content={detail.content}
+                  extraButton={detail.extraButton}
+                />
+              ))}
             </div>
           </div>
 
-          <div className="flex flex-row overflow-x-auto flex-nowrap gap-4">
-            <button className="h-[40px] flex-shrink-0 bg-blue-500 border border-gray-300 rounded-full flex items-center justify-center text-[#1A2A44] text-sm font-medium hover:bg-gray-300 transition-colors duration-200">
-              <text className="px-5 text-[#ffffff]">See tickets</text>
-            </button>
-            <button className="h-[40px] flex-shrink-0 bg-blue-500 border border-gray-300 rounded-full flex items-center justify-center text-[#1A2A44] text-sm font-medium hover:bg-gray-300 transition-colors duration-200">
-              <text className="px-4 text-[#ffffff]">Tour itinerary</text>
-            </button>
-          </div>
-
           {/* Price and button */}
-          {/* <div className="flex flex-col items-center lg:items-end justify-between mt-6 md:items-start lg:absolute lg:right-5 lg:bottom-5">
+          <div className="flex flex-col items-center lg:items-end justify-between mt-6 md:items-start lg:absolute lg:right-5 lg:bottom-5">
             <div className="text-center md:text-left lg:text-right mb-2">
               <div className="text-[14px] text-[#494951] font-normal">from</div>
               <div className="text-[20px] text-[#C81E3A] font-bold">
@@ -405,11 +346,10 @@ const TourItem = ({ item, index }) => {
             <Link to={"/"} className="w-full lg:w-auto bg-[#007BFF] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-lg">
               Detail tour
             </Link>
-          </div> */}
+          </div>
         </div>
       </Link>
       {index === 4 && <img className="hidden md:flex" src={ExploreTopTravelService} />}
-      {index === 8 && <img className="hidden md:flex" src={ExploreTopTravelService} />}
     </>
   );
 };
