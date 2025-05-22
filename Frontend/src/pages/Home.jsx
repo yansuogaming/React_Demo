@@ -16,7 +16,7 @@ import { motion } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa6";
 
 export default function Home() {
-    const { experienceTypes } = useLoaderData();
+    const { experienceTypes, events, listTrendingTours } = useLoaderData();
     const { t } = useTranslation();
     const [isLoaded, setIsLoaded] = useState(false);
     const imgRef = useRef(null);
@@ -151,12 +151,12 @@ export default function Home() {
                 id="region"
                 className="lg:mt-[60px] lg:mb-[145px] mt-[40px] lg:mt-[80px] mb-[60px]"
             />
-            <VietNamEvent className="bg-[#F5F6FA] py-[48px] lg:py-[80px] pt-[48px] lg:pt-[80px]" />
+            <VietNamEvent data={events} className="bg-[#F5F6FA] py-[48px] lg:py-[80px] pt-[48px] lg:pt-[80px]" />
             <TopVietnamExperiences
                 className="mb-[80px] lg:mb-[120px] pt-[60px] lg:pt-[80px]"
                 data={experienceTypes}
             />
-            <TrendingItinerary className="mb-[80px] lg:mb-[120px]" />
+            <TrendingItinerary data={listTrendingTours} className="mb-[80px] lg:mb-[120px]" />
             <TravelOffers className="mb-[60px] lg:mb-[120px]" />
             <PlainYourTrip className="mb-[80px] lg:mb-[120px]" />
             <Story />

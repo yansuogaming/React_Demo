@@ -1,6 +1,12 @@
 import { lazy } from "react";
 import routesAdmin from "./admin";
 import ExperienceService from "@services/ExperienceService";
+import EventService from "@services/EventService";
+import FAQService from "@services/FAQService";
+import WeatherService from "@services/WeatherService";
+import CityService from "@services/CityService";
+import TourService from "@services/TourService";
+import MapService from "@services/MapService";
 
 const routes = [
     ...routesAdmin,
@@ -15,10 +21,15 @@ const routes = [
                         index: true,
                         Component: lazy(() => import("@pages/Home")),
                         loader: async () => {
-                            const experienceTypes =
-                                await ExperienceService.getExperienceTypes();
+                            const res = await Promise.all([
+                                ExperienceService.getExperienceTypes(),
+                                EventService.getOngoingAndUpcomingEvents(),
+                                TourService.getListTrending(),
+                            ]);
                             return {
-                                experienceTypes,
+                                experienceTypes: res[0],
+                                events: res[1],
+                                listTrendingTours: res[2],
                             };
                         },
                         meta: () => {
@@ -34,6 +45,21 @@ const routes = [
                     {
                         path: "city/:slug",
                         Component: lazy(() => import("@pages/City")),
+                        loader: async ({ params }) => {
+                            const res = await Promise.all([
+                                FAQService.getListFAQs(),
+                                EventService.getOngoingAndUpcomingEvents(),
+                                WeatherService.getCityWeather("Hà Nội"),
+                                CityService.getCityBySlug(params.slug),
+                            ]);
+
+                            return {
+                                FAQs: res[0],
+                                events: res[1],
+                                weather: res[2],
+                                city: res[3],
+                            };
+                        },
                     },
                     {
                         path: "expericences",
@@ -62,8 +88,33 @@ const routes = [
                         Component: lazy(() => import("@pages/Itineraries")),
                     },
                     {
+                        path: "itineraries/detail",
+                        Component: lazy(() =>
+                            import("@pages/ItinerariesDetail")
+                        ),
+                    },
+                    {
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
+                        loader: async () => {
+                            const res = await Promise.all([
+                                EventService.getOngoingAndUpcomingEvents(),
+                                EventService.getEvents(),
+                            ]);
+                            return {
+                                ongoingAndUpcomingEvents: res[0],
+                                events: res[1],
+                            };
+                        },
+                        meta: () => {
+                            return [
+                                { title: "Xin chào" },
+                                {
+                                    name: "description",
+                                    content: "Welcome to the home page",
+                                },
+                            ];
+                        },
                     },
                     {
                         path: "visa-guide",
@@ -129,7 +180,19 @@ const routes = [
                         path: "signin",
                         Component: lazy(() => import("@pages/SignIn")),
                     },
+                    {
+                        path: "attractions",
+                        Component: lazy(() => import("@pages/Attractions")),
+                    },
                 ],
+            },
+            {
+                path: "map-ha-noi",
+                Component: lazy(() => import("@pages/Map")),
+                loader: async () => {
+                    const res = await MapService.getListDestination();
+                    return res;
+                },
             },
             {
                 path: "tripdetail/result",

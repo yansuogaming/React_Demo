@@ -165,8 +165,9 @@ class FAQController
     #[Put('status/{faq:\d+}')]
     public function updateStatus(FAQ $faq)
     {
-        $faq->is_active = $faq->is_active == 1 ? 0 : 1;
-        $updated = $faq->save();
+        $updated = FAQ::where('translation_of', $faq->translation_of)->update([
+            'is_active' => $faq->is_active == 1 ? 0 : 1
+        ]);
         if ($updated) {
             return Response::json([
                 'message' => 'Cập nhật thành công',

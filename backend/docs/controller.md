@@ -104,6 +104,16 @@ class UserController
             'data' => $user
         ]);
     }
+
+
+    // Cách viết 3 trong trường hợp muốn tìm user theo email, hay bài viết theo slug thì sẽ làm ntn framework cũng tự trả ra lỗi 404 nếu không tìm thấy.
+    #[Get('/user/{email}', name: 'detail')]
+    public function detail(#[FindBy('email')] User $user)
+    {
+        return Response::json([
+            'data' => $user
+        ]);
+    }
 }
 ```
 

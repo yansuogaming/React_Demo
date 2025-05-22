@@ -20,21 +20,40 @@ class EventController
         $langId = $request->input('lang_id');
         $orderField = $request->input('order_field', 'created_at');
 
-        $res = Http::post('http://eventdb.itourism.vn/api/events', [
-            'per_page' => $perPage,
-            'keyword' => $keyword,
-            'order_by' => $orderBy,
-            'lang_id' => $langId,
-            'order_field' => $orderField
-        ])->json();
+        $res = Http::eventdb('vn')
+            ->post('/events', [
+                'per_page' => $perPage,
+                'keyword' => $keyword,
+                'order_by' => $orderBy,
+                'lang_id' => $langId,
+                'order_field' => $orderField
+            ])->json();
         return Response::json($res);
     }
 
-    #[Get('list-going-on')]
+    #[Get('list-ongoing-and-upcomming')]
     public function getListEventGoingOn(Request $request)
     {
         $res = Http::eventdb('vn')
-            ->get('http://eventdb.itourism.vn/api/list-going-on');
+            ->get('/list-going-on');
         return Response::json($res->json());
+    }
+
+    #[Get('/list-approved')]
+    public function getAllApprovedEvents(Request $request)
+    {
+        $type = $request->input('type', 'all');
+        $keyword = $request->input('keyword', '');
+        $langId = $request->input('lang_id', '');
+
+        $res = Http::eventdb('vn')
+            ->post('/events', [
+                'per_page' => 16,
+                'keyword' => $keyword,
+                'order_by' => 'asc',
+                'lang_id' => $langId,
+                'type' => $type
+            ])->json();
+        return Response::json($res);
     }
 }

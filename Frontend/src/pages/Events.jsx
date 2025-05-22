@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useRef, useEffect } from "react";
 
-import { NavLink } from "react-router";
+import { NavLink, useLoaderData } from "react-router";
 import {
     Carousel,
     CarouselContent,
@@ -11,16 +11,11 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
-
-//
 import Breadcrumb from "@components/Breadcrumb";
 import CardEvent from "@components/card/CardEvent";
 import EventHero from "@components/event/EventHero";
 import EventFilterBar from "@components/event/EventFilterBar";
 import EventNewsSlider from "@components/event/EventNewsSlider";
-//
-import imgevent from "@images/3-1595134332.webp";
-import imgevent2 from "@images/4-1708873508769.webp";
 import visaImage from "@images/visa-image.png";
 import ticketIcon from "@images/great.svg";
 import soldIcon from "@images/ticket.svg";
@@ -29,24 +24,6 @@ import iconExp from "@images/ticket2.png";
 import iconSupport from "@images/support.png";
 import iconReview from "@images/telephone.png";
 
-const mockSlides = [
-    {
-        id: 1,
-        image: imgevent,
-        date: "27 Apr to 30 Apr",
-        title: "The Factors Contributing to the Success of the Quang Nam Food and Culture Festival",
-        description:
-            "On the evening of January 1, 2024, the 1st Quang Nam Cultural Food Festival officially concluded with a program featuring artistic performances and cultural exchanges from the region.",
-    },
-    {
-        id: 2,
-        image: imgevent2,
-        date: "15 May to 18 May",
-        title: "Exploring the Taste of Hue Cuisine",
-        description:
-            "Hue Festival celebrated culinary traditions with royal dishes and folk food attracting thousands of tourists.",
-    },
-];
 
 const categories = [
     "All",
@@ -58,21 +35,10 @@ const categories = [
     "Food & Drink",
 ];
 
-const mockEvents = Array.from({ length: 20 }, (_, i) => ({
-    id: i + 1,
-    image: i % 2 === 0 ? imgevent : imgevent2,
-    title: `Event Title ${i + 1}`,
-    startTime: new Date(2024, 3, 30),
-    endTime: new Date(2024, 4, 2),
-    href: `/events/${i + 1}`,
-    location: "Ho Chi Minh City",
-    description:
-        "There are many variations of passages of Lorem Ipsum available...",
-}));
-
 const pageSize = 16;
 
 const Events = () => {
+    const { ongoingAndUpcomingEvents, events } = useLoaderData();
     const { t } = useTranslation();
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
@@ -95,7 +61,7 @@ const Events = () => {
     }, [currentPage]);
 
     const filteredEvents =
-        selectedCategory === "All" ? mockEvents : mockEvents.filter(() => true);
+        selectedCategory === "All" ? events : events.filter(() => true);
     const totalPages = Math.ceil(filteredEvents.length / pageSize);
 
     const paginatedEvents = filteredEvents.slice(
@@ -104,7 +70,7 @@ const Events = () => {
     );
 
     const top8 = paginatedEvents.slice(0, 8);
-    const bottom8 = paginatedEvents.slice(8, 16);
+    const bottom8 = paginatedEvents.slice(8);
 
     const features = [
         {
@@ -139,9 +105,9 @@ const Events = () => {
                 <div className="container mx-auto">
                     <Carousel opts={{ align: "start" }} className="w-full">
                         <CarouselContent className="-ml-4">
-                            {features.map((feature) => (
+                            {features.map((feature, index) => (
                                 <CarouselItem
-                                    key={feature.id}
+                                    key={index}
                                     className="pl-4 sm:basis-1/2 md:basis-1/2 lg:basis-1/3"
                                 >
                                     <div className="flex gap-4 items-start max-w-sm">
@@ -327,7 +293,7 @@ const Events = () => {
                     />
                 </section>
                 <EventHero
-                    slides={mockSlides}
+                    slides={ongoingAndUpcomingEvents}
                     currentIndex={currentIndex}
                     setCurrentIndex={setCurrentIndex}
                 />
@@ -343,45 +309,49 @@ const Events = () => {
                     />
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {top8.map((event) => (
+                        {top8.map((event, index) => (
                             <CardEvent
-                                key={event.id}
+                                key={index}
                                 title={event.title}
                                 image={event.image}
-                                startTime={event.startTime}
-                                endTime={event.endTime}
-                                href={event.href}
+                                startTime={new Date(event.start_date * 1000)}
+                                endTime={new Date(event.due_date * 1000)}
+                                href="/"
                                 widthImage="100%"
                                 heightImage="180px"
                             >
                                 <p className="text-xs text-gray-500 mt-1">
-                                    📍 {event.location}
+                                    📍 {event.city}
                                 </p>
-                                <p className="text-sm text-gray-600 line-clamp-2">
-                                    {event.description}
-                                </p>
+                                <div
+                                    className="text-sm text-gray-600 line-clamp-2"
+                                    dangerouslySetInnerHTML={{ __html: event.intro }}
+                                >
+                                </div>
                             </CardEvent>
                         ))}
 
                         <AdBanner />
 
-                        {bottom8.map((event) => (
+                        {bottom8.map((event, index) => (
                             <CardEvent
-                                key={event.id}
+                                key={index}
                                 title={event.title}
                                 image={event.image}
-                                startTime={event.startTime}
-                                endTime={event.endTime}
-                                href={event.href}
+                                startTime={new Date(event.start_date * 1000)}
+                                endTime={new Date(event.due_date * 1000)}
+                                href="/"
                                 widthImage="100%"
                                 heightImage="180px"
                             >
-                                <p className="text-sm text-gray-600 line-clamp-2">
-                                    {event.description}
-                                </p>
                                 <p className="text-xs text-gray-500 mt-1">
-                                    📍 {event.location}
+                                    📍 {event.city}
                                 </p>
+                                <div
+                                    className="text-sm text-gray-600 line-clamp-2"
+                                    dangerouslySetInnerHTML={{ __html: event.intro }}
+                                >
+                                </div>
                             </CardEvent>
                         ))}
                     </div>

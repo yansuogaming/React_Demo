@@ -2,6 +2,7 @@
 
 namespace Vietiso\Core\Database\Model;
 
+use ArrayAccess;
 use Vietiso\Core\Database\Model\Traits\{HasRelationships, HidesAttributes, HasAttributes, HasScopes, HasEvents};
 use Vietiso\Core\Collection\Arr;
 use ReflectionAttribute;
@@ -80,7 +81,7 @@ use Traversable;
  * @method static \Vietiso\Core\Database\Model\Model orWhereTime(string $column, string|\DateTimeInterface $value, string $condition = '=')
  * @method static \Vietiso\Core\Database\Model\Model whereIn(string $column, iterable|callable|\Vietiso\Core\Database\Query\Builder|\Vietiso\Core\Database\Model\Builder $values, bool $isNot = false, string $logicalOperator = 'and')
  */
-class Model implements IteratorAggregate, JsonSerializable
+class Model implements IteratorAggregate, JsonSerializable, ArrayAccess
 {
     use HasRelationships;
     use HidesAttributes;

@@ -2,6 +2,7 @@
 
 namespace Vietiso\Core\Database\Query;
 
+use Closure;
 use Vietiso\Core\Database\Model\Builder as ModelBuilder;
 use Vietiso\Core\Database\Query\Traits\BuildsQueries;
 use Vietiso\Core\Database\ConnectionInterface;
@@ -334,7 +335,7 @@ class Builder
     }
 
     public function where(
-        string|array|callable $columns,
+        string|array|Closure $columns,
         mixed $value = null,
         string $condition = '=',
         string $logicalOperator = 'and'
@@ -352,7 +353,7 @@ class Builder
                     $this->addCondition($column, '=', $value, $logicalOperator);
                 }
             }, $logicalOperator);
-        } else if (is_callable($columns)) {
+        } else if ($columns instanceof Closure) {
             return $this->addNestedCondition($columns, $logicalOperator);
         }
 
@@ -1004,13 +1005,17 @@ class Builder
     protected function buildInsert(): string
     {
         $firstKey = key($this->fields);
+        // Trg hợp insert nhiều bản ghi
         if (is_array($this->fields[$firstKey])) {
             $fields = str_repeat('?, ', count($this->fields[$firstKey]) - 1);
             $fields = '(' . substr($fields, 0, -2) . ')';
             $fields = str_repeat("$fields, ", count($this->fields));
             $fields = substr($fields, 0, -2);
             $columns = join(', ', $this->backtick(array_keys($this->fields[$firstKey])));
-        } else {
+        }
+        
+        // Trg hợp insert 1 bản ghi
+        else {
             $fields = '(' . substr(str_repeat('?, ', count($this->fields)), 0, -2) . ')';
             $columns = join(', ', $this->backtick(array_keys($this->fields)));
         }

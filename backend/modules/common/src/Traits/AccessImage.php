@@ -9,6 +9,8 @@ trait AccessImage
     #[Accessor('image')]
     public function getImage($image)
     {
-        return config('app.url') . $image;
+        return filter_var($image, FILTER_VALIDATE_URL)
+            ? $image
+            : config('app.url') . $image;
     }
 }

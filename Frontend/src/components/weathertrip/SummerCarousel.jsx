@@ -5,6 +5,8 @@ import { cn } from "@/lib/utils";
 
 import imgDemo from "@images/3-1595134332.webp";
 
+import { fetchCurrentWeatherByCoords } from "@components/weathertrip/weatherApi";
+
 const items = [
     {
         image: imgDemo,
@@ -32,6 +34,7 @@ const SummerCarousel = () => {
     });
     const [selectedIndex, setSelectedIndex] = useState(0);
     const [scrollSnaps, setScrollSnaps] = useState([]);
+    const [city, setCity] = useState("your city");
 
     const scrollPrev = () => emblaApi?.scrollPrev();
     const scrollNext = () => emblaApi?.scrollNext();
@@ -44,11 +47,34 @@ const SummerCarousel = () => {
         });
     }, [emblaApi]);
 
+    useEffect(() => {
+        if (!navigator.geolocation) return;
+
+        navigator.geolocation.getCurrentPosition(
+            async ({ coords }) => {
+                try {
+                    const data = await fetchCurrentWeatherByCoords(
+                        coords.latitude,
+                        coords.longitude
+                    );
+                    if (data?.location?.name) {
+                        setCity(data.location.name);
+                    }
+                } catch (err) {
+                    console.error("Failed to fetch city name:", err);
+                }
+            },
+            (err) => {
+                console.error("Geolocation error:", err);
+            }
+        );
+    }, []);
+
     return (
         <section className="container mx-auto px-4 py-10">
             <div className="flex justify-between items-start mb-4">
                 <h2 className="text-xl sm:text-2xl font-bold text-[#1A2A44]">
-                    Great days out during summer in Dubai
+                    Great days out during summer in {city}
                 </h2>
 
                 <div className="hidden lg:flex gap-2">

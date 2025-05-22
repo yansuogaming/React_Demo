@@ -4,6 +4,7 @@ namespace Vietiso\Core\Database\Model\Traits;
 
 use Vietiso\Core\Database\Attributes\Accessor;
 use Vietiso\Core\Database\Attributes\Mutator;
+use Vietiso\Core\Database\Query\QueryRaw;
 
 trait HasAttributes
 {
@@ -24,7 +25,7 @@ trait HasAttributes
         foreach ($methods as $method) {
             $reflectionAttribute = $method->getAttributes($attribute)[0];
             $accessor = (string)$reflectionAttribute->newInstance();
-            static::$accessors[$accessor] = $method->getName();
+            static::$accessors[static::class][$accessor] = $method->getName();
         }
     }
 
@@ -35,18 +36,22 @@ trait HasAttributes
         foreach ($methods as $method) {
             $reflectionAttribute = $method->getAttributes($attribute)[0];
             $mutator = (string)$reflectionAttribute->newInstance();
-            static::$mutators[$mutator] = $method->getName();
+            static::$mutators[static::class][$mutator] = $method->getName();
         }
     }
 
     public function hasMutator(?string $field = null): bool
     {
-        return is_null($field) ? !empty(static::$mutators) : isset(static::$mutators[$field]);
+        return is_null($field)
+            ? !empty(static::$mutators[static::class])
+            : isset(static::$mutators[static::class][$field]);
     }
 
     public function hasAccessor(?string $field = null): bool
     {
-        return is_null($field) ? !empty(static::$accessors) : isset(static::$accessors[$field]);
+        return is_null($field)
+            ? !empty(static::$accessors[static::class])
+            : isset(static::$accessors[static::class][$field]);
     }
 
     public function getKey(): mixed
@@ -65,9 +70,10 @@ trait HasAttributes
     public function setAttribute(string $key, mixed $value): static
     {
         if ($this->hasMutator($key)) {
-            $method = static::$mutators[$key];
+            $method = static::$mutators[static::class][$key];
             $value = $this->{$method}($value);
         }
+
         $this->attributes[$key] = $value;
         return $this;
     }
@@ -90,7 +96,7 @@ trait HasAttributes
     public function getAttribute(string $key): mixed
     {
         if ($this->hasAccessor($key)) {
-            $method = static::$accessors[$key];
+            $method = static::$accessors[static::class][$key];
             return $this->{$method}($this->attributes[$key]);
         }
         return $this->attributes[$key];
@@ -99,6 +105,26 @@ trait HasAttributes
     public function getAttributes(): array
     {
         return $this->attributes;
+    }
+
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->attributes[$offset]);
+    }
+
+    public function offsetGet(mixed $offset)
+    {
+        return $this->attributes[$offset];
+    }
+
+    public function offsetSet(mixed $offset, mixed $value)
+    {
+        $this->setAttribute($offset, $value);
+    }
+
+    public function offsetUnset(mixed $offset)
+    {
+        unset($this->attributes[$offset]);
     }
 
     public function __get(string $name): mixed

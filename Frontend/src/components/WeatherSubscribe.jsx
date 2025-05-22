@@ -1,26 +1,93 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FaSun } from "react-icons/fa";
+import {
+    fetchCurrentWeatherByCoords,
+    fetchWeatherForecastByCoords,
+} from "@components/weathertrip/weatherApi";
 
 const WeatherSubscribe = () => {
+    const [weather, setWeather] = useState(null);
+    const [forecast, setForecast] = useState(null);
+    const [astro, setAstro] = useState(null);
+    const [location, setLocation] = useState("your city");
+    const [unit, setUnit] = useState("c"); // "c" for Celsius, "f" for Fahrenheit
+
+    useEffect(() => {
+        if (!navigator.geolocation) return;
+
+        navigator.geolocation.getCurrentPosition(
+            async ({ coords }) => {
+                const [currentData, forecastData] = await Promise.all([
+                    fetchCurrentWeatherByCoords(
+                        coords.latitude,
+                        coords.longitude
+                    ),
+                    fetchWeatherForecastByCoords(
+                        coords.latitude,
+                        coords.longitude
+                    ),
+                ]);
+
+                if (currentData) {
+                    setWeather(currentData);
+                    setLocation(currentData.location.name);
+                }
+
+                if (forecastData?.forecast?.forecastday?.[0]) {
+                    setForecast(forecastData.forecast.forecastday[0].day);
+                    setAstro(forecastData.forecast.forecastday[0].astro);
+                }
+            },
+            (err) => {
+                console.error("Geolocation error:", err);
+            }
+        );
+    }, []);
+
+    const current = weather?.current;
+
     return (
         <section className="bg-white text-[#1a1a1a] py-8 px-4">
-            {/* Weather Info */}
             <div className="container mx-auto max-w-screen-xl">
-                <h2 className="text-xl font-semibold mb-4">Weather in Dubai</h2>
+                <h2 className="text-xl font-semibold mb-4">
+                    Weather in {location}
+                </h2>
 
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                     {/* Temp + Icon */}
                     <div className="flex items-center gap-4 text-4xl font-bold">
-                        <span>41.2°</span>
+                        <span>
+                            {unit === "c"
+                                ? `${current?.temp_c ?? "--"}°`
+                                : `${current?.temp_f ?? "--"}°`}
+                        </span>
                         <FaSun className="text-pink-600 text-4xl" />
-                        <span className="text-xl font-medium">Sunny</span>
+                        <span className="text-xl font-medium">
+                            {current?.condition?.text || "Loading..."}
+                        </span>
                     </div>
 
                     {/* Unit Switch */}
                     <div className="flex gap-4 text-sm">
-                        <span className="font-semibold">Celcius</span>
-                        <span className="text-blue-600 underline cursor-pointer">
-                            Farenheit
+                        <span
+                            className={`font-semibold cursor-pointer ${
+                                unit === "c"
+                                    ? "text-black"
+                                    : "text-blue-600 underline"
+                            }`}
+                            onClick={() => setUnit("c")}
+                        >
+                            Celsius
+                        </span>
+                        <span
+                            className={`cursor-pointer ${
+                                unit === "f"
+                                    ? "text-black font-semibold"
+                                    : "text-blue-600 underline"
+                            }`}
+                            onClick={() => setUnit("f")}
+                        >
+                            Fahrenheit
                         </span>
                     </div>
 
@@ -28,28 +95,46 @@ const WeatherSubscribe = () => {
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-sm">
                         <div>
                             <p className="text-gray-600">Sunrise</p>
-                            <p className="text-pink-600 font-semibold">05:35</p>
+                            <p className="text-pink-600 font-semibold">
+                                {astro?.sunrise || "--"}
+                            </p>
                         </div>
                         <div>
                             <p className="text-gray-600">Sunset</p>
-                            <p className="text-pink-600 font-semibold">18:56</p>
+                            <p className="text-pink-600 font-semibold">
+                                {astro?.sunset || "--"}
+                            </p>
                         </div>
                         <div>
                             <p className="text-gray-600">Low</p>
-                            <p className="text-pink-600 font-semibold">29.4°</p>
+                            <p className="text-pink-600 font-semibold">
+                                {unit === "c"
+                                    ? `${forecast?.mintemp_c ?? "--"}°`
+                                    : `${forecast?.mintemp_f ?? "--"}°`}
+                            </p>
                         </div>
                         <div>
                             <p className="text-gray-600">High</p>
-                            <p className="text-pink-600 font-semibold">34.1°</p>
+                            <p className="text-pink-600 font-semibold">
+                                {unit === "c"
+                                    ? `${forecast?.maxtemp_c ?? "--"}°`
+                                    : `${forecast?.maxtemp_f ?? "--"}°`}
+                            </p>
                         </div>
                         <div>
                             <p className="text-gray-600">Humidity</p>
-                            <p className="text-pink-600 font-semibold">25%</p>
+                            <p className="text-pink-600 font-semibold">
+                                {current?.humidity
+                                    ? `${current.humidity}%`
+                                    : "--"}
+                            </p>
                         </div>
                         <div>
                             <p className="text-gray-600">Wind</p>
                             <p className="text-pink-600 font-semibold">
-                                22.7 km/h
+                                {current?.wind_kph
+                                    ? `${current.wind_kph} km/h`
+                                    : "--"}
                             </p>
                         </div>
                     </div>
@@ -57,7 +142,7 @@ const WeatherSubscribe = () => {
 
                 <div className="mt-4">
                     <button className="text-sm border rounded px-4 py-1 shadow-sm hover:bg-gray-100">
-                        Get Dubai Calendar | Opens in a new window
+                        Get {location} Calendar | Opens in a new window
                     </button>
                 </div>
 
@@ -67,10 +152,18 @@ const WeatherSubscribe = () => {
                     </a>
                 </div>
             </div>
+        </section>
+    );
+};
 
-            {/* <hr className="border-t-2 border-pink-600 my-8" /> */}
+export default WeatherSubscribe;
 
-            {/* <div className="container mx-auto max-w-screen-xl flex flex-col lg:flex-row justify-between gap-[50px]">
+{
+    /* <hr className="border-t-2 border-pink-600 my-8" /> */
+}
+
+{
+    /* <div className="container mx-auto max-w-screen-xl flex flex-col lg:flex-row justify-between gap-[50px]">
                 <div className="flex-1">
                     <h3 className="text-lg font-semibold mb-2">Stay updated</h3>
                     <p className="text-sm mb-4">
@@ -128,9 +221,5 @@ const WeatherSubscribe = () => {
                         </div>
                     </div>
                 </div>
-            </div> */}
-        </section>
-    );
-};
-
-export default WeatherSubscribe;
+            </div> */
+}
