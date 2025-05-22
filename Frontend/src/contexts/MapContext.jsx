@@ -18,9 +18,10 @@ export const SIDEBAR_MODE = {
 
 // Context provider component
 export const MapProvider = ({ children, initialData }) => {
-  const { list_resources, list_categories } = initialData || {};
+  const { list_resources, list_categories ,defaultId} = initialData || {};
+  const defaultMarker = list_resources?.find((item) => item.potential_id == defaultId);
   const [activeTab, setActiveTab] = useState("welcome");
-  const [selectedMarker, setSelectedMarker] = useState(list_resources?.[0]);
+  const [selectedMarker, setSelectedMarker] = useState(defaultMarker||list_resources?.[0]);
   const [listResources, setListResources] = useState(list_resources);
   const [listCategorySelected, setListCategorySelected] = useState([]);
   const [detailResource, setDetailResource] = useState({});

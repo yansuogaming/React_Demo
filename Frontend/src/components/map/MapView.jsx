@@ -47,7 +47,17 @@ const MapView = () => {
     }
   }, [selectedMarker]);
 
-
+  useEffect(() => {
+    if (mapRef.current && selectedMarker) {
+      // Sử dụng flyTo để tạo hiệu ứng di chuyển mượt mà đến vị trí mới
+      mapRef.current.flyTo({
+        center: [+selectedMarker.map_lo, +selectedMarker.map_la],
+        zoom: 15,
+        duration: 2000, // Thời gian di chuyển (ms)
+        essential: true, // Đảm bảo animation luôn được thực hiện
+      });
+    }
+  }, [selectedMarker]);
   
   return (
     <div className="flex-1 relative">

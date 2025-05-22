@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { Link, useLoaderData } from "react-router";
+import { Link, useLoaderData, useParams } from "react-router";
 import imgLogo from "@images/logo.webp";
 
 import { MapProvider, useMapContext } from "@contexts/MapContext";
@@ -10,9 +10,13 @@ import { useTranslation } from "react-i18next";
 
 export default function MapHaNoi() {
   const loaderData = useLoaderData() || {};
+  const { id } = useParams();
 
   return (
-    <MapProvider initialData={loaderData}>
+    <MapProvider initialData={{
+      ...loaderData,
+      defaultId: id
+    }}>
       <MapHaNoiContent />
     </MapProvider>
   );
