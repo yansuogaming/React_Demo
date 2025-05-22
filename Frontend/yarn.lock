@@ -173,6 +173,11 @@
   resolved "https://registry.npmjs.org/@date-fns/tz/-/tz-1.2.0.tgz"
   integrity sha512-LBrd7MiJZ9McsOgxqWX7AaxrDjcFVjWH/tIKJd7pnR7McaslGYOP1QmmiBXdJH/H/yLCT+rcQ7FaPBUxRGUtrg==
 
+"@esbuild/darwin-x64@0.25.4":
+  version "0.25.4"
+  resolved "https://registry.npmjs.org/@esbuild/darwin-x64/-/darwin-x64-0.25.4.tgz"
+  integrity sha512-CJsry8ZGM5VFVeyUYB3cdKpd/H69PYez4eJh1W/t38vzutdjEjtP7hB6eLKBoOdxcAlCtEYHzQ/PJ/oU9I4u0A==
+
 "@esbuild/win32-x64@0.25.4":
   version "0.25.4"
   resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.25.4.tgz"
@@ -835,6 +840,11 @@
   resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.41.0.tgz"
   integrity sha512-h1J+Yzjo/X+0EAvR2kIXJDuTuyT7drc+t2ALY0nIcGPbTatNOf0VWdhEA2Z4AAjv6X1NJV7SYo5oCTYRJhSlVA==
 
+"@rollup/rollup-darwin-x64@4.41.0":
+  version "4.41.0"
+  resolved "https://registry.npmjs.org/@rollup/rollup-darwin-x64/-/rollup-darwin-x64-4.41.0.tgz"
+  integrity sha512-gE5ACNSxHcEZyP2BA9TuTakfZvULEW4YAOtxl/A/YDbIir/wPKukde0BNPlnBiP88ecaN4BJI2TtAd+HKuZPQQ==
+
 "@shadcn/ui@^0.0.4":
   version "0.0.4"
   resolved "https://registry.npmjs.org/@shadcn/ui/-/ui-0.0.4.tgz"
@@ -871,6 +881,11 @@
   version "4.1.7"
   resolved "https://registry.npmjs.org/@tailwindcss/oxide-win32-x64-msvc/-/oxide-win32-x64-msvc-4.1.7.tgz"
   integrity sha512-rYHGmvoHiLJ8hWucSfSOEmdCBIGZIq7SpkPRSqLsH2Ab2YUNgKeAPT1Fi2cx3+hnYOrAb0jp9cRyode3bBW4mQ==
+
+"@tailwindcss/oxide-darwin-x64@4.1.7":
+  version "4.1.7"
+  resolved "https://registry.npmjs.org/@tailwindcss/oxide-darwin-x64/-/oxide-darwin-x64-4.1.7.tgz"
+  integrity sha512-q77rWjEyGHV4PdDBtrzO0tgBBPlQWKY7wZK0cUok/HaGgbNKecegNxCGikuPJn5wFAlIywC3v+WMBt0PEBtwGw==
 
 "@tailwindcss/oxide@4.1.7":
   version "4.1.7"
@@ -1060,6 +1075,13 @@ acorn-jsx@^5.3.2:
   version "8.14.1"
   resolved "https://registry.npmjs.org/acorn/-/acorn-8.14.1.tgz"
   integrity sha512-OvQ/2pUDKmgfCg++xsTX1wGxfTaszcHVcTctW4UJB4hibJx2HXxxO5UmVgyjMa+ZDsiaf5wWLXYpRWMmBI0QHg==
+
+add-to-calendar-button@^2.8.9:
+  version "2.8.9"
+  resolved "https://registry.npmjs.org/add-to-calendar-button/-/add-to-calendar-button-2.8.9.tgz"
+  integrity sha512-l3a74NzFfkxHikmJwYk8e5lfZdWE3thHtTAQtOcecD4nMVQyfhwpfoqGrJzXIHGdFiOUNpb6ykemUWKI/cILHg==
+  dependencies:
+    timezones-ical-library "^1.9.1"
 
 ajv@^6.12.4:
   version "6.12.6"
@@ -2342,6 +2364,11 @@ lightningcss-win32-x64-msvc@1.30.1:
   resolved "https://registry.npmjs.org/lightningcss-win32-x64-msvc/-/lightningcss-win32-x64-msvc-1.30.1.tgz"
   integrity sha512-PVqXh48wh4T53F/1CCu8PIPCxLzWyCnn/9T5W1Jpmdy5h9Cwd+0YQS6/LwhHXSafuc61/xg9Lv5OrCby6a++jg==
 
+lightningcss-darwin-x64@1.30.1:
+  version "1.30.1"
+  resolved "https://registry.npmjs.org/lightningcss-darwin-x64/-/lightningcss-darwin-x64-1.30.1.tgz"
+  integrity sha512-k1EvjakfumAQoTfcXUcHQZhSpLlkAuEkdMBsI/ivWw9hL+7FtilQc0Cy3hrx0AAQrVtQAbMI7YjCgYgvn37PzA==
+
 lightningcss@^1.21.0, lightningcss@1.30.1:
   version "1.30.1"
   resolved "https://registry.npmjs.org/lightningcss/-/lightningcss-1.30.1.tgz"
@@ -3325,6 +3352,11 @@ tar@^7.4.3:
     minizlib "^3.0.1"
     mkdirp "^3.0.1"
     yallist "^5.0.0"
+
+timezones-ical-library@^1.9.1:
+  version "1.9.1"
+  resolved "https://registry.npmjs.org/timezones-ical-library/-/timezones-ical-library-1.9.1.tgz"
+  integrity sha512-OBC7oPoQi6JZn6u/2xQcFTMbe1BLjPrv+QUh5jHfYmg0QTR5HnuhwsBqHfvScNTHqTrDxqlXofXzSm2hFDC1Ow==
 
 tinyglobby@^0.2.13:
   version "0.2.13"

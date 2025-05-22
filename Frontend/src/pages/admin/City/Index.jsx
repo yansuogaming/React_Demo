@@ -106,20 +106,12 @@ export default function Index() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-[120px]">
                             <DropdownMenuItem
-                                onClick={() =>
-                                    navigate(
-                                        `/admin/experiences/${row.getValue(
-                                            "id"
-                                        )}`
-                                    )
-                                }
+                                onClick={() => navigate(`/admin/cities/${row.getValue("id")}`)}
                             >
                                 Sửa
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                                onClick={() =>
-                                    deleteCity(row.getValue("id"))
-                                }
+                                onClick={() => deleteCity(row.getValue("id"))}
                             >
                                 Xoá
                             </DropdownMenuItem>
@@ -175,7 +167,7 @@ export default function Index() {
             <Main>
                 <div className="mb-2 flex justify-between">
                     <h1 className="text-2xl font-bold tracking-tight">
-                        Sự kiện
+                        Thành phố
                     </h1>
                 </div>
                 <Tabs

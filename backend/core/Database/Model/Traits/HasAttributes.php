@@ -112,17 +112,17 @@ trait HasAttributes
         return isset($this->attributes[$offset]);
     }
 
-    public function offsetGet(mixed $offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->attributes[$offset];
     }
 
-    public function offsetSet(mixed $offset, mixed $value)
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->setAttribute($offset, $value);
     }
 
-    public function offsetUnset(mixed $offset)
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->attributes[$offset]);
     }

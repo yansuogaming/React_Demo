@@ -117,6 +117,10 @@ const routes = [
                         },
                     },
                     {
+                        path: "events/detail",
+                        Component: lazy(() => import("@pages/EventsDetail")),
+                    },
+                    {
                         path: "visa-guide",
                         Component: lazy(() => import("@pages/VisaGuide")),
                     },
@@ -161,12 +165,6 @@ const routes = [
                     {
                         path: "downloadapp",
                         Component: lazy(() => import("@pages/DownloadApp")),
-                    },
-                    {
-                        path: "itineraries/detail",
-                        Component: lazy(() =>
-                            import("@pages/ItinerariesDetail")
-                        ),
                     },
                     {
                         path: "search-result/:keyword?",

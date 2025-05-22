@@ -31,4 +31,7 @@ export default defineConfig({
             "@data": path.join(__dirname, "src", "data"),
         },
     },
+    build: {
+        target: "esnext",
+    },
 });
