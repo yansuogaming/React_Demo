@@ -241,7 +241,7 @@ const RegionList = ({ className, ...props }) => {
                             </div>
                         ))}
                         <Carousel
-                            className="w-full"
+                            className="w-full z-0"
                             opts={{
                                 align: "start",
                                 skipSnaps: false,
