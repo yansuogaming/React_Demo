@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import iconFullscreen from "@images/icon-fullscreen.svg";
 import { Marker, Map } from "react-map-gl/mapbox";
-import { MapPin } from "lucide-react";
+import { MapPin, MapPinIcon } from "lucide-react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Link, useNavigate } from "react-router";
+import location from "@images/location.svg";
 
 const accessToken = import.meta.env.VITE_MAP_BOX_ACCESS_TOKEN;
 
@@ -111,7 +112,7 @@ function MapCity({ listDestination }) {
       {isMobileOrTablet && showHoverItem && (
         <div className="fixed inset-0 z-[999]" onClick={handleCloseHoverItem} />
       )}
-      <div className="relative w-[100%]  h-[50vh] xl:h-[296px] xl:max-w-[400px] lg:rounded-tl-[60px] xl:overflow-hidden mx-auto lg:mx-0">
+      <div className="relative w-[100%]  h-[50vh] xl:h-[296px] xl:max-w-[400px] lg:rounded-tl-[40px] xl:overflow-hidden mx-auto lg:mx-0">
         {hoveredMarker &&
           ((isMobileOrTablet && showHoverItem) ||
             (!isMobileOrTablet && markerPosition)) && (
@@ -131,7 +132,7 @@ function MapCity({ listDestination }) {
           mapboxAccessToken={accessToken}
           minZoom={1} // Giới hạn mức zoom tối thiểu
           maxZoom={17} // Giới hạn mức zoom tối đa
-          mapStyle="mapbox://styles/aboutpro/cmaxfyayo007h01qxh4n7akqj"
+          mapStyle="mapbox://styles/mapbox/streets-v12"
           ref={mapRef}
           initialViewState={initialViewState}
           maxBounds={bounds} // Giới hạn vùng bản đồ
@@ -150,15 +151,23 @@ function MapCity({ listDestination }) {
                 <div
                   className={`cursor-pointer ${
                     selectedMarker === destination
-                      ? "text-blue-500"
-                      : "text-red-500"
-                  }`}
+                      ? "text-red-500"
+                      : "text-blue-500"
+                  } `}
                   onMouseEnter={(e) => handleMarkerHover(destination, e)}
                   onMouseLeave={() =>
                     !isMobileOrTablet && setHoveredMarker(null)
                   }
                 >
-                  <MapPin size={36} />
+                  {selectedMarker === destination ? (
+                    <img
+                      src={location}
+                      alt="Location"
+                      className="w-[40px] h-[40px] object-contain"
+                    />
+                  ) : (
+                    <MapPin size={36} />
+                  )}
                 </div>
               </Marker>
             ))}

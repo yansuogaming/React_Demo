@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import Map, { Marker } from "react-map-gl/mapbox";
 import { MapPin, X } from "lucide-react";
-
+import location from "@images/location.svg";
 import SearchAndFilterBar from "./SearchAndFilterBar";
 import { useMapContext } from "@contexts/MapContext";
 
@@ -58,7 +58,7 @@ const MapView = () => {
       });
     }
   }, [selectedMarker]);
-  
+
   return (
     <div className="flex-1 relative">
       <SearchAndFilterBar />
@@ -114,17 +114,25 @@ const MapView = () => {
               anchor="bottom"
               onClick={() => {
                 handleMarkerClick(destination);
-                setActiveTab('destination');
+                setActiveTab("destination");
               }}
             >
               <div
                 className={`cursor-pointer ${
                   selectedMarker === destination
-                    ? "text-blue-500"
-                    : "text-red-500"
+                    ? "text-red-500"
+                    : "text-blue-500"
                 }`}
               >
-                <MapPin size={36} />
+                {selectedMarker === destination ? (
+                  <img
+                    src={location}
+                    alt="Location"
+                    className="w-[40px] h-[40px] object-contain"
+                  />
+                ) : (
+                  <MapPin size={36} />
+                )}
               </div>
             </Marker>
           ))}
