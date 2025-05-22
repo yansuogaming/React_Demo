@@ -10,7 +10,7 @@ const SearchAndFilterBar = () => {
 
   return (
     <div className="p-4 flex gap-3 min-h-16 absolute left-0 top-0 z-20">
-      {list_categories.map((item, index) => (
+      {list_categories?.map((item, index) => (
         <Button
           key={index}
           onClick={() => {
