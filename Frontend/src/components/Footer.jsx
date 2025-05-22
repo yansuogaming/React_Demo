@@ -129,7 +129,7 @@ const Footer = () => {
                         </p>
                         <Dialog>
                             <DialogTrigger asChild>
-                                <button className="w-full md:w-auto rounded-[80px] p-[15px_20px] bg-[#007BFF] text-white flex items-center justify-center gap-[9px]">
+                                <button className="w-full md:w-auto rounded-[80px] p-[15px_20px] bg-[#007BFF] text-white flex items-center justify-center gap-[9px] cursor-pointer">
                                     <img src={iconMail} alt="" />
                                     {t("inscription_newsletter")}
                                 </button>
@@ -161,7 +161,7 @@ const Footer = () => {
                                     className="w-full mt-[16px] p-[10px] border-b border-gray-300 focus:outline-none focus:border-[#007BFF]"
                                 />
 
-                                <Button className="mt-[18px] w-full bg-[#007BFF] text-white rounded-full hover:bg-[#2f46c6] p-[11px_27px]">
+                                <Button className="mt-[18px] w-full bg-[#007BFF] text-white rounded-full hover:bg-[#2f46c6] p-[11px_27px] cursor-pointer">
                                     Submit
                                 </Button>
 

@@ -4,11 +4,11 @@ import { FaStar } from "react-icons/fa";
 import { cn } from "@lib/utils"; // optional if using shadcn's `cn` utility
 
 const ratings = [
-    { label: "Excellent", count: 565, color: "bg-yellow-400" },
-    { label: "Great", count: 238, color: "bg-yellow-300" },
-    { label: "Average", count: 76, color: "bg-yellow-200" },
-    { label: "Poor", count: 0, color: "bg-gray-200" },
-    { label: "Bad", count: 0, color: "bg-gray-200" },
+    { label: "Excellent", count: 565, color: "bg-[#FED141]" },
+    { label: "Great", count: 238, color: "bg-[#FED141]" },
+    { label: "Average", count: 76, color: "bg-[#FED141]" },
+    { label: "Poor", count: 0, color: "bg-[#FED141]" },
+    { label: "Bad", count: 0, color: "bg-[#FED141]" },
 ];
 
 const reviews = new Array(4).fill({
@@ -17,6 +17,8 @@ const reviews = new Array(4).fill({
     date: "12 May 2025",
     rating: "Excellent",
     stars: 5,
+    img: "https://static.vecteezy.com/system/resources/previews/002/275/847/non_2x/male-avatar-profile-icon-of-smiling-caucasian-man-vector.jpg",
+
     content:
         "We had a wonderful day with Ruby in Ha Long Bay. She organized everything perfectly according to our wishes. Along the way, we were able to visit a pearl farm before taking a boat trip through Ha Long Bay and visiting a cave.",
 });
@@ -26,47 +28,68 @@ export default function ReviewSection() {
 
     return (
         <section className="my-10">
-            <h2 className="text-[24px] sm:text-[28px] md:text-[32px] font-semibold text-[#1A2A44] mb-6">
+            <h2 className="text-[28px] font-[700] text-[#1A2A44] mb-[24px]">
                 What people say about this experience
             </h2>
 
             {/* Rating breakdown */}
-            <div className="bg-white border border-gray-200 rounded-lg p-4 mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <div className="text-lg font-semibold text-gray-800">
+            <div className="bg-[#F5F6FA] rounded-md p-6 md:p-[28px_77px_20px_0px] grid grid-cols-1 sm:grid-cols-12 gap-[32px] mb-[16px]">
+                {/* Left column – 5/12 */}
+                <div className="col-span-12 sm:col-span-5 md:border-r md:border-[#DCE4E6] flex flex-col items-center justify-center text-center px-2 sm:px-6">
+                    <h3 className="text-[24px] font-[700] text-[#1A2A44]">
                         Excellent
-                    </div>
-                    <div className="flex items-center text-[#1A2A44] text-[20px] font-semibold">
-                        <FaStar className="text-yellow-400 mr-2" />
+                    </h3>
+                    <div className="flex items-center justify-center text-[32px] font-[700] text-[#1A2A44] mt-2">
+                        <FaStar className="text-[#FED141] mr-[9px] text-[24px]" />
                         4.5
-                        <span className="text-sm text-gray-500 ml-1">/5</span>
+                        <span className="text-[16px] text-[#64646D] ml-[3px] font-[400]">
+                            /5
+                        </span>
                     </div>
-                    <p className="text-sm text-gray-500 mt-1">
+                    <p className="text-[16px] text-[#494951] mt-[9px]">
                         Based on {total} reviews from verified customers
                     </p>
                 </div>
-                <div className="flex-1 space-y-2">
+
+                {/* Right column – 7/12 */}
+                <div className="col-span-12 sm:col-span-7 flex flex-col gap-[11px]">
+                    {/* All ratings - no bar */}
+                    <div className="flex items-center gap-2">
+                        <input
+                            type="checkbox"
+                            defaultChecked
+                            className="accent-blue-600 mt-[1px]"
+                        />
+                        <span className="text-[#1A2A44] text-[16px] font-[400] whitespace-nowrap">
+                            All ratings ({total})
+                        </span>
+                    </div>
+
+                    {/* Ratings with bars */}
                     {ratings.map((r) => (
                         <div key={r.label} className="flex items-center gap-2">
                             <input
                                 type="checkbox"
-                                defaultChecked={r.label === "All ratings"}
-                                className="accent-blue-600"
+                                className="accent-blue-600 mt-[1px]"
                             />
-                            <span className="text-sm w-[90px]">{r.label}</span>
-                            <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <span className="text-[#1A2A44] text-[16px] font-[400] whitespace-nowrap w-[130px]">
+                                {r.label} ({r.count})
+                            </span>
+                            <div className="flex-1 h-2 bg-gray-200 rounded-[6px] overflow-hidden">
                                 <div
-                                    className={cn("h-full", r.color)}
+                                    className={cn(
+                                        "h-full rounded-[6px]",
+                                        r.color
+                                    )}
                                     style={{
                                         width: `${
-                                            (r.count / total) * 100 || 0
+                                            total > 0
+                                                ? (r.count / total) * 100
+                                                : 0
                                         }%`,
                                     }}
                                 />
                             </div>
-                            <span className="text-sm text-gray-500 min-w-[32px] text-right">
-                                {r.count}
-                            </span>
                         </div>
                     ))}
                 </div>
@@ -77,26 +100,39 @@ export default function ReviewSection() {
                 {reviews.map((review, idx) => (
                     <div
                         key={idx}
-                        className="border border-gray-200 rounded-lg p-4 bg-[#F5F6FA]"
+                        className="rounded-[8px] bg-[#F5F6FA] p-[20px] border border-[#E5EAF1]"
                     >
-                        <div className="flex items-center gap-2 mb-1">
-                            <div className="w-8 h-8 rounded-full bg-gray-300" />
+                        {/* Header */}
+                        <div className="flex items-start gap-3 mb-3">
+                            {/* Avatar placeholder */}
+                            <div className="w-[40px] h-[40px] bg-[#E3E9EF] rounded-full flex items-center justify-center text-gray-400 text-sm">
+                                <img
+                                    src={review.img}
+                                    alt="avatar"
+                                    className="w-full h-full object-cover rounded-[40px]"
+                                />
+                            </div>
                             <div>
-                                <p className="text-sm font-semibold text-gray-800">
+                                <p className="text-[17px] font-[700] text-[#1A2A44]">
                                     {review.name}
                                 </p>
-                                <p className="text-xs text-gray-500">
-                                    {review.country} • {review.date}
+                                <p className="text-[14px] text-[#494951]">
+                                    🇮🇹 {review.country} – {review.date}
                                 </p>
                             </div>
                         </div>
-                        <p className="text-sm font-semibold text-[#1A2A44]">
-                            {review.rating}{" "}
-                            <span className="text-gray-500 ml-1 text-xs font-normal">
+
+                        {/* Rating Line */}
+                        <p className="text-[14px] font-[700] text-[#1A2A44] flex items-center gap-1">
+                            {review.rating}
+                            <FaStar className="text-[#FED141] text-[16px] -mt-[1px]" />
+                            <span className="text-[14px] font-[400] text-[#1A2A44] ml-1">
                                 Overall rated {review.stars}/5
                             </span>
                         </p>
-                        <p className="text-sm text-gray-700 mt-2 leading-relaxed">
+
+                        {/* Content */}
+                        <p className="text-[16px] text-[#1A2A44] font-[400] mt-2 leading-[160%]">
                             {review.content}
                         </p>
                     </div>

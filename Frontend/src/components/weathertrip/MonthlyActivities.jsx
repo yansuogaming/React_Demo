@@ -4,6 +4,7 @@ import {
     fetchMonthlyForecastSummary,
     fetchWeatherAlerts,
     getMockMonthlyWeatherData,
+    fetchCurrentWeatherByCoords,
 } from "@components/weathertrip/weatherApi";
 import dubaiImage from "@images/about-vietnam.png";
 import imgDemo from "@images/3-1595134332.webp";
@@ -45,6 +46,7 @@ const MonthlyActivities = () => {
     const [locationError, setLocationError] = useState(null);
     const scrollRef = useRef(null);
     const buttonRefs = useRef({});
+    const [city, setCity] = useState("your city");
 
     useEffect(() => {
         if (!navigator.geolocation) {
@@ -63,6 +65,13 @@ const MonthlyActivities = () => {
                         ),
                         fetchWeatherAlerts(coords.latitude, coords.longitude),
                     ]);
+                    const data = await fetchCurrentWeatherByCoords(
+                        coords.latitude,
+                        coords.longitude
+                    );
+                    if (data?.location?.name) {
+                        setCity(data.location.name);
+                    }
 
                     if (Object.keys(monthly).length < 12) {
                         setMonthlyData(getMockMonthlyWeatherData());
@@ -104,7 +113,7 @@ const MonthlyActivities = () => {
         <section className="container mx-auto px-4 py-12">
             <div ref={scrollRef} className="mt-24" id="things-to-do">
                 <h2 className="text-[28px] md:text-[36px] font-bold text-[#1A2A44]">
-                    Things to do each month
+                    Things to do in {city} each month
                 </h2>
                 <p className="text-xl text-gray-500 mb-2">
                     Find something to do whenever you visit
