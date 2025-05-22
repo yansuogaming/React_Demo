@@ -86,6 +86,17 @@ const routes = [
                     {
                         path: "itineraries",
                         Component: lazy(() => import("@pages/Itineraries")),
+                        loader: async () => {
+                            const res = await Promise.all([
+                                TourService.getListTrending(),
+                                TourService.getListTour(),
+                            ]);
+                            console.log(res[1]);
+                            return {
+                                listTrendingTours: res[0],
+                                listTours: res[1],
+                            };
+                        },
                     },
                     {
                         path: "itineraries/detail",
@@ -169,10 +180,6 @@ const routes = [
                     {
                         path: "search-result/:keyword?",
                         Component: lazy(() => import("@pages/SearchResult")),
-                    },
-                    {
-                        path: "log",
-                        Component: lazy(() => import("@pages/DownloadApp")),
                     },
                     {
                         path: "signin",
