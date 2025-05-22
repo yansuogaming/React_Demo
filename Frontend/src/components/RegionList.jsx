@@ -99,29 +99,33 @@ const RegionList = ({ className, ...props }) => {
                     {t("Destination by Region")}
                 </h2>
                 <ul className="hidden xl:inline-flex flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[70px] py-[16px] pb-[20px] mb-[66px]">
-                    {regions.map((region, index) => (
-                        <li key={index} className="flex-shrink-0">
-                            <NavLink
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setActiveRegion(index);
-                                }}
-                                className={`relative ${
-                                    activeRegion === index
-                                        ? "hnv_region_active_menu"
-                                        : ""
-                                }
-                                    `}
-                            >
-                                {region.title}
-                            </NavLink>
-                        </li>
-                    ))}
+                    {regions.map((region, index) => {
+                        if (index < 3) {
+                            return (
+                                <li key={index} className="flex-shrink-0">
+                                    <NavLink
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setActiveRegion(index);
+                                        }}
+                                        className={`relative ${
+                                            activeRegion === index
+                                                ? "hnv_region_active_menu"
+                                                : ""
+                                        }`}
+                                    >
+                                        {region.title}
+                                    </NavLink>
+                                </li>
+                            );
+                        }
+                        return null; // Không render các phần tử có index >= 3
+                    })}
                 </ul>
             </div>
 
             {/* Bản đồ và Thông tin Region */}
-            <div className="grid grid-cols-12 gap-[34px]">
+            <div className="grid grid-cols-12 gap-0 xl:gap-[34px]">
                 {/* Bản đồ region */}
                 <div className="col-span-12 xl:col-span-5">
                     <div className="relative max-w-full w-full overflow-hidden mx-auto">
@@ -164,27 +168,34 @@ const RegionList = ({ className, ...props }) => {
 
                     {/* Menu Region tablet - mobile */}
                     <div className="flex items-center justify-center mt-[42px]">
-                        <ul className="hidden md:inline-flex xl:hidden flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[70px] py-[16px] pb-[20px]">
-                            {regions.map((region, index) => (
-                                <li key={index} className="flex-shrink-0">
-                                    <NavLink
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            setActiveRegion(index);
-                                        }}
-                                        className={`relative ${
-                                            activeRegion === index
-                                                ? "hnv_region_active_menu"
-                                                : ""
-                                        }
-                                    `}
-                                    >
-                                        {region.title}
-                                    </NavLink>
-                                </li>
-                            ))}
+                        <ul className="inline-flex xl:hidden flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[40px] xl:px-[70px] py-[16px] pb-[20px]">
+                            {regions.map((region, index) => {
+                                if (index < 3) {
+                                    return (
+                                        <li
+                                            key={index}
+                                            className="flex-shrink-0"
+                                        >
+                                            <NavLink
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setActiveRegion(index);
+                                                }}
+                                                className={`relative ${
+                                                    activeRegion === index
+                                                        ? "hnv_region_active_menu"
+                                                        : ""
+                                                }`}
+                                            >
+                                                {region.title}
+                                            </NavLink>
+                                        </li>
+                                    );
+                                }
+                                return null; // Không render nếu index >= 3
+                            })}
                         </ul>
-                        <Carousel
+                        {/* <Carousel
                             className="w-full block md:hidden relative px-[60px] pt-[12px] pb-[10px] rounded-[80px] bg-white shadow-[0_4px_12px_0_rgba(54,133,143,0.15)]"
                             opts={{
                                 align: "start",
@@ -219,7 +230,7 @@ const RegionList = ({ className, ...props }) => {
                             </CarouselContent>
                             <CarouselPrevious className="flex left-[10px] md:left-[20px] cursor-pointer" />
                             <CarouselNext className="flex right-[10px] md:right-[20px] cursor-pointer" />
-                        </Carousel>
+                        </Carousel> */}
                     </div>
                 </div>
                 {/* Thông tin + Carousel */}
@@ -232,7 +243,7 @@ const RegionList = ({ className, ...props }) => {
                                     activeRegion === index ? "" : "hidden"
                                 }
                             >
-                                <h2 className="text-[#1A2A44] text-[28px] md:text-[56px] lg:text-[72px] font-bold text-center xl:text-left mb-[8px] md:mb-0">
+                                <h2 className="text-[#1A2A44] text-[28px] md:text-[56px] lg:text-[72px] font-bold text-center xl:text-left mb-[8px] md:mb-0 mt-2 xl:mt-0">
                                     {region.title}
                                 </h2>
                                 <div className="text-[#494951] text-[16px] md:text-[18px] lg:text-[20px] font-normal mb-[30px] md:mb-[40px] lg:mb-[50px] truncate_5">
@@ -250,85 +261,69 @@ const RegionList = ({ className, ...props }) => {
                                 dragFree: false,
                             }}
                         >
-                            {regions.map((region, index) => (
-                                <CarouselContent
-                                    key={region.id}
-                                    className={cn(
-                                        "-ml-[20px]",
-                                        activeRegion === index ? "" : "hidden"
-                                    )}
-                                >
-                                    {/* Nếu vùng đó có destinations, lặp để hiển thị từng điểm nổi bật */}
-                                    {region.destinations &&
-                                        region.destinations.map(
-                                            (destination, idx) => (
-                                                <CarouselItem
-                                                    key={idx}
-                                                    className="basis-[80%] sm:basis-[45%] pl-[20px] relative group"
-                                                    onClick={() =>
-                                                        setActiveRegion(index)
-                                                    }
+                            {/* Chỉ một CarouselContent duy nhất */}
+                            <CarouselContent className="-ml-[20px]">
+                                {regions[activeRegion]?.destinations?.map(
+                                    (destination, idx) => (
+                                        <CarouselItem
+                                            key={idx}
+                                            className="basis-[80%] sm:basis-[45%] pl-[20px] relative group"
+                                            onClick={() =>
+                                                setActiveRegion(activeRegion)
+                                            } // Không cần thiết nếu không thay đổi index
+                                        >
+                                            <NavLink to="/city/ha-noi">
+                                                <img
+                                                    src={destination.image}
+                                                    alt={destination.title}
+                                                    className="w-full rounded-[60px_4px_4px_4px]"
+                                                    loading="lazy"
+                                                />
+                                                <div
+                                                    className={cn(
+                                                        "absolute right-0 top-[calc(100%-70px)] z-1 w-[calc(100%-20px)]",
+                                                        "p-[20px_20px_0_20px] overflow-hidden transition-all duration-500",
+                                                        "group-hover:top-[calc(100%-195px)]"
+                                                    )}
                                                 >
-                                                    <NavLink to="/city/hanoi">
-                                                        <img
-                                                            src={
-                                                                destination.image
+                                                    <h3 className="text-white text-[28px] font-bold">
+                                                        {destination.title}
+                                                    </h3>
+                                                    <div
+                                                        className={cn(
+                                                            "opacity-0 group-hover:opacity-100",
+                                                            "transition-all duration-500"
+                                                        )}
+                                                    >
+                                                        <p className="text-white mt-2 text-[16px] leading-[1.4]">
+                                                            {
+                                                                destination.description
                                                             }
-                                                            alt={
-                                                                destination.title
-                                                            }
-                                                            className="w-full rounded-[60px_4px_4px_4px]"
-                                                            loading="lazy"
-                                                        />
+                                                        </p>
                                                         <div
                                                             className={cn(
-                                                                "absolute right-0 top-[calc(100%-70px)] z-1 w-[calc(100%-20px)]",
-                                                                "p-[20px_20px_0_20px] overflow-hidden transition-all duration-500",
-                                                                "group-hover:top-[calc(100%-195px)]"
+                                                                "flex mt-[10px] mb-[20px] text-[17px] font-bold",
+                                                                "text-white gap-[8px] items-center justify-end"
                                                             )}
                                                         >
-                                                            <h3 className="text-white text-[28px] font-bold">
-                                                                {
-                                                                    destination.title
-                                                                }
-                                                            </h3>
-                                                            <div
-                                                                className={cn(
-                                                                    "opacity-0 group-hover:opacity-100",
-                                                                    "transition-all duration-500"
-                                                                )}
-                                                            >
-                                                                <p className="text-white mt-2 text-[16px] leading-[1.4]">
-                                                                    {
-                                                                        destination.description
-                                                                    }
-                                                                </p>
-                                                                <div
-                                                                    className={cn(
-                                                                        "flex mt-[10px] mb-[20px] text-[17px] font-bold",
-                                                                        "text-white gap-[8px] items-center justify-end"
-                                                                    )}
-                                                                >
-                                                                    <span>
-                                                                        Discover
-                                                                    </span>
-                                                                    <FaArrowRight />
-                                                                </div>
-                                                            </div>
+                                                            <span>Discover</span>
+                                                            <FaArrowRight />
                                                         </div>
-                                                        <div
-                                                            className={cn(
-                                                                "rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]",
-                                                                "absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0",
-                                                                "transition-all duration-500"
-                                                            )}
-                                                        ></div>
-                                                    </NavLink>
-                                                </CarouselItem>
-                                            )
-                                        )}
-                                </CarouselContent>
-                            ))}
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className={cn(
+                                                        "rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]",
+                                                        "absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0",
+                                                        "transition-all duration-500"
+                                                    )}
+                                                ></div>
+                                            </NavLink>
+                                        </CarouselItem>
+                                    )
+                                )}
+                            </CarouselContent>
+
                             <CarouselPrevious className="hidden md:flex left-[10px] md:left-[20px] cursor-pointer" />
                             <CarouselNext className="hidden md:flex right-[10px] md:right-[20px] cursor-pointer" />
                         </Carousel>

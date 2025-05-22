@@ -12,6 +12,16 @@ const CityService = {
         return false;
     },
 
+    getCity: async (cityId) => {
+        const res = await HttpClient.get(`/city/${cityId}`);
+        if (res.status === 200) {
+            return res.data.city;
+        }
+
+        toast.error('Lấy city thất bại.');
+        return false;
+    },
+
     getCityBySlug: async (slug) => {
         const res = await HttpClient.get(`/city/${slug}`);
         if (res.status === 200) {

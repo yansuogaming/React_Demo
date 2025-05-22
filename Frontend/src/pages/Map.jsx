@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useLoaderData } from "react-router";
-
+import imgLogo from "@images/logo.webp";
 
 
 
@@ -33,7 +33,18 @@ function MapHaNoiContent() {
 
   return (
     <div className="flex flex-col h-screen bg-[rgb(35,37,43)] text-gray-200">
+          <header className="sticky top-0 z-10 flex h-16 items-center justify-left gap-6 p-4 bg-[rgb(35,37,43)]">
+          <img
+            src={imgLogo}
+            alt="Logo"
+            className="h-8 w-auto"
+          />
+          <h1 className="text-2xl font-medium text-white">
+            Map Hà Nội
+          </h1>
+        </header>
       <div className="flex flex-1 overflow-hidden">
+    
         <LeftSideBar />
         <MapView />
       </div>
