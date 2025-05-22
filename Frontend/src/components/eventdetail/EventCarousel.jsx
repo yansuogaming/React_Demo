@@ -51,8 +51,8 @@ const events = [
 
 export default function EventCarousel() {
     return (
-        <section className="container mx-auto py-8">
-            <h2 className="text-xl font-semibold mb-6 text-[#1A2A44]">
+        <section className="container mx-auto pt-[60px]">
+            <h2 className="text-[28px] font-[700] mb-[32px] text-[#1A2A44]">
                 More events like this
             </h2>
             <div className="relative">
