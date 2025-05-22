@@ -17,6 +17,7 @@ const MapView = () => {
     detailResource,
     showVideo,
     setShowVideo,
+    setActiveTab,
   } = useMapContext();
 
   // Tọa độ ranh giới cho Hà Nội (Tây Nam và Đông Bắc)
@@ -52,7 +53,7 @@ const MapView = () => {
     <div className="flex-1 relative">
       <SearchAndFilterBar />
       {showVideo && detailResource?.video_url && (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full z-30">
           <iframe
             src={`${detailResource.video_url}?autoplay=1`}
             className="w-full h-full"
@@ -69,7 +70,7 @@ const MapView = () => {
         </div>
       )}
       {showVR && detailResource?.vr_url && (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full z-30">
           <iframe
             src={detailResource.vr_url}
             className="w-full h-full"
@@ -101,7 +102,10 @@ const MapView = () => {
               longitude={+destination?.map_lo}
               latitude={+destination?.map_la}
               anchor="bottom"
-              onClick={() => handleMarkerClick(destination)}
+              onClick={() => {
+                handleMarkerClick(destination);
+                setActiveTab('destination');
+              }}
             >
               <div
                 className={`cursor-pointer ${

@@ -9,10 +9,16 @@ export const useMapContext = () => {
   return useContext(MapContext);
 };
 
+// Sidebar modes
+export const SIDEBAR_MODE = {
+  SEARCH: "search",
+  DESTINATION: "destination",
+  CLOSED: "closed",
+};
+
 // Context provider component
 export const MapProvider = ({ children, initialData }) => {
   const { list_resources, list_categories } = initialData || {};
-  
   const [activeTab, setActiveTab] = useState("welcome");
   const [selectedMarker, setSelectedMarker] = useState(list_resources?.[0]);
   const [listResources, setListResources] = useState(list_resources);
@@ -22,6 +28,8 @@ export const MapProvider = ({ children, initialData }) => {
   const [listFilter, setListFilter] = useState(list_resources);
   const [showVR, setShowVR] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
+  const [sidebarMode, setSidebarMode] = useState(SIDEBAR_MODE.CLOSED);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
 
   const normalizeVietnameseString = (str) => {
     return str
@@ -119,6 +127,8 @@ export const MapProvider = ({ children, initialData }) => {
     listFilter,
     list_categories,
     showVR,
+    sidebarMode,
+    isFirstLoad,
 
     // Setters
     setActiveTab,
@@ -126,6 +136,8 @@ export const MapProvider = ({ children, initialData }) => {
     setKeywords,
     setShowVR,
     setShowVideo,
+    setSidebarMode,
+    setIsFirstLoad,
     
     // Actions
     getDetailResource,
