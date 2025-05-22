@@ -3,27 +3,18 @@ import { useState } from "react";
 import { useRef, useEffect } from "react";
 
 import { NavLink, useLoaderData } from "react-router";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
+
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import Breadcrumb from "@components/Breadcrumb";
 import CardEvent from "@components/card/CardEvent";
 import EventHero from "@components/event/EventHero";
 import EventFilterBar from "@components/event/EventFilterBar";
 import EventNewsSlider from "@components/event/EventNewsSlider";
-import visaImage from "@images/visa-image.png";
+import FeatureCarousel from "@components/event/FeatureCarousel";
+import VisaBanner from "@components/event/VisaBanner";
 import ticketIcon from "@images/great.svg";
 import soldIcon from "@images/ticket.svg";
 import freeIcon from "@images/free.svg";
-import iconExp from "@images/ticket2.png";
-import iconSupport from "@images/support.png";
-import iconReview from "@images/telephone.png";
-
 
 const categories = [
     "All",
@@ -71,79 +62,6 @@ const Events = () => {
 
     const top8 = paginatedEvents.slice(0, 8);
     const bottom8 = paginatedEvents.slice(8);
-
-    const features = [
-        {
-            id: 1,
-            title: "Unforgettable experiences",
-            description:
-                "Every experience is designed to leave a lasting impression. Every event is curated with the best experiences for you to enjoy.",
-            icon: iconExp,
-            bg: "bg-gradient-to-b from-[#FED074] to-[#FE9D00]",
-        },
-        {
-            id: 2,
-            title: "24/7 Support",
-            description:
-                "Every experience is designed to leave a lasting impression. Every event is curated with the best experiences for you to enjoy.",
-            icon: iconSupport,
-            bg: "bg-gradient-to-b from-[#BD81F6] to-[#9249EF]",
-        },
-        {
-            id: 3,
-            title: "Good reviews",
-            description:
-                "Every experience is designed to leave a lasting impression. Every event is curated with the best experiences for you to enjoy.",
-            icon: iconReview,
-            bg: "bg-gradient-to-b from-[#A4C2FB] to-[#759DF6]",
-        },
-    ];
-
-    const FeatureCarousel = () => {
-        return (
-            <section className="py-[101px] bg-white">
-                <div className="container mx-auto">
-                    <Carousel opts={{ align: "start" }} className="w-full">
-                        <CarouselContent className="-ml-4">
-                            {features.map((feature, index) => (
-                                <CarouselItem
-                                    key={index}
-                                    className="pl-4 sm:basis-1/2 md:basis-1/2 lg:basis-1/3"
-                                >
-                                    <div className="flex gap-4 items-start max-w-sm">
-                                        {/* Gradient icon box */}
-                                        <div
-                                            className={`p-[24px] rounded-md flex items-center justify-center ${feature.bg}`}
-                                        >
-                                            <img
-                                                src={feature.icon}
-                                                alt={feature.title}
-                                                className="w-full h-full"
-                                            />
-                                        </div>
-
-                                        {/* Text content */}
-                                        <div>
-                                            <h3 className="text-[24px] font-[700] text-black mb-1">
-                                                {feature.title}
-                                            </h3>
-                                            <p className="text-[16px] text-[#494951]">
-                                                {feature.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-
-                        {/* Ẩn trên mobile */}
-                        <CarouselPrevious className="left-0 hidden" />
-                        <CarouselNext className="right-0 hidden" />
-                    </Carousel>
-                </div>
-            </section>
-        );
-    };
 
     const AdBanner = () => {
         return (
@@ -195,40 +113,6 @@ const Events = () => {
                     </div>
                 </div>
             </div>
-        );
-    };
-
-    const VisaBanner = () => {
-        return (
-            <section className="bg-[#F6F6FB] p-[48px_0_35px_0]">
-                <div className="flex justify-center px-4">
-                    <div className="flex flex-col lg:flex-row items-stretch max-w-[1100px] w-full overflow-hidden rounded-[40px] lg:rounded-[0_0_40px_0]">
-                        <div className="lg:w-[272px] lg:h-[272px] shrink-0">
-                            <img
-                                src={visaImage}
-                                alt="Visa support"
-                                className="w-full h-full object-cover rounded-t-[40px] lg:rounded-[40px_0_0_40px]"
-                            />
-                        </div>
-
-                        <div className="bg-white p-[66px_35px] flex flex-col justify-center w-full">
-                            <h3 className="text-[26px] font-[500] text-[#1A2A44] mb-[12px]">
-                                Vietnam offers easy entry for travelers
-                            </h3>
-                            <p className="text-[16px] font-[400] text-[#494951] mb-[20px]">
-                                Helping visitors easily experience a seamless
-                                immigration process when coming to Vietnam.
-                            </p>
-                            <NavLink
-                                to="#"
-                                className="w-fit bg-[#007BFF] text-white hover:bg-blue-700 transition p-[10px_20px] font-[500] text-[16px]"
-                            >
-                                Explore now
-                            </NavLink>
-                        </div>
-                    </div>
-                </div>
-            </section>
         );
     };
 
@@ -325,9 +209,10 @@ const Events = () => {
                                 </p>
                                 <div
                                     className="text-sm text-gray-600 line-clamp-2"
-                                    dangerouslySetInnerHTML={{ __html: event.intro }}
-                                >
-                                </div>
+                                    dangerouslySetInnerHTML={{
+                                        __html: event.intro,
+                                    }}
+                                ></div>
                             </CardEvent>
                         ))}
 
@@ -349,9 +234,10 @@ const Events = () => {
                                 </p>
                                 <div
                                     className="text-sm text-gray-600 line-clamp-2"
-                                    dangerouslySetInnerHTML={{ __html: event.intro }}
-                                >
-                                </div>
+                                    dangerouslySetInnerHTML={{
+                                        __html: event.intro,
+                                    }}
+                                ></div>
                             </CardEvent>
                         ))}
                     </div>
