@@ -1,4 +1,3 @@
-import image from "@images/image_17.png";
 import { useTranslation } from "react-i18next";
 import ViewMoreButton from "./button/ViewMoreButton";
 import CardService from "./card/CardService";
@@ -6,7 +5,7 @@ import Reveal from "./animation/Reveal";
 import { CiClock2 } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
 
-const TrendingItinerary = ({ className = "" }) => {
+const TrendingItinerary = ({ className = "", data = [] }) => {
     const { t } = useTranslation();
 
     return (
@@ -25,12 +24,12 @@ const TrendingItinerary = ({ className = "" }) => {
             {/* Cards */}
             <Reveal>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:gap-[40px] gap-[16px] lg:gap-y-8">
-                    {Array.from({ length: 6 }).map((_, index) => (
+                    {data.map((tour, index) => (
                         <CardService
-                            title="Enjoy Hanoi street food"
+                            title={tour.title}
                             widthImage="100%"
                             heightImage="auto"
-                            image={image}
+                            image={tour.image}
                             href="/"
                             key={index}
                             padding="15px 0 0 0"
@@ -41,15 +40,15 @@ const TrendingItinerary = ({ className = "" }) => {
                                     (1411)
                                 </p>
                                 <p className="flex gap-[5px] items-center mb-[15px] text-[#494951]">
-                                    <CiClock2 /> 3 days 2 nights
+                                    <CiClock2 /> {tour.number_day} days {tour.number_night}
                                 </p>
                             </div>
 
-                            <p className="text-[16px] font-normal hidden lg:block">
-                                Various versions have evolved over the years,
-                                sometimes by accident, sometimes on purpose
-                                (injected humour)
-                            </p>
+                            <div
+                                className="text-[16px] font-normal hidden lg:block truncate_3"
+                                dangerouslySetInnerHTML={{ __html: tour.overview }}
+                            >
+                            </div>
                         </CardService>
                     ))}
                 </div>

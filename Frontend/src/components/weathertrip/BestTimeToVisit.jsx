@@ -1,10 +1,38 @@
 import { NavLink } from "react-router";
+import React, { useState, useEffect } from "react";
+
+import { fetchCurrentWeatherByCoords } from "@components/weathertrip/weatherApi";
 
 const BestTimeToVisit = () => {
+    const [city, setCity] = useState("your city");
+
+    useEffect(() => {
+        if (!navigator.geolocation) return;
+
+        navigator.geolocation.getCurrentPosition(
+            async ({ coords }) => {
+                try {
+                    const data = await fetchCurrentWeatherByCoords(
+                        coords.latitude,
+                        coords.longitude
+                    );
+                    if (data?.location?.name) {
+                        setCity(data.location.name);
+                    }
+                } catch (err) {
+                    console.error("Failed to fetch city name:", err);
+                }
+            },
+            (err) => {
+                console.error("Geolocation error:", err);
+            }
+        );
+    }, []);
+
     return (
         <section className="container mx-auto px-4 py-10 max-w-4xl">
             <h2 className="text-[24px] md:text-[32px] font-bold text-[#1A2A44] mb-6">
-                When is the best time to visit Dubai?
+                When is the best time to visit {city}?
             </h2>
             <div className="text-[#505050] text-[16px] space-y-4 leading-relaxed">
                 <p>

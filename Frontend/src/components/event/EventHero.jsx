@@ -1,3 +1,6 @@
+import useLanguage from "@hooks/useLanguage";
+import { format } from "date-fns";
+import { enUS, vi } from "date-fns/locale";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
 const EventHero = ({ slides, currentIndex, setCurrentIndex }) => {
@@ -8,6 +11,20 @@ const EventHero = ({ slides, currentIndex, setCurrentIndex }) => {
     const handlePrev = () =>
         setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
+    const { language } = useLanguage();
+    let txtStartTime = "";
+    let txtEndTime = "";
+    switch (language) {
+        case "vi":
+            txtStartTime = format(new Date(currentSlide.start_date * 1000), "d MMM", { locale: vi });
+            txtEndTime = format(new Date(currentSlide.due_date * 1000), "d MMM", { locale: vi });
+            break;
+        default:
+            txtStartTime = format(new Date(currentSlide.start_date * 1000), "d MMM", { locale: enUS });
+            txtEndTime = format(new Date(currentSlide.due_date * 1000), "d MMM", { locale: enUS });
+            break;
+    }
+
     return (
         <section>
             <div className="relative grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-2xl shadow-lg">
@@ -15,26 +32,21 @@ const EventHero = ({ slides, currentIndex, setCurrentIndex }) => {
                 <div className="bg-[#0E284E] text-white p-6 flex flex-col justify-center">
                     <div>
                         <span className="inline-block bg-white text-[#0E284E] text-[18px] rounded mb-[32px] font-[700] p-[8px]">
-                            {currentSlide.date.split(" ").map((part, i) =>
-                                part === "to" ? (
-                                    <span
-                                        key={i}
-                                        className="text-[14px] text-[#1A2A44] font-[400] mr-[6px]"
-                                    >
-                                        to
-                                    </span>
-                                ) : (
-                                    <span key={i}>{part} </span>
-                                )
-                            )}
+                            <span>{txtStartTime}</span>
+                            <span className="text-[14px] text-[#1A2A44] font-[400] mr-[6px]">
+                                {" "}to
+                            </span>
+                            <span>{txtEndTime}</span>
                         </span>
 
                         <h2 className="text-2xl font-bold mb-4 leading-snug">
                             {currentSlide.title}
                         </h2>
-                        <p className="text-sm leading-relaxed">
-                            {currentSlide.description}
-                        </p>
+                        <div
+                            className="text-sm leading-relaxed truncate_3"
+                            dangerouslySetInnerHTML={{ __html: currentSlide.intro }}
+                        >
+                        </div>
                     </div>
                 </div>
 
@@ -59,7 +71,7 @@ const EventHero = ({ slides, currentIndex, setCurrentIndex }) => {
                     <div className="flex items-center gap-[6px] sm:gap-[10px] overflow-x-auto">
                         {slides.map((slide, i) => (
                             <img
-                                key={slide.id}
+                                key={i}
                                 src={slide.image}
                                 alt=""
                                 className={`w-[70px] h-[46px] sm:w-[93px] sm:h-[61px] object-cover rounded transition-all duration-300 cursor-pointer ${

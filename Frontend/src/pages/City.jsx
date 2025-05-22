@@ -18,8 +18,8 @@ import HeroSection from "@components/HeroSection";
 
 const City = () => {
     const { t } = useTranslation();
-    const { FAQs, events, weather } = useLoaderData();
-
+    const { FAQs, events, weather, city } = useLoaderData();
+    
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
         { label: t("Destinations"), href: "/" },
@@ -28,12 +28,15 @@ const City = () => {
 
     return (
         <main>
-            <HeroSection title="Hà Nội" image={imageCity} showArrowDown={true}>
-                <p className="text-center text-[20px] font-normal w-full">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. Lorem Ipsum has been <br />
-                    the industry's standard dummy text ever since the 1500s
-                </p>
+            <HeroSection
+                title={city.title}
+                image={imageCity}
+                showArrowDown={true}
+            >
+                <div
+                    className="text-center text-[20px] font-normal w-full truncate_3"
+                    dangerouslySetInnerHTML={{ __html: city.intro }}
+                ></div>
             </HeroSection>
             {/* Overview city */}
             <section className="container">
@@ -70,19 +73,10 @@ const City = () => {
                                 Accessibility
                             </NavLink>
                         </div>
-
-                        <p className="text-[#1A2A44] text-[16px] lg:text-[18px]">
-                            Hanoi, the capital of Vietnam, is a vibrant city
-                            blending rich history with modern life. Known for
-                            its centuries-old architecture, bustling streets,
-                            and serene lakes, it offers a unique cultural
-                            experience. Highlights include the Old Quarter with
-                            its narrow alleys, Hoan Kiem Lake, the Temple of
-                            Literature, and delicious street food like pho and
-                            bun cha. Hanoi's charm lies in its mix of tradition
-                            and progress, making it a must-visit destination in
-                            Southeast Asia.
-                        </p>
+                        <div
+                            className="text-[#1A2A44] text-[16px] lg:text-[18px]"
+                            dangerouslySetInnerHTML={{ __html: city.intro }}
+                        ></div>
                     </div>
 
                     <div className="lg:pt-[10px]">
@@ -121,7 +115,10 @@ const City = () => {
 
             <Weather data={weather} />
             <TopThingsToDo className="mt-[120px]" />
-            <VietNamEvent events={events} className="mt-[80px] bg-[#F5F6FA] py-[80px]" />
+            <VietNamEvent
+                data={events}
+                className="mt-[80px] bg-[#F5F6FA] py-[80px]"
+            />
             <ExperienceActivities className="mt-[120px]" />
             <Impressions className="mt-[120px]" />
             <PlainYourTrip className="mt-[120px]" />

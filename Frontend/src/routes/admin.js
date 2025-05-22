@@ -156,6 +156,26 @@ const routesAdmin = [
                 },
             },
             {
+                path: 'cities',
+                Component: lazy(() => import("@pages/admin/City/Index")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
+            {
+                path: 'cities/add',
+                Component: lazy(() => import("@pages/admin/City/Edit")),
+                meta: () => {
+                    return [
+                        { title: "Experience" },
+                        { name: "description", content: "Experience" },
+                    ];
+                },
+            },
+            {
                 path: 'events',
                 Component: lazy(() => import("@pages/admin/Event/Index")),
                 meta: () => {

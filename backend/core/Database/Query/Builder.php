@@ -2,6 +2,7 @@
 
 namespace Vietiso\Core\Database\Query;
 
+use Closure;
 use Vietiso\Core\Database\Model\Builder as ModelBuilder;
 use Vietiso\Core\Database\Query\Traits\BuildsQueries;
 use Vietiso\Core\Database\ConnectionInterface;
@@ -334,7 +335,7 @@ class Builder
     }
 
     public function where(
-        string|array|callable $columns,
+        string|array|Closure $columns,
         mixed $value = null,
         string $condition = '=',
         string $logicalOperator = 'and'
@@ -352,7 +353,7 @@ class Builder
                     $this->addCondition($column, '=', $value, $logicalOperator);
                 }
             }, $logicalOperator);
-        } else if (is_callable($columns)) {
+        } else if ($columns instanceof Closure) {
             return $this->addNestedCondition($columns, $logicalOperator);
         }
 

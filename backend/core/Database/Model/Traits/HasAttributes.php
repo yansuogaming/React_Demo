@@ -107,6 +107,26 @@ trait HasAttributes
         return $this->attributes;
     }
 
+    public function offsetExists(mixed $offset): bool
+    {
+        return isset($this->attributes[$offset]);
+    }
+
+    public function offsetGet(mixed $offset)
+    {
+        return $this->attributes[$offset];
+    }
+
+    public function offsetSet(mixed $offset, mixed $value)
+    {
+        $this->setAttribute($offset, $value);
+    }
+
+    public function offsetUnset(mixed $offset)
+    {
+        unset($this->attributes[$offset]);
+    }
+
     public function __get(string $name): mixed
     {
         return $this->getAttribute($name);

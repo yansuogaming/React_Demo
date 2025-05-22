@@ -17,17 +17,45 @@ use Vietiso\Core\Support\Facade;
  * @method static \Vietiso\Core\HttpClient\Http withHeaders(array $headers)
  * @method static \Vietiso\Core\HttpClient\Http replaceHeaders(array $headers)
  * @method static \Vietiso\Core\HttpClient\Http withToken(string $token)
+ * @method static \Vietiso\Core\HttpClient\Http baseUrl(string $url)
  * @method static \Vietiso\Core\HttpClient\Http v2()
  */
 class Http extends Facade
 {
+
     public static function eventdb(string $langId)
     {
-        return Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Accept-Language' => $langId
-        ])
-        ->withToken(env('EVENTDB_TOKEN'));
+        return Http::baseUrl('http://eventdb.itourism.vn/api')
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'Accept-Language' => $langId
+            ])
+            ->withToken(env('LICENSE_KEY'));
+    }
+
+    public static function weather(string $cityName)
+    {
+        return Http::get("https://nominatim.openstreetmap.org/search?q={$cityName}&format=json&limit=1");
+    }
+
+    public static function tourdb(string $langId)
+    {
+        return Http::baseUrl('https://ilooca-tourdb.itourism.vn/api')
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'Accept-Language' => $langId
+            ])
+            ->withToken(env('LICENSE_KEY'));
+    }
+
+    public static function travelIndex(string $langId)
+    {
+        return Http::baseUrl('http://travelindex.itourism.vn/api')
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+                'Accept-Language' => $langId
+            ])
+            ->withToken(env('LICENSE_KEY'));
     }
 
     protected static function getFacadeAccessor(): string

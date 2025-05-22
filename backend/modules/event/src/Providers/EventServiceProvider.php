@@ -14,11 +14,12 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Http::macro('eventdb', function (string $langId) {
-            return Http::withHeaders([
-                'Content-Type' => 'application/json',
-                'Accept-Language' => $langId
-            ])
-            ->withToken(env('EVENTDB_TOKEN'));
+            return Http::baseUrl('http://eventdb.itourism.vn/api')
+                ->withHeaders([
+                    'Content-Type' => 'application/json',
+                    'Accept-Language' => $langId
+                ])
+                ->withToken(env('LICENSE_KEY'));
         });
     }
 }

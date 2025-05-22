@@ -16,7 +16,7 @@ import { motion } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa6";
 
 export default function Home() {
-    const { experienceTypes } = useLoaderData();
+    const { experienceTypes, events, listTrendingTours } = useLoaderData();
     const { t } = useTranslation();
     const [isLoaded, setIsLoaded] = useState(false);
     const imgRef = useRef(null);
@@ -61,7 +61,11 @@ export default function Home() {
                 <div className="absolute bottom-[80px] lg:bottom-[120px] text-center w-full px-[20px]">
                     <motion.h1
                         initial={{ opacity: 0, y: 100 }}
-                        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                        animate={
+                            isLoaded
+                                ? { opacity: 1, y: 0 }
+                                : { opacity: 0, y: 100 }
+                        }
                         transition={{ duration: 0.7, delay: 0.2 }}
                         className={cn(
                             "text-center text-[25px] md:text-[40px] lg:text-[50px] xl:text-[60px]",
@@ -74,7 +78,11 @@ export default function Home() {
                     <motion.p
                         layout
                         initial={{ opacity: 0, y: 100 }}
-                        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                        animate={
+                            isLoaded
+                                ? { opacity: 1, y: 0 }
+                                : { opacity: 0, y: 100 }
+                        }
                         transition={{ duration: 0.7, delay: 0.4 }}
                         className={cn(
                             "text-center text-[16px] lg:text-[20px] font-normal px-[20px]",
@@ -89,7 +97,11 @@ export default function Home() {
                             "translate-t-[-50%] w-full justify-center"
                         )}
                         initial={{ opacity: 0, y: 100 }}
-                        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                        animate={
+                            isLoaded
+                                ? { opacity: 1, y: 0 }
+                                : { opacity: 0, y: 100 }
+                        }
                         transition={{ duration: 0.7, delay: 0.5 }}
                     >
                         <NavLink
@@ -137,14 +149,14 @@ export default function Home() {
             </section>
             <RegionList
                 id="region"
-                className="lg:mt-[135px] mt-[80px] lg:mb-[145px] mb-[60px]"
+                className="lg:mt-[60px] lg:mb-[145px] mt-[40px] lg:mt-[80px] mb-[60px]"
             />
-            <VietNamEvent className="bg-[#F5F6FA] py-[48px] lg:py-[80px] pt-[48px] lg:pt-[80px]" />
+            <VietNamEvent data={events} className="bg-[#F5F6FA] py-[48px] lg:py-[80px] pt-[48px] lg:pt-[80px]" />
             <TopVietnamExperiences
                 className="mb-[80px] lg:mb-[120px] pt-[60px] lg:pt-[80px]"
                 data={experienceTypes}
             />
-            <TrendingItinerary className="mb-[80px] lg:mb-[120px]" />
+            <TrendingItinerary data={listTrendingTours} className="mb-[80px] lg:mb-[120px]" />
             <TravelOffers className="mb-[60px] lg:mb-[120px]" />
             <PlainYourTrip className="mb-[80px] lg:mb-[120px]" />
             <Story />

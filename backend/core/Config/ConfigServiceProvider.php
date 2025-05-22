@@ -20,5 +20,6 @@ class ConfigServiceProvider extends ServiceProvider
             $config = require_once $file;
             $this->app->get('config')->set($name, $config);
         }
+        date_default_timezone_set(config('app.timezone'));
     }
 }
