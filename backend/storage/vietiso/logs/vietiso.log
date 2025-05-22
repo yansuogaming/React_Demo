@@ -6670,7 +6670,11 @@ Stack trace:
 #13 /var/www/html/core/Server/Events/RequestEvent.php(17): Vietiso\Core\Route\RouteDispacher->handle()
 #14 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
 #15 {main}  
+<<<<<<< HEAD
+[2025-05-20T08:04:20.651070+00:00] vietiso.ERROR: Vietiso\Core\Http\Exception\NotFoundHttpException: Not Found in /var/www/html/core/Route/RouteDispacher.php:35
+=======
 [2025-05-20T07:58:00.254546+00:00] vietiso.ERROR: Vietiso\Core\Http\Exception\NotFoundHttpException: Not Found in /var/www/html/core/Route/RouteDispacher.php:35
+>>>>>>> developer_ThuanNHT
 Stack trace:
 #0 /var/www/html/core/Pipeline/Pipeline.php(33): Vietiso\Core\Route\RouteDispacher->Vietiso\Core\Route\{closure}()
 #1 /var/www/html/core/Middleware/TransformsRequest.php(19): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
@@ -6688,7 +6692,11 @@ Stack trace:
 #13 /var/www/html/core/Server/Events/RequestEvent.php(17): Vietiso\Core\Route\RouteDispacher->handle()
 #14 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
 #15 {main}  
+<<<<<<< HEAD
+[2025-05-20T08:04:21.180735+00:00] vietiso.ERROR: Vietiso\Core\Http\Exception\NotFoundHttpException: Not Found in /var/www/html/core/Route/RouteDispacher.php:35
+=======
 [2025-05-20T07:58:00.378004+00:00] vietiso.ERROR: Vietiso\Core\Http\Exception\NotFoundHttpException: Not Found in /var/www/html/core/Route/RouteDispacher.php:35
+>>>>>>> developer_ThuanNHT
 Stack trace:
 #0 /var/www/html/core/Pipeline/Pipeline.php(33): Vietiso\Core\Route\RouteDispacher->Vietiso\Core\Route\{closure}()
 #1 /var/www/html/core/Middleware/TransformsRequest.php(19): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
@@ -6706,6 +6714,8 @@ Stack trace:
 #13 /var/www/html/core/Server/Events/RequestEvent.php(17): Vietiso\Core\Route\RouteDispacher->handle()
 #14 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
 #15 {main}  
+<<<<<<< HEAD
+=======
 [2025-05-20T16:23:29.791488+00:00] vietiso.ERROR: ArgumentCountError: Too few arguments to function Vietiso\Core\Database\Model\Model::update(), 0 passed in /var/www/html/modules/region/src/Controllers/RegionController.php on line 102 and exactly 1 expected in /var/www/html/core/Database/Model/Model.php:219
 Stack trace:
 #0 /var/www/html/modules/region/src/Controllers/RegionController.php(102): Vietiso\Core\Database\Model\Model->update()
@@ -8409,3 +8419,4 @@ Stack trace:
 #15 /var/www/html/core/Server/Events/RequestEvent.php(17): Vietiso\Core\Route\RouteDispacher->handle()
 #16 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
 #17 {main}  
+>>>>>>> developer_ThuanNHT
