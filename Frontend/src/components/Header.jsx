@@ -526,7 +526,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     duration: 0.4,
                                     ease: "easeInOut",
                                 }}
-                                className="w-full h-screen absolute top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll"
+                                className="w-full h-screen absolute top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll z-2"
                             >
                                 <div className="bg-[#003F73] fixed top-0 left-0 w-full h-screen">
                                     <div className="flex items-center justify-between px-[16px] py-[16px] border-b border-gray-300/53">

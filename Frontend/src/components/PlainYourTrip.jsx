@@ -33,20 +33,32 @@ const PlainYourTrip = ({ className = "" }) => {
                     <CreateItineraryButton className="mt-3 sm:mt-4 md:mt-[12px] mx-auto sm:mx-0" />
                     <div className="flex justify-center sm:justify-start flex-wrap gap-2 sm:gap-3 md:gap-[8px] lg:gap-[12px] mt-4 sm:mt-6 md:mt-[20px] lg:mt-[30px]">
                         <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-sm sm:text-base md:text-[16px] lg:text-[20px] font-[500]">
-                            <img src={iconVisa} alt="Visa" className="w-5 sm:w-6" />
+                            <img
+                                src={iconVisa}
+                                alt="Visa"
+                                className="w-5 sm:w-6"
+                            />
                             Visas
                         </button>
                         <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-sm sm:text-base md:text-[16px] lg:text-[20px] font-[500]">
-                            <img src={iconItinerary} alt="Itinerary" className="w-5 sm:w-6" />
+                            <img
+                                src={iconItinerary}
+                                alt="Itinerary"
+                                className="w-5 sm:w-6"
+                            />
                             Itineraries
                         </button>
                         <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-sm sm:text-base md:text-[16px] lg:text-[20px] font-[500]">
-                            <img src={iconTools} alt="Tools" className="w-5 sm:w-6" />
+                            <img
+                                src={iconTools}
+                                alt="Tools"
+                                className="w-5 sm:w-6"
+                            />
                             Apps & Tools
                         </button>
                     </div>
                 </Form>
-                <div className="w-full lg:w-1/2">
+                <div className="w-full lg:w-1/2 z-0">
                     <MapHomePlanYourTrip />
                 </div>
             </div>
