@@ -208,7 +208,7 @@ const routes = [
                 ],
             },
             {
-                path: "map-ha-noi",
+                path: "map-ha-noi/:id?",
                 Component: lazy(() => import("@pages/Map")),
                 loader: async () => {
                     const res = await MapService.getListDestination();

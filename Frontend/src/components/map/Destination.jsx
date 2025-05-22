@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { MapPin, Clock, Info, Star, Navigation, Play } from "lucide-react";
+import { MapPin, Clock, Info, Star, Navigation, Play, X } from "lucide-react";
 import { Button } from "@components/ui/button";
-import { useMapContext } from "@contexts/MapContext";
+import { SIDEBAR_MODE, useMapContext } from "@contexts/MapContext";
 import { useTranslation } from "react-i18next";
+
 
 const Destination = () => {
   const { t } = useTranslation();
@@ -12,6 +13,8 @@ const Destination = () => {
     setShowVR,
     setShowVideo,
     handleClickNearbyItem,
+    showVR,
+    showVideo,
   } = useMapContext();
   const [activeTab, setActiveTab] = useState("info");
   const [selectedImage, setSelectedImage] = useState();
@@ -197,6 +200,40 @@ const Destination = () => {
                 <Play className="h-4 w-4" />
                 <span>{t("view_video")}</span>
               </Button>
+            )}
+            {(showVR && item?.vr_url) && (
+              <div className="fixed inset-0 z-50 lg:hidden">
+                <iframe
+                  src={item.vr_url}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+                <button
+                  onClick={() => setShowVR(false)}
+                  className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+                >
+                  <X className="h-4 w-4 text-black" />
+                </button>
+              </div>
+            )}
+            {(showVideo && item?.video_url) && (
+              <div className="fixed inset-0 z-50 lg:hidden">
+                <iframe
+                  src={`${item.video_url}?autoplay=1`}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+                <button
+                  onClick={() => setShowVideo(false)}
+                  className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+                >
+                  <X className="h-4 w-4 text-black" />
+                </button>
+              </div>
             )}
           </div>
         </div>
