@@ -437,12 +437,12 @@ class LazyCollection implements Enumerable
      * @param string|int|null $key
      * @return static
      */
-    public function pluck(string|int $value, string|int $key = null): static
+    public function pluck(string|int $value, string|int|null $key = null): static
     {
         return new static(function () use ($value, $key) {
             $value =  $this->explodeKey($value);
             $key =  is_null($key) ? $key : $this->explodeKey($key);
-            foreach ($this as $index => $item) {
+            foreach ($this as $item) {
                 $itemValue = extract_item($item, $value);
                 if (is_null($key)) {
                     if ($itemValue !== $item) {

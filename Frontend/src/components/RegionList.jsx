@@ -5,9 +5,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@ui/carousel";
-import imageNaNoi from "@images/image-hanoi.png";
-import imageHaLong from "@images/image-halong.png";
-import imageSapa from "@images/image-sapa.png";
 import { NavLink } from "react-router";
 import { FaArrowRight } from "react-icons/fa6";
 
@@ -20,7 +17,7 @@ import { cn } from "@lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const RegionList = ({ className, ...props }) => {
+const RegionList = ({ className, data, ...props }) => {
     const { t } = useTranslation();
     const [activeRegion, setActiveRegion] = useState(0);
     const regions = [
@@ -31,32 +28,7 @@ const RegionList = ({ className, ...props }) => {
             description:
                 "Northern Vietnam is a region rich in history, culture, and breathtaking landscapes. It is home to the capital city, Hanoi, where ancient traditions blend seamlessly with modern life. The area boasts stunning natural wonders such as Ha Long Bay, with its emerald waters and limestone islands, and the terraced rice fields of Sapa, offering picturesque views. Northern Vietnam is also known for its diverse ethnic communities, each contributing unique customs and traditions. With its vibrant street food scene, historical sites, and scenic beauty, Northern Vietnam is a must-visit destination for travelers seeking an authentic experience",
             className: "",
-            destinations: [
-                {
-                    image: imageNaNoi,
-                    title: "Hanoi",
-                    description:
-                        "The vibrant capital of Vietnam, known for its centuries-old architecture and rich culture.",
-                },
-                {
-                    image: imageHaLong,
-                    title: "Ha Long Bay",
-                    description:
-                        "A UNESCO World Heritage Site featuring emerald waters and thousands of towering limestone islands.",
-                },
-                {
-                    image: imageSapa,
-                    title: "Sapa",
-                    description:
-                        "A mountain town famous for terraced rice fields, cool climate, and ethnic diversity.",
-                },
-                {
-                    image: imageNaNoi,
-                    title: "Haiphong",
-                    description:
-                        "A mountain town famous for terraced rice fields, cool climate, and ethnic diversity.",
-                },
-            ],
+            destinations: data[0].cities
         },
         {
             id: 1,
@@ -65,6 +37,7 @@ const RegionList = ({ className, ...props }) => {
             description:
                 "Central Vietnam is a region of stunning landscapes, rich history, and vibrant culture. It is home to ancient cities like Hue, the former imperial capital, and Hoi An, a UNESCO World Heritage site known for its charming old town and lantern-lit streets. The region boasts breathtaking coastal scenery, including the pristine beaches of Da Nang and Nha Trang. Central Vietnam also features the majestic caves of Phong Nha-Ke Bang and the lush highlands of Da Lat. With its diverse cuisine, historical landmarks, and natural beauty, Central Vietnam offers a unique and unforgettable experience for travelers.",
             className: "translate-x-[69px] translate-y-[-32px]",
+            destinations: data[1].cities
         },
         {
             id: 2,
@@ -73,6 +46,7 @@ const RegionList = ({ className, ...props }) => {
             description:
                 "Southern Vietnam is a dynamic region known for its bustling cities, lush landscapes, and rich cultural heritage. Ho Chi Minh City, the largest metropolis, offers a mix of modern skyscrapers and historic landmarks, reflecting the country's rapid development. The Mekong Delta is a vast network of rivers, floating markets, and fertile farmland, providing a glimpse into traditional Vietnamese life. The region also boasts stunning coastal destinations like Phu Quoc and Con Dao, known for their pristine beaches and marine biodiversity. With its vibrant street food, warm hospitality, and diverse scenery, Southern Vietnam is a captivating destination for travelers.",
             className: "translate-x-[93px] translate-y-[-44px]",
+            destinations: data[2].cities
         },
         {
             id: 3,

@@ -10,6 +10,8 @@ use Vietiso\Core\Route\Attributes\Get;
 use Vietiso\Core\Route\Attributes\Group;
 use Vietiso\Core\Route\Attributes\Post;
 use Vietiso\Core\Route\Attributes\Put;
+use Vietiso\Modules\Admin\Middlewares\Authenticate;
+use Vietiso\Modules\City\Models\City;
 use Vietiso\Modules\Region\DTOs\RegionDTO;
 use Vietiso\Modules\Region\Models\Region;
 
@@ -180,5 +182,32 @@ class RegionController
         return Response::json([
             'message' => 'Xoá vùng miền thất bại',
         ], 500);
+    }
+
+    #[Get(
+        uri: 'list-in-home',
+        excludedMiddlewares: [Authenticate::class]
+    )]
+    public function getListCityInHome(Request $request)
+    {
+        $regions = Region::where('lang_id', $request->input('lang_id', 'vn'))
+            ->groupBy('translation_of')
+            ->get();
+        $regionIds = $regions->pluck('id')->toArray();
+        $cities = City::whereIn('region_id', $regionIds)
+            ->select('image', DB::raw('intro as description'), 'title', 'region_id')
+            ->get();
+        $regions = $regions->map(function ($region) use ($cities) {
+            $listCities = [];
+            foreach ($cities as $city) {
+                if ($region->id == $city->region_id) {
+                    $listCities[] = $city;
+                }
+            }
+
+            $region['cities'] = $listCities;
+            return $region;
+        });
+        return Response::json($regions);
     }
 }

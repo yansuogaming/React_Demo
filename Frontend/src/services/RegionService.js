@@ -41,6 +41,11 @@ const RegionService = {
 
         toast.error('Cập nhật tình trạng thất bại!')
         return false;
+    },
+
+    getListRegionInHome: async () => {
+        const res = await HttpClient.get('/region/list-in-home');
+        return res.data;
     }
 }
 

@@ -10,7 +10,7 @@ if (!function_exists('collect')) {
 }
 
 if (!function_exists('extract_item')) {
-    function extract_item(array $array, array $segments): mixed {
+    function extract_item(iterable $array, array $segments): mixed {
         $result = $array;
         $tmp = null;
         foreach ($array as $key => $item) {

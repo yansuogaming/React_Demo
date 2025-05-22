@@ -7,6 +7,7 @@ import WeatherService from "@services/WeatherService";
 import CityService from "@services/CityService";
 import TourService from "@services/TourService";
 import MapService from "@services/MapService";
+import RegionService from "@services/RegionService";
 
 const routes = [
     ...routesAdmin,
@@ -25,11 +26,14 @@ const routes = [
                                 ExperienceService.getExperienceTypes(),
                                 EventService.getOngoingAndUpcomingEvents(),
                                 TourService.getListTrending(),
+                                RegionService.getListRegionInHome(),
                             ]);
+                            console.log('res[3]', res[3]);
                             return {
                                 experienceTypes: res[0],
                                 events: res[1],
                                 listTrendingTours: res[2],
+                                listRegion: res[3]
                             };
                         },
                         meta: () => {
