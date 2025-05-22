@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import iconFullscreen from "@images/icon-fullscreen.svg";
 import { Marker, Map } from "react-map-gl/mapbox";
 import { MapPin, MapPinIcon } from "lucide-react";
@@ -19,14 +19,27 @@ function MapCity({ listDestination }) {
   ]);
   const [hoveredMarker, setHoveredMarker] = useState(null);
   const [markerPosition, setMarkerPosition] = useState(null);
-  const isMobileOrTablet = window.innerWidth < 1024;
+
   const [showHoverItem, setShowHoverItem] = useState(false);
 
   // Tọa độ ranh giới cho Hà Nội (Tây Nam và Đông Bắc)
-  const hanoiBounds = [
-    [105.2, 20.5], // Góc Tây Nam: [longitude, latitude]
-    [106.2, 21.4], // Góc Đông Bắc: [longitude, latitude]
-  ];
+
+  const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
+  const handleResize = () => {
+    setIsMobileOrTablet(window.innerWidth <= 1024);
+  };
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+    // unsubscribe from the event on component unmount
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  const hanoiBounds = useMemo(
+    () => [
+      [105.2, 20.5], // Góc Tây Nam: [longitude, latitude]
+      [106.2, 21.4], // Góc Đông Bắc: [longitude, latitude]
+    ],
+    []
+  );
 
   const initialViewState = {
     longitude: +defaultDestination?.map_lo,
@@ -57,7 +70,7 @@ function MapCity({ listDestination }) {
       setBounds(hanoiBounds);
     }, 10000);
     checkMapRef();
-  }, []);
+  }, [defaultDestination, hanoiBounds]);
 
   useEffect(() => {
     if (mapRef.current && selectedMarker) {
@@ -100,12 +113,6 @@ function MapCity({ listDestination }) {
     }
   };
 
-  console.log(
-    "markerPosition",
-    hoveredMarker &&
-      ((isMobileOrTablet && showHoverItem) ||
-        (!isMobileOrTablet && markerPosition))
-  );
   return (
     <div className="lg:pt-[108px] ">
       {/* Overlay để đóng hover item khi click bên ngoài (mobile) */}
