@@ -248,3 +248,32 @@ html {
 .hnv_region_active_map {
     z-index: 1;
 }
+
+.hnv_signin_field {
+    position: relative;
+}
+
+.hnv_signin_input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 2px solid #18babd;
+}
+
+.hnv_signin_label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 26px;
+    user-select: none;
+    color: #999;
+    pointer-events: none;
+    transition: 0.25s ease;
+}
+.hnv_signin_input:not(:placeholder-shown) + .hnv_signin_label,
+.hnv_signin_input:focus + .hnv_signin_label {
+    top: 0;
+    left: 16px;
+    padding: 0 10px;
+    background: #fff;
+    color: #18babd;
+}

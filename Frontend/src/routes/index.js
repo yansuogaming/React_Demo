@@ -181,6 +181,14 @@ const routes = [
                         Component: lazy(() => import("@pages/SignIn")),
                     },
                     {
+                        path: "signin-password",
+                        Component: lazy(() => import("@pages/SignInPassword")),
+                    },
+                    {
+                        path: "forgot-password",
+                        Component: lazy(() => import("@pages/ForgotPassword")),
+                    },
+                    {
                         path: "attractions",
                         Component: lazy(() => import("@pages/Attractions")),
                     },
