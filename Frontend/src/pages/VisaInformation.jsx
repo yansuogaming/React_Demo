@@ -13,8 +13,147 @@ import WeatherSubscribe from "@components/WeatherSubscribe";
 const VisaRequirementBox = () => {
     const [passport, setPassport] = useState("");
     const [visaType, setVisaType] = useState("");
+    const [showInfo, setShowInfo] = useState(false);
+
+    const [submittedVisaType, setSubmittedVisaType] = useState("");
+    const [submittedPassport, setSubmittedPassport] = useState("");
 
     const isFormValid = passport && visaType;
+
+    const handleCheckVisa = () => {
+        if (isFormValid) {
+            setSubmittedVisaType(visaType);
+            setSubmittedPassport(passport);
+            setShowInfo(true);
+        }
+    };
+
+    const renderVisaContent = () => {
+        switch (submittedVisaType) {
+            case "tourist":
+                return (
+                    <>
+                        <p className="text-gray-700 mb-2 font-medium">
+                            Tourist visas are ideal for short-term leisure
+                            visits to the UAE.
+                        </p>
+                        <p className="text-gray-700 mb-2">
+                            You can apply for a 30-day or 60-day single or
+                            multiple-entry visa.
+                        </p>
+                        <p className="text-gray-700 mb-2">
+                            Ensure your passport is valid for at least 6 months.
+                            You'll also need proof of accommodation and a return
+                            ticket.
+                        </p>
+                        <p className="text-gray-700">
+                            Apply through airlines, travel agencies, or directly
+                            via the{" "}
+                            <a
+                                href="https://www.gdrfad.gov.ae/en"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline hover:text-blue-800"
+                            >
+                                GDRFAD portal
+                            </a>
+                            .
+                        </p>
+                    </>
+                );
+            case "business":
+                return (
+                    <>
+                        <p className="text-gray-700 mb-2 font-medium">
+                            To conduct business in the UAE, you will need a
+                            business visa or sponsorship from a registered local
+                            entity.
+                        </p>
+                        <p className="text-gray-700 mb-2">
+                            Ensure your passport is valid for 6+ months and
+                            prepare required documents such as invitation
+                            letters, proof of business ties, etc.
+                        </p>
+                        <p className="text-gray-700 mb-2">
+                            Business visas typically last between 30–90 days and
+                            may allow multiple entries.
+                        </p>
+                        <p className="text-gray-700">
+                            More info available via the{" "}
+                            <a
+                                href="https://www.gdrfad.gov.ae/en"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline hover:text-blue-800"
+                            >
+                                GDRFAD portal
+                            </a>
+                            .
+                        </p>
+                    </>
+                );
+            case "student":
+                return (
+                    <>
+                        <p className="text-gray-700 mb-2 font-medium">
+                            Student visas are available for those enrolled in
+                            accredited institutions in the UAE.
+                        </p>
+                        <p className="text-gray-700 mb-2">
+                            You will need a letter of admission, proof of funds,
+                            health insurance, and a valid passport (6+ months).
+                        </p>
+                        <p className="text-gray-700 mb-2">
+                            Student visas can last up to one year and are
+                            renewable.
+                        </p>
+                        <p className="text-gray-700">
+                            Learn more on the{" "}
+                            <a
+                                href="https://www.gdrfad.gov.ae/en"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline hover:text-blue-800"
+                            >
+                                GDRFAD portal
+                            </a>
+                            .
+                        </p>
+                    </>
+                );
+            case "transit":
+                return (
+                    <>
+                        <p className="text-gray-700 mb-2 font-medium">
+                            Transit visas are intended for short layovers in the
+                            UAE.
+                        </p>
+                        <p className="text-gray-700 mb-2">
+                            You may apply for a 48-hour or 96-hour visa through
+                            your airline.
+                        </p>
+                        <p className="text-gray-700 mb-2">
+                            A confirmed onward ticket and hotel booking (for
+                            96-hour stays) are typically required.
+                        </p>
+                        <p className="text-gray-700">
+                            Details available at the{" "}
+                            <a
+                                href="https://www.gdrfad.gov.ae/en"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-blue-600 underline hover:text-blue-800"
+                            >
+                                GDRFAD portal
+                            </a>
+                            .
+                        </p>
+                    </>
+                );
+            default:
+                return null;
+        }
+    };
 
     return (
         <section className="container mx-auto px-4 mt-8">
@@ -60,6 +199,7 @@ const VisaRequirementBox = () => {
                 <div className="w-full lg:w-auto">
                     <button
                         disabled={!isFormValid}
+                        onClick={handleCheckVisa}
                         className={`w-full lg:w-auto px-6 py-2 rounded-md transition 
                             ${
                                 isFormValid
@@ -71,6 +211,21 @@ const VisaRequirementBox = () => {
                     </button>
                 </div>
             </div>
+
+            {showInfo && (
+                <div className="mt-8 border border-gray-200 p-6 rounded bg-[#F9FAFB] shadow">
+                    <h3 className="text-lg font-semibold text-[#1A2A44] mb-4">
+                        Visa Requirements
+                    </h3>
+                    <p className="text-sm text-gray-500 mb-4">
+                        You are applying from{" "}
+                        <strong>{submittedPassport}</strong> for a{" "}
+                        <strong>{submittedVisaType}</strong> visa.
+                    </p>
+                    {renderVisaContent()}
+                </div>
+            )}
+
             <div className="border-b border-gray-200 mt-8" />
         </section>
     );

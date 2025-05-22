@@ -718,6 +718,42 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     Weather Trip
                                                 </NavLink>
                                             </li>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <button></button>
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate("/currency");
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    Currency
+                                                </NavLink>
+                                            </li>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <button></button>
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate(
+                                                            "/downloadapp"
+                                                        );
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    Download Apps
+                                                </NavLink>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -847,7 +883,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/"
+                        to="/currency"
                     />
 
                     {/* Accessibility */}
@@ -897,7 +933,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/"
+                        to="/downloadapp"
                     />
                 </div>
             </div>
