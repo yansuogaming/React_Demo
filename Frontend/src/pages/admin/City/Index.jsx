@@ -106,20 +106,12 @@ export default function Index() {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end" className="w-[120px]">
                             <DropdownMenuItem
-                                onClick={() =>
-                                    navigate(
-                                        `/admin/city/${row.getValue(
-                                            "id"
-                                        )}`
-                                    )
-                                }
+                                onClick={() => navigate(`/admin/cities/${row.getValue("id")}`)}
                             >
                                 Sửa
                             </DropdownMenuItem>
                             <DropdownMenuItem
-                                onClick={() =>
-                                    deleteCity(row.getValue("id"))
-                                }
+                                onClick={() => deleteCity(row.getValue("id"))}
                             >
                                 Xoá
                             </DropdownMenuItem>

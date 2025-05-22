@@ -25,18 +25,20 @@ import { cn } from "@lib/utils";
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router";
+import ModalSearch from "./modal/ModalSearch";
 const HeaderContext = createContext();
 
 const Header = ({ noBackgroundOnScroll = false }) => {
     const { t } = useTranslation();
     const [background, setBackground] = useState("none");
+    const [showSearch, setShowSearch] = useState(false);
     const [logo, setLogo] = useState(null);
     const [color, setColor] = useState(null);
     const [colorIcon, setColorIcon] = useState(null);
     const [isShowNavServices, setShowNavServices] = useState(false);
     const [rotateEllipsis, setRotateEllipsis] = useState(0);
     const [boxShadow, setBoxShadow] = useState(
-        noBackgroundOnScroll ? "none" : "1px 1px 20px #d1d1d1"
+        noBackgroundOnScroll ? "none" : "1px 1px 20px #d1d1d1",
     );
     const [hoverPlanYourTrip, setHoverPlanYourTrip] = useState(false);
     const [hoverPlanYourTripContent, setHoverPlanYourTripContent] =
@@ -104,6 +106,14 @@ const Header = ({ noBackgroundOnScroll = false }) => {
     const [isVisibleLang, setIsVisibleLang] = useState(false);
     const [isVisibleSubMenu, setIsVisibleSubMenu] = useState(false);
     let navigate = useNavigate();
+
+    useEffect(() => {
+        if (isVisible) {
+            document.querySelector('body').style.overflow = 'hidden';
+        } else {
+            document.querySelector('body').style.overflow = 'auto';
+        }
+    }, [isVisible])
     return (
         <HeaderContext.Provider value={contextValue}>
             <header>
@@ -112,7 +122,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     className={cn(
                         "relative flex flex-col",
                         "py-[15px] px-[20px] w-full z-50 top-0",
-                        "transition-all duration-500 lg:px-[40px] hidden lg:block"
+                        "transition-all duration-500 lg:px-[40px] hidden lg:block",
                     )}
                 >
                     <div className="flex items-center justify-between">
@@ -138,7 +148,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             <ul
                                 className={cn(
                                     "hidden h-fit font-bold absolute top-1/2 left-1/2 lg:flex",
-                                    "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit"
+                                    "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit",
                                 )}
                             >
                                 <motion.li
@@ -207,6 +217,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                 <SearchHeader
                                     color={color}
                                     className="flex cursor-pointer"
+                                    onClick={() => setShowSearch(true)}
                                 />
                             </motion.li>
                             <motion.li
@@ -239,7 +250,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <button
                             className={cn(
                                 "block xl-md:hidden -my-[15px] pl-[30px]",
-                                "border-l-1 border-[#ffffff1a] cursor-pointer z-1"
+                                "border-l-1 border-[#ffffff1a] cursor-pointer z-1",
                             )}
                             onClick={showNavServices}
                         >
@@ -261,7 +272,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     className={cn(
                                         "absolute flex top-full w-full justify-between",
                                         "left-0 px-[55px] bg-[#062f1f] h-[90px] items-center",
-                                        "transition-all duration-500 xl-md:hidden"
+                                        "transition-all duration-500 xl-md:hidden",
                                     )}
                                 >
                                     <SearchHeader
@@ -327,7 +338,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     duration: 0.4,
                                     ease: "easeInOut",
                                 }}
-                                className="w-full h-screen fixed top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll flex flex-col z-2"
+                                className="overflow-auto w-full h-screen fixed top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll flex flex-col z-2"
                             >
                                 <div className="bg-[#28B8F8] px-[16px] pt-[16px] pb-[10px] flex flex-col gap-[58px]">
                                     <div className="flex items-center justify-between">
@@ -392,7 +403,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#003F73]"
                                             onClick={() => {
                                                 setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu
+                                                    !isVisibleSubMenu,
                                                 );
                                             }}
                                         >
@@ -415,7 +426,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                 className="text-[16px] font-bold flex items-center justify-between"
                                                 onClick={() =>
                                                     setIsVisibleLang(
-                                                        !isVisibleLang
+                                                        !isVisibleLang,
                                                     )
                                                 }
                                             >
@@ -534,7 +545,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                             className="flex items-center gap-[12px]"
                                             onClick={() =>
                                                 setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu
+                                                    !isVisibleSubMenu,
                                                 )
                                             }
                                         >
@@ -548,7 +559,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                             onClick={() => {
                                                 setIsVisible(!isVisible);
                                                 setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu
+                                                    !isVisibleSubMenu,
                                                 );
                                             }}
                                         >
@@ -566,10 +577,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         e.preventDefault();
                                                         navigate("/visa-guide");
                                                         setIsVisible(
-                                                            !isVisible
+                                                            !isVisible,
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                            !isVisibleSubMenu,
                                                         );
                                                     }}
                                                 >
@@ -581,13 +592,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/visainformation"
+                                                            "/visainformation",
                                                         );
                                                         setIsVisible(
-                                                            !isVisible
+                                                            !isVisible,
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                            !isVisibleSubMenu,
                                                         );
                                                     }}
                                                 >
@@ -599,13 +610,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/getting-to-and-around"
+                                                            "/getting-to-and-around",
                                                         );
                                                         setIsVisible(
-                                                            !isVisible
+                                                            !isVisible,
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                            !isVisibleSubMenu,
                                                         );
                                                     }}
                                                 >
@@ -618,10 +629,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         e.preventDefault();
                                                         navigate("/safety");
                                                         setIsVisible(
-                                                            !isVisible
+                                                            !isVisible,
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                            !isVisibleSubMenu,
                                                         );
                                                     }}
                                                 >
@@ -633,13 +644,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/accessibility"
+                                                            "/accessibility",
                                                         );
                                                         setIsVisible(
-                                                            !isVisible
+                                                            !isVisible,
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                            !isVisibleSubMenu,
                                                         );
                                                     }}
                                                 >
@@ -651,13 +662,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/vietnam-pass"
+                                                            "/vietnam-pass",
                                                         );
                                                         setIsVisible(
-                                                            !isVisible
+                                                            !isVisible,
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                            !isVisibleSubMenu,
                                                         );
                                                     }}
                                                 >
@@ -670,13 +681,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/visainformation"
+                                                            "/visainformation",
                                                         );
                                                         setIsVisible(
-                                                            !isVisible
+                                                            !isVisible,
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                            !isVisibleSubMenu,
                                                         );
                                                     }}
                                                 >
@@ -689,10 +700,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         e.preventDefault();
                                                         navigate("/placetogo");
                                                         setIsVisible(
-                                                            !isVisible
+                                                            !isVisible,
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                            !isVisibleSubMenu,
                                                         );
                                                     }}
                                                 >
@@ -705,13 +716,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/weathertrip"
+                                                            "/weathertrip",
                                                         );
                                                         setIsVisible(
-                                                            !isVisible
+                                                            !isVisible,
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
+                                                            !isVisibleSubMenu,
                                                         );
                                                     }}
                                                 >
@@ -725,6 +736,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         )}
                     </AnimatePresence>
                 </div>
+                <ModalSearch
+                    isOpen={showSearch}
+                    onClose={() => setShowSearch(false)}
+                />
             </header>
         </HeaderContext.Provider>
     );

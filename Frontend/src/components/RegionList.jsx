@@ -125,7 +125,7 @@ const RegionList = ({ className, ...props }) => {
             </div>
 
             {/* Bản đồ và Thông tin Region */}
-            <div className="grid grid-cols-12 gap-[34px]">
+            <div className="grid grid-cols-12 gap-0 xl:gap-[34px]">
                 {/* Bản đồ region */}
                 <div className="col-span-12 xl:col-span-5">
                     <div className="relative max-w-full w-full overflow-hidden mx-auto">
@@ -168,7 +168,7 @@ const RegionList = ({ className, ...props }) => {
 
                     {/* Menu Region tablet - mobile */}
                     <div className="flex items-center justify-center mt-[42px]">
-                        <ul className="inline-flex xl:hidden flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[70px] py-[16px] pb-[20px]">
+                        <ul className="inline-flex xl:hidden flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[40px] xl:px-[70px] py-[16px] pb-[20px]">
                             {regions.map((region, index) => {
                                 if (index < 3) {
                                     return (
@@ -243,7 +243,7 @@ const RegionList = ({ className, ...props }) => {
                                     activeRegion === index ? "" : "hidden"
                                 }
                             >
-                                <h2 className="text-[#1A2A44] text-[28px] md:text-[56px] lg:text-[72px] font-bold text-center xl:text-left mb-[8px] md:mb-0">
+                                <h2 className="text-[#1A2A44] text-[28px] md:text-[56px] lg:text-[72px] font-bold text-center xl:text-left mb-[8px] md:mb-0 mt-2 xl:mt-0">
                                     {region.title}
                                 </h2>
                                 <div className="text-[#494951] text-[16px] md:text-[18px] lg:text-[20px] font-normal mb-[30px] md:mb-[40px] lg:mb-[50px] truncate_5">
@@ -272,51 +272,53 @@ const RegionList = ({ className, ...props }) => {
                                                 setActiveRegion(activeRegion)
                                             } // Không cần thiết nếu không thay đổi index
                                         >
-                                            <img
-                                                src={destination.image}
-                                                alt={destination.title}
-                                                className="w-full rounded-[60px_4px_4px_4px]"
-                                                loading="lazy"
-                                            />
-                                            <div
-                                                className={cn(
-                                                    "absolute right-0 top-[calc(100%-70px)] z-1 w-[calc(100%-20px)]",
-                                                    "p-[20px_20px_0_20px] overflow-hidden transition-all duration-500",
-                                                    "group-hover:top-[calc(100%-195px)]"
-                                                )}
-                                            >
-                                                <h3 className="text-white text-[28px] font-bold">
-                                                    {destination.title}
-                                                </h3>
+                                            <NavLink to="/city/ha-noi">
+                                                <img
+                                                    src={destination.image}
+                                                    alt={destination.title}
+                                                    className="w-full rounded-[60px_4px_4px_4px]"
+                                                    loading="lazy"
+                                                />
                                                 <div
                                                     className={cn(
-                                                        "opacity-0 group-hover:opacity-100",
-                                                        "transition-all duration-500"
+                                                        "absolute right-0 top-[calc(100%-70px)] z-1 w-[calc(100%-20px)]",
+                                                        "p-[20px_20px_0_20px] overflow-hidden transition-all duration-500",
+                                                        "group-hover:top-[calc(100%-195px)]"
                                                     )}
                                                 >
-                                                    <p className="text-white mt-2 text-[16px] leading-[1.4]">
-                                                        {
-                                                            destination.description
-                                                        }
-                                                    </p>
+                                                    <h3 className="text-white text-[28px] font-bold">
+                                                        {destination.title}
+                                                    </h3>
                                                     <div
                                                         className={cn(
-                                                            "flex mt-[10px] mb-[20px] text-[17px] font-bold",
-                                                            "text-white gap-[8px] items-center justify-end"
+                                                            "opacity-0 group-hover:opacity-100",
+                                                            "transition-all duration-500"
                                                         )}
                                                     >
-                                                        <span>Discover</span>
-                                                        <FaArrowRight />
+                                                        <p className="text-white mt-2 text-[16px] leading-[1.4]">
+                                                            {
+                                                                destination.description
+                                                            }
+                                                        </p>
+                                                        <div
+                                                            className={cn(
+                                                                "flex mt-[10px] mb-[20px] text-[17px] font-bold",
+                                                                "text-white gap-[8px] items-center justify-end"
+                                                            )}
+                                                        >
+                                                            <span>Discover</span>
+                                                            <FaArrowRight />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div
-                                                className={cn(
-                                                    "rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]",
-                                                    "absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0",
-                                                    "transition-all duration-500"
-                                                )}
-                                            ></div>
+                                                <div
+                                                    className={cn(
+                                                        "rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]",
+                                                        "absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0",
+                                                        "transition-all duration-500"
+                                                    )}
+                                                ></div>
+                                            </NavLink>
                                         </CarouselItem>
                                     )
                                 )}

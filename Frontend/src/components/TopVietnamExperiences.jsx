@@ -46,7 +46,7 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
                         <div
                             className={cn(
                                 "absolute left-[20px] top-[calc(100%-50px)] lg:top-[calc(100%-55px)]",
-                                "transition-all duration-500 lg:left-[35px] z-0 content"
+                                "transition-all duration-500 lg:left-[35px] z-1 content"
                             )}
                         >
                             <h3 className="text-[28px] lg:text-[32px] font-bold text-white mb-[5px]">
