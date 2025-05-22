@@ -10,6 +10,7 @@ import { Button } from '@components/ui/button'
 import image from '@images/hero-image-itineraries.png'
 import { useTranslation } from 'react-i18next'
 import star_white from '@images/star_white.svg'
+import FilterToursAttractions from './FilterToursAttractions'
 
 const Attractions = () => {
     const { t } = useTranslation();
@@ -57,7 +58,7 @@ const Attractions = () => {
                 </Reveal>
             </section>
             {/* <MostPopularTours /> */}
-            <FilterTours className="mt-[80px] mb-[160px]" />
+            <FilterToursAttractions className="mt-[80px] mb-[160px]" />
             {/* <WhyVisit /> */}
           
             <PlainYourTrip className="mt-[120px]" />

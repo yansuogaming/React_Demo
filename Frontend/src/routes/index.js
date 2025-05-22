@@ -182,6 +182,10 @@ const routes = [
                         path: "attractions",
                         Component: lazy(() => import("@pages/Attractions")),
                     },
+                    {
+                        path: 'shopping',
+                        Component: lazy(() => import("@pages/ShoppingCart")),
+                    }
                 ],
             },
             {
