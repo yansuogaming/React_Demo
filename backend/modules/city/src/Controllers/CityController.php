@@ -8,6 +8,7 @@ use Vietiso\Core\Http\Response;
 use Vietiso\Core\HttpClient\Facade\Http;
 use Vietiso\Core\Route\Attributes\Get;
 use Vietiso\Core\Route\Attributes\Group;
+use Vietiso\Core\Route\Attributes\Post;
 use Vietiso\Modules\City\Models\City;
 
 #[Group('api/city')]
@@ -32,11 +33,25 @@ class CityController
         ]);
     }
 
+    #[Get('{city:\d+}')]
+    public function show(City $city)
+    {
+        return Response::json([
+            'city' => $city
+        ]);
+    }
+
     #[Get('{slug}')]
     public function getCityBySlug(#[FindBy('slug')] City $city)
     {
         return Response::json([
             'city' => $city
         ]);
+    }
+
+    #[Post('{city:\d+}')]
+    public function create(City $city)
+    {
+        
     }
 }

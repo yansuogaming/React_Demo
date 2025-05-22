@@ -12,7 +12,18 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
 import UploadImage from "@components/button/UploadImage";
 import CommonService from "@services/CommonService";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@components/ui/select";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "@components/ui/select";
+import RegionService from "@services/RegionService";
+import CityService from "@services/CityService";
+import InputLanguage from "@components/input/InputLanguage";
 
 const AppEditor = lazy(() => import("@components/admin/AppEditor"));
 
@@ -22,6 +33,10 @@ export default function Edit() {
     const [title, setTitle] = useState("");
     const [image, setImage] = useState("");
     const [content, setContent] = useState("");
+    const [regions, setRegions] = useState([]);
+    const [contentGettingTo, setContentGettingTo] = useState("");
+    const [contentWhenToVisit, setContentWhenToVisit] = useState("");
+    const [langId, setLangId] = useState("");
 
     const { id } = useParams();
 
@@ -29,35 +44,38 @@ export default function Edit() {
         e.preventDefault();
 
         if (id) {
-            const res = await HttpClient.post(`/experience/${id}`, {
+            const res = await HttpClient.post(`/city/${id}`, {
                 title,
                 image,
                 content,
             });
             if (res.status === 200) {
-                toast.success("Cập nhật trải nghiệm thành công!");
-                navigate("/admin/experience");
+                toast.success("Cập nhật thành phố thành công!");
+                navigate("/admin/cities");
             } else {
-                toast.error("Cập nhật trải nghiệm thất bại!");
+                toast.error("Cập nhật thành phố thất bại!");
             }
             return;
         }
 
-        const res = await HttpClient.post("/experience", {
+        const res = await HttpClient.post("/city", {
             title,
             image,
             content,
         });
         if (res.status === 201) {
-            toast.success("Thêm trải nghiệm thành công!");
-            navigate("/admin/experience");
+            toast.success("Thêm thành phố thành công!");
+            navigate("/admin/cities");
         } else {
-            toast.error("Thêm trải nghiệm thất bại!");
+            toast.error("Thêm thành phố thất bại!");
         }
     };
 
     const uploadImage = async (e) => {
-        const image = await CommonService.uploadImage(e.target.files[0], 'experiences');
+        const image = await CommonService.uploadImage(
+            e.target.files[0],
+            "cities"
+        );
         if (image == null) {
             toast.error("Tải ảnh lên thất bại!");
         } else {
@@ -65,21 +83,27 @@ export default function Edit() {
         }
     };
 
+    const changeLanguage = (langId) => {
+        console.log("langId", langId);
+        setLangId(langId);
+    };
+
     useEffect(() => {
         if (id) {
-            const getExperience = async () => {
-                const res = await HttpClient.get(`/experience/${id}`);
-                if (res.status === 200) {
-                    const data = res.data.data;
-                    setTitle(data.title);
-                    setContent(data.content);
-                    setImage(data.image);
+            const getCity = async () => {
+                const res = await Promise.all([
+                    RegionService.getListRegion(),
+                    CityService.getCity(id),
+                ]);
+
+                if (res[0] && res[1]) {
+                    setRegions(res[0]);
                 } else {
                     toast.error("Lấy trải nghiệm thất bại!");
                 }
             };
 
-            getExperience();
+            getCity();
         }
     }, [id]);
 
@@ -118,24 +142,48 @@ export default function Edit() {
                                     />
                                 </div>
                             </div>
-                            <div>
-                                <label className="mb-1 block">Vùng miền</label>
+                            <div className="flex gap-[40px]">
                                 <div>
-                                    <Select>
-                                        <SelectTrigger className="w-[180px]">
-                                            <SelectValue placeholder="Select a fruit" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectGroup>
-                                                <SelectLabel>Fruits</SelectLabel>
-                                                <SelectItem value="apple">Apple</SelectItem>
-                                                <SelectItem value="banana">Banana</SelectItem>
-                                                <SelectItem value="blueberry">Blueberry</SelectItem>
-                                                <SelectItem value="grapes">Grapes</SelectItem>
-                                                <SelectItem value="pineapple">Pineapple</SelectItem>
-                                            </SelectGroup>
-                                        </SelectContent>    
-                                    </Select>
+                                    <label className="mb-1 block">
+                                        Ngôn ngữ
+                                    </label>
+                                    <div>
+                                        <InputLanguage
+                                            langId={langId}
+                                            onChange={changeLanguage}
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="mb-1 block">
+                                        Vùng miền
+                                    </label>
+                                    <div>
+                                        <Select>
+                                            <SelectTrigger className="w-[180px]">
+                                                <SelectValue placeholder="Chọn vùng miền" />
+                                            </SelectTrigger>
+                                            <SelectContent>
+                                                <SelectGroup>
+                                                    <SelectLabel>
+                                                        Chọn vùng miền
+                                                    </SelectLabel>
+                                                    {regions.map(
+                                                        (region, index) => (
+                                                            <SelectItem
+                                                                key={index}
+                                                                value={
+                                                                    region.id
+                                                                }
+                                                            >
+                                                                {region.title}
+                                                            </SelectItem>
+                                                        )
+                                                    )}
+                                                </SelectGroup>
+                                            </SelectContent>
+                                        </Select>
+                                    </div>
                                 </div>
                             </div>
                             <div className="flex gap-[100px]">
@@ -169,8 +217,10 @@ export default function Edit() {
                                 <label>Getting to</label>
                                 <div>
                                     <AppEditor
-                                        value={content}
-                                        onChange={(value) => setContent(value)}
+                                        value={contentGettingTo}
+                                        onChange={(value) =>
+                                            setContentGettingTo(value)
+                                        }
                                     />
                                 </div>
                             </div>
@@ -178,8 +228,10 @@ export default function Edit() {
                                 <label>When to visit</label>
                                 <div>
                                     <AppEditor
-                                        value={content}
-                                        onChange={(value) => setContent(value)}
+                                        value={contentWhenToVisit}
+                                        onChange={(value) =>
+                                            setContentWhenToVisit(value)
+                                        }
                                     />
                                 </div>
                             </div>
