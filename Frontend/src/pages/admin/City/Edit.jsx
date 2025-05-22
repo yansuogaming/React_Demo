@@ -1,0 +1,202 @@
+import Header from "@components/admin/Header";
+import Main from "@components/admin/Main";
+import ProfileDropdown from "@components/admin/ProfileDropdown";
+import Search from "@components/admin/Search";
+import ThemeSwitch from "@components/admin/ThemeSwitch";
+import { Button } from "@components/ui/button";
+import { Input } from "@components/ui/input";
+import { Tabs, TabsContent } from "@components/ui/tabs";
+import { lazy, useEffect, useState } from "react";
+import HttpClient from "@services/HttpClient";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router";
+import UploadImage from "@components/button/UploadImage";
+import CommonService from "@services/CommonService";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@components/ui/select";
+
+const AppEditor = lazy(() => import("@components/admin/AppEditor"));
+
+export default function Edit() {
+    let navigate = useNavigate();
+
+    const [title, setTitle] = useState("");
+    const [image, setImage] = useState("");
+    const [content, setContent] = useState("");
+
+    const { id } = useParams();
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+
+        if (id) {
+            const res = await HttpClient.post(`/experience/${id}`, {
+                title,
+                image,
+                content,
+            });
+            if (res.status === 200) {
+                toast.success("Cập nhật trải nghiệm thành công!");
+                navigate("/admin/experience");
+            } else {
+                toast.error("Cập nhật trải nghiệm thất bại!");
+            }
+            return;
+        }
+
+        const res = await HttpClient.post("/experience", {
+            title,
+            image,
+            content,
+        });
+        if (res.status === 201) {
+            toast.success("Thêm trải nghiệm thành công!");
+            navigate("/admin/experience");
+        } else {
+            toast.error("Thêm trải nghiệm thất bại!");
+        }
+    };
+
+    const uploadImage = async (e) => {
+        const image = await CommonService.uploadImage(e.target.files[0], 'experiences');
+        if (image == null) {
+            toast.error("Tải ảnh lên thất bại!");
+        } else {
+            setImage(image);
+        }
+    };
+
+    useEffect(() => {
+        if (id) {
+            const getExperience = async () => {
+                const res = await HttpClient.get(`/experience/${id}`);
+                if (res.status === 200) {
+                    const data = res.data.data;
+                    setTitle(data.title);
+                    setContent(data.content);
+                    setImage(data.image);
+                } else {
+                    toast.error("Lấy trải nghiệm thất bại!");
+                }
+            };
+
+            getExperience();
+        }
+    }, [id]);
+
+    return (
+        <>
+            {/* ===== Top Heading ===== */}
+            <Header>
+                <div className="flex items-center justify-between w-full">
+                    <Search />
+                    <div className="flex gap-[20px]">
+                        <ThemeSwitch />
+                        <ProfileDropdown />
+                    </div>
+                </div>
+            </Header>
+
+            {/* ===== Main ===== */}
+            <Main>
+                <div className="mb-2 flex items-center justify-between space-y-2">
+                    <h1 className="text-2xl font-bold tracking-tight mb-[30px]">
+                        {id ? "Chỉnh sửa thành phố" : "Thêm thành phố"}
+                    </h1>
+                </div>
+                <Tabs orientation="vertical" defaultValue="overview">
+                    <TabsContent value="overview" className="space-y-4">
+                        <form onSubmit={onSubmit} className="space-y-8">
+                            <div>
+                                <label className="mb-1 block">Tiêu đề</label>
+                                <div>
+                                    <Input
+                                        placeholder="shadcn"
+                                        value={title}
+                                        onChange={(e) =>
+                                            setTitle(e.target.value)
+                                        }
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label className="mb-1 block">Vùng miền</label>
+                                <div>
+                                    <Select>
+                                        <SelectTrigger className="w-[180px]">
+                                            <SelectValue placeholder="Select a fruit" />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectGroup>
+                                                <SelectLabel>Fruits</SelectLabel>
+                                                <SelectItem value="apple">Apple</SelectItem>
+                                                <SelectItem value="banana">Banana</SelectItem>
+                                                <SelectItem value="blueberry">Blueberry</SelectItem>
+                                                <SelectItem value="grapes">Grapes</SelectItem>
+                                                <SelectItem value="pineapple">Pineapple</SelectItem>
+                                            </SelectGroup>
+                                        </SelectContent>    
+                                    </Select>
+                                </div>
+                            </div>
+                            <div className="flex gap-[100px]">
+                                <div>
+                                    <label className="mb-1 block">Ảnh</label>
+                                    <UploadImage
+                                        className="w-[400px]"
+                                        imagePreview={image}
+                                        onChange={uploadImage}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="mb-1 block">Banner</label>
+                                    <UploadImage
+                                        className="w-[400px]"
+                                        imagePreview={image}
+                                        onChange={uploadImage}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label>Nội dung</label>
+                                <div>
+                                    <AppEditor
+                                        value={content}
+                                        onChange={(value) => setContent(value)}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label>Getting to</label>
+                                <div>
+                                    <AppEditor
+                                        value={content}
+                                        onChange={(value) => setContent(value)}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label>When to visit</label>
+                                <div>
+                                    <AppEditor
+                                        value={content}
+                                        onChange={(value) => setContent(value)}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label>Accessibility</label>
+                                <div>
+                                    <AppEditor
+                                        value={content}
+                                        onChange={(value) => setContent(value)}
+                                    />
+                                </div>
+                            </div>
+                            <Button type="submit">Submit</Button>
+                        </form>
+                    </TabsContent>
+                </Tabs>
+            </Main>
+        </>
+    );
+}

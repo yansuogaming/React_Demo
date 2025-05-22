@@ -108,7 +108,7 @@ export default function Index() {
                             <DropdownMenuItem
                                 onClick={() =>
                                     navigate(
-                                        `/admin/experiences/${row.getValue(
+                                        `/admin/city/${row.getValue(
                                             "id"
                                         )}`
                                     )
@@ -175,7 +175,7 @@ export default function Index() {
             <Main>
                 <div className="mb-2 flex justify-between">
                     <h1 className="text-2xl font-bold tracking-tight">
-                        Sự kiện
+                        Thành phố
                     </h1>
                 </div>
                 <Tabs
