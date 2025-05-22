@@ -28,7 +28,6 @@ const routes = [
                                 TourService.getListTrending(),
                                 RegionService.getListRegionInHome(),
                             ]);
-                            console.log('res[3]', res[3]);
                             return {
                                 experienceTypes: res[0],
                                 events: res[1],
@@ -53,15 +52,17 @@ const routes = [
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
                                 EventService.getOngoingAndUpcomingEvents(),
-                                WeatherService.getCityWeather("Hà Nội"),
                                 CityService.getCityBySlug(params.slug),
+                                MapService.getListDestination(),
                             ]);
 
+                            const weather = await WeatherService.getCityWeather(res[2].title)
                             return {
                                 FAQs: res[0],
                                 events: res[1],
-                                weather: res[2],
-                                city: res[3],
+                                weather,
+                                city: res[2],
+                                dataDestination: res[3],
                             };
                         },
                     },

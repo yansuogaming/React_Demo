@@ -12,11 +12,14 @@ import FAQ from "@components/FAQ";
 import OtherRegion from "@components/OtherRegion";
 import Share from "@components/Share";
 import HeroSection from "@components/HeroSection";
-import MapCity from "@components/city/Map";
+import { lazy, useState } from "react";
+import { cn } from "@lib/utils";
+const MapCity = lazy(() => import("@components/city/Map"));
 
 const City = () => {
   const { t } = useTranslation();
   const { FAQs, events, weather, city, dataDestination } = useLoaderData();
+  const [tab, setTab] = useState("welcome");
 
   const breadcrumdItems = [
     { label: t("home"), href: "/" },
@@ -39,34 +42,66 @@ const City = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-[32px]">
           <div className="lg:col-span-2">
             <div className="flex gap-[10px] mb-[35px] overflow-x-auto scrollbar-hide">
-              <NavLink
-                className="whitespace-nowrap p-[8px_16px] border-[#007BFF] border-[1px] rounded-[80px] text-[#007BFF]"
-                href="/"
+              <button
+                className={cn(
+                  'cursor-pointer whitespace-nowrap p-[8px_16px] rounded-[80px]',
+                  tab === "welcome" ? "bg-white text-[#007BFF] border-[#007BFF]" : "bg-[#ECECF1] text-[#64646D]",
+                  'hover:border-[#007BFF] border-[1px]',
+                  'hover:text-[#007BFF] hover:bg-white'
+                )}
+                onClick={() => setTab("welcome")}
               >
                 Welcome
-              </NavLink>
-              <NavLink
-                className="whitespace-nowrap p-[8px_16px] bg-[#ECECF1] rounded-[80px] text-[#64646D]"
-                href="/"
+              </button>
+              <button
+                className={cn(
+                  'cursor-pointer whitespace-nowrap p-[8px_16px] rounded-[80px]',
+                  tab === "getting_to" ? "bg-white text-[#007BFF] border-[#007BFF]" : "bg-[#ECECF1] text-[#64646D]",
+                  'hover:border-[#007BFF] border-[1px]',
+                  'hover:text-[#007BFF] hover:bg-white'
+                )}
+                onClick={() => setTab("getting_to")}
               >
                 Getting to Hanoi
-              </NavLink>
-              <NavLink
-                className="whitespace-nowrap p-[8px_16px] bg-[#ECECF1] rounded-[80px] text-[#64646D]"
-                href="/"
+              </button>
+              <button
+                className={cn(
+                  'cursor-pointer whitespace-nowrap p-[8px_16px] rounded-[80px]',
+                  tab === "when_to_visit" ? "bg-white text-[#007BFF] border-[#007BFF]" : "bg-[#ECECF1] text-[#64646D]",
+                  'hover:border-[#007BFF] border-[1px]',
+                  'hover:text-[#007BFF] hover:bg-white'
+                )}
+                onClick={() => setTab("when_to_visit")}
               >
                 When to visit
-              </NavLink>
-              <NavLink
-                className="whitespace-nowrap p-[8px_16px] bg-[#ECECF1] rounded-[80px] text-[#64646D]"
-                href="/"
+              </button>
+              <button
+                className={cn(
+                  'cursor-pointer whitespace-nowrap p-[8px_16px] rounded-[80px]',
+                  tab === "accessibility" ? "bg-white text-[#007BFF] border-[#007BFF]" : "bg-[#ECECF1] text-[#64646D]",
+                  'hover:border-[#007BFF] border-[1px]',
+                  'hover:text-[#007BFF] hover:bg-white'
+                )}
+                onClick={() => setTab("accessibility")}
               >
                 Accessibility
-              </NavLink>
+              </button>
             </div>
             <div
-              className="text-[#1A2A44] text-[16px] lg:text-[18px]"
-              dangerouslySetInnerHTML={{ __html: city.intro }}
+              className={`text-[#1A2A44] text-[16px] lg:text-[18px] ${tab === "welcome" ? "" : "hidden"}`}
+              dangerouslySetInnerHTML={{ __html: city.content }}
+            ></div>
+            <div
+              className={`text-[#1A2A44] text-[16px] lg:text-[18px] ${tab === "getting_to" ? "" : "hidden"}`}
+              dangerouslySetInnerHTML={{ __html: city.content_getting_to }}
+            ></div>
+            <div
+              className={`text-[#1A2A44] text-[16px] lg:text-[18px] ${tab === "when_to_visit" ? "" : "hidden"}`}
+              dangerouslySetInnerHTML={{ __html: city.content_when_to_visit }}
+            ></div>
+            <div
+              className={`text-[#1A2A44] text-[16px] lg:text-[18px] ${tab === "accessibility" ? "" : "hidden"}`}
+              dangerouslySetInnerHTML={{ __html: city.content_accessibility }}
             ></div>
           </div>
           <MapCity listDestination={dataDestination.list_resources} />

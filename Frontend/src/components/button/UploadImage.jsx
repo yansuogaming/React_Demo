@@ -16,7 +16,6 @@ export default function UploadImage({
         )}>
             <div className="p-4">
                 <div
-                    id="image-preview"
                     className={cn(
                         'p-6 bg-gray-100 border-dashed',
                         'border-2 border-gray-400 rounded-lg items-center',

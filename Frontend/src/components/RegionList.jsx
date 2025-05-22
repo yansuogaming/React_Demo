@@ -246,11 +246,11 @@ const RegionList = ({ className, data, ...props }) => {
                                                 setActiveRegion(activeRegion)
                                             } // Không cần thiết nếu không thay đổi index
                                         >
-                                            <NavLink to="/city/ha-noi">
+                                            <NavLink to={`/city/${destination.slug}`}>
                                                 <img
                                                     src={destination.image}
                                                     alt={destination.title}
-                                                    className="w-full rounded-[60px_4px_4px_4px]"
+                                                    className="w-full rounded-[60px_4px_4px_4px] h-[475px]"
                                                     loading="lazy"
                                                 />
                                                 <div
@@ -269,11 +269,10 @@ const RegionList = ({ className, data, ...props }) => {
                                                             "transition-all duration-500"
                                                         )}
                                                     >
-                                                        <p className="text-white mt-2 text-[16px] leading-[1.4]">
-                                                            {
-                                                                destination.description
-                                                            }
-                                                        </p>
+                                                        <div 
+                                                            className="text-white mt-2 text-[16px] leading-[1.4] truncate_3"
+                                                            dangerouslySetInnerHTML={{ __html: destination.description }}>
+                                                        </div>
                                                         <div
                                                             className={cn(
                                                                 "flex mt-[10px] mb-[20px] text-[17px] font-bold",

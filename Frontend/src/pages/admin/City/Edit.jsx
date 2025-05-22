@@ -114,13 +114,14 @@ export default function Edit() {
                     setRegions(res[0]);
                     setTitle(res[1].title);
                     setLangId(res[1].lang_id);
-                    setRegionId(res[1]?.region_id.toString());
+                    setRegionId(res[1].region_id?.toString() ?? '');
                     setImage(res[1].image);
                     setBanner(res[1].banner ?? '');
                     setIntro(res[1].intro ?? '');
                     setContent(res[1].content ?? '');
                     setContentGettingTo(res[1].content_getting_to);
                     setContentWhenToVisit(res[1].content_when_to_visit);
+                    setContentAccessibility(res[1].content_accessibility);
                 } else {
                     toast.error("Lấy trải nghiệm thất bại!");
                 }
@@ -182,6 +183,7 @@ export default function Edit() {
                                         Vùng miền
                                     </label>
                                     <div>
+                                        {regions.length > 0 && (
                                         <Select onValueChange={(regionId) => setRegionId(regionId)} value={regionId}>
                                             <SelectTrigger className="w-[180px]">
                                                 <SelectValue placeholder="Chọn vùng miền" />
@@ -202,6 +204,7 @@ export default function Edit() {
                                                 </SelectGroup>
                                             </SelectContent>
                                         </Select>
+                                        )}
                                     </div>
                                 </div>
                             </div>

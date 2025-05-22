@@ -9,8 +9,10 @@ trait AccessBanner
     #[Accessor('banner')]
     public function getBanner($banner)
     {
-        return filter_var($banner, FILTER_VALIDATE_URL)
-            ? $banner
-            : config('app.url') . $banner;
+        if (empty($banner) || filter_var($banner, FILTER_VALIDATE_URL)) {
+            return $banner;
+        }
+
+        return config('app.url') . $banner;
     }
 }

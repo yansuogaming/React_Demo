@@ -195,7 +195,7 @@ class RegionController
             ->get();
         $regionIds = $regions->pluck('id')->toArray();
         $cities = City::whereIn('region_id', $regionIds)
-            ->select('image', DB::raw('intro as description'), 'title', 'region_id')
+            ->select('image', DB::raw('intro as description'), 'title', 'region_id', 'slug')
             ->get();
         $regions = $regions->map(function ($region) use ($cities) {
             $listCities = [];
