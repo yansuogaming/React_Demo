@@ -70,7 +70,7 @@ class HttpClient {
    
         if (res.status === 401) {
             navigateTo('/admin/login');
-            if (config.url !== '/login') {
+            if (config.url.indexOf('/login') === -1) {
                 toast.error('Phiên đăng nhập đã hết hạn.');
             }
         }

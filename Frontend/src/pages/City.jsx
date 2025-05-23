@@ -1,4 +1,3 @@
-import imageCity from "@images/hanoi.png";
 import Breadcrumb from "@components/Breadcrumb";
 import { useTranslation } from "react-i18next";
 import { useLoaderData } from "react-router";
@@ -29,7 +28,7 @@ const City = () => {
 
   return (
     <main>
-      <HeroSection title={city.title} image={imageCity} showArrowDown={true}>
+      <HeroSection title={city.title} image={city.banner} showArrowDown={true}>
         <div
           className="text-center text-[20px] font-normal w-full truncate_3"
           dangerouslySetInnerHTML={{ __html: city.intro }}

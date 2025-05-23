@@ -239,6 +239,14 @@ const routes = [
                     {
                         path: "signin-password",
                         Component: lazy(() => import("@pages/auth/SignInPassword")),
+                        loader: async ({ request }) => {
+                            const url = new URL(request.url);
+                            const query = Object.fromEntries(url.searchParams.entries());
+                            const email = query?.email ?? '';
+                            return {
+                                email
+                            };
+                        },
                     },
                     {
                         path: "forgot-password",
