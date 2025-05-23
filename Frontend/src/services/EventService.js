@@ -9,15 +9,19 @@ const EventService = {
     },
 
     // Lấy tất cả sự theo type
-    getEvents: async (type = 'all', keyword = '') => {
+    getEvents: async (type = 'all', keyword = '', page = 1) => {
         const res = await HttpClient
             .get('/event/list-approved', {
                 params: {
                     type,
-                    keyword
+                    keyword,
+                    page
                 }
             })
-        return res.data.events
+        return {
+            events: res.data.events,
+            total_page: res.data.total_page
+        }
     },
 }
 

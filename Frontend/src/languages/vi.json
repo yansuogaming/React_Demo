@@ -86,5 +86,10 @@
   "download_apps": "Tải ứng dụng",
   "get_apps_for_attractions": "Tải ứng dụng của chúng tôi để cập nhật các điểm tham quan, sự kiện & lịch trình mới nhất",
   "visa_information": "Thông tin Visa",
-  "place_to_go":"Địa điểm gợi ý"
+  "place_to_go":"Địa điểm gợi ý",
+
+
+  "check_your_mailbox": "Kiểm tra hộp thư của bạn",
+  "forgot_password.description": "Chúng tôi đã gửi bạn hướng dẫn và đường link cài lại mật khẩu đến . Email này có thể mất vài phút để đến hộp thư.",
+  "back_to_login_step": "Quay lại bước đăng nhập"
 }

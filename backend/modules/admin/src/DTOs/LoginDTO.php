@@ -1,6 +1,6 @@
 <?php
 
-namespace Vietiso\Modules\User\DTOs;
+namespace Vietiso\Modules\Admin\DTOs;
 
 use Vietiso\Core\ValidatedDTO\Rules\Email;
 use Vietiso\Core\ValidatedDTO\Rules\Required;

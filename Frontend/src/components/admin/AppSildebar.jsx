@@ -12,7 +12,7 @@ export default function AppSidebar({ ...props }) {
     return (
         <Sidebar collapsible='icon' variant='floating' {...props}>
             <SidebarHeader>
-                <NavUser user={sidebarData.user} />
+                <NavUser />
             </SidebarHeader>
             <SidebarContent>
                 {sidebarData.navGroups.map((props) => (

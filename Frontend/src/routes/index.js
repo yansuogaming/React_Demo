@@ -112,14 +112,22 @@ const routes = [
                     {
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
-                        loader: async () => {
+                        loader: async ({ request }) => {
+                            const url = new URL(request.url);
+                            const query = Object.fromEntries(url.searchParams.entries());
+                            const currentPage = query?.page ?? 1;
+                            const keyword = query?.keyword ?? '';
                             const res = await Promise.all([
                                 EventService.getOngoingAndUpcomingEvents(),
-                                EventService.getEvents(),
+                                EventService.getEvents('All', keyword, currentPage),
                             ]);
                             return {
                                 ongoingAndUpcomingEvents: res[0],
-                                events: res[1],
+                                events: res[1].events ?? [],
+                                totalPage: res[1].total_page,
+                                currentPage,
+                                typeSearch: 'All',
+                                keyword
                             };
                         },
                         meta: () => {
@@ -173,6 +181,15 @@ const routes = [
                     {
                         path: "weathertrip",
                         Component: lazy(() => import("@pages/WeatherTrip")),
+                        loader: async () => {
+                            const res = await Promise.all([
+                                WeatherService.getWeatherByIp(),
+                            ]);
+
+                            return {
+                                weather: res[0]
+                            }
+                        }
                     },
                     {
                         path: "currency",
@@ -188,15 +205,29 @@ const routes = [
                     },
                     {
                         path: "signin",
-                        Component: lazy(() => import("@pages/SignIn")),
+                        Component: lazy(() => import("@pages/auth/SignIn")),
+                    },
+                    {
+                        path: "signup",
+                        Component: lazy(() => import("@pages/auth/SignIn")),
                     },
                     {
                         path: "signin-password",
-                        Component: lazy(() => import("@pages/SignInPassword")),
+                        Component: lazy(() => import("@pages/auth/SignInPassword")),
+                        loader: ({ request }) => {
+                            const url = new URL(request.url);
+                            const query = Object.fromEntries(url.searchParams.entries());
+                            const email = query?.email ?? '';
+                            return { email };
+                        }
                     },
                     {
                         path: "forgot-password",
-                        Component: lazy(() => import("@pages/ForgotPassword")),
+                        Component: lazy(() => import("@pages/auth/ForgotPassword")),
+                    },
+                    {
+                        path: "forgot-password/confirm",
+                        Component: lazy(() => import("@pages/auth/ConfirmForgotPassword")),
                     },
                     {
                         path: "attractions",
