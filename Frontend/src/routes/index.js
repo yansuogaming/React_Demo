@@ -8,6 +8,7 @@ import CityService from "@services/CityService";
 import TourService from "@services/TourService";
 import MapService from "@services/MapService";
 import RegionService from "@services/RegionService";
+import { t } from "i18next";
 
 const routes = [
     ...routesAdmin,
@@ -96,7 +97,6 @@ const routes = [
                                 TourService.getListTrending(),
                                 TourService.getListTour(),
                             ]);
-                            console.log(res[1]);
                             return {
                                 listTrendingTours: res[0],
                                 listTours: res[1],
@@ -108,6 +108,10 @@ const routes = [
                         Component: lazy(() =>
                             import("@pages/ItinerariesDetail")
                         ),
+                    },
+                    {
+                        path: "experiences",
+                        Component: lazy(() => import("@pages/Expericences")),
                     },
                     {
                         path: "events",
@@ -206,10 +210,28 @@ const routes = [
                     {
                         path: "signin",
                         Component: lazy(() => import("@pages/auth/SignIn")),
+                        meta: () => {
+                            return [
+                                { title: t('login') },
+                                {
+                                    name: "description",
+                                    content: t('login'),
+                                },
+                            ];
+                        }
                     },
                     {
                         path: "signup",
-                        Component: lazy(() => import("@pages/auth/SignIn")),
+                        Component: lazy(() => import("@pages/auth/SignUp")),
+                        meta: () => {
+                            return [
+                                { title: t('login') },
+                                {
+                                    name: "description",
+                                    content: t('login'),
+                                },
+                            ];
+                        }
                     },
                     {
                         path: "signin-password",
