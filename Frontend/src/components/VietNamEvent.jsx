@@ -51,6 +51,7 @@ const VietNamEvent = ({ className = "", data = [] }) => {
                     <ViewMoreButton
                         className="font-[700] text-[18px]"
                         text={t("See All Events")}
+                        to="/events"
                     />
                 </div>
 

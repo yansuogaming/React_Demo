@@ -129,9 +129,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <div className="flex items-center w-full relative xl-md:w-fit h-full ">
                             {/* Logo */}
                             <motion.div
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 0.2 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.2 } : false}
                                 className="mr-[50px]"
                             >
                                 <NavLink to="/">
@@ -152,9 +152,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                 )}
                             >
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.3 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.3 } : false}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/itineraries">
@@ -162,17 +162,17 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.4 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.4 } : false}
                                     className="p-[15px] h-fit"
                                 >
-                                    <NavLink to="/">{t("experiences")}</NavLink>
+                                    <NavLink to="/experiences">{t("experiences")}</NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.5 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.5 } : false}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/events">
@@ -180,9 +180,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.6 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.6 } : false}
                                     className="p-[15px] h-fit "
                                     onMouseEnter={() =>
                                         hanleHoverPlanYourTrip(true)
@@ -196,9 +196,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={{ opacity: 0, y: -100 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ duration: 0.7, delay: 0.7 }}
+                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.7 } : false}
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/">
@@ -210,9 +210,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <ul className="items-center font-bold hidden xl-md:flex ">
                             <motion.li
                                 className="p-[15px]"
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 0.8 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.8 } : false}
                             >
                                 <SearchHeader
                                     color={color}
@@ -222,25 +222,25 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 0.9 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.9 } : false}
                             >
                                 <ChangeLangButton color={color} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 1 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1 } : false}
                             >
                                 <MapIcon color={colorIcon} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={{ opacity: 0, y: -100 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.7, delay: 1.1 }}
+                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
+                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
+                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1.1 } : false}
                             >
                                 <NavLink to="/signin">
                                     <UserIcon color={colorIcon} />
@@ -367,7 +367,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                 <ul>
                                     <li>
                                         <NavLink
-                                            to="/"
+                                            to="/itineraries"
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#03A9F4]"
                                         >
                                             Destinations <RiArrowRightSLine />
@@ -375,7 +375,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </li>
                                     <li>
                                         <NavLink
-                                            to="/"
+                                            to="/experiences"
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0288D1]"
                                         >
                                             Experiences <RiArrowRightSLine />
@@ -383,7 +383,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </li>
                                     <li>
                                         <NavLink
-                                            to="/"
+                                            to="/events"
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0277BD]"
                                         >
                                             Events <RiArrowRightSLine />

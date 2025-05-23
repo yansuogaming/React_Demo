@@ -8,6 +8,7 @@ import CityService from "@services/CityService";
 import TourService from "@services/TourService";
 import MapService from "@services/MapService";
 import { t } from "i18next";
+import RegionService from "@services/RegionService";
 
 const routes = [
     ...routesAdmin,
@@ -26,11 +27,13 @@ const routes = [
                                 ExperienceService.getExperienceTypes(),
                                 EventService.getOngoingAndUpcomingEvents(),
                                 TourService.getListTrending(),
+                                RegionService.getListRegionInHome(),
                             ]);
                             return {
                                 experienceTypes: res[0],
                                 events: res[1],
                                 listTrendingTours: res[2],
+                                listRegion: res[3]
                             };
                         },
                         meta: () => {
@@ -50,15 +53,17 @@ const routes = [
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
                                 EventService.getOngoingAndUpcomingEvents(),
-                                WeatherService.getCityWeather("Hà Nội"),
                                 CityService.getCityBySlug(params.slug),
+                                MapService.getListDestination(),
                             ]);
 
+                            const weather = await WeatherService.getCityWeather(res[2].title)
                             return {
                                 FAQs: res[0],
                                 events: res[1],
-                                weather: res[2],
-                                city: res[3],
+                                weather,
+                                city: res[2],
+                                dataDestination: res[3],
                             };
                         },
                     },
@@ -123,14 +128,22 @@ const routes = [
                     {
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
-                        loader: async () => {
+                        loader: async ({ request }) => {
+                            const url = new URL(request.url);
+                            const query = Object.fromEntries(url.searchParams.entries());
+                            const currentPage = query?.page ?? 1;
+                            const keyword = query?.keyword ?? '';
                             const res = await Promise.all([
                                 EventService.getOngoingAndUpcomingEvents(),
-                                EventService.getEvents(),
+                                EventService.getEvents('All', keyword, currentPage),
                             ]);
                             return {
                                 ongoingAndUpcomingEvents: res[0],
-                                events: res[1],
+                                events: res[1].events ?? [],
+                                totalPage: res[1].total_page,
+                                currentPage,
+                                typeSearch: 'All',
+                                keyword
                             };
                         },
                         meta: () => {
@@ -225,11 +238,11 @@ const routes = [
                     },
                     {
                         path: "signin-password",
-                        Component: lazy(() => import("@pages/SignInPassword")),
+                        Component: lazy(() => import("@pages/auth/SignInPassword")),
                     },
                     {
                         path: "forgot-password",
-                        Component: lazy(() => import("@pages/ForgotPassword")),
+                        Component: lazy(() => import("@pages/auth/ForgotPassword")),
                     },
                     {
                         path: "attractions",

@@ -32,9 +32,8 @@ const Events = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [keysearch, setKeysearch] = useState(keyword);
 
-    const filteredEvents = typeSearch === 'all' ? events : events.filter(() => true);
-    const top8 = filteredEvents.slice(0, 8);
-    const bottom8 = filteredEvents.slice(8);
+    const top8 = events.slice(0, 8);
+    const bottom8 = events.slice(8);
 
     const AdBanner = () => {
         return (
