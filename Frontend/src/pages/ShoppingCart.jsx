@@ -6,7 +6,6 @@ import {
     X,
     CheckCircle,
     Delete,
-    DeleteIcon,
 } from "lucide-react";
 import time_quarter from "@images/time_quarter.svg";
 import ic_visa from "@images/ic_visa.svg";
@@ -56,14 +55,14 @@ const ShoppingCart = () => {
     ];
 
     const CartItem = ({ item }) => (
-        <div className="bg-white border border-gray-200 rounded-lg p-3 md:p-4 mb-3 md:mb-4">
-            <div className="flex flex-col md:flex-row gap-3 md:gap-4">
+        <div className="bg-white border border-gray-200 rounded-lg p-4 mb-4">
+            <div className="flex flex-col lg:flex-row gap-4">
                 {/* Image */}
                 <div className="flex-shrink-0">
                     <img
                         src={item.image}
                         alt={item.title}
-                        className="w-16 h-16 md:w-20 md:h-20 rounded-lg object-cover"
+                        className="w-full h-48 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-20 lg:h-20 rounded-lg object-cover"
                     />
                 </div>
 
@@ -71,51 +70,62 @@ const ShoppingCart = () => {
                 <div className="flex-1 min-w-0">
                     {/* Title and Price Row */}
                     <div className="flex-col">
-                        <div className="flex justify-between items-start mb-2 md:mb-3">
-                            <h3 className="text-base md:text-lg font-semibold text-gray-900 pr-2 md:pr-4 leading-tight">
+                        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
+                            <h3 className="text-lg font-semibold text-gray-900 mb-2 lg:mb-0 lg:pr-4 leading-tight">
                                 {item.title}
                             </h3>
+
+                            {/* Price section - visible on mobile, positioned differently on desktop */}
+                            <div className="text-left lg:text-right flex-shrink-0 lg:hidden">
+                                <div className="text-base text-gray-700 font-medium mb-1">
+                                    US ${item.originalPrice.toFixed(2)}
+                                </div>
+                                <div className="text-sm text-blue-600 underline cursor-pointer">
+                                    Price details
+                                </div>
+                            </div>
                         </div>
 
                         {/* Date and Duration */}
-                        <div className="flex items-center gap-1 mb-1 md:mb-2">
-                            <Calendar className="w-3 h-3 md:w-4 md:h-4 text-gray-600" />
+                        <div className="flex flex-wrap items-center gap-1 mb-2">
+                            <Calendar className="w-4 h-4 text-gray-600" />
                             <span className="text-sm md:text-base text-gray-700">{item.date}</span>
-                            <span className="text-sm md:text-base text-gray-500 mx-0.5 md:mx-1">•</span>
+                            <span className="text-sm md:text-base text-gray-500 mx-1">•</span>
                             <span className="text-sm md:text-base text-gray-700">{item.duration}</span>
                         </div>
 
                         {/* Guests */}
-                        <div className="flex items-center gap-1 mb-2 md:mb-3">
-                            <Users className="w-3 h-3 md:w-4 md:h-4 text-gray-600" />
+                        <div className="flex items-center gap-1 mb-3">
+                            <Users className="w-4 h-4 text-gray-600" />
                             <span className="text-sm md:text-base text-gray-700">{item.guests}</span>
                         </div>
 
                         {/* Status badges */}
-                        <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6 mb-2 md:mb-4 justify-between border-b border-b-gray-200 pb-2 md:pb-[10px]">
-                            <div className="flex items-center gap-3 md:gap-6 mt-[-20px]">
+                        <div className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-6 mb-4 lg:justify-between border-b border-b-gray-200 pb-3">
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
                                 <div className="flex items-center gap-1">
-                                    <img src={ic_close} className="w-3 h-3 md:w-4 md:h-4 text-gray-500" />
+                                    <img src={ic_close} className="w-4 h-4 text-gray-500" />
                                     <span className="text-sm md:text-base text-gray-600">Non-refundable</span>
                                 </div>
                                 {item.dateChanged ? (
                                     <div className="flex items-center gap-1">
-                                        <img src={ic_date} className="w-3 h-3 md:w-4 md:h-4 text-[#00818A]" />
+                                        <img src={ic_date} className="w-4 h-4 text-[#00818A]" />
                                         <span className="text-sm md:text-base text-[#00818A]">Date changed</span>
                                     </div>
                                 ) : (
                                     <div className="flex items-center gap-1">
-                                        <img src={ic_close} className="w-3 h-3 md:w-4 md:h-4 text-gray-500" />
+                                        <img src={ic_close} className="w-4 h-4 text-gray-500" />
                                         <span className="text-sm md:text-base text-gray-600">No date change</span>
                                     </div>
                                 )}
                             </div>
 
-                            <div className="text-right flex-shrink-0">
-                                <div className="text-sm md:text-base text-gray-700 font-medium mb-0.5 md:mb-1">
+                            {/* Price section - hidden on mobile, visible on desktop */}
+                            <div className="text-right flex-shrink-0 hidden lg:block">
+                                <div className="text-base text-gray-700 font-medium mb-1">
                                     US ${item.originalPrice.toFixed(2)}
                                 </div>
-                                <div className="text-xs md:text-sm text-blue-600 underline cursor-pointer">
+                                <div className="text-sm text-blue-600 underline cursor-pointer">
                                     Price details
                                 </div>
                             </div>
@@ -124,22 +134,22 @@ const ShoppingCart = () => {
 
                     {/* Add-ons */}
                     {item.addOns.length > 0 && (
-                        <div className="mb-2 md:mb-4 space-y-1 md:space-y-2">
+                        <div className="mb-4 space-y-2">
                             {item.addOns.map((addon, index) => (
                                 <div key={index} className="flex justify-between items-center">
-                                    <span className="text-sm md:text-base text-gray-700">{addon.name}</span>
-                                    <div className="flex items-center gap-1 md:gap-2">
+                                    <span className="text-sm md:text-base text-gray-700 flex-1 pr-2">{addon.name}</span>
+                                    <div className="flex items-center gap-2 flex-shrink-0">
                                         {addon.isFree ? (
                                             <>
-                                                <span className="text-sm md:text-base text-gray-400 line-through">
+                                                <span className="text-sm text-gray-400 line-through">
                                                     US ${addon.originalPrice.toFixed(2)}
                                                 </span>
-                                                <span className="text-sm md:text-base text-green-600 font-medium">
+                                                <span className="text-sm text-green-600 font-medium">
                                                     Free
                                                 </span>
                                             </>
                                         ) : (
-                                            <span className="text-sm md:text-base text-gray-900 font-medium">
+                                            <span className="text-sm text-gray-900 font-medium">
                                                 US ${addon.price.toFixed(2)}
                                             </span>
                                         )}
@@ -149,30 +159,31 @@ const ShoppingCart = () => {
                         </div>
                     )}
 
-                    {/* Bottom row with buttons and final price */}
-                    <div className="flex flex-col md:flex-row justify-between items-end w-full md:w-[600px] lg:w-[810px] h-[60px] md:h-[70px] ml-0 md:ml-[-50px] lg:ml-[-112px] p-2 md:p-[15px] bg-gray-100 mb-0 md:mb-[-16px] rounded-bl-[8px] rounded-br-[8px]">
-                        {/* Action buttons */}
-                        <div className="flex items-center gap-2 md:gap-4 pl-2 md:pl-[20px]">
-                            <button className="flex items-center gap-1 text-black hover:text-blue-800 text-xs md:text-sm p-1 md:p-[8px] bg-white rounded-2xl">
-                                <Edit className="w-3 h-3 md:w-4 md:h-4" />
-                                Edit
-                            </button>
-                            <button className="flex items-center gap-1 text-black hover:text-blue-800 text-xs md:text-sm p-1 md:p-[10px] bg-white rounded-2xl">
-                                <img src={ic_delete} className="w-3 h-3 md:w-4 md:h-4" />
-                            </button>
-                            <div className="text-xs md:text-sm text-red-700 bg-red-50 px-2 py-0.5 md:px-3 md:py-1 font-bold rounded-2xl">
-                                Deposit {item.depositPercentage}% (US ${item.depositAmount.toFixed(3)})
-                            </div>
-                        </div>
 
-                        {/* Final price */}
-                        <div className="text-right mt-2 md:mt-0">
-                            <div className="text-lg md:text-xl font-bold text-red-600 mb-0.5 md:mb-1">
-                                US ${item.finalPrice.toFixed(2)}
-                            </div>
-                            <div className="text-xs md:text-sm text-green-600">All taxes and fees included</div>
-                        </div>
+                </div>
+            </div>
+            {/* Bottom row with buttons and final price */}
+            <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end bg-gray-100 p-4 -mx-4 -mb-4 rounded-b-lg gap-3 lg:gap-0">
+                {/* Action buttons */}
+                <div className="flex flex-wrap items-center gap-2 lg:gap-4">
+                    <button className="flex items-center gap-1 text-black hover:text-blue-800 text-sm px-3 py-2 bg-white rounded-2xl">
+                        <Edit className="w-4 h-4" />
+                        Edit
+                    </button>
+                    <button className="flex items-center gap-1 text-black hover:text-blue-800 text-sm px-3 py-2 bg-white rounded-2xl">
+                        <img src={ic_delete} className="w-4 h-4" />
+                    </button>
+                    <div className="text-sm text-red-700 bg-red-50 px-3 py-1 font-bold rounded-2xl">
+                        Deposit {item.depositPercentage}% (US ${item.depositAmount.toFixed(3)})
                     </div>
+                </div>
+
+                {/* Final price */}
+                <div className="text-left lg:text-right w-full lg:w-auto">
+                    <div className="text-xl font-bold text-red-600 mb-1">
+                        US ${item.finalPrice.toFixed(2)}
+                    </div>
+                    <div className="text-sm text-green-600">All taxes and fees included</div>
                 </div>
             </div>
         </div>
@@ -182,24 +193,24 @@ const ShoppingCart = () => {
 
     return (
         <div className="bg-gray-50 min-h-screen">
-            <div className="max-w-7xl mx-auto p-3 md:p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+            <div className="max-w-7xl mx-auto p-4 lg:p-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
                     {/* Left Column - Cart Items */}
-                    <div className="md:col-span-2">
-                        <h1 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-6 text-gray-900">
+                    <div className="lg:col-span-2">
+                        <h1 className="text-2xl lg:text-3xl font-bold mb-6 text-gray-900">
                             Shopping cart
                         </h1>
 
                         {/* Warning Message */}
-                        <div className="bg-pink-50 border border-pink-200 rounded-lg mb-3 md:mb-6 w-full md:w-[299px] h-[32px] md:h-[38px] items-center p-1 md:p-2 justify-center">
-                            <div className="flex items-center gap-1 md:gap-2">
-                                <img src={time_quarter} className="w-4 md:w-5 h-4 md:h-5" />
-                                <span className="text-[12px] md:text-[14px]">Items aren't reserved until you book</span>
+                        <div className="bg-pink-50 border border-pink-200 rounded-lg mb-6 w-full sm:w-80 h-auto p-3 flex items-center justify-center">
+                            <div className="flex items-center gap-2">
+                                <img src={time_quarter} className="w-5 h-5 flex-shrink-0" />
+                                <span className="text-sm">Items aren't reserved until you book</span>
                             </div>
                         </div>
 
                         {/* Tours Section */}
-                        <h2 className="text-lg md:text-xl font-semibold mb-3 md:mb-4 text-gray-900">
+                        <h2 className="text-xl font-semibold mb-4 text-gray-900">
                             Tours
                         </h2>
 
@@ -209,56 +220,56 @@ const ShoppingCart = () => {
                     </div>
 
                     {/* Right Column - Summary */}
-                    <div className="md:col-span-1">
-                        <div className="bg-white border border-gray-200 rounded-lg p-3 md:p-6 sticky top-3 md:top-6">
+                    <div className="lg:col-span-1">
+                        <div className="bg-white border border-gray-200 rounded-lg p-4 lg:p-6 sticky top-6">
                             {/* Subtotal */}
-                            <div className="flex justify-between items-start mb-2 md:mb-4">
+                            <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <div className="text-base md:text-lg font-semibold text-gray-900">
+                                    <div className="text-lg font-semibold text-gray-900">
                                         Subtotal
                                     </div>
-                                    <div className="text-xs md:text-sm text-gray-600">(7 items)</div>
+                                    <div className="text-sm text-gray-600">(7 items)</div>
                                 </div>
                                 <div className="text-right">
-                                    <div className="text-base md:text-lg font-bold text-gray-900">
+                                    <div className="text-lg font-bold text-gray-900">
                                         US ${totalAmount.toFixed(2)}
                                     </div>
-                                    <div className="text-xs md:text-sm text-green-600">
+                                    <div className="text-sm text-green-600">
                                         All taxes and fees included
                                     </div>
                                 </div>
                             </div>
 
                             {/* Checkout Button */}
-                            <button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-2 md:py-3 px-3 md:px-4 rounded-lg md:rounded-3xl mb-3 md:mb-6 transition-colors duration-200">
+                            <button className="w-full bg-teal-500 hover:bg-teal-600 text-white font-semibold py-3 px-4 rounded-3xl mb-6 transition-colors duration-200">
                                 Go to checkout
                             </button>
 
                             {/* Features */}
-                            <div className="space-y-2 md:space-y-4 mb-3 md:mb-6">
-                                <div className="flex items-start gap-2 md:gap-3">
-                                    <CheckCircle className="w-4 md:w-5 h-4 md:h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                            <div className="space-y-4 mb-6">
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                                     <div>
-                                        <div className="font-semibold text-gray-900 text-sm md:text-base">
+                                        <div className="font-semibold text-gray-900 text-base">
                                             Guaranteed Reservation
                                         </div>
-                                        <div className="text-xs md:text-sm text-gray-600">
+                                        <div className="text-sm text-gray-600">
                                             Even with 0% deposit
                                         </div>
                                     </div>
                                 </div>
 
-                                <div className="flex items-start gap-2 md:gap-3">
-                                    <CheckCircle className="w-4 md:w-5 h-4 md:h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                                <div className="flex items-start gap-3">
+                                    <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
                                     <div>
-                                        <div className="font-semibold text-gray-900 text-sm md:text-base">
+                                        <div className="font-semibold text-gray-900 text-base">
                                             Multiple Payment Methods Accepted
                                         </div>
-                                        <div className="flex items-center gap-1 md:gap-2 mt-0.5 md:mt-1">
-                                            <div className="flex items-center gap-1 md:gap-1">
-                                                <img src={ic_vnpay} className="w-[30px] md:w-[41px] h-[10px] md:h-[13px]" />
-                                                <img src={ic_visa} className="w-[30px] md:w-[41px] h-[10px] md:h-[13px]" />
-                                                <img src={ic_onepay} className="w-[30px] md:w-[41px] h-[10px] md:h-[13px]" />
+                                        <div className="flex items-center gap-2 mt-1">
+                                            <div className="flex items-center gap-1">
+                                                <img src={ic_vnpay} className="w-10 h-3" />
+                                                <img src={ic_visa} className="w-10 h-3" />
+                                                <img src={ic_onepay} className="w-10 h-3" />
                                             </div>
                                         </div>
                                     </div>
@@ -266,32 +277,32 @@ const ShoppingCart = () => {
                             </div>
 
                             {/* Why book with us */}
-                            <div className="border-t pt-2 md:pt-4">
-                                <h3 className="font-semibold mb-2 md:mb-4 text-gray-900 text-sm md:text-base">
+                            <div className="border-t pt-4">
+                                <h3 className="font-semibold mb-4 text-gray-900 text-base">
                                     Why book with us?
                                 </h3>
-                                <div className="space-y-1 md:space-y-3">
-                                    <div className="flex items-center gap-2 md:gap-3">
-                                        <CheckCircle className="w-3 md:w-4 h-3 md:h-4 text-green-500 flex-shrink-0" />
-                                        <span className="text-xs md:text-sm text-gray-700">Secure payment</span>
+                                <div className="space-y-3">
+                                    <div className="flex items-center gap-3">
+                                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                                        <span className="text-sm text-gray-700">Secure payment</span>
                                     </div>
-                                    <div className="flex items-center gap-2 md:gap-3">
-                                        <CheckCircle className="w-3 md:w-4 h-3 md:h-4 text-green-500 flex-shrink-0" />
-                                        <span className="text-xs md:text-sm text-gray-700">No hidden costs</span>
+                                    <div className="flex items-center gap-3">
+                                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                                        <span className="text-sm text-gray-700">No hidden costs</span>
                                     </div>
-                                    <div className="flex items-center gap-2 md:gap-3">
-                                        <CheckCircle className="w-3 md:w-4 h-3 md:h-4 text-green-500 flex-shrink-0" />
-                                        <span className="text-xs md:text-sm text-gray-700">24/7 customer support</span>
+                                    <div className="flex items-center gap-3">
+                                        <CheckCircle className="w-4 h-4 text-green-500 flex-shrink-0" />
+                                        <span className="text-sm text-gray-700">24/7 customer support</span>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Help Section */}
-                            <div className="border-t pt-2 md:pt-4 mt-2 md:mt-4 text-center">
-                                <div className="text-xs md:text-sm text-gray-600 mb-1 md:mb-2">
+                            <div className="border-t pt-4 mt-4 text-center">
+                                <div className="text-sm text-gray-600 mb-2">
                                     Need more help?
                                 </div>
-                                <div className="flex items-center justify-center gap-1 text-xs md:text-sm">
+                                <div className="flex items-center justify-center gap-1 text-sm flex-wrap">
                                     <button className="text-blue-600 hover:text-blue-800 underline">
                                         Chat now
                                     </button>
