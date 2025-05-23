@@ -21,6 +21,7 @@ class TourController
     public function getListTour()
     {
         $tours = Http::tourdb('en')->get('/tour/list-tour');
+        // dd($tours);
         return Response::json($tours->json());
     }
 }
