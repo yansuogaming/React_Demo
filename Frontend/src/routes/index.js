@@ -7,7 +7,6 @@ import WeatherService from "@services/WeatherService";
 import CityService from "@services/CityService";
 import TourService from "@services/TourService";
 import MapService from "@services/MapService";
-import RegionService from "@services/RegionService";
 import { t } from "i18next";
 
 const routes = [
@@ -27,13 +26,11 @@ const routes = [
                                 ExperienceService.getExperienceTypes(),
                                 EventService.getOngoingAndUpcomingEvents(),
                                 TourService.getListTrending(),
-                                RegionService.getListRegionInHome(),
                             ]);
                             return {
                                 experienceTypes: res[0],
                                 events: res[1],
                                 listTrendingTours: res[2],
-                                listRegion: res[3]
                             };
                         },
                         meta: () => {
@@ -53,17 +50,15 @@ const routes = [
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
                                 EventService.getOngoingAndUpcomingEvents(),
+                                WeatherService.getCityWeather("Hà Nội"),
                                 CityService.getCityBySlug(params.slug),
-                                MapService.getListDestination(),
                             ]);
 
-                            const weather = await WeatherService.getCityWeather(res[2].title)
                             return {
                                 FAQs: res[0],
                                 events: res[1],
-                                weather,
-                                city: res[2],
-                                dataDestination: res[3],
+                                weather: res[2],
+                                city: res[3],
                             };
                         },
                     },
@@ -95,11 +90,11 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 TourService.getListTrending(),
-                                TourService.getListTour(),
+                                TourService.getListItineraries(),
                             ]);
                             return {
                                 listTrendingTours: res[0],
-                                listTours: res[1],
+                                itineraries: res[1],
                             };
                         },
                     },
@@ -116,22 +111,14 @@ const routes = [
                     {
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
-                        loader: async ({ request }) => {
-                            const url = new URL(request.url);
-                            const query = Object.fromEntries(url.searchParams.entries());
-                            const currentPage = query?.page ?? 1;
-                            const keyword = query?.keyword ?? '';
+                        loader: async () => {
                             const res = await Promise.all([
                                 EventService.getOngoingAndUpcomingEvents(),
-                                EventService.getEvents('All', keyword, currentPage),
+                                EventService.getEvents(),
                             ]);
                             return {
                                 ongoingAndUpcomingEvents: res[0],
-                                events: res[1].events ?? [],
-                                totalPage: res[1].total_page,
-                                currentPage,
-                                typeSearch: 'All',
-                                keyword
+                                events: res[1],
                             };
                         },
                         meta: () => {
@@ -185,15 +172,6 @@ const routes = [
                     {
                         path: "weathertrip",
                         Component: lazy(() => import("@pages/WeatherTrip")),
-                        loader: async () => {
-                            const res = await Promise.all([
-                                WeatherService.getWeatherByIp(),
-                            ]);
-
-                            return {
-                                weather: res[0]
-                            }
-                        }
                     },
                     {
                         path: "currency",
@@ -235,21 +213,11 @@ const routes = [
                     },
                     {
                         path: "signin-password",
-                        Component: lazy(() => import("@pages/auth/SignInPassword")),
-                        loader: ({ request }) => {
-                            const url = new URL(request.url);
-                            const query = Object.fromEntries(url.searchParams.entries());
-                            const email = query?.email ?? '';
-                            return { email };
-                        }
+                        Component: lazy(() => import("@pages/SignInPassword")),
                     },
                     {
                         path: "forgot-password",
-                        Component: lazy(() => import("@pages/auth/ForgotPassword")),
-                    },
-                    {
-                        path: "forgot-password/confirm",
-                        Component: lazy(() => import("@pages/auth/ConfirmForgotPassword")),
+                        Component: lazy(() => import("@pages/ForgotPassword")),
                     },
                     {
                         path: "attractions",
@@ -266,7 +234,7 @@ const routes = [
                 ],
             },
             {
-                path: "map-ha-noi/:id?",
+                path: "map-ha-noi",
                 Component: lazy(() => import("@pages/Map")),
                 loader: async () => {
                     const res = await MapService.getListDestination();
