@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { useRef, useEffect } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import Breadcrumb from "@components/Breadcrumb";
@@ -30,18 +29,8 @@ const Events = () => {
         { label: t("home"), href: "/" },
         { label: t("Events") },
     ];
-    const eventListRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [keysearch, setKeysearch] = useState(keyword);
-
-    useEffect(() => {
-        if (eventListRef.current) {
-            eventListRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            });
-        }
-    }, [currentPage]);
 
     const filteredEvents = typeSearch === 'all' ? events : events.filter(() => true);
     const top8 = filteredEvents.slice(0, 8);
@@ -128,7 +117,7 @@ const Events = () => {
                     setCurrentIndex={setCurrentIndex}
                 />
 
-                <section className="mt-[43px]" ref={eventListRef}>
+                <section className="mt-[43px]">
                     <EventFilterBar
                         categories={categories}
                         selectedCategory={typeSearch}
