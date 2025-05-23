@@ -7,6 +7,7 @@ import WeatherService from "@services/WeatherService";
 import CityService from "@services/CityService";
 import TourService from "@services/TourService";
 import MapService from "@services/MapService";
+import RegionService from "@services/RegionService";
 
 const routes = [
     ...routesAdmin,
@@ -25,11 +26,13 @@ const routes = [
                                 ExperienceService.getExperienceTypes(),
                                 EventService.getOngoingAndUpcomingEvents(),
                                 TourService.getListTrending(),
+                                RegionService.getListRegionInHome(),
                             ]);
                             return {
                                 experienceTypes: res[0],
                                 events: res[1],
                                 listTrendingTours: res[2],
+                                listRegion: res[3]
                             };
                         },
                         meta: () => {
@@ -49,15 +52,17 @@ const routes = [
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
                                 EventService.getOngoingAndUpcomingEvents(),
-                                WeatherService.getCityWeather("Hà Nội"),
                                 CityService.getCityBySlug(params.slug),
+                                MapService.getListDestination(),
                             ]);
 
+                            const weather = await WeatherService.getCityWeather(res[2].title)
                             return {
                                 FAQs: res[0],
                                 events: res[1],
-                                weather: res[2],
-                                city: res[3],
+                                weather,
+                                city: res[2],
+                                dataDestination: res[3],
                             };
                         },
                     },
@@ -86,6 +91,17 @@ const routes = [
                     {
                         path: "itineraries",
                         Component: lazy(() => import("@pages/Itineraries")),
+                        loader: async () => {
+                            const res = await Promise.all([
+                                TourService.getListTrending(),
+                                TourService.getListTour(),
+                            ]);
+                            console.log(res[1]);
+                            return {
+                                listTrendingTours: res[0],
+                                listTours: res[1],
+                            };
+                        },
                     },
                     {
                         path: "itineraries/detail",
@@ -171,21 +187,29 @@ const routes = [
                         Component: lazy(() => import("@pages/SearchResult")),
                     },
                     {
-                        path: "log",
-                        Component: lazy(() => import("@pages/DownloadApp")),
-                    },
-                    {
                         path: "signin",
                         Component: lazy(() => import("@pages/SignIn")),
+                    },
+                    {
+                        path: "signin-password",
+                        Component: lazy(() => import("@pages/SignInPassword")),
+                    },
+                    {
+                        path: "forgot-password",
+                        Component: lazy(() => import("@pages/ForgotPassword")),
                     },
                     {
                         path: "attractions",
                         Component: lazy(() => import("@pages/Attractions")),
                     },
+                    {
+                        path: 'shopping',
+                        Component: lazy(() => import("@pages/ShoppingCart")),
+                    }
                 ],
             },
             {
-                path: "map-ha-noi",
+                path: "map-ha-noi/:id?",
                 Component: lazy(() => import("@pages/Map")),
                 loader: async () => {
                     const res = await MapService.getListDestination();

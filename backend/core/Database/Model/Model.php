@@ -182,11 +182,11 @@ class Model implements IteratorAggregate, JsonSerializable, ArrayAccess
 
     public function jsonSerialize(): ?array
     {
-        $originals = $this->original;
-        foreach ($originals as $key => $_) {
-            $originals[$key] = $this->getAttribute($key);
+        $attributes = $this->attributes;
+        foreach ($attributes as $key => $_) {
+            $attributes[$key] = $this->getAttribute($key);
         }
-        return Arr::except(array_diff($originals, $this->visible), $this->hidden);
+        return Arr::except(array_diff($attributes, $this->visible), $this->hidden);
     }
 
     public function newModelQuery(): Builder

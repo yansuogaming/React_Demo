@@ -17,6 +17,10 @@ class Max extends Rule
 
     public function check(mixed &$value, array &$values, Property $property): bool
     {
+        if (is_null($value)) {
+            return 0 <= $this->max;
+        }
+
         if (is_int($value) || ctype_digit($value)) {
             return $value <= $this->max;
         }

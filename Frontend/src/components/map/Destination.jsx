@@ -1,15 +1,26 @@
 import { useState, useEffect } from "react";
-import { MapPin, Clock, Info, Star, Navigation, Play } from "lucide-react";
+import { MapPin, Clock, Info, Star, Navigation, Play, X } from "lucide-react";
 import { Button } from "@components/ui/button";
-import { useMapContext } from "@contexts/MapContext";
+import { SIDEBAR_MODE, useMapContext } from "@contexts/MapContext";
+import { useTranslation } from "react-i18next";
+
 
 const Destination = () => {
-  const { detailResource, selectedMarker, setShowVR,setShowVideo, handleClickNearbyItem } = useMapContext();
+  const { t } = useTranslation();
+  const {
+    detailResource,
+    selectedMarker,
+    setShowVR,
+    setShowVideo,
+    handleClickNearbyItem,
+    showVR,
+    showVideo,
+  } = useMapContext();
   const [activeTab, setActiveTab] = useState("info");
   const [selectedImage, setSelectedImage] = useState();
-  const item = detailResource;  // For readability
+  const item = detailResource; // For readability
 
-  console.log("detailResource",detailResource)
+  console.log("detailResource", detailResource);
   useEffect(() => {
     if (item?.list_images?.length > 0) {
       setSelectedImage(item?.list_images?.[0]?.thumb);
@@ -33,7 +44,7 @@ const Destination = () => {
       <div className="flex items-center justify-startgap-1">
         {Array(5)
           .fill(0)
-          .map((_, i) => (
+          ?.map((_, i) => (
             <Star
               key={i}
               className={`h-4 w-4 ${
@@ -45,7 +56,7 @@ const Destination = () => {
           ))}
         <span className="ml-1 text-white">{rating.toFixed(1)}</span>
         <span className="text-gray-400">
-          ({item?.total_reviews || 0} đánh giá)
+          ({item?.total_reviews || 0} {t("reviews")})
         </span>
       </div>
     );
@@ -70,7 +81,7 @@ const Destination = () => {
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-gray-500">
-            Không có hình ảnh
+            {t("no_images")}
           </div>
         )}
       </div>
@@ -84,7 +95,7 @@ const Destination = () => {
           }`}
           onClick={() => setActiveTab("info")}
         >
-          Thông tin
+          {t("information")}
         </button>
         {item?.content && (
           <button
@@ -95,7 +106,7 @@ const Destination = () => {
             }`}
             onClick={() => setActiveTab("content")}
           >
-            Chi tiết
+            {t("details")}
           </button>
         )}
         <button
@@ -106,10 +117,8 @@ const Destination = () => {
           }`}
           onClick={() => setActiveTab("nearby")}
         >
-          Địa điểm lân cận
+          {t("nearby_places")}
         </button>
-
-  
       </div>
 
       {activeTab === "info" && (
@@ -126,8 +135,8 @@ const Destination = () => {
                 <span>{formatOpeningHours()}</span>
                 <p className="text-sm text-green-500">
                   {item?.today_status !== "_closed"
-                    ? "Đang mở cửa"
-                    : "Đã đóng cửa"}
+                    ? t("open_now")
+                    : t("closed")}
                 </p>
               </div>
             </div>
@@ -137,7 +146,7 @@ const Destination = () => {
             <div className="flex items-start gap-3">
               <Info className="mt-1 h-5 w-5 flex-shrink-0" />
               <div className="flex flex-col gap-1">
-                {item.other_information.map((info, index) => (
+                {item.other_information?.map((info, index) => (
                   <div key={index} className="flex gap-2">
                     <span className="text-white">{info.label}:</span>
                     <span>{info.value}</span>
@@ -151,7 +160,7 @@ const Destination = () => {
             <div className="flex items-start gap-3">
               <Info className="mt-1 h-5 w-5 flex-shrink-0" />
               <div className="flex flex-col">
-                <span className="text-white">Loại hình:</span>
+                <span className="text-white">{t("type")}:</span>
                 <span>{item.resource_type.title}</span>
               </div>
             </div>
@@ -161,36 +170,70 @@ const Destination = () => {
             <div className="flex items-start gap-3">
               <Info className="mt-1 h-5 w-5 flex-shrink-0" />
               <div className="flex flex-col">
-                <span className="text-white">Nhóm tài nguyên:</span>
+                <span className="text-white">{t("resource_group")}:</span>
                 <span>{item.resource_group.title}</span>
               </div>
             </div>
           )}
-          
+
           <div className="flex gap-2">
             {item?.vr_url && (
-              <Button 
-                className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md"
+              <Button
+                className="flex items-center border-2 border-white justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[rgb(35,37,43)] rounded-md"
                 onClick={() => {
-                  setShowVideo(false)
-                  setShowVR(true)
+                  setShowVideo(false);
+                  setShowVR(true);
                 }}
               >
                 <Play className="h-4 w-4" />
-                <span>Xem VR</span>
+                <span>{t("view_vr")}</span>
               </Button>
             )}
             {item?.video_url && (
-              <Button 
-                className="flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-md"
+              <Button
+                className="flex border-2 items-center justify-center gap-2 px-4 py-2 text-sm font-medium text-white bg-[rgb(35,37,43)] rounded-md"
                 onClick={() => {
-                  setShowVR(false)
-                  setShowVideo(true)
+                  setShowVR(false);
+                  setShowVideo(true);
                 }}
               >
                 <Play className="h-4 w-4" />
-                <span>Xem Video</span>
+                <span>{t("view_video")}</span>
               </Button>
+            )}
+            {(showVR && item?.vr_url) && (
+              <div className="fixed inset-0 z-50 lg:hidden">
+                <iframe
+                  src={item.vr_url}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+                <button
+                  onClick={() => setShowVR(false)}
+                  className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+                >
+                  <X className="h-4 w-4 text-black" />
+                </button>
+              </div>
+            )}
+            {(showVideo && item?.video_url) && (
+              <div className="fixed inset-0 z-50 lg:hidden">
+                <iframe
+                  src={`${item.video_url}?autoplay=1`}
+                  className="w-full h-full"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+                <button
+                  onClick={() => setShowVideo(false)}
+                  className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100"
+                >
+                  <X className="h-4 w-4 text-black" />
+                </button>
+              </div>
             )}
           </div>
         </div>
@@ -200,12 +243,11 @@ const Destination = () => {
         item?.list_nearbys &&
         item.list_nearbys.length > 0 && (
           <div className="grid grid-cols-1 gap-4">
-            {item.list_nearbys.map((place, index) => (
+            {item.list_nearbys?.map((place, index) => (
               <button
-               onClick={() => {
-                handleClickNearbyItem(place);
+                onClick={() => {
+                  handleClickNearbyItem(place);
                 }}
-             
                 key={index}
                 className="flex gap-3 p-3 rounded-md bg-gray-800"
               >
@@ -235,28 +277,25 @@ const Destination = () => {
           </div>
         )}
 
-
-
       {activeTab === "content" && item?.content && (
-        <div className="prose prose-invert max-w-none text-gray-400" dangerouslySetInnerHTML={{ __html: item.content }} />
+        <div
+          className="prose prose-invert max-w-none text-gray-400"
+          dangerouslySetInnerHTML={{ __html: item.content }}
+        />
       )}
 
       {item?.list_images && item.list_images.length > 0 && (
         <div className="mt-4">
-          <h4 className="text-lg font-medium text-white mb-2">Hình ảnh</h4>
+          <h4 className="text-lg font-medium text-white mb-2">{t("images")}</h4>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            {item.list_images.slice(0, 4).map((img, index) => (
+            {item.list_images.slice(0, 4)?.map((img, index) => (
               <button
                 onClick={() => {
                   onClickImage(img.thumb);
                 }}
                 key={index}
                 className={`h-24 overflow-hidden rounded-md bg-gray-800
-                  ${
-                    selectedImage === img.thumb
-                      ? "border-2 border-white"
-                      : ""
-                  }
+                  ${selectedImage === img.thumb ? "border-2 border-white" : ""}
                   `}
               >
                 <img

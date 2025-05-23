@@ -12,10 +12,13 @@ const CommonService = {
 
         if (res.status === 200) {
             return res.data.image;
+        } else if (res.status === 422) {
+            toast.error(res.data.errors.image[0]);
         } else {
             toast.error("Tải ảnh lên thất bại!");
-            return null;
         }
+
+        return null;
     },
 }
 
