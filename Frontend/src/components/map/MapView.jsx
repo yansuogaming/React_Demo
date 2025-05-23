@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import Map, { Marker } from "react-map-gl/mapbox";
 import { MapPin, X } from "lucide-react";
-
+import location from "@images/location.svg";
 import SearchAndFilterBar from "./SearchAndFilterBar";
 import { useMapContext } from "@contexts/MapContext";
 
@@ -17,6 +17,7 @@ const MapView = () => {
     detailResource,
     showVideo,
     setShowVideo,
+    setActiveTab,
   } = useMapContext();
 
   // Tọa độ ranh giới cho Hà Nội (Tây Nam và Đông Bắc)
@@ -46,13 +47,23 @@ const MapView = () => {
     }
   }, [selectedMarker]);
 
+  useEffect(() => {
+    if (mapRef.current && selectedMarker) {
+      // Sử dụng flyTo để tạo hiệu ứng di chuyển mượt mà đến vị trí mới
+      mapRef.current.flyTo({
+        center: [+selectedMarker.map_lo, +selectedMarker.map_la],
+        zoom: 15,
+        duration: 2000, // Thời gian di chuyển (ms)
+        essential: true, // Đảm bảo animation luôn được thực hiện
+      });
+    }
+  }, [selectedMarker]);
 
-  
   return (
     <div className="flex-1 relative">
       <SearchAndFilterBar />
       {showVideo && detailResource?.video_url && (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full z-30">
           <iframe
             src={`${detailResource.video_url}?autoplay=1`}
             className="w-full h-full"
@@ -69,7 +80,7 @@ const MapView = () => {
         </div>
       )}
       {showVR && detailResource?.vr_url && (
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full z-30">
           <iframe
             src={detailResource.vr_url}
             className="w-full h-full"
@@ -101,16 +112,27 @@ const MapView = () => {
               longitude={+destination?.map_lo}
               latitude={+destination?.map_la}
               anchor="bottom"
-              onClick={() => handleMarkerClick(destination)}
+              onClick={() => {
+                handleMarkerClick(destination);
+                setActiveTab("destination");
+              }}
             >
               <div
                 className={`cursor-pointer ${
                   selectedMarker === destination
-                    ? "text-blue-500"
-                    : "text-red-500"
+                    ? "text-red-500"
+                    : "text-blue-500"
                 }`}
               >
-                <MapPin size={36} />
+                {selectedMarker === destination ? (
+                  <img
+                    src={location}
+                    alt="Location"
+                    className="w-[40px] h-[40px] object-contain"
+                  />
+                ) : (
+                  <MapPin size={36} />
+                )}
               </div>
             </Marker>
           ))}

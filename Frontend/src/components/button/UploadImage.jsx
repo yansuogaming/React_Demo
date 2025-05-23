@@ -1,10 +1,13 @@
 import { cn } from "@lib/utils";
+import { useId } from "react";
 
 export default function UploadImage({
     onChange = () => {},
     imagePreview = '',
     className = ''
 }) {
+    const id = useId();
+
     return (
         <div className={cn(
             'bg-white rounded-lg shadow-md',
@@ -13,7 +16,6 @@ export default function UploadImage({
         )}>
             <div className="p-4">
                 <div
-                    id="image-preview"
                     className={cn(
                         'p-6 bg-gray-100 border-dashed',
                         'border-2 border-gray-400 rounded-lg items-center',
@@ -21,13 +23,13 @@ export default function UploadImage({
                     )}
                 >
                     <input
-                        id="upload"
+                        id={id}
                         type="file"
                         className="hidden"
                         accept="image/*"
                         onChange={onChange}
                     />
-                    <label htmlFor="upload" className="cursor-pointer relative">
+                    <label htmlFor={id} className="cursor-pointer relative">
                         {imagePreview.length > 0 ? (
                             <img src={imagePreview} className="w-full" />
                         ) : (

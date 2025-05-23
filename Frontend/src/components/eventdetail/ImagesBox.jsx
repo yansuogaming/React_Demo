@@ -99,12 +99,12 @@ export default function ImagesBox() {
 
             {/* ✅ Zoom Dialog */}
             <Dialog open={open} onOpenChange={setOpen}>
-                <DialogContent className="max-w-5xl p-0 bg-transparent border-none">
+                <DialogContent className="max-w-full w-full p-0 bg-transparent border-none">
                     {selectedImage && (
                         <img
                             src={selectedImage.src}
                             alt={selectedImage.alt}
-                            className="w-full h-auto object-contain rounded-lg"
+                            className="max-h-[90vh] w-full object-contain mx-auto rounded-lg"
                         />
                     )}
                 </DialogContent>

@@ -7,7 +7,6 @@ import { Button } from "@components/ui/button";
 import { Input } from "@components/ui/input";
 import { Tabs, TabsContent } from "@components/ui/tabs";
 import { lazy, useEffect, useState } from "react";
-import HttpClient from "@services/HttpClient";
 import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
 import UploadImage from "@components/button/UploadImage";
@@ -30,13 +29,17 @@ const AppEditor = lazy(() => import("@components/admin/AppEditor"));
 export default function Edit() {
     let navigate = useNavigate();
 
-    const [title, setTitle] = useState("");
-    const [image, setImage] = useState("");
-    const [content, setContent] = useState("");
+    const [title, setTitle] = useState('');
+    const [image, setImage] = useState('');
+    const [banner, setBanner] = useState('');
+    const [intro, setIntro] = useState('');
+    const [content, setContent] = useState('');
     const [regions, setRegions] = useState([]);
-    const [contentGettingTo, setContentGettingTo] = useState("");
-    const [contentWhenToVisit, setContentWhenToVisit] = useState("");
-    const [langId, setLangId] = useState("");
+    const [contentGettingTo, setContentGettingTo] = useState('');
+    const [contentWhenToVisit, setContentWhenToVisit] = useState('');
+    const [contentAccessibility, setContentAccessibility] = useState('');
+    const [langId, setLangId] = useState('');
+    const [regionId, setRegionId] = useState('');
 
     const { id } = useParams();
 
@@ -44,47 +47,58 @@ export default function Edit() {
         e.preventDefault();
 
         if (id) {
-            const res = await HttpClient.post(`/city/${id}`, {
+            const updated = await CityService.update(id, {
                 title,
                 image,
+                banner,
+                intro,
                 content,
+                region_id: regionId,
+                lang_id: langId,
+                content_getting_to: contentGettingTo,
+                content_when_to_visit: contentWhenToVisit,
+                content_accessibility: contentAccessibility,
             });
-            if (res.status === 200) {
-                toast.success("Cập nhật thành phố thành công!");
+
+            if (updated) {
                 navigate("/admin/cities");
-            } else {
-                toast.error("Cập nhật thành phố thất bại!");
             }
             return;
         }
 
-        const res = await HttpClient.post("/city", {
+        const created = await CityService.create({
             title,
             image,
+            banner,
+            intro,
             content,
+            region_id: regionId,
+            lang_id: langId,
+            content_getting_to: contentGettingTo,
+            content_when_to_visit: contentWhenToVisit,
+            content_accessibility: contentAccessibility,
         });
-        if (res.status === 201) {
-            toast.success("Thêm thành phố thành công!");
+
+        if (created) {
             navigate("/admin/cities");
-        } else {
-            toast.error("Thêm thành phố thất bại!");
         }
     };
 
     const uploadImage = async (e) => {
-        const image = await CommonService.uploadImage(
-            e.target.files[0],
-            "cities"
-        );
-        if (image == null) {
-            toast.error("Tải ảnh lên thất bại!");
-        } else {
+        const image = await CommonService.uploadImage(e.target.files[0], 'cities');
+        if (image !== null) {
             setImage(image);
         }
     };
 
+    const uploadBanner = async (e) => {
+        const banner = await CommonService.uploadImage(e.target.files[0], 'cities');
+        if (banner !== null) {
+            setBanner(banner);
+        }
+    };
+
     const changeLanguage = (langId) => {
-        console.log("langId", langId);
         setLangId(langId);
     };
 
@@ -98,6 +112,16 @@ export default function Edit() {
 
                 if (res[0] && res[1]) {
                     setRegions(res[0]);
+                    setTitle(res[1].title);
+                    setLangId(res[1].lang_id);
+                    setRegionId(res[1].region_id?.toString() ?? '');
+                    setImage(res[1].image);
+                    setBanner(res[1].banner ?? '');
+                    setIntro(res[1].intro ?? '');
+                    setContent(res[1].content ?? '');
+                    setContentGettingTo(res[1].content_getting_to);
+                    setContentWhenToVisit(res[1].content_when_to_visit);
+                    setContentAccessibility(res[1].content_accessibility);
                 } else {
                     toast.error("Lấy trải nghiệm thất bại!");
                 }
@@ -159,22 +183,19 @@ export default function Edit() {
                                         Vùng miền
                                     </label>
                                     <div>
-                                        <Select>
+                                        {regions.length > 0 && (
+                                        <Select onValueChange={(regionId) => setRegionId(regionId)} value={regionId}>
                                             <SelectTrigger className="w-[180px]">
                                                 <SelectValue placeholder="Chọn vùng miền" />
                                             </SelectTrigger>
                                             <SelectContent>
                                                 <SelectGroup>
-                                                    <SelectLabel>
-                                                        Chọn vùng miền
-                                                    </SelectLabel>
+                                                    <SelectLabel>Chọn vùng miền</SelectLabel>
                                                     {regions.map(
                                                         (region, index) => (
                                                             <SelectItem
                                                                 key={index}
-                                                                value={
-                                                                    region.id
-                                                                }
+                                                                value={region.id.toString()}
                                                             >
                                                                 {region.title}
                                                             </SelectItem>
@@ -183,6 +204,7 @@ export default function Edit() {
                                                 </SelectGroup>
                                             </SelectContent>
                                         </Select>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -199,8 +221,17 @@ export default function Edit() {
                                     <label className="mb-1 block">Banner</label>
                                     <UploadImage
                                         className="w-[400px]"
-                                        imagePreview={image}
-                                        onChange={uploadImage}
+                                        imagePreview={banner}
+                                        onChange={uploadBanner}
+                                    />
+                                </div>
+                            </div>
+                            <div>
+                                <label>Giới thiệu</label>
+                                <div>
+                                    <AppEditor
+                                        value={intro}
+                                        onChange={(value) => setIntro(value)}
                                     />
                                 </div>
                             </div>
@@ -239,8 +270,8 @@ export default function Edit() {
                                 <label>Accessibility</label>
                                 <div>
                                     <AppEditor
-                                        value={content}
-                                        onChange={(value) => setContent(value)}
+                                        value={contentAccessibility}
+                                        onChange={(value) => setContentAccessibility(value)}
                                     />
                                 </div>
                             </div>
