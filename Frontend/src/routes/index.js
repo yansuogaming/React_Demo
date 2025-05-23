@@ -96,7 +96,7 @@ const routes = [
                                 TourService.getListTrending(),
                                 TourService.getListTour(),
                             ]);
-                            console.log(res[1]);
+                       
                             return {
                                 listTrendingTours: res[0],
                                 listTours: res[1],
@@ -108,6 +108,17 @@ const routes = [
                         Component: lazy(() =>
                             import("@pages/ItinerariesDetail")
                         ),
+                    },
+                    {
+                        path: "payment",
+                        children: [
+                            {
+                                path: "tour",
+                                Component: lazy(() =>
+                                    import("@pages/PaymentTour")
+                                ),
+                            },
+                        ],
                     },
                     {
                         path: "events",
