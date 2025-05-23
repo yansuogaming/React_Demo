@@ -29,6 +29,7 @@ function MapCity({ listDestination }) {
     setIsMobileOrTablet(window.innerWidth <= 1024);
   };
   useEffect(() => {
+    handleResize();
     window.addEventListener('resize', handleResize);
     // unsubscribe from the event on component unmount
     return () => window.removeEventListener('resize', handleResize);
@@ -48,6 +49,8 @@ function MapCity({ listDestination }) {
     animate: true,
     transitionDuration: 2000,
   };
+
+  console.log("isMobileOrTablet", isMobileOrTablet)
 
   useEffect(() => {
     const checkMapRef = () => {
