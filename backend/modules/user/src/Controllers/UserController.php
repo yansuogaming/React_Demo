@@ -11,7 +11,7 @@ class UserController
     #[Get('/login')]
     public function login()
     {
-
+        
     }
 
     #[Get('/logout')]

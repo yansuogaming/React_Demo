@@ -10,6 +10,7 @@ use Vietiso\Core\Route\Attributes\Get;
 use Vietiso\Core\Route\Attributes\Group;
 use Vietiso\Core\Route\Attributes\Post;
 use Vietiso\Core\Route\Attributes\Put;
+use Vietiso\Modules\Admin\Middlewares\Authenticate;
 use Vietiso\Modules\Faq\DTOs\FAQDTO;
 use Vietiso\Modules\User\Models\FAQ;
 
@@ -177,5 +178,21 @@ class FAQController
         return Response::json([
             'message' => 'Cập nhật thất bại',
         ], 500);
+    }
+
+    #[Get(
+        uri: '/list',
+        excludedMiddlewares: [Authenticate::class]
+    )]
+    public function getListFAQ()
+    {
+        $faqs = FAQ::whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return Response::json([
+            'message' => 'Get faq successfully',
+            ...$faqs->toArray(),
+        ]);
     }
 }

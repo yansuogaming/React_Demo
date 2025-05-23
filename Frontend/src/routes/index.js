@@ -112,14 +112,22 @@ const routes = [
                     {
                         path: "events",
                         Component: lazy(() => import("@pages/Events")),
-                        loader: async () => {
+                        loader: async ({ request }) => {
+                            const url = new URL(request.url);
+                            const query = Object.fromEntries(url.searchParams.entries());
+                            const currentPage = query?.page ?? 1;
+                            const keyword = query?.keyword ?? '';
                             const res = await Promise.all([
                                 EventService.getOngoingAndUpcomingEvents(),
-                                EventService.getEvents(),
+                                EventService.getEvents('All', keyword, currentPage),
                             ]);
                             return {
                                 ongoingAndUpcomingEvents: res[0],
-                                events: res[1],
+                                events: res[1].events ?? [],
+                                totalPage: res[1].total_page,
+                                currentPage,
+                                typeSearch: 'All',
+                                keyword
                             };
                         },
                         meta: () => {

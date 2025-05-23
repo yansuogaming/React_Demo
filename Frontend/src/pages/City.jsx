@@ -1,7 +1,7 @@
 import imageCity from "@images/hanoi.png";
 import Breadcrumb from "@components/Breadcrumb";
 import { useTranslation } from "react-i18next";
-import { NavLink, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 import VietNamEvent from "@components/VietNamEvent";
 import Weather from "@components/Weather";
 import TopThingsToDo from "@components/TopThingsToDo";
@@ -24,7 +24,7 @@ const City = () => {
   const breadcrumdItems = [
     { label: t("home"), href: "/" },
     { label: t("Destinations"), href: "/" },
-    { label: "Hanoi" },
+    { label: city.title },
   ];
 
   return (

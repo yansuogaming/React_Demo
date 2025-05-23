@@ -4,7 +4,6 @@ import {
     AccordionItem,
     AccordionTrigger,
 } from "@ui/accordion";
-import { decode } from "html-entities";
 
 const FAQ = ({ className = '', data = [] }) => {
     const listFaqs1 = data.filter((_, i) => i % 2 === 0);
@@ -21,17 +20,17 @@ const FAQ = ({ className = '', data = [] }) => {
                     <Accordion type="single" collapsible className="w-full">
                         {listFaqs1.map((faq, i) => (
                             <AccordionItem
-                                key={faq.id}
+                                key={i}
                                 value={`item-${i}`}
                             >
                                 <AccordionTrigger className="text-[#1A2A44] text-[20px] font-normal cursor-pointer">
-                                    {faq?.title}
+                                    {faq?.question}
                                 </AccordionTrigger>
                                 <AccordionContent
                                     isHtml
                                     className="text-[#1A2A44] text-[16px] font-normal"
                                 >
-                                    {decode(faq?.content)}
+                                    {faq?.answers}
                                 </AccordionContent>
                             </AccordionItem>
                         ))}
@@ -41,17 +40,17 @@ const FAQ = ({ className = '', data = [] }) => {
                     <Accordion type="single" collapsible className="w-full">
                         {listFaqs2.map((faq, i) => (
                             <AccordionItem
-                                key={faq?.faq_id}
+                                key={i}
                                 value={`item-${i}`}
                             >
                                 <AccordionTrigger className="text-[#1A2A44] text-[20px] font-normal cursor-pointer">
-                                    {faq?.title}
+                                    {faq?.question}
                                 </AccordionTrigger>
                                 <AccordionContent
                                     isHtml
                                     className="text-[#1A2A44] text-[16px] font-normal"
                                 >
-                                    {decode(faq?.content)}
+                                    {faq?.answers}
                                 </AccordionContent>
                             </AccordionItem>
                         ))}
