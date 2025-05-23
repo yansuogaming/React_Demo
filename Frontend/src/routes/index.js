@@ -205,6 +205,10 @@ const routes = [
                     {
                         path: 'shopping',
                         Component: lazy(() => import("@pages/ShoppingCart")),
+                    },
+                    {
+                        path: 'PaymentSuccess',
+                        Component: lazy(() => import("@pages/PaymentSuccess"))
                     }
                 ],
             },
