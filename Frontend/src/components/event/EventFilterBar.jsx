@@ -4,6 +4,8 @@ const EventFilterBar = ({
     categories,
     selectedCategory,
     setSelectedCategory,
+    changeKeyword,
+    keyword
 }) => (
     <>
         <div className="pb-[43px]">
@@ -13,6 +15,8 @@ const EventFilterBar = ({
                     type="text"
                     placeholder="Search events, keywords..."
                     className="flex-1 text-sm outline-none bg-transparent placeholder-gray-400 ml-2"
+                    onChange={(e) => changeKeyword(e.target.value)}
+                    value={keyword}
                 />
             </div>
         </div>

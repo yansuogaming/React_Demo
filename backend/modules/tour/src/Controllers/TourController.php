@@ -16,4 +16,11 @@ class TourController
         $tours = Http::tourdb('en')->get('/tour/list-trending');
         return Response::json($tours->json());
     }
+
+    #[Get('/list-tour')]
+    public function getListTour()
+    {
+        $tours = Http::tourdb('en')->get('/tour/list-tour');
+        return Response::json($tours->json());
+    }
 }

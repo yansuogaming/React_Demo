@@ -82,16 +82,23 @@ class AuthController
     #[Get('logout')]
     public function createUser()
     {
-        Admin::create([
-            'email' => 'thuanvp012van@gmail.com',
-            'password' => Hash::make('thuanvp012'),
-            'full_name' => 'Nguyễn Hoàng Thắng Thuận',
-            'phone' => '0325305738',
-            'address' => 'Hà Nội'
-        ]);
         return Response::json([
-            'message' => 'User created successfully',
-        ]);
+            'message' => 'Đăng xuất thành công',
+        ])
+        ->withCookie(
+            name: 'token',
+            value: '',
+            expire: time() - 3600,
+            secure: true,
+            sameSite: Cookie::SAMESITE_NONE
+        )
+        ->withCookie(
+            name: 'refresh_token',
+            value: '',
+            expire: time() - 3600,
+            secure: true,
+            sameSite: Cookie::SAMESITE_NONE
+        );
     }
 
     protected function createJwtToken(Admin $admin, bool $isRefreshToken = false): string

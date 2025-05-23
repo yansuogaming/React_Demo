@@ -7,6 +7,7 @@ import {
     BreadcrumbSeparator,
 } from '@ui/breadcrumb'
 import { Fragment } from 'react';
+import { Link } from 'react-router';
 
 const Breadcrumb = ({ items = [], className = '' }) => {
     return (
@@ -24,7 +25,9 @@ const Breadcrumb = ({ items = [], className = '' }) => {
                     return (
                         <Fragment key={index}>
                             <BreadcrumbItem>
-                                <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+                                <BreadcrumbLink asChild href={item.href}>
+                                    <Link to={item.href}>{item.label}</Link>
+                                </BreadcrumbLink>
                             </BreadcrumbItem>
                             <BreadcrumbSeparator />
                         </Fragment>

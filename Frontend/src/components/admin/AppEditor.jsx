@@ -14,7 +14,7 @@ export default function AppEditor({ value = '', onChange = () => {} }) {
                 "advlist autolink lists link image charmap print preview anchor",
                 "searchreplace visualblocks visualchars code fullscreen",
                 "insertdatetime media nonbreaking table emoticons paste",
-                "wordcount help autosave directionality template pagebreak hr toc tableofcontents",
+                "wordcount help autosave directionality template pagebreak hr toc",
             ],
             toolbar:
                 "undo redo | formatselect | fontsizeselect | fontselect | " +
@@ -51,9 +51,9 @@ export default function AppEditor({ value = '', onChange = () => {} }) {
         // eslint-disable-next-line no-undef
         const editor = tinymce.get(id);
         if (editor && editor.getContent() !== value) {
-            editor.setContent(value);
+            editor.setContent(value ?? '');
         }
     }, [value]);
 
-    return <textarea id={id} value={value} onChange={(e) => onChange(e.target.value)} />;
+    return <textarea id={id} value={value ?? ''} onChange={(e) => onChange(e.target.value)} />;
 }

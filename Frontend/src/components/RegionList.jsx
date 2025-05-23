@@ -5,9 +5,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@ui/carousel";
-import imageNaNoi from "@images/image-hanoi.png";
-import imageHaLong from "@images/image-halong.png";
-import imageSapa from "@images/image-sapa.png";
 import { NavLink } from "react-router";
 import { FaArrowRight } from "react-icons/fa6";
 
@@ -20,7 +17,7 @@ import { cn } from "@lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const RegionList = ({ className, ...props }) => {
+const RegionList = ({ className, data, ...props }) => {
     const { t } = useTranslation();
     const [activeRegion, setActiveRegion] = useState(0);
     const regions = [
@@ -31,32 +28,7 @@ const RegionList = ({ className, ...props }) => {
             description:
                 "Northern Vietnam is a region rich in history, culture, and breathtaking landscapes. It is home to the capital city, Hanoi, where ancient traditions blend seamlessly with modern life. The area boasts stunning natural wonders such as Ha Long Bay, with its emerald waters and limestone islands, and the terraced rice fields of Sapa, offering picturesque views. Northern Vietnam is also known for its diverse ethnic communities, each contributing unique customs and traditions. With its vibrant street food scene, historical sites, and scenic beauty, Northern Vietnam is a must-visit destination for travelers seeking an authentic experience",
             className: "",
-            destinations: [
-                {
-                    image: imageNaNoi,
-                    title: "Hanoi",
-                    description:
-                        "The vibrant capital of Vietnam, known for its centuries-old architecture and rich culture.",
-                },
-                {
-                    image: imageHaLong,
-                    title: "Ha Long Bay",
-                    description:
-                        "A UNESCO World Heritage Site featuring emerald waters and thousands of towering limestone islands.",
-                },
-                {
-                    image: imageSapa,
-                    title: "Sapa",
-                    description:
-                        "A mountain town famous for terraced rice fields, cool climate, and ethnic diversity.",
-                },
-                {
-                    image: imageNaNoi,
-                    title: "Haiphong",
-                    description:
-                        "A mountain town famous for terraced rice fields, cool climate, and ethnic diversity.",
-                },
-            ],
+            destinations: data[0].cities
         },
         {
             id: 1,
@@ -65,6 +37,7 @@ const RegionList = ({ className, ...props }) => {
             description:
                 "Central Vietnam is a region of stunning landscapes, rich history, and vibrant culture. It is home to ancient cities like Hue, the former imperial capital, and Hoi An, a UNESCO World Heritage site known for its charming old town and lantern-lit streets. The region boasts breathtaking coastal scenery, including the pristine beaches of Da Nang and Nha Trang. Central Vietnam also features the majestic caves of Phong Nha-Ke Bang and the lush highlands of Da Lat. With its diverse cuisine, historical landmarks, and natural beauty, Central Vietnam offers a unique and unforgettable experience for travelers.",
             className: "translate-x-[69px] translate-y-[-32px]",
+            destinations: data[1].cities
         },
         {
             id: 2,
@@ -73,6 +46,7 @@ const RegionList = ({ className, ...props }) => {
             description:
                 "Southern Vietnam is a dynamic region known for its bustling cities, lush landscapes, and rich cultural heritage. Ho Chi Minh City, the largest metropolis, offers a mix of modern skyscrapers and historic landmarks, reflecting the country's rapid development. The Mekong Delta is a vast network of rivers, floating markets, and fertile farmland, providing a glimpse into traditional Vietnamese life. The region also boasts stunning coastal destinations like Phu Quoc and Con Dao, known for their pristine beaches and marine biodiversity. With its vibrant street food, warm hospitality, and diverse scenery, Southern Vietnam is a captivating destination for travelers.",
             className: "translate-x-[93px] translate-y-[-44px]",
+            destinations: data[2].cities
         },
         {
             id: 3,
@@ -99,29 +73,33 @@ const RegionList = ({ className, ...props }) => {
                     {t("Destination by Region")}
                 </h2>
                 <ul className="hidden xl:inline-flex flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[70px] py-[16px] pb-[20px] mb-[66px]">
-                    {regions.map((region, index) => (
-                        <li key={index} className="flex-shrink-0">
-                            <NavLink
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    setActiveRegion(index);
-                                }}
-                                className={`relative ${
-                                    activeRegion === index
-                                        ? "hnv_region_active_menu"
-                                        : ""
-                                }
-                                    `}
-                            >
-                                {region.title}
-                            </NavLink>
-                        </li>
-                    ))}
+                    {regions.map((region, index) => {
+                        if (index < 3) {
+                            return (
+                                <li key={index} className="flex-shrink-0">
+                                    <NavLink
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            setActiveRegion(index);
+                                        }}
+                                        className={`relative ${
+                                            activeRegion === index
+                                                ? "hnv_region_active_menu"
+                                                : ""
+                                        }`}
+                                    >
+                                        {region.title}
+                                    </NavLink>
+                                </li>
+                            );
+                        }
+                        return null; // Không render các phần tử có index >= 3
+                    })}
                 </ul>
             </div>
 
             {/* Bản đồ và Thông tin Region */}
-            <div className="grid grid-cols-12 gap-[34px]">
+            <div className="grid grid-cols-12 gap-0 xl:gap-[34px]">
                 {/* Bản đồ region */}
                 <div className="col-span-12 xl:col-span-5">
                     <div className="relative max-w-full w-full overflow-hidden mx-auto">
@@ -164,62 +142,33 @@ const RegionList = ({ className, ...props }) => {
 
                     {/* Menu Region tablet - mobile */}
                     <div className="flex items-center justify-center mt-[42px]">
-                        <ul className="hidden md:inline-flex xl:hidden flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[70px] py-[16px] pb-[20px]">
-                            {regions.map((region, index) => (
-                                <li key={index} className="flex-shrink-0">
-                                    <NavLink
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            setActiveRegion(index);
-                                        }}
-                                        className={`relative ${
-                                            activeRegion === index
-                                                ? "hnv_region_active_menu"
-                                                : ""
-                                        }
-                                    `}
-                                    >
-                                        {region.title}
-                                    </NavLink>
-                                </li>
-                            ))}
-                        </ul>
-                        <Carousel
-                            className="w-full block md:hidden relative px-[60px] pt-[12px] pb-[10px] rounded-[80px] bg-white shadow-[0_4px_12px_0_rgba(54,133,143,0.15)]"
-                            opts={{
-                                align: "start",
-                                skipSnaps: false,
-                                containScroll: "trimSnaps",
-                                loop: false,
-                                dragFree: false,
-                            }}
-                        >
-                            <CarouselContent key="" className="">
-                                {regions.map((region, index) => (
-                                    <CarouselItem
-                                        key={index}
-                                        className="basis-1/3 relative group pb-[10px]"
-                                        onClick={() => setActiveRegion(index)}
-                                    >
-                                        <NavLink
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setActiveRegion(index);
-                                            }}
-                                            className={`relative ${
-                                                activeRegion === index
-                                                    ? "hnv_region_active_menu"
-                                                    : ""
-                                            }`}
+                        <ul className="inline-flex xl:hidden flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[40px] xl:px-[70px] py-[16px] pb-[20px]">
+                            {regions.map((region, index) => {
+                                if (index < 3) {
+                                    return (
+                                        <li
+                                            key={index}
+                                            className="flex-shrink-0"
                                         >
-                                            {region.title}
-                                        </NavLink>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                            <CarouselPrevious className="flex left-[10px] md:left-[20px] cursor-pointer" />
-                            <CarouselNext className="flex right-[10px] md:right-[20px] cursor-pointer" />
-                        </Carousel>
+                                            <NavLink
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setActiveRegion(index);
+                                                }}
+                                                className={`relative ${
+                                                    activeRegion === index
+                                                        ? "hnv_region_active_menu"
+                                                        : ""
+                                                }`}
+                                            >
+                                                {region.title}
+                                            </NavLink>
+                                        </li>
+                                    );
+                                }
+                                return null; // Không render nếu index >= 3
+                            })}
+                        </ul>
                     </div>
                 </div>
                 {/* Thông tin + Carousel */}
@@ -232,7 +181,7 @@ const RegionList = ({ className, ...props }) => {
                                     activeRegion === index ? "" : "hidden"
                                 }
                             >
-                                <h2 className="text-[#1A2A44] text-[28px] md:text-[56px] lg:text-[72px] font-bold text-center xl:text-left mb-[8px] md:mb-0">
+                                <h2 className="text-[#1A2A44] text-[28px] md:text-[56px] lg:text-[72px] font-bold text-center xl:text-left mb-[8px] md:mb-0 mt-2 xl:mt-0">
                                     {region.title}
                                 </h2>
                                 <div className="text-[#494951] text-[16px] md:text-[18px] lg:text-[20px] font-normal mb-[30px] md:mb-[40px] lg:mb-[50px] truncate_5">
@@ -241,7 +190,7 @@ const RegionList = ({ className, ...props }) => {
                             </div>
                         ))}
                         <Carousel
-                            className="w-full"
+                            className="w-full z-0"
                             opts={{
                                 align: "start",
                                 skipSnaps: false,
@@ -250,85 +199,68 @@ const RegionList = ({ className, ...props }) => {
                                 dragFree: false,
                             }}
                         >
-                            {regions.map((region, index) => (
-                                <CarouselContent
-                                    key={region.id}
-                                    className={cn(
-                                        "-ml-[20px]",
-                                        activeRegion === index ? "" : "hidden"
-                                    )}
-                                >
-                                    {/* Nếu vùng đó có destinations, lặp để hiển thị từng điểm nổi bật */}
-                                    {region.destinations &&
-                                        region.destinations.map(
-                                            (destination, idx) => (
-                                                <CarouselItem
-                                                    key={idx}
-                                                    className="basis-[80%] sm:basis-[45%] pl-[20px] relative group"
-                                                    onClick={() =>
-                                                        setActiveRegion(index)
-                                                    }
+                            {/* Chỉ một CarouselContent duy nhất */}
+                            <CarouselContent className="-ml-[20px]">
+                                {regions[activeRegion]?.destinations?.map(
+                                    (destination, idx) => (
+                                        <CarouselItem
+                                            key={idx}
+                                            className="basis-[80%] sm:basis-[45%] pl-[20px] relative group"
+                                            onClick={() =>
+                                                setActiveRegion(activeRegion)
+                                            } // Không cần thiết nếu không thay đổi index
+                                        >
+                                            <NavLink to={`/city/${destination.slug}`}>
+                                                <img
+                                                    src={destination.image}
+                                                    alt={destination.title}
+                                                    className="w-full rounded-[60px_4px_4px_4px] h-[475px]"
+                                                    loading="lazy"
+                                                />
+                                                <div
+                                                    className={cn(
+                                                        "absolute right-0 top-[calc(100%-70px)] z-1 w-[calc(100%-20px)]",
+                                                        "p-[20px_20px_0_20px] overflow-hidden transition-all duration-500",
+                                                        "group-hover:top-[calc(100%-195px)]"
+                                                    )}
                                                 >
-                                                    <NavLink to="/city/hanoi">
-                                                        <img
-                                                            src={
-                                                                destination.image
-                                                            }
-                                                            alt={
-                                                                destination.title
-                                                            }
-                                                            className="w-full rounded-[60px_4px_4px_4px]"
-                                                            loading="lazy"
-                                                        />
-                                                        <div
-                                                            className={cn(
-                                                                "absolute right-0 top-[calc(100%-70px)] z-1 w-[calc(100%-20px)]",
-                                                                "p-[20px_20px_0_20px] overflow-hidden transition-all duration-500",
-                                                                "group-hover:top-[calc(100%-195px)]"
-                                                            )}
-                                                        >
-                                                            <h3 className="text-white text-[28px] font-bold">
-                                                                {
-                                                                    destination.title
-                                                                }
-                                                            </h3>
-                                                            <div
-                                                                className={cn(
-                                                                    "opacity-0 group-hover:opacity-100",
-                                                                    "transition-all duration-500"
-                                                                )}
-                                                            >
-                                                                <p className="text-white mt-2 text-[16px] leading-[1.4]">
-                                                                    {
-                                                                        destination.description
-                                                                    }
-                                                                </p>
-                                                                <div
-                                                                    className={cn(
-                                                                        "flex mt-[10px] mb-[20px] text-[17px] font-bold",
-                                                                        "text-white gap-[8px] items-center justify-end"
-                                                                    )}
-                                                                >
-                                                                    <span>
-                                                                        Discover
-                                                                    </span>
-                                                                    <FaArrowRight />
-                                                                </div>
-                                                            </div>
+                                                    <h3 className="text-white text-[28px] font-bold">
+                                                        {destination.title}
+                                                    </h3>
+                                                    <div
+                                                        className={cn(
+                                                            "opacity-0 group-hover:opacity-100",
+                                                            "transition-all duration-500"
+                                                        )}
+                                                    >
+                                                        <div 
+                                                            className="text-white mt-2 text-[16px] leading-[1.4] truncate_3"
+                                                            dangerouslySetInnerHTML={{ __html: destination.description }}>
                                                         </div>
                                                         <div
                                                             className={cn(
-                                                                "rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]",
-                                                                "absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0",
-                                                                "transition-all duration-500"
+                                                                "flex mt-[10px] mb-[20px] text-[17px] font-bold",
+                                                                "text-white gap-[8px] items-center justify-end"
                                                             )}
-                                                        ></div>
-                                                    </NavLink>
-                                                </CarouselItem>
-                                            )
-                                        )}
-                                </CarouselContent>
-                            ))}
+                                                        >
+                                                            <span>Discover</span>
+                                                            <FaArrowRight />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    className={cn(
+                                                        "rounded-[4px] bg-[linear-gradient(180deg,rgba(4,18,58,0)_0%,rgba(4,18,58,0.5)_100%)]",
+                                                        "absolute bottom-0 right-0 w-[calc(100%-20px)] h-[145px] group-hover:h-[260px] z-0",
+                                                        "transition-all duration-500"
+                                                    )}
+                                                ></div>
+                                            </NavLink>
+                                        </CarouselItem>
+                                    )
+                                )}
+                            </CarouselContent>
+
                             <CarouselPrevious className="hidden md:flex left-[10px] md:left-[20px] cursor-pointer" />
                             <CarouselNext className="hidden md:flex right-[10px] md:right-[20px] cursor-pointer" />
                         </Carousel>

@@ -2,13 +2,13 @@
 
 namespace Vietiso\Modules\City\Models;
 
-use Vietiso\Core\Context\Context;
 use Vietiso\Core\Database\Model\Model;
+use Vietiso\Modules\Common\Traits\AccessBanner;
 use Vietiso\Modules\Common\Traits\AccessImage;
 
 class City extends Model
 {
-    use AccessImage;
+    use AccessImage, AccessBanner;
 
     protected string $table = 'cities';
 

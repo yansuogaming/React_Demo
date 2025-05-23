@@ -1,29 +1,18 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useRef, useEffect } from "react";
-
-import { NavLink, useLoaderData } from "react-router";
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel";
+import { Link, useLoaderData, useNavigate } from "react-router";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import Breadcrumb from "@components/Breadcrumb";
 import CardEvent from "@components/card/CardEvent";
 import EventHero from "@components/event/EventHero";
 import EventFilterBar from "@components/event/EventFilterBar";
-import EventNewsSlider from "@components/event/EventNewsSlider";
-import visaImage from "@images/visa-image.png";
 import ticketIcon from "@images/great.svg";
 import soldIcon from "@images/ticket.svg";
 import freeIcon from "@images/free.svg";
-import iconExp from "@images/ticket2.png";
-import iconSupport from "@images/support.png";
-import iconReview from "@images/telephone.png";
-
+import { cn, debounce } from "@lib/utils";
+import { CiLocationOn } from "react-icons/ci";
+import { IoTicketOutline } from "react-icons/io5";
 
 const categories = [
     "All",
@@ -32,24 +21,18 @@ const categories = [
     "This weekend",
     "This Month",
     "Next 10 Days",
-    "Food & Drink",
 ];
 
-const pageSize = 16;
-
 const Events = () => {
-    const { ongoingAndUpcomingEvents, events } = useLoaderData();
+    const { ongoingAndUpcomingEvents, events, totalPage, currentPage, typeSearch, keyword } = useLoaderData();
     const { t } = useTranslation();
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
-        { label: t("Events"), href: "event" },
-        { label: "Vietnam Calendar" },
+        { label: t("Events") },
     ];
-
     const eventListRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [selectedCategory, setSelectedCategory] = useState("All");
-    const [currentPage, setCurrentPage] = useState(1);
+    const [keysearch, setKeysearch] = useState(keyword);
 
     useEffect(() => {
         if (eventListRef.current) {
@@ -60,94 +43,18 @@ const Events = () => {
         }
     }, [currentPage]);
 
-    const filteredEvents =
-        selectedCategory === "All" ? events : events.filter(() => true);
-    const totalPages = Math.ceil(filteredEvents.length / pageSize);
-
-    const paginatedEvents = filteredEvents.slice(
-        (currentPage - 1) * pageSize,
-        currentPage * pageSize
-    );
-
-    const top8 = paginatedEvents.slice(0, 8);
-    const bottom8 = paginatedEvents.slice(8);
-
-    const features = [
-        {
-            id: 1,
-            title: "Unforgettable experiences",
-            description:
-                "Every experience is designed to leave a lasting impression. Every event is curated with the best experiences for you to enjoy.",
-            icon: iconExp,
-            bg: "bg-gradient-to-b from-[#FED074] to-[#FE9D00]",
-        },
-        {
-            id: 2,
-            title: "24/7 Support",
-            description:
-                "Every experience is designed to leave a lasting impression. Every event is curated with the best experiences for you to enjoy.",
-            icon: iconSupport,
-            bg: "bg-gradient-to-b from-[#BD81F6] to-[#9249EF]",
-        },
-        {
-            id: 3,
-            title: "Good reviews",
-            description:
-                "Every experience is designed to leave a lasting impression. Every event is curated with the best experiences for you to enjoy.",
-            icon: iconReview,
-            bg: "bg-gradient-to-b from-[#A4C2FB] to-[#759DF6]",
-        },
-    ];
-
-    const FeatureCarousel = () => {
-        return (
-            <section className="py-[101px] bg-white">
-                <div className="container mx-auto">
-                    <Carousel opts={{ align: "start" }} className="w-full">
-                        <CarouselContent className="-ml-4">
-                            {features.map((feature, index) => (
-                                <CarouselItem
-                                    key={index}
-                                    className="pl-4 sm:basis-1/2 md:basis-1/2 lg:basis-1/3"
-                                >
-                                    <div className="flex gap-4 items-start max-w-sm">
-                                        {/* Gradient icon box */}
-                                        <div
-                                            className={`p-[24px] rounded-md flex items-center justify-center ${feature.bg}`}
-                                        >
-                                            <img
-                                                src={feature.icon}
-                                                alt={feature.title}
-                                                className="w-full h-full"
-                                            />
-                                        </div>
-
-                                        {/* Text content */}
-                                        <div>
-                                            <h3 className="text-[24px] font-[700] text-black mb-1">
-                                                {feature.title}
-                                            </h3>
-                                            <p className="text-[16px] text-[#494951]">
-                                                {feature.description}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-
-                        {/* Ẩn trên mobile */}
-                        <CarouselPrevious className="left-0 hidden" />
-                        <CarouselNext className="right-0 hidden" />
-                    </Carousel>
-                </div>
-            </section>
-        );
-    };
+    const filteredEvents = typeSearch === 'all' ? events : events.filter(() => true);
+    const top8 = filteredEvents.slice(0, 8);
+    const bottom8 = filteredEvents.slice(8);
 
     const AdBanner = () => {
         return (
-            <div className="p-[22px] items-center col-span-full bg-[#1A2A44] text-white rounded-xl xl:p-[23px_40px] flex flex-col xl:flex-row md:items-center md:p-[10px] justify-between gap-4 shadow justify-self-center xl:min-w-[1121px] m-[16px_0]">
+            <div className={cn(
+                'p-[22px] items-center col-span-full bg-[#1A2A44]',
+                'text-white rounded-xl xl:p-[23px_40px] flex flex-col',
+                'xl:flex-row md:items-center md:p-[10px] justify-between',
+                'gap-4 shadow justify-self-center xl:min-w-[1121px] m-[16px_0]'
+            )}>
                 {/* Left title */}
                 <div className="text-left">
                     <p className="text-lg md:text-[20px] text-[26px] font-[700]">
@@ -198,90 +105,13 @@ const Events = () => {
         );
     };
 
-    const VisaBanner = () => {
-        return (
-            <section className="bg-[#F6F6FB] p-[48px_0_35px_0]">
-                <div className="flex justify-center px-4">
-                    <div className="flex flex-col lg:flex-row items-stretch max-w-[1100px] w-full overflow-hidden rounded-[40px] lg:rounded-[0_0_40px_0]">
-                        <div className="lg:w-[272px] lg:h-[272px] shrink-0">
-                            <img
-                                src={visaImage}
-                                alt="Visa support"
-                                className="w-full h-full object-cover rounded-t-[40px] lg:rounded-[40px_0_0_40px]"
-                            />
-                        </div>
-
-                        <div className="bg-white p-[66px_35px] flex flex-col justify-center w-full">
-                            <h3 className="text-[26px] font-[500] text-[#1A2A44] mb-[12px]">
-                                Vietnam offers easy entry for travelers
-                            </h3>
-                            <p className="text-[16px] font-[400] text-[#494951] mb-[20px]">
-                                Helping visitors easily experience a seamless
-                                immigration process when coming to Vietnam.
-                            </p>
-                            <NavLink
-                                to="#"
-                                className="w-fit bg-[#007BFF] text-white hover:bg-blue-700 transition p-[10px_20px] font-[500] text-[16px]"
-                            >
-                                Explore now
-                            </NavLink>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        );
-    };
-
-    const EventPagination = ({ totalPages, currentPage, setCurrentPage }) => (
-        <div className="flex justify-center items-center gap-[12px] mt-8">
-            {/* Prev */}
-            <button
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage((p) => p - 1)}
-                className={`w-8 h-8 flex items-center justify-center rounded transition 
-                ${
-                    currentPage === 1
-                        ? "text-gray-300 cursor-default"
-                        : "text-[#0E284E] hover:text-black"
-                }`}
-            >
-                <FaChevronLeft className="text-[14px]" />
-            </button>
-
-            {/* Page numbers */}
-            {Array.from({ length: totalPages }, (_, i) => {
-                const page = i + 1;
-                const isActive = page === currentPage;
-                return (
-                    <button
-                        key={page}
-                        onClick={() => setCurrentPage(page)}
-                        className={`w-[50px] h-[50px] rounded-[4px] text-[16px] font-[500] transition ${
-                            isActive
-                                ? "bg-[#007BFF] text-white"
-                                : "bg-[#EEF0F5] text-[#1A2A44] hover:bg-gray-200"
-                        }`}
-                    >
-                        {page}
-                    </button>
-                );
-            })}
-
-            {/* Next */}
-            <button
-                disabled={currentPage === totalPages}
-                onClick={() => setCurrentPage((p) => p + 1)}
-                className={`w-[12px] h-[24px] flex items-center justify-center rounded transition 
-                ${
-                    currentPage === totalPages
-                        ? "text-[#D9D9D9] cursor-default"
-                        : "text-[#1A2A44] hover:text-[#1A2A44]"
-                }`}
-            >
-                <FaChevronRight className="text-[14px]" />
-            </button>
-        </div>
-    );
+    const navigate = useNavigate();
+    const changeKeyword = (keyword) => {
+        setKeysearch(keyword);
+        debounce(() => {
+            navigate(`/events?page=1&keyword=${keyword}`);
+        }, 500)();
+    }
 
     return (
         <main className="bg-[#F5F6FA]">
@@ -301,11 +131,12 @@ const Events = () => {
                 <section className="mt-[43px]" ref={eventListRef}>
                     <EventFilterBar
                         categories={categories}
-                        selectedCategory={selectedCategory}
-                        setSelectedCategory={(cat) => {
-                            setSelectedCategory(cat);
-                            setCurrentPage(1);
+                        selectedCategory={typeSearch}
+                        keyword={keysearch}
+                        setSelectedCategory={() => {
+
                         }}
+                        changeKeyword={changeKeyword}
                     />
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -320,20 +151,20 @@ const Events = () => {
                                 widthImage="100%"
                                 heightImage="180px"
                             >
-                                <p className="text-xs text-gray-500 mt-1">
-                                    📍 {event.city}
-                                </p>
+                                <div className="flex gap-[8px] items-center text-[#1A2A44]">
+                                    <CiLocationOn className="text-[20px]" />
+                                    <span>{event.city}</span>
+                                    <IoTicketOutline className="text-[20px]" />
+                                </div>
                                 <div
-                                    className="text-sm text-gray-600 line-clamp-2"
+                                    className="text-[16px] font-normal mt-[16px] truncate_3"
                                     dangerouslySetInnerHTML={{ __html: event.intro }}
                                 >
                                 </div>
                             </CardEvent>
                         ))}
-
                         <AdBanner />
-
-                        {bottom8.map((event, index) => (
+                       {bottom8.map((event, index) => (
                             <CardEvent
                                 key={index}
                                 title={event.title}
@@ -344,11 +175,13 @@ const Events = () => {
                                 widthImage="100%"
                                 heightImage="180px"
                             >
-                                <p className="text-xs text-gray-500 mt-1">
-                                    📍 {event.city}
-                                </p>
+                                <div className="flex gap-[8px] items-center text-[#1A2A44]">
+                                    <CiLocationOn className="text-[20px]" />
+                                    <span>{event.city}</span>
+                                    <IoTicketOutline className="text-[20px]" />
+                                </div>
                                 <div
-                                    className="text-sm text-gray-600 line-clamp-2"
+                                    className="text-[16px] font-normal mt-[16px] truncate_3"
                                     dangerouslySetInnerHTML={{ __html: event.intro }}
                                 >
                                 </div>
@@ -356,18 +189,58 @@ const Events = () => {
                         ))}
                     </div>
 
-                    <EventPagination
-                        totalPages={totalPages}
-                        currentPage={currentPage}
-                        setCurrentPage={setCurrentPage}
-                    />
+
+                    {/* Pagination */}
+                    <div className="flex justify-center items-center gap-[12px] mt-8">
+                        {/* Prev */}
+                        <Link
+                            disabled={currentPage == 1}
+                            to={`/events?page=1&keyword=`}
+                            className={cn(
+                                'w-8 h-8 flex items-center',
+                                'justify-center rounded transition',
+                                currentPage == 1 ? 'text-gray-300 cursor-default' : 'text-[#0E284E] hover:text-black'
+                            )}
+                        >
+                            <FaChevronLeft className="text-[14px]" />
+                        </Link>
+
+                        {/* Page numbers */}
+                        {Array.from({ length: totalPage }, (_, i) => {
+                            const page = i + 1;
+                            const isActive = page == currentPage;
+                            return (
+                                <Link
+                                    key={page}
+                                    to={`/events?page=${page}&keyword=`}
+                                    className={cn(
+                                        'w-[50px] h-[50px] rounded-[4px]',
+                                        'text-[16px] font-[500] transition',
+                                        'flex-col items-center justify-center flex',
+                                        isActive ? 'bg-[#007BFF] text-white' : 'bg-[#EEF0F5] text-[#1A2A44] hover:bg-gray-200'
+                                    )}
+                                >
+                                    {page}
+                                </Link>
+                            );
+                        })}
+
+                        {/* Next */}
+                        <Link
+                            disabled={currentPage == totalPage}
+                            to={`/events?page=${currentPage + 1}&keyword=`}
+                            className={cn(
+                                'w-[12px] h-[24px] flex items-center',
+                                'justify-center rounded transition',
+                                currentPage == totalPage ? "text-[#D9D9D9] cursor-default" : "text-[#1A2A44] hover:text-[#1A2A44]"
+                            )}
+                        >
+                            <FaChevronRight className="text-[14px]" />
+                        </Link>
+                    </div>
+                    {/* Pagination */}
                 </section>
             </div>
-            <EventNewsSlider />
-
-            <FeatureCarousel />
-
-            <VisaBanner />
         </main>
     );
 };

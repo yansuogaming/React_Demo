@@ -8,6 +8,6 @@ class HttpClientServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton('http.client', fn() => new Http);
+        $this->app->transient('http.client', fn() => new Http);
     }
 }

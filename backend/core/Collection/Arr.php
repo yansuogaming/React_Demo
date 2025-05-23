@@ -381,7 +381,7 @@ class Arr
     /**
      * Pluck an array of values from an array.
      */
-    public static function pluck(iterable $array, string|int $value, string|int $key = null): array
+    public static function pluck(iterable $array, string|int $value, string|int|null $key = null): array
     {
         list($value, $key) = self::explodeKeys($value, $key);
         $results = [];

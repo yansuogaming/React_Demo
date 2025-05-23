@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import { ArrowRight, Check, X } from "lucide-react";
 import experience from "@images/experiences.png";
 import imgDemo from "@images/about-vietnam.png";
+import { NavLink } from "react-router";
 
 // Data arrays
 const includedItems = [
@@ -75,13 +76,13 @@ export default function ExperienceDetails() {
                         <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
                             Vietnam
                         </h2>
-                        <a
-                            href="#"
-                            className="flex items-center text-base md:text-lg text-slate-800 font-medium"
+                        <NavLink
+                            to="#"
+                            className="flex items-center text-[16px] text-[#1A2A44] font-[400]"
                         >
                             Discover more experiences{" "}
                             <ArrowRight className="ml-2" size={20} />
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
 
