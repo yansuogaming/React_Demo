@@ -56,7 +56,7 @@ const EventNewsSlider = () => {
                         {newsItems.map((item) => (
                             <CarouselItem
                                 key={item.id}
-                                className="pl-4 sm:basis-1 md:basis-1/2 lg:basis-1/3"
+                                className="pl-4 basis-full md:basis-1/2 lg:basis-1/3"
                             >
                                 <div className="bg-white rounded-tl-[60px] rounded-br-[60px] p-[71px_30px] aspect-square shadow-md flex flex-col">
                                     <NavLink
@@ -86,8 +86,8 @@ const EventNewsSlider = () => {
                         ))}
                     </CarouselContent>
 
-                    <CarouselPrevious className="left-0 hidden sm:flex" />
-                    <CarouselNext className="right-0 hidden sm:flex" />
+                    <CarouselPrevious className="left-0 hidden" />
+                    <CarouselNext className="right-0 hidden" />
                 </Carousel>
             </div>
         </section>

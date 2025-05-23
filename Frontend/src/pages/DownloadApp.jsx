@@ -6,12 +6,13 @@ import WeatherSubscribe from "@components/WeatherSubscribe";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 
-import imgDubai1 from "@images/img_app_1.jpg";
-import imgDubai2 from "@images/img_app_2.webp";
-import imgDubai3 from "@images/img_app_3.png";
-import imgCalendar1 from "@images/img_app_1.jpg";
-import imgCalendar2 from "@images/img_app_2.webp";
-import imgCalendar3 from "@images/img_app_3.png";
+import imgBanner from "@images/img2.png";
+import imgApp1 from "@images/img1.png";
+import imgApp2 from "@images/img3.png";
+// import imgApp3 from "@images/img_app_3.png";
+// import imgCalendar1 from "@images/img_app_1.jpg";
+// import imgCalendar2 from "@images/img_app_2.webp";
+// import imgCalendar3 from "@images/img_app_3.png";
 
 const DownloadApp = () => {
     const { t } = useTranslation();
@@ -34,51 +35,54 @@ const DownloadApp = () => {
     }, [emblaApi1]);
 
     // Dubai Calendar carousel state
-    const [emblaRef2, emblaApi2] = useEmblaCarousel({
-        align: "start",
-        loop: false,
-        containScroll: "trimSnaps",
-    });
-    const [selected2, setSelected2] = useState(0);
-    const [snaps2, setSnaps2] = useState([]);
 
-    useEffect(() => {
-        if (!emblaApi2) return;
-        setSnaps2(emblaApi2.scrollSnapList());
-        emblaApi2.on("select", () => {
-            setSelected2(emblaApi2.selectedScrollSnap());
-        });
-    }, [emblaApi2]);
+    // const [emblaRef2, emblaApi2] = useEmblaCarousel({
+    //     align: "start",
+    //     loop: false,
+    //     containScroll: "trimSnaps",
+    // });
+    // const [selected2, setSelected2] = useState(0);
+    // const [snaps2, setSnaps2] = useState([]);
+
+    // useEffect(() => {
+    //     if (!emblaApi2) return;
+    //     setSnaps2(emblaApi2.scrollSnapList());
+    //     emblaApi2.on("select", () => {
+    //         setSelected2(emblaApi2.selectedScrollSnap());
+    //     });
+    // }, [emblaApi2]);
 
     const visitSlides = [
         {
-            image: imgDubai1,
-            caption: "Find the city's best attractions closest to you",
+            image: imgApp1,
+            caption:
+                "Travel app interface showing top attractions and trip suggestions",
         },
         {
-            image: imgDubai2,
-            caption: "Explore top events and plan your stay easily",
+            image: imgApp2,
+            caption:
+                "The app displays tourist spot details and latest travel news updates",
         },
-        {
-            image: imgDubai3,
-            caption: "Personalise your trip and browse offline content",
-        },
+        // {
+        //     image: imgApp3,
+        //     caption: "Personalise your trip and browse offline content",
+        // },
     ];
 
-    const calendarSlides = [
-        {
-            image: imgCalendar1,
-            caption: "Be in the know with events at your fingertips",
-        },
-        {
-            image: imgCalendar2,
-            caption: "Manage tickets, schedules and QR codes",
-        },
-        {
-            image: imgCalendar3,
-            caption: "Get curated events for your interests",
-        },
-    ];
+    // const calendarSlides = [
+    //     {
+    //         image: imgCalendar1,
+    //         caption: "Be in the know with events at your fingertips",
+    //     },
+    //     {
+    //         image: imgCalendar2,
+    //         caption: "Manage tickets, schedules and QR codes",
+    //     },
+    //     {
+    //         image: imgCalendar3,
+    //         caption: "Get curated events for your interests",
+    //     },
+    // ];
 
     const renderCarouselBlock = (
         title,
@@ -93,26 +97,27 @@ const DownloadApp = () => {
             <h2 className="text-[40px] font-semibold text-[#1A2A44] mb-2">
                 {title}
             </h2>
-            <p className="text-[16px] font-light text-[#505050] max-w-3xl mb-4">
-                {description}
-            </p>
-
-            {/* Navigation */}
-            <div className="hidden lg:flex justify-end mb-6 gap-2">
-                <button
-                    onClick={() => emblaApi?.scrollPrev()}
-                    disabled={!emblaApi?.canScrollPrev()}
-                    className="bg-white border shadow rounded w-10 h-10 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50"
-                >
-                    <FaChevronLeft />
-                </button>
-                <button
-                    onClick={() => emblaApi?.scrollNext()}
-                    disabled={!emblaApi?.canScrollNext()}
-                    className="bg-white border shadow rounded w-10 h-10 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50"
-                >
-                    <FaChevronRight />
-                </button>
+            <div className="flex justify-between">
+                <p className="text-[16px] font-light text-[#505050] max-w-3xl mb-4">
+                    {description}
+                </p>
+                {/* Navigation */}
+                <div className="hidden lg:flex justify-end mb-6 gap-2">
+                    <button
+                        onClick={() => emblaApi?.scrollPrev()}
+                        disabled={!emblaApi?.canScrollPrev()}
+                        className="bg-white border shadow rounded w-10 h-10 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50"
+                    >
+                        <FaChevronLeft />
+                    </button>
+                    <button
+                        onClick={() => emblaApi?.scrollNext()}
+                        disabled={!emblaApi?.canScrollNext()}
+                        className="bg-white border shadow rounded w-10 h-10 flex items-center justify-center hover:bg-gray-100 disabled:opacity-50"
+                    >
+                        <FaChevronRight />
+                    </button>
+                </div>
             </div>
 
             {/* Carousel */}
@@ -133,7 +138,7 @@ const DownloadApp = () => {
                                     <img
                                         src={item.image}
                                         alt={item.caption}
-                                        className="w-full h-[400px] sm:h-[460px] object-cover"
+                                        className="md:w-[920px] md:h-[620px] object-cover w-full h-[400px] sm:h-[460px]"
                                     />
                                     <p className="mt-2 text-xs text-center text-[#1A2A44] uppercase tracking-wide">
                                         {item.caption}
@@ -183,22 +188,25 @@ const DownloadApp = () => {
                     ]}
                 />
 
-                <h1 className="text-[32px] sm:text-[40px] md:text-[56px] font-bold text-[#1A2A44] mb-6">
+                <h1 className="text-[32px] sm:text-[40px] md:text-[56px] font-bold text-[#1A2A44] mb-6 lg:ml-[47px]">
                     Download Apps
                 </h1>
-                <img
-                    src="https://pairroxz.com/blog/wp-content/uploads/2023/08/Top-10-Mobile-App-Development-Companies-in-Qatar-feature-image-1.png"
-                    className="w-full"
-                />
-                <p className="text-[20px] font-[300] text-[#505050]">
-                    Find the latest Dubai attractions, events and itineraries
-                    with our mobile apps.
+                <div className="2xl:-mx-[200px]">
+                    <img
+                        src={imgBanner}
+                        className="w-full h-auto rounded-br-[60px] rounded-ss-[60px]"
+                        alt="Vietnam apps"
+                    />
+                </div>
+                <p className="text-[20px] font-[300] text-[#505050] mt-[20px]">
+                    A tourist wearing a conical hat uses a smartphone to check
+                    the map on a busy street in Vietnam.
                 </p>
 
                 {/* Visit Dubai Block */}
                 {renderCarouselBlock(
-                    "Visit Dubai",
-                    "Use the Visit Dubai app - on iOS or Android - to travel confidently and stay updated on what's happening in the city...",
+                    "Explore Vietnam Smartly",
+                    "Use the Visit Vietnam app – available on iOS and Android – to discover top attractions, plan trips, and access the latest travel news and destination info.",
                     visitSlides,
                     emblaRef1,
                     emblaApi1,
@@ -206,7 +214,7 @@ const DownloadApp = () => {
                     snaps1
                 )}
 
-                {/* Dubai Calendar Block */}
+                {/* Dubai Calendar Block
                 {renderCarouselBlock(
                     "Dubai Calendar",
                     "Discover all the events happening in Dubai with the Dubai Calendar app - available on iOS or Android...",
@@ -215,8 +223,10 @@ const DownloadApp = () => {
                     emblaApi2,
                     selected2,
                     snaps2
-                )}
-                <WeatherSubscribe />
+                )} */}
+                <div className="mt-[60px]">
+                    <WeatherSubscribe />
+                </div>
             </section>
         </main>
     );

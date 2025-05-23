@@ -58,8 +58,8 @@ const WeatherTrip = () => {
                 <MonthlyActivities />
                 <FAQ />
                 <StartPlanningSection />
-                <WeatherSubscribe />
             </div>
+            <WeatherSubscribe />
         </main>
     );
 };

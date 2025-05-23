@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useRef, useEffect } from "react";
 
-import { NavLink, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import Breadcrumb from "@components/Breadcrumb";
@@ -15,6 +15,9 @@ import VisaBanner from "@components/event/VisaBanner";
 import ticketIcon from "@images/great.svg";
 import soldIcon from "@images/ticket.svg";
 import freeIcon from "@images/free.svg";
+
+import { CiLocationOn } from "react-icons/ci";
+import { IoTicketOutline } from "react-icons/io5";
 
 const categories = [
     "All",
@@ -41,6 +44,7 @@ const Events = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchText, setSearchText] = useState("");
 
     useEffect(() => {
         if (eventListRef.current) {
@@ -51,8 +55,17 @@ const Events = () => {
         }
     }, [currentPage]);
 
-    const filteredEvents =
-        selectedCategory === "All" ? events : events.filter(() => true);
+    const filteredEvents = events.filter((event) => {
+        const matchesCategory =
+            selectedCategory === "All" || event.category === selectedCategory;
+
+        const matchesSearch =
+            event.title.toLowerCase().includes(searchText.toLowerCase()) ||
+            event.intro.toLowerCase().includes(searchText.toLowerCase());
+
+        return matchesCategory && matchesSearch;
+    });
+
     const totalPages = Math.ceil(filteredEvents.length / pageSize);
 
     const paginatedEvents = filteredEvents.slice(
@@ -190,12 +203,15 @@ const Events = () => {
                             setSelectedCategory(cat);
                             setCurrentPage(1);
                         }}
+                        searchText={searchText}
+                        setSearchText={setSearchText}
                     />
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {top8.map((event, index) => (
                             <CardEvent
                                 key={index}
+                                className="h-full"
                                 title={event.title}
                                 image={event.image}
                                 startTime={new Date(event.start_date * 1000)}
@@ -204,11 +220,16 @@ const Events = () => {
                                 widthImage="100%"
                                 heightImage="180px"
                             >
-                                <p className="text-xs text-gray-500 mt-1">
-                                    📍 {event.city}
-                                </p>
+                                {event.city && (
+                                    <p className="text-[16px] text-[#494951] font-[400] mb-[16px] flex items-center gap-[6px]">
+                                        <CiLocationOn />
+                                        {event.city}
+                                        <IoTicketOutline className="ml-[4px]" />
+                                    </p>
+                                )}
+
                                 <div
-                                    className="text-sm text-gray-600 line-clamp-2"
+                                    className="text-[16px] text-[#494951] font-[400] line-clamp-2"
                                     dangerouslySetInnerHTML={{
                                         __html: event.intro,
                                     }}
@@ -221,6 +242,7 @@ const Events = () => {
                         {bottom8.map((event, index) => (
                             <CardEvent
                                 key={index}
+                                className="h-full"
                                 title={event.title}
                                 image={event.image}
                                 startTime={new Date(event.start_date * 1000)}
@@ -229,9 +251,13 @@ const Events = () => {
                                 widthImage="100%"
                                 heightImage="180px"
                             >
-                                <p className="text-xs text-gray-500 mt-1">
-                                    📍 {event.city}
-                                </p>
+                                {event.city && (
+                                    <p className="text-[16px] text-[#494951] font-[400] mb-[16px] flex items-center gap-[6px]">
+                                        <CiLocationOn />
+                                        {event.city}
+                                        <IoTicketOutline className="ml-[4px]" />
+                                    </p>
+                                )}
                                 <div
                                     className="text-sm text-gray-600 line-clamp-2"
                                     dangerouslySetInnerHTML={{
