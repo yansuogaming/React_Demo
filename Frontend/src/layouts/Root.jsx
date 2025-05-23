@@ -3,6 +3,7 @@ import Header from '@components/Header'
 import Footer from '@components/Footer'
 import { useLocation } from 'react-router'
 import ScrollToTop from "@components/ScrollToTop"
+import { Toaster } from "react-hot-toast"
 
 const Root = () => {
     const location = useLocation()
@@ -12,6 +13,7 @@ const Root = () => {
             <Header noBackgroundOnScroll={location.pathname === '/'} />
             <Outlet />
             <Footer />
+            <Toaster position="top-right" reverseOrder={false} />
         </>
     )
 }

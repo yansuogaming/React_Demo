@@ -1,6 +1,6 @@
 <?php
 
-namespace Vietiso\Modules\User\Models;
+namespace Vietiso\Modules\Admin\Models;
 
 use Vietiso\Core\Database\Model\Model;
 

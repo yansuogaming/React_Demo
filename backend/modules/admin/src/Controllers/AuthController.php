@@ -17,9 +17,9 @@ use Vietiso\Core\Route\Attributes\Group;
 use Vietiso\Core\Route\Attributes\Post;
 use Vietiso\Core\Support\Str;
 use Vietiso\Modules\Admin\Middlewares\Authenticate;
-use Vietiso\Modules\User\DTOs\ForgotPasswordDTO;
-use Vietiso\Modules\User\DTOs\LoginDTO;
-use Vietiso\Modules\User\Models\Admin;
+use Vietiso\Modules\Admin\DTOs\ForgotPasswordDTO;
+use Vietiso\Modules\Admin\DTOs\LoginDTO;
+use Vietiso\Modules\Admin\Models\Admin;
 
 #[Group('api')]
 class AuthController

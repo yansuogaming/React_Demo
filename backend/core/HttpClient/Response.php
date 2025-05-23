@@ -18,9 +18,14 @@ class Response implements Stringable
         return $this->swooleClient->body;
     }
 
+    public function isJson(): bool
+    {
+        return json_validate($this->body());
+    }
+
     public function json($key = null, $default = null): mixed
     {
-        if (! $this->decoded) {
+        if (!$this->decoded) {
             $this->decoded = json_decode($this->body(), true);
         }
 

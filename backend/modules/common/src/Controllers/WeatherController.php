@@ -2,6 +2,8 @@
 
 namespace Vietiso\Modules\Common\Controllers;
 
+use GeoIp2\Database\Reader;
+use Vietiso\Core\Http\Request;
 use Vietiso\Core\Http\Response;
 use Vietiso\Core\HttpClient\Facade\Http;
 use Vietiso\Core\Route\Attributes\Get;
@@ -25,12 +27,35 @@ class WeatherController
             return $res->json();
         }, 900);
 
-        $res = Cache::getCache("weather-$slug", function () use ($location) {
-            $lat = $location[0]['lat'];
-            $lon = $location[0]['lon'];
+        $res = $this->getWeatherByLocation(
+            $location[0]['lat'],
+            $location[0]['lon']
+        );
+        return Response::json($res);
+    }
+
+    #[Get('/')]
+    public function getWeather(Request $request)
+    {
+        $cityDbReader = new Reader(storage_path(join_paths('geolite', 'GeoLite2-City.mmdb')));
+        try {
+            $record = $cityDbReader->city($request->ip());
+        } catch (\Throwable $th) {
+            $record = $cityDbReader->city('124.158.4.43');
+        }
+        
+        $res = $this->getWeatherByLocation(
+            $record->location->latitude,
+            $record->location->longitude
+        );
+        return Response::json($res);
+    }
+
+    protected function getWeatherByLocation($lat, $lon)
+    {
+        return Cache::getCache("weather-$lat-$lon", function () use ($lat, $lon) {
             $res = Http::get("https://api.openweathermap.org/data/2.5/weather?lat={$lat}&lon=$lon&appid=fc94a02e7f94ea96ef2e403d1a1d47cb&units=metric");
             return $res->json();
         }, 900);
-        return Response::json($res);
     }
 }
