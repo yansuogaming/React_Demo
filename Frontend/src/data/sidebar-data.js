@@ -9,11 +9,6 @@ import { SiGoogletranslate } from "react-icons/si";
 
 
 export const sidebarData = {
-    user: {
-        name: 'satnaing',
-        email: 'satnaingdev@gmail.com',
-        avatar: '/avatars/shadcn.jpg',
-    },
     navGroups: [
         {
             title: 'General',

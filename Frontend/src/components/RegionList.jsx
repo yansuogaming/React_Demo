@@ -169,42 +169,6 @@ const RegionList = ({ className, data, ...props }) => {
                                 return null; // Không render nếu index >= 3
                             })}
                         </ul>
-                        {/* <Carousel
-                            className="w-full block md:hidden relative px-[60px] pt-[12px] pb-[10px] rounded-[80px] bg-white shadow-[0_4px_12px_0_rgba(54,133,143,0.15)]"
-                            opts={{
-                                align: "start",
-                                skipSnaps: false,
-                                containScroll: "trimSnaps",
-                                loop: false,
-                                dragFree: false,
-                            }}
-                        >
-                            <CarouselContent key="" className="">
-                                {regions.map((region, index) => (
-                                    <CarouselItem
-                                        key={index}
-                                        className="basis-1/3 relative group pb-[10px]"
-                                        onClick={() => setActiveRegion(index)}
-                                    >
-                                        <NavLink
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                setActiveRegion(index);
-                                            }}
-                                            className={`relative ${
-                                                activeRegion === index
-                                                    ? "hnv_region_active_menu"
-                                                    : ""
-                                            }`}
-                                        >
-                                            {region.title}
-                                        </NavLink>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                            <CarouselPrevious className="flex left-[10px] md:left-[20px] cursor-pointer" />
-                            <CarouselNext className="flex right-[10px] md:right-[20px] cursor-pointer" />
-                        </Carousel> */}
                     </div>
                 </div>
                 {/* Thông tin + Carousel */}

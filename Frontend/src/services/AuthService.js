@@ -1,5 +1,6 @@
 import toast from "react-hot-toast";
 import HttpClient from "./HttpClient";
+import { navigateTo } from "@lib/utils";
 
 const AuthService = {
     login: async (email, password) => {
@@ -16,6 +17,17 @@ const AuthService = {
         }
 
         toast.error('Email hoặc mật khẩu không hợp lệ.');
+        return false;
+    },
+
+    logout: async () => {
+        const res = await HttpClient.get('logout')
+        if (res.status === 200) {
+            navigateTo('/admin/login');
+            toast.success('Đăng xuất thành công.');
+            return true;
+        }
+
         return false;
     }
 }

@@ -1,12 +1,12 @@
 <?php
 
-namespace Vietiso\Modules\User\DTOs;
+namespace Vietiso\Modules\Admin\DTOs;
 
 use Vietiso\Core\ValidatedDTO\Rules\Email;
 use Vietiso\Core\ValidatedDTO\Rules\Exists;
 use Vietiso\Core\ValidatedDTO\Rules\Required;
 use Vietiso\Core\ValidatedDTO\ValidatedDTO;
-use Vietiso\Modules\User\Models\Admin;
+use Vietiso\Modules\Admin\Models\Admin;
 
 class ForgotPasswordDTO extends ValidatedDTO
 {

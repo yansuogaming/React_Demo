@@ -7,6 +7,7 @@ use Vietiso\Core\Http\Response;
 use Vietiso\Core\HttpClient\Facade\Http;
 use Vietiso\Core\Route\Attributes\Get;
 use Vietiso\Core\Route\Attributes\Group;
+use Vietiso\Modules\City\Models\City;
 
 #[Group('api/event')]
 class EventController
@@ -44,7 +45,7 @@ class EventController
     {
         $type = $request->input('type', 'all');
         $keyword = $request->input('keyword', '');
-        $langId = $request->input('lang_id', '');
+        $langId = $request->input('lang_id', 'en');
 
         $res = Http::eventdb('vn')
             ->post('/events', [
@@ -54,6 +55,36 @@ class EventController
                 'lang_id' => $langId,
                 'type' => $type
             ])->json();
-        return Response::json($res);
+        
+        $events = collect(!empty($res['events']) ? $res['events'] : []);
+        $listCityCode = $events->pluck('city_code');
+
+        if (!empty($listCityCode)) {
+            $cities = City::whereIn('city_code', $listCityCode)
+                ->where('lang_id', $langId)
+                ->select('city_code', 'title')
+                ->get();
+            $events = $events->map(function ($event) use ($cities) {
+                foreach ($cities as $city) {
+                    if ($event['city_code'] == $city['city_code']) {
+                        $event['city'] = $city['title'];
+                        break;
+                    }
+                }
+                return $event;
+            });
+        }
+        
+        return Response::json([
+            'events' => $events,
+            'total_page' => !empty($res['total_page']) ? $res['total_page'] : 0
+        ]);
+    }
+
+    #[Get('translate')]
+    public function translate()
+    {
+        $events = Http::eventdb('vn')->get('events');
+        
     }
 }

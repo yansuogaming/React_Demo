@@ -1,4 +1,3 @@
-import Reveal from "@components/animation/Reveal";
 import TertiaryHeading from "@components/text/TertiaryHeading";
 import useLanguage from "@hooks/useLanguage";
 import { format } from "date-fns";
@@ -31,7 +30,7 @@ const CardEvent = ({
     }
 
     return (
-        <Reveal className="group">
+        <div className="group flex flex-col h-full">
             <Link
                 to={href}
                 className="rounded-[60px_0_0_0] overflow-hidden block relative"
@@ -43,7 +42,7 @@ const CardEvent = ({
                     className="group-hover:scale-[1.1] transition-all duration-500"
                     loading="lazy"
                 />
-                <p className="absolute bottom-[15px] bg-white text-right p-[6px_8px] rounded-[4px] left-[15px] leading-tight text-sm font-[700]">
+                <div className="absolute bottom-[15px] bg-white text-right p-[6px_8px] rounded-[4px] left-[15px] leading-tight text-sm font-[700]">
                     {txtStartTime === txtEndTime ? (
                         <div className="p-[3px_10px_0px_10px]">
                             <div className="text-[20px]">
@@ -60,15 +59,15 @@ const CardEvent = ({
                             to <b>{txtEndTime}</b>
                         </div>
                     )}
-                </p>
+                </div>
             </Link>
-            <div className="bg-white p-[16px] rounded-[0_0_12px_12px]">
+            <div className="bg-white p-[16px] rounded-[0_0_12px_12px] flex flex-col grow">
                 <TertiaryHeading className="text-[20px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500">
                     <Link to={href}>{title}</Link>
                 </TertiaryHeading>
                 {children}
             </div>
-        </Reveal>
+        </div>
     );
 };
 

@@ -594,12 +594,8 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         navigate(
                                                             "/visainformation",
                                                         );
-                                                        setIsVisible(
-                                                            !isVisible,
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
-                                                        );
+                                                        setIsVisible(!isVisible);
+                                                        setIsVisibleSubMenu(!isVisibleSubMenu);
                                                     }}
                                                 >
                                                     Essentials
