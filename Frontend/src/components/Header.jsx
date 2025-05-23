@@ -1,7 +1,7 @@
 import imgLogo from "@images/logo.webp";
 import imgLogo2 from "@images/logo2.webp";
 import { useTranslation } from "react-i18next";
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import { createContext, useContext, useEffect, useState } from "react";
 import { ChevronRight, Ellipsis } from "lucide-react";
 import { LuTextSearch } from "react-icons/lu";
@@ -29,6 +29,7 @@ import ModalSearch from "./modal/ModalSearch";
 const HeaderContext = createContext();
 
 const Header = ({ noBackgroundOnScroll = false }) => {
+    const location = useLocation();
     const { t } = useTranslation();
     const [background, setBackground] = useState("none");
     const [showSearch, setShowSearch] = useState(false);
@@ -113,7 +114,14 @@ const Header = ({ noBackgroundOnScroll = false }) => {
         } else {
             document.querySelector('body').style.overflow = 'auto';
         }
-    }, [isVisible])
+    }, [isVisible]);
+
+
+    useEffect(() => {
+        setIsVisible(false);
+        setIsVisibleSubMenu(false);
+    }, [location]);
+
     return (
         <HeaderContext.Provider value={contextValue}>
             <header>
@@ -301,7 +309,11 @@ const Header = ({ noBackgroundOnScroll = false }) => {
 
                 {/* Mobile header */}
                 <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-1">
-                    <div className="absolute w-full h-[100px] top-0 left-0 z-[-1] bg-gradient-to-b from-[rgba(4,18,58,0.40)] via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]"></div>
+                    <div className={cn(
+                        'absolute w-full h-[100px] top-0 left-0 z-[-1] bg-none',
+                        'lg:bg-gradient-to-b from-[rgba(4,18,58,0.40)]',
+                        'via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]'
+                    )}></div>
                     {/* Logo */}
                     <motion.div
                         initial={{ opacity: 0, y: -100 }}
@@ -321,7 +333,11 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     </motion.div>
                     {/* Hamburger */}
                     <button
-                        className="text-[30px] text-[#fff] flex items-center gap-[10px]"
+                        className={cn(
+                            'text-[30px] flex',
+                            'items-center gap-[10px]',
+                            noBackgroundOnScroll ? 'text-white' : 'text-black'
+                        )}
                         onClick={() => setIsVisible(!isVisible)}
                     >
                         <span className="text-[18px]">Menu</span>

@@ -1,9 +1,8 @@
-const ParacelIslands = ({ className = "", onClick }) => {
+const ParacelIslands = ({ className = "" }) => {
     return (
         <g
             id="paracel_islands"
             className={`${className} relative group cursor-pointer hover:z-1`}
-            onClick={onClick}
         >
             {/* Text */}
             <path

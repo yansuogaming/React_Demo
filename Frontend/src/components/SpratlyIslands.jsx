@@ -1,9 +1,8 @@
-const SpratlyIslands = ({ className = "", onClick }) => {
+const SpratlyIslands = ({ className = "" }) => {
     return (
         <g
             id="spratly_islands"
             className={`${className} relative group cursor-pointer hover:z-1`}
-            onClick={onClick}
         >
             {/* Text */}
             <path
