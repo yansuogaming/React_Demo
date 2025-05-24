@@ -266,7 +266,7 @@ const routes = [
                     },
                     {
                         path: 'hotel',
-                        Components: lazy(() => import("@pages/hotel")),
+                        Component: lazy(() => import("@pages/Hotel"))
                     }
                 ],
             },
