@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import Pagination from "./pagination/pagination";
 import advertising from "@images/advertising.png";
 import { Link } from "react-router";
+import { useTranslation } from "react-i18next";
 
 // const nileCruisePackage = {
 //     title: "Pharaohs Nile Cruise Adventure - Return Flights Included",
@@ -42,6 +43,8 @@ import { Link } from "react-router";
 const FilterTours = ({ className = "", data = [] }) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const listTour = data.list_tours;
+    // const { t } = useTranslation();
+
     useEffect(() => {
         if (isFilterOpen) {
             document.body.style.overflow = "hidden";
@@ -97,12 +100,13 @@ const FilterTours = ({ className = "", data = [] }) => {
 export default FilterTours;
 
 const Filter = ({ onClose }) => {
+    const { t } = useTranslation();
     return (
         <div style={{}} className="w-full lg:w-auto">
             <div className="w-full lg:min-w-[297px] mb-[24px] flex items-center justify-between font-bold bg-[#F6F6FA] text-[#1A2A44] rounded-[8px] p-[10px_15px]">
                 <div className="flex gap-[12px] items-center">
                     <img src={iconFilter} alt="Applied filters" />
-                    <h3>Applied filters</h3>
+                    <h3>{t("Applied filters")}</h3>
                 </div>
                 <button
                     onClick={onClose}
@@ -219,6 +223,7 @@ const Filter = ({ onClose }) => {
 };
 
 const ListTourResult = ({ listTour, setIsFilterOpen, isFilterOpen }) => {
+    const { t } = useTranslation();
     return (
         <div className="flex-1">
             <div className="flex items-center mb-[24px]  py-[10px] gap-4">
@@ -230,7 +235,7 @@ const ListTourResult = ({ listTour, setIsFilterOpen, isFilterOpen }) => {
                 </button>
                 <div className="flex gap-[12px] font-bold  ">
                     <p className="font-medium text-lg leading-[21px] tracking-normal font-[Visit_Qatar] text-[#1A2A44]">
-                        {listTour?.length} results
+                        {listTour?.length} {t("results")}
                     </p>
                 </div>
             </div>
@@ -251,6 +256,7 @@ const icon = {
 };
 
 const TourItem = ({ item, index }) => {
+    const { t } = useTranslation();
     const TourDetailItem = ({ icon, label, content, extraButton }) => {
         return (
             <div className="flex items-start gap-2">
@@ -281,8 +287,8 @@ const TourItem = ({ item, index }) => {
                     />
 
                     <img
-                        src={item.providerImage}
-                        alt={item.title}
+                        src={item.profile_image}
+                        alt={item.profile_name}
                         className="w-[85px] h-[48px] absolute left-[12px] bottom-[12px] object-cover rounded-br-[4px] px-[12px] py-[10px] bg-white"
                     />
                 </div>
@@ -294,7 +300,6 @@ const TourItem = ({ item, index }) => {
                         <h2 className="text-[18px] md:text-[20px] font-bold text-[#1D2D53] group-hover:text-blue-500">
                             {item.title}
                         </h2>
-
                         {/* Rating */}
                         <div className="flex items-center mt-[8px] mb-[16px]">
                             <div className="flex ">
@@ -314,20 +319,26 @@ const TourItem = ({ item, index }) => {
                                 {item.rate_avg} ({item.total_reviews})
                             </span>
                         </div>
-
                         <div className="flex flex-col gap-2">
+                            {/* Place to visit */}
                             <TourDetailItem
                                 icon={icon.detail}
                                 label={"Place to visit"}
-                                content={""}
+                                content={
+                                    item.arr_tour_destination
+                                        ?.map((dest) => dest.city_name)
+                                        .join(", ") || ""
+                                }
                                 extraButton={""}
                             />
+                            {/* Start */}
                             <TourDetailItem
                                 icon={icon.location}
                                 label={"Start"}
-                                content={""}
+                                content={item.city_name}
                                 extraButton={""}
                             />
+                            {/* Duration */}
                             <TourDetailItem
                                 icon={icon.time}
                                 label={"Duration"}
@@ -341,20 +352,20 @@ const TourItem = ({ item, index }) => {
                     <div className="flex flex-col items-center lg:items-end justify-between mt-6 md:items-start lg:absolute lg:right-5 lg:bottom-5">
                         <div className="text-center md:text-left lg:text-right mb-2">
                             <div className="text-[14px] text-[#494951] font-normal">
-                                from
+                                {t("from")}
                             </div>
                             <div className="text-[20px] text-[#C81E3A] font-bold">
-                                US ${item.price}
+                                US ${item.retail_price}
                             </div>
                             <div className="text-[14px] text-[#494951] font-normal">
-                                includes taxes & fees
+                                {t("includes taxes & fees")}
                             </div>
                         </div>
                         <Link
                             to={"/"}
                             className="w-full lg:w-auto bg-[#007BFF] hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-lg"
                         >
-                            Detail tour
+                            {t("Detail tour")}
                         </Link>
                     </div>
                 </div>

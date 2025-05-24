@@ -87,5 +87,10 @@
   "download_apps": "Download apps",
   "get_apps_for_attractions": "Get our apps for the latest attractions, events & itineraries",
   "visa_information": "Visa Information",
-  "place_to_go":"Place To Go"
+  "place_to_go":"Place To Go",
+
+  "check_your_mailbox": "Check your mailbox",
+  "forgot_password.description": "We have sent you instructions and a password reset link to . This email may take a few minutes to arrive.",
+  "back_to_login_step": "Back to login step",
+  "login": "Login"
 }

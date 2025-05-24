@@ -1,36 +1,73 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import {
     fetchCurrentWeatherByCoords,
     fetchWeatherForecastByCoords,
 } from "@components/weathertrip/weatherApi";
-import { Calendar } from "@/components/ui/calendar";
+import { CalendarIcon } from "lucide-react";
+import { format } from "date-fns";
+
+import { DayPicker } from "react-day-picker";
+import "react-day-picker/dist/style.css";
+import { Button } from "@/components/ui/button";
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover";
-import { format } from "date-fns";
+
+function CustomCaption(props) {
+    const { goToMonth, nextMonth, previousMonth, locale } = DayPicker();
+    const monthStr = props.displayMonth.toLocaleString(locale, {
+        month: "long",
+        year: "numeric",
+    });
+
+    return (
+        <div className="flex items-center justify-between px-4 mb-3">
+            <button
+                type="button"
+                onClick={() => previousMonth && goToMonth(previousMonth)}
+                className="text-gray-500 hover:text-black transition"
+            >
+                ◀
+            </button>
+            <div className="text-lg font-semibold text-[#1A2A44]">
+                {monthStr}
+            </div>
+            <button
+                type="button"
+                onClick={() => nextMonth && goToMonth(nextMonth)}
+                className="text-gray-500 hover:text-black transition"
+            >
+                ▶
+            </button>
+        </div>
+    );
+}
 
 const WeatherSection = ({ onLocationChange }) => {
     const [weather, setWeather] = useState(null);
     const [forecast, setForecast] = useState(null);
     const [unit, setUnit] = useState("c");
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState(new Date());
     const [selectedHourStartIndex, setSelectedHourStartIndex] = useState(0);
     const [locationDenied, setLocationDenied] = useState(false);
+    const availableDates =
+        forecast?.forecast?.forecastday?.map((d) => d.date) || [];
 
-    const fetchAllWeather = async (lat, lon, days = 3) => {
+    const fetchAllWeather = async (lat, lon, days = 10) => {
+        //Mặc định hiển thị 10 ngày tới
         const currentData = await fetchCurrentWeatherByCoords(lat, lon);
         const forecastData = await fetchWeatherForecastByCoords(lat, lon, days);
         if (currentData && forecastData) {
             setWeather(currentData);
             setForecast(forecastData);
             onLocationChange?.(currentData.location.name);
-            if (!selectedDate) {
-                setSelectedDate(
-                    new Date(forecastData.forecast.forecastday[0].date)
-                );
-            }
+            setSelectedDate(
+                new Date(forecastData.forecast.forecastday[0].date)
+            );
         }
     };
 
@@ -140,57 +177,61 @@ const WeatherSection = ({ onLocationChange }) => {
                     </div>
 
                     <div className="flex flex-col items-center gap-4">
-                        {/* Calendar trigger in Popover */}
                         <Popover>
                             <PopoverTrigger asChild>
-                                <button className="border rounded-md px-4 py-2 shadow-sm flex items-center gap-2 text-sm">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        className="h-5 w-5 text-blue-600"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            strokeWidth={2}
-                                            d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                                        />
-                                    </svg>
-                                    <span>
-                                        {selectedDate
-                                            ? format(
-                                                  selectedDate,
-                                                  "eeee, dd MMMM"
-                                              )
-                                            : "Select date"}
-                                    </span>
-                                </button>
+                                <Button
+                                    variant="outline"
+                                    className="w-[240px] pl-3 text-left font-normal"
+                                >
+                                    {selectedDate ? (
+                                        format(selectedDate, "PPP")
+                                    ) : (
+                                        <span>Pick a date</span>
+                                    )}
+                                    <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                                </Button>
                             </PopoverTrigger>
                             <PopoverContent
-                                className="w-auto p-2"
+                                side="bottom"
                                 align="start"
+                                className="z-50 p-0 bg-white border shadow-lg rounded-md w-auto"
                             >
-                                <Calendar
-                                    mode="single"
-                                    selected={selectedDate}
-                                    onSelect={(date) => {
-                                        setSelectedDate(date);
-                                        setSelectedHourStartIndex(0);
-                                    }}
-                                    disabled={(date) =>
-                                        !forecast?.forecast?.forecastday?.some(
-                                            (d) =>
-                                                d.date ===
-                                                date.toISOString().split("T")[0]
-                                        )
-                                    }
-                                />
+                                <div className="w-[360px] sm:w-[400px] md:w-[440px] px-4 py-3">
+                                    <DayPicker
+                                        mode="single"
+                                        selected={selectedDate}
+                                        onSelect={(date) => {
+                                            setSelectedDate(date);
+                                            setSelectedHourStartIndex(0);
+                                        }}
+                                        disabled={(date) => {
+                                            const iso = date
+                                                .toISOString()
+                                                .split("T")[0];
+                                            return !availableDates.includes(
+                                                iso
+                                            );
+                                        }}
+                                        modifiersClassNames={{
+                                            selected: "bg-blue-600 text-white",
+                                            today: "text-blue-600",
+                                        }}
+                                        components={{ Caption: CustomCaption }} // ✅ sử dụng caption tùy chỉnh
+                                        classNames={{
+                                            months: "flex justify-center",
+                                            month: "space-y-4",
+                                            table: "w-full border-collapse",
+                                            head_row: "flex",
+                                            row: "flex",
+                                            head_cell:
+                                                "text-xs text-gray-500 w-9",
+                                            cell: "w-9 h-9 text-center text-sm hover:bg-gray-100 rounded-full",
+                                        }}
+                                    />
+                                </div>
                             </PopoverContent>
                         </Popover>
 
-                        {/* 2-hour time slider */}
                         {hourly.length > 0 && (
                             <div className="flex items-center justify-center gap-4">
                                 <button
@@ -203,7 +244,6 @@ const WeatherSection = ({ onLocationChange }) => {
                                 >
                                     ◀
                                 </button>
-
                                 {[0, 1].map((offset) => {
                                     const hour =
                                         hourly[selectedHourStartIndex + offset];
@@ -225,7 +265,6 @@ const WeatherSection = ({ onLocationChange }) => {
                                         </div>
                                     );
                                 })}
-
                                 <button
                                     onClick={() =>
                                         setSelectedHourStartIndex((prev) =>
@@ -245,7 +284,6 @@ const WeatherSection = ({ onLocationChange }) => {
                 </div>
             )}
 
-            {/* Updated Highlights Style */}
             {forecastDay && (
                 <div className="bg-blue-50 p-4 rounded-lg grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-sm text-[#1A2A44] mt-6">
                     <div className="flex items-center gap-3">

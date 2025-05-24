@@ -58,6 +58,15 @@ class Http extends Facade
             ->withToken(env('LICENSE_KEY'));
     }
 
+    public static function iloocacus()
+    {
+        return Http::baseUrl('https://ilooca-cus.itourism.vn/api')
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+            ])
+            ->withToken(env('LICENSE_KEY'));
+    }
+
     protected static function getFacadeAccessor(): string
     {
         return 'http.client';

@@ -95,6 +95,7 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
                         "text-[#007BFF] p-[15px] w-fit mx-auto border-1",
                         "border-[#007BFF] mt-[32px] rounded-[80px] font-[700] text-[16px] lg:text-[18px]"
                     )}
+                    href="/experiences"
                 />
             </Reveal>
         </section>

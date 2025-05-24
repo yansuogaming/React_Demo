@@ -53,18 +53,18 @@ const CurrencyFactSlider = ({ className = "" }) => {
                 {/* Prev/Next top-right */}
                 <div className="absolute top-0 right-0 gap-2 z-10 hidden md:flex">
                     <button
-                        className="w-8 h-8 rounded shadow bg-white flex items-center justify-center disabled:opacity-40"
+                        className="w-10 h-10 rounded shadow bg-white flex items-center justify-center disabled:opacity-40"
                         onClick={scrollPrev}
                         disabled={!canScrollPrev}
                     >
-                        <FaChevronLeft className="text-blue-500" />
+                        <FaChevronLeft className="bg-gray-100" />
                     </button>
                     <button
-                        className="w-8 h-8 rounded shadow bg-white flex items-center justify-center disabled:opacity-40"
+                        className="w-10 h-10 rounded shadow bg-white flex items-center justify-center disabled:opacity-40"
                         onClick={scrollNext}
                         disabled={!canScrollNext}
                     >
-                        <FaChevronRight className="text-blue-500" />
+                        <FaChevronRight className="bg-gray-100" />
                     </button>
                 </div>
 
@@ -74,20 +74,20 @@ const CurrencyFactSlider = ({ className = "" }) => {
                         {slides.map((slide, index) => (
                             <div
                                 key={index}
-                                className="flex-none basis-[83.33%] md:basis-full px-2"
+                                className="flex-[0_0_100%] md:flex-none md:basis-full px-2"
                             >
-                                <div className="flex flex-col md:flex-row gap-4 md:gap-8 items-start text-left">
+                                <div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 md:gap-8 items-start">
                                     {/* Image */}
-                                    <div className="w-full md:w-auto">
+                                    <div className="w-full md:w-[400px]">
                                         <img
                                             src={slide.image}
                                             alt={slide.title}
-                                            className="w-full h-[200px] object-cover rounded-md"
+                                            className="aspect-[16/9] w-full object-cover rounded-md"
                                         />
                                     </div>
 
                                     {/* Content */}
-                                    <div className="flex-1 mt-4 md:mt-0">
+                                    <div className="flex flex-col justify-center">
                                         <p className="text-sm text-gray-600 font-semibold mb-2">
                                             Did you know?
                                         </p>
@@ -105,7 +105,7 @@ const CurrencyFactSlider = ({ className = "" }) => {
                 </div>
 
                 {/* Dots as lines */}
-                <div className="flex justify-end mt-4 gap-2">
+                <div className="flex justify-center md:justify-end mt-4 gap-2">
                     {slides.map((_, index) => (
                         <button
                             key={index}

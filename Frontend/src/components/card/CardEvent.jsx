@@ -30,7 +30,7 @@ const CardEvent = ({
     }
 
     return (
-        <div className="group">
+        <div className="group flex flex-col h-full">
             <Link
                 to={href}
                 className="rounded-[60px_0_0_0] overflow-hidden block relative"
@@ -61,7 +61,7 @@ const CardEvent = ({
                     )}
                 </div>
             </Link>
-            <div className="bg-white p-[16px] rounded-[0_0_12px_12px]">
+            <div className="bg-white p-[16px] rounded-[0_0_12px_12px] flex flex-col grow">
                 <TertiaryHeading className="text-[20px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500">
                     <Link to={href}>{title}</Link>
                 </TertiaryHeading>

@@ -1,12 +1,24 @@
-import React from "react";
-import { Form } from "react-router";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
+import React, { useState } from "react";
+import { Form, useNavigate } from "react-router";
+import { Input } from "@ui/input";
+import { Label } from "@ui/label";
+import { Button } from "@ui/button";
 import { useTranslation } from "react-i18next";
+import UserService from "@services/UserService";
 
 function SignIn() {
     const { t } = useTranslation();
+    const [email, setEmail] = useState('');
+    const navigate = useNavigate();
+    const checkLogin = async () => {
+        const check = await UserService.checkLogin(email);
+        if (check) {
+            navigate(`/signin-password?email=${email}`);
+            return;
+        }
+
+        navigate('/signup');
+    }
     return (
         <section className="container mt-[100px] mb-[100px]">
             <div className="max-w-[530px] mx-auto">
@@ -20,6 +32,7 @@ function SignIn() {
                             id="email"
                             className="hnv_signin_input px-[26px] py-[18px] h-[60px]"
                             placeholder=" "
+                            onChange={(e) => setEmail(e.target.value)}
                         />
                         <Label
                             htmlFor="email"
@@ -31,6 +44,7 @@ function SignIn() {
                     <Button
                         variant="outline"
                         className="rounded-[4px] bg-[#18BABD] text-[#fff] font-bold w-full h-[48px]"
+                        onClick={checkLogin}
                     >
                         {t("Sign in")}
                     </Button>

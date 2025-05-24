@@ -35,8 +35,7 @@ const VietNamEvent = ({ className = "", data = [] }) => {
                 <div
                     className="hidden sm:block text-[16px] font-normal mt-[16px] truncate_3"
                     dangerouslySetInnerHTML={{ __html: item.intro }}
-                >
-                </div>
+                ></div>
             </NavLink>
         </CardEvent>
     ));
@@ -46,11 +45,12 @@ const VietNamEvent = ({ className = "", data = [] }) => {
             <div className="container">
                 <div className="lg:flex items-center justify-between mb-[20px]">
                     <h2 className="mb-[10px] lg:mb-[0] lg:text-[40px] text-[34px] font-[700] text-[#1A2A44]">
-                        Celebrate Vietnam's Vibrant Events
+                        Celebrate Vietnam's Vibrant Events & Festivals
                     </h2>
                     <ViewMoreButton
                         className="font-[700] text-[18px]"
                         text={t("See All Events")}
+                        to="/events"
                     />
                 </div>
 

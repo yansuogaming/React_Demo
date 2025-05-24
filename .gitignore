@@ -1,3 +1,5 @@
 .history
-backend/storage/**/*.log
+*.pid
+*.log
 backend/storage/**/*.pid
+backend/storage/**/*.log

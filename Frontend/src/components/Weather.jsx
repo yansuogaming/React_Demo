@@ -4,11 +4,71 @@ import CarIcon from "@components/icons/CarIcon";
 import BusIcon from "@components/icons/BusIcon";
 import MotobikeIcon from "@components/icons/MotobikeIcon";
 import iconTemperature from "@images/icon-temperature.svg";
+import iconClouds from '@images/weather/Frame-11.png';
+import iconClear from '@images/weather/Frame-12.png';
+import iconDrizzle from '@images/weather/Frame-15.png';
+import iconRain from '@images/weather/Frame-14.png';
+import iconSnow from '@images/weather/Frame-13.png';
+import iconMist from '@images/weather/Frame-10.png';
+import iconSmoke from '@images/weather/Frame-9.png';
+import iconDust from '@images/weather/Frame-7.png';
+import iconFog from '@images/weather/Frame-6.png';
+import iconSand from '@images/weather/Frame-5.png';
+import iconAsh from '@images/weather/Frame-4.png';
+import iconSquall from '@images/weather/Frame-3.png';
+import iconTornado from '@images/weather/Frame-4.png';
+import iconThunderstorm from '@images/weather/Frame.png';
 
 const Weather = ({ data }) => {
     const temp = data.main.temp;
     const weather = data.weather[0].main;
-    const icon = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+
+    let icon = null;
+    switch (weather) {
+        case 'Clouds':
+            icon = iconClouds
+            break;
+        case 'Drizzle':
+            icon = iconDrizzle
+        break;
+        case 'Rain':
+            icon = iconRain
+        break;
+        case 'Snow':
+            icon = iconSnow
+        break;
+        case 'Mist':
+            icon = iconMist
+        break;
+        case 'Smoke':
+        case 'Haze':
+            icon = iconSmoke
+        break;
+        case 'Dust':
+            icon = iconDust
+        break;
+        case 'Fog':
+            icon = iconFog
+        break;
+        case 'Sand':
+            icon = iconSand
+        break;
+        case 'Ash':
+            icon = iconAsh
+        break;
+        case 'Squall':
+            icon = iconSquall
+        break;
+        case 'Tornado':
+            icon = iconTornado
+        break;
+        case 'Thunderstorm':
+            icon = iconThunderstorm
+        break;
+        default:
+            icon = iconClear
+            break;
+    }
 
     return (
         <section className="container mt-[60px] px-4 sm:px-6 lg:px-8">
