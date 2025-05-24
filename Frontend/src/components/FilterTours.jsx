@@ -241,9 +241,9 @@ const ListTourResult = ({ listTour, setIsFilterOpen, isFilterOpen }) => {
             </div>
 
             <div className="flex flex-col gap-[30px]">
-                {listTour.map((item, index) => {
-                    return <TourItem key={index} item={item} index={index} />;
-                })}
+                {(listTour ?? []).map((item, index) => (
+                    <TourItem key={index} item={item} index={index} />
+                ))}
             </div>
         </div>
     );

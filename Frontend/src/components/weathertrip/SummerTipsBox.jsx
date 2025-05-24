@@ -7,7 +7,7 @@ const SummerTipsBox = () => {
                 </h2>
                 <ul className="list-disc pl-5 space-y-3 text-sm sm:text-base text-[#1A2A44]">
                     <li>
-                        Although temperatures are cooler during Dubai’s winter
+                        Although temperatures are cooler during city winter
                         season, you should still wear sunscreen, headwear and
                         sunglasses to protect your skin from the sun’s rays
                     </li>
