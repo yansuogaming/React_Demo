@@ -13,9 +13,6 @@ import { cn, debounce } from "@lib/utils";
 import { CiLocationOn } from "react-icons/ci";
 import { IoTicketOutline } from "react-icons/io5";
 
-import { CiLocationOn } from "react-icons/ci";
-import { IoTicketOutline } from "react-icons/io5";
-
 const categories = [
     "All",
     "Online",
