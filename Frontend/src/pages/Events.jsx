@@ -13,9 +13,6 @@ import { cn, debounce } from "@lib/utils";
 import { CiLocationOn } from "react-icons/ci";
 import { IoTicketOutline } from "react-icons/io5";
 
-import { CiLocationOn } from "react-icons/ci";
-import { IoTicketOutline } from "react-icons/io5";
-
 const categories = [
     "All",
     "Online",
@@ -26,7 +23,14 @@ const categories = [
 ];
 
 const Events = () => {
-    const { ongoingAndUpcomingEvents, events, totalPage, currentPage, typeSearch, keyword } = useLoaderData();
+    const {
+        ongoingAndUpcomingEvents,
+        events,
+        totalPage,
+        currentPage,
+        typeSearch,
+        keyword,
+    } = useLoaderData();
     const { t } = useTranslation();
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
@@ -35,18 +39,21 @@ const Events = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [keysearch, setKeysearch] = useState(keyword);
 
-    const filteredEvents = typeSearch === 'all' ? events : events.filter(() => true);
+    const filteredEvents =
+        typeSearch === "all" ? events : events.filter(() => true);
     const top8 = filteredEvents.slice(0, 8);
     const bottom8 = filteredEvents.slice(8);
 
     const AdBanner = () => {
         return (
-            <div className={cn(
-                'p-[22px] items-center col-span-full bg-[#1A2A44]',
-                'text-white rounded-xl xl:p-[23px_40px] flex flex-col',
-                'xl:flex-row md:items-center md:p-[10px] justify-between',
-                'gap-4 shadow justify-self-center xl:min-w-[1121px] m-[16px_0]'
-            )}>
+            <div
+                className={cn(
+                    "p-[22px] items-center col-span-full bg-[#1A2A44]",
+                    "text-white rounded-xl xl:p-[23px_40px] flex flex-col",
+                    "xl:flex-row md:items-center md:p-[10px] justify-between",
+                    "gap-4 shadow justify-self-center xl:min-w-[1121px] m-[16px_0]"
+                )}
+            >
                 {/* Left title */}
                 <div className="text-left">
                     <p className="text-lg md:text-[20px] text-[26px] font-[700]">
@@ -103,7 +110,7 @@ const Events = () => {
         debounce(() => {
             navigate(`/events?page=1&keyword=${keyword}`);
         }, 500)();
-    }
+    };
 
     return (
         <main className="bg-[#F5F6FA]">
@@ -125,9 +132,7 @@ const Events = () => {
                         categories={categories}
                         selectedCategory={typeSearch}
                         keyword={keysearch}
-                        setSelectedCategory={() => {
-
-                        }}
+                        setSelectedCategory={() => {}}
                         changeKeyword={changeKeyword}
                     />
 
@@ -144,20 +149,24 @@ const Events = () => {
                                 widthImage="100%"
                                 heightImage="180px"
                             >
-                                <div className="flex gap-[8px] items-center text-[#1A2A44]">
-                                    <CiLocationOn className="text-[20px]" />
-                                    <span>{event.city}</span>
-                                    <IoTicketOutline className="text-[20px]" />
-                                </div>
+                                {event.city && (
+                                    <p className="text-[16px] text-[#494951] font-[400] mb-[16px] flex items-center gap-[6px]">
+                                        <CiLocationOn />
+                                        {event.city}
+                                        <IoTicketOutline className="ml-[4px]" />
+                                    </p>
+                                )}
+
                                 <div
                                     className="text-[16px] font-normal mt-[16px] truncate_3"
-                                    dangerouslySetInnerHTML={{ __html: event.intro }}
-                                >
-                                </div>
+                                    dangerouslySetInnerHTML={{
+                                        __html: event.intro,
+                                    }}
+                                ></div>
                             </CardEvent>
                         ))}
                         <AdBanner />
-                       {bottom8.map((event, index) => (
+                        {bottom8.map((event, index) => (
                             <CardEvent
                                 key={index}
                                 className="h-full"
@@ -169,20 +178,23 @@ const Events = () => {
                                 widthImage="100%"
                                 heightImage="180px"
                             >
-                                <div className="flex gap-[8px] items-center text-[#1A2A44]">
-                                    <CiLocationOn className="text-[20px]" />
-                                    <span>{event.city}</span>
-                                    <IoTicketOutline className="text-[20px]" />
-                                </div>
+                                {event.city && (
+                                    <p className="text-[16px] text-[#494951] font-[400] mb-[16px] flex items-center gap-[6px]">
+                                        <CiLocationOn />
+                                        {event.city}
+                                        <IoTicketOutline className="ml-[4px]" />
+                                    </p>
+                                )}
+
                                 <div
                                     className="text-[16px] font-normal mt-[16px] truncate_3"
-                                    dangerouslySetInnerHTML={{ __html: event.intro }}
-                                >
-                                </div>
+                                    dangerouslySetInnerHTML={{
+                                        __html: event.intro,
+                                    }}
+                                ></div>
                             </CardEvent>
                         ))}
                     </div>
-
 
                     {/* Pagination */}
                     <div className="flex justify-center items-center gap-[12px] mt-8">
@@ -191,9 +203,11 @@ const Events = () => {
                             disabled={currentPage == 1}
                             to={`/events?page=1&keyword=`}
                             className={cn(
-                                'w-8 h-8 flex items-center',
-                                'justify-center rounded transition',
-                                currentPage == 1 ? 'text-gray-300 cursor-default' : 'text-[#0E284E] hover:text-black'
+                                "w-8 h-8 flex items-center",
+                                "justify-center rounded transition",
+                                currentPage == 1
+                                    ? "text-gray-300 cursor-default"
+                                    : "text-[#0E284E] hover:text-black"
                             )}
                         >
                             <FaChevronLeft className="text-[14px]" />
@@ -208,10 +222,12 @@ const Events = () => {
                                     key={page}
                                     to={`/events?page=${page}&keyword=`}
                                     className={cn(
-                                        'w-[50px] h-[50px] rounded-[4px]',
-                                        'text-[16px] font-[500] transition',
-                                        'flex-col items-center justify-center flex',
-                                        isActive ? 'bg-[#007BFF] text-white' : 'bg-[#EEF0F5] text-[#1A2A44] hover:bg-gray-200'
+                                        "w-[50px] h-[50px] rounded-[4px]",
+                                        "text-[16px] font-[500] transition",
+                                        "flex-col items-center justify-center flex",
+                                        isActive
+                                            ? "bg-[#007BFF] text-white"
+                                            : "bg-[#EEF0F5] text-[#1A2A44] hover:bg-gray-200"
                                     )}
                                 >
                                     {page}
@@ -224,9 +240,11 @@ const Events = () => {
                             disabled={currentPage == totalPage}
                             to={`/events?page=${currentPage + 1}&keyword=`}
                             className={cn(
-                                'w-[12px] h-[24px] flex items-center',
-                                'justify-center rounded transition',
-                                currentPage == totalPage ? "text-[#D9D9D9] cursor-default" : "text-[#1A2A44] hover:text-[#1A2A44]"
+                                "w-[12px] h-[24px] flex items-center",
+                                "justify-center rounded transition",
+                                currentPage == totalPage
+                                    ? "text-[#D9D9D9] cursor-default"
+                                    : "text-[#1A2A44] hover:text-[#1A2A44]"
                             )}
                         >
                             <FaChevronRight className="text-[14px]" />

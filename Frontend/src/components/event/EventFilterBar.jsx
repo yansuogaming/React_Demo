@@ -5,7 +5,7 @@ const EventFilterBar = ({
     selectedCategory,
     setSelectedCategory,
     changeKeyword,
-    keyword
+    keyword,
 }) => (
     <>
         <div className="pb-[43px]">
