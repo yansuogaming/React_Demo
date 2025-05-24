@@ -1,5 +1,7 @@
 import { lazy } from "react";
 import routesAdmin from "./admin";
+import ROUTES from "./routes";
+
 import ExperienceService from "@services/ExperienceService";
 import EventService from "@services/EventService";
 import FAQService from "@services/FAQService";
@@ -7,8 +9,8 @@ import WeatherService from "@services/WeatherService";
 import CityService from "@services/CityService";
 import TourService from "@services/TourService";
 import MapService from "@services/MapService";
-import { t } from "i18next";
 import RegionService from "@services/RegionService";
+import { t } from "i18next";
 
 const routes = [
     ...routesAdmin,
@@ -33,7 +35,7 @@ const routes = [
                                 experienceTypes: res[0],
                                 events: res[1],
                                 listTrendingTours: res[2],
-                                listRegion: res[3]
+                                listRegion: res[3],
                             };
                         },
                         meta: () => {
@@ -47,7 +49,7 @@ const routes = [
                         },
                     },
                     {
-                        path: "city/:slug",
+                        path: ROUTES.CITY, // "city/:slug"
                         Component: lazy(() => import("@pages/City")),
                         loader: async ({ params }) => {
                             const res = await Promise.all([
@@ -57,7 +59,9 @@ const routes = [
                                 MapService.getListDestination(),
                             ]);
 
-                            const weather = await WeatherService.getCityWeather(res[2].title)
+                            const weather = await WeatherService.getCityWeather(
+                                res[2].title
+                            );
                             return {
                                 FAQs: res[0],
                                 events: res[1],
@@ -68,36 +72,36 @@ const routes = [
                         },
                     },
                     {
-                        path: "expericences",
+                        path: ROUTES.EXPERIENCES, // "experiences"
                         Component: lazy(() => import("@pages/Expericences")),
                     },
                     {
-                        path: "tripdetail",
+                        path: ROUTES.TRIP_DETAIL, // "tripdetail"
                         Component: lazy(() => import("@pages/Tripdetail")),
                     },
                     {
-                        path: "about",
+                        path: ROUTES.ABOUT, // "about"
                         Component: lazy(() => import("@pages/About")),
                     },
                     {
-                        path: "experience/:slug",
+                        path: ROUTES.EXPERIENCE_SLUG, // "experience/:slug"
                         Component: lazy(() => import("@pages/Expericences")),
                     },
                     {
-                        path: "experience/detail",
+                        path: ROUTES.EXPERIENCE_DETAIL, // "experience/detail"
                         Component: lazy(() =>
                             import("@pages/ExpericencesDetail")
                         ),
                     },
                     {
-                        path: "itineraries",
+                        path: ROUTES.ITINERARIES, // "itineraries"
                         Component: lazy(() => import("@pages/Itineraries")),
                         loader: async () => {
                             const res = await Promise.all([
                                 TourService.getListTrending(),
                                 TourService.getListItineraries(),
                             ]);
-                       
+
                             return {
                                 listTrendingTours: res[0],
                                 itineraries: res[1],
@@ -105,7 +109,7 @@ const routes = [
                         },
                     },
                     {
-                        path: "itineraries/detail",
+                        path: ROUTES.ITINERARIES_DETAIL, // "itineraries/detail"
                         Component: lazy(() =>
                             import("@pages/ItinerariesDetail")
                         ),
@@ -115,7 +119,7 @@ const routes = [
                         Component: lazy(() => import("@pages/Expericences")),
                     },
                     {
-                        path: "payment",
+                        path: ROUTES.PAYMENT_TOUR, // "payment/tour"
                         children: [
                             {
                                 path: "tour",
@@ -126,24 +130,30 @@ const routes = [
                         ],
                     },
                     {
-                        path: "events",
+                        path: ROUTES.EVENTS, // "events"
                         Component: lazy(() => import("@pages/Events")),
                         loader: async ({ request }) => {
                             const url = new URL(request.url);
-                            const query = Object.fromEntries(url.searchParams.entries());
+                            const query = Object.fromEntries(
+                                url.searchParams.entries()
+                            );
                             const currentPage = query?.page ?? 1;
-                            const keyword = query?.keyword ?? '';
+                            const keyword = query?.keyword ?? "";
                             const res = await Promise.all([
                                 EventService.getOngoingAndUpcomingEvents(),
-                                EventService.getEvents('All', keyword, currentPage),
+                                EventService.getEvents(
+                                    "All",
+                                    keyword,
+                                    currentPage
+                                ),
                             ]);
                             return {
                                 ongoingAndUpcomingEvents: res[0],
                                 events: res[1].events ?? [],
                                 totalPage: res[1].total_page,
                                 currentPage,
-                                typeSearch: 'All',
-                                keyword
+                                typeSearch: "All",
+                                keyword,
                             };
                         },
                         meta: () => {
@@ -157,49 +167,49 @@ const routes = [
                         },
                     },
                     {
-                        path: "events/detail",
+                        path: ROUTES.EVENTS_DETAIL, // "events/detail"
                         Component: lazy(() => import("@pages/EventsDetail")),
                     },
                     {
-                        path: "visa-guide",
+                        path: ROUTES.VISA_GUIDE,
                         Component: lazy(() => import("@pages/VisaGuide")),
                     },
                     {
-                        path: "essentials",
+                        path: ROUTES.ESSENTIALS,
                         Component: lazy(() => import("@pages/Essentials")),
                     },
                     {
-                        path: "getting-to-and-around",
+                        path: ROUTES.GETTING_TO_AND_AROUND,
                         Component: lazy(() =>
                             import("@pages/GettingToAndAround")
                         ),
                     },
                     {
-                        path: "accessibility",
+                        path: ROUTES.ACCESSIBILITY,
                         Component: lazy(() => import("@pages/Accessibility")),
                     },
                     {
-                        path: "vietnam-pass",
+                        path: ROUTES.VIETNAM_PASS,
                         Component: lazy(() => import("@pages/Pass")),
                     },
                     {
-                        path: "safety",
+                        path: ROUTES.SAFETY,
                         Component: lazy(() => import("@pages/Safety")),
                     },
                     {
-                        path: "visainformation",
+                        path: ROUTES.VISA_INFORMATION,
                         Component: lazy(() => import("@pages/VisaInformation")),
                     },
                     {
-                        path: "placetogo",
+                        path: ROUTES.PLACE_TO_GO,
                         Component: lazy(() => import("@pages/PlaceToGo")),
                     },
                     {
-                        path: "weathertrip",
+                        path: ROUTES.WEATHER_TRIP,
                         Component: lazy(() => import("@pages/WeatherTrip")),
                     },
                     {
-                        path: "currency",
+                        path: ROUTES.CURRENCY_GUIDE,
                         Component: lazy(() => import("@pages/CurrencyGuide")),
                         loader: async () => {
                             const res = await Promise.all([
@@ -212,71 +222,79 @@ const routes = [
                         }
                     },
                     {
-                        path: "downloadapp",
+                        path: ROUTES.DOWNLOAD_APP,
                         Component: lazy(() => import("@pages/DownloadApp")),
                     },
                     {
-                        path: "search-result/:keyword?",
+                        path: ROUTES.SEARCH_RESULT,
                         Component: lazy(() => import("@pages/SearchResult")),
                     },
                     {
-                        path: "signin",
+                        path: ROUTES.SIGNIN,
                         Component: lazy(() => import("@pages/auth/SignIn")),
                         meta: () => {
                             return [
-                                { title: t('login') },
+                                { title: t("login") },
                                 {
                                     name: "description",
-                                    content: t('login'),
+                                    content: t("login"),
                                 },
                             ];
-                        }
+                        },
                     },
                     {
-                        path: "signup",
+                        path: ROUTES.SIGNUP,
                         Component: lazy(() => import("@pages/auth/SignUp")),
                         meta: () => {
                             return [
-                                { title: t('login') },
+                                { title: t("login") },
                                 {
                                     name: "description",
-                                    content: t('login'),
+                                    content: t("login"),
                                 },
                             ];
-                        }
+                        },
                     },
                     {
-                        path: "signin-password",
-                        Component: lazy(() => import("@pages/auth/SignInPassword")),
+                        path: ROUTES.SIGNIN_PASSWORD,
+                        Component: lazy(() =>
+                            import("@pages/auth/SignInPassword")
+                        ),
                         loader: async ({ request }) => {
                             const url = new URL(request.url);
-                            const query = Object.fromEntries(url.searchParams.entries());
-                            const email = query?.email ?? '';
+                            const query = Object.fromEntries(
+                                url.searchParams.entries()
+                            );
+                            const email = query?.email ?? "";
                             return {
-                                email
+                                email,
                             };
                         },
                     },
                     {
-                        path: "forgot-password",
-                        Component: lazy(() => import("@pages/auth/ForgotPassword")),
+                        path: ROUTES.FORGOT_PASSWORD,
+                        Component: lazy(() =>
+                            import("@pages/auth/ForgotPassword")
+                        ),
                     },
                     {
-                        path: "attractions",
+                        path: ROUTES.ATTRACTIONS,
                         Component: lazy(() => import("@pages/Attractions")),
                     },
                     {
-                        path: 'shopping',
+                        path: ROUTES.SHOPPINGCART,
                         Component: lazy(() => import("@pages/ShoppingCart")),
                     },
                     {
-                        path: 'AttractionsDetail',
-                        Component: lazy(() => import("@pages/AttractionsDetail"))
-                    }
+                        path: ROUTES.ATTRACTIONS_DETAIL,
+                        Component: lazy(() =>
+                            import("@pages/AttractionsDetail")
+                        ),
+                    },
                 ],
             },
             {
-                path: "map-ha-noi",
+                path: ROUTES.MAP_HANOI,
                 Component: lazy(() => import("@pages/Map")),
                 loader: async () => {
                     const res = await MapService.getListDestination();
@@ -284,7 +302,7 @@ const routes = [
                 },
             },
             {
-                path: "tripdetail/result",
+                path: ROUTES.TRIP_DETAIL_RESULT,
                 Component: lazy(() => import("@layouts/TripDetailLayout")),
                 children: [
                     {
@@ -298,7 +316,7 @@ const routes = [
         ],
     },
     {
-        path: "*",
+        path: ROUTES.NOT_FOUND,
         Component: lazy(() => import("@pages/NotFound")),
     },
 ];

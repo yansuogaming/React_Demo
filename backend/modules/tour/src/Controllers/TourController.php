@@ -46,7 +46,7 @@ class TourController
                 'duration' => $duration,
                 'departure_point' => $departure_point,
                 'travel_style' => $travel_style,
-            ]);
+            ])->json();
         dd($res);
 
         $itineraries = collect(!empty($res['itineraries']) ? $res['itineraries'] : []);
