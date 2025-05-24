@@ -39,7 +39,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
     const [isShowNavServices, setShowNavServices] = useState(false);
     const [rotateEllipsis, setRotateEllipsis] = useState(0);
     const [boxShadow, setBoxShadow] = useState(
-        noBackgroundOnScroll ? "none" : "1px 1px 20px #d1d1d1",
+        noBackgroundOnScroll ? "none" : "1px 1px 20px #d1d1d1"
     );
     const [hoverPlanYourTrip, setHoverPlanYourTrip] = useState(false);
     const [hoverPlanYourTripContent, setHoverPlanYourTripContent] =
@@ -110,12 +110,11 @@ const Header = ({ noBackgroundOnScroll = false }) => {
 
     useEffect(() => {
         if (isVisible) {
-            document.querySelector('body').style.overflow = 'hidden';
+            document.querySelector("body").style.overflow = "hidden";
         } else {
-            document.querySelector('body').style.overflow = 'auto';
+            document.querySelector("body").style.overflow = "auto";
         }
     }, [isVisible]);
-
 
     useEffect(() => {
         setIsVisible(false);
@@ -130,16 +129,28 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     className={cn(
                         "relative flex flex-col",
                         "py-[15px] px-[20px] w-full z-50 top-0",
-                        "transition-all duration-500 lg:px-[40px] hidden lg:block",
+                        "transition-all duration-500 lg:px-[40px] hidden lg:block"
                     )}
                 >
                     <div className="flex items-center justify-between">
                         <div className="flex items-center w-full relative xl-md:w-fit h-full ">
                             {/* Logo */}
                             <motion.div
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.2 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 0.2 }
+                                        : false
+                                }
                                 className="mr-[50px]"
                             >
                                 <NavLink to="/">
@@ -156,13 +167,25 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             <ul
                                 className={cn(
                                     "hidden h-fit font-bold absolute top-1/2 left-1/2 lg:flex",
-                                    "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit",
+                                    "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit"
                                 )}
                             >
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.3 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.3 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/itineraries">
@@ -170,17 +193,43 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.4 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.4 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit"
                                 >
-                                    <NavLink to="/experiences">{t("experiences")}</NavLink>
+                                    <NavLink to="/experiences">
+                                        {t("experiences")}
+                                    </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.5 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.5 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/events">
@@ -188,9 +237,21 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.6 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.6 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit "
                                     onMouseEnter={() =>
                                         hanleHoverPlanYourTrip(true)
@@ -204,9 +265,21 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.7 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.7 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit"
                                 >
                                     <NavLink to="/">
@@ -218,9 +291,21 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <ul className="items-center font-bold hidden xl-md:flex ">
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.8 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 0.8 }
+                                        : false
+                                }
                             >
                                 <SearchHeader
                                     color={color}
@@ -230,25 +315,61 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.9 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 0.9 }
+                                        : false
+                                }
                             >
                                 <ChangeLangButton color={color} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 1 }
+                                        : false
+                                }
                             >
                                 <MapIcon color={colorIcon} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1.1 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 1.1 }
+                                        : false
+                                }
                             >
                                 <NavLink to="/signin">
                                     <UserIcon color={colorIcon} />
@@ -258,7 +379,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <button
                             className={cn(
                                 "block xl-md:hidden -my-[15px] pl-[30px]",
-                                "border-l-1 border-[#ffffff1a] cursor-pointer z-1",
+                                "border-l-1 border-[#ffffff1a] cursor-pointer z-1"
                             )}
                             onClick={showNavServices}
                         >
@@ -280,7 +401,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     className={cn(
                                         "absolute flex top-full w-full justify-between",
                                         "left-0 px-[55px] bg-[#062f1f] h-[90px] items-center",
-                                        "transition-all duration-500 xl-md:hidden",
+                                        "transition-all duration-500 xl-md:hidden"
                                     )}
                                 >
                                     <SearchHeader
@@ -309,11 +430,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
 
                 {/* Mobile header */}
                 <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-1">
-                    <div className={cn(
-                        'absolute w-full h-[100px] top-0 left-0 z-[-1] bg-none',
-                        'lg:bg-gradient-to-b from-[rgba(4,18,58,0.40)]',
-                        'via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]'
-                    )}></div>
+                    <div
+                        className={cn(
+                            "absolute w-full h-[100px] top-0 left-0 z-[-1] bg-none",
+                            "lg:bg-gradient-to-b from-[rgba(4,18,58,0.40)]",
+                            "via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]"
+                        )}
+                    ></div>
                     {/* Logo */}
                     <motion.div
                         initial={{ opacity: 0, y: -100 }}
@@ -334,9 +457,9 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     {/* Hamburger */}
                     <button
                         className={cn(
-                            'text-[30px] flex',
-                            'items-center gap-[10px]',
-                            noBackgroundOnScroll ? 'text-white' : 'text-black'
+                            "text-[30px] flex",
+                            "items-center gap-[10px]",
+                            noBackgroundOnScroll ? "text-white" : "text-black"
                         )}
                         onClick={() => setIsVisible(!isVisible)}
                     >
@@ -419,7 +542,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#003F73]"
                                             onClick={() => {
                                                 setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu,
+                                                    !isVisibleSubMenu
                                                 );
                                             }}
                                         >
@@ -442,7 +565,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                 className="text-[16px] font-bold flex items-center justify-between"
                                                 onClick={() =>
                                                     setIsVisibleLang(
-                                                        !isVisibleLang,
+                                                        !isVisibleLang
                                                     )
                                                 }
                                             >
@@ -561,7 +684,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                             className="flex items-center gap-[12px]"
                                             onClick={() =>
                                                 setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu,
+                                                    !isVisibleSubMenu
                                                 )
                                             }
                                         >
@@ -575,7 +698,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                             onClick={() => {
                                                 setIsVisible(!isVisible);
                                                 setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu,
+                                                    !isVisibleSubMenu
                                                 );
                                             }}
                                         >
@@ -593,10 +716,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         e.preventDefault();
                                                         navigate("/visa-guide");
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
@@ -608,10 +731,14 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/visainformation",
+                                                            "/visainformation"
                                                         );
-                                                        setIsVisible(!isVisible);
-                                                        setIsVisibleSubMenu(!isVisibleSubMenu);
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
                                                     }}
                                                 >
                                                     Essentials
@@ -622,13 +749,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/getting-to-and-around",
+                                                            "/getting-to-and-around"
                                                         );
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
@@ -641,10 +768,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         e.preventDefault();
                                                         navigate("/safety");
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
@@ -656,13 +783,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/accessibility",
+                                                            "/accessibility"
                                                         );
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
@@ -674,13 +801,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/vietnam-pass",
+                                                            "/vietnam-pass"
                                                         );
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
@@ -693,48 +820,33 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/visainformation",
+                                                            "/visainformation"
                                                         );
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
                                                     Visa Information
                                                 </NavLink>
                                             </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate("/placetogo");
-                                                        setIsVisible(
-                                                            !isVisible,
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
-                                                        );
-                                                    }}
-                                                >
-                                                    Place To Go
-                                                </NavLink>
-                                            </li>
+
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                                                 <button></button>
                                                 <NavLink
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/weathertrip",
+                                                            "/weathertrip"
                                                         );
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
@@ -775,6 +887,24 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     }}
                                                 >
                                                     Download Apps
+                                                </NavLink>
+                                            </li>
+
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <button></button>
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate("/placetogo");
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    Accommodation
                                                 </NavLink>
                                             </li>
                                         </ul>
@@ -870,7 +1000,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/"
+                        to="/placetogo"
                     />
 
                     {/* Getting around Vietnam */}
@@ -941,16 +1071,6 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
                         to="/visainformation"
-                    />
-
-                    {/* Place to go */}
-                    <InfoCard
-                        title={t("place_to_go")}
-                        description={t("place_to_go")}
-                        icon={
-                            <ChevronRight color="black" className="h-5 w-5" />
-                        }
-                        to="/placetogo"
                     />
 
                     {/* Download apps */}
