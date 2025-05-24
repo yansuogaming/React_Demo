@@ -195,6 +195,16 @@ const routesAdmin = [
                     ];
                 },
             },
+            {
+                path: 'reasons',
+                Component: lazy(() => import("@pages/admin/Reason/Index")),
+                meta: () => {
+                    return [
+                        { title: "Reasons" },
+                        { name: "description", content: "Reasons" },
+                    ];
+                },
+            },
         ]
     }
 ];

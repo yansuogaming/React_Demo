@@ -122,4 +122,20 @@ class AuthController
 
         return $token->toString();
     }
+
+    #[Get(uri: 'create-account', excludedMiddlewares: [Authenticate::class])]
+    public function createAccount()
+    {
+        Admin::create([
+            'email' => 'ceo@vietiso.com',
+            'password' => Hash::make('ceo@vietiso.com'),
+            'full_name' => 'Vietiso CEO',
+            'phone' => '0987654321',
+            'address' => '123 Vietiso Street, Hanoi, Vietnam',
+        ]);
+
+        return Response::json([
+            'message' => 'Bạn đã login',
+        ]);
+    }
 }

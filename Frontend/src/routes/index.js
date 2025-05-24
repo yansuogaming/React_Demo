@@ -201,6 +201,15 @@ const routes = [
                     {
                         path: "currency",
                         Component: lazy(() => import("@pages/CurrencyGuide")),
+                        loader: async () => {
+                            const res = await Promise.all([
+                                FAQService.getListFAQs(),
+                            ]);
+
+                            return {
+                                FAQs: res[0],
+                            };
+                        }
                     },
                     {
                         path: "downloadapp",

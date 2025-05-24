@@ -1,18 +1,17 @@
 import { useTranslation } from "react-i18next";
-
 import Breadcrumb from "@components/Breadcrumb";
 import CurrencyConverter from "@components/currencyguide/CurrencyConverter";
 import CostComparison from "@components/currencyguide/CostComparison";
 import CurrencyFactSlider from "@components/currencyguide/CurrencyFactSlider";
 import CurrencyImageSlider from "@components/currencyguide/CurrencyImageSlider";
 import SpendSmarter from "@components/currencyguide/SpendSmarter";
-
 import FAQ from "@components/FAQ";
 import WeatherSubscribe from "@components/WeatherSubscribe";
+import { useLoaderData } from "react-router";
 
 const CurrencyGuide = () => {
     const { t } = useTranslation();
-
+    const { FAQs } = useLoaderData();
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
         { label: t("Plan your trip"), href: "planyourtrip" },
@@ -56,7 +55,7 @@ const CurrencyGuide = () => {
             <CostComparison />
             <CurrencyFactSlider />
             <CurrencyImageSlider />
-            <FAQ />
+            <FAQ data={FAQs} />
             <SpendSmarter />
             <WeatherSubscribe />
         </main>
