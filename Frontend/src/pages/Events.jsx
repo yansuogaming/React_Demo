@@ -13,6 +13,9 @@ import { cn, debounce } from "@lib/utils";
 import { CiLocationOn } from "react-icons/ci";
 import { IoTicketOutline } from "react-icons/io5";
 
+import { CiLocationOn } from "react-icons/ci";
+import { IoTicketOutline } from "react-icons/io5";
+
 const categories = [
     "All",
     "Online",
@@ -131,6 +134,7 @@ const Events = () => {
                         {top8.map((event, index) => (
                             <CardEvent
                                 key={index}
+                                className="h-full"
                                 title={event.title}
                                 image={event.image}
                                 startTime={new Date(event.start_date * 1000)}
@@ -155,6 +159,7 @@ const Events = () => {
                        {bottom8.map((event, index) => (
                             <CardEvent
                                 key={index}
+                                className="h-full"
                                 title={event.title}
                                 image={event.image}
                                 startTime={new Date(event.start_date * 1000)}
