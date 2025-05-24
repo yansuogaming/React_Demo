@@ -1,12 +1,14 @@
+import i18n from "i18next";
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 const BASE_URL = "https://api.weatherapi.com/v1";
 
 // Thời tiết hiện tại
 export async function fetchCurrentWeatherByCoords(lat, lon) {
     const query = `${lat},${lon}`;
+    const lang = i18n.language?.split("-")[0] || "en";
     try {
         const response = await fetch(
-            `${BASE_URL}/current.json?key=${API_KEY}&q=${query}&aqi=no`
+            `${BASE_URL}/current.json?key=${API_KEY}&q=${query}&aqi=no&lang=${lang}`
         );
         if (!response.ok) throw new Error("Failed to fetch current weather");
         return await response.json();
@@ -19,14 +21,39 @@ export async function fetchCurrentWeatherByCoords(lat, lon) {
 // Dự báo theo giờ (dùng cho thanh thời gian và biểu đồ)
 export async function fetchWeatherForecastByCoords(lat, lon, days = 1) {
     const query = `${lat},${lon}`;
+    const lang = i18n.language?.split("-")[0] || "en";
     try {
         const response = await fetch(
-            `${BASE_URL}/forecast.json?key=${API_KEY}&q=${query}&days=${days}&aqi=no&alerts=no`
+            `${BASE_URL}/forecast.json?key=${API_KEY}&q=${query}&days=${days}&aqi=no&alerts=no&lang=${lang}`
         );
         if (!response.ok) throw new Error("Failed to fetch forecast");
         return await response.json();
     } catch (err) {
         console.error("WeatherAPI Error (forecast):", err);
+        return null;
+    }
+}
+
+// Lấy dữ liệu thời tiết cho một ngày cụ thể (quá khứ hoặc tương lai)
+export async function fetchWeatherByDate(location, date) {
+    const lang = i18n.language?.split("-")[0] || "en";
+    if (!location || !date) {
+        console.warn("Thiếu location hoặc date:", { location, date });
+        return null;
+    }
+
+    const url = `${BASE_URL}/history.json?key=${API_KEY}&q=${location}&dt=${date}&lang=${lang}`;
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            const text = await response.text();
+            console.error("WeatherAPI error body:", text);
+            throw new Error("Failed to fetch historical weather");
+        }
+        return await response.json();
+    } catch (err) {
+        console.error("WeatherAPI Error (byDate):", err);
         return null;
     }
 }

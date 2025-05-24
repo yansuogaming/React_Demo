@@ -92,5 +92,8 @@
   "check_your_mailbox": "Check your mailbox",
   "forgot_password.description": "We have sent you instructions and a password reset link to . This email may take a few minutes to arrive.",
   "back_to_login_step": "Back to login step",
-  "login": "Login"
+  "login": "Login",
+  "weather_not_found":"Weather data for this day was not found.",
+  "weather_limit_notice": "WeatherAPI does not support viewing historical data beyond 7 days"
+
 }

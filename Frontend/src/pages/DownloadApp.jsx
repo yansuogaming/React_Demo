@@ -183,7 +183,7 @@ const DownloadApp = () => {
                     className="p-[16px_40px_28px_0] text-[14px]"
                     items={[
                         { label: t("home"), href: "/" },
-                        { label: t("Plan your trip"), href: "planyourtrip" },
+                        { label: t("Plan your trip"), href: "/planyourtrip" },
                         { label: "Download App" },
                     ]}
                 />
@@ -224,10 +224,10 @@ const DownloadApp = () => {
                     selected2,
                     snaps2
                 )} */}
-                <div className="mt-[60px]">
-                    <WeatherSubscribe />
-                </div>
             </section>
+            <div className="mt-[60px]">
+                <WeatherSubscribe />
+            </div>
         </main>
     );
 };
