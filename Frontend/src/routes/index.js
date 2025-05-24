@@ -291,6 +291,10 @@ const routes = [
                             import("@pages/AttractionsDetail")
                         ),
                     },
+                    {
+                        path: 'hotel',
+                        Component: lazy(() => import("@pages/Hotel"))
+                    }
                 ],
             },
             {
