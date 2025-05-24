@@ -44,6 +44,7 @@ const FilterTours = ({ className = "", data = [] }) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const listTour = data.list_tours;
     // const { t } = useTranslation();
+    // console.log(listTour);
 
     useEffect(() => {
         if (isFilterOpen) {

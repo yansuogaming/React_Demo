@@ -41,13 +41,14 @@ class TourController
             ->post('/tour/list-tour', [
                 'per_page' => 10,
                 'keyword' => $keyword,
-                'order_by' => 'asc',
+                'order_by' => 'desc',
                 'lang_id' => $langId,
                 'duration' => $duration,
                 'departure_point' => $departure_point,
                 'travel_style' => $travel_style,
-            ]);
-        dd($res);
+            ])->json();
+        // ->json()
+        // dd($res);
 
         $itineraries = collect(!empty($res['itineraries']) ? $res['itineraries'] : []);
 

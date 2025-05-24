@@ -26,6 +26,7 @@ import { cn } from "@lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router";
 import ModalSearch from "./modal/ModalSearch";
+import ROUTES from "@routes/routes";
 const HeaderContext = createContext();
 
 const MENU_KEY = {
@@ -39,7 +40,6 @@ const Header = ({ noBackgroundOnScroll = false }) => {
   const location = useLocation();
   const { t } = useTranslation();
   const [background, setBackground] = useState("none");
-
   const [showSearch, setShowSearch] = useState(false);
   const [logo, setLogo] = useState(null);
   const [color, setColor] = useState(null);
@@ -55,7 +55,8 @@ const Header = ({ noBackgroundOnScroll = false }) => {
   const [hoverExperiences, setHoverExperiences] = useState(false);
   const [hoverExperiencesContent, setHoverExperiencesContent] = useState(false);
   const [hoverDestinations, setHoverDestinations] = useState(false);
-  const [hoverDestinationsContent, setHoverDestinationsContent] = useState(false);
+  const [hoverDestinationsContent, setHoverDestinationsContent] =
+    useState(false);
   let position = "sticky";
 
   // Thay đổi style của header
@@ -127,7 +128,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
     setHoverPlanYourTripContent,
     setHoverExperiences,
     setHoverExperiencesContent,
-    setHoverDestinationsContent
+    setHoverDestinationsContent,
   };
 
   const [isVisible, setIsVisible] = useState(false);
@@ -151,11 +152,12 @@ const Header = ({ noBackgroundOnScroll = false }) => {
   return (
     <HeaderContext.Provider value={contextValue}>
       <header>
+        {/* Header Desktop */}
         <div
           style={{ background, position, color, boxShadow }}
           className={cn(
             "relative flex flex-col",
-            "py-[15px] px-[20px] w-full z-50 top-0",
+            "py-[15px] px-[20px] w-full z-999 top-0",
             "transition-all duration-500 lg:px-[40px] hidden lg:block"
           )}
         >
@@ -170,7 +172,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                 }
                 className="mr-[50px]"
               >
-                <NavLink to="/">
+                <NavLink to={ROUTES.HOME}>
                   <img
                     src={logo}
                     className="w-[80px]"
@@ -203,7 +205,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     handleHoverMenu(MENU_KEY.DESTINATIONS, false)
                   }
                 >
-                  <NavLink to="/itineraries">{t("destinations")}</NavLink>
+                  <NavLink to={ROUTES.ITINERARIES}>{t("destinations")}</NavLink>
                 </motion.li>
                 <motion.li
                   initial={
@@ -221,7 +223,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     handleHoverMenu(MENU_KEY.EXPERIENCES, false)
                   }
                 >
-                  <NavLink to="/experiences">{t("experiences")}</NavLink>
+                  <NavLink to={ROUTES.EXPERIENCES}>{t("experiences")}</NavLink>
                 </motion.li>
                 <motion.li
                   initial={
@@ -233,7 +235,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                   }
                   className="p-[15px] h-fit"
                 >
-                  <NavLink to="/events">{t("events")}</NavLink>
+                  <NavLink to={ROUTES.EVENTS}>{t("events")}</NavLink>
                 </motion.li>
                 <motion.li
                   initial={
@@ -251,7 +253,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     handleHoverMenu(MENU_KEY.PLAN_YOUR_TRIP, false)
                   }
                 >
-                  <NavLink to="/">{t("plan_your_trip")}</NavLink>
+                  <NavLink to={ROUTES.HOME}>{t("plan_your_trip")}</NavLink>
                 </motion.li>
                 <motion.li
                   initial={
@@ -263,7 +265,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                   }
                   className="p-[15px] h-fit"
                 >
-                  <NavLink to="/">{t("travel_offers")}</NavLink>
+                  <NavLink to={ROUTES.HOME}>{t("travel_offers")}</NavLink>
                 </motion.li>
               </ul>
             </div>
@@ -310,7 +312,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                   noBackgroundOnScroll ? { duration: 0.7, delay: 1.1 } : false
                 }
               >
-                <NavLink to="/signin">
+                <NavLink to={ROUTES.SIGNIN}>
                   <UserIcon color={colorIcon} />
                 </NavLink>
               </motion.li>
@@ -354,8 +356,8 @@ const Header = ({ noBackgroundOnScroll = false }) => {
             </AnimatePresence>
           </div>
           <PlanYourTripContent
-            onMouseLeave={() => handleHoverMenu(MENU_KEY.PLAN_YOUR_TRIP, false)}
-            onMouseEnter={() => handleHoverMenu(MENU_KEY.PLAN_YOUR_TRIP, true)}
+            onMouseLeave={() => setHoverPlanYourTripContent(false)}
+            onMouseEnter={() => setHoverPlanYourTripContent(true)}
             className={
               hoverPlanYourTrip || hoverPlanYourTripContent ? "flex" : "hidden"
             }
@@ -371,13 +373,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
             onMouseLeave={() => handleHoverMenu(MENU_KEY.DESTINATIONS, false)}
             onMouseEnter={() => handleHoverMenu(MENU_KEY.DESTINATIONS, true)}
             className={
-              hoverDestinations || hoverDestinationsContent? "flex" : "hidden"
+              hoverDestinations || hoverDestinationsContent ? "flex" : "hidden"
             }
           />
         </div>
 
-        {/* Mobile header */}
-        <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-1">
+        {/* Header Mobile */}
+        <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-999">
           <div
             className={cn(
               "absolute w-full h-[100px] top-0 left-0 z-[-1] bg-none",
@@ -392,7 +394,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
             transition={{ duration: 0.7, delay: 0.2 }}
             className=""
           >
-            <NavLink to="/">
+            <NavLink to={ROUTES.HOME}>
               <img
                 src={logo}
                 className="w-[80px]"
@@ -411,7 +413,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
             )}
             onClick={() => setIsVisible(!isVisible)}
           >
-            <span className="text-[18px]">Menu</span>
+            <span className="text-[18px]">{t("Menu")}</span>
             <LuTextSearch />
           </button>
           {/* Mobile menu */}
@@ -431,7 +433,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-[12px]">
                       <FiSearch className="text-[24px]" />
-                      <span className="text-[20px]">Search</span>
+                      <span className="text-[20px]">{t("Search")}</span>
                     </div>
                     <button
                       className="text-[20px]"
@@ -440,63 +442,67 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                       <RiCloseLargeLine />
                     </button>
                   </div>
-                  <NavLink to="/" className="text-[30px] font-bold">
-                    Home
+                  <NavLink to={ROUTES.HOME} className="text-[30px] font-bold">
+                    {t("Home")}
                   </NavLink>
                 </div>
                 <ul>
                   <li>
                     <NavLink
-                      to="/itineraries"
+                      to={ROUTES.ITINERARIES}
                       className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#03A9F4]"
                     >
-                      Destinations <RiArrowRightSLine />
+                      {t("Destinations")}
+                      <RiArrowRightSLine />
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
-                      to="/experiences"
+                      to={ROUTES.EXPERIENCES}
                       className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0288D1]"
                     >
-                      Experiences <RiArrowRightSLine />
+                      {t("Experiences")}
+                      <RiArrowRightSLine />
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
-                      to="/events"
+                      to={ROUTES.EVENTS}
                       className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0277BD]"
                     >
-                      Events <RiArrowRightSLine />
+                      {t("Events")} <RiArrowRightSLine />
                     </NavLink>
                   </li>
                   <li>
                     <NavLink
-                      to="/"
+                      to={ROUTES.HOME}
                       className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#01579B]"
                     >
-                      Travel Offers <RiArrowRightSLine />
+                      {t("Travel Offers")}
+                      <RiArrowRightSLine />
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink
-                      to="/"
+                    <div
                       className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#003F73]"
                       onClick={() => {
                         setIsVisibleSubMenu(!isVisibleSubMenu);
                       }}
                     >
-                      Plan Your Trip <RiArrowRightSLine />
-                    </NavLink>
+                      {t("Plan Your Trip")}
+                      <RiArrowRightSLine />
+                    </div>
                   </li>
                 </ul>
                 <div className="flex flex-col justify-between flex-1 pt-[50px] px-[16px] pb-[16px] gap-[82px]">
                   <ul className="flex flex-col gap-[5px]">
                     <li>
                       <NavLink
-                        to="/"
+                        to={ROUTES.HOME}
                         className="text-[16px] font-bold flex items-center gap-[10px]"
                       >
-                        <RiQuestionLine /> Contact
+                        <RiQuestionLine />
+                        {t("Contact")}
                       </NavLink>
                     </li>
                     <li>
@@ -505,7 +511,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         onClick={() => setIsVisibleLang(!isVisibleLang)}
                       >
                         <div className="flex items-center gap-[10px]">
-                          <TbWorld /> Language
+                          <TbWorld /> {t("Language")}
                         </div>
                         <MdArrowDropDown
                           className={`text-[20px] transition-transform duration-300 ${
@@ -536,29 +542,29 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             <ul className="pl-[30px] mt-[10px]">
                               <li>
                                 <NavLink
-                                  to="/"
+                                  to={ROUTES.HOME}
                                   className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
                                 >
                                   <span className="fi fi-vn"></span>
-                                  Vietnam
+                                  {t("Vietnam")}
                                 </NavLink>
                               </li>
                               <li>
                                 <NavLink
-                                  to="/"
+                                  to={ROUTES.HOME}
                                   className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
                                 >
                                   <span className="fi fi-gb"></span>
-                                  English
+                                  {t("English")}
                                 </NavLink>
                               </li>
                               <li>
                                 <NavLink
-                                  to="/"
+                                  to={ROUTES.HOME}
                                   className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
                                 >
                                   <span className="fi fi-cn"></span>
-                                  Chinese
+                                  {t("Chinese")}
                                 </NavLink>
                               </li>
                             </ul>
@@ -570,18 +576,19 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                   <div className="flex items-center gap-[8px] justify-between">
                     <div className="flex-1 bg-[#ffffff1c] pt-[20px] pb-[14px] px-[28px] rounded-[8px]">
                       <NavLink
-                        to="/"
+                        to={ROUTES.HOME}
                         className="text-[16px] font-bold flex flex-col items-center gap-[5px]"
                       >
-                        <MapIcon /> Map
+                        <MapIcon /> {t("Map")}
                       </NavLink>
                     </div>
                     <div className="flex-1 bg-[#ffffff1c] pt-[20px] pb-[14px] px-[28px] rounded-[8px]">
                       <NavLink
-                        to="/"
+                        to={ROUTES.HOME}
                         className="text-[16px] font-bold flex flex-col items-center gap-[5px]"
                       >
-                        <UserIcon /> Login/Register
+                        <UserIcon />
+                        {t("Login/Register")}
                       </NavLink>
                     </div>
                   </div>
@@ -611,14 +618,14 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                 }}
                 className="w-full h-screen absolute top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll z-2"
               >
-                <div className="bg-[#003F73] fixed top-0 left-0 w-full h-screen">
+                <div className="bg-[#003F73] fixed top-0 left-0 w-full h-screen overflow-y-scroll">
                   <div className="flex items-center justify-between px-[16px] py-[16px] border-b border-gray-300/53">
                     <div
                       className="flex items-center gap-[12px]"
                       onClick={() => setIsVisibleSubMenu(!isVisibleSubMenu)}
                     >
                       <RiArrowLeftSLine className="text-[24px]" />
-                      <span className="text-[20px]">Main menu</span>
+                      <span className="text-[20px]">{t("Main menu")}</span>
                     </div>
                     <button
                       className="text-[20px]"
@@ -632,79 +639,79 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                   </div>
                   <div className="pt-[50px] pb-[64px]">
                     <h2 className="px-[16px] text-[36px] font-bold mb-[16px]">
-                      Plan Your Trip
+                      {t("Plan Your Trip")}
                     </h2>
                     <ul>
                       <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/visa-guide");
+                            navigate(ROUTES.VISA_GUIDE);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Visa Guide
+                          {t("Visa Guide")}
                         </NavLink>
                       </li>
                       <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/visainformation");
+                            navigate(ROUTES.VISA_INFORMATION);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Essentials
+                          {t("Essentials")}
                         </NavLink>
                       </li>
                       <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/getting-to-and-around");
+                            navigate(ROUTES.GETTING_TO_AND_AROUND);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Getting to & around Vietnam
+                          {t("Getting to & around Vietnam")}
                         </NavLink>
                       </li>
                       <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/safety");
+                            navigate(ROUTES.SAFETY);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Safety
+                          {t("Safety")}
                         </NavLink>
                       </li>
                       <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/accessibility");
+                            navigate(ROUTES.ACCESSIBILITY);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Accessibility
+                          {t("Accessibility")}
                         </NavLink>
                       </li>
                       <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/vietnam-pass");
+                            navigate(ROUTES.VIETNAM_PASS);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Vietnam attractions passes
+                          {t("Vietnam attractions passes")}
                         </NavLink>
                       </li>
 
@@ -712,37 +719,24 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/visainformation");
+                            navigate(ROUTES.VISA_INFORMATION);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Visa Information
+                          {t("Visa Information")}
                         </NavLink>
                       </li>
                       <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/placetogo");
+                            navigate(ROUTES.PLACE_TO_GO);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Place To Go
-                        </NavLink>
-                      </li>
-                      <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                        <button></button>
-                        <NavLink
-                          onClick={(e) => {
-                            e.preventDefault();
-                            navigate("/weathertrip");
-                            setIsVisible(!isVisible);
-                            setIsVisibleSubMenu(!isVisibleSubMenu);
-                          }}
-                        >
-                          Weather Trip
+                          {t("Place To Go")}
                         </NavLink>
                       </li>
                       <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -750,12 +744,12 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/currency");
+                            navigate(ROUTES.WEATHER_TRIP);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Currency
+                          {t("Weather Trip")}
                         </NavLink>
                       </li>
                       <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -763,12 +757,25 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <NavLink
                           onClick={(e) => {
                             e.preventDefault();
-                            navigate("/downloadapp");
+                            navigate(ROUTES.CURRENCY_GUIDE);
                             setIsVisible(!isVisible);
                             setIsVisibleSubMenu(!isVisibleSubMenu);
                           }}
                         >
-                          Download Apps
+                          {t("Currency")}
+                        </NavLink>
+                      </li>
+                      <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                        <button></button>
+                        <NavLink
+                          onClick={(e) => {
+                            e.preventDefault();
+                            navigate(ROUTES.DOWNLOAD_APP);
+                            setIsVisible(!isVisible);
+                            setIsVisibleSubMenu(!isVisibleSubMenu);
+                          }}
+                        >
+                          {t("Download Apps")}
                         </NavLink>
                       </li>
                     </ul>
@@ -787,7 +794,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
 export default Header;
 
 // Component info card
-function InfoCard({ title, description, icon, to, onClickItem }) {
+function InfoCard({ title, description, icon, onClickItem, to }) {
   return (
     <NavLink
       to={to}
@@ -819,9 +826,9 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
     <div
       onMouseLeave={onMouseLeave}
       onMouseEnter={onMouseEnter}
-      className={` absolute left-1/2 -translate-x-1/2 top-full  bg-white w-full mt-[-30px] pt-[15px] z-50 ${className}`}
+      className={`container absolute left-1/2 -translate-x-1/2 top-full w-full mt-[-30px] pt-[15px] z-50 ${className}`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-8  border-t border-gray-100 ">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8  bg-white py-8  border-t border-gray-100 shadow-lg">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Visa Guide */}
           <InfoCard
@@ -829,7 +836,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("visa_guide")}
             description={t("plan_ahead_for_travel")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/visa-guide"
+            to={ROUTES.VISA_GUIDE}
           />
 
           {/* Essentials */}
@@ -838,7 +845,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("essentials")}
             description={t("from_etiquette_to_currency")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/essentials"
+            to={ROUTES.ESSENTIALS}
           />
 
           {/* Flights */}
@@ -847,7 +854,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("flights")}
             description={t("book_flight_tickets")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/"
+            to={ROUTES.HOME}
           />
 
           {/* Accommodation */}
@@ -856,7 +863,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("accommodation")}
             description={t("incredible_range_of_stay_options")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/"
+            to={ROUTES.HOME}
           />
 
           {/* Getting around Vietnam */}
@@ -865,7 +872,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("getting_around_vietnam")}
             description={t("navigating_vietnam_is_a_breeze")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/getting-to-and-around"
+            to={ROUTES.GETTING_TO_AND_AROUND}
           />
 
           {/* Safety */}
@@ -874,7 +881,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("safety")}
             description={t("guide_to_enjoying_safely")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/safety"
+            to={ROUTES.SAFETY}
           />
 
           {/* Weather */}
@@ -883,7 +890,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("weather")}
             description={t("vietnam_climate_guide")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/weathertrip"
+            to={ROUTES.WEATHER_TRIP}
           />
 
           {/* Currency */}
@@ -892,7 +899,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("currency")}
             description={t("all_about_vietnam_currency")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/currency"
+            to={ROUTES.CURRENCY_GUIDE}
           />
 
           {/* Accessibility */}
@@ -901,7 +908,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("accessibility")}
             description={t("for_travelers_with_special_needs")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/accessibility"
+            to={ROUTES.ACCESSIBILITY}
           />
 
           {/* Vietnam attractions passes */}
@@ -910,7 +917,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("vietnam_attractions_passes")}
             description={t("unlock_savings_with_passes")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/vietnam-pass"
+            to={ROUTES.VIETNAM_PASS}
           />
 
           {/* Visa Information */}
@@ -919,7 +926,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("visa_information")}
             description={t("visa_information")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/visainformation"
+            to={ROUTES.VISA_INFORMATION}
           />
 
           {/* Place to go */}
@@ -928,7 +935,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("place_to_go")}
             description={t("place_to_go")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/placetogo"
+            to={ROUTES.PLACE_TO_GO}
           />
 
           {/* Download apps */}
@@ -937,7 +944,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
             title={t("download_apps")}
             description={t("get_apps_for_attractions")}
             icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/downloadapp"
+            to={ROUTES.DOWNLOAD_APP}
           />
         </div>
       </div>
@@ -955,130 +962,132 @@ const ExperiencesContent = ({ className, onMouseLeave, onMouseEnter }) => {
     setHoverExperiences(false);
   };
 
-
   return (
     <div
-    onMouseLeave={onMouseLeave}
-    onMouseEnter={onMouseEnter}
-    className={` absolute left-1/2 -translate-x-1/2 top-full  bg-white w-full mt-[-30px] pt-[15px] z-50 ${className}`}
-  >
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-8  border-t border-gray-100 ">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {/* Visa Guide */}
-        <InfoCard
-          onClickItem={onClickItem}
-          title={t("Cultural Heritage")}
-          description={t("plan_ahead_for_travel")}
-          icon={<ChevronRight color="black" className="h-5 w-5" />}
-          to="/visa-guide"
-        />
+      onMouseLeave={onMouseLeave}
+      onMouseEnter={onMouseEnter}
+      className={` absolute left-1/2 -translate-x-1/2 top-full  bg-white w-full mt-[-30px] pt-[15px] z-50 ${className}`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-8  border-t border-gray-100 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Visa Guide */}
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("Cultural Heritage")}
+            description={t("plan_ahead_for_travel")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/visa-guide"
+          />
 
-        {/* Essentials */}
-        <InfoCard
-          onClickItem={onClickItem}
-          title={t("Cuisine")}
-          description={t("from_etiquette_to_currency")}
-          icon={<ChevronRight color="black" className="h-5 w-5" />}
-          to="/essentials"
-        />
+          {/* Essentials */}
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("Cuisine")}
+            description={t("from_etiquette_to_currency")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/essentials"
+          />
 
-        {/* Flights */}
-        <InfoCard
-          onClickItem={onClickItem}
-          title={t("Nature & Adventure")}
-          description={t("book_flight_tickets")}
-          icon={<ChevronRight color="black" className="h-5 w-5" />}
-          to="/"
-        />
+          {/* Flights */}
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("Nature & Adventure")}
+            description={t("book_flight_tickets")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/"
+          />
 
-        {/* Accommodation */}
-        <InfoCard
-          onClickItem={onClickItem}
-          title={t("Sustainable Travel")}
-          description={t("incredible_range_of_stay_options")}
-          icon={<ChevronRight color="black" className="h-5 w-5" />}
-          to="/"
-        />
+          {/* Accommodation */}
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("Sustainable Travel")}
+            description={t("incredible_range_of_stay_options")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/"
+          />
 
-        {/* Getting around Vietnam */}
-        <InfoCard
-          onClickItem={onClickItem}
-          title={t("City Vibes")}
-          description={t("navigating_vietnam_is_a_breeze")}
-          icon={<ChevronRight color="black" className="h-5 w-5" />}
-          to="/getting-to-and-around"
-        />
+          {/* Getting around Vietnam */}
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("City Vibes")}
+            description={t("navigating_vietnam_is_a_breeze")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/getting-to-and-around"
+          />
 
-        {/* Safety */}
-        <InfoCard
-          onClickItem={onClickItem}
-          title={t("Wellness Escapes")}
-          description={t("guide_to_enjoying_safely")}
-          icon={<ChevronRight color="black" className="h-5 w-5" />}
-          to="/safety"
-        />
+          {/* Safety */}
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("Wellness Escapes")}
+            description={t("guide_to_enjoying_safely")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/safety"
+          />
 
-        {/* Weather */}
-        <InfoCard
-          onClickItem={onClickItem}
-          title={t("Romantic Getaways")}
-          description={t("vietnam_climate_guide")}
-          icon={<ChevronRight color="black" className="h-5 w-5" />}
-          to="/weathertrip"
-        />
+          {/* Weather */}
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("Romantic Getaways")}
+            description={t("vietnam_climate_guide")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/weathertrip"
+          />
 
-        {/* Currency */}
-        <InfoCard
-          onClickItem={onClickItem}
-          title={t("Local Life")}
-          description={t("all_about_vietnam_currency")}
-          icon={<ChevronRight color="black" className="h-5 w-5" />}
-          to="/currency"
-        />
-
+          {/* Currency */}
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("Local Life")}
+            description={t("all_about_vietnam_currency")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/currency"
+          />
+        </div>
       </div>
     </div>
-  </div>
   );
 };
 
 const DestinationsContent = ({ className, onMouseLeave, onMouseEnter }) => {
-    const { t } = useTranslation();
-    const { setHoverDestinationsContent, setHoverDestinations } = useContext(HeaderContext);
-  
-    const onClickItem = () => {
-      setHoverDestinationsContent(false);
-      setHoverDestinations(false);
-    };
-  
-    return (
-      <div onMouseLeave={onMouseLeave} onMouseEnter={onMouseEnter} className={` absolute left-1/2 -translate-x-1/2 top-full  bg-white w-full mt-[-30px] pt-[15px] z-50 ${className}`}>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-8  border-t border-gray-100 ">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <InfoCard
-              onClickItem={onClickItem}
-              title={t("Regions")}
-              description={t("Discover the charm of Northern Vietnam")}
-              icon={<ChevronRight color="black" className="h-5 w-5" />}
-              to="/northern-vietnam"
-            />
-            <InfoCard
-              onClickItem={onClickItem}
-              title={t("Iconic Highlights")}
-              description={t("Explore the heart of Vietnam")}
-              icon={<ChevronRight color="black" className="h-5 w-5" />}
-              to="/central-vietnam"
-            />
-            <InfoCard
-              onClickItem={onClickItem}
-              title={t("UNESCO Heritage")}
-              description={t("Experience Southern Vietnam's vibrancy")}
-              icon={<ChevronRight color="black" className="h-5 w-5" />}
-              to="/southern-vietnam"
-            />
-         
-          </div>
+  const { t } = useTranslation();
+  const { setHoverDestinationsContent, setHoverDestinations } =
+    useContext(HeaderContext);
+
+  const onClickItem = () => {
+    setHoverDestinationsContent(false);
+    setHoverDestinations(false);
+  };
+
+  return (
+    <div
+      onMouseLeave={onMouseLeave}
+      onMouseEnter={onMouseEnter}
+      className={` absolute left-1/2 -translate-x-1/2 top-full  bg-white w-full mt-[-30px] pt-[15px] z-50 ${className}`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-8  border-t border-gray-100 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("Regions")}
+            description={t("Discover the charm of Northern Vietnam")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/northern-vietnam"
+          />
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("Iconic Highlights")}
+            description={t("Explore the heart of Vietnam")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/central-vietnam"
+          />
+          <InfoCard
+            onClickItem={onClickItem}
+            title={t("UNESCO Heritage")}
+            description={t("Experience Southern Vietnam's vibrancy")}
+            icon={<ChevronRight color="black" className="h-5 w-5" />}
+            to="/southern-vietnam"
+          />
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
