@@ -1,4 +1,4 @@
-import bird from "@images/bird.webp";
+// import bird from "@images/bird.webp";
 import iconMail from "@images/icon-mail.svg";
 import iconAppStore from "@images/icon-appstore.webp";
 import iconGooglePlay from "@images/icon-googleplay.webp";
@@ -75,7 +75,8 @@ const Footer = () => {
 
     return (
         <footer className="mt-[100px]">
-            <img src={bird} alt="" width="100%" />
+            {/* <img src={bird} alt="" width="100%" /> */}
+            <div className="border-[2px] bg-[#D9D9D9]"></div>
             <div className="container mt-[60px]">
                 {/* Mobile: Accordion */}
                 <div className="block md:hidden">

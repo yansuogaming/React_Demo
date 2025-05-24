@@ -91,5 +91,6 @@
 
   "check_your_mailbox": "Kiểm tra hộp thư của bạn",
   "forgot_password.description": "Chúng tôi đã gửi bạn hướng dẫn và đường link cài lại mật khẩu đến . Email này có thể mất vài phút để đến hộp thư.",
-  "back_to_login_step": "Quay lại bước đăng nhập"
+  "back_to_login_step": "Quay lại bước đăng nhập",
+  "login": "Đăng nhập"
 }

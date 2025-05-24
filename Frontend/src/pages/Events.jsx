@@ -1,6 +1,5 @@
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
-import { useRef, useEffect } from "react";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 import Breadcrumb from "@components/Breadcrumb";
@@ -11,6 +10,9 @@ import ticketIcon from "@images/great.svg";
 import soldIcon from "@images/ticket.svg";
 import freeIcon from "@images/free.svg";
 import { cn, debounce } from "@lib/utils";
+import { CiLocationOn } from "react-icons/ci";
+import { IoTicketOutline } from "react-icons/io5";
+
 import { CiLocationOn } from "react-icons/ci";
 import { IoTicketOutline } from "react-icons/io5";
 
@@ -30,22 +32,11 @@ const Events = () => {
         { label: t("home"), href: "/" },
         { label: t("Events") },
     ];
-    const eventListRef = useRef(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [keysearch, setKeysearch] = useState(keyword);
 
-    useEffect(() => {
-        if (eventListRef.current) {
-            eventListRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            });
-        }
-    }, [currentPage]);
-
-    const filteredEvents = typeSearch === 'all' ? events : events.filter(() => true);
-    const top8 = filteredEvents.slice(0, 8);
-    const bottom8 = filteredEvents.slice(8);
+    const top8 = events.slice(0, 8);
+    const bottom8 = events.slice(8);
 
     const AdBanner = () => {
         return (
@@ -57,8 +48,8 @@ const Events = () => {
             )}>
                 {/* Left title */}
                 <div className="text-left">
-                    <p className="text-lg md:text-[20px] text-[26px] font-[700]">
-                        Experience <br /> it live
+                    <p className="text-lg md:text-[20px] text-[16px] font-[700]">
+                        Experience it live
                     </p>
                 </div>
 
@@ -128,7 +119,7 @@ const Events = () => {
                     setCurrentIndex={setCurrentIndex}
                 />
 
-                <section className="mt-[43px]" ref={eventListRef}>
+                <section className="mt-[43px]">
                     <EventFilterBar
                         categories={categories}
                         selectedCategory={typeSearch}
@@ -143,6 +134,7 @@ const Events = () => {
                         {top8.map((event, index) => (
                             <CardEvent
                                 key={index}
+                                className="h-full"
                                 title={event.title}
                                 image={event.image}
                                 startTime={new Date(event.start_date * 1000)}
@@ -167,6 +159,7 @@ const Events = () => {
                        {bottom8.map((event, index) => (
                             <CardEvent
                                 key={index}
+                                className="h-full"
                                 title={event.title}
                                 image={event.image}
                                 startTime={new Date(event.start_date * 1000)}

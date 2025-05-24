@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { FaSun } from "react-icons/fa";
 import {
     fetchCurrentWeatherByCoords,
     fetchWeatherForecastByCoords,
 } from "@components/weathertrip/weatherApi";
+import { NavLink } from "react-router";
 
 const WeatherSubscribe = () => {
     const [weather, setWeather] = useState(null);
@@ -47,109 +47,115 @@ const WeatherSubscribe = () => {
     const current = weather?.current;
 
     return (
-        <section className="bg-white text-[#1a1a1a] py-8 px-4">
-            <div className="container mx-auto max-w-screen-xl">
-                <h2 className="text-xl font-semibold mb-4">
+        <section className="bg-[#f5f5f5] text-[#000] py-8 px-4">
+            <div className="container mx-auto">
+                <h2 className="text-[26px] font-[700] mb-4">
                     Weather in {location}
                 </h2>
 
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
                     {/* Temp + Icon */}
                     <div className="flex items-center gap-4 text-4xl font-bold">
-                        <span>
+                        <span className="text-[60px] font-[700] ">
                             {unit === "c"
                                 ? `${current?.temp_c ?? "--"}°`
                                 : `${current?.temp_f ?? "--"}°`}
                         </span>
-                        <FaSun className="text-pink-600 text-4xl" />
-                        <span className="text-xl font-medium">
+                        <img
+                            src={`https:${current?.condition?.icon}`}
+                            alt={current?.condition?.text}
+                            className="w-[60px] h-[60px]"
+                        />{" "}
+                        <span className="text-[28px] font-[500]">
                             {current?.condition?.text || "Loading..."}
                         </span>
                     </div>
 
-                    {/* Unit Switch */}
-                    <div className="flex gap-4 text-sm">
-                        <span
-                            className={`font-semibold cursor-pointer ${
-                                unit === "c"
-                                    ? "text-black"
-                                    : "text-blue-600 underline"
-                            }`}
-                            onClick={() => setUnit("c")}
-                        >
-                            Celsius
-                        </span>
-                        <span
-                            className={`cursor-pointer ${
-                                unit === "f"
-                                    ? "text-black font-semibold"
-                                    : "text-blue-600 underline"
-                            }`}
-                            onClick={() => setUnit("f")}
-                        >
-                            Fahrenheit
-                        </span>
-                    </div>
-
                     {/* Sunrise / Sunset / etc */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 text-sm">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-[20px] text-sm">
                         <div>
-                            <p className="text-gray-600">Sunrise</p>
-                            <p className="text-pink-600 font-semibold">
+                            <p className="text-[#1A2A44] text-[14px]">
+                                Sunrise
+                            </p>
+                            <p className="text-[#007BFF] font-[700] text-[16px]">
                                 {astro?.sunrise || "--"}
                             </p>
                         </div>
                         <div>
-                            <p className="text-gray-600">Sunset</p>
-                            <p className="text-pink-600 font-semibold">
+                            <p className="text-[#1A2A44] text-[14px]">Sunset</p>
+                            <p className="text-[#007BFF] font-[700] text-[16px]">
                                 {astro?.sunset || "--"}
                             </p>
                         </div>
                         <div>
-                            <p className="text-gray-600">Low</p>
-                            <p className="text-pink-600 font-semibold">
+                            <p className="text-[#1A2A44] text-[14px]">Low</p>
+                            <p className="text-[#007BFF] font-[700] text-[16px]">
                                 {unit === "c"
                                     ? `${forecast?.mintemp_c ?? "--"}°`
                                     : `${forecast?.mintemp_f ?? "--"}°`}
                             </p>
                         </div>
                         <div>
-                            <p className="text-gray-600">High</p>
-                            <p className="text-pink-600 font-semibold">
+                            <p className="text-[#1A2A44] text-[14px]">High</p>
+                            <p className="text-[#007BFF] font-[700] text-[16px]">
                                 {unit === "c"
                                     ? `${forecast?.maxtemp_c ?? "--"}°`
                                     : `${forecast?.maxtemp_f ?? "--"}°`}
                             </p>
                         </div>
                         <div>
-                            <p className="text-gray-600">Humidity</p>
-                            <p className="text-pink-600 font-semibold">
+                            <p className="text-[#1A2A44] text-[14px]">
+                                Humidity
+                            </p>
+                            <p className="text-[#007BFF] font-[700]">
                                 {current?.humidity
                                     ? `${current.humidity}%`
                                     : "--"}
                             </p>
                         </div>
                         <div>
-                            <p className="text-gray-600">Wind</p>
-                            <p className="text-pink-600 font-semibold">
+                            <p className="text-[#1A2A44] text-[14px]">Wind</p>
+                            <p className="text-[#007BFF] font-[700] text-[16px]">
                                 {current?.wind_kph
                                     ? `${current.wind_kph} km/h`
                                     : "--"}
                             </p>
                         </div>
+
+                        {/* Learn more placed here */}
+                        <div className="col-span-2 sm:col-span-3 md:col-span-6 mt-1">
+                            <NavLink
+                                to="/weathertrip"
+                                className="text-[#035E88] text-[16px] font-[500] hover:text-black "
+                            >
+                                Learn more →
+                            </NavLink>
+                        </div>
                     </div>
                 </div>
 
-                <div className="mt-4">
-                    <button className="text-sm border rounded px-4 py-1 shadow-sm hover:bg-gray-100">
-                        Get {location} Calendar | Opens in a new window
-                    </button>
-                </div>
-
-                <div className="mt-2">
-                    <a href="#" className="text-blue-700 text-sm font-medium">
-                        Learn more →
-                    </a>
+                {/* Unit Switch */}
+                <div className="flex gap-4 text-sm mt-[10px]">
+                    <span
+                        className={`font-[500] cursor-pointer text-[16px] ${
+                            unit === "c"
+                                ? "text-black "
+                                : "text-[#035E88] hover:underline"
+                        }`}
+                        onClick={() => setUnit("c")}
+                    >
+                        Celsius
+                    </span>
+                    <span
+                        className={`font-[500] cursor-pointer text-[16px] ${
+                            unit === "f"
+                                ? "text-black"
+                                : "text-[#035E88] hover:underline"
+                        }`}
+                        onClick={() => setUnit("f")}
+                    >
+                        Fahrenheit
+                    </span>
                 </div>
             </div>
         </section>

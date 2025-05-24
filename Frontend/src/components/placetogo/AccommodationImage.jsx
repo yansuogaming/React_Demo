@@ -12,7 +12,7 @@ const AccommodationImage = () => {
             <h2 className="text-[40px] font-bold text-[#1A2A44] mb-4">
                 Accommodation
             </h2>
-            <div className="relative overflow-hidden rounded-ee-[60px] aspect-[16/9] w-full mb-6 bg-black">
+            <div className="relative overflow-hidden rounded-ee-[60px] aspect-[16/9] xl:w-[calc(100%+200px)] -ml-[100px] mb-6 bg-black">
                 {isPlaying && hasVideo ? (
                     <iframe
                         className="w-full h-full"

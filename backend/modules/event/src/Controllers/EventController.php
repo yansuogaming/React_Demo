@@ -80,4 +80,11 @@ class EventController
             'total_page' => !empty($res['total_page']) ? $res['total_page'] : 0
         ]);
     }
+
+    #[Get('translate')]
+    public function translate()
+    {
+        $events = Http::eventdb('vn')->get('events');
+        
+    }
 }

@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router";
 import {
-    fetchMonthlyForecastSummary,
-    fetchWeatherAlerts,
     getMockMonthlyWeatherData,
     fetchCurrentWeatherByCoords,
 } from "@components/weathertrip/weatherApi";
@@ -42,7 +40,6 @@ const contentImages = {
 const MonthlyActivities = () => {
     const [activeMonth, setActiveMonth] = useState("January");
     const [monthlyData, setMonthlyData] = useState({});
-    const [alerts, setAlerts] = useState([]);
     const [locationError, setLocationError] = useState(null);
     const scrollRef = useRef(null);
     const buttonRefs = useRef({});
@@ -58,13 +55,6 @@ const MonthlyActivities = () => {
         navigator.geolocation.getCurrentPosition(
             async ({ coords }) => {
                 try {
-                    const [monthly, alertList] = await Promise.all([
-                        fetchMonthlyForecastSummary(
-                            coords.latitude,
-                            coords.longitude
-                        ),
-                        fetchWeatherAlerts(coords.latitude, coords.longitude),
-                    ]);
                     const data = await fetchCurrentWeatherByCoords(
                         coords.latitude,
                         coords.longitude
@@ -72,22 +62,13 @@ const MonthlyActivities = () => {
                     if (data?.location?.name) {
                         setCity(data.location.name);
                     }
-
-                    if (Object.keys(monthly).length < 12) {
-                        setMonthlyData(getMockMonthlyWeatherData());
-                    } else {
-                        setMonthlyData(monthly);
-                    }
-
-                    setAlerts(alertList);
-                } catch (err) {
-                    console.error("Failed to load weather data:", err);
+                } catch {
                     setLocationError("Could not fetch weather data.");
-                    setMonthlyData(getMockMonthlyWeatherData());
+                } finally {
+                    setMonthlyData(getMockMonthlyWeatherData()); // always use mock
                 }
             },
-            (err) => {
-                console.error("Geolocation error:", err);
+            () => {
                 setLocationError("Unable to retrieve your location.");
                 setMonthlyData(getMockMonthlyWeatherData());
             }
@@ -122,29 +103,6 @@ const MonthlyActivities = () => {
                     <p className="text-sm text-red-500 mb-4">{locationError}</p>
                 )}
 
-                {alerts.length > 0 && (
-                    <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6">
-                        <h4 className="font-bold text-yellow-700 mb-2">
-                            Weather Alerts
-                        </h4>
-                        {alerts.map((alert, i) => (
-                            <div key={i} className="mb-3">
-                                <p className="text-sm font-semibold text-red-600">
-                                    {alert.event}
-                                </p>
-                                <p className="text-sm text-gray-700 whitespace-pre-line">
-                                    {alert.desc}
-                                </p>
-                                {alert.instruction && (
-                                    <p className="text-sm italic text-gray-600 mt-1">
-                                        {alert.instruction}
-                                    </p>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                )}
-
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
                     {/* Tabs */}
                     <div className="flex lg:flex-col overflow-x-auto gap-3 text-left border-b border-gray-200 w-full lg:w-[120px] lg:col-span-2 no-scrollbar">
@@ -172,7 +130,7 @@ const MonthlyActivities = () => {
                                 <img
                                     src={icon}
                                     alt="Weather icon"
-                                    className="w-10 h-10"
+                                    className="w-10 h-10 ml-2"
                                 />
                             )}
                         </p>
