@@ -46,6 +46,7 @@ class EventController
         $type = $request->input('type', 'all');
         $keyword = $request->input('keyword', '');
         $langId = $request->input('lang_id', 'en');
+        $page = $request->input('page', 1);
 
         $res = Http::eventdb('vn')
             ->post('/events', [
@@ -53,7 +54,8 @@ class EventController
                 'keyword' => $keyword,
                 'order_by' => 'asc',
                 'lang_id' => $langId,
-                'type' => $type
+                'type' => $type,
+                'page' => $page,
             ])->json();
         
         $events = collect(!empty($res['events']) ? $res['events'] : []);
