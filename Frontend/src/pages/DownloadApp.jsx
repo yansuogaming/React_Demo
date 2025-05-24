@@ -224,10 +224,10 @@ const DownloadApp = () => {
                     selected2,
                     snaps2
                 )} */}
-                <div className="mt-[60px]">
-                    <WeatherSubscribe />
-                </div>
             </section>
+            <div className="mt-[60px]">
+                <WeatherSubscribe />
+            </div>
         </main>
     );
 };
