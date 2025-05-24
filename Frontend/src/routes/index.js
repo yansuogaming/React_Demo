@@ -1,7 +1,6 @@
 import { lazy } from "react";
 import routesAdmin from "./admin";
 import ROUTES from "./routes";
-
 import ExperienceService from "@services/ExperienceService";
 import EventService from "@services/EventService";
 import FAQService from "@services/FAQService";
@@ -211,15 +210,6 @@ const routes = [
                     {
                         path: ROUTES.CURRENCY_GUIDE,
                         Component: lazy(() => import("@pages/CurrencyGuide")),
-                        loader: async () => {
-                            const res = await Promise.all([
-                                FAQService.getListFAQs(),
-                            ]);
-
-                            return {
-                                FAQs: res[0],
-                            };
-                        }
                     },
                     {
                         path: ROUTES.DOWNLOAD_APP,

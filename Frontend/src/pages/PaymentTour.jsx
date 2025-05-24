@@ -1,8 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Input } from "@components/ui/input";
 import "@css/PaymentTour.css";
 import { Calendar, Dot, Users, X } from "lucide-react";
 import { Button } from "@components/ui/button";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { DayPicker } from "react-day-picker";
+import { format } from "date-fns";
+import "react-day-picker/style.css";
 
 const PaymentTour = () => {
   // State để quản lý mã khuyến mãi và trạng thái giao diện
@@ -14,9 +20,6 @@ const PaymentTour = () => {
   const [priceAfterPromo, setPriceAfterPromo] = useState(310); // Giá ban đầu
   const [isPriceAfterPromoVisible, setIsPriceAfterPromoVisible] =
     useState(false);
-
-  // State để quản lý toggle hiển thị chi tiết khách sạn và du thuyền
-  const [hotelDetailsVisible, setHotelDetailsVisible] = useState({});
 
   const [selectedActivity, setSelectedActivity] = useState(0);
   const promoCodeValid = "DISCOUNT10"; // Mã giảm giá hợp lệ
@@ -55,30 +58,6 @@ const PaymentTour = () => {
     setCurrentStep((prevStep) => prevStep + 1);
   };
 
-  // Hàm xóa mã khuyến mãi
-  const removePromoCode = () => {
-    setPromoCode("");
-    setIsPromoInputVisible(false);
-    setPromoStatus(null);
-    setPromoMessage("");
-    setIsPriceAfterPromoVisible(false);
-    setPriceAfterPromo(totalPrice);
-  };
-
-  // Hàm toggle hiển thị chi tiết khách sạn
-  const toggleHoteremovePromoCodelDetails = (hotelId) => {
-    setHotelDetailsVisible((prev) => ({
-      ...prev,
-      [hotelId]: !prev[hotelId],
-    }));
-  };
-
-  console.log(
-    removePromoCode,
-    toggleHoteremovePromoCodelDetails,
-    hotelDetailsVisible
-  );
-
   const onClickNextActivity = () => {
     if (selectedActivity === 2) {
       handleSubmitStep();
@@ -86,9 +65,7 @@ const PaymentTour = () => {
     setSelectedActivity((prevActivity) => prevActivity + 1);
 
     // Kiểm tra nếu đã chọn tất cả các hoạt động, chuyển sang bước tiếp theo
-
   };
-
 
   // Hàm toggle hiển thị chi tiết du thuyền
 
@@ -96,26 +73,14 @@ const PaymentTour = () => {
     <div className="container px-4 sm:px-6 lg:px-8" data-select2-id={19}>
       <div
         style={{ paddingTop: "2.5em" }}
-        className="flex justify-between gap-20"
+        className="flex flex-col lg:flex-row justify-between gap-4 lg:gap-10"
         data-select2-id={18}
       >
         <form
           id="iso_cart_2024"
-          className="w-full lg:w-2/3"
+          className="basis-full lg:basis-2/3"
           data-select2-id="iso_cart_2024"
         >
-          <Input
-            type="hidden"
-            name="csrf_token"
-            id="iso_csrf_token"
-            defaultValue="07128aa6d64bdb92459d94e25dcaf4df0f88f809e8bcfe635325d9913cc8647f"
-          />
-          <Input
-            type="text"
-            name="iso_cms_booking"
-            style={{ display: "none" }}
-          />
-          <Input type="hidden" name="booking" defaultValue="booking" />
           <div className="iso_item_cart" data-select2-id={17}>
             <div className="iso_item_top">
               <div className="flex items-center justify-between">
@@ -138,224 +103,22 @@ const PaymentTour = () => {
                 We'll use this information to send you confirmation and updates
                 about your booking
               </div>
-              <div class={`pt-5 ${currentStep === 1 ? "hidden" : "block"}`}>
-                <div class="information_name"></div>
-                <div class="information_text">
-                  Email: <span class="txt_mail"></span>
+              <div className={`pt-5 ${currentStep === 1 ? "hidden" : "block"}`}>
+                <div className="information_name"></div>
+                <div className="information_text">
+                  Email: <span className="txt_mail"></span>
                 </div>
-                <div class="information_text">
-                  Phone: <span class="txt_phone"></span>
+                <div className="information_text">
+                  Phone: <span className="txt_phone"></span>
                 </div>
               </div>
             </div>
           </div>
           <div className="iso_item_body" data-select2-id={16}>
-            <div
-              className="iso_item_body_item iso_input_box"
-              data-select2-id={15}
-            >
-              <div className={`${currentStep !== 1 ? "hidden" : "block"}`}>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  <div className="w-full">
-                    <div className="iso_input_box_item">
-                      <label
-                        htmlFor="first_name"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        First name <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        id="first_name"
-                        name="first_name"
-                        type="text"
-                        className="mt-1 block w-full rounded-md"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full">
-                    <div className="iso_input_box_item">
-                      <label
-                        htmlFor="last_name"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Full Name <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        id="last_name"
-                        name="last_name"
-                        type="text"
-                        className="mt-1 block w-full rounded-md"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="grid grid-cols-1 lg:grid-cols-2 gap-4"
-                  data-select2-id={14}
-                >
-                  <div className="w-full">
-                    <div className="iso_input_box_item">
-                      <label className="block text-sm font-medium text-gray-700">
-                        Date of birth <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        name="birthday"
-                        className="mt-1 block w-full rounded-md iso_book_birthday hasDatepicker"
-                        type="text"
-                        id="dp1747968447951"
-                      />
-                    </div>
-                  </div>
-                  <div className="w-full">
-                    <div className="iso_input_box_item" data-select2-id={13}>
-                      <label className="block text-sm font-medium text-gray-700">
-                        Gender <span className="text-red-500">*</span>
-                      </label>
-                      <select
-                        name="gender"
-                        className="mt-1 block w-full rounded-md iso_select2 select2-hidden-accessible"
-                        data-select2-id={1}
-                        tabIndex={-1}
-                        aria-hidden="true"
-                      >
-                        <option value selected disabled data-select2-id={3}>
-                          ---- Gender----
-                        </option>
-                        <option value="Male" data-select2-id={22}>
-                          Male
-                        </option>
-                        <option value="Female" data-select2-id={23}>
-                          Female
-                        </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-4">
-                  <div className="w-full">
-                    <div className="iso_input_box_item">
-                      <label className="block text-sm font-medium text-gray-700">
-                        Email <span className="text-red-500">*</span>
-                      </label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        className="mt-1 block w-full rounded-md"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                  <div className="w-full">
-                    <div className="iso_input_box_item">
-                      <label className="block text-sm font-medium text-gray-700">
-                        Country <span className="text-red-500">*</span>
-                      </label>
-                      <select
-                        name="country_id"
-                        id="country_id"
-                        className="mt-1 block w-full rounded-md iso_select2 select2-hidden-accessible"
-                        data-select2-id="country_id"
-                        tabIndex={-1}
-                        aria-hidden="true"
-                      >
-                        <option value disabled selected data-select2-id={5}>
-                          ---- Country----
-                        </option>
-                        <option value={247}>Vietnam</option>
-                        <option value={2}>Afghanistan</option>
-                        <option value={3}>Albania</option>
-                        <option value={4}>Algeria</option>
-                        {/* Các option quốc gia khác giữ nguyên */}
-                      </select>
-                    </div>
-                  </div>
-                  <div className="">
-                    <div className="iso_input_box_item">
-                      <label>
-                        Phone number <span>*</span>
-                      </label>
-                      <div className="iti iti--allow-dropdown iti--show-flags iti--inline-dropdown">
-                        <div
-                          className="iti__country-container"
-                          style={{ left: "0px" }}
-                        >
-                          <button
-                            type="button"
-                            className="iti__selected-country"
-                            aria-expanded="false"
-                            aria-label="Selected country"
-                            aria-haspopup="true"
-                            aria-controls="iti-0__dropdown-content"
-                            role="combobox"
-                            title="United States: +1"
-                          >
-                            <div className="iti__selected-country-primary">
-                              <div className="iti__flag iti__us">
-                                <span className="iti__a11y-text">
-                                  United States +1
-                                </span>
-                              </div>
-                              <div className="iti__arrow" aria-hidden="true" />
-                            </div>
-                          </button>
-                          <div
-                            id="iti-0__dropdown-content"
-                            className="iti__dropdown-content iti__hide"
-                          >
-                            <Input
-                              type="text"
-                              className="iti__search-input"
-                              placeholder="Search"
-                              role="combobox"
-                              aria-expanded="true"
-                              aria-label="Search"
-                              aria-controls="iti-0__country-listbox"
-                              aria-autocomplete="list"
-                              autoComplete="off"
-                            />
-                            <span className="iti__a11y-text">
-                              244 results found
-                            </span>
-                          </div>
-                        </div>
-                        <Input
-                          name="phone"
-                          type="tel"
-                          id="phone"
-                          className="phonenumber iti__tel-input"
-                          autoComplete="off"
-                          data-intl-tel-input-id={0}
-                          style={{ paddingLeft: "47px" }}
-                          placeholder="(201) 555-0123"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="pb-5">
-                <div
-                  className={`iso_button flex flex-col pb-7 ${
-                    currentStep !== 1 ? "hidden" : "block"
-                  }`}
-                >
-                  <span className="iso_txt_note">
-                    Please do not skip information (*)
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      handleSubmitStep();
-                    }}
-                    className="iso_cart_button"
-                  >
-                    Next
-                  </button>
-                </div>
-              </div>
-            </div>
+            <PersonForm
+              showFrom={currentStep === 1}
+              handleSubmit={handleSubmitStep}
+            />
           </div>
           <div className="iso_item_cart">
             <div className="iso_item_top">
@@ -366,7 +129,9 @@ const PaymentTour = () => {
                 </div>
               </div>
             </div>
-            <div className={`iso_lst_cart ${currentStep !== 1 ? "active" : ""}`}>
+            <div
+              className={`iso_lst_cart ${currentStep !== 1 ? "active" : ""}`}
+            >
               <div
                 className={`hnv_cart_item ${
                   currentStep !== 1 ? "active" : ""
@@ -374,318 +139,12 @@ const PaymentTour = () => {
               >
                 <div className="hnv_cart_item_top flex flex-col gap-6">
                   {Array.from({ length: 3 }, (_, index) => (
-                    <div className="">
-                      <div key={index} className="flex gap-12">
-                        <div className="w-full lg:w-1/4">
-                          <div className="">
-                            <div
-                              className="title_package"
-                              title="Hanoi & Pu Luong Valley Break 2 Days 1 Night"
-                            >
-                              <img
-                                src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/02/top-cac-loai-hinh-du-lich-pho-bien-tai-viet-nam-nhieu-ban-tre-yeu-thich.jpg"
-                                width="auto"
-                                height="auto"
-                                alt="Hanoi & Pu Luong Valley Break 2 Days 1 Night"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                        <div className="hnv_cart_item_info">
-                          <div className="hnv_cart_item_info_title d-flex align-items-center justify-content-between">
-                            <h3>
-                              Hanoi &amp; Pu Luong Valley Break 2 Days 1 Night
-                            </h3>
-                            <div className="iso_hnv_cart_edit">
-                              <i className="fa-sharp fa-solid fa-pen-to-square" />
-                            </div>
-                          </div>
-                          <div className="hnv_cart_item_info_detail d-flex flex-column">
-                            <div className="hnv_cart_item_info_detail_date">
-                              <Calendar className="w-6 h-6" />
-                              <label>Saturday, 24/05/2025</label>
-                              <Dot />
-                              <span className="text">
-                                2 days <span className="text">1 night</span>
-                              </span>
-                            </div>
-                            <div className="hnv_cart_item_info_detail_customer flex gap-2">
-                              <Users className="w-6 h-6" />1 Adults
-                            </div>
-                            <div className="hnv_cart_item_info_detail_policy">
-                              <div className="row">
-                                <div className="col-12">
-                                  <div className="hnv_cart_item_info_detail_policy_left">
-                                    <ul className="hnv_cart_item_info_detail_policy_list">
-                                      <li className="hnv_cart_item_info_detail_policy_item hnv_cart_item_info_detail_policy_item_date">
-                                        <X className="w-6 h-6 rounded-2xl border-2 border-[#00818a]" />
-                                        <span>Refundable</span>
-                                      </li>
-                                    </ul>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      {selectedActivity === index && (
-                        <div className={`iso_information_booking`}>
-                          <link
-                            href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/24.7.0/build/css/intlTelInput.min.css"
-                            rel="stylesheet"
-                          />
-                          <div className="iso_information_tour_item">
-                            <div className="title">Primary traveler</div>
-                            <div className="box_radio d-flex flex-column">
-                              <label
-                                htmlFor="primary_traveler_1_tour_863"
-                                className="payment_custom_radio"
-                              >
-                                <Input
-                                  type="radio"
-                                  className="iso_radio_item_primary"
-                                  name="primary_traveler_tour_863"
-                                  id="primary_traveler_1_tour_863"
-                                  defaultChecked="true"
-                                  defaultValue="close"
-                                />
-                                The contact person is the main traveler.
-                                <span className="checkmark" />
-                              </label>
-                              <label
-                                htmlFor="primary_traveler_2_tour_863"
-                                className="payment_custom_radio"
-                              >
-                                <Input
-                                  type="radio"
-                                  className="iso_radio_item_primary"
-                                  name="primary_traveler_tour_863"
-                                  id="primary_traveler_2_tour_863"
-                                  defaultValue="show"
-                                />
-                                Other people
-                                <span className="checkmark" />
-                              </label>
-                            </div>
-                            <div className="box_primary_traveler_other iso_box_information">
-                              <div className="iso_item_body_tour iso_input_box">
-                                <div className="row">
-                                  <div className="col-12 col-lg-6">
-                                    <div className="iso_input_box_item iso_box_item_primary_traveler">
-                                      <label>
-                                        First name <span>*</span>
-                                      </label>
-                                      <Input
-                                        name="other_first_name_tour_863"
-                                        type="text"
-                                        className="form-booking_input"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="col-12 col-lg-6">
-                                    <div className="iso_input_box_item iso_box_item_primary_traveler">
-                                      <label>
-                                        Last Name <span>*</span>
-                                      </label>
-                                      <Input
-                                        name="other_last_name_tour_863"
-                                        type="text"
-                                        className="form-booking_input"
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="row">
-                                  <div className="col-12 col-lg-6">
-                                    <div className="iso_input_box_item iso_box_item_primary_traveler">
-                                      <label>
-                                        Date of birth <span>*</span>
-                                      </label>
-                                      <Input
-                                        type="text"
-                                        name="other_birthday_tour_863"
-                                        className="form-booking_input iso_book_birthday hasDatepicker"
-                                        id="dp1747968447952"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div className="col-12 col-lg-6">
-                                    <div className="iso_input_box_item iso_box_item_primary_traveler">
-                                      <label>
-                                        Gender <span>*</span>
-                                      </label>
-                                      <select
-                                        name="other_gender_tour_863"
-                                        className="form-booking_input iso_select2 select2-hidden-accessible"
-                                        data-select2-id={6}
-                                        tabIndex={-1}
-                                        aria-hidden="true"
-                                      >
-                                        <option
-                                          value
-                                          disabled
-                                          selected
-                                          data-select2-id={8}
-                                        >
-                                          ---- Gender ----
-                                        </option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="row">
-                                  <div className="col-12">
-                                    <div className="iso_input_box_item iso_box_item_primary_traveler">
-                                      <label>
-                                        Email <span>*</span>
-                                      </label>
-                                      <Input
-                                        id="email"
-                                        name="other_email_tour_863"
-                                        type="email"
-                                        className="form-booking_input"
-                                        defaultValue=""
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="row">
-                                  <div className="col-12 col-lg-6">
-                                    <div className="iso_input_box_item iso_box_item_primary_traveler">
-                                      <label>
-                                        Country <span>*</span>
-                                      </label>
-                                      <select
-                                        name="other_country_id_tour_863"
-                                        className="form-booking_input iso_select2 select2-hidden-accessible"
-                                        data-select2-id={9}
-                                        tabIndex={-1}
-                                        aria-hidden="true"
-                                      >
-                                        <option
-                                          value
-                                          disabled
-                                          selected
-                                          data-select2-id={11}
-                                        >
-                                          ---- Country ----
-                                        </option>
-                                        <option value={247}>Vietnam</option>
-                                        <option value={2}>Afghanistan</option>
-                                        <option value={3}>Albania</option>
-                                        <option value={4}>Algeria</option>
-                                        {/* Các option quốc gia khác giữ nguyên */}
-                                      </select>
-                                    </div>
-                                  </div>
-                                  <div className="col-12 col-lg-6">
-                                    <div className="iso_input_box_item iso_box_item_primary_traveler">
-                                      <label>
-                                        Phone number <span>*</span>
-                                      </label>
-                                      <div className="iti iti--allow-dropdown iti--show-flags iti--inline-dropdown">
-                                        <div
-                                          className="iti__country-container"
-                                          style={{ left: "0px" }}
-                                        >
-                                          <button
-                                            type="button"
-                                            className="iti__selected-country"
-                                            aria-expanded="false"
-                                            aria-label="Selected country"
-                                            aria-haspopup="true"
-                                            aria-controls="iti-1__dropdown-content"
-                                            role="combobox"
-                                            title="United States: +1"
-                                          >
-                                            <div className="iti__selected-country-primary">
-                                              <div className="iti__flag iti__us">
-                                                <span className="iti__a11y-text">
-                                                  United States +1
-                                                </span>
-                                              </div>
-                                              <div
-                                                className="iti__arrow"
-                                                aria-hidden="true"
-                                              />
-                                            </div>
-                                          </button>
-                                          <div
-                                            id="iti-1__dropdown-content"
-                                            className="iti__dropdown-content iti__hide"
-                                          >
-                                            <Input
-                                              type="text"
-                                              className="iti__search-input"
-                                              placeholder="Search"
-                                              role="combobox"
-                                              aria-expanded="true"
-                                              aria-label="Search"
-                                              aria-controls="iti-1__country-listbox"
-                                              aria-autocomplete="list"
-                                              autoComplete="off"
-                                            />
-                                            <span className="iti__a11y-text">
-                                              244 results found
-                                            </span>
-                                          </div>
-                                        </div>
-                                        <Input
-                                          name="other_phone_tour_863"
-                                          type="tel"
-                                          id="phone"
-                                          className="phonenumber form-booking_input iti__tel-input"
-                                          autoComplete="off"
-                                          data-intl-tel-input-id={1}
-                                          placeholder="(201) 555-0123"
-                                          style={{ paddingLeft: "47px" }}
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="iso_information_tour_item">
-                            <div className="title">Special requirements</div>
-                            <div className="box_primary_traveler_other">
-                              <div className="iso_item_body_tour iso_input_box">
-                                <div className="row">
-                                  <div className="col-12">
-                                    <div className="iso_input_box_item_area">
-                                      <textarea
-                                        name="tour_special_863"
-                                        rows={3}
-                                        placeholder="To type the request to us. E.g. dietary needs, accessibility"
-                                        defaultValue=""
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="row">
-                                <div className="iso_button d-flex flex-column">
-                                  <button
-                                    type="button"
-                                    onClick={() => {
-                                      onClickNextActivity();
-                                    }}
-                                    className="iso_cart_button"
-                                    id="btn_tour_863"
-                                  >
-                                    Next
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                    </div>
+                    <ItemActivity
+                      key={index}
+                      index={index}
+                      selectedActivity={selectedActivity}
+                      onClickNextActivity={onClickNextActivity}
+                    />
                   ))}
                 </div>
               </div>
@@ -700,7 +159,11 @@ const PaymentTour = () => {
                 </div>
               </div>
             </div>
-            <div className={`iso_item_body payment_box_card ${currentStep===3?"active":""}`}>
+            <div
+              className={`iso_item_body payment_box_card ${
+                currentStep === 3 ? "active" : ""
+              }`}
+            >
               <div className="iso_item_description">
                 <div className="txt_paymentdetail">
                   <i className="fa-sharp fa-regular fa-shield-check" />
@@ -852,18 +315,13 @@ const PaymentTour = () => {
                     I agree
                     <span className="checkmark checkbox_mark" />
                     <a
-                      className
                       title="Terms & Conditions"
                       href="/about/terms-conditions.html"
                     >
                       Terms &amp; Conditions
                     </a>{" "}
                     and
-                    <a
-                      className
-                      href="/about/payment-method.html"
-                      title="Policy"
-                    >
+                    <a href="/about/payment-method.html" title="Policy">
                       Policy
                     </a>{" "}
                     of isoCMS.
@@ -920,7 +378,7 @@ const PaymentTour = () => {
             defaultValue={310}
           />
         </form>
-        <div className="col-12 col-lg-4">
+        <div className="basis-full lg:basis-1/3">
           <div className="border_item_list_all">
             <div className="border_item_list hnv_cart_item_tour">
               <div className="img_txt_item">
@@ -1089,54 +547,6 @@ const PaymentTour = () => {
               }}
             />
           )}
-          <style>
-            {`
-                .cart_info_date_item.item_datehotel span {
-                  color: var(--chroma-717171, #717171);
-                  font-family: "Helvetica Neue";
-                  font-size: 14px;
-                  font-style: normal;
-                  font-weight: 400;
-                  line-height: 21px;
-                }
-                .info_item_room {
-                  color: var(--primary-1-d-2-d-53, #1D2D53);
-                  font-family: "Helvetica Neue";
-                  font-size: 14px;
-                  font-style: normal;
-                  font-weight: 400;
-                  line-height: 21px;
-                }
-                .enter_promocode {
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                }
-                .success_text {
-                  border: 2px solid green;
-                }
-                .error_text {
-                  border: 2px solid red;
-                }
-                .success {
-                  color: green;
-                  display: flex;
-                  align-items: center;
-                  gap: 10px;
-                }
-                .error {
-                  color: red;
-                  transition: opacity 1s;
-                }
-                .remove {
-                  cursor: pointer;
-                  color: #C81E3A;
-                }
-                .fa-check {
-                  color: green;
-                }
-              `}
-          </style>
         </div>
       </div>
     </div>
@@ -1144,3 +554,465 @@ const PaymentTour = () => {
 };
 
 export default PaymentTour;
+
+const personSchema = z.object({
+  first_name: z.string().min(1, "First name is required"),
+  last_name: z.string().min(1, "Full name is required"),
+  birthday: z.string().min(1, "Date of birth is required"),
+  gender: z.string().min(1, "Gender is required"),
+  email: z.string().min(1, "Email is required").email("Invalid email address"),
+  country_id: z.string().min(1, "Country is required"),
+  phone: z
+    .string()
+    .min(1, "Phone number is required")
+    .regex(
+      /^\+?[1-9]\d{1,14}$/,
+      "Invalid phone number format. Please enter a valid international format"
+    ),
+});
+
+const PersonForm = ({ showFrom, handleSubmit }) => {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const calendarRef = useRef(null);
+  const {
+    register,
+    handleSubmit: hookFormSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm({
+    resolver: zodResolver(personSchema),
+  });
+
+  useEffect(() => {
+    if (selectedDate) {
+      setValue("birthday", format(selectedDate, "yyyy-MM-dd"));
+      setIsCalendarOpen(false);
+    }
+  }, [selectedDate, setValue]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (calendarRef.current && !calendarRef.current.contains(event.target)) {
+        setIsCalendarOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const onSubmit = (data) => {
+    console.log("data: ", data);
+    handleSubmit(data);
+  };
+
+  return (
+    <div className="iso_item_body_item iso_input_box" data-select2-id={15}>
+      <div className={`${showFrom ? "block" : "hidden"}`}>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="w-full">
+            <div className="iso_input_box_item">
+              <label
+                htmlFor="first_name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                First name <span className="text-red-500">*</span>
+              </label>
+              <Input
+                {...register("first_name")}
+                id="first_name"
+                type="text"
+                className="mt-1 block w-full rounded-md"
+              />
+              {errors.first_name && (
+                <span className="text-red-500 text-sm">
+                  {errors.first_name.message}
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="w-full">
+            <div className="iso_input_box_item">
+              <label
+                htmlFor="last_name"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Full Name <span className="text-red-500">*</span>
+              </label>
+              <Input
+                {...register("last_name")}
+                id="last_name"
+                type="text"
+                className="mt-1 block w-full rounded-md"
+              />
+              {errors.last_name && (
+                <span className="text-red-500 text-sm">
+                  {errors.last_name.message}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2 gap-4"
+          data-select2-id={14}
+        >
+          <div className="w-full">
+            <div className="iso_input_box_item">
+              <label className="block text-sm font-medium text-gray-700">
+                Date of birth <span className="text-red-500">*</span>
+              </label>
+              <div className="relative">
+                <Input
+                  {...register("birthday")}
+                  type="text"
+                  className="mt-1 block w-full rounded-md cursor-pointer"
+                  value={selectedDate ? format(selectedDate, "yyyy-MM-dd") : ""}
+                  readOnly
+                  onClick={() => setIsCalendarOpen(!isCalendarOpen)}
+                />
+                {isCalendarOpen && (
+                  <div className="w-[360px] sm:w-[400px] md:w-[440px] px-4 py-3 absolute left-0 bg-white">
+                    <DayPicker
+                      mode="single"
+                      captionLayout="dropdown"
+                      selected={selectedDate}
+                      onSelect={(date) => {
+                        setSelectedDate(date);
+                      }}
+                      disabled={(date) => date < new Date()}
+                      modifiersClassNames={{
+                        selected: "bg-blue-600 text-white",
+                        today: "text-blue-600",
+                      }}
+                      classNames={{
+                        months: "flex justify-center",
+                        month: "space-y-4",
+                        table: "w-full border-collapse",
+                        head_row: "flex",
+                        row: "flex",
+                        head_cell: "text-xs text-gray-500 w-9",
+                        cell: "w-9 h-9 text-center text-sm p-0 relative [&:has([aria-selected])]:bg-blue-100 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                        day: "h-9 w-9 p-0 font-normal aria-selected:opacity-100 hover:bg-gray-100 rounded-full",
+                        day_selected:
+                          "bg-blue-600 text-white hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white",
+                        day_today: "bg-gray-100 text-blue-600",
+                        day_disabled: "text-gray-400 opacity-50",
+                        day_hidden: "invisible",
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+              {errors.birthday && (
+                <span className="text-red-500 text-sm">
+                  {errors.birthday.message}
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="w-full">
+            <div className="iso_input_box_item" data-select2-id={13}>
+              <label className="block text-sm font-medium text-gray-700">
+                Gender <span className="text-red-500">*</span>
+              </label>
+              <select
+                {...register("gender")}
+                className="mt-1 block w-full rounded-md iso_select2 select2-hidden-accessible"
+                data-select2-id={1}
+                tabIndex={-1}
+                aria-hidden="true"
+                defaultValue={3}
+              >
+                <option value="" disabled data-select2-id={3}>
+                  ---- Gender----
+                </option>
+                <option value="Male" data-select2-id={22}>
+                  Male
+                </option>
+                <option value="Female" data-select2-id={23}>
+                  Female
+                </option>
+              </select>
+              {errors.gender && (
+                <span className="text-red-500 text-sm">
+                  {errors.gender.message}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="mt-4">
+          <div className="w-full">
+            <div className="iso_input_box_item">
+              <label className="block text-sm font-medium text-gray-700">
+                Email <span className="text-red-500">*</span>
+              </label>
+              <Input
+                {...register("email")}
+                type="email"
+                className="mt-1 block w-full rounded-md"
+              />
+              {errors.email && (
+                <span className="text-red-500 text-sm">
+                  {errors.email.message}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="w-full">
+            <div className="iso_input_box_item">
+              <label className="block text-sm font-medium text-gray-700">
+                Country <span className="text-red-500">*</span>
+              </label>
+              <select
+                {...register("country_id")}
+                id="country_id"
+                className="mt-1 block w-full rounded-md iso_select2 select2-hidden-accessible"
+                data-select2-id="country_id"
+                tabIndex={-1}
+                aria-hidden="true"
+                defaultValue={5}
+              >
+                <option value="" disabled data-select2-id={5}>
+                  ---- Country----
+                </option>
+                <option value={247}>Vietnam</option>
+                <option value={2}>Afghanistan</option>
+                <option value={3}>Albania</option>
+                <option value={4}>Algeria</option>
+                {/* Các option quốc gia khác giữ nguyên */}
+              </select>
+              {errors.country_id && (
+                <span className="text-red-500 text-sm">
+                  {errors.country_id.message}
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="">
+            <div className="iso_input_box_item">
+              <label>
+                Phone number <span className="text-red-500">*</span>
+              </label>
+              <div className="iti iti--allow-dropdown iti--show-flags iti--inline-dropdown">
+                <div className="iti__country-container" style={{ left: "0px" }}>
+                  <button
+                    type="button"
+                    className="iti__selected-country"
+                    aria-expanded="false"
+                    aria-label="Selected country"
+                    aria-haspopup="true"
+                    aria-controls="iti-0__dropdown-content"
+                    role="combobox"
+                    title="United States: +1"
+                  >
+                    <div className="iti__selected-country-primary">
+                      <div className="iti__flag iti__us">
+                        <span className="iti__a11y-text">United States +1</span>
+                      </div>
+                      <div className="iti__arrow" aria-hidden="true" />
+                    </div>
+                  </button>
+                  <div
+                    id="iti-0__dropdown-content"
+                    className="iti__dropdown-content iti__hide"
+                  >
+                    <Input
+                      type="text"
+                      className="iti__search-input"
+                      placeholder="Search"
+                      role="combobox"
+                      aria-expanded="true"
+                      aria-label="Search"
+                      aria-controls="iti-0__country-listbox"
+                      aria-autocomplete="list"
+                      autoComplete="off"
+                    />
+                  </div>
+                </div>
+                <Input
+                  {...register("phone")}
+                  type="tel"
+                  id="phone"
+                  className="phonenumber iti__tel-input"
+                  autoComplete="off"
+                  data-intl-tel-input-id={0}
+                  style={{ paddingLeft: "47px" }}
+                  placeholder="(201) 555-0123"
+                />
+              </div>
+              {errors.phone && (
+                <span className="text-red-500 text-sm">
+                  {errors.phone.message}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="pb-5">
+        <div
+          className={`iso_button flex flex-col pb-7 ${
+            showFrom ? "block" : "hidden"
+          }`}
+        >
+          <span className="iso_txt_note">
+            Please do not skip information (*)
+          </span>
+          <button
+            type="button"
+            onClick={hookFormSubmit(onSubmit)}
+            className="iso_cart_button"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ItemActivity = ({ onClickNextActivity, selectedActivity, index }) => {
+  const [selectedRadio, setSelectedRadio] = useState(1);
+  const handleRadioChange = (value) => {
+    setSelectedRadio(value);
+  };
+  return (
+    <div className="">
+      <div className="flex gap-12">
+        <div className="w-full lg:w-1/4">
+          <div className="">
+            <div
+              className="title_package"
+              title="Hanoi & Pu Luong Valley Break 2 Days 1 Night"
+            >
+              <img
+                src="https://dulichsaigon.edu.vn/wp-content/uploads/2024/02/top-cac-loai-hinh-du-lich-pho-bien-tai-viet-nam-nhieu-ban-tre-yeu-thich.jpg"
+                width="auto"
+                height="auto"
+                alt="Hanoi & Pu Luong Valley Break 2 Days 1 Night"
+              />
+            </div>
+          </div>
+        </div>
+        <div className="hnv_cart_item_info">
+          <div className="hnv_cart_item_info_title d-flex align-items-center justify-content-between">
+            <h3>Hanoi &amp; Pu Luong Valley Break 2 Days 1 Night</h3>
+            <div className="iso_hnv_cart_edit">
+              <i className="fa-sharp fa-solid fa-pen-to-square" />
+            </div>
+          </div>
+          <div className="hnv_cart_item_info_detail d-flex flex-column space-y-1">
+            <div className="hnv_cart_item_info_detail_date">
+              <Calendar className="w-6 h-6" />
+              <label>Saturday, 24/05/2025</label>
+              <Dot />
+              <span className="text">
+                2 days <span className="text">1 night</span>
+              </span>
+            </div>
+            <div className="hnv_cart_item_info_detail_customer flex gap-2">
+              <Users className="w-6 h-6" />1 Adults
+            </div>
+            <div className="hnv_cart_item_info_detail_customer flex gap-2 ">
+              <X className="w-6 h-6 rounded-2xl text-[#00818a] border-2 border-[#00818a]" />
+              <span className="text-[#00818a]">Refundable</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {selectedActivity === index && (
+        <div className={`iso_information_booking`}>
+          <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/24.7.0/build/css/intlTelInput.min.css"
+            rel="stylesheet"
+          />
+          <div className="iso_information_tour_item">
+            <div className="title">Primary traveler</div>
+            <div className="box_radio d-flex flex-column">
+              <label
+                htmlFor="primary_traveler_1_tour_863"
+                className="payment_custom_radio"
+              >
+                <Input
+                  type="radio"
+                  className="iso_radio_item_primary"
+                  name="primary_traveler_tour_863"
+                  id="primary_traveler_1_tour_863"
+                  checked={selectedRadio === 1}
+                  onChange={() => {
+                    setSelectedRadio(1);
+                  }}
+                  defaultValue="close"
+                />
+                The contact person is the main traveler.
+                <span className="checkmark" />
+              </label>
+              <label
+                htmlFor="primary_traveler_2_tour_863"
+                className="payment_custom_radio"
+              >
+                <Input
+                  type="radio"
+                  className="iso_radio_item_primary"
+                  name="primary_traveler_tour_863"
+                  id="primary_traveler_2_tour_863"
+                  defaultValue="show"
+                  checked={selectedRadio === 2}
+                  onChange={() => handleRadioChange(2)}
+                />
+                Other people
+                <span className="checkmark" />
+              </label>
+            </div>
+            <PersonForm
+              handleSubmit={onClickNextActivity}
+              showFrom={selectedRadio === 2}
+            />
+          </div>
+          {selectedRadio === 1 && (
+            <div className="iso_information_tour_item">
+              <div className="title">Special requirements</div>
+              <div className="box_primary_traveler_other">
+                <div className="iso_item_body_tour iso_input_box">
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="iso_input_box_item_area">
+                        <textarea
+                          name="tour_special_863"
+                          rows={3}
+                          placeholder="To type the request to us. E.g. dietary needs, accessibility"
+                          defaultValue=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="iso_button d-flex flex-column">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        onClickNextActivity();
+                      }}
+                      className="iso_cart_button"
+                      id="btn_tour_863"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};

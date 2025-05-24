@@ -9,7 +9,6 @@ import { NavLink } from "react-router";
 import { FaArrowRight } from "react-icons/fa6";
 import travelOffer1 from "@images/travel-offer1.png";
 import { cn } from "@lib/utils";
-import { useTranslation } from "react-i18next";
 
 const offers = [
     {
@@ -30,13 +29,12 @@ const offers = [
 ];
 
 const TravelOffers = ({ className = "" }) => {
-    const { t } = useTranslation();
     return (
         <section className={`container px-4 md:px-6 ${className}`}>
             {/* Heading */}
             <div className="flex justify-between mb-[24px] w-full">
                 <h2 className="text-[#1A2A44] text-[28px] sm:text-[32px] md:text-[40px] font-bold">
-                    {t("Travel Offers")}
+                    Travel Offers
                 </h2>
             </div>
 
@@ -72,7 +70,7 @@ const TravelOffers = ({ className = "" }) => {
                                                     "bg-[#007BFF] text-white text-[16px] font-bold w-fit"
                                                 )}
                                             >
-                                                {t("Find out more")}
+                                                Find out more
                                                 <FaArrowRight />
                                             </NavLink>
                                         </div>
@@ -102,7 +100,7 @@ const TravelOffers = ({ className = "" }) => {
                             "bg-[#007BFF] text-white text-[18px] font-bold w-fit"
                         )}
                     >
-                        {t("Find out more")}
+                        Find out more
                         <FaArrowRight />
                     </NavLink>
                 </div>

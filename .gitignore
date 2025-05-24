@@ -3,4 +3,3 @@
 *.log
 backend/storage/**/*.pid
 backend/storage/**/*.log
-backend/storage/vietiso/logs/vietiso.log

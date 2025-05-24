@@ -12,7 +12,6 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import ROUTES from "@routes/routes";
 
 const VietNamEvent = ({ className = "", data = [] }) => {
     const { t } = useTranslation();
@@ -23,7 +22,7 @@ const VietNamEvent = ({ className = "", data = [] }) => {
             widthImage="100%"
             heightImage="245px"
             image={item.image}
-            // href="/"
+            href="/"
             startTime={new Date(item.start_date * 1000)}
             endTime={new Date(item.due_date * 1000)}
         >
@@ -46,12 +45,12 @@ const VietNamEvent = ({ className = "", data = [] }) => {
             <div className="container">
                 <div className="lg:flex items-center justify-between mb-[20px]">
                     <h2 className="mb-[10px] lg:mb-[0] lg:text-[40px] text-[34px] font-[700] text-[#1A2A44]">
-                        {t("Celebrate Vietnam's Vibrant Events & Festivals")}
+                        Celebrate Vietnam's Vibrant Events & Festivals
                     </h2>
                     <ViewMoreButton
                         className="font-[700] text-[18px]"
                         text={t("See All Events")}
-                        to={ROUTES.EVENTS}
+                        to="/events"
                     />
                 </div>
 
