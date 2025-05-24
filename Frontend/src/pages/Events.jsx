@@ -56,8 +56,8 @@ const Events = () => {
             >
                 {/* Left title */}
                 <div className="text-left">
-                    <p className="text-lg md:text-[20px] text-[26px] font-[700]">
-                        Experience <br /> it live
+                    <p className="text-lg md:text-[20px] text-[16px] font-[700]">
+                        Experience it live
                     </p>
                 </div>
 

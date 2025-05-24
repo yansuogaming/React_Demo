@@ -6,9 +6,26 @@ const TourService = {
         return res.data.tours;
     },
 
-    getListTour: async () => {
-        const res = await HttpClient.get("/tour/list-tour");
-        return res.data.data;
+    getListItineraries: async (
+        keyword = "",
+        page = 1,
+        duration = "",
+        departure_point = "",
+        travel_style = ""
+    ) => {
+        const res = await HttpClient.get("/tour/list-tour", {
+            params: {
+                keyword,
+                page,
+                duration,
+                departure_point,
+                travel_style,
+            },
+        });
+        return {
+            itineraries: res.data.data,
+            total_page: res.data.total_page,
+        };
     },
 };
 
