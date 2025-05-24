@@ -61,8 +61,6 @@ const CardEvent = ({
     widthImage = "100%",
     heightImage = "auto",
 }) => {
-
-
     return (
         <div className="group">
             <Link
@@ -77,8 +75,8 @@ const CardEvent = ({
                     loading="lazy"
                 />
             </Link>
-            <div className="bg-white p-[16px] rounded-[0_0_12px_12px]">
-                <TertiaryHeading className="text-[20px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500">
+            <div className="bg-white p-3 sm:p-[16px] rounded-[0_0_12px_12px]">
+                <TertiaryHeading className="text-base sm:text-[20px] mb-2 sm:mb-[8px] group-hover:text-[#007BFF] transition-all duration-500">
                     <Link to={href}>{title}</Link>
                 </TertiaryHeading>
                 {children}
@@ -89,36 +87,36 @@ const CardEvent = ({
 
 const Rating = () => {
     return (
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 mb-2 sm:mb-3">
             <div className="flex">
                 {[...Array(5)].map((_, index) => (
                     <svg
                         key={index}
-                        className="w-5 h-5 text-yellow-400 fill-current"
+                        className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 fill-current"
                         viewBox="0 0 24 24"
                     >
                         <path d="M12 .587l3.668 7.431 8.332 1.151-6.001 5.844 1.417 8.277L12 18.75l-7.416 3.54 1.417-8.277-6.001-5.844 8.332-1.151z" />
                     </svg>
                 ))}
             </div>
-            <span className="text-black">4.5 (1411)</span>
+            <span className="text-black text-sm sm:text-base">4.5 (1411)</span>
         </div>
     );
 };
 
 export default function OtherPlaces() {
     return (
-        <section className="container pt-[60px]">
-            <h2 className="text-[28px] font-[700] mb-[32px] text-[#1A2A44]">
-                More events like this
+        <section className="container pt-6 sm:pt-10 md:pt-[60px]">
+            <h2 className="text-xl sm:text-2xl md:text-[28px] font-[700] mb-4 sm:mb-6 md:mb-[32px] text-[#1A2A44]">
+                Other places worth visiting
             </h2>
             <div className="relative">
                 <Carousel opts={{ align: "start" }} className="w-full">
-                    <CarouselContent className="-ml-4">
+                    <CarouselContent className="-ml-2 sm:-ml-4">
                         {events.map((item, index) => (
                             <CarouselItem
                                 key={index}
-                                className="pl-4 basis-[83.33%] sm:basis-[45%] lg:basis-1/4"
+                                className="pl-2 sm:pl-4 basis-[100%] sm:basis-[50%] lg:basis-1/4"
                             >
                                 <div className="h-full flex flex-col bg-white rounded-[12px] overflow-hidden">
                                     <CardEvent
@@ -128,19 +126,19 @@ export default function OtherPlaces() {
                                         endTime={item.endTime}
                                         href={item.href}
                                         widthImage="100%"
-                                        heightImage="200px"
+                                        heightImage="160px sm:200px md:200px"
                                     >
                                         {/* ✅ Meta content */}
                                         <Rating />
-                                        <text>{item?.intro}</text>
+                                        <text className="text-sm sm:text-base text-gray-600">{item?.intro}</text>
                                     </CardEvent>
                                 </div>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
 
-                    <CarouselPrevious className="hidden lg:flex absolute -left-6 top-[35%] -translate-y-1/2 bg-white shadow rounded-full w-10 h-10 z-10" />
-                    <CarouselNext className="hidden lg:flex absolute -right-6 top-[35%] -translate-y-1/2 bg-white shadow rounded-full w-10 h-10 z-10" />
+                    <CarouselPrevious className="hidden sm:flex absolute -left-4 sm:-left-6 top-[35%] -translate-y-1/2 bg-white shadow rounded-full w-8 h-8 sm:w-10 sm:h-10 z-10" />
+                    <CarouselNext className="hidden sm:flex absolute -right-4 sm:-right-6 top-[35%] -translate-y-1/2 bg-white shadow rounded-full w-8 h-8 sm:w-10 sm:h-10 z-10" />
                 </Carousel>
             </div>
         </section>
