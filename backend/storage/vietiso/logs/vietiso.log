@@ -1999,3 +1999,43 @@ Stack trace:
 #15 /var/www/html/core/Server/Events/RequestEvent.php(17): Vietiso\Core\Route\RouteDispacher->handle()
 #16 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
 #17 {main}  
+[2025-05-23T10:07:34.617205+00:00] vietiso.ERROR: Vietiso\Core\ErrorHandler\Exception\DumperException in /var/www/html/core/functions.php:33
+Stack trace:
+#0 /var/www/html/modules/tour/src/Controllers/TourController.php(50): dd()
+#1 /var/www/html/core/Route/RouteDispacher.php(51): Vietiso\Modules\Tour\Controllers\TourController->getAllItineraries()
+#2 /var/www/html/core/Pipeline/Pipeline.php(33): Vietiso\Core\Route\RouteDispacher->Vietiso\Core\Route\{closure}()
+#3 /var/www/html/core/Middleware/TransformsRequest.php(19): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#4 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Middleware\TransformsRequest->handle()
+#5 /var/www/html/core/Middleware/TransformsRequest.php(19): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#6 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Middleware\TransformsRequest->handle()
+#7 /var/www/html/core/Http/Middleware/HandleException.php(17): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#8 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Http\Middleware\HandleException->handle()
+#9 /var/www/html/core/Middleware/HandleCors.php(15): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#10 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Middleware\HandleCors->handle()
+#11 /var/www/html/core/Middleware/TrustProxies.php(49): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#12 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Middleware\TrustProxies->handle()
+#13 /var/www/html/core/Pipeline/Pipeline.php(81): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#14 /var/www/html/core/Route/RouteDispacher.php(70): Vietiso\Core\Pipeline\Pipeline->then()
+#15 /var/www/html/core/Server/Events/RequestEvent.php(17): Vietiso\Core\Route\RouteDispacher->handle()
+#16 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#17 {main}  
+[2025-05-23T10:07:49.629968+00:00] vietiso.ERROR: Vietiso\Core\ErrorHandler\Exception\DumperException in /var/www/html/core/functions.php:33
+Stack trace:
+#0 /var/www/html/modules/tour/src/Controllers/TourController.php(50): dd()
+#1 /var/www/html/core/Route/RouteDispacher.php(51): Vietiso\Modules\Tour\Controllers\TourController->getAllItineraries()
+#2 /var/www/html/core/Pipeline/Pipeline.php(33): Vietiso\Core\Route\RouteDispacher->Vietiso\Core\Route\{closure}()
+#3 /var/www/html/core/Middleware/TransformsRequest.php(19): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#4 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Middleware\TransformsRequest->handle()
+#5 /var/www/html/core/Middleware/TransformsRequest.php(19): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#6 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Middleware\TransformsRequest->handle()
+#7 /var/www/html/core/Http/Middleware/HandleException.php(17): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#8 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Http\Middleware\HandleException->handle()
+#9 /var/www/html/core/Middleware/HandleCors.php(15): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#10 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Middleware\HandleCors->handle()
+#11 /var/www/html/core/Middleware/TrustProxies.php(49): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#12 /var/www/html/core/Pipeline/Pipeline.php(29): Vietiso\Core\Middleware\TrustProxies->handle()
+#13 /var/www/html/core/Pipeline/Pipeline.php(81): Vietiso\Core\Pipeline\Pipeline->Vietiso\Core\Pipeline\{closure}()
+#14 /var/www/html/core/Route/RouteDispacher.php(70): Vietiso\Core\Pipeline\Pipeline->then()
+#15 /var/www/html/core/Server/Events/RequestEvent.php(17): Vietiso\Core\Route\RouteDispacher->handle()
+#16 [internal function]: Vietiso\Core\Server\Events\RequestEvent->handle()
+#17 {main}  
