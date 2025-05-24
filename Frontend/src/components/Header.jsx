@@ -26,6 +26,7 @@ import { cn } from "@lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router";
 import ModalSearch from "./modal/ModalSearch";
+import ROUTES from "@routes/routes";
 const HeaderContext = createContext();
 
 const Header = ({ noBackgroundOnScroll = false }) => {
@@ -39,7 +40,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
     const [isShowNavServices, setShowNavServices] = useState(false);
     const [rotateEllipsis, setRotateEllipsis] = useState(0);
     const [boxShadow, setBoxShadow] = useState(
-        noBackgroundOnScroll ? "none" : "1px 1px 20px #d1d1d1",
+        noBackgroundOnScroll ? "none" : "1px 1px 20px #d1d1d1"
     );
     const [hoverPlanYourTrip, setHoverPlanYourTrip] = useState(false);
     const [hoverPlanYourTripContent, setHoverPlanYourTripContent] =
@@ -110,12 +111,11 @@ const Header = ({ noBackgroundOnScroll = false }) => {
 
     useEffect(() => {
         if (isVisible) {
-            document.querySelector('body').style.overflow = 'hidden';
+            document.querySelector("body").style.overflow = "hidden";
         } else {
-            document.querySelector('body').style.overflow = 'auto';
+            document.querySelector("body").style.overflow = "auto";
         }
     }, [isVisible]);
-
 
     useEffect(() => {
         setIsVisible(false);
@@ -125,24 +125,37 @@ const Header = ({ noBackgroundOnScroll = false }) => {
     return (
         <HeaderContext.Provider value={contextValue}>
             <header>
+                {/* Header Desktop */}
                 <div
                     style={{ background, position, color, boxShadow }}
                     className={cn(
                         "relative flex flex-col",
-                        "py-[15px] px-[20px] w-full z-50 top-0",
-                        "transition-all duration-500 lg:px-[40px] hidden lg:block",
+                        "py-[15px] px-[20px] w-full z-999 top-0",
+                        "transition-all duration-500 lg:px-[40px] hidden lg:block"
                     )}
                 >
                     <div className="flex items-center justify-between">
                         <div className="flex items-center w-full relative xl-md:w-fit h-full ">
                             {/* Logo */}
                             <motion.div
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.2 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 0.2 }
+                                        : false
+                                }
                                 className="mr-[50px]"
                             >
-                                <NavLink to="/">
+                                <NavLink to={ROUTES.HOME}>
                                     <img
                                         src={logo}
                                         className="w-[80px]"
@@ -156,41 +169,91 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             <ul
                                 className={cn(
                                     "hidden h-fit font-bold absolute top-1/2 left-1/2 lg:flex",
-                                    "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit",
+                                    "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit"
                                 )}
                             >
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.3 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.3 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit"
                                 >
-                                    <NavLink to="/itineraries">
+                                    <NavLink to={ROUTES.ITINERARIES}>
                                         {t("destinations")}
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.4 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.4 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit"
                                 >
-                                    <NavLink to="/experiences">{t("experiences")}</NavLink>
+                                    <NavLink to={ROUTES.EXPERIENCES}>
+                                        {t("experiences")}
+                                    </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.5 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.5 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit"
                                 >
-                                    <NavLink to="/events">
+                                    <NavLink to={ROUTES.EVENTS}>
                                         {t("events")}
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.6 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.6 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit "
                                     onMouseEnter={() =>
                                         hanleHoverPlanYourTrip(true)
@@ -199,17 +262,29 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                         hanleHoverPlanYourTrip(false)
                                     }
                                 >
-                                    <NavLink to="/">
+                                    <NavLink to={ROUTES.HOME}>
                                         {t("plan_your_trip")}
                                     </NavLink>
                                 </motion.li>
                                 <motion.li
-                                    initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                    animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                    transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.7 } : false}
+                                    initial={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 0, y: -100 }
+                                            : false
+                                    }
+                                    animate={
+                                        noBackgroundOnScroll
+                                            ? { opacity: 1, y: 0 }
+                                            : false
+                                    }
+                                    transition={
+                                        noBackgroundOnScroll
+                                            ? { duration: 0.7, delay: 0.7 }
+                                            : false
+                                    }
                                     className="p-[15px] h-fit"
                                 >
-                                    <NavLink to="/">
+                                    <NavLink to={ROUTES.HOME}>
                                         {t("travel_offers")}
                                     </NavLink>
                                 </motion.li>
@@ -218,9 +293,21 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <ul className="items-center font-bold hidden xl-md:flex ">
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.8 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 0.8 }
+                                        : false
+                                }
                             >
                                 <SearchHeader
                                     color={color}
@@ -230,27 +317,63 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 0.9 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 0.9 }
+                                        : false
+                                }
                             >
                                 <ChangeLangButton color={color} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 1 }
+                                        : false
+                                }
                             >
                                 <MapIcon color={colorIcon} />
                             </motion.li>
                             <motion.li
                                 className="p-[15px]"
-                                initial={noBackgroundOnScroll ? { opacity: 0, y: -100 } : false}
-                                animate={noBackgroundOnScroll ? { opacity: 1, y: 0 } : false}
-                                transition={noBackgroundOnScroll ? { duration: 0.7, delay: 1.1 } : false}
+                                initial={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 0, y: -100 }
+                                        : false
+                                }
+                                animate={
+                                    noBackgroundOnScroll
+                                        ? { opacity: 1, y: 0 }
+                                        : false
+                                }
+                                transition={
+                                    noBackgroundOnScroll
+                                        ? { duration: 0.7, delay: 1.1 }
+                                        : false
+                                }
                             >
-                                <NavLink to="/signin">
+                                <NavLink to={ROUTES.SIGNIN}>
                                     <UserIcon color={colorIcon} />
                                 </NavLink>
                             </motion.li>
@@ -258,7 +381,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         <button
                             className={cn(
                                 "block xl-md:hidden -my-[15px] pl-[30px]",
-                                "border-l-1 border-[#ffffff1a] cursor-pointer z-1",
+                                "border-l-1 border-[#ffffff1a] cursor-pointer z-1"
                             )}
                             onClick={showNavServices}
                         >
@@ -280,7 +403,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     className={cn(
                                         "absolute flex top-full w-full justify-between",
                                         "left-0 px-[55px] bg-[#062f1f] h-[90px] items-center",
-                                        "transition-all duration-500 xl-md:hidden",
+                                        "transition-all duration-500 xl-md:hidden"
                                     )}
                                 >
                                     <SearchHeader
@@ -307,13 +430,15 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     />
                 </div>
 
-                {/* Mobile header */}
-                <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-1">
-                    <div className={cn(
-                        'absolute w-full h-[100px] top-0 left-0 z-[-1] bg-none',
-                        'lg:bg-gradient-to-b from-[rgba(4,18,58,0.40)]',
-                        'via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]'
-                    )}></div>
+                {/* Header Mobile */}
+                <div className="lg:hidden flex items-center justify-between px-[14px] py-[12px] relative z-999">
+                    <div
+                        className={cn(
+                            "absolute w-full h-[100px] top-0 left-0 z-[-1] bg-none",
+                            "lg:bg-gradient-to-b from-[rgba(4,18,58,0.40)]",
+                            "via-[rgba(4,18,58,0.25)] to-[rgba(4,18,58,0.00)]"
+                        )}
+                    ></div>
                     {/* Logo */}
                     <motion.div
                         initial={{ opacity: 0, y: -100 }}
@@ -321,7 +446,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                         transition={{ duration: 0.7, delay: 0.2 }}
                         className=""
                     >
-                        <NavLink to="/">
+                        <NavLink to={ROUTES.HOME}>
                             <img
                                 src={logo}
                                 className="w-[80px]"
@@ -334,13 +459,13 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                     {/* Hamburger */}
                     <button
                         className={cn(
-                            'text-[30px] flex',
-                            'items-center gap-[10px]',
-                            noBackgroundOnScroll ? 'text-white' : 'text-black'
+                            "text-[30px] flex",
+                            "items-center gap-[10px]",
+                            noBackgroundOnScroll ? "text-white" : "text-black"
                         )}
                         onClick={() => setIsVisible(!isVisible)}
                     >
-                        <span className="text-[18px]">Menu</span>
+                        <span className="text-[18px]">{t("Menu")}</span>
                         <LuTextSearch />
                     </button>
                     {/* Mobile menu */}
@@ -361,7 +486,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                         <div className="flex items-center gap-[12px]">
                                             <FiSearch className="text-[24px]" />
                                             <span className="text-[20px]">
-                                                Search
+                                                {t("Search")}
                                             </span>
                                         </div>
                                         <button
@@ -374,67 +499,71 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                         </button>
                                     </div>
                                     <NavLink
-                                        to="/"
+                                        to={ROUTES.HOME}
                                         className="text-[30px] font-bold"
                                     >
-                                        Home
+                                        {t("Home")}
                                     </NavLink>
                                 </div>
                                 <ul>
                                     <li>
                                         <NavLink
-                                            to="/itineraries"
+                                            to={ROUTES.ITINERARIES}
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#03A9F4]"
                                         >
-                                            Destinations <RiArrowRightSLine />
+                                            {t("Destinations")}
+                                            <RiArrowRightSLine />
                                         </NavLink>
                                     </li>
                                     <li>
                                         <NavLink
-                                            to="/experiences"
+                                            to={ROUTES.EXPERIENCES}
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0288D1]"
                                         >
-                                            Experiences <RiArrowRightSLine />
+                                            {t("Experiences")}
+                                            <RiArrowRightSLine />
                                         </NavLink>
                                     </li>
                                     <li>
                                         <NavLink
-                                            to="/events"
+                                            to={ROUTES.EVENTS}
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#0277BD]"
                                         >
-                                            Events <RiArrowRightSLine />
+                                            {t("Events")} <RiArrowRightSLine />
                                         </NavLink>
                                     </li>
                                     <li>
                                         <NavLink
-                                            to="/"
+                                            to={ROUTES.HOME}
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#01579B]"
                                         >
-                                            Travel Offers <RiArrowRightSLine />
+                                            {t("Travel Offers")}
+                                            <RiArrowRightSLine />
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink
-                                            to="/"
+                                        <div
                                             className="text-[30px] font-bold flex items-center justify-between p-[12px] px-[16px] bg-[#003F73]"
                                             onClick={() => {
                                                 setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu,
+                                                    !isVisibleSubMenu
                                                 );
                                             }}
                                         >
-                                            Plan Your Trip <RiArrowRightSLine />
-                                        </NavLink>
+                                            {t("Plan Your Trip")}
+                                            <RiArrowRightSLine />
+                                        </div>
                                     </li>
                                 </ul>
                                 <div className="flex flex-col justify-between flex-1 pt-[50px] px-[16px] pb-[16px] gap-[82px]">
                                     <ul className="flex flex-col gap-[5px]">
                                         <li>
                                             <NavLink
-                                                to="/"
+                                                to={ROUTES.HOME}
                                                 className="text-[16px] font-bold flex items-center gap-[10px]"
                                             >
-                                                <RiQuestionLine /> Contact
+                                                <RiQuestionLine />
+                                                {t("Contact")}
                                             </NavLink>
                                         </li>
                                         <li>
@@ -442,12 +571,12 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                 className="text-[16px] font-bold flex items-center justify-between"
                                                 onClick={() =>
                                                     setIsVisibleLang(
-                                                        !isVisibleLang,
+                                                        !isVisibleLang
                                                     )
                                                 }
                                             >
                                                 <div className="flex items-center gap-[10px]">
-                                                    <TbWorld /> Language
+                                                    <TbWorld /> {t("Language")}
                                                 </div>
                                                 <MdArrowDropDown
                                                     className={`text-[20px] transition-transform duration-300 ${
@@ -480,29 +609,41 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         <ul className="pl-[30px] mt-[10px]">
                                                             <li>
                                                                 <NavLink
-                                                                    to="/"
+                                                                    to={
+                                                                        ROUTES.HOME
+                                                                    }
                                                                     className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
                                                                 >
                                                                     <span className="fi fi-vn"></span>
-                                                                    Vietnam
+                                                                    {t(
+                                                                        "Vietnam"
+                                                                    )}
                                                                 </NavLink>
                                                             </li>
                                                             <li>
                                                                 <NavLink
-                                                                    to="/"
+                                                                    to={
+                                                                        ROUTES.HOME
+                                                                    }
                                                                     className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
                                                                 >
                                                                     <span className="fi fi-gb"></span>
-                                                                    English
+                                                                    {t(
+                                                                        "English"
+                                                                    )}
                                                                 </NavLink>
                                                             </li>
                                                             <li>
                                                                 <NavLink
-                                                                    to="/"
+                                                                    to={
+                                                                        ROUTES.HOME
+                                                                    }
                                                                     className="text-[16px] font-bold flex items-center gap-[10px] pb-[5px]"
                                                                 >
                                                                     <span className="fi fi-cn"></span>
-                                                                    Chinese
+                                                                    {t(
+                                                                        "Chinese"
+                                                                    )}
                                                                 </NavLink>
                                                             </li>
                                                         </ul>
@@ -514,18 +655,19 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     <div className="flex items-center gap-[8px] justify-between">
                                         <div className="flex-1 bg-[#ffffff1c] pt-[20px] pb-[14px] px-[28px] rounded-[8px]">
                                             <NavLink
-                                                to="/"
+                                                to={ROUTES.HOME}
                                                 className="text-[16px] font-bold flex flex-col items-center gap-[5px]"
                                             >
-                                                <MapIcon /> Map
+                                                <MapIcon /> {t("Map")}
                                             </NavLink>
                                         </div>
                                         <div className="flex-1 bg-[#ffffff1c] pt-[20px] pb-[14px] px-[28px] rounded-[8px]">
                                             <NavLink
-                                                to="/"
+                                                to={ROUTES.HOME}
                                                 className="text-[16px] font-bold flex flex-col items-center gap-[5px]"
                                             >
-                                                <UserIcon /> Login/Register
+                                                <UserIcon />
+                                                {t("Login/Register")}
                                             </NavLink>
                                         </div>
                                     </div>
@@ -555,19 +697,19 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                 }}
                                 className="w-full h-screen absolute top-0 left-0 bg-[#003F73] text-[#fff] overflow-y-scroll z-2"
                             >
-                                <div className="bg-[#003F73] fixed top-0 left-0 w-full h-screen">
+                                <div className="bg-[#003F73] fixed top-0 left-0 w-full h-screen overflow-y-scroll">
                                     <div className="flex items-center justify-between px-[16px] py-[16px] border-b border-gray-300/53">
                                         <div
                                             className="flex items-center gap-[12px]"
                                             onClick={() =>
                                                 setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu,
+                                                    !isVisibleSubMenu
                                                 )
                                             }
                                         >
                                             <RiArrowLeftSLine className="text-[24px]" />
                                             <span className="text-[20px]">
-                                                Main menu
+                                                {t("Main menu")}
                                             </span>
                                         </div>
                                         <button
@@ -575,7 +717,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                             onClick={() => {
                                                 setIsVisible(!isVisible);
                                                 setIsVisibleSubMenu(
-                                                    !isVisibleSubMenu,
+                                                    !isVisibleSubMenu
                                                 );
                                             }}
                                         >
@@ -584,23 +726,25 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                     </div>
                                     <div className="pt-[50px] pb-[64px]">
                                         <h2 className="px-[16px] text-[36px] font-bold mb-[16px]">
-                                            Plan Your Trip
+                                            {t("Plan Your Trip")}
                                         </h2>
                                         <ul>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                                                 <NavLink
                                                     onClick={(e) => {
                                                         e.preventDefault();
-                                                        navigate("/visa-guide");
+                                                        navigate(
+                                                            ROUTES.VISA_GUIDE
+                                                        );
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
-                                                    Visa Guide
+                                                    {t("Visa Guide")}
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -608,13 +752,17 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/visainformation",
+                                                            ROUTES.VISA_INFORMATION
                                                         );
-                                                        setIsVisible(!isVisible);
-                                                        setIsVisibleSubMenu(!isVisibleSubMenu);
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
                                                     }}
                                                 >
-                                                    Essentials
+                                                    {t("Essentials")}
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -622,51 +770,35 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/getting-to-and-around",
+                                                            ROUTES.GETTING_TO_AND_AROUND
                                                         );
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
-                                                    Getting to & around Vietnam
+                                                    {t(
+                                                        "Getting to & around Vietnam"
+                                                    )}
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
                                                 <NavLink
                                                     onClick={(e) => {
                                                         e.preventDefault();
-                                                        navigate("/safety");
+                                                        navigate(ROUTES.SAFETY);
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
-                                                    Safety
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/accessibility",
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible,
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
-                                                        );
-                                                    }}
-                                                >
-                                                    Accessibility
+                                                    {t("Safety")}
                                                 </NavLink>
                                             </li>
                                             <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
@@ -674,17 +806,37 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/vietnam-pass",
+                                                            ROUTES.ACCESSIBILITY
                                                         );
                                                         setIsVisible(
-                                                            !isVisible,
+                                                            !isVisible
                                                         );
                                                         setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
+                                                            !isVisibleSubMenu
                                                         );
                                                     }}
                                                 >
-                                                    Vietnam attractions passes
+                                                    {t("Accessibility")}
+                                                </NavLink>
+                                            </li>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate(
+                                                            ROUTES.VIETNAM_PASS
+                                                        );
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    {t(
+                                                        "Vietnam attractions passes"
+                                                    )}
                                                 </NavLink>
                                             </li>
 
@@ -693,78 +845,7 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                     onClick={(e) => {
                                                         e.preventDefault();
                                                         navigate(
-                                                            "/visainformation",
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible,
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
-                                                        );
-                                                    }}
-                                                >
-                                                    Visa Information
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate("/placetogo");
-                                                        setIsVisible(
-                                                            !isVisible,
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
-                                                        );
-                                                    }}
-                                                >
-                                                    Place To Go
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <button></button>
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/weathertrip",
-                                                        );
-                                                        setIsVisible(
-                                                            !isVisible,
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu,
-                                                        );
-                                                    }}
-                                                >
-                                                    Weather Trip
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <button></button>
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate("/currency");
-                                                        setIsVisible(
-                                                            !isVisible
-                                                        );
-                                                        setIsVisibleSubMenu(
-                                                            !isVisibleSubMenu
-                                                        );
-                                                    }}
-                                                >
-                                                    Currency
-                                                </NavLink>
-                                            </li>
-                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
-                                                <button></button>
-                                                <NavLink
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        navigate(
-                                                            "/downloadapp"
+                                                            ROUTES.VISA_INFORMATION
                                                         );
                                                         setIsVisible(
                                                             !isVisible
@@ -774,7 +855,82 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                                                         );
                                                     }}
                                                 >
-                                                    Download Apps
+                                                    {t("Visa Information")}
+                                                </NavLink>
+                                            </li>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate(
+                                                            ROUTES.PLACE_TO_GO
+                                                        );
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    {t("Place To Go")}
+                                                </NavLink>
+                                            </li>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <button></button>
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate(
+                                                            ROUTES.WEATHER_TRIP
+                                                        );
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    {t("Weather Trip")}
+                                                </NavLink>
+                                            </li>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <button></button>
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate(
+                                                            ROUTES.CURRENCY_GUIDE
+                                                        );
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    {t("Currency")}
+                                                </NavLink>
+                                            </li>
+                                            <li className="text-[18px] px-[16px] py-[11px] border-b border-[#d1dbe43b]">
+                                                <button></button>
+                                                <NavLink
+                                                    onClick={(e) => {
+                                                        e.preventDefault();
+                                                        navigate(
+                                                            ROUTES.DOWNLOAD_APP
+                                                        );
+                                                        setIsVisible(
+                                                            !isVisible
+                                                        );
+                                                        setIsVisibleSubMenu(
+                                                            !isVisibleSubMenu
+                                                        );
+                                                    }}
+                                                >
+                                                    {t("Download Apps")}
                                                 </NavLink>
                                             </li>
                                         </ul>
@@ -840,7 +996,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/visa-guide"
+                        to={ROUTES.VISA_GUIDE}
                     />
 
                     {/* Essentials */}
@@ -850,7 +1006,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/essentials"
+                        to={ROUTES.ESSENTIALS}
                     />
 
                     {/* Flights */}
@@ -860,7 +1016,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/"
+                        to={ROUTES.HOME}
                     />
 
                     {/* Accommodation */}
@@ -870,7 +1026,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/"
+                        to={ROUTES.HOME}
                     />
 
                     {/* Getting around Vietnam */}
@@ -880,7 +1036,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/getting-to-and-around"
+                        to={ROUTES.GETTING_TO_AND_AROUND}
                     />
 
                     {/* Safety */}
@@ -890,7 +1046,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/safety"
+                        to={ROUTES.SAFETY}
                     />
 
                     {/* Weather */}
@@ -900,7 +1056,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/weathertrip"
+                        to={ROUTES.WEATHER_TRIP}
                     />
 
                     {/* Currency */}
@@ -910,7 +1066,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/currency"
+                        to={ROUTES.CURRENCY_GUIDE}
                     />
 
                     {/* Accessibility */}
@@ -920,7 +1076,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/accessibility"
+                        to={ROUTES.ACCESSIBILITY}
                     />
 
                     {/* Vietnam attractions passes */}
@@ -930,7 +1086,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/vietnam-pass"
+                        to={ROUTES.VIETNAM_PASS}
                     />
 
                     {/* Visa Information */}
@@ -940,7 +1096,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/visainformation"
+                        to={ROUTES.VISA_INFORMATION}
                     />
 
                     {/* Place to go */}
@@ -950,7 +1106,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/placetogo"
+                        to={ROUTES.PLACE_TO_GO}
                     />
 
                     {/* Download apps */}
@@ -960,7 +1116,7 @@ const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
                         icon={
                             <ChevronRight color="black" className="h-5 w-5" />
                         }
-                        to="/downloadapp"
+                        to={ROUTES.DOWNLOAD_APP}
                     />
                 </div>
             </div>

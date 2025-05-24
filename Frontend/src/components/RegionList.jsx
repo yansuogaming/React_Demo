@@ -16,6 +16,7 @@ import SpratlyIslands from "./SpratlyIslands";
 import { cn } from "@lib/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import ROUTES from "@routes/routes";
 
 const RegionList = ({ className, data, ...props }) => {
     const { t } = useTranslation();
@@ -28,7 +29,7 @@ const RegionList = ({ className, data, ...props }) => {
             description:
                 "Northern Vietnam is a region rich in history, culture, and breathtaking landscapes. It is home to the capital city, Hanoi, where ancient traditions blend seamlessly with modern life. The area boasts stunning natural wonders such as Ha Long Bay, with its emerald waters and limestone islands, and the terraced rice fields of Sapa, offering picturesque views. Northern Vietnam is also known for its diverse ethnic communities, each contributing unique customs and traditions. With its vibrant street food scene, historical sites, and scenic beauty, Northern Vietnam is a must-visit destination for travelers seeking an authentic experience",
             className: "",
-            destinations: data[0].cities
+            destinations: data[0].cities,
         },
         {
             id: 1,
@@ -37,7 +38,7 @@ const RegionList = ({ className, data, ...props }) => {
             description:
                 "Central Vietnam is a region of stunning landscapes, rich history, and vibrant culture. It is home to ancient cities like Hue, the former imperial capital, and Hoi An, a UNESCO World Heritage site known for its charming old town and lantern-lit streets. The region boasts breathtaking coastal scenery, including the pristine beaches of Da Nang and Nha Trang. Central Vietnam also features the majestic caves of Phong Nha-Ke Bang and the lush highlands of Da Lat. With its diverse cuisine, historical landmarks, and natural beauty, Central Vietnam offers a unique and unforgettable experience for travelers.",
             className: "translate-x-[69px] translate-y-[-32px]",
-            destinations: data[1].cities
+            destinations: data[1].cities,
         },
         {
             id: 2,
@@ -46,7 +47,7 @@ const RegionList = ({ className, data, ...props }) => {
             description:
                 "Southern Vietnam is a dynamic region known for its bustling cities, lush landscapes, and rich cultural heritage. Ho Chi Minh City, the largest metropolis, offers a mix of modern skyscrapers and historic landmarks, reflecting the country's rapid development. The Mekong Delta is a vast network of rivers, floating markets, and fertile farmland, providing a glimpse into traditional Vietnamese life. The region also boasts stunning coastal destinations like Phu Quoc and Con Dao, known for their pristine beaches and marine biodiversity. With its vibrant street food, warm hospitality, and diverse scenery, Southern Vietnam is a captivating destination for travelers.",
             className: "translate-x-[93px] translate-y-[-44px]",
-            destinations: data[2].cities
+            destinations: data[2].cities,
         },
         {
             id: 3,
@@ -142,7 +143,7 @@ const RegionList = ({ className, data, ...props }) => {
 
                     {/* Menu Region tablet - mobile */}
                     <div className="flex items-center justify-center mt-[42px]">
-                        <ul className="inline-flex xl:hidden flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[40px] xl:px-[70px] py-[16px] pb-[20px]">
+                        <ul className="inline-flex xl:hidden flex-wrap items-center justify-center gap-[46px] rounded-[80px] bg-white shadow-[0px_4px_12px_0px_rgba(54,133,143,0.15)] px-[40px] xl:px-[70px] py-[16px] pb-[20px] mb-[32px]">
                             {regions.map((region, index) => {
                                 if (index < 3) {
                                     return (
@@ -210,11 +211,15 @@ const RegionList = ({ className, data, ...props }) => {
                                                 setActiveRegion(activeRegion)
                                             } // Không cần thiết nếu không thay đổi index
                                         >
-                                            <NavLink to={`/city/${destination.slug}`}>
+                                            {/* to={`/city/${destination.slug}`} */}
+                                            {/* to={ROUTES.CITY_NAV(destination.slug)} */}
+                                            <NavLink
+                                                to={`/city/${destination.slug}`}
+                                            >
                                                 <img
                                                     src={destination.image}
                                                     alt={destination.title}
-                                                    className="w-full rounded-[60px_4px_4px_4px] h-[475px]"
+                                                    className="w-full rounded-[60px_4px_4px_4px] h-[475px] object-cover"
                                                     loading="lazy"
                                                 />
                                                 <div
@@ -233,17 +238,21 @@ const RegionList = ({ className, data, ...props }) => {
                                                             "transition-all duration-500"
                                                         )}
                                                     >
-                                                        <div 
+                                                        <div
                                                             className="text-white mt-2 text-[16px] leading-[1.4] truncate_3"
-                                                            dangerouslySetInnerHTML={{ __html: destination.description }}>
-                                                        </div>
+                                                            dangerouslySetInnerHTML={{
+                                                                __html: destination.description,
+                                                            }}
+                                                        ></div>
                                                         <div
                                                             className={cn(
                                                                 "flex mt-[10px] mb-[20px] text-[17px] font-bold",
                                                                 "text-white gap-[8px] items-center justify-end"
                                                             )}
                                                         >
-                                                            <span>Discover</span>
+                                                            <span>
+                                                                Discover
+                                                            </span>
                                                             <FaArrowRight />
                                                         </div>
                                                     </div>

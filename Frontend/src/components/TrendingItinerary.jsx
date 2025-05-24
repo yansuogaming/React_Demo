@@ -4,6 +4,7 @@ import CardService from "./card/CardService";
 import Reveal from "./animation/Reveal";
 import { CiClock2 } from "react-icons/ci";
 import { FaStar } from "react-icons/fa";
+import ROUTES from "@routes/routes";
 
 const TrendingItinerary = ({ className = "", data = [] }) => {
     const { t } = useTranslation();
@@ -13,11 +14,12 @@ const TrendingItinerary = ({ className = "", data = [] }) => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between lg:mb-[40px] mb-[64px] gap-[12px] lg:gap-[0px]">
                 <h2 className="text-[34px] sm:text-[28px] lg:text-[40px] font-[700] text-[#1A2A44]">
-                    Trending Itineraries
+                    {t("Trending Itineraries")}
                 </h2>
                 <ViewMoreButton
                     className="font-[700] text-[18px]"
                     text={t("Create Trip Plan")}
+                    to={ROUTES.ITINERARIES}
                 />
             </div>
 
@@ -40,15 +42,17 @@ const TrendingItinerary = ({ className = "", data = [] }) => {
                                     (1411)
                                 </p>
                                 <p className="flex gap-[5px] items-center mb-[15px] text-[#494951]">
-                                    <CiClock2 /> {tour.number_day} days {tour.number_night}
+                                    <CiClock2 /> {tour.number_day} {t("days")}
+                                    {tour.number_night}
                                 </p>
                             </div>
 
                             <div
                                 className="text-[16px] font-normal hidden lg:block truncate_3"
-                                dangerouslySetInnerHTML={{ __html: tour.overview }}
-                            >
-                            </div>
+                                dangerouslySetInnerHTML={{
+                                    __html: tour.overview,
+                                }}
+                            ></div>
                         </CardService>
                     ))}
                 </div>

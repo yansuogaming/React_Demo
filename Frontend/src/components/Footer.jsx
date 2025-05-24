@@ -139,20 +139,20 @@ const Footer = () => {
                             <DialogContent className="w-full rounded-xl p-6">
                                 <DialogHeader>
                                     <DialogTitle className="text-[20px] font-[500] text-[#1A2A44] leading-[150%]">
-                                        Subscribe to the Vietnam Tourism
-                                        newsletter now!
+                                        {t(
+                                            "Subscribe to the Vietnam Tourism newsletter now!"
+                                        )}
                                     </DialogTitle>
                                     <DialogDescription className="text-[#1A2A44] mt-2 text-[16px] font-[400] leading-[150%]">
-                                        By entering your email address, you
-                                        confirm that you have read and accept
-                                        the{" "}
+                                        {t(
+                                            "By entering your email address, you confirm that you have read and accept the"
+                                        )}
                                         <NavLink
                                             to="#"
-                                            className="underline hover:text-blue-600"
+                                            className=" hover:text-blue-600"
                                         >
-                                            Data Protection Policy
+                                            {t("Data Protection Policy")}
                                         </NavLink>
-                                        .
                                     </DialogDescription>
                                 </DialogHeader>
 
@@ -163,28 +163,29 @@ const Footer = () => {
                                 />
 
                                 <Button className="mt-[18px] w-full bg-[#007BFF] text-white rounded-full hover:bg-[#2f46c6] p-[11px_27px] cursor-pointer">
-                                    Submit
+                                    {t("Submit")}
                                 </Button>
 
                                 <p className="text-[12px] text-gray-500 mt-4 leading-snug">
-                                    This site is protected by reCAPTCHA and the
-                                    Google{" "}
+                                    {t(
+                                        "This site is protected by reCAPTCHA and the Google"
+                                    )}
                                     <NavLink
                                         to="https://policies.google.com/privacy"
                                         target="_blank"
-                                        className="underline"
+                                        className=""
                                     >
-                                        Privacy Policy
-                                    </NavLink>{" "}
-                                    and{" "}
+                                        {t("Privacy Policy")}
+                                    </NavLink>
+                                    {t("and")}
                                     <NavLink
                                         to="https://policies.google.com/terms"
                                         target="_blank"
-                                        className="underline"
+                                        className=""
                                     >
-                                        Terms of Service
-                                    </NavLink>{" "}
-                                    apply.
+                                        {t("Terms of Service")}
+                                    </NavLink>
+                                    {t("apply.")}
                                 </p>
                             </DialogContent>
                         </Dialog>
@@ -216,7 +217,7 @@ const Footer = () => {
 
                     <div className="hidden md:block lg:hidden w-1/2">
                         <p className="font-[700] text-[16px] text-[#1A2A44]">
-                            Follow us
+                            {t("Follow us")}
                         </p>
                         <div className="flex gap-[40px] mt-[32px]">
                             <a href="">
@@ -278,12 +279,14 @@ const Footer = () => {
                         </NavLink>
                         <div>
                             <p className="font-bold text-[18px] mb-[5px]">
-                                Lorem Ipsum is simply dummy text of the printing
-                                and typesetting industry.
+                                {t(
+                                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                                )}
                             </p>
                             <p className="font-normal text-[18px]">
-                                There are many variations of passages of Lorem
-                                Ipsum available
+                                {t(
+                                    "There are many variations of passages of Lorem Ipsum available"
+                                )}
                             </p>
                         </div>
                     </div>
@@ -309,7 +312,7 @@ const Footer = () => {
             <div className="bg-[#484C52] pt-[32px] pb-[25px]">
                 <div className="container flex flex-col lg:flex-row justify-between items-center gap-y-4 text-white text-center md:text-left">
                     <p className="hidden lg:block">
-                        © 2025 Lorem ipsum | All rights reserved
+                        © 2025 {t("Lorem ipsum | All rights reserved")}
                     </p>
 
                     <div className="grid md:hidden grid-cols-1 gap-y-2 text-white text-center md:text-left">
@@ -321,7 +324,7 @@ const Footer = () => {
                         <div className="flex justify-center lg:justify-start gap-x-2">
                             <NavLink to="/">{t("cookie_policy")}</NavLink>
                             <span className="px-2">|</span>
-                            <NavLink to="/">Sitemap</NavLink>
+                            <NavLink to="/">{t("Sitemap")}</NavLink>
                         </div>
                     </div>
 
@@ -336,12 +339,12 @@ const Footer = () => {
                             <NavLink to="/">{t("cookie_policy")}</NavLink>
                         </li>
                         <li>
-                            <NavLink to="/">Sitemap</NavLink>
+                            <NavLink to="/">{t("Sitemap")}</NavLink>
                         </li>
                     </ul>
 
                     <p className="block lg:hidden">
-                        © 2025 Lorem ipsum | All rights reserved
+                        © 2025 {t("Lorem ipsum | All rights reserved")}
                     </p>
                 </div>
             </div>
