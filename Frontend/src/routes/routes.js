@@ -1,6 +1,7 @@
 const ROUTES = {
     HOME: "/",
     CITY: "city/:slug",
+    CITY_NAV: (slug = ":slug") => `/city/${slug}`,
     TRIP_DETAIL: "tripdetail",
     ABOUT: "about",
     EXPERIENCES: "experiences",
