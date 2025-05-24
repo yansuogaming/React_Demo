@@ -107,7 +107,7 @@ const Review = () => {
     };
 
     return (
-        <div className="mt-[60px] px-4 sm:px-6 lg:px-8">
+        <div className="mt-[60px]">
             <div className="text-[24px] sm:text-[28px] text-[#10154C] font-bold font-[SVN_Gotham]">Reviews</div>
             <div className="flex flex-col md:flex-row items-start md:items-center">
                 <div className="flex-col mb-4 md:mb-0">
