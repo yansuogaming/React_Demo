@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import Breadcrumb from "@components/Breadcrumb";
@@ -18,10 +17,8 @@ import MonthlyActivities from "@components/weathertrip/MonthlyActivities";
 import FAQ from "@components/FAQ";
 import StartPlanningSection from "@components/StartPlanningSection";
 import WeatherSubscribe from "@components/WeatherSubscribe";
-import { useLoaderData } from "react-router";
 
 const WeatherTrip = () => {
-    const { weather } = useLoaderData();
     const { t } = useTranslation();
     const [locationName, setLocationName] = useState("...");
 
