@@ -17,13 +17,13 @@ const winterItems = [
     {
         icon: "🐪",
         title: "Desert adventures",
-        description: "Discover Dubai's stunning natural environment",
+        description: "Discover stunning natural environment",
         cta: "Explore the desert",
     },
     {
         icon: "🏊",
         title: "Take a dip",
-        description: "Relax and enjoy at Dubai's best pools",
+        description: "Relax and enjoy at best pools",
         cta: "Explore pools",
     },
     {
@@ -102,7 +102,7 @@ const WinterTrip = () => {
                     <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
                         From October until April, beautiful weather and a packed
                         calendar of events combine to create a truly special
-                        season in Dubai...
+                        season in {city}...
                     </p>
                 </div>
 

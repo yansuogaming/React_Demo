@@ -8,7 +8,7 @@ const CardService = ({
     image,
     children,
     href = "/",
-    padding = 0,
+    padding,
 }) => {
     return (
         <div className="group mb-[32px]">
@@ -25,7 +25,7 @@ const CardService = ({
                 />
             </NavLink>
             <div
-                className="bg-white rounded-[0_0_12px_12px]"
+                className="bg-white rounded-[0_0_12px_12px] p-[16px]"
                 style={{ padding }}
             >
                 <TertiaryHeading className="text-[24px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500">

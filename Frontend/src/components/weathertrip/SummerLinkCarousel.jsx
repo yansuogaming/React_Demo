@@ -11,17 +11,17 @@ import { fetchCurrentWeatherByCoords } from "@components/weathertrip/weatherApi"
 const links = [
     {
         image: imageDemo,
-        title: "Make the most of summer in Dubai",
+        title: "Make the most of summer in Vietnam",
         desc: "How to enjoy a truly epic season in the city",
     },
     {
         image: imageDemo,
-        title: "Dubai's top 10 summer attractions for children",
+        title: "Vietnam's top 10 summer attractions for children",
         desc: "The best spots for your kids to burn energy and learn new skills",
     },
     {
         image: imageDemo,
-        title: "Cooler than cool ways to beat the heat in Dubai",
+        title: "Cooler than cool ways to beat the heat in Vietnam",
         desc: "Our pick of the top activities for summer fun in the city",
     },
     {

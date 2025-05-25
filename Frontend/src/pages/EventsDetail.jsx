@@ -38,7 +38,7 @@ const EventsDetail = () => {
                 <section>
                     <div className="relative w-full">
                         {/* Heart icon at top-right */}
-                        <div className="absolute top-3 right-3 z-10">
+                        <div className="absolute top-3 right-3 z-0">
                             <div
                                 className="w-10 h-10 bg-white flex items-center justify-center"
                                 style={{

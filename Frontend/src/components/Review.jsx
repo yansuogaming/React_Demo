@@ -47,10 +47,10 @@ const SelectTab = () => {
 const Review = () => {
 
     return (
-        <div className=" mt-[60px]">
-            <div className="text-[28px] text-[#10154C] font-bold font-[SVN_Gotham]">Reviews</div>
-            <div className="flex flex-col md:flex-row items-center">
-                <div className="flex-col">
+        <div className="mt-[60px]">
+            <div className="text-[24px] sm:text-[28px] text-[#10154C] font-bold font-[SVN_Gotham]">Reviews</div>
+            <div className="flex flex-col md:flex-row items-start md:items-center">
+                <div className="flex-col mb-4 md:mb-0">
                     <div className="flex-row">
                         <div className="text-[38px] font-bold text-[#10154C] ">
                             4.9

@@ -41,12 +41,13 @@ const WhyVisit = () => {
                                         href="/"
                                         padding="8px sm:12px md:16px"
                                     >
-                                        <TextNormal className="text-xs sm:text-sm md:text-[16px]">
-                                            Từ những dãy núi hùng vĩ ở Hà Giang đến
-                                            các bãi biển hoang sơ của Phú Quốc, Việt
-                                            Nam tự hào có vẻ đẹp thiên nhiên phong
-                                            phú và ngoạn mục, mang đến những trải
-                                            nghiệm khó quên cho mọi du khách.
+                                        <TextNormal className="text-xs sm:text-sm md:text-[16px] text-[#494951]">
+                                            Từ những dãy núi hùng vĩ ở Hà Giang
+                                            đến các bãi biển hoang sơ của Phú
+                                            Quốc, Việt Nam tự hào có vẻ đẹp
+                                            thiên nhiên phong phú và ngoạn mục,
+                                            mang đến những trải nghiệm khó quên
+                                            cho mọi du khách.
                                         </TextNormal>
                                     </CardService>
                                 </CarouselItem>

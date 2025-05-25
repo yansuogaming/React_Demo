@@ -1,9 +1,9 @@
-"use client";
-
+import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
 import {
     fetchCurrentWeatherByCoords,
     fetchWeatherForecastByCoords,
+    fetchWeatherByDate,
 } from "@components/weathertrip/weatherApi";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
@@ -48,6 +48,8 @@ function CustomCaption(props) {
 }
 
 const WeatherSection = ({ onLocationChange }) => {
+    const { t } = useTranslation();
+
     const [weather, setWeather] = useState(null);
     const [forecast, setForecast] = useState(null);
     const [unit, setUnit] = useState("c");
@@ -81,7 +83,7 @@ const WeatherSection = ({ onLocationChange }) => {
             },
             () => {
                 setLocationDenied(true);
-                fetchAllWeather(25.276987, 55.296249);
+                fetchAllWeather(21.028511, 105.804817);
             }
         );
     }, []);
@@ -201,22 +203,63 @@ const WeatherSection = ({ onLocationChange }) => {
                                         mode="single"
                                         selected={selectedDate}
                                         onSelect={(date) => {
+                                            if (!date) return;
+
                                             setSelectedDate(date);
                                             setSelectedHourStartIndex(0);
-                                        }}
-                                        disabled={(date) => {
+
                                             const iso = date
                                                 .toISOString()
                                                 .split("T")[0];
-                                            return !availableDates.includes(
-                                                iso
+
+                                            // Ngày hôm nay
+                                            const today = new Date();
+
+                                            // Chỉ dùng forecast nếu là trong 10 ngày (availableDates)
+                                            if (availableDates.includes(iso))
+                                                return;
+
+                                            // Nếu quá khứ hơn 7 ngày: chặn
+                                            const daysDiff = Math.floor(
+                                                (today - date) /
+                                                    (1000 * 60 * 60 * 24)
                                             );
+                                            if (daysDiff > 7) {
+                                                alert(
+                                                    t("weather_limit_notice")
+                                                );
+
+                                                return;
+                                            }
+
+                                            fetchWeatherByDate(
+                                                "Hanoi",
+                                                iso
+                                            ).then((data) => {
+                                                if (data && data.forecast) {
+                                                    setForecast(data);
+                                                } else {
+                                                    alert(
+                                                        t("weather_not_found")
+                                                    );
+
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        }}
+                                        disabled={(date) => {
+                                            const today = new Date();
+                                            const daysDiff = Math.floor(
+                                                (today - date) /
+                                                    (1000 * 60 * 60 * 24)
+                                            );
+                                            return daysDiff > 7;
                                         }}
                                         modifiersClassNames={{
                                             selected: "bg-blue-600 text-white",
                                             today: "text-blue-600",
                                         }}
-                                        components={{ Caption: CustomCaption }} // ✅ sử dụng caption tùy chỉnh
+                                        components={{ Caption: CustomCaption }}
                                         classNames={{
                                             months: "flex justify-center",
                                             month: "space-y-4",

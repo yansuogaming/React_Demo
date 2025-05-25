@@ -21,7 +21,6 @@ import WeatherSubscribe from "@components/WeatherSubscribe";
 import { useLoaderData } from "react-router";
 
 const WeatherTrip = () => {
-    const { weather } = useLoaderData();
     const { t } = useTranslation();
     const [locationName, setLocationName] = useState("...");
 
