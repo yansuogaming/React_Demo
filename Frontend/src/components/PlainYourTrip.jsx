@@ -19,23 +19,23 @@ const PlainYourTrip = ({ className = "" }) => {
                 className
             )}
         >
-            <div className="flex flex-col lg:flex-row items-center justify-between p-4 sm:p-6 md:p-8 lg:p-[15px_15px_15px_50px] gap-6 sm:gap-8">
+            <div className="flex flex-col lg:flex-row items-start justify-between p-[40px_20px] md:p-[48px] gap-6 sm:gap-8">
                 <Form
                     action="/tripdetail"
-                    className="h-fit w-full lg:w-1/2 flex flex-col items-center sm:items-start"
+                    className="h-fit w-full lg:w-1/2 flex flex-col items-start"
                 >
-                    <h2 className="text-2xl sm:text-3xl md:text-[34px] lg:text-[40px] font-[700] mb-3 sm:mb-4 md:mb-[15px] lg:mb-[20px]">
+                    <h2 className="text-2xl sm:text-3xl text-[34px] lg:text-[40px] font-[700] mb-3 sm:mb-4 md:mb-[15px] lg:mb-[20px]">
                         {t("Plan Your Trip")}
                     </h2>
-                    <p className="text-sm sm:text-base md:text-[16px] lg:text-[20px] mb-4 sm:mb-6 md:mb-[24px] lg:mb-[32px] font-[400] text-[#494951] text-center sm:text-left">
+                    <p className="text-[16px] lg:text-[20px] mb-4 sm:mb-6 md:mb-[24px] lg:mb-[32px] font-[400] text-[#494951] md:text-center text-left">
                         {t(
                             "Plan your trip for free and enjoy exclusive deals on local experiences!"
                         )}
                     </p>
                     <InputTripLocation />
-                    <CreateItineraryButton className="mt-3 sm:mt-4 md:mt-[12px] mx-auto sm:mx-0" />
+                    <CreateItineraryButton className="mt-3 sm:mt-4 md:mt-[12px] md:mx-auto sm:mx-0" />
                     <div className="flex justify-center sm:justify-start flex-wrap gap-2 sm:gap-3 md:gap-[8px] lg:gap-[12px] mt-4 sm:mt-6 md:mt-[20px] lg:mt-[30px]">
-                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-sm sm:text-base md:text-[16px] lg:text-[20px] font-[500]">
+                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-[16px] lg:text-[20px] font-[500]">
                             <img
                                 src={iconVisa}
                                 alt="Visa"
@@ -43,7 +43,7 @@ const PlainYourTrip = ({ className = "" }) => {
                             />
                             {t("Visas")}
                         </button>
-                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-sm sm:text-base md:text-[16px] lg:text-[20px] font-[500]">
+                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-[16px] lg:text-[20px] font-[500]">
                             <img
                                 src={iconItinerary}
                                 alt="Itinerary"
@@ -51,7 +51,7 @@ const PlainYourTrip = ({ className = "" }) => {
                             />
                             {t("Itineraries")}
                         </button>
-                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-sm sm:text-base md:text-[16px] lg:text-[20px] font-[500]">
+                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-[16px] lg:text-[20px] font-[500]">
                             <img
                                 src={iconTools}
                                 alt="Tools"

@@ -19,20 +19,23 @@ const VietNamEvent = ({ className = "", data = [] }) => {
             key={idx}
             title={item.title}
             widthImage="100%"
-            heightImage="245px"
             image={item.image}
             href={`/events/${item.slug}`}
             startTime={new Date(item.start_date * 1000)}
             endTime={new Date(item.due_date * 1000)}
+            className="h-[200] md:h-[245px]"
         >
             <div className="bg-white rounded-[0_0_12px_12px] block">
-                <p className="flex gap-[8px] items-center text-[#1A2A44]">
-                    <CiLocationOn className="text-[20px]" />
-                    <span>{item.city}</span>
-                    <IoTicketOutline className="text-[20px]" />
-                </p>
+                {item.city && (
+                    <p className="flex gap-[8px] items-center text-[#1A2A44]">
+                        <CiLocationOn className="text-[20px]" />
+                        <span>{item.city}</span>
+                        <IoTicketOutline className="text-[20px]" />
+                    </p>
+                )}
+
                 <div
-                    className="hidden sm:block text-[16px] font-normal mt-[16px] truncate_3"
+                    className="hidden text-[16px] font-normal mt-[16px] md:truncate_3"
                     dangerouslySetInnerHTML={{ __html: item.intro }}
                 ></div>
             </div>
@@ -60,7 +63,7 @@ const VietNamEvent = ({ className = "", data = [] }) => {
                             {events.map((event, idx) => (
                                 <CarouselItem
                                     key={idx}
-                                    className="basis-[70%] sm:basis-1/2 pl-4"
+                                    className="basis-[85%] sm:basis-1/2 pl-4"
                                 >
                                     {event}
                                 </CarouselItem>

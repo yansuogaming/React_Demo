@@ -10,7 +10,7 @@ const InputTripLocation = () => {
             iconSvg={<FaLocationDot className="text-[#007BFF]" size={20} />}
         >
             <input
-                className="w-full outline-none text-[20px]"
+                className="w-full outline-none text-[16px] md:text-[20px]"
                 placeholder="Eg: Bangkok, Singapore, Hanoi,..."
                 type="text"
             />
