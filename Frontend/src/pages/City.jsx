@@ -87,19 +87,19 @@ const City = () => {
               </button>
             </div>
             <div
-              className={`text-[#1A2A44] text-[16px] lg:text-[18px] ${tab === "welcome" ? "" : "hidden"}`}
+              className={`text-[#1A2A44] text-[16px] lg:text-[18px] prose ${tab === "welcome" ? "" : "hidden"}`}
               dangerouslySetInnerHTML={{ __html: city.content }}
             ></div>
             <div
-              className={`text-[#1A2A44] text-[16px] lg:text-[18px] ${tab === "getting_to" ? "" : "hidden"}`}
+              className={`text-[#1A2A44] text-[16px] lg:text-[18px] prose ${tab === "getting_to" ? "" : "hidden"}`}
               dangerouslySetInnerHTML={{ __html: city.content_getting_to }}
             ></div>
             <div
-              className={`text-[#1A2A44] text-[16px] lg:text-[18px] ${tab === "when_to_visit" ? "" : "hidden"}`}
+              className={`text-[#1A2A44] text-[16px] lg:text-[18px] prose ${tab === "when_to_visit" ? "" : "hidden"}`}
               dangerouslySetInnerHTML={{ __html: city.content_when_to_visit }}
             ></div>
             <div
-              className={`text-[#1A2A44] text-[16px] lg:text-[18px] ${tab === "accessibility" ? "" : "hidden"}`}
+              className={`text-[#1A2A44] text-[16px] lg:text-[18px] prose ${tab === "accessibility" ? "" : "hidden"}`}
               dangerouslySetInnerHTML={{ __html: city.content_accessibility }}
             ></div>
           </div>
