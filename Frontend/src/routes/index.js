@@ -95,15 +95,40 @@ const routes = [
                     {
                         path: ROUTES.ITINERARIES, // "itineraries"
                         Component: lazy(() => import("@pages/Itineraries")),
-                        loader: async () => {
+                        loader: async ({ request }) => {
+                            const url = new URL(request.url);
+                            const query = Object.fromEntries(
+                                url.searchParams.entries()
+                            );
+                            const currentPage = query?.page ?? 1;
+                            const keyword = query?.keyword ?? "";
+                            const duration = query?.duration ?? "";
+                            const departurePoint = query?.departurePoint ?? "";
+                            const travelStyle = query?.travelStyle ?? "";
+                            const lang_id = query?.lang_id ?? "en";
                             const res = await Promise.all([
                                 TourService.getListTrending(),
-                                TourService.getListItineraries(),
+                                TourService.getListItineraries(
+                                    keyword,
+                                    currentPage,
+                                    duration,
+                                    departurePoint,
+                                    travelStyle
+                                ),
+                                TourService.getListDeparture(lang_id),
+                                TourService.getListTravelStyle(lang_id),
                             ]);
-
                             return {
                                 listTrendingTours: res[0],
-                                itineraries: res[1],
+                                listTours: res[1].itineraries ?? [],
+                                totalPage: res[1].total_page,
+                                currentPage,
+                                // keyword,
+                                // duration,
+                                // departurePoint,
+                                // travelStyle,
+                                listDeparture: res[2].list_departure,
+                                listTravelstyle: res[3].list_travelstyle,
                             };
                         },
                     },
@@ -171,7 +196,9 @@ const routes = [
                         Component: lazy(() => import("@pages/EventsDetail")),
                         loader: async ({ params }) => {
                             const { slug } = params;
-                            const event = await EventService.getEventBySlug(slug);
+                            const event = await EventService.getEventBySlug(
+                                slug
+                            );
                             return { event };
                         },
                         meta: () => {
@@ -290,7 +317,7 @@ const routes = [
                                 FAQService.getListFAQs(),
                             ]);
                             return {
-                                FAQs: res[0]
+                                FAQs: res[0],
                             };
                         },
                     },
@@ -305,9 +332,9 @@ const routes = [
                         ),
                     },
                     {
-                        path: 'hotel',
-                        Component: lazy(() => import("@pages/Hotel"))
-                    }
+                        path: "hotel",
+                        Component: lazy(() => import("@pages/Hotel")),
+                    },
                 ],
             },
             {

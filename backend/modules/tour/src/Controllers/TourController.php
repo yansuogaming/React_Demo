@@ -36,6 +36,7 @@ class TourController
         $travel_style = $request->input('travel_style', '');
         $keyword = $request->input('keyword', '');
         $langId = $request->input('lang_id', 'en');
+        $rating = $request->input('rating', 0);
 
         $res = Http::tourdb('en')
             ->post('/tour/list-tour', [
@@ -46,19 +47,43 @@ class TourController
                 'duration' => $duration,
                 'departure_point' => $departure_point,
                 'travel_style' => $travel_style,
+                'rating' => $rating,
             ])->json();
         // ->json()
         // dd($res);
+        return Response::json([
+            'itineraries' => !empty($res['data']['list_tours']) ? $res['data']['list_tours'] : [],
+            'total_page' => !empty($res['data']['total_page']) ? $res['data']['total_page'] : 0,
+        ]);
+    }
 
-        $itineraries = collect(!empty($res['itineraries']) ? $res['itineraries'] : []);
+    #[Post('/list-departure')]
+    public function getListDeparture(Request $request)
+    {
+        $langId = $request->input('lang_id', 'en');
 
-        // $cities = City->where('lang_id', $langId)
-        //     ->select('city_code', 'title')
-        //     ->get();
+        $res = Http::tourdb('en')
+            ->post('/tour/list-departure', [
+                'lang_id' => $langId,
+            ])->json();
 
         return Response::json([
-            'itineraries' => $itineraries,
-            'total_page' => !empty($res['total_page']) ? $res['total_page'] : 0
+            'list_departure' => !empty($res['list_departure']) ? $res['list_departure'] : [],
+        ]);
+    }
+
+    #[Post('/list-travelstyle')]
+    public function getListTravelStyle(Request $request)
+    {
+        $langId = $request->input('lang_id', 'en');
+
+        $res = Http::tourdb('en')
+            ->post('/tour/list-travelstyle', [
+                'lang_id' => $langId,
+            ])->json();
+
+        return Response::json([
+            'list_travelstyle' => !empty($res['list_travelstyle']) ? $res['list_travelstyle'] : [],
         ]);
     }
 }
