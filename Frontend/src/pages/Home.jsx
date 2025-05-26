@@ -168,6 +168,7 @@ export default function Home() {
             <TravelOffers className="mb-[60px] lg:mb-[120px]" />
             <PlainYourTrip className="mb-[80px] lg:mb-[120px]" />
             <Story />
+            <a href=""></a>
         </main>
     );
 }
