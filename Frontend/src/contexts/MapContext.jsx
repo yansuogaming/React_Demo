@@ -73,11 +73,9 @@ export const MapProvider = ({ children, initialData }) => {
     //   return check;
     // });
     // setListResources(tempList);
-    console.log("setListResources", setListResources);
   }, [listCategorySelected, list_resources]);
 
   const getDetailResource = async (id) => {
-    console.log("id", id);
     const res = await MapService.getDetailDestination(id);
     setDetailResource(res?.oneResources);
   };

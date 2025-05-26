@@ -1,5 +1,5 @@
 import Footer from '@components/Footer';
-import Header from '@components/Header'
+import Header from '@components/header/Header'
 import ScrollToTop from '@components/ScrollToTop'
 // import { useState } from 'react';
 

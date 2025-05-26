@@ -20,8 +20,8 @@ import iconTornado from '@images/weather/Frame-4.png';
 import iconThunderstorm from '@images/weather/Frame.png';
 
 const Weather = ({ data }) => {
-    const temp = data.main.temp;
-    const weather = data.weather[0].main;
+    const temp = data?.main?.temp;
+    const weather = data?.weather?.[0]?.main;
 
     let icon = null;
     switch (weather) {
