@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import HotelHeader from "@components/hoteldetail/HotelHeader";
 import HotelGallery from "@components/hoteldetail/HotelGallery";
+import HotelSections from "@components/hoteldetail/HotelSections";
 import Breadcrumb from "@components/Breadcrumb";
 
 const DetailHotel = () => {
@@ -26,6 +27,9 @@ const DetailHotel = () => {
             <seciton>
                 <HotelGallery />
             </seciton>
+            <section>
+                <HotelSections />
+            </section>
         </main>
     );
 };
