@@ -11,7 +11,7 @@ const ROUTES = {
     ITINERARIES_DETAIL: "itineraries/detail",
     PAYMENT_TOUR: "payment/tour",
     EVENTS: "events",
-    EVENTS_DETAIL: "events/detail",
+    EVENTS_DETAIL: "events/:slug",
     VISA_GUIDE: "visa-guide",
     ESSENTIALS: "essentials",
     GETTING_TO_AND_AROUND: "getting-to-and-around",

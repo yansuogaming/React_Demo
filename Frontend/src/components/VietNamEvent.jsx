@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import ViewMoreButton from "./button/ViewMoreButton";
 import CardEvent from "./card/CardEvent";
-import { NavLink } from "react-router";
 import { IoTicketOutline } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
 
@@ -22,11 +21,11 @@ const VietNamEvent = ({ className = "", data = [] }) => {
             widthImage="100%"
             heightImage="245px"
             image={item.image}
-            href="/"
+            href={`/events/${item.slug}`}
             startTime={new Date(item.start_date * 1000)}
             endTime={new Date(item.due_date * 1000)}
         >
-            <NavLink className="bg-white rounded-[0_0_12px_12px] block">
+            <div className="bg-white rounded-[0_0_12px_12px] block">
                 <p className="flex gap-[8px] items-center text-[#1A2A44]">
                     <CiLocationOn className="text-[20px]" />
                     <span>{item.city}</span>
@@ -36,7 +35,7 @@ const VietNamEvent = ({ className = "", data = [] }) => {
                     className="hidden sm:block text-[16px] font-normal mt-[16px] truncate_3"
                     dangerouslySetInnerHTML={{ __html: item.intro }}
                 ></div>
-            </NavLink>
+            </div>
         </CardEvent>
     ));
 

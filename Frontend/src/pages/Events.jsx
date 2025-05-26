@@ -13,8 +13,6 @@ import { cn, debounce } from "@lib/utils";
 import { CiLocationOn } from "react-icons/ci";
 import { IoTicketOutline } from "react-icons/io5";
 
-
-
 const categories = [
     "All",
     "Online",
@@ -147,7 +145,7 @@ const Events = () => {
                                 image={event.image}
                                 startTime={new Date(event.start_date * 1000)}
                                 endTime={new Date(event.due_date * 1000)}
-                                href="/"
+                                href={`/events/${event.slug}`}
                                 widthImage="100%"
                                 heightImage="180px"
                             >
@@ -160,7 +158,7 @@ const Events = () => {
                                 )}
 
                                 <div
-                                    className="text-[16px] font-normal mt-[16px] truncate_3"
+                                    className="text-[16px] font-normal truncate_3"
                                     dangerouslySetInnerHTML={{
                                         __html: event.intro,
                                     }}
@@ -176,7 +174,7 @@ const Events = () => {
                                 image={event.image}
                                 startTime={new Date(event.start_date * 1000)}
                                 endTime={new Date(event.due_date * 1000)}
-                                href="/"
+                                href={`/events/${event.slug}`}
                                 widthImage="100%"
                                 heightImage="180px"
                             >
@@ -189,7 +187,7 @@ const Events = () => {
                                 )}
 
                                 <div
-                                    className="text-[16px] font-normal mt-[16px] truncate_3"
+                                    className="text-[16px] font-normal truncate_3"
                                     dangerouslySetInnerHTML={{
                                         __html: event.intro,
                                     }}

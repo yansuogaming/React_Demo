@@ -5,6 +5,7 @@ namespace Vietiso\Core\Http;
 use Vietiso\Core\Http\File\UploadedFile;
 use Vietiso\Core\Route\Route;
 use Vietiso\Core\Session\Session;
+use Vietiso\Core\Support\Str;
 
 class Request
 {
@@ -137,6 +138,11 @@ class Request
     public function protocol(): string
     {
         return $this->protocol;
+    }
+
+    public function getHost(): string
+    {
+        return $this->headers->get('host');
     }
 
     public function port(): int|string|null
@@ -572,6 +578,16 @@ class Request
     public function getRoute(): ?Route
     {
         return $this->route;
+    }
+
+    public function fullUrlIs(string $pattern): bool
+    {
+        return Str::is($pattern, $this->fullUrl());
+    }
+
+    public function is(string $pattern): bool
+    {
+        return Str::is($pattern, $this->uri());
     }
 
     /**

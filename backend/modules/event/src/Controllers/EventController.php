@@ -18,10 +18,10 @@ class EventController
         $perPage = $request->input('per_page', 10);
         $keyword = $request->input('keyword', '');
         $orderBy = $request->input('order_by', 'desc');
-        $langId = $request->input('lang_id');
+        $langId = $request->input('lang_id', 'en');
         $orderField = $request->input('order_field', 'created_at');
 
-        $res = Http::eventdb('vn')
+        $res = Http::eventdb($langId)
             ->post('/events', [
                 'per_page' => $perPage,
                 'keyword' => $keyword,
@@ -35,7 +35,7 @@ class EventController
     #[Get('list-ongoing-and-upcomming')]
     public function getListEventGoingOn(Request $request)
     {
-        $res = Http::eventdb('vn')
+        $res = Http::eventdb($request->input('lang_id', 'en'))
             ->get('/list-going-on');
         return Response::json($res->json());
     }
@@ -48,7 +48,7 @@ class EventController
         $langId = $request->input('lang_id', 'en');
         $page = $request->input('page', 1);
 
-        $res = Http::eventdb('vn')
+        $res = Http::eventdb($langId)
             ->post('/events', [
                 'per_page' => 16,
                 'keyword' => $keyword,
@@ -83,10 +83,11 @@ class EventController
         ]);
     }
 
-    #[Get('translate')]
-    public function translate()
+    #[Get('{slug}')]
+    public function getEventBySlug(Request $request, string $slug)
     {
-        $events = Http::eventdb('vn')->get('events');
-        
+        $res = Http::eventdb($request->input('lang_id', 'en'))
+            ->get("/event/detail/$slug")->json();
+        return Response::json($res);
     }
 }

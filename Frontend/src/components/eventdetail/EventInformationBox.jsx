@@ -1,8 +1,12 @@
 import { NavLink } from "react-router";
 import { TbCalendarTime } from "react-icons/tb";
 import { CiLocationOn } from "react-icons/ci";
+import { format, fromUnixTime, getDate } from "date-fns";
 
-export default function EventInformationBox() {
+export default function EventInformationBox({ event }) {
+    const startDate = fromUnixTime(event.start_date * 1000);
+    const endDate = fromUnixTime(event.due_date * 1000);
+
     return (
         <section className="text-[#1A2A44] mt-[44px]">
             {/* Date & Location */}
@@ -13,17 +17,17 @@ export default function EventInformationBox() {
                 <div className="flex items-center gap-[15px] mb-[20px]">
                     <div className="flex flex-col items-center justify-center p-[8px_23px] bg-[#EEF0F5] text-[#0077B6] rounded text-center">
                         <span className="text-[#FD6050] text-[16px] font-[700]">
-                            DEC
+                            {format(startDate, 'MMM').toUpperCase()}
                         </span>
                         <span className="text-[#000] text-[28px] font-[700]">
-                            31
+                            {getDate(startDate)}
                         </span>
                     </div>
                     <div>
                         <div className="flex gap-[9px] items-center text-[#1A2A44] mb-[3px]">
                             <TbCalendarTime className="text-[#494951]" />
                             <p className="text-[16px] font-[400]">
-                                20:15 31/11/2024 - 0:20 01/01/2025.
+                                {format(startDate, 'HH:mm dd/MM/yyyy')} - {format(endDate, 'HH:mm dd/MM/yyyy')}.
                             </p>
                         </div>
                         <div className="flex gap-[9px] items-center text-[#1A2A44] mb-[3px]">
@@ -32,8 +36,7 @@ export default function EventInformationBox() {
                                 to="/"
                                 className="text-[#0077B6] hover:underline cursor-pointer"
                             >
-                                Dong Kinh Nghia Thuc Square, Hoan Kiem walking
-                                street, Hanoi
+                                {event.address}
                             </NavLink>
                         </div>
                     </div>
@@ -45,48 +48,20 @@ export default function EventInformationBox() {
 
             {/* About the event */}
             <div className="text-[#1A2A44] leading-[160%]">
-                <h3 className="text-[24px] font-[500] mb-[16px]">
-                    About the event
-                </h3>
-                <div className="text-[18px] font-[400] space-y-4 mb-[60px]">
-                    <p>
-                        In just a few hours, 2024 will end and welcome 2025. In
-                        Hanoi, there will be many venues to hold Countdown 2025
-                        and fireworks to celebrate New Year 2025, creating an
-                        extremely vibrant and bustling atmosphere.
-                    </p>
-                    <p>
-                        The Herbalife Countdown Party 2025 event brings a
-                        spectacular music and light party. The program features
-                        famous DJs and a lineup of famous artists, promising to
-                        bring vibrant performances, attracting the participation
-                        of thousands of people.
-                    </p>
-                    <p>
-                        One of the special highlights of the event is the drone
-                        performance with 200 drones using advanced pyrotechnic
-                        technology. This is the first time such a spectacular
-                        drone performance has been held in Hanoi. The theme
-                        “Live the moment” carries a positive message about
-                        enjoying every moment in life, accompanying the bustling
-                        atmosphere of New Year's Eve.
-                    </p>
-                    <p>
-                        In addition to the exciting performances from famous
-                        singers, Herbalife Countdown Party 2025 also has
-                        entertainment and culinary areas to serve the needs of
-                        the audience. This is an opportunity for everyone to not
-                        only enjoy the music but also enjoy the vibrant, cozy
-                        atmosphere.
-                    </p>
-                    <p className="font-[700]">
-                        Eligibility: All people and tourists visiting Vietnam
-                    </p>
-                </div>
+                {event.schedule.map((item) => {
+                    return (
+                        <>
+                            <h3 className="text-[24px] font-[500] mb-[16px]">
+                                {item.title}
+                            </h3>
+                            <div className="text-[18px] font-[400] space-y-4 mb-[60px]" dangerouslySetInnerHTML={{ __html: item.intro }}></div>
+                        </>
+                    )
+                })}
             </div>
 
             {/* Ticket Info */}
-            <div className="text-[#1A2A44] mb-[60px]">
+            {/* <div className="text-[#1A2A44] mb-[60px]">
                 <h3 className="text-[24px] font-[500]">Ticket Info</h3>
                 <p className="text-[18px] font-[400]">
                     Enjoy full access to this event without spending a dime – no
@@ -96,10 +71,10 @@ export default function EventInformationBox() {
                 <button className="mt-[20px] p-[11px_24px] bg-[#09A66D] text-white rounded-[4px] font-[500] text-[16px] hover:bg-[#43a163] transition cursor-pointer">
                     Completely free
                 </button>
-            </div>
+            </div> */}
 
             {/* Organizer */}
-            <div
+            {/* <div
                 className="p-[26px_24px] sm:flex items-start gap-[65px]"
                 style={{
                     borderRadius: "8px",
@@ -107,7 +82,6 @@ export default function EventInformationBox() {
                     boxShadow: "0px 1px 4px 0px rgba(3, 54, 63, 0.4)",
                 }}
             >
-                {/* Left: Label + Logo */}
                 <div className="flex flex-col items-start mb-[8px] sm:mb-0">
                     <p className="text-[14px] text-[#494951] mb-2">
                         Organizer:
@@ -119,7 +93,6 @@ export default function EventInformationBox() {
                     />
                 </div>
 
-                {/* Right: Text info */}
                 <div className="text-sm text-[#1A2A44] space-y-1">
                     <p className="text-[28px] font-[700]">Herbalife Vietnam</p>
                     <div className="text-[#000] text-[16px] font-[400]">
@@ -153,7 +126,7 @@ export default function EventInformationBox() {
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </section>
     );
 }

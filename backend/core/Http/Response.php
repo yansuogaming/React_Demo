@@ -92,7 +92,7 @@ class Response
         'etag' => true,
     ];
 
-    protected ResponseHeaderBag $headers;
+    public readonly ResponseHeaderBag $headers;
 
     protected string $content;
     protected string $version;

@@ -74,7 +74,7 @@ const Footer = () => {
     ];
 
     return (
-        <footer className="mt-[100px]">
+        <footer>
             {/* <img src={bird} alt="" width="100%" /> */}
             <div className="border-[2px] bg-[#D9D9D9]"></div>
             <div className="container mt-[60px]">

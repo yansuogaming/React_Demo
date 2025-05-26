@@ -146,6 +146,7 @@ const routes = [
                                     currentPage
                                 ),
                             ]);
+
                             return {
                                 ongoingAndUpcomingEvents: res[0],
                                 events: res[1].events ?? [],
@@ -168,6 +169,20 @@ const routes = [
                     {
                         path: ROUTES.EVENTS_DETAIL, // "events/detail"
                         Component: lazy(() => import("@pages/EventsDetail")),
+                        loader: async ({ params }) => {
+                            const { slug } = params;
+                            const event = await EventService.getEventBySlug(slug);
+                            return { event };
+                        },
+                        meta: () => {
+                            return [
+                                { title: "Xin chào" },
+                                {
+                                    name: "description",
+                                    content: "Welcome to the home page",
+                                },
+                            ];
+                        },
                     },
                     {
                         path: ROUTES.VISA_GUIDE,

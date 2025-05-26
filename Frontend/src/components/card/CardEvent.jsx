@@ -63,7 +63,7 @@ const CardEvent = ({
             </Link>
             <div className="bg-white p-[16px] rounded-[0_0_12px_12px] flex flex-col grow">
                 <TertiaryHeading className="text-[20px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500">
-                    <Link to={href}>{title}</Link>
+                    <Link to={href} dangerouslySetInnerHTML={{__html : title}}></Link>
                 </TertiaryHeading>
                 {children}
             </div>
