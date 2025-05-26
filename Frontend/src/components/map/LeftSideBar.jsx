@@ -20,13 +20,13 @@ const LeftSideBar = () => {
         listFilter,
         sidebarMode,
         setSidebarMode,
-        showSubleftSidebar
+        showSubleftSidebar,
     } = useMapContext();
 
     useEffect(() => {
-      if (window.innerWidth >= 1024) {
-        setSidebarMode(SIDEBAR_MODE.DESTINATION);
-    }
+        if (window.innerWidth >= 1024) {
+            setSidebarMode(SIDEBAR_MODE.DESTINATION);
+        }
     }, []);
 
     useEffect(() => {
@@ -34,8 +34,6 @@ const LeftSideBar = () => {
             setSidebarMode(SIDEBAR_MODE.SEARCH);
         }
     }, [keywords]);
-
-    console.log("sidebarMode", sidebarMode)
 
     return (
         <>
@@ -51,7 +49,6 @@ const LeftSideBar = () => {
             <div
                 style={{
                     scrollbarWidth: "thin",
-                    
                 }}
                 className={cn(
                     "fixed inset-0 z-40 w-full lg:w-110 lg:relative overflow-y-auto flex flex-col border-r border-gray-700 bg-[rgb(35,37,43)]",
@@ -84,13 +81,25 @@ const LeftSideBar = () => {
                                     autoFocus
                                     className="text-3xl h-full rounded-md pl-3 pr-10 py-2 w-full"
                                 />
-                                <Button
-                                    variant="ghost"
-                                    size="icon"
-                                    className="absolute right-0 top-0 h-full text-gray-400"
-                                >
-                                    <Search className="h-4 w-4" />
-                                </Button>
+                                <div className="absolute flex flex-row right-0 top-0 h-full">
+                                    {keywords.length > 0 && (
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
+                                            className=" h-full text-gray-400"
+                                            onClick={() => setKeywords("")}
+                                        >
+                                            <X className="h-4 w-4" />
+                                        </Button>
+                                    )}
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className="h-full text-gray-400"
+                                    >
+                                        <Search className="h-4 w-4" />
+                                    </Button>
+                                </div>
                             </div>
                             <NavigationTabs
                                 activeTab={activeTab}
@@ -108,13 +117,25 @@ const LeftSideBar = () => {
                                 placeholder="Search"
                                 className="text-3xl h-full rounded-md pl-3 pr-10 py-2 w-full"
                             />
-                            <Button
-                                variant="ghost"
-                                size="icon"
-                                className="absolute right-0 top-0 h-full text-gray-400"
-                            >
-                                <Search className="h-4 w-4" />
-                            </Button>
+                            <div className="absolute flex flex-row right-0 top-0 h-full">
+                                {keywords.length > 0 && (
+                                    <Button
+                                        variant="ghost"
+                                        size="icon"
+                                        className=" h-full text-gray-400"
+                                        onClick={() => setKeywords("")}
+                                    >
+                                        <X className="h-4 w-4" />
+                                    </Button>
+                                )}
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="h-full text-gray-400"
+                                >
+                                    <Search className="h-4 w-4" />
+                                </Button>
+                            </div>
                         </div>
                         <NavigationTabs
                             activeTab={activeTab}
@@ -122,7 +143,7 @@ const LeftSideBar = () => {
                         />
                     </div>
                 </div>
-                <div >
+                <div>
                     {sidebarMode === SIDEBAR_MODE.SEARCH && (
                         <FilterList list_filter={listFilter} />
                     )}

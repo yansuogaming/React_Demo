@@ -39,7 +39,7 @@ const SubLeftSideBar = () => {
                         "fixed inset-0 z-40 w-full lg:w-110 lg:relative overflow-y-auto flex flex-col border-r border-gray-700 bg-[rgb(35,37,43)]"
                     )}
                 >
-                    <div className="sticky flex flex-col top-0 w-full px-4 z-20 bg-[rgb(35,37,43)]">
+                    <div className="sticky flex flex-col top-0 w-full px-4 pt-4 z-20 bg-[rgb(35,37,43)]">
                         <Button
                             variant="ghost"
                             size="icon"

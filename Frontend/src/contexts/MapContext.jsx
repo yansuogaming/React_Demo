@@ -106,7 +106,6 @@ export const MapProvider = ({ children, initialData }) => {
 
     const onClickItem = (item) => {
         setSelectedMarker(item);
-        setKeywords("");
         setShowSubleftSidebar(true);
     };
 

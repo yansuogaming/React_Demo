@@ -18,7 +18,7 @@ const SearchAndFilterBar = () => {
             text-gray-300 gap-2 px-4 text-lg min-h-12 flex items-center rounded-4xl hover:cursor-pointer 
             ${
                 categorySelected?.property_id === item.property_id
-                    ? "bg-white text-gray-900 border-white"
+                    ? "bg-gray-700 border-2 border-white"
                     : "bg-gray-800 border-gray-700"
             }
           `}
