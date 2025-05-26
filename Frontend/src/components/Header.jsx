@@ -2,7 +2,7 @@ import imgLogo from "@images/logo.webp";
 import imgLogo2 from "@images/logo2.webp";
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { ChevronRight, Ellipsis } from "lucide-react";
 import { LuTextSearch } from "react-icons/lu";
 import { FiSearch } from "react-icons/fi";
@@ -27,14 +27,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router";
 import ModalSearch from "./modal/ModalSearch";
 import ROUTES from "@routes/routes";
-const HeaderContext = createContext();
+import DropdownContent from "./DropdownContent";
+import { MENU_TYPES, getMenuItemsByType } from "@data/menuItems";
 
-const MENU_KEY = {
-  PLAN_YOUR_TRIP: "plan_your_trip",
-  EXPERIENCES: "experiences",
-  EVENTS: "events",
-  DESTINATIONS: "destinations",
-};
+export const HeaderContext = createContext();
+
+
+
+
 
 const Header = ({ noBackgroundOnScroll = false }) => {
   const location = useLocation();
@@ -49,14 +49,15 @@ const Header = ({ noBackgroundOnScroll = false }) => {
   const [boxShadow, setBoxShadow] = useState(
     noBackgroundOnScroll ? "none" : "1px 1px 20px #d1d1d1"
   );
-  const [hoverPlanYourTrip, setHoverPlanYourTrip] = useState(false);
-  const [hoverPlanYourTripContent, setHoverPlanYourTripContent] =
-    useState(false);
-  const [hoverExperiences, setHoverExperiences] = useState(false);
-  const [hoverExperiencesContent, setHoverExperiencesContent] = useState(false);
-  const [hoverDestinations, setHoverDestinations] = useState(false);
-  const [hoverDestinationsContent, setHoverDestinationsContent] =
-    useState(false);
+
+  const [hoverState, setHoverState] = useState(Object.keys(MENU_TYPES).reduce((acc, key) => {
+    acc[key] = false;
+    acc[`${key}Content`] = false;
+    return acc;
+  }, {}));
+
+
+
   let position = "sticky";
 
   // Thay đổi style của header
@@ -101,34 +102,26 @@ const Header = ({ noBackgroundOnScroll = false }) => {
     }
   }, [noBackgroundOnScroll, isShowNavServices]);
 
+  // Hàm cập nhật trạng thái hover cho menu hoặc content
+  const updateHoverState = (menuType, isContent, value) => {
+    const key = isContent ? `${menuType}Content` : menuType;
+    setHoverState(prevState => ({
+      ...prevState,
+      [key]: value
+    }));
+  };
+
+  // Hàm xử lý hover menu 
   const handleHoverMenu = (key, value) => {
-    switch (key) {
-      case MENU_KEY.PLAN_YOUR_TRIP:
-        setHoverPlanYourTrip(value);
-        break;
-      case MENU_KEY.EXPERIENCES:
-        setHoverExperiences(value);
-        break;
-      case MENU_KEY.DESTINATIONS:
-        setHoverDestinations(value);
-        break;
-      default:
-        break;
+    if (key) {
+      updateHoverState(key, false, value);
     }
   };
 
+
   const contextValue = {
-    hoverPlanYourTrip,
-    hoverExperiences,
-    hoverPlanYourTripContent,
-    hoverExperiencesContent,
-    hoverDestinations,
-    hoverDestinationsContent,
-    setHoverPlanYourTrip,
-    setHoverPlanYourTripContent,
-    setHoverExperiences,
-    setHoverExperiencesContent,
-    setHoverDestinationsContent,
+    hoverState,
+    updateHoverState
   };
 
   const [isVisible, setIsVisible] = useState(false);
@@ -199,10 +192,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                   }
                   className="p-[15px] h-fit"
                   onMouseEnter={() =>
-                    handleHoverMenu(MENU_KEY.DESTINATIONS, true)
+                    handleHoverMenu(MENU_TYPES.DESTINATIONS, true)
                   }
                   onMouseLeave={() =>
-                    handleHoverMenu(MENU_KEY.DESTINATIONS, false)
+                    handleHoverMenu(MENU_TYPES.DESTINATIONS, false)
                   }
                 >
                   <NavLink to={ROUTES.ITINERARIES}>{t("destinations")}</NavLink>
@@ -217,10 +210,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                   }
                   className="p-[15px] h-fit"
                   onMouseEnter={() =>
-                    handleHoverMenu(MENU_KEY.EXPERIENCES, true)
+                    handleHoverMenu(MENU_TYPES.EXPERIENCES, true)
                   }
                   onMouseLeave={() =>
-                    handleHoverMenu(MENU_KEY.EXPERIENCES, false)
+                    handleHoverMenu(MENU_TYPES.EXPERIENCES, false)
                   }
                 >
                   <NavLink to={ROUTES.EXPERIENCES}>{t("experiences")}</NavLink>
@@ -247,10 +240,10 @@ const Header = ({ noBackgroundOnScroll = false }) => {
                   }
                   className="p-[15px] h-fit "
                   onMouseEnter={() =>
-                    handleHoverMenu(MENU_KEY.PLAN_YOUR_TRIP, true)
+                    handleHoverMenu(MENU_TYPES.PLAN_YOUR_TRIP, true)
                   }
                   onMouseLeave={() =>
-                    handleHoverMenu(MENU_KEY.PLAN_YOUR_TRIP, false)
+                    handleHoverMenu(MENU_TYPES.PLAN_YOUR_TRIP, false)
                   }
                 >
                   <NavLink to={ROUTES.HOME}>{t("plan_your_trip")}</NavLink>
@@ -355,26 +348,38 @@ const Header = ({ noBackgroundOnScroll = false }) => {
               )}
             </AnimatePresence>
           </div>
-          <PlanYourTripContent
-            onMouseLeave={() => setHoverPlanYourTripContent(false)}
-            onMouseEnter={() => setHoverPlanYourTripContent(true)}
+          <DropdownContent
+            onMouseLeave={() => updateHoverState(MENU_TYPES.PLAN_YOUR_TRIP, true, false)}
+            onMouseEnter={() => updateHoverState(MENU_TYPES.PLAN_YOUR_TRIP, true, true)}
             className={
-              hoverPlanYourTrip || hoverPlanYourTripContent ? "flex" : "hidden"
+              hoverState[MENU_TYPES.PLAN_YOUR_TRIP] || hoverState[`${MENU_TYPES.PLAN_YOUR_TRIP}Content`] ? "flex" : "hidden"
             }
+            contentType={MENU_TYPES.PLAN_YOUR_TRIP}
+            setHoverContent={(value) => updateHoverState(MENU_TYPES.PLAN_YOUR_TRIP, true, value)}
+            setHoverMenu={(value) => updateHoverState(MENU_TYPES.PLAN_YOUR_TRIP, false, value)}
+            menuItems={getMenuItemsByType(MENU_TYPES.PLAN_YOUR_TRIP)}
           />
-          <ExperiencesContent
-            onMouseLeave={() => handleHoverMenu(MENU_KEY.EXPERIENCES, false)}
-            onMouseEnter={() => handleHoverMenu(MENU_KEY.EXPERIENCES, true)}
+          <DropdownContent
+            onMouseLeave={() => updateHoverState(MENU_TYPES.EXPERIENCES, true, false)}
+            onMouseEnter={() => updateHoverState(MENU_TYPES.EXPERIENCES, true, true)}
             className={
-              hoverExperiences || hoverExperiencesContent ? "flex" : "hidden"
+              hoverState[MENU_TYPES.EXPERIENCES] || hoverState[`${MENU_TYPES.EXPERIENCES}Content`] ? "flex" : "hidden"
             }
+            contentType={MENU_TYPES.EXPERIENCES}
+            setHoverContent={(value) => updateHoverState(MENU_TYPES.EXPERIENCES, true, value)}
+            setHoverMenu={(value) => updateHoverState(MENU_TYPES.EXPERIENCES, false, value)}
+            menuItems={getMenuItemsByType(MENU_TYPES.EXPERIENCES)}
           />
-          <DestinationsContent
-            onMouseLeave={() => handleHoverMenu(MENU_KEY.DESTINATIONS, false)}
-            onMouseEnter={() => handleHoverMenu(MENU_KEY.DESTINATIONS, true)}
+          <DropdownContent
+            onMouseLeave={() => updateHoverState(MENU_TYPES.DESTINATIONS, true, false)}
+            onMouseEnter={() => updateHoverState(MENU_TYPES.DESTINATIONS, true, true)}
             className={
-              hoverDestinations || hoverDestinationsContent ? "flex" : "hidden"
+              hoverState[MENU_TYPES.DESTINATIONS] || hoverState[`${MENU_TYPES.DESTINATIONS}Content`] ? "flex" : "hidden"
             }
+            contentType={MENU_TYPES.DESTINATIONS}
+            setHoverContent={(value) => updateHoverState(MENU_TYPES.DESTINATIONS, true, value)}
+            setHoverMenu={(value) => updateHoverState(MENU_TYPES.DESTINATIONS, false, value)}
+            menuItems={getMenuItemsByType(MENU_TYPES.DESTINATIONS)}
           />
         </div>
 
@@ -793,301 +798,3 @@ const Header = ({ noBackgroundOnScroll = false }) => {
 
 export default Header;
 
-// Component info card
-function InfoCard({ title, description, icon, onClickItem, to }) {
-  return (
-    <NavLink
-      to={to}
-      onClick={onClickItem}
-      className="block transition-all duration-300 hover:translate-x-1"
-    >
-      <div className="border-b pb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <h3 className="font-bold text-gray-800 mt-[2px]">{title}</h3>
-          {icon}
-        </div>
-        <p className="text-sm text-gray-600">{description}</p>
-      </div>
-    </NavLink>
-  );
-}
-
-const PlanYourTripContent = ({ className, onMouseLeave, onMouseEnter }) => {
-  const { t } = useTranslation();
-  const { setHoverPlanYourTripContent, setHoverPlanYourTrip } =
-    useContext(HeaderContext);
-  // Hàm xử lý khi click vào item info card
-  const onClickItem = () => {
-    setHoverPlanYourTripContent(false);
-    setHoverPlanYourTrip(false);
-  };
-
-  return (
-    <div
-      onMouseLeave={onMouseLeave}
-      onMouseEnter={onMouseEnter}
-      className={`container absolute left-1/2 -translate-x-1/2 top-full w-full mt-[-30px] pt-[15px] z-50 ${className}`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8  bg-white py-8  border-t border-gray-100 shadow-lg">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Visa Guide */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("visa_guide")}
-            description={t("plan_ahead_for_travel")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.VISA_GUIDE}
-          />
-
-          {/* Essentials */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("essentials")}
-            description={t("from_etiquette_to_currency")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.ESSENTIALS}
-          />
-
-          {/* Flights */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("flights")}
-            description={t("book_flight_tickets")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.HOME}
-          />
-
-          {/* Accommodation */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("accommodation")}
-            description={t("incredible_range_of_stay_options")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.HOME}
-          />
-
-          {/* Getting around Vietnam */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("getting_around_vietnam")}
-            description={t("navigating_vietnam_is_a_breeze")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.GETTING_TO_AND_AROUND}
-          />
-
-          {/* Safety */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("safety")}
-            description={t("guide_to_enjoying_safely")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.SAFETY}
-          />
-
-          {/* Weather */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("weather")}
-            description={t("vietnam_climate_guide")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.WEATHER_TRIP}
-          />
-
-          {/* Currency */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("currency")}
-            description={t("all_about_vietnam_currency")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.CURRENCY_GUIDE}
-          />
-
-          {/* Accessibility */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("accessibility")}
-            description={t("for_travelers_with_special_needs")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.ACCESSIBILITY}
-          />
-
-          {/* Vietnam attractions passes */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("vietnam_attractions_passes")}
-            description={t("unlock_savings_with_passes")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.VIETNAM_PASS}
-          />
-
-          {/* Visa Information */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("visa_information")}
-            description={t("visa_information")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.VISA_INFORMATION}
-          />
-
-          {/* Place to go */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("place_to_go")}
-            description={t("place_to_go")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.PLACE_TO_GO}
-          />
-
-          {/* Download apps */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("download_apps")}
-            description={t("get_apps_for_attractions")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to={ROUTES.DOWNLOAD_APP}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ExperiencesContent = ({ className, onMouseLeave, onMouseEnter }) => {
-  const { t } = useTranslation();
-  const { setHoverExperiencesContent, setHoverExperiences } =
-    useContext(HeaderContext);
-  // Hàm xử lý khi click vào item info card
-  const onClickItem = () => {
-    setHoverExperiencesContent(false);
-    setHoverExperiences(false);
-  };
-
-  return (
-    <div
-      onMouseLeave={onMouseLeave}
-      onMouseEnter={onMouseEnter}
-      className={` absolute left-1/2 -translate-x-1/2 top-full  bg-white w-full mt-[-30px] pt-[15px] z-50 ${className}`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-8  border-t border-gray-100 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Visa Guide */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("Cultural Heritage")}
-            description={t("plan_ahead_for_travel")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/visa-guide"
-          />
-
-          {/* Essentials */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("Cuisine")}
-            description={t("from_etiquette_to_currency")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/essentials"
-          />
-
-          {/* Flights */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("Nature & Adventure")}
-            description={t("book_flight_tickets")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/"
-          />
-
-          {/* Accommodation */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("Sustainable Travel")}
-            description={t("incredible_range_of_stay_options")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/"
-          />
-
-          {/* Getting around Vietnam */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("City Vibes")}
-            description={t("navigating_vietnam_is_a_breeze")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/getting-to-and-around"
-          />
-
-          {/* Safety */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("Wellness Escapes")}
-            description={t("guide_to_enjoying_safely")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/safety"
-          />
-
-          {/* Weather */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("Romantic Getaways")}
-            description={t("vietnam_climate_guide")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/weathertrip"
-          />
-
-          {/* Currency */}
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("Local Life")}
-            description={t("all_about_vietnam_currency")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/currency"
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const DestinationsContent = ({ className, onMouseLeave, onMouseEnter }) => {
-  const { t } = useTranslation();
-  const { setHoverDestinationsContent, setHoverDestinations } =
-    useContext(HeaderContext);
-
-  const onClickItem = () => {
-    setHoverDestinationsContent(false);
-    setHoverDestinations(false);
-  };
-
-  return (
-    <div
-      onMouseLeave={onMouseLeave}
-      onMouseEnter={onMouseEnter}
-      className={` absolute left-1/2 -translate-x-1/2 top-full  bg-white w-full mt-[-30px] pt-[15px] z-50 ${className}`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8  py-8  border-t border-gray-100 ">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("Regions")}
-            description={t("Discover the charm of Northern Vietnam")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/northern-vietnam"
-          />
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("Iconic Highlights")}
-            description={t("Explore the heart of Vietnam")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/central-vietnam"
-          />
-          <InfoCard
-            onClickItem={onClickItem}
-            title={t("UNESCO Heritage")}
-            description={t("Experience Southern Vietnam's vibrancy")}
-            icon={<ChevronRight color="black" className="h-5 w-5" />}
-            to="/southern-vietnam"
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
