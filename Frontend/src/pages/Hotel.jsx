@@ -46,7 +46,7 @@ const Hotel = () => {
                                 value={''}
                                 onChange={() => { }}
                                 placeholder="Find a hotel"
-                               className="mt-2 placeholder-gray-500 placeholder-opacity-50 placeholder:text-lg font-[Helvetica_Neue]"
+                                className="mt-2 placeholder-gray-500 placeholder-opacity-50 placeholder:text-lg font-[Helvetica_Neue]"
                             />
 
                         </div>
@@ -72,14 +72,18 @@ const Hotel = () => {
                         </div>
                     </div>
                 </div>
-                <Breadcrumb
-                    className="mt-9 ml-18"
-                    items={breadcrumdItems}
-                />
+                <div>
+                    <Breadcrumb
+                        className="container  mt-9"
+                        items={breadcrumdItems}
+                    />
+                </div>
+
             </section>
+
             <FilterHotel className="mt-[40px] mb-[160px]" />
-            <RecentlyViewed/>
-            <IsoCMSTestimonials/>
+            <RecentlyViewed />
+            <IsoCMSTestimonials />
         </main>
     )
 }
