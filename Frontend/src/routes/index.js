@@ -171,7 +171,9 @@ const routes = [
                         Component: lazy(() => import("@pages/EventsDetail")),
                         loader: async ({ params }) => {
                             const { slug } = params;
-                            const event = await EventService.getEventBySlug(slug);
+                            const event = await EventService.getEventBySlug(
+                                slug
+                            );
                             return { event };
                         },
                         meta: () => {
@@ -229,6 +231,10 @@ const routes = [
                     {
                         path: ROUTES.DOWNLOAD_APP,
                         Component: lazy(() => import("@pages/DownloadApp")),
+                    },
+                    {
+                        path: ROUTES.DETAIL_HOTEL,
+                        Component: lazy(() => import("@pages/DetailHotel")),
                     },
                     {
                         path: ROUTES.SEARCH_RESULT,
@@ -297,9 +303,9 @@ const routes = [
                         ),
                     },
                     {
-                        path: 'hotel',
-                        Component: lazy(() => import("@pages/Hotel"))
-                    }
+                        path: "hotel",
+                        Component: lazy(() => import("@pages/Hotel")),
+                    },
                 ],
             },
             {
