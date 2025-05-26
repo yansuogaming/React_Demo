@@ -1,34 +1,37 @@
 import Breadcrumb from '@components/Breadcrumb'
 import FAQ from '@components/FAQ'
-import FilterTours from '@components/FilterTours'
-import MostPopularTours from '@components/MostPopularTours'
 import PlainYourTrip from '@components/PlainYourTrip'
-import WhyVisit from '@components/WhyVisit'
 import Reveal from '@components/animation/Reveal'
 import TextNormal from '@components/text/TextNormal'
-import { Button } from '@components/ui/button'
 import image from '@images/hero-image-itineraries.png'
 import { useTranslation } from 'react-i18next'
 import star_white from '@images/star_white.svg'
 import FilterToursAttractions from '@components/FilterToursAttractions'
+import { cn } from '@lib/utils'
+import { useLoaderData } from 'react-router'
 
 const Attractions = () => {
     const { t } = useTranslation();
+    const { FAQs } = useLoaderData();
 
     const breadcrumdItems = [
         { label: t('home'), href: '/' },
         { label: t('plan_your_trip'), href: '/' },
-        { label: t('attractions'), href: '/' },
+        { label: t('Attractions'), href: '/' },
     ]
 
     return (
-        <main>
+        <main className="mb-[100px]">
             <section className="container mb-[80px]">
                 <Breadcrumb
                     className="mb-[30px] mt-[15px]"
                     items={breadcrumdItems}
                 />
-                <Reveal className="grid grid-cols-1 lg:grid-cols-2 gap-[30px] items-center mt-[80px] bg-white rounded-tl-[60px] rounded-br-[60px] shadow-[0px_2px_8px_0px_rgba(0,0,0,0.10)]">
+                <Reveal className={cn(
+                    'grid grid-cols-1 lg:grid-cols-2 gap-[30px] items-center',
+                    'mt-[30px] bg-white rounded-tl-[60px] rounded-br-[60px]',
+                    'shadow-[0px_2px_8px_0px_rgba(0,0,0,0.10)]'
+                )}>
                     <div className=''>
                         <img className='w-full' src={image} alt="Vietnam – Journeys You Simply Can’t Miss" />
                     </div>
@@ -57,12 +60,9 @@ const Attractions = () => {
                     </div>
                 </Reveal>
             </section>
-            {/* <MostPopularTours /> */}
             <FilterToursAttractions className="mt-[80px] mb-[160px]" />
-            {/* <WhyVisit /> */}
-          
             <PlainYourTrip className="mt-[120px]" />
-            <FAQ className="mt-[80px]"/>
+            <FAQ data={FAQs} className="mt-[80px]"/>
         </main>
     )
 }

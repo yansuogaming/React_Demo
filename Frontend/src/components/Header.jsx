@@ -797,4 +797,3 @@ const Header = ({ noBackgroundOnScroll = false }) => {
 };
 
 export default Header;
-

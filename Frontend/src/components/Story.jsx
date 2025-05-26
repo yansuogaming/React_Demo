@@ -21,7 +21,7 @@ const Story = ({ className = "" }) => {
         <section className={`container ${className}`}>
             <div className="lg:flex items-center justify-between mb-[20px]">
                 <h2 className="mb-[10px] lg:mb-[0] text-[30px] font-bold text-[#1A2A44]">
-                    Stories from Vietnam Travelers
+                    {t("Stories from Vietnam Travelers")}
                 </h2>
                 <ViewMoreButton text={t("Read more")} />
             </div>

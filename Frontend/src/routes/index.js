@@ -285,6 +285,14 @@ const routes = [
                     {
                         path: ROUTES.ATTRACTIONS,
                         Component: lazy(() => import("@pages/Attractions")),
+                        loader: async () => {
+                            const res = await Promise.all([
+                                FAQService.getListFAQs(),
+                            ]);
+                            return {
+                                FAQs: res[0]
+                            };
+                        },
                     },
                     {
                         path: ROUTES.SHOPPINGCART,

@@ -3,7 +3,6 @@ import ViewMoreButton from "./button/ViewMoreButton";
 import CardEvent from "./card/CardEvent";
 import { IoTicketOutline } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
-
 import {
     Carousel,
     CarouselContent,
@@ -11,6 +10,7 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
+import ROUTES from "@routes/routes";
 
 const VietNamEvent = ({ className = "", data = [] }) => {
     const { t } = useTranslation();
@@ -44,12 +44,12 @@ const VietNamEvent = ({ className = "", data = [] }) => {
             <div className="container">
                 <div className="lg:flex items-center justify-between mb-[20px]">
                     <h2 className="mb-[10px] lg:mb-[0] lg:text-[40px] text-[34px] font-[700] text-[#1A2A44]">
-                        Celebrate Vietnam's Vibrant Events & Festivals
+                        {t("Celebrate Vietnam's Vibrant Events & Festivals")}
                     </h2>
                     <ViewMoreButton
                         className="font-[700] text-[18px]"
                         text={t("See All Events")}
-                        to="/events"
+                        to={ROUTES.EVENTS}
                     />
                 </div>
 

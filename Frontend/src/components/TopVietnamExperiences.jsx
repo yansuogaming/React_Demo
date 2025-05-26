@@ -3,6 +3,8 @@ import ViewMoreButton from "./button/ViewMoreButton";
 import Reveal from "./animation/Reveal";
 import { cn } from "@lib/utils";
 import { FaArrowRight } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
+import ROUTES from "@routes/routes";
 
 const TopVietnamExperiences = ({ className = "", data = [] }) => {
     const hoverElement = (e) => {
@@ -14,15 +16,16 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
         e.currentTarget.querySelector(".content").style.removeProperty("top");
     };
 
+    const { t } = useTranslation();
     return (
         <section className={`container ${className}`}>
             <h2 className="mb-[32px] text-[#1A2A44] lg:text-[40px] text-[34px] font-[700] lg:text-center">
-                Unforgettable Vietnam Experiences
+                {t("Unforgettable Vietnam Experiences")}
             </h2>
             {data.map((experienceType, index) => (
                 <Reveal key={index} className="max-w-[1120px] mx-auto">
                     <NavLink
-                        to="/"
+                        to="#"
                         className={cn(
                             "w-full mx-auto block relative",
                             "mt-[10px] group overflow-hidden"
@@ -34,10 +37,10 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
                             className={cn(
                                 "w-full h-[280px] object-cover",
                                 index == 0
-                                    ? 'rounded-[150px_0_0_0]'
-                                    : (index === data.length - 1)
-                                        ? 'rounded-[0_0_150px_0]'
-                                        : ''
+                                    ? "rounded-[150px_0_0_0]"
+                                    : index === data.length - 1
+                                    ? "rounded-[0_0_150px_0]"
+                                    : ""
                             )}
                             src={experienceType.image}
                             alt={experienceType.title}
@@ -79,10 +82,10 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
                                     ? "bg-[linear-gradient(90deg,_#F26833_0%,_rgba(242,104,51,0.5)_61.37%,_rgba(242,104,51,0)_100%)]"
                                     : "bg-[linear-gradient(90deg,_#33B6E2_0%,_rgba(51,182,226,0.5)_65.38%,_rgba(51,182,226,0)_100%)]",
                                 index == 0
-                                    ? 'rounded-[150px_0_0_0]'
-                                    : (index === data.length - 1)
-                                        ? 'rounded-[0_0_150px_0]'
-                                        : ''
+                                    ? "rounded-[150px_0_0_0]"
+                                    : index === data.length - 1
+                                    ? "rounded-[0_0_150px_0]"
+                                    : ""
                             )}
                         ></div>
                     </NavLink>
@@ -90,12 +93,12 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
             ))}
             <Reveal>
                 <ViewMoreButton
-                    text="Explore All Experiences"
+                    text={t("Explore All Experiences")}
                     className={cn(
                         "text-[#007BFF] p-[15px] w-fit mx-auto border-1",
                         "border-[#007BFF] mt-[32px] rounded-[80px] font-[700] text-[16px] lg:text-[18px]"
                     )}
-                    href="/experiences"
+                    href={ROUTES.EXPERIENCES}
                 />
             </Reveal>
         </section>
