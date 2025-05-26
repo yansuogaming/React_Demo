@@ -12,7 +12,7 @@ const TrendingItinerary = ({ className = "", data = [] }) => {
     return (
         <section className={`container ${className}`}>
             {/* Header */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between lg:mb-[40px] mb-[64px] gap-[12px] lg:gap-[0px]">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-[40px] gap-[12px] lg:gap-[0px]">
                 <h2 className="text-[34px] sm:text-[28px] lg:text-[40px] font-[700] text-[#1A2A44]">
                     {t("Trending Itineraries")}
                 </h2>
@@ -48,7 +48,7 @@ const TrendingItinerary = ({ className = "", data = [] }) => {
                             </div>
 
                             <div
-                                className="text-[16px] font-normal hidden lg:block truncate_3"
+                                className="text-[16px] font-normal hidden md:truncate_3"
                                 dangerouslySetInnerHTML={{
                                     __html: tour.overview,
                                 }}

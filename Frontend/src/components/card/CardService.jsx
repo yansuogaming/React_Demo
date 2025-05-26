@@ -28,7 +28,7 @@ const CardService = ({
                 className="bg-white rounded-[0_0_12px_12px] p-[16px]"
                 style={{ padding }}
             >
-                <TertiaryHeading className="text-[24px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500">
+                <TertiaryHeading className="text-[20px] md:text-[24px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500">
                     <NavLink to={href}>{title}</NavLink>
                 </TertiaryHeading>
                 {children}

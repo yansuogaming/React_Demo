@@ -33,6 +33,7 @@ const ROUTES = {
     ATTRACTIONS_DETAIL: "AttractionsDetail",
     MAP_HANOI: "map-ha-noi",
     TRIP_DETAIL_RESULT: "tripdetail/result",
+    DETAIL_HOTEL: "detailhotel",
     NOT_FOUND: "*",
 };
 

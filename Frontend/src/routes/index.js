@@ -259,6 +259,10 @@ const routes = [
                         Component: lazy(() => import("@pages/DownloadApp")),
                     },
                     {
+                        path: ROUTES.DETAIL_HOTEL,
+                        Component: lazy(() => import("@pages/DetailHotel")),
+                    },
+                    {
                         path: ROUTES.SEARCH_RESULT,
                         Component: lazy(() => import("@pages/SearchResult")),
                     },

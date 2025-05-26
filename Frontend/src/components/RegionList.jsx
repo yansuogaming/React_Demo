@@ -182,7 +182,7 @@ const RegionList = ({ className, data, ...props }) => {
                                     activeRegion === index ? "" : "hidden"
                                 }
                             >
-                                <h2 className="text-[#1A2A44] text-[28px] md:text-[56px] lg:text-[72px] font-bold text-center xl:text-left mb-[8px] md:mb-0 mt-2 xl:mt-0">
+                                <h2 className="text-[#1A2A44] text-[34px] md:text-[56px] lg:text-[72px] font-bold text-center xl:text-left mb-[8px] md:mb-0 mt-2 xl:mt-0">
                                     {region.title}
                                 </h2>
                                 <div className="text-[#494951] text-[16px] md:text-[18px] lg:text-[20px] font-normal mb-[30px] md:mb-[40px] lg:mb-[50px] truncate_5">
@@ -219,7 +219,7 @@ const RegionList = ({ className, data, ...props }) => {
                                                 <img
                                                     src={destination.image}
                                                     alt={destination.title}
-                                                    className="w-full rounded-[60px_4px_4px_4px] h-[475px] object-cover"
+                                                    className="w-full rounded-[60px_4px_4px_4px] h-[452px] md:h-[475px] object-cover"
                                                     loading="lazy"
                                                 />
                                                 <div

@@ -39,7 +39,7 @@ const CardEvent = ({
                     src={image}
                     alt={title}
                     style={{ width: widthImage, height: heightImage }}
-                    className="group-hover:scale-[1.1] transition-all duration-500"
+                    className="group-hover:scale-[1.1] transition-all duration-500 object-cover"
                     loading="lazy"
                 />
                 <div className="absolute bottom-[15px] bg-white text-right p-[6px_8px] rounded-[4px] left-[15px] leading-tight text-sm font-[700]">
@@ -63,7 +63,10 @@ const CardEvent = ({
             </Link>
             <div className="bg-white p-[16px] rounded-[0_0_12px_12px] flex flex-col grow">
                 <TertiaryHeading className="text-[20px] mb-[8px] group-hover:text-[#007BFF] transition-all duration-500">
-                    <Link to={href} dangerouslySetInnerHTML={{__html : title}}></Link>
+                    <Link
+                        to={href}
+                        dangerouslySetInnerHTML={{ __html: title }}
+                    ></Link>
                 </TertiaryHeading>
                 {children}
             </div>

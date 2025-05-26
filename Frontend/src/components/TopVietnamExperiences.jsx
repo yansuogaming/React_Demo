@@ -5,8 +5,10 @@ import { cn } from "@lib/utils";
 import { FaArrowRight } from "react-icons/fa6";
 import { useTranslation } from "react-i18next";
 import ROUTES from "@routes/routes";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const TopVietnamExperiences = ({ className = "", data = [] }) => {
+    const isMobile = useIsMobile();
     const hoverElement = (e) => {
         const content = e.currentTarget.querySelector(".content");
         content.style.top = `calc(100% - ${content.clientHeight + 20}px)`;
@@ -36,16 +38,20 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
                         <img
                             className={cn(
                                 "w-full h-[280px] object-cover",
-                                index == 0
-                                    ? "rounded-[150px_0_0_0]"
+                                index === 0
+                                    ? isMobile
+                                        ? "rounded-[60px_0_0_0]"
+                                        : "rounded-[150px_0_0_0]"
                                     : index === data.length - 1
-                                    ? "rounded-[0_0_150px_0]"
+                                    ? isMobile
+                                        ? "rounded-[0_0_60px_0]"
+                                        : "rounded-[0_0_150px_0]"
                                     : ""
                             )}
                             src={experienceType.image}
                             alt={experienceType.title}
-                            loading="lazy"
                         />
+
                         <div
                             className={cn(
                                 "absolute left-[20px] top-[calc(100%-50px)] lg:top-[calc(100%-55px)]",
@@ -76,15 +82,21 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
                         <div
                             className={cn(
                                 "w-[80%] lg:w-1/2 h-full absolute top-0 left-0",
-                                index == 0
+                                // Gradient màu theo index
+                                index === 0
                                     ? "bg-[linear-gradient(90deg,_#F258BE_0%,_rgba(242,88,190,0.5)_56.25%,_rgba(242,88,190,0)_100%)]"
-                                    : index == 1
+                                    : index === 1
                                     ? "bg-[linear-gradient(90deg,_#F26833_0%,_rgba(242,104,51,0.5)_61.37%,_rgba(242,104,51,0)_100%)]"
                                     : "bg-[linear-gradient(90deg,_#33B6E2_0%,_rgba(51,182,226,0.5)_65.38%,_rgba(51,182,226,0)_100%)]",
-                                index == 0
-                                    ? "rounded-[150px_0_0_0]"
+                                // Responsive rounded
+                                index === 0
+                                    ? isMobile
+                                        ? "rounded-[60px_0_0_0]"
+                                        : "rounded-[150px_0_0_0]"
                                     : index === data.length - 1
-                                    ? "rounded-[0_0_150px_0]"
+                                    ? isMobile
+                                        ? "rounded-[0_0_60px_0]"
+                                        : "rounded-[0_0_150px_0]"
                                     : ""
                             )}
                         ></div>
