@@ -15,8 +15,8 @@ import MapIcon from "../icons/MapIcon";
 import UserIcon from "../icons/UserIcon";
 import ROUTES from "@routes/routes";
 import { menuItems } from "@/data/menuItems";
-import { useContext } from "react";
-import { HeaderContext } from "./Header";
+import { useHeaderContext } from "@contexts/HeaderContext";
+
 
 const colors = ["#03A9F4", "#0288D1", "#0277BD", "#01579B", "#003F73"];
 
@@ -30,11 +30,8 @@ const MobileMenu = () => {
         setIsVisibleSubMenu,
         typeSubmenu,
         setTypeSubmenu,
-    } = useContext(HeaderContext);
+    } = useHeaderContext();
     const { t } = useTranslation();
-
-    console.log(menuItems);
-
     return (
         <AnimatePresence initial={false}>
             {isVisible && (

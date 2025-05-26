@@ -11,8 +11,8 @@ import {
     RiArrowLeftSLine,
     RiQuestionLine,
 } from "react-icons/ri";
-import { useContext } from "react";
-import { HeaderContext } from "./Header";
+
+import { useHeaderContext } from "@contexts/HeaderContext";
 
 const MobileSubmenu = () => {
     const {
@@ -21,7 +21,7 @@ const MobileSubmenu = () => {
         isVisibleSubMenu,
         setIsVisibleSubMenu,
         typeSubmenu,
-    } = useContext(HeaderContext);
+    } = useHeaderContext();
     const { t } = useTranslation();
     const navigate = useNavigate();
     const menuSubItem = getMenuItemsByType(typeSubmenu);
