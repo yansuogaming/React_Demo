@@ -10,6 +10,7 @@ import TourService from "@services/TourService";
 import MapService from "@services/MapService";
 import RegionService from "@services/RegionService";
 import { t } from "i18next";
+import AttractionService from "@services/AttractionService";
 
 const routes = [
     ...routesAdmin,
@@ -288,9 +289,11 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
+                                AttractionService.listAttraction({})
                             ]);
                             return {
-                                FAQs: res[0]
+                                FAQs: res[0],
+                                attractions: res[1].potentials ?? [],
                             };
                         },
                     },

@@ -9,11 +9,12 @@ import star_white from '@images/star_white.svg'
 import FilterToursAttractions from '@components/FilterToursAttractions'
 import { cn } from '@lib/utils'
 import { useLoaderData } from 'react-router'
+import OtherRegion from '@components/OtherRegion'
 
 const Attractions = () => {
     const { t } = useTranslation();
-    const { FAQs } = useLoaderData();
-
+    const { FAQs, attractions } = useLoaderData();
+    console.log(attractions);
     const breadcrumdItems = [
         { label: t('home'), href: '/' },
         { label: t('plan_your_trip'), href: '/' },
@@ -60,9 +61,10 @@ const Attractions = () => {
                     </div>
                 </Reveal>
             </section>
-            <FilterToursAttractions className="mt-[80px] mb-[160px]" />
+            <FilterToursAttractions data={attractions} className="mt-[80px] mb-[160px]" />
             <PlainYourTrip className="mt-[120px]" />
             <FAQ data={FAQs} className="mt-[80px]"/>
+            <OtherRegion className="mt-[120px]" />
         </main>
     )
 }

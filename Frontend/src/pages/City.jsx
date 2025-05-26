@@ -27,7 +27,7 @@ const City = () => {
   ];
 
   return (
-    <main>
+    <main className="mb-[60px]">
       <HeroSection title={city.title} image={city.banner} showArrowDown={true}>
         <div
           className="text-center text-[20px] font-normal w-full truncate_3"

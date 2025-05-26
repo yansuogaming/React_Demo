@@ -28,11 +28,6 @@ export const menuItems = [
         to: ROUTES.HOME
       },
       {
-        titleKey: "accommodation",
-        descriptionKey: "incredible_range_of_stay_options",
-        to: ROUTES.HOME
-      },
-      {
         titleKey: "getting_around_vietnam",
         descriptionKey: "navigating_vietnam_is_a_breeze",
         to: ROUTES.GETTING_TO_AND_AROUND
