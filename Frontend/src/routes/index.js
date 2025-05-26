@@ -49,14 +49,14 @@ const routes = [
                         },
                     },
                     {
-                        path: ROUTES.CITY, // "city/:slug"
+                        path: ROUTES.CITY,
                         Component: lazy(() => import("@pages/City")),
                         loader: async ({ params }) => {
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
                                 EventService.getOngoingAndUpcomingEvents(),
                                 CityService.getCityBySlug(params.slug),
-                                MapService.getListDestination(),
+                                MapService.getListDestination(params.slug),
                             ]);
 
                             const weather = await WeatherService.getCityWeather(

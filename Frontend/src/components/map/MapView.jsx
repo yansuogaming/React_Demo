@@ -22,8 +22,8 @@ const MapView = () => {
 
   // Tọa độ ranh giới cho Hà Nội (Tây Nam và Đông Bắc)
   const hanoiBounds = [
-    [105.2, 20.5], // Góc Tây Nam: [longitude, latitude]
-    [106.2, 21.4], // Góc Đông Bắc: [longitude, latitude]
+    [105.5204, 20.9073], // Góc Tây Nam: [longitude, latitude]
+    [105.9346, 21.2772], // Góc Đông Bắc: [longitude, latitude]
   ];
 
   const mapRef = useRef(null);

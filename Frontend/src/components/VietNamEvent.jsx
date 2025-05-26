@@ -13,6 +13,7 @@ import {
 import ROUTES from "@routes/routes";
 
 const VietNamEvent = ({ className = "", data = [] }) => {
+    console.log('data', data);
     const { t } = useTranslation();
     const events = data.map((item, idx) => (
         <CardEvent
@@ -33,9 +34,8 @@ const VietNamEvent = ({ className = "", data = [] }) => {
                         <IoTicketOutline className="text-[20px]" />
                     </p>
                 )}
-
                 <div
-                    className="hidden text-[16px] font-normal mt-[16px] md:truncate_3"
+                    className="text-[16px] font-normal mt-[16px] truncate_3"
                     dangerouslySetInnerHTML={{ __html: item.intro }}
                 ></div>
             </div>

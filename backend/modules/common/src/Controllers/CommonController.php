@@ -34,7 +34,7 @@ class CommonController
     public function getListDestination(Request $request)
     {
         $type = $request->input('place_type', PlaceType::SIGHTSEEING->value);
-        $cityId = $request->input('city_id', 0);
+        $cityId = $request->input('slug', );
         if (!PlaceType::in($type)) {
             return Response::json([
                 'message' => 'Loại địa điểm không hợp lệ',

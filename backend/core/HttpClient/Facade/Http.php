@@ -33,9 +33,12 @@ class Http extends Facade
             ->withToken(env('LICENSE_KEY'));
     }
 
-    public static function weather(string $cityName)
+    public static function openstreetmap(string $cityName)
     {
-        return Http::get("https://nominatim.openstreetmap.org/search?q={$cityName}&format=json&limit=1");
+        return Http::withHeaders([
+            'User-Agent' => 'MyAppName/1.0 (myemail@example.com)'
+        ])
+        ->get("https://nominatim.openstreetmap.org/search?q={$cityName}&format=json&limit=1");
     }
 
     public static function tourdb(string $langId)
@@ -70,6 +73,15 @@ class Http extends Facade
     public static function amthuc365()
     {
         return Http::baseUrl('https://ilooca-cus.itourism.vn/api')
+            ->withHeaders([
+                'Content-Type' => 'application/json',
+            ])
+            ->withToken(env('LICENSE_KEY'));
+    }
+
+    public static function connect(string $langId)
+    {
+        return Http::baseUrl('http://connect.itourism.vn/api')
             ->withHeaders([
                 'Content-Type' => 'application/json',
             ])

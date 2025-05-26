@@ -20,11 +20,7 @@ class WeatherController
         $cityName = urldecode($cityName);
         $slug = Str::slug($cityName);
         $location = Cache::getCache("location-$slug", function () use ($cityName) {
-            $res = Http::withHeaders([
-                'User-Agent' => 'your-app-name (your-email@example.com)'
-            ])
-            ->get("https://nominatim.openstreetmap.org/search?q=$cityName&format=json");
-            return $res->json();
+            return Http::openstreetmap($cityName)->json();
         }, 900);
 
         $res = $this->getWeatherByLocation(
