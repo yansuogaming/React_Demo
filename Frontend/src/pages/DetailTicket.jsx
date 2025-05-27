@@ -11,6 +11,7 @@ import {
 import { Calendar, Clock, Info, MapPin, Minus, Plus, Star } from "lucide-react";
 import React, { useState } from "react";
 import { BsLightning } from "react-icons/bs";
+import Rating from "@components/detailTicket/Rating";
 
 function DetailTicket() {
     return (
@@ -18,6 +19,7 @@ function DetailTicket() {
             <CarouselImage />
             <Content />
             <Location />
+            <Rating/>
         </div>
     );
 }
@@ -234,7 +236,7 @@ const Content = () => {
                                         onClick={() =>
                                             setSelectedPackage("accumulate")
                                         }
-                                        className="text-base bg-[#FF5B001A] text-[#FF5B00] hover:bg-[#ff5b00]/90 border-[#ff5b00]"
+                                        className="text-base bg-[#FF5B001A] text-[#FF5B00] hover:bg-[#ff5b00]/90 hover:text-white border-[#ff5b00]"
                                     >
                                         Gói Tích Lũy (kèm bữa trưa)
                                     </Button>
