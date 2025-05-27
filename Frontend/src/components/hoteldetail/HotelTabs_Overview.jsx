@@ -1,11 +1,31 @@
 import HotelOverview_RightBox from "./HotelOverview_RightBox";
 
+import {
+    MdWifi,
+    MdCleaningServices,
+    MdRestaurant,
+    MdFreeBreakfast,
+    MdChildCare,
+    MdSpa,
+} from "react-icons/md";
+import { FaConciergeBell } from "react-icons/fa";
+
+const hotelFacilities = [
+    { icon: FaConciergeBell, label: "24 hour front desk" },
+    { icon: MdWifi, label: "Free Internet" },
+    { icon: MdSpa, label: "Spa service" },
+    { icon: MdCleaningServices, label: "Daily housekeeping" },
+    { icon: MdFreeBreakfast, label: "In-room breakfast" },
+    { icon: MdRestaurant, label: "Restaurant" },
+    { icon: MdChildCare, label: "Children’s play area" },
+];
+
 const HotelTabs_Overview = () => {
     return (
         <div className="grid md:grid-cols-12 gap-6">
             {/* Left content */}
             <div className="md:col-span-9">
-                <p className="text-sm text-gray-700 leading-relaxed">
+                <p className="text-[#1D2D53] text-[16px] font-[400]">
                     Situated in the picturesque and ideal location along the
                     Vũng Tàu beachfront, Premier Pearl is one of Vũng Tàu’s
                     leading luxury beach hotels...
@@ -17,33 +37,28 @@ const HotelTabs_Overview = () => {
                     <br />
                     Premier Pearl Hotel is a fantastic base for exploring the
                     vibrant city...
-                    <span className="text-blue-500 cursor-pointer hover:underline">
+                    <span className="text-[#18BABD] cursor-pointer hover:underline">
                         {" "}
                         View more
                     </span>
                 </p>
 
-                <h3 className="text-base font-semibold mt-6 mb-3">
+                <h3 className="text-[18px] font-[700] mt-[40px] mb-[20px]">
                     Most popular facilities
                 </h3>
-                <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm text-gray-700">
-                    <li className="flex items-center gap-2">
-                        🛎️ 24 hour front desk
-                    </li>
-                    <li className="flex items-center gap-2">
-                        📶 Free Internet
-                    </li>
-                    <li className="flex items-center gap-2">💆 Spa service</li>
-                    <li className="flex items-center gap-2">
-                        🧹 Daily housekeeping
-                    </li>
-                    <li className="flex items-center gap-2">
-                        🥐 In-room breakfast
-                    </li>
-                    <li className="flex items-center gap-2">🍽️ Restaurant</li>
-                    <li className="flex items-center gap-2">
-                        👶 Children’s play area
-                    </li>
+                <ul className="flex flex-wrap gap-x-[20px] gap-y-[16px] text-sm text-gray-900">
+                    {hotelFacilities.map((item, index) => {
+                        const Icon = item.icon;
+                        return (
+                            <li
+                                key={index}
+                                className="flex items-center gap-[12px] whitespace-nowrap text-[16px] text-[#000] font-[400]"
+                            >
+                                <Icon className="w-5 h-5 text-gray-700" />
+                                {item.label}
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
 

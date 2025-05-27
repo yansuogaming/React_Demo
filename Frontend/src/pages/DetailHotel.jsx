@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import HotelHeader from "@components/hoteldetail/HotelHeader";
 import HotelGallery from "@components/hoteldetail/HotelGallery";
 import HotelSections from "@components/hoteldetail/HotelSections";
+import RecentlyViewedCarousel from "@components/hoteldetail/RecentlyViewedCarousel";
 import Breadcrumb from "@components/Breadcrumb";
 
 const DetailHotel = () => {
@@ -27,8 +28,11 @@ const DetailHotel = () => {
             <seciton>
                 <HotelGallery />
             </seciton>
-            <section>
+            <section className="mt-[32px]">
                 <HotelSections />
+            </section>
+            <section className="mt-[80px]">
+                <RecentlyViewedCarousel />
             </section>
         </main>
     );

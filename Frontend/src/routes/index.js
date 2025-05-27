@@ -365,7 +365,11 @@ const routes = [
                     {
                         path: ROUTES.PROFILE,
                         Component: lazy(() => import("@pages/Profile"))
-                    }
+                    },
+                    {
+                        path: ROUTES.LIST_TICKET,
+                        Component: lazy(() => import("@pages/ListTicket")),
+                    },
                 ],
             },
             {

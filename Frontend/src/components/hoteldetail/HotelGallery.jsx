@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+} from "@/components/ui/carousel";
+import { FaPlay, FaRegImages } from "react-icons/fa6";
 
 const images = [
     {
         src: "https://images.trvl-media.com/lodging/23000000/22890000/22882300/22882236/c04c718c.jpg?impolicy=fcrop&w=1200&h=800&p=1&q=medium",
         alt: "Lobby",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Có video
+        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     },
     {
         src: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/209890188.jpg?k=882e748be3114714efa7f001b6ffa97425b1a52a458d3166dea3c1af7c66ac09&o=&hp=1",
@@ -29,13 +35,49 @@ const HotelGallery = () => {
     const [selectedImage, setSelectedImage] = useState(null);
 
     const handleSeeAllPhotos = () => {
-        // Mặc định mở ảnh đầu tiên trong nhóm ảnh nhỏ
         setSelectedImage(images[1]);
     };
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-6 h-[400px]">
+            {/* Mobile: Carousel */}
+            <div className="md:hidden mt-6">
+                <Carousel>
+                    <CarouselContent>
+                        {images.map((img, index) => (
+                            <CarouselItem key={index} className="basis-full">
+                                <div
+                                    className="relative h-[260px] rounded-lg overflow-hidden"
+                                    onClick={() => setSelectedImage(img)}
+                                >
+                                    <img
+                                        src={img.src}
+                                        alt={img.alt}
+                                        className="w-full h-full object-cover"
+                                    />
+                                    {img.videoUrl && (
+                                        <div className="absolute bottom-3 left-3">
+                                            <button
+                                                className="w-[28px] h-[28px] bg-white bg-opacity-80 rounded-full flex items-center justify-center hover:scale-105 transition-transform cursor-pointer"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setSelectedImage(img);
+                                                }}
+                                            >
+                                                <FaPlay className="text-[#1A2C47] text-lg ml-[2px]" />
+                                            </button>
+                                        </div>
+                                    )}
+                                </div>
+                            </CarouselItem>
+                        ))}
+                    </CarouselContent>
+                    {/* Không cần Prev/Next trên mobile nên không render */}
+                </Carousel>
+            </div>
+
+            {/* Tablet & Desktop layout */}
+            <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-3 mt-6 h-[400px]">
                 {/* Left: Main image */}
                 <div
                     className="relative col-span-2 overflow-hidden rounded-lg cursor-pointer h-full"
@@ -46,23 +88,28 @@ const HotelGallery = () => {
                         alt={images[0].alt}
                         className="w-full h-full object-cover"
                     />
-
-                    {/* Hiện icon play nếu có video */}
                     {images[0].videoUrl && (
-                        <button className="absolute bottom-2 left-2 bg-white text-sm px-3 py-1 rounded shadow">
-                            ▶
-                        </button>
+                        <div className="absolute bottom-3 left-3">
+                            <button
+                                className="w-[28px] h-[28px] bg-white bg-opacity-80 rounded-full flex items-center justify-center hover:scale-105 transition-transform cursor-pointer"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelectedImage(images[0]);
+                                }}
+                            >
+                                <FaPlay className="text-[#1A2C47] text-lg ml-[2px]" />
+                            </button>
+                        </div>
                     )}
-
-                    {/* See all photos: bắt đầu từ ảnh nhỏ */}
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             handleSeeAllPhotos();
                         }}
-                        className="absolute bottom-2 right-2 bg-white text-sm px-3 py-1 rounded shadow"
+                        className="absolute bottom-3 right-3 bg-white text-[#18BABD] font-[500] p-[10px_12px] rounded-[80px] shadow flex items-center gap-[8px] text-[14px] cursor-pointer"
                     >
-                        📷 See all photos
+                        <FaRegImages className="text-[20px]" />
+                        See all photos
                     </button>
                 </div>
 

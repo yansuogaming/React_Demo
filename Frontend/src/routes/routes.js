@@ -39,6 +39,7 @@ const ROUTES = {
     RESTAURANT_DETAIL: 'restaurant/detail',
     RATING: 'rating',
     PROFILE: 'profile',
+    LIST_TICKET: "listticket",
     NOT_FOUND: "*",
 };
 

@@ -54,7 +54,7 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
 
                         <div
                             className={cn(
-                                "absolute left-[20px] top-[calc(100%-50px)] lg:top-[calc(100%-55px)]",
+                                "absolute left-[20px] top-[calc(100%-50px)] lg:top-[calc(100%-70px)]",
                                 "transition-all duration-500 lg:left-[35px] z-1 content"
                             )}
                         >
