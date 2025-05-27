@@ -8,7 +8,7 @@ import arrowDown from '@images/arrowDown.svg';
 import phoneGray from '@images/phone_gray.svg';
 import checkmark from '@images/checkmark.svg';
 
-const Overview = () => {
+const Overview = ({ resource }) => {
     return (
         <div className="flex flex-col md:flex-row mt-[60px]">
             {/* Left Column: Tabs and Content */}
@@ -34,31 +34,27 @@ const Overview = () => {
 
                 {/* Highlights Section */}
                 <div className="bg-blue-50 p-4 rounded-lg mb-6">
-                    <p className="text-[#000000] flex items-center mb-2 font-bold py-0.5 font-[SVN-Gotham] text-[16px]"><img src={checkmark} className="mr-2" /> The site is certified by UNESCO</p>
-                    <p className="text-[#000000] flex items-center mb-2 font-bold py-0.5 font-[SVN-Gotham] text-[16px]"><img src={checkmark} className="mr-2" />  Diverse ecosystem</p>
-                    <p className="text-[#000000] flex items-center mb-2 font-bold py-0.5 font-[SVN-Gotham] text-[16px]"><img src={checkmark} className="mr-2" />  Species are in danger of extinction</p>
-                    <p className="text-[#000000] flex items-center mb-2 font-bold py-0.5 font-[SVN-Gotham] text-[16px]"><img src={checkmark} className="mr-2" />  Marine and terrestrial biodiversity</p>
-                    <p className="text-[#000000] flex items-center font-bold py-0.5 font-[SVN-Gotham] text-[16px]"><img src={checkmark} className="mr-2" />  Cultural and economic importance</p>
+                    <p className="text-[#000000] flex items-center mb-2 font-bold py-0.5 font-[SVN-Gotham] text-[16px]">
+                        <img src={checkmark} className="mr-2" /> The site is certified by UNESCO
+                    </p>
+                    <p className="text-[#000000] flex items-center mb-2 font-bold py-0.5 font-[SVN-Gotham] text-[16px]">
+                        <img src={checkmark} className="mr-2" />  Diverse ecosystem
+                    </p>
+                    <p className="text-[#000000] flex items-center mb-2 font-bold py-0.5 font-[SVN-Gotham] text-[16px]">
+                        <img src={checkmark} className="mr-2" />  Species are in danger of extinction
+                    </p>
+                    <p className="text-[#000000] flex items-center mb-2 font-bold py-0.5 font-[SVN-Gotham] text-[16px]">
+                        <img src={checkmark} className="mr-2" />  Marine and terrestrial biodiversity
+                    </p>
+                    <p className="text-[#000000] flex items-center font-bold py-0.5 font-[SVN-Gotham] text-[16px]">
+                        <img src={checkmark} className="mr-2" />  Cultural and economic importance
+                    </p>
                 </div>
 
                 {/* Overview Section */}
                 <div>
                     <h2 className="text-2xl font-bold text-blue-900 mb-4">Overview</h2>
-                    <p className="text-gray-700 mb-2">
-                        Cat Ba World Biosphere Reserve is located on Cat Ba Island, Cat Ba Town, Cat Hai District, Hai Phong City. On December 2, 2004, Cat Ba Biosphere Reserve was honored to be recognized by as a world biosphere reserve.
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                        With a total area of over 26,000 hectares, Cat Ba Biosphere Reserve includes 2 core zones that are strictly preserved and have no human impact, 2 buffer zones that allow limited economic development but combined with conservation) and 2 transition zones for economic development.
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                        Cat Ba Biosphere Reserve is mainly distributed on Cat Ba limestone island and about 400 small surrounding islands, where more than 70 archeological sites belonging to So Vi and Soi Nhun cultures dating back 4,000-25,000 years are preserved. Typical of these is Cai Beo relic site, where primitive people lived 4,000-7,000 years ago.
-                    </p>
-                    <p className="text-gray-700 mb-2">
-                        Cat Ba Biosphere Reserve is a major biodiversity center of Vietnam. According to initial surveys, there are 820 species of higher plants distributed in 438 genera, 123 families, including species that are currently only found in Cat Ba such as Kim Giao, Lat Khoi, Soi Mat, Lat Hoa, Re Huong, Tho Phuc Linh...
-                    </p>
-                    <p className="text-blue-600 hover:underline">
-                        [..] View more
-                    </p>
+                    <div dangerouslySetInnerHTML={{ __html: resource.content }}></div>
                 </div>
             </div>
 

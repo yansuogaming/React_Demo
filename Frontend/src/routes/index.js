@@ -104,28 +104,30 @@ const routes = [
                             );
                             const currentPage = query?.page ?? 1;
                             const keyword = query?.keyword ?? "";
-                            const duration = query?.duration ?? "";
-                            const departurePoint = query?.departurePoint ?? "";
-                            const travelStyle = query?.travelStyle ?? "";
+                            // const duration = query?.duration ?? "";
+                            // const departurePoint = query?.departurePoint ?? "";
+                            // const travelStyle = query?.travelStyle ?? "";
                             const lang_id = query?.lang_id ?? "en";
+
                             const res = await Promise.all([
                                 TourService.getListTrending(),
                                 TourService.getListItineraries(
                                     keyword,
-                                    currentPage,
-                                    duration,
-                                    departurePoint,
-                                    travelStyle
+                                    currentPage
+                                    // duration,
+                                    // departurePoint,
+                                    // travelStyle
                                 ),
                                 TourService.getListDeparture(lang_id),
                                 TourService.getListTravelStyle(lang_id),
                             ]);
+
                             return {
                                 listTrendingTours: res[0],
                                 listTours: res[1].itineraries ?? [],
                                 totalPage: res[1].total_page,
                                 currentPage,
-                                // keyword,
+                                keyword,
                                 // duration,
                                 // departurePoint,
                                 // travelStyle,
@@ -326,7 +328,7 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
-                                AttractionService.listAttraction({})
+                                AttractionService.listAttraction({}),
                             ]);
                             return {
                                 FAQs: res[0],
@@ -340,9 +342,15 @@ const routes = [
                     },
                     {
                         path: ROUTES.ATTRACTIONS_DETAIL,
-                        Component: lazy(() =>
-                            import("@pages/AttractionsDetail")
-                        ),
+                        Component: lazy(() => import("@pages/AttractionsDetail")),
+                        loader: async ({ params }) => {
+                            const res = await Promise.all([
+                                AttractionService.getDetail(params.slug),
+                            ]);
+                            return {
+                                attraction: res[0]
+                            };
+                        },
                     },
                     {
                         path: "hotel",

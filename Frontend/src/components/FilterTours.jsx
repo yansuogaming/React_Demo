@@ -6,24 +6,29 @@ import { Clock, MapPin, Navigation } from "lucide-react";
 import { Button } from "./ui/button";
 import ExploreTopTravelService from "@images/ExploreTopTravelService.png";
 import { useEffect, useState } from "react";
-import Pagination from "./pagination/pagination";
+// import Pagination from "./pagination/pagination";
 import advertising from "@images/advertising.png";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
 import { IoChevronDown } from "react-icons/io5";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
-import { cn } from "@lib/utils";
+import { cn, debounce } from "@lib/utils";
+import ROUTES from "@routes/routes";
 
-const FilterTours = ({ className = "", data = [] }) => {
+const FilterTours = ({
+    className = "",
+    data = [],
+    listDeparture,
+    listTravelstyle,
+    keyword,
+}) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const listTour = data[0];
     const currentPage = data[1];
     const totalPage = data[2];
-    const listDeparture = data[3];
-    const listTravelstyle = data[4];
     // const { t } = useTranslation();
-    // console.log(listDeparture);
+    // console.log(keyword);
 
     useEffect(() => {
         if (isFilterOpen) {
@@ -33,13 +38,14 @@ const FilterTours = ({ className = "", data = [] }) => {
         }
     }, [isFilterOpen]);
 
-    // const navigate = useNavigate();
-    // const changeKeyword = (keyword) => {
-    //     setKeysearch(keyword);
-    //     debounce(() => {
-    //         navigate(`/events?page=1&keyword=${keyword}`);
-    //     }, 500)();
-    // };
+    const [keysearch, setKeysearch] = useState(keyword);
+    const navigate = useNavigate();
+    const changeKeyword = (keyword) => {
+        setKeysearch(keyword);
+        debounce(() => {
+            navigate(`/` + ROUTES.ITINERARIES + `?page=1&keyword=${keyword}`);
+        }, 500)();
+    };
     return (
         <section
             className={`container ${className} flex flex-col gap-[30px] items-center lg:items-end`}
@@ -65,9 +71,9 @@ const FilterTours = ({ className = "", data = [] }) => {
                     <Filter
                         //  categories={categories}
                         //     selectedCategory={typeSearch}
-                        //     keyword={keysearch}
                         //     setSelectedCategory={() => {}}
-                        //     changeKeyword={changeKeyword}
+                        keyword={keysearch}
+                        changeKeyword={changeKeyword}
                         onClose={() => setIsFilterOpen(false)}
                         data={[listDeparture, listTravelstyle]}
                     />
@@ -87,19 +93,21 @@ const FilterTours = ({ className = "", data = [] }) => {
                     listTour={listTour}
                 />
             </div>
-            {/* <Pagination /> */}
 
             {/* Pagination */}
             <div className="flex justify-center items-center gap-[12px] mt-8">
                 {/* Prev */}
                 <Link
-                    disabled={currentPage == 1}
-                    to={`/events?page=1&keyword=`}
+                    // disabled={currentPage == 1}
+                    to={`/` + ROUTES.ITINERARIES + `?page=1&keyword=`}
+                    onClick={(e) => {
+                        if (currentPage == 1) e.preventDefault();
+                    }}
                     className={cn(
                         "w-8 h-8 flex items-center",
                         "justify-center rounded transition",
                         currentPage == 1
-                            ? "text-gray-300 cursor-default"
+                            ? "text-gray-300 cursor-default disabled"
                             : "text-[#0E284E] hover:text-black"
                     )}
                 >
@@ -113,13 +121,20 @@ const FilterTours = ({ className = "", data = [] }) => {
                     return (
                         <Link
                             key={page}
-                            to={`/events?page=${page}&keyword=`}
+                            to={
+                                isActive
+                                    ? "#"
+                                    : `/${ROUTES.ITINERARIES}?page=${page}&keyword=`
+                            }
+                            onClick={(e) => {
+                                if (isActive) e.preventDefault();
+                            }}
                             className={cn(
                                 "w-[50px] h-[50px] rounded-[4px]",
                                 "text-[16px] font-[500] transition",
                                 "flex-col items-center justify-center flex",
                                 isActive
-                                    ? "bg-[#007BFF] text-white"
+                                    ? "bg-[#007BFF] text-white cursor-not-allowed"
                                     : "bg-[#EEF0F5] text-[#1A2A44] hover:bg-gray-200"
                             )}
                         >
@@ -130,8 +145,15 @@ const FilterTours = ({ className = "", data = [] }) => {
 
                 {/* Next */}
                 <Link
-                    disabled={currentPage == totalPage}
-                    to={`/events?page=${currentPage + 1}&keyword=`}
+                    // disabled={currentPage == totalPage}
+                    onClick={(e) => {
+                        if (currentPage == totalPage) e.preventDefault();
+                    }}
+                    to={
+                        `/` +
+                        ROUTES.ITINERARIES +
+                        `?page=${currentPage + 1}&keyword=`
+                    }
                     className={cn(
                         "w-[12px] h-[24px] flex items-center",
                         "justify-center rounded transition",
@@ -150,7 +172,7 @@ const FilterTours = ({ className = "", data = [] }) => {
 
 export default FilterTours;
 
-const Filter = ({ onClose, data = [] }) => {
+const Filter = ({ onClose, changeKeyword, keyword, data = [] }) => {
     const listDeparture = data[0] || [];
     const listTravelstyle = data[1] || [];
     const { t } = useTranslation();
@@ -291,6 +313,8 @@ const Filter = ({ onClose, data = [] }) => {
                     type="text"
                     className="w-full rounded-[8px] border border-solid border-[#C8CBD0] p-[10px_15px] text-[16px] text-[#1A2A44]"
                     placeholder={t("Search")}
+                    onChange={(e) => changeKeyword(e.target.value)}
+                    value={keyword}
                 />
             </div>
 

@@ -8,18 +8,21 @@ import Overview from '@components/Overview';
 import Inspiration from '@components/Inspiration';
 import Review from '@components/Review';
 import OtherPlaces from '@components/OtherPlaces';
+import { useLoaderData } from 'react-router';
 
 const AttractionsDetail = () => {
+    const { attraction } = useLoaderData();
     const { t } = useTranslation();
-
+    const images = attraction.list_images;
+    const resource = attraction.oneResources;
     const breadcrumdItems = [
         { label: t('Home'), href: '/' },
         { label: t('Destinations'), href: '/' },
         { label: t('Hanoi'), href: '/' },
         { label: t('Attractions'), href: '/' },
-        { label: t('Cat Ba Archipelago Biosphere Reserve'), href: '/' }
+        { label: resource.name }
     ]
-
+    console.log('resource', attraction);
     return (
         <main>
             <section className="container mb-[80px]">
@@ -28,7 +31,9 @@ const AttractionsDetail = () => {
                     items={breadcrumdItems}
                 />
                 <div className='mt-[60px]'>
-                    <h1 className='text-[#10154C] font-bold text-[38px] md:text-[38px]'>Cat Ba Archipelago Biosphere Reserve</h1>
+                    <h1 className='text-[#10154C] font-bold text-[38px] md:text-[38px]'>
+                        {resource.name}
+                    </h1>
                 </div>
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between py-4">
                     {/* Left Section: Rating and Tags */}
@@ -41,20 +46,26 @@ const AttractionsDetail = () => {
                             <div className="flex items-center gap-1">
                                 <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                                 <span className="text-sm font-medium text-gray-900">
-                                    4.6 - 8 reviews
+                                    {resource.scores_avg} - {resource.total_reviews} reviews
                                 </span>
                             </div>
                         </div>
 
                         {/* Tags Section */}
                         <div className="flex items-center gap-2 text-sm text-blue-600">
-                            <a href="#" className="hover:underline">
-                                Natural Tourism Resources
-                            </a>
-                            <span className="text-gray-400">|</span>
-                            <a href="#" className="hover:underline">
-                                Places to visit
-                            </a>
+                            {resource.resource_type_name && (
+                                <>
+                                    <p className="hover:underline">
+                                        {resource.resource_type_name}
+                                    </p>
+                                    <span className="text-gray-400">|</span>
+                                </>
+                            )}
+                            {resource.type_name && (
+                                <p className="hover:underline">
+                                    {resource.type_name}
+                                </p>
+                            )}
                         </div>
                     </div>
 
@@ -70,8 +81,8 @@ const AttractionsDetail = () => {
                         </button>
                     </div>
                 </div>
-                <PhotoGallery />
-                <Overview />
+                <PhotoGallery images={images} />
+                <Overview resource={resource} />
                 <Inspiration/>
                 <NearbyPoints />
                 <Review/>
