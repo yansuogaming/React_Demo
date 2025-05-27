@@ -280,5 +280,9 @@ html {
 }
 
 .revert-all {
-  all: revert;
+    all: revert;
+}
+
+html {
+    scroll-behavior: smooth;
 }

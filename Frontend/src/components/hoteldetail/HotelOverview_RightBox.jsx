@@ -113,7 +113,7 @@ const HotelOverview_RightBox = () => {
 
                 {/* Centered button */}
                 <button
-                    className="absolute inset-0 m-auto w-fit h-fit px-6 py-3 bg-white text-[#C81E3A] font-[500] text-[16px] flex items-center gap-2 rounded-full shadow-md"
+                    className="absolute inset-0 m-auto w-fit h-fit px-6 py-3 bg-white text-[#C81E3A] font-[500] text-[16px] flex items-center gap-2 rounded-full shadow-md cursor-pointer"
                     style={{ pointerEvents: "auto" }}
                 >
                     <FaMapMarkerAlt className="text-xl" />
