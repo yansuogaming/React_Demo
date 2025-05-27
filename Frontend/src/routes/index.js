@@ -334,9 +334,7 @@ const routes = [
                     },
                     {
                         path: ROUTES.ATTRACTIONS_DETAIL,
-                        Component: lazy(() =>
-                            import("@pages/AttractionsDetail")
-                        ),
+                        Component: lazy(() => import("@pages/AttractionsDetail")),
                     },
                     {
                         path: "hotel",

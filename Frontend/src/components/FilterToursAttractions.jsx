@@ -1,17 +1,13 @@
 /* eslint-disable no-unused-vars */
 import iconFilter from "@images/icon-filter.svg";
 import { Checkbox } from "@ui/checkbox";
-import toutItemImage from "@images/tourItem.png";
-import providerImage from "@images/providerImage.png";
-import { Clock, MapPin, Navigation } from "lucide-react";
-import { Button } from "./ui/button";
+import { Clock, MapPin } from "lucide-react";
 import ExploreTopTravelService from "@images/ExploreTopTravelService.png";
 import ImageHotel from "@images/img_hotel.png";
 import { useEffect, useState } from "react";
 import Pagination from "./pagination/pagination";
 import advertising from "@images/advertising.png";
 import { Link } from "react-router";
-import { it } from "date-fns/locale";
 import { cn } from "@lib/utils";
 
 const FilterToursAttractions = ({ className = "", data = [] }) => {
@@ -284,6 +280,8 @@ const TourItem = ({ item, index }) => {
             </div>
         );
     };
+
+    console.log('item', item);
 
     return (
         <>

@@ -14,7 +14,6 @@ import OtherRegion from '@components/OtherRegion'
 const Attractions = () => {
     const { t } = useTranslation();
     const { FAQs, attractions } = useLoaderData();
-    console.log(attractions);
     const breadcrumdItems = [
         { label: t('home'), href: '/' },
         { label: t('plan_your_trip'), href: '/' },
