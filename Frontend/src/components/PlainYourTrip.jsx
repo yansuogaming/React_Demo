@@ -33,17 +33,17 @@ const PlainYourTrip = ({ className = "" }) => {
                         )}
                     </p>
                     <InputTripLocation />
-                    <CreateItineraryButton className="mt-3 sm:mt-4 md:mt-[12px] md:mx-auto sm:mx-0" />
+                    <CreateItineraryButton className="mt-3 sm:mt-4 md:mt-[12px] sm:mx-0" />
                     <div className="flex justify-center sm:justify-start flex-wrap gap-2 sm:gap-3 md:gap-[8px] lg:gap-[12px] mt-4 sm:mt-6 md:mt-[20px] lg:mt-[30px]">
-                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-[16px] lg:text-[20px] font-[500]">
+                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-[16px] lg:text-[20px] font-[500] hover:border-2 border-[#007BFF]">
                             <img
                                 src={iconVisa}
                                 alt="Visa"
                                 className="w-5 sm:w-6"
                             />
-                            {t("Visas")}
+                            {t("Visas & Passport")}
                         </button>
-                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-[16px] lg:text-[20px] font-[500]">
+                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-[16px] lg:text-[20px] font-[500] hover:border-2 border-[#007BFF]">
                             <img
                                 src={iconItinerary}
                                 alt="Itinerary"
@@ -51,7 +51,7 @@ const PlainYourTrip = ({ className = "" }) => {
                             />
                             {t("Itineraries")}
                         </button>
-                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-[16px] lg:text-[20px] font-[500]">
+                        <button className="flex gap-2 sm:gap-[8px] bg-white rounded-[80px] p-2 sm:p-[9px_16px] text-[16px] lg:text-[20px] font-[500] hover:border-2 border-[#007BFF]">
                             <img
                                 src={iconTools}
                                 alt="Tools"

@@ -320,7 +320,7 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
-                                AttractionService.listAttraction({})
+                                AttractionService.listAttraction({}),
                             ]);
                             return {
                                 FAQs: res[0],
@@ -341,6 +341,10 @@ const routes = [
                     {
                         path: "hotel",
                         Component: lazy(() => import("@pages/Hotel")),
+                    },
+                    {
+                        path: ROUTES.LIST_TICKET,
+                        Component: lazy(() => import("@pages/ListTicket")),
                     },
                 ],
             },

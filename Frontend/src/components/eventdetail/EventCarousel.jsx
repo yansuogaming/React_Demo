@@ -64,7 +64,7 @@ export default function EventCarousel() {
                                     key={index}
                                     className="pl-4 basis-[83.33%] sm:basis-[45%] lg:basis-1/4"
                                 >
-                                    <div className="h-full flex flex-col bg-white rounded-[12px] overflow-hidden">
+                                    <div className="h-full flex flex-col rounded-[12px] overflow-hidden">
                                         <CardEvent
                                             title={item.title}
                                             image={item.image}

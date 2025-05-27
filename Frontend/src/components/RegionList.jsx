@@ -224,7 +224,7 @@ const RegionList = ({ className, data, ...props }) => {
                                                 />
                                                 <div
                                                     className={cn(
-                                                        "absolute right-0 top-[calc(100%-70px)] z-1 w-[calc(100%-20px)]",
+                                                        "absolute right-0 top-[calc(100%-80px)] z-1 w-[calc(100%-20px)]",
                                                         "p-[20px_20px_0_20px] overflow-hidden transition-all duration-500",
                                                         "group-hover:top-[calc(100%-195px)]"
                                                     )}

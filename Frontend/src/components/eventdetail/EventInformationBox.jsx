@@ -7,6 +7,57 @@ export default function EventInformationBox({ event }) {
     const startDate = fromUnixTime(event.start_date * 1000);
     const endDate = fromUnixTime(event.due_date * 1000);
 
+    const handleAddToCalendarSmart = () => {
+        const userAgent = navigator.userAgent.toLowerCase();
+        const isApple =
+            userAgent.includes("iphone") ||
+            userAgent.includes("ipad") ||
+            userAgent.includes("macintosh") ||
+            userAgent.includes("safari");
+        const isGoogle =
+            userAgent.includes("android") ||
+            userAgent.includes("gmail") ||
+            userAgent.includes("google");
+
+        const title = encodeURIComponent(event.title);
+        const location = encodeURIComponent(event.address);
+        const description = encodeURIComponent(
+            event.schedule?.[0]?.intro.replace(/(<([^>]+)>)/gi, "") || ""
+        );
+
+        const start = format(startDate, "yyyyMMdd'T'HHmmss'Z'");
+        const end = format(endDate, "yyyyMMdd'T'HHmmss'Z'");
+
+        if (isGoogle && !isApple) {
+            // Mở Google Calendar
+            const googleUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${start}/${end}&details=${description}&location=${location}&sf=true&output=xml`;
+            window.open(googleUrl, "_blank");
+        } else {
+            // Tải file .ics cho Apple, Outlook, hoặc fallback
+            const calendarData = `
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+DTSTART:${start}
+DTEND:${end}
+SUMMARY:${decodeURIComponent(title)}
+DESCRIPTION:${decodeURIComponent(description)}
+LOCATION:${decodeURIComponent(location)}
+END:VEVENT
+END:VCALENDAR`;
+
+            const blob = new Blob([calendarData], {
+                type: "text/calendar;charset=utf-8",
+            });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${event.title.replace(/\s+/g, "_")}.ics`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    };
+
     return (
         <section className="text-[#1A2A44] mt-[44px]">
             {/* Date & Location */}
@@ -17,7 +68,7 @@ export default function EventInformationBox({ event }) {
                 <div className="flex items-center gap-[15px] mb-[20px]">
                     <div className="flex flex-col items-center justify-center p-[8px_23px] bg-[#EEF0F5] text-[#0077B6] rounded text-center">
                         <span className="text-[#FD6050] text-[16px] font-[700]">
-                            {format(startDate, 'MMM').toUpperCase()}
+                            {format(startDate, "MMM").toUpperCase()}
                         </span>
                         <span className="text-[#000] text-[28px] font-[700]">
                             {getDate(startDate)}
@@ -27,7 +78,8 @@ export default function EventInformationBox({ event }) {
                         <div className="flex gap-[9px] items-center text-[#1A2A44] mb-[3px]">
                             <TbCalendarTime className="text-[#494951]" />
                             <p className="text-[16px] font-[400]">
-                                {format(startDate, 'HH:mm dd/MM/yyyy')} - {format(endDate, 'HH:mm dd/MM/yyyy')}.
+                                {format(startDate, "HH:mm dd/MM")} -{" "}
+                                {format(endDate, "HH:mm dd/MM")}.
                             </p>
                         </div>
                         <div className="flex gap-[9px] items-center text-[#1A2A44] mb-[3px]">
@@ -41,9 +93,17 @@ export default function EventInformationBox({ event }) {
                         </div>
                     </div>
                 </div>
-                <button className="mt-4 p-[11px_24px] text-white bg-[#007BFF] rounded hover:bg-[#005f8c] transition cursor-pointer">
-                    + Add to calendar
-                </button>
+                <div className="flex gap-3 mt-4">
+                    <button
+                        onClick={handleAddToCalendarSmart}
+                        className="p-[11px_24px] text-white bg-[#007BFF] rounded hover:bg-[#005f8c] transition cursor-pointer"
+                    >
+                        + Add to Calendar
+                    </button>
+                    <button className="p-[11px_24px] text-white bg-[#28A745] rounded hover:bg-[#1e7e34] transition cursor-pointer">
+                        Buy this ticket
+                    </button>
+                </div>
             </div>
 
             {/* About the event */}
@@ -54,9 +114,12 @@ export default function EventInformationBox({ event }) {
                             <h3 className="text-[24px] font-[500] mb-[16px]">
                                 {item.title}
                             </h3>
-                            <div className="text-[18px] font-[400] space-y-4 mb-[60px]" dangerouslySetInnerHTML={{ __html: item.intro }}></div>
+                            <div
+                                className="text-[18px] font-[400] space-y-4 mb-[60px]"
+                                dangerouslySetInnerHTML={{ __html: item.intro }}
+                            ></div>
                         </>
-                    )
+                    );
                 })}
             </div>
 
