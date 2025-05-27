@@ -361,6 +361,10 @@ const routes = [
                     {
                         path: ROUTES.RATING,
                         Component: lazy(() => import("@pages/Rating")),
+                    },
+                    {
+                        path: ROUTES.PROFILE,
+                        Component: lazy(() => import("@pages/Profile"))
                     }
                 ],
             },
