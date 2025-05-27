@@ -3,7 +3,6 @@ import { getListLanguages } from "@lib/utils";
 
 export default function InputLanguage({ langId, onChange = () => {} }) {
     const languages = getListLanguages();
-
     return (
         <Select onValueChange={onChange} value={langId}>
             <SelectTrigger className="w-[180px]">

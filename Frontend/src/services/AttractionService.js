@@ -6,6 +6,11 @@ const AttractionService = {
             params
         });
         return res.data;
+    },
+
+    getDetail: async (slug) => {
+        const res = await HttpClient.get(`attraction/${slug}`);
+        return res.data;
     }
 }
 

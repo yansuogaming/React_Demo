@@ -339,6 +339,14 @@ const routes = [
                     {
                         path: ROUTES.ATTRACTIONS_DETAIL,
                         Component: lazy(() => import("@pages/AttractionsDetail")),
+                        loader: async ({ params }) => {
+                            const res = await Promise.all([
+                                AttractionService.getDetail(params.slug),
+                            ]);
+                            return {
+                                attraction: res[0]
+                            };
+                        },
                     },
                     {
                         path: "hotel",

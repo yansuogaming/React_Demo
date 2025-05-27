@@ -29,7 +29,6 @@ class TourController
         $keyword = $request->input('keyword', '');
         $langId = $request->input('lang_id', 'en');
         $rating = $request->input('rating', 0);
-        // dd($request);
         $res = Http::tourdb('en')
             ->post('/tour/list-tour', [
                 'per_page' => 10,

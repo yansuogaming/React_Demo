@@ -12,7 +12,7 @@ import { cn } from "@lib/utils";
 
 const FilterToursAttractions = ({ className = "", data = [] }) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-
+    console.log('data', data);
     useEffect(() => {
         if (isFilterOpen) {
             document.body.style.overflow = "hidden";
@@ -84,7 +84,7 @@ const MenuFilter = () => {
                         key={index}
                         className="h-8 sm:h-[40px] flex-shrink-0 bg-white border border-gray-300 rounded-full flex items-center justify-center text-[#1A2A44] text-xs sm:text-sm font-medium hover:bg-gray-300 transition-colors duration-200"
                     >
-                        <text className="px-3 sm:px-5">{`${category.name} (${category.count})`}</text>
+                        <p className="px-3 sm:px-5">{`${category.name} (${category.count})`}</p>
                     </button>
                 ))}
             </div>
@@ -281,12 +281,10 @@ const TourItem = ({ item, index }) => {
         );
     };
 
-    console.log('item', item);
-
     return (
         <>
             <Link
-                to={"/"}
+                to={`/attractions/${item.name_slug}`}
                 className="border border-solid rounded-[8px] rounded-tl-[60px] flex flex-col md:flex-row relative p-3 sm:p-4 md:p-[16px] pb-[16px] sm:pb-[21px] group hover:cursor-pointer"
             >
                 <div className="w-full md:w-[292px] h-[180px] sm:h-[200px] md:h-[230px] overflow-hidden rounded-tl-[60px]">
@@ -385,14 +383,14 @@ const TourItem = ({ item, index }) => {
 
                     <div className="flex flex-row overflow-x-auto flex-nowrap gap-2 sm:gap-4 mt-3 sm:mt-4">
                         <button className="h-8 sm:h-[40px] flex-shrink-0 bg-blue-500 border border-gray-300 rounded-full flex items-center justify-center text-[#1A2A44] text-xs sm:text-sm font-medium hover:bg-gray-300 transition-colors duration-200">
-                            <text className="px-3 sm:px-5 text-[#ffffff]">
+                            <p className="px-3 sm:px-5 text-[#ffffff]">
                                 See tickets
-                            </text>
+                            </p>
                         </button>
                         <button className="h-8 sm:h-[40px] flex-shrink-0 bg-blue-500 border border-gray-300 rounded-full flex items-center justify-center text-[#1A2A44] text-xs sm:text-sm font-medium hover:bg-gray-300 transition-colors duration-200">
-                            <text className="px-3 sm:px-4 text-[#ffffff]">
+                            <p className="px-3 sm:px-4 text-[#ffffff]">
                                 Tour itinerary
-                            </text>
+                            </p>
                         </button>
                     </div>
                 </div>

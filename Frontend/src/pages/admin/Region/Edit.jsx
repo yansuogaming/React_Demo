@@ -56,8 +56,10 @@ export default function Edit() {
     }
 
     const changeLanguage = (langId) => {
-        // Thêm mới thì khi change language k cần phải call api lang
-        setLangId(langId);
+        if (langId.length > 0) {
+            // Thêm mới thì khi change language k cần phải call api lang
+            setLangId(langId);
+        }
         if (currentId) {
             getRegions({
                 params: {
@@ -75,7 +77,7 @@ export default function Edit() {
             setTitle(data.title);
             setIntro(data.intro);
             setImage(data.image);
-            setLangId(data.lang_id);
+            setLangId(data.lang_id == 'vn' ? 'vi': data.lang_id);
             setTranslationOf(data.translation_of);
         } else if (res.status !== 401) {
             toast.error('Lấy vùng miền thất bại!')

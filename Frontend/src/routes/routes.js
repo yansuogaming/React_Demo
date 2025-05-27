@@ -30,7 +30,7 @@ const ROUTES = {
     FORGOT_PASSWORD: "forgot-password",
     ATTRACTIONS: "attractions",
     SHOPPINGCART: "shopping",
-    ATTRACTIONS_DETAIL: "AttractionsDetail",
+    ATTRACTIONS_DETAIL: "attractions/:slug",
     MAP_HANOI: "map-ha-noi",
     TRIP_DETAIL_RESULT: "tripdetail/result",
     DETAIL_HOTEL: "detailhotel",
