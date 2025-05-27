@@ -36,7 +36,7 @@ const IsoCMSTestimonials = () => {
   ];
 
   return (
-    <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 font-[Helvetica_Neue]">
+    <div className="container  mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 font-[Helvetica_Neue]">
       {/* Testimonials Section */}
       <div className="mb-8 sm:mb-12 lg:mb-16">
         {/* Section Header */}

@@ -45,7 +45,7 @@ const RecentlyViewed = () => {
   ];
 
   return (
-    <div className="max-w-full mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8 font-[Helvetica_Neue]">
+    <div className="container mx-auto py-4 sm:py-6 px-4 sm:px-6 lg:px-8 font-[Helvetica_Neue]">
       {/* Section Title */}
       <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Recently Viewed</h2>
 
