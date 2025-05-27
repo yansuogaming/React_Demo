@@ -84,7 +84,7 @@ const AttractionsDetail = () => {
                 <PhotoGallery images={images} />
                 <Overview resource={resource} />
                 <Inspiration/>
-                <NearbyPoints />
+                <NearbyPoints points={attraction.list_nearbys} />
                 <Review/>
                 <OtherPlaces/>
             </section>
