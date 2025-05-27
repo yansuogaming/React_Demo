@@ -16,6 +16,7 @@ import { Slider } from '@/components/ui/slider';
 import image1 from '@images/image1.png';
 import rejected from '@images/rejected.png';
 import refund from '@images/refund.png';
+import locationGray from '@images/location_gray.png';
 
 const nileCruisePackage = {
     title: "Pharaohs Nile Cruise Adventure - Return Flights Included",
@@ -431,10 +432,8 @@ const HotelCard = () => {
                         <span className="text-gray-600 text-xs sm:text-sm">2 reviews</span>
                     </div>
 
-                    <div className="flex items-start mb-3 sm:mb-4">
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M180-4.95a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-                        </svg>
+                    <div className="flex mb-3 sm:mb-4 items-center">
+                        <img src={locationGray} className="w-4 h-4 sm:w-5 sm:h-5 text-gray-400 mt-0.5 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"/>
                         <div>
                             <span className="text-gray-700 text-xs sm:text-sm">221 Sorrento, An Thoi, Phu Quoc Island, Vietnam, 92500.</span>
                             <button className="text-blue-600 hover:underline text-xs sm:text-sm ml-1">View map</button>
