@@ -347,9 +347,17 @@ const routes = [
                         },
                     },
                     {
-                        path: "hotel",
+                        path: ROUTES.HOTEL,
                         Component: lazy(() => import("@pages/Hotel")),
                     },
+                    {
+                        path: ROUTES.RESTAURANT,
+                        Component: lazy(() => import("@pages/Restaurant"))
+                    },
+                    {
+                        path: ROUTES.RESTAURANT_DETAIL,
+                        Component: lazy(() => import('@pages/RestaurantDetail'))
+                    }
                 ],
             },
             {
