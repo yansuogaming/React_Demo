@@ -12,13 +12,22 @@ import { useLoaderData } from "react-router";
 
 const Itineraries = () => {
     const { t } = useTranslation();
-    const { listTrendingTours, listTours } = useLoaderData();
+    const {
+        listTrendingTours,
+        listTours,
+        currentPage,
+        totalPage,
+        listDeparture,
+        listTravelstyle,
+    } = useLoaderData();
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
         { label: t("plan_your_trip"), href: "/" },
         { label: t("itineraries"), href: "/" },
     ];
-    // console.log(listTours);
+
+    console.log(currentPage);
+    console.log(totalPage);
 
     return (
         <main>
@@ -51,7 +60,10 @@ const Itineraries = () => {
                 </Reveal>
             </section>
             <MostPopularTours data={listTrendingTours} />
-            <FilterTours className="mt-[80px] mb-[160px]" data={listTours} />
+            <FilterTours
+                className="mt-[80px] mb-[160px]"
+                data={[listTours, listDeparture, listTravelstyle]}
+            />
             <WhyVisit />
             <FAQ />
             <PlainYourTrip className="mt-[120px]" />

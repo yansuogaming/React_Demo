@@ -1,14 +1,16 @@
+import { useTranslation } from "react-i18next";
 import InputSearchTrip from "./InputSearchTrip";
 import { FaLocationDot } from "react-icons/fa6";
 
 const InputTripLocation = () => {
+    const { t } = useTranslation();
     return (
         <InputSearchTrip
-            label="Where do you want to go?"
+            label={t("Where do you want to go?")}
             iconSvg={<FaLocationDot className="text-[#007BFF]" size={20} />}
         >
             <input
-                className="w-full outline-none text-[20px]"
+                className="w-full outline-none text-[16px] md:text-[20px]"
                 placeholder="Eg: Bangkok, Singapore, Hanoi,..."
                 type="text"
             />

@@ -14,6 +14,7 @@ import { cn } from "@lib/utils";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FaArrowDown } from "react-icons/fa6";
+import ROUTES from "@routes/routes";
 
 export default function Home() {
     const { experienceTypes, events, listTrendingTours, listRegion } =
@@ -69,7 +70,7 @@ export default function Home() {
                         }
                         transition={{ duration: 0.7, delay: 0.2 }}
                         className={cn(
-                            "text-center text-[25px] md:text-[40px] lg:text-[50px] xl:text-[60px]",
+                            "text-center text-[28px] md:text-[40px] lg:text-[50px] xl:text-[60px]",
                             "text-shadow-[0_2px_4px_rgba(0_0_0_/_0.40)]",
                             "w-full font-bold px-[20px] mb-[5px]"
                         )}
@@ -106,37 +107,37 @@ export default function Home() {
                         transition={{ duration: 0.7, delay: 0.5 }}
                     >
                         <NavLink
-                            to="/"
+                            to="#"
                             className={cn(
-                                "transition-all duration-500 text-[14px] lg:text-[16px]",
+                                "transition-all duration-500 text-[16px]",
                                 "p-[10px] lg:p-[15px] border-white border-2 rounded-[80px]",
                                 "hover:bg-[#153b33] hover:border-[#153b33] focus:ring-4",
                                 "focus:outline-none focus:ring-blue-300"
                             )}
                         >
-                            Plan Your Trip
+                            {t("Plan Your Trip")}
                         </NavLink>
                         <NavLink
-                            to="/"
+                            to={ROUTES.ITINERARIES}
                             className={cn(
-                                "transition-all duration-500 text-[14px] lg:text-[16px]",
+                                "transition-all duration-500 text-[16px]",
                                 "p-[10px] lg:p-[15px] border-white border-2 rounded-[80px]",
                                 "hover:bg-[#153b33] hover:border-[#153b33] focus:ring-4",
                                 "focus:outline-none focus:ring-blue-300"
                             )}
                         >
-                            Explore Destinations
+                            {t("Explore Destinations")}
                         </NavLink>
                         <NavLink
-                            to="/"
+                            to={ROUTES.EXPERIENCES}
                             className={cn(
-                                "transition-all duration-500 text-[14px] lg:text-[16px]",
+                                "transition-all duration-500 text-[16px]",
                                 "p-[10px] lg:p-[15px] border-white border-2 rounded-[80px]",
                                 "hover:bg-[#153b33] hover:border-[#153b33] focus:ring-4",
                                 "focus:outline-none focus:ring-blue-300"
                             )}
                         >
-                            Find Experiences
+                            {t("Find Experiences")}
                         </NavLink>
                     </motion.div>
                 </div>
@@ -163,7 +164,7 @@ export default function Home() {
             />
             <TrendingItinerary
                 data={listTrendingTours}
-                className="mb-[80px] lg:mb-[120px]"
+                className="mb-[48px] lg:mb-[120px]"
             />
             <TravelOffers className="mb-[60px] lg:mb-[120px]" />
             <PlainYourTrip className="mb-[80px] lg:mb-[120px]" />

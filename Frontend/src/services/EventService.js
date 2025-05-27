@@ -1,10 +1,15 @@
 import HttpClient from '@services/HttpClient'
+import i18next from 'i18next'
 
 const EventService = {
     // Lấy sự kiện đang diễn ra và sắp diễn ra
     getOngoingAndUpcomingEvents: async () => {
         const res = await HttpClient
-            .get('/event/list-ongoing-and-upcomming')
+            .get('/event/list-ongoing-and-upcomming', {
+                params: {
+                    lang_id:  i18next.language === 'vi' ? 'vn' : i18next.language
+                }
+            })
         return res.data.events
     },
 
@@ -22,6 +27,16 @@ const EventService = {
             events: res.data.events,
             total_page: res.data.total_page
         }
+    },
+
+    // Lấy sự kiện theo slug
+    getEventBySlug: async (slug) => {
+        const res = await HttpClient.get(`/event/${slug}`, {
+            params: {
+                lang_id:  i18next.language === 'vi' ? 'vn' : i18next.language
+            }
+        })
+        return res.data.event;
     },
 }
 

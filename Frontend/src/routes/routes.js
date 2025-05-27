@@ -11,7 +11,7 @@ const ROUTES = {
     ITINERARIES_DETAIL: "itineraries/detail",
     PAYMENT_TOUR: "payment/tour",
     EVENTS: "events",
-    EVENTS_DETAIL: "events/detail",
+    EVENTS_DETAIL: "events/:slug",
     VISA_GUIDE: "visa-guide",
     ESSENTIALS: "essentials",
     GETTING_TO_AND_AROUND: "getting-to-and-around",
@@ -33,6 +33,7 @@ const ROUTES = {
     ATTRACTIONS_DETAIL: "AttractionsDetail",
     MAP_HANOI: "map-ha-noi",
     TRIP_DETAIL_RESULT: "tripdetail/result",
+    DETAIL_HOTEL: "detailhotel",
     NOT_FOUND: "*",
 };
 

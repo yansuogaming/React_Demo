@@ -107,7 +107,7 @@ class UserController
     }
 
     #[Get('/logout')]
-    public function logout()
+    public function logout(Request $request)
     {
         return Response::json([
             'message' => 'Đăng xuất thành công',

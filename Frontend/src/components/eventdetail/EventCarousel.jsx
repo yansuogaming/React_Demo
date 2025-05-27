@@ -51,51 +51,53 @@ const events = [
 
 export default function EventCarousel() {
     return (
-        <section className="container mx-auto pt-[60px]">
-            <h2 className="text-[28px] font-[700] mb-[32px] text-[#1A2A44]">
-                More events like this
-            </h2>
-            <div className="relative">
-                <Carousel opts={{ align: "start" }} className="w-full">
-                    <CarouselContent className="-ml-4">
-                        {events.map((item, index) => (
-                            <CarouselItem
-                                key={index}
-                                className="pl-4 basis-[83.33%] sm:basis-[45%] lg:basis-1/4"
-                            >
-                                <div className="h-full flex flex-col bg-white rounded-[12px] overflow-hidden">
-                                    <CardEvent
-                                        title={item.title}
-                                        image={item.image}
-                                        startTime={item.startTime}
-                                        endTime={item.endTime}
-                                        href={item.href}
-                                        widthImage="100%"
-                                        heightImage="200px"
-                                    >
-                                        {/* ✅ Meta content */}
-                                        <NavLink className="flex flex-col justify-between flex-grow pb-4">
-                                            <p className="flex gap-[8px] items-center text-[#1A2A44] text-sm font-medium">
-                                                <CiLocationOn className="text-[20px]" />
-                                                <span>{item.city}</span>
-                                                <IoTicketOutline className="text-[20px]" />
-                                            </p>
-                                            <div
-                                                className="hidden sm:block text-[15px] text-gray-600 mt-[12px] line-clamp-3 min-h-[60px]"
-                                                dangerouslySetInnerHTML={{
-                                                    __html: item.intro,
-                                                }}
-                                            />
-                                        </NavLink>
-                                    </CardEvent>
-                                </div>
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
+        <section className="py-[60px] bg-[#F5F6FA]">
+            <div className="container">
+                <h2 className="text-[28px] font-[700] mb-[32px] text-[#1A2A44]">
+                    More events like this
+                </h2>
+                <div className="relative">
+                    <Carousel opts={{ align: "start" }} className="w-full">
+                        <CarouselContent className="-ml-4">
+                            {events.map((item, index) => (
+                                <CarouselItem
+                                    key={index}
+                                    className="pl-4 basis-[83.33%] sm:basis-[45%] lg:basis-1/4"
+                                >
+                                    <div className="h-full flex flex-col bg-white rounded-[12px] overflow-hidden">
+                                        <CardEvent
+                                            title={item.title}
+                                            image={item.image}
+                                            startTime={item.startTime}
+                                            endTime={item.endTime}
+                                            href={item.href}
+                                            widthImage="100%"
+                                            heightImage="200px"
+                                        >
+                                            {/* ✅ Meta content */}
+                                            <NavLink className="flex flex-col justify-between flex-grow pb-4">
+                                                <p className="flex gap-[8px] items-center text-[#1A2A44] text-sm font-medium">
+                                                    <CiLocationOn className="text-[20px]" />
+                                                    <span>{item.city}</span>
+                                                    <IoTicketOutline className="text-[20px]" />
+                                                </p>
+                                                <div
+                                                    className="hidden sm:block text-[15px] text-gray-600 mt-[12px] line-clamp-3 min-h-[60px]"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: item.intro,
+                                                    }}
+                                                />
+                                            </NavLink>
+                                        </CardEvent>
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
 
-                    <CarouselPrevious className="hidden lg:flex absolute -left-6 top-[35%] -translate-y-1/2 bg-white shadow rounded-full w-10 h-10 z-10" />
-                    <CarouselNext className="hidden lg:flex absolute -right-6 top-[35%] -translate-y-1/2 bg-white shadow rounded-full w-10 h-10 z-10" />
-                </Carousel>
+                        <CarouselPrevious className="hidden lg:flex absolute -left-6 top-[35%] -translate-y-1/2 bg-white shadow rounded-full w-10 h-10 z-10" />
+                        <CarouselNext className="hidden lg:flex absolute -right-6 top-[35%] -translate-y-1/2 bg-white shadow rounded-full w-10 h-10 z-10" />
+                    </Carousel>
+                </div>
             </div>
         </section>
     );

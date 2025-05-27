@@ -1,10 +1,8 @@
 import { useTranslation } from "react-i18next";
 import ViewMoreButton from "./button/ViewMoreButton";
 import CardEvent from "./card/CardEvent";
-import { NavLink } from "react-router";
 import { IoTicketOutline } from "react-icons/io5";
 import { CiLocationOn } from "react-icons/ci";
-
 import {
     Carousel,
     CarouselContent,
@@ -12,31 +10,35 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
+import ROUTES from "@routes/routes";
 
 const VietNamEvent = ({ className = "", data = [] }) => {
+    console.log('data', data);
     const { t } = useTranslation();
     const events = data.map((item, idx) => (
         <CardEvent
             key={idx}
             title={item.title}
             widthImage="100%"
-            heightImage="245px"
             image={item.image}
-            href="/"
+            href={`/events/${item.slug}`}
             startTime={new Date(item.start_date * 1000)}
             endTime={new Date(item.due_date * 1000)}
+            className="h-[200] md:h-[245px]"
         >
-            <NavLink className="bg-white rounded-[0_0_12px_12px] block">
-                <p className="flex gap-[8px] items-center text-[#1A2A44]">
-                    <CiLocationOn className="text-[20px]" />
-                    <span>{item.city}</span>
-                    <IoTicketOutline className="text-[20px]" />
-                </p>
+            <div className="bg-white rounded-[0_0_12px_12px] block">
+                {item.city && (
+                    <p className="flex gap-[8px] items-center text-[#1A2A44]">
+                        <CiLocationOn className="text-[20px]" />
+                        <span>{item.city}</span>
+                        <IoTicketOutline className="text-[20px]" />
+                    </p>
+                )}
                 <div
-                    className="hidden sm:block text-[16px] font-normal mt-[16px] truncate_3"
+                    className="text-[16px] font-normal mt-[16px] truncate_3"
                     dangerouslySetInnerHTML={{ __html: item.intro }}
                 ></div>
-            </NavLink>
+            </div>
         </CardEvent>
     ));
 
@@ -45,12 +47,12 @@ const VietNamEvent = ({ className = "", data = [] }) => {
             <div className="container">
                 <div className="lg:flex items-center justify-between mb-[20px]">
                     <h2 className="mb-[10px] lg:mb-[0] lg:text-[40px] text-[34px] font-[700] text-[#1A2A44]">
-                        Celebrate Vietnam's Vibrant Events & Festivals
+                        {t("Celebrate Vietnam's Vibrant Events & Festivals")}
                     </h2>
                     <ViewMoreButton
                         className="font-[700] text-[18px]"
                         text={t("See All Events")}
-                        to="/events"
+                        to={ROUTES.EVENTS}
                     />
                 </div>
 
@@ -61,7 +63,7 @@ const VietNamEvent = ({ className = "", data = [] }) => {
                             {events.map((event, idx) => (
                                 <CarouselItem
                                     key={idx}
-                                    className="basis-[70%] sm:basis-1/2 pl-4"
+                                    className="basis-[85%] sm:basis-1/2 pl-4"
                                 >
                                     {event}
                                 </CarouselItem>
