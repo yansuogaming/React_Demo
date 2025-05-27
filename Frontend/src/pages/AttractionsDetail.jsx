@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
 import Breadcrumb from '@components/Breadcrumb';
 import { useTranslation } from 'react-i18next';
-import { Star, Share2, Edit2, Share, Edit } from "lucide-react";
+import { Star, Share, Edit } from "lucide-react";
 import License from '@images/License.svg';
 import PhotoGallery from '@components/PhotoGallery';
 import NearbyPoints from '@components/NearbyPoints';
-import Overview from '@components/Overview';
 import Inspiration from '@components/Inspiration';
 import Review from '@components/Review';
 import OtherPlaces from '@components/OtherPlaces';
@@ -212,10 +211,10 @@ const AttractionsDetail = () => {
                         </div>
                     </div>
                 </div>
-                <Inspiration/>
+                <Inspiration />
                 <NearbyPoints points={attraction.list_nearbys} />
-                <Review/>
-                <OtherPlaces/>
+                <Review />
+                <OtherPlaces />
             </section>
         </main>
     )

@@ -40,7 +40,7 @@ export default function Home() {
 
     return (
         <main>
-            <section className="relative text-white h-screen max-w-screen overflow-hidden -mt-[75.45px] lg:-mt-[96px]">
+            <section className="relative text-white h-screen max-w-screen overflow-hidden -mt-[75.45px] lg:-mt-[96px] font-[Visit_Qatar]">
                 {!isLoaded && (
                     <Skeleton
                         className={cn(
@@ -151,15 +151,15 @@ export default function Home() {
             </section>
             <RegionList
                 id="region"
-                className="lg:mb-[145px] mt-[40px] lg:mt-[80px] mb-[60px]"
+                className="lg:mb-[145px] mt-[40px] lg:mt-[80px] mb-[60px] font-[Visit_Qatar]"
                 data={listRegion}
             />
             <VietNamEvent
                 data={events}
-                className="bg-[#F5F6FA] py-[48px] lg:py-[80px] pt-[48px] lg:pt-[80px]"
+                className="bg-[#F5F6FA] py-[48px] lg:py-[80px] pt-[48px] lg:pt-[80px] font-[Visit_Qatar]"
             />
             <TopVietnamExperiences
-                className="mb-[80px] lg:mb-[120px] pt-[60px] lg:pt-[80px]"
+                className="mb-[80px] lg:mb-[120px] pt-[60px] lg:pt-[80px] font-[Visit_Qatar]"
                 data={experienceTypes}
             />
             <TrendingItinerary

@@ -86,18 +86,12 @@ const TopVietnamExperiences = ({ className = "", data = [] }) => {
                                 index === 0
                                     ? "bg-[linear-gradient(90deg,_#F258BE_0%,_rgba(242,88,190,0.5)_56.25%,_rgba(242,88,190,0)_100%)]"
                                     : index === 1
-                                    ? "bg-[linear-gradient(90deg,_#F26833_0%,_rgba(242,104,51,0.5)_61.37%,_rgba(242,104,51,0)_100%)]"
-                                    : "bg-[linear-gradient(90deg,_#33B6E2_0%,_rgba(51,182,226,0.5)_65.38%,_rgba(51,182,226,0)_100%)]",
+                                        ? "bg-[linear-gradient(90deg,_#F26833_0%,_rgba(242,104,51,0.5)_61.37%,_rgba(242,104,51,0)_100%)]"
+                                        : index === 2
+                                            ? "bg-[linear-gradient(90deg,_#F2B833_0%,_rgba(242,184,51,0.5)_61.37%,_rgba(242,184,51,0)_100%)]"
+                                            : "bg-[linear-gradient(90deg,_#2FB22F_0%,_rgba(47,_178,_47,_0)_100%)]",
                                 // Responsive rounded
-                                index === 0
-                                    ? isMobile
-                                        ? "rounded-[60px_0_0_0]"
-                                        : "rounded-[150px_0_0_0]"
-                                    : index === data.length - 1
-                                    ? isMobile
-                                        ? "rounded-[0_0_60px_0]"
-                                        : "rounded-[0_0_150px_0]"
-                                    : ""
+                                index === 0 ? isMobile ? "rounded-[60px_0_0_0]" : "rounded-[150px_0_0_0]" : ''
                             )}
                         ></div>
                     </NavLink>

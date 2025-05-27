@@ -13,7 +13,7 @@ const TrendingItinerary = ({ className = "", data = [] }) => {
         <section className={`container ${className}`}>
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-[40px] gap-[12px] lg:gap-[0px]">
-                <h2 className="text-[34px] sm:text-[28px] lg:text-[40px] font-[700] text-[#1A2A44]">
+                <h2 className="text-[34px] sm:text-[28px] lg:text-[40px] font-[700] text-[#1A2A44] font-[Visit_Qatar]">
                     {t("Trending Itineraries")}
                 </h2>
                 <ViewMoreButton

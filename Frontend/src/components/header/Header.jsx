@@ -4,15 +4,9 @@ import imgLogo2 from "@images/logo2.webp";
 import { useTranslation } from "react-i18next";
 import { NavLink, useLocation } from "react-router";
 import { useEffect } from "react";
-import { ChevronRight, Ellipsis } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 import { LuTextSearch } from "react-icons/lu";
-import { FiSearch } from "react-icons/fi";
-
-import { MdArrowDropDown } from "react-icons/md";
-
-import { TbWorld } from "react-icons/tb";
 import "/node_modules/flag-icons/css/flag-icons.min.css";
-
 import ChangeLangButton from "../button/ChangeLangButton";
 import SearchHeader from "../button/SearchHeader";
 import MapIcon from "../icons/MapIcon";
@@ -23,7 +17,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ModalSearch from "../modal/ModalSearch";
 import ROUTES from "@routes/routes";
 import DropdownContent from "./DropdownContent";
-import { MENU_TYPES, getMenuItemsByType, menuItems } from "@data/menuItems";
+import { getMenuItemsByType, menuItems } from "@data/menuItems";
 import MobileMenu from "./MobileMenu";
 import MobileSubmenu from "./MobileSubmenu";
 import { HeaderProvider, useHeaderContext } from "@contexts/HeaderContext";
@@ -183,7 +177,7 @@ const HeaderContent = ({ noBackgroundOnScroll = false }) => {
                         {/* Nav bar */}
                         <ul
                             className={cn(
-                                "hidden h-fit font-bold absolute top-1/2 left-1/2 lg:flex",
+                                "hidden h-fit absolute top-1/2 left-1/2 lg:flex",
                                 "-translate-1/2 w-max xl-md:static xl-md:translate-0 xl-md:w-fit"
                             )}
                         >

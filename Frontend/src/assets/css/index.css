@@ -142,6 +142,30 @@
 }
 
 @font-face {
+    font-family: "Pangea";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/PangeaText-Bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Pangea";
+    font-weight: 500;
+    src: url("../fonts/PangeaText-SemiBold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Pangea";
+    font-weight: 400;
+    src: url("../fonts/PangeaText-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
     font-family: "Roboto";
     src: url("../fonts/Roboto-Regular.ttf");
 }
@@ -153,7 +177,7 @@
 
     body {
         @apply bg-background text-foreground;
-        font-family: "Visit Qatar";
+        font-family: "Pangea";
     }
 }
 
