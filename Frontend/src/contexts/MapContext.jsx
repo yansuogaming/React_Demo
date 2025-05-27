@@ -20,10 +20,12 @@ export const SIDEBAR_MODE = {
 
 // Context provider component
 export const MapProvider = ({ children, initialData }) => {
-    const { list_resources, list_categories, defaultId } = initialData || {};
+    const { list_resources, list_categories, defaultId ,northeast,southwest,city } = initialData || {};
     const defaultMarker = list_resources?.find(
         (item) => item.potential_id == defaultId
     );
+
+
 
     const [activeTab, setActiveTab] = useState("welcome");
     const [selectedMarker, setSelectedMarker] = useState(
@@ -115,8 +117,9 @@ export const MapProvider = ({ children, initialData }) => {
         );
 
         setSelectedMarker(temp);
-        setKeywords("");
     };
+
+   
 
     // Value to be provided to consuming components
     const value = {
@@ -134,6 +137,9 @@ export const MapProvider = ({ children, initialData }) => {
         showVR,
         sidebarMode,
         isFirstLoad,
+        northeast,
+        southwest,
+        city,
 
         // Setters
         setActiveTab,

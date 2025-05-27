@@ -20,6 +20,7 @@ const City = () => {
     const { FAQs, events, weather, city, dataDestination } = useLoaderData();
     const [tab, setTab] = useState("welcome");
 
+  
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
         { label: t("Destinations"), href: "/" },
@@ -132,7 +133,7 @@ const City = () => {
                             }}
                         ></div>
                     </div>
-                    <MapCity listDestination={dataDestination.list_resources} />
+                    <MapCity city={city} southwest={dataDestination.southwest} northeast={dataDestination.northeast} listDestination={dataDestination.list_resources} />
                 </div>
             </section>
 

@@ -13,7 +13,6 @@ import {
 import ROUTES from "@routes/routes";
 
 const VietNamEvent = ({ className = "", data = [] }) => {
-    console.log('data', data);
     const { t } = useTranslation();
     const events = data.map((item, idx) => (
         <CardEvent
