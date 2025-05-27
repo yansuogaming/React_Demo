@@ -103,25 +103,23 @@ const routes = [
                             );
                             const currentPage = query?.page ?? 1;
                             const keyword = query?.keyword ?? "";
-                            const duration = query?.duration ?? "";
-                            const departurePoint = query?.departurePoint ?? "";
-                            const travelStyle = query?.travelStyle ?? "";
+                            // const duration = query?.duration ?? "";
+                            // const departurePoint = query?.departurePoint ?? "";
+                            // const travelStyle = query?.travelStyle ?? "";
                             const lang_id = query?.lang_id ?? "en";
-                            // console.log(keyword);
 
                             const res = await Promise.all([
                                 TourService.getListTrending(),
                                 TourService.getListItineraries(
                                     keyword,
-                                    currentPage,
-                                    duration,
-                                    departurePoint,
-                                    travelStyle
+                                    currentPage
+                                    // duration,
+                                    // departurePoint,
+                                    // travelStyle
                                 ),
                                 TourService.getListDeparture(lang_id),
                                 TourService.getListTravelStyle(lang_id),
                             ]);
-                            // console.log(res);
 
                             return {
                                 listTrendingTours: res[0],

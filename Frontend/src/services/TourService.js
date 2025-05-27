@@ -9,19 +9,17 @@ const TourService = {
 
     getListItineraries: async (
         keyword = "",
-        page = 1,
-        duration = "",
-        departure_point = "",
-        travel_style = ""
+        page = 1
+        // duration = "",
+        // departure_point = "",
+        // travel_style = ""
     ) => {
         const res = await HttpClient.post("/tour/list-tour", {
-            params: {
-                keyword,
-                page,
-                duration,
-                departure_point,
-                travel_style,
-            },
+            keyword,
+            page,
+            // duration,
+            // departure_point,
+            // travel_style,
         });
 
         return {
