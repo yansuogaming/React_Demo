@@ -20,14 +20,6 @@ class TourController
         return Response::json($tours->json());
     }
 
-    // #[Get('/list-tour')]
-    // public function getListTour()
-    // {
-    //     $tours = Http::tourdb('en')->get('/tour/list-tour');
-    //     // dd($tours);
-    //     return Response::json($tours->json());
-    // }
-
     #[Post('/list-tour')]
     public function getAllItineraries(Request $request)
     {
@@ -37,7 +29,7 @@ class TourController
         $keyword = $request->input('keyword', '');
         $langId = $request->input('lang_id', 'en');
         $rating = $request->input('rating', 0);
-
+        // dd($request);
         $res = Http::tourdb('en')
             ->post('/tour/list-tour', [
                 'per_page' => 10,

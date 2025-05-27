@@ -19,15 +19,13 @@ const Itineraries = () => {
         totalPage,
         listDeparture,
         listTravelstyle,
+        keyword,
     } = useLoaderData();
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
         { label: t("plan_your_trip"), href: "/" },
         { label: t("itineraries"), href: "/" },
     ];
-
-    console.log(currentPage);
-    console.log(totalPage);
 
     return (
         <main>
@@ -62,7 +60,10 @@ const Itineraries = () => {
             <MostPopularTours data={listTrendingTours} />
             <FilterTours
                 className="mt-[80px] mb-[160px]"
-                data={[listTours, listDeparture, listTravelstyle]}
+                data={[listTours, currentPage, totalPage]}
+                listDeparture={listDeparture}
+                listTravelstyle={listTravelstyle}
+                keyword={keyword}
             />
             <WhyVisit />
             <FAQ />
