@@ -107,6 +107,8 @@ const routes = [
                             const departurePoint = query?.departurePoint ?? "";
                             const travelStyle = query?.travelStyle ?? "";
                             const lang_id = query?.lang_id ?? "en";
+                            // console.log(keyword);
+
                             const res = await Promise.all([
                                 TourService.getListTrending(),
                                 TourService.getListItineraries(
@@ -119,12 +121,14 @@ const routes = [
                                 TourService.getListDeparture(lang_id),
                                 TourService.getListTravelStyle(lang_id),
                             ]);
+                            // console.log(res);
+
                             return {
                                 listTrendingTours: res[0],
                                 listTours: res[1].itineraries ?? [],
                                 totalPage: res[1].total_page,
                                 currentPage,
-                                // keyword,
+                                keyword,
                                 // duration,
                                 // departurePoint,
                                 // travelStyle,
@@ -320,7 +324,7 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
-                                AttractionService.listAttraction({})
+                                AttractionService.listAttraction({}),
                             ]);
                             return {
                                 FAQs: res[0],
