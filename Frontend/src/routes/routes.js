@@ -38,6 +38,7 @@ const ROUTES = {
     RESTAURANT: 'restaurant',
     RESTAURANT_DETAIL: 'restaurant/detail',
     RATING: 'rating',
+    PROFILE: 'profile',
     NOT_FOUND: "*",
 };
 
