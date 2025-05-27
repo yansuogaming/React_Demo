@@ -357,6 +357,10 @@ const routes = [
                     {
                         path: ROUTES.RESTAURANT_DETAIL,
                         Component: lazy(() => import('@pages/RestaurantDetail'))
+                    },
+                    {
+                        path: ROUTES.RATING,
+                        Component: lazy(() => import("@pages/Rating")),
                     }
                 ],
             },

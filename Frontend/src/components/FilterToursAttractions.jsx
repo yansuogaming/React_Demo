@@ -49,7 +49,7 @@ const FilterToursAttractions = ({ className = "", data = [] }) => {
                         onClick={() => setIsFilterOpen(false)}
                     />
                 )}
-                <div className="mt-2 sm:mt-[10px]">
+                <div className="mt-2 sm:mt-[10px] w-[950px]">
                     <ListTourResult
                         isFilterOpen={isFilterOpen}
                         setIsFilterOpen={setIsFilterOpen}
