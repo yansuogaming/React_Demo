@@ -37,6 +37,7 @@ const ROUTES = {
     HOTEL: 'hotel',
     RESTAURANT: 'restaurant',
     RESTAURANT_DETAIL: 'restaurant/detail',
+    RATING: 'rating',
     NOT_FOUND: "*",
 };
 
