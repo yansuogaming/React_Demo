@@ -53,6 +53,8 @@ class AttractionController
 			? json_decode($resource['logs_viewed'], true)
             : [];
 
+        $list_local_fields = isset($more_information['local']) && !empty($more_information['local']) 
+			? $more_information['local'] : [];
         $services = [
             'tour' => 'Vé tham quan',
             'hotel' => 'Ở đâu?',
@@ -78,9 +80,11 @@ class AttractionController
 				);
 			}
 		}
+
         return Response::json([
             ...$res,
             'links_bookings' => $links_bookings,
+            'list_local_fields' => array_values($list_local_fields)
         ]);
     }
 }
