@@ -8,20 +8,20 @@ import ExploreTopTravelService from "@images/ExploreTopTravelService.png";
 import { useEffect, useState } from "react";
 // import Pagination from "./pagination/pagination";
 import advertising from "@images/advertising.png";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 import { IoChevronDown } from "react-icons/io5";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
-import { cn, debounce } from "@lib/utils";
+import { cn } from "@lib/utils";
 import ROUTES from "@routes/routes";
+import { useItineraries } from "@contexts/ItinerariesContext";
 
 const FilterTours = ({
     className = "",
     data = [],
     listDeparture,
     listTravelstyle,
-    keyword,
 }) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const listTour = data[0];
@@ -38,14 +38,8 @@ const FilterTours = ({
         }
     }, [isFilterOpen]);
 
-    const [keysearch, setKeysearch] = useState(keyword);
-    const navigate = useNavigate();
-    const changeKeyword = (keyword) => {
-        setKeysearch(keyword);
-        debounce(() => {
-            navigate(`/` + ROUTES.ITINERARIES + `?page=1&keyword=${keyword}`);
-        }, 500)();
-    };
+
+
     return (
         <section
             className={`container ${className} flex flex-col gap-[30px] items-center lg:items-end`}
@@ -72,8 +66,7 @@ const FilterTours = ({
                         //  categories={categories}
                         //     selectedCategory={typeSearch}
                         //     setSelectedCategory={() => {}}
-                        keyword={keysearch}
-                        changeKeyword={changeKeyword}
+               
                         onClose={() => setIsFilterOpen(false)}
                         data={[listDeparture, listTravelstyle]}
                     />
@@ -172,15 +165,28 @@ const FilterTours = ({
 
 export default FilterTours;
 
-const Filter = ({ onClose, changeKeyword, keyword, data = [] }) => {
+const Filter = ({ onClose,  data = [] }) => {
     const listDeparture = data[0] || [];
     const listTravelstyle = data[1] || [];
     const { t } = useTranslation();
 
     const MAX_VISIBLE = 4;
 
-    const [showAllDepartures, setShowAllDepartures] = useState(false);
-    const [showAllTravelstyles, setShowAllTravelstyles] = useState(false);
+    const {
+        showAllDepartures,
+        setShowAllDepartures,
+        showAllTravelstyles,
+        setShowAllTravelstyles,
+        selectedDeparturePoints,
+        selectedDuration,
+        selectedTravelStyles,
+        handleDeparturePointChange,
+        handleDurationChange,
+        handleTravelStyleChange,
+        keyword,
+        handleKeywordChange,
+        
+    } = useItineraries();
 
     const visibleDepartureItems = showAllDepartures
         ? listDeparture
@@ -191,6 +197,7 @@ const Filter = ({ onClose, changeKeyword, keyword, data = [] }) => {
 
     const hasMoreDepartures = listDeparture.length > MAX_VISIBLE;
     const hasMoreTravelstyles = listTravelstyle.length > MAX_VISIBLE;
+
 
     return (
         <div className="w-full lg:w-auto">
@@ -215,14 +222,20 @@ const Filter = ({ onClose, changeKeyword, keyword, data = [] }) => {
                 </p>
                 <ul className="flex flex-col gap-[15px]">
                     {[
-                        { label: t("Full day"), value: 1 },
-                        { label: t("1 to 3 days"), value: 2 },
-                        { label: t("4 to 7 days"), value: 3 },
-                        { label: t("> 7 days"), value: 4 },
+                        { label: t("Full day"), value: "1" },
+                        { label: t("1 to 3 days"), value: "2" },
+                        { label: t("4 to 7 days"), value: "3" },
+                        { label: t("> 7 days"), value: "4" },
                     ].map(({ label, value }) => (
                         <li key={value}>
                             <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                                <Checkbox value={value} />
+                                <Checkbox
+                                    value={value}
+                                    checked={selectedDuration.includes(value)}
+                                    onCheckedChange={() =>
+                                        handleDurationChange(value)
+                                    }
+                                />
                                 {label}
                             </label>
                         </li>
@@ -241,7 +254,17 @@ const Filter = ({ onClose, changeKeyword, keyword, data = [] }) => {
                     {visibleDepartureItems.map((item) => (
                         <li key={item.departure_point_id}>
                             <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44] font-visitqatar font-medium leading-[24px]">
-                                <Checkbox value={item.departure_point_id} />
+                                <Checkbox
+                                    value={item.departure_point_id}
+                                    checked={selectedDeparturePoints.includes(
+                                        item.departure_point_id
+                                    )}
+                                    onCheckedChange={() =>
+                                        handleDeparturePointChange(
+                                            item.departure_point_id
+                                        )
+                                    }
+                                />
                                 {item.title}
                             </label>
                         </li>
@@ -277,7 +300,15 @@ const Filter = ({ onClose, changeKeyword, keyword, data = [] }) => {
                     {visibleTravelstyleItems.map((item) => (
                         <li key={item.tourcat_id}>
                             <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44] font-visitqatar font-medium leading-[24px]">
-                                <Checkbox value={item.tourcat_id} />
+                                <Checkbox
+                                    value={item.tourcat_id}
+                                    checked={selectedTravelStyles.includes(
+                                        item.tourcat_id
+                                    )}
+                                    onCheckedChange={() =>
+                                        handleTravelStyleChange(item.tourcat_id)
+                                    }
+                                />
                                 {item.title}
                             </label>
                         </li>
@@ -313,7 +344,7 @@ const Filter = ({ onClose, changeKeyword, keyword, data = [] }) => {
                     type="text"
                     className="w-full rounded-[8px] border border-solid border-[#C8CBD0] p-[10px_15px] text-[16px] text-[#1A2A44]"
                     placeholder={t("Search")}
-                    onChange={(e) => changeKeyword(e.target.value)}
+                    onChange={(e) => handleKeywordChange(e.target.value)}
                     value={keyword}
                 />
             </div>

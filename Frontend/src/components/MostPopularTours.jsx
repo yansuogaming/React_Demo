@@ -20,8 +20,8 @@ const MostPopularTours = ({ className = "", data = [] }) => {
         const onloadImage = (e) => {
             setTop(e.target.clientHeight / 2 + 16);
         };
-        img.addEventListener("load", onloadImage);
-        return () => img.removeEventListener("load", onloadImage);
+        img?.addEventListener("load", onloadImage);
+        return () => img?.removeEventListener("load", onloadImage);
     }, []);
 
     return (
