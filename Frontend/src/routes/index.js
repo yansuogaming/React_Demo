@@ -21,6 +21,7 @@ const routes = [
             {
                 Component: lazy(() => import("@layouts/Root")),
                 children: [
+                    
                     {
                         index: true,
                         Component: lazy(() => import("@pages/Home")),
@@ -193,6 +194,11 @@ const routes = [
                                 },
                             ];
                         },
+                    },
+                    {
+                        path: ROUTES.DETAIL_TICKET,
+                        Component: lazy(() => import("@pages/DetailTicket")),
+           
                     },
                     {
                         path: ROUTES.EVENTS_DETAIL, // "events/detail"
@@ -373,10 +379,10 @@ const routes = [
                 ],
             },
             {
-                path: ROUTES.MAP_HANOI,
+                path: `${ROUTES.MAP}/:slug/:id?`,
                 Component: lazy(() => import("@pages/Map")),
-                loader: async () => {
-                    const res = await MapService.getListDestination();
+                loader: async ({params}) => {
+                    const res = await MapService.getListDestination(params.slug);
                     return res;
                 },
             },
@@ -392,6 +398,7 @@ const routes = [
                     },
                 ],
             },
+
         ],
     },
     {

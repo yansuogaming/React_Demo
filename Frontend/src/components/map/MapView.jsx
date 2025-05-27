@@ -18,12 +18,14 @@ const MapView = () => {
     showVideo,
     setShowVideo,
     setActiveTab,
+    northeast,
+    southwest,
   } = useMapContext();
 
   // Tọa độ ranh giới cho Hà Nội (Tây Nam và Đông Bắc)
-  const hanoiBounds = [
-    [105.5204, 20.9073], // Góc Tây Nam: [longitude, latitude]
-    [105.9346, 21.2772], // Góc Đông Bắc: [longitude, latitude]
+  const bounds = [
+    southwest, // Góc Tây Nam: [longitude, latitude]
+    northeast, // Góc Đông Bắc: [longitude, latitude]
   ];
 
   const mapRef = useRef(null);
@@ -99,7 +101,7 @@ const MapView = () => {
       <Map
         mapboxAccessToken={accessToken}
         initialViewState={initialViewState}
-        maxBounds={hanoiBounds} // Giới hạn vùng bản đồ
+        maxBounds={bounds} // Giới hạn vùng bản đồ
         minZoom={1} // Giới hạn mức zoom tối thiểu
         maxZoom={17} // Giới hạn mức zoom tối đa
         mapStyle="mapbox://styles/aboutpro/cmaxfyayo007h01qxh4n7akqj"
@@ -138,9 +140,7 @@ const MapView = () => {
           ))}
       </Map>
 
-      <div className="absolute bottom-2 left-2 text-xs text-gray-600 bg-white bg-opacity-70 px-2 py-1 rounded">
-        © mapbox
-      </div>
+
     </div>
   );
 };

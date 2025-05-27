@@ -38,7 +38,7 @@ const FilterList = ({ list_filter }) => {
         return null;
     };
 
-    console.log("selectedMarker",selectedMarker)
+   
     return (
         <div className="flex flex-col">
             {list_filter.map((item, index) => (

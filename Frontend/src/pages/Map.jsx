@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { Link, useLoaderData, useParams } from "react-router";
+import { Link, useLoaderData, useLocation, useParams } from "react-router";
 import imgLogo from "@images/logo.webp";
 
 import { MapProvider, useMapContext } from "@contexts/MapContext";
@@ -11,11 +11,16 @@ import { useTranslation } from "react-i18next";
 export default function MapHaNoi() {
   const loaderData = useLoaderData() || {};
   const { id } = useParams();
+  const {state}=useLocation()||{};
+  const city=state?.city;
+
+
 
   return (
     <MapProvider initialData={{
       ...loaderData,
-      defaultId: id
+      defaultId: id,
+      city:city
     }}>
       <MapHaNoiContent />
     </MapProvider>
@@ -23,7 +28,7 @@ export default function MapHaNoi() {
 }
 
 function MapHaNoiContent() {
-  const { selectedMarker, getDetailResource } = useMapContext();
+  const { selectedMarker, getDetailResource ,city } = useMapContext();
   const {t} = useTranslation();
   // Get detail for selected marker when it changes
   useEffect(() => {
@@ -38,7 +43,7 @@ function MapHaNoiContent() {
         <Link to={"/"}>
           <img src={imgLogo} alt="Logo" className="h-8 w-auto" />
         </Link>
-        <h1 className="text-2xl font-medium text-white">{t("map.title")} Hà Nội</h1>
+        <h1 className="text-2xl font-medium text-white">{t("map.title")} {city?.title}</h1>
       </header>
       <div className="flex flex-1 overflow-hidden">
         <LeftSideBar />

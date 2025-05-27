@@ -5,10 +5,11 @@ import { MapPin, MapPinIcon } from "lucide-react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Link, useNavigate } from "react-router";
 import location from "@images/location.svg";
+import ROUTES from "@routes/routes";
 
 const accessToken = import.meta.env.VITE_MAP_BOX_ACCESS_TOKEN;
 
-function MapCity({ listDestination }) {
+function MapCity({ listDestination ,northeast,southwest,city}) {
     const mapRef = useRef(null);
     const navigate = useNavigate();
     const defaultDestination = listDestination[0];
@@ -24,6 +25,7 @@ function MapCity({ listDestination }) {
 
     // Tọa độ ranh giới cho Hà Nội (Tây Nam và Đông Bắc)
 
+  
     const [isMobileOrTablet, setIsMobileOrTablet] = useState(false);
     const handleResize = () => setIsMobileOrTablet(window.innerWidth <= 1024);
     useEffect(() => {
@@ -32,12 +34,12 @@ function MapCity({ listDestination }) {
         // unsubscribe from the event on component unmount
         return () => window.removeEventListener("resize", handleResize);
     }, []);
-    const hanoiBounds = useMemo(
+    const maxBounds = useMemo(
         () => [
-            [105.9346, 20.9073], // Góc Tây Nam: [longitude, latitude]
-            [105.5204, 21.2772], // Góc Đông Bắc: [longitude, latitude]
+            southwest, // Góc Tây Nam: [longitude, latitude]
+            northeast, // Góc Đông Bắc: [longitude, latitude]
         ],
-        []
+        [southwest, northeast]
     );
 
     const initialViewState = {
@@ -69,10 +71,10 @@ function MapCity({ listDestination }) {
             }, 500);
         };
         setTimeout(() => {
-            setBounds(hanoiBounds);
+            setBounds(maxBounds);
         }, 10000);
         checkMapRef();
-    }, [defaultDestination, hanoiBounds]);
+    }, [defaultDestination, maxBounds]);
 
     useEffect(() => {
         if (mapRef.current && selectedMarker) {
@@ -86,13 +88,14 @@ function MapCity({ listDestination }) {
         }
     }, [selectedMarker]);
 
+ 
     const handleMarkerClick = (destination) => {
         setSelectedMarker(destination);
         if (isMobileOrTablet) {
             setHoveredMarker(destination);
             setShowHoverItem(true);
         } else {
-            navigate(`/map-ha-noi/${destination.potential_id}`);
+            navigate(`/${ROUTES.MAP}/${city.slug}/${destination.potential_id}`,{state:{city}});
         }
     };
 
@@ -101,6 +104,10 @@ function MapCity({ listDestination }) {
             setShowHoverItem(false);
             setHoveredMarker(null);
         }
+    };
+
+    const handleViewDetail = (destination) => {
+        navigate(`/${ROUTES.MAP}/${city.slug}/${destination.potential_id}`,{state:{city}});
     };
 
     const handleMarkerHover = (destination, event) => {
@@ -113,6 +120,10 @@ function MapCity({ listDestination }) {
                 y: rect.top,
             });
         }
+    };
+
+    const onClickViewFullMap = () => {
+        navigate(`/${ROUTES.MAP}/${city.slug}`,{state:{city}});
     };
 
     return (
@@ -146,6 +157,7 @@ function MapCity({ listDestination }) {
                             <HoverItem
                                 destination={hoveredMarker}
                                 navigate={navigate}
+                                handleViewDetail={handleViewDetail}
                             />
                         </div>
                     )}
@@ -197,13 +209,13 @@ function MapCity({ listDestination }) {
                         ))}
                 </Map>
 
-                <Link
-                    to={"/map-ha-noi"}
+                <button
+                    onClick={onClickViewFullMap}
                     className="cursor-pointer absolute bottom-[12px] p-[10px_16px] flex gap-[10px] bg-white rounded-[20px] left-1/2 -translate-x-1/2 text-sm text-black"
                 >
                     View full map
                     <img src={iconFullscreen} alt="Full map" />
-                </Link>
+                </button>
             </div>
         </div>
     );
@@ -211,7 +223,7 @@ function MapCity({ listDestination }) {
 
 export default MapCity;
 
-const HoverItem = ({ destination, navigate }) => {
+const HoverItem = ({ destination,handleViewDetail }) => {
     if (!destination) return null;
 
     return (
@@ -229,7 +241,7 @@ const HoverItem = ({ destination, navigate }) => {
                 <p>{destination.type || "Attractions"}</p>
                 <button
                     onClick={() =>
-                        navigate(`/map-ha-noi/${destination.potential_id}`)
+                        handleViewDetail(destination)
                     }
                     className="mt-2 w-full xl:hidden bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors"
                 >

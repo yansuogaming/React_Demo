@@ -9,8 +9,10 @@ import TextNormal from "@components/text/TextNormal";
 import image from "@images/hero-image-itineraries.png";
 import { useTranslation } from "react-i18next";
 import { useLoaderData } from "react-router";
+import { useItineraries, ItinerariesProvider } from "@contexts/ItinerariesContext";
+import { useEffect } from "react";
 
-const Itineraries = () => {
+const ItinerariesContent = () => {
     const { t } = useTranslation();
     const {
         listTrendingTours,
@@ -20,7 +22,25 @@ const Itineraries = () => {
         listDeparture,
         listTravelstyle,
         keyword,
-    } = useLoaderData();
+        setListTours,
+        setCurrentPage,
+        setTotalPage,
+        setListDeparture,
+        setListTravelstyle,
+        setListTrendingTours,
+    } = useItineraries();
+
+    const loaderData = useLoaderData();
+
+    useEffect(() => {
+        setListTours(loaderData.listTours);
+        setCurrentPage(loaderData.currentPage);
+        setTotalPage(loaderData.totalPage);
+        setListDeparture(loaderData.listDeparture);
+        setListTravelstyle(loaderData.listTravelstyle);
+        setListTrendingTours(loaderData.listTrendingTours);
+    }, [loaderData]);
+
     const breadcrumdItems = [
         { label: t("home"), href: "/" },
         { label: t("plan_your_trip"), href: "/" },
@@ -39,19 +59,19 @@ const Itineraries = () => {
                         <img
                             className="w-full"
                             src={image}
-                            alt="Vietnam – Journeys You Simply Can’t Miss"
+                            alt="Vietnam – Journeys You Simply Can't Miss"
                         />
                     </div>
                     <div className="mx-5 mb-5 lg:mx-0 lg:mb-0">
                         <h1 className="text-[#1A2A44] font-bold text-[30px] md:text-[40px]">
-                            Vietnam – Journeys You Simply Can’t Miss
+                            Vietnam – Journeys You Simply Can't Miss
                         </h1>
                         <TextNormal className="text-[14px] md:text-[16px]">
                             From the emerald waters of Phu Quoc to the misty
                             mountains of Sa Pa, Vietnam offers a captivating
                             blend of cultural richness, stunning landscapes, and
                             unforgettable cuisine. Each tour reveals a unique
-                            slice of the S-shaped country — and maybe it’s time
+                            slice of the S-shaped country — and maybe it's time
                             you experienced the magic for yourself.
                         </TextNormal>
                     </div>
@@ -69,6 +89,14 @@ const Itineraries = () => {
             <FAQ />
             <PlainYourTrip className="mt-[120px]" />
         </main>
+    );
+};
+
+const Itineraries = () => {
+    return (
+        <ItinerariesProvider>
+            <ItinerariesContent />
+        </ItinerariesProvider>
     );
 };
 

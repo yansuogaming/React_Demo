@@ -26,12 +26,15 @@ function Carousel({
     plugins,
     className,
     children,
+    defaultIndex=0,
+    align="start",
     ...props
 }) {
     const [carouselRef, api] = useEmblaCarousel(
         {
             ...opts,
             axis: orientation === "horizontal" ? "x" : "y",
+            align:align,
         },
         plugins
     );
@@ -43,6 +46,12 @@ function Carousel({
         setCanScrollPrev(api.canScrollPrev());
         setCanScrollNext(api.canScrollNext());
     }, []);
+
+    React.useEffect(() => {
+        if(defaultIndex>0){
+            api?.scrollTo(defaultIndex);
+        }
+    },[defaultIndex,api]);
 
     const scrollPrev = React.useCallback(() => {
         api?.scrollPrev();
