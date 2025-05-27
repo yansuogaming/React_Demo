@@ -10,41 +10,20 @@ import Pagination from "./pagination/pagination";
 import advertising from "@images/advertising.png";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
+import { IoChevronDown } from "react-icons/io5";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
-// const nileCruisePackage = {
-//     title: "Pharaohs Nile Cruise Adventure - Return Flights Included",
-//     image: toutItemImage,
-
-//     rating: {
-//         score: 4.5,
-//         reviewCount: 1411,
-//     },
-//     destinations: {
-//         main: ["Cairo", "Giza", "Luxor"],
-//         additional: 2,
-//     },
-//     departure: {
-//         location: "Hanoi, Vietnam",
-//     },
-//     duration: {
-//         days: 3,
-//         nights: 2,
-//     },
-//     pricing: {
-//         basePrice: 916,
-//         currency: "USD",
-//         includesTaxesAndFees: true,
-//     },
-//     provider: "travel",
-//     providerImage: providerImage,
-//     actions: ["Detail tour"],
-// };
+import { cn } from "@lib/utils";
 
 const FilterTours = ({ className = "", data = [] }) => {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
-    const listTour = data.list_tours;
+    const listTour = data[0];
+    const currentPage = data[1];
+    const totalPage = data[2];
+    const listDeparture = data[3];
+    const listTravelstyle = data[4];
     // const { t } = useTranslation();
-    // console.log(listTour);
+    // console.log(listDeparture);
 
     useEffect(() => {
         if (isFilterOpen) {
@@ -54,11 +33,18 @@ const FilterTours = ({ className = "", data = [] }) => {
         }
     }, [isFilterOpen]);
 
+    // const navigate = useNavigate();
+    // const changeKeyword = (keyword) => {
+    //     setKeysearch(keyword);
+    //     debounce(() => {
+    //         navigate(`/events?page=1&keyword=${keyword}`);
+    //     }, 500)();
+    // };
     return (
         <section
             className={`container ${className} flex flex-col gap-[30px] items-center lg:items-end`}
         >
-            <div className="flex flex-col lg:flex-row gap-[30px] relative">
+            <div className="flex flex-col lg:flex-row gap-[30px] relative w-full">
                 {/* Mobile filter button */}
 
                 {/* Filter sidebar */}
@@ -76,7 +62,15 @@ const FilterTours = ({ className = "", data = [] }) => {
                     p-4 xl:p-0 overflow-y-auto
                     `}
                 >
-                    <Filter onClose={() => setIsFilterOpen(false)} />
+                    <Filter
+                        //  categories={categories}
+                        //     selectedCategory={typeSearch}
+                        //     keyword={keysearch}
+                        //     setSelectedCategory={() => {}}
+                        //     changeKeyword={changeKeyword}
+                        onClose={() => setIsFilterOpen(false)}
+                        data={[listDeparture, listTravelstyle]}
+                    />
                 </div>
 
                 {/* Overlay */}
@@ -93,17 +87,92 @@ const FilterTours = ({ className = "", data = [] }) => {
                     listTour={listTour}
                 />
             </div>
-            <Pagination />
+            {/* <Pagination /> */}
+
+            {/* Pagination */}
+            <div className="flex justify-center items-center gap-[12px] mt-8">
+                {/* Prev */}
+                <Link
+                    disabled={currentPage == 1}
+                    to={`/events?page=1&keyword=`}
+                    className={cn(
+                        "w-8 h-8 flex items-center",
+                        "justify-center rounded transition",
+                        currentPage == 1
+                            ? "text-gray-300 cursor-default"
+                            : "text-[#0E284E] hover:text-black"
+                    )}
+                >
+                    <FaChevronLeft className="text-[14px]" />
+                </Link>
+
+                {/* Page numbers */}
+                {Array.from({ length: totalPage }, (_, i) => {
+                    const page = i + 1;
+                    const isActive = page == currentPage;
+                    return (
+                        <Link
+                            key={page}
+                            to={`/events?page=${page}&keyword=`}
+                            className={cn(
+                                "w-[50px] h-[50px] rounded-[4px]",
+                                "text-[16px] font-[500] transition",
+                                "flex-col items-center justify-center flex",
+                                isActive
+                                    ? "bg-[#007BFF] text-white"
+                                    : "bg-[#EEF0F5] text-[#1A2A44] hover:bg-gray-200"
+                            )}
+                        >
+                            {page}
+                        </Link>
+                    );
+                })}
+
+                {/* Next */}
+                <Link
+                    disabled={currentPage == totalPage}
+                    to={`/events?page=${currentPage + 1}&keyword=`}
+                    className={cn(
+                        "w-[12px] h-[24px] flex items-center",
+                        "justify-center rounded transition",
+                        currentPage == totalPage
+                            ? "text-[#D9D9D9] cursor-default"
+                            : "text-[#1A2A44] hover:text-[#1A2A44]"
+                    )}
+                >
+                    <FaChevronRight className="text-[14px]" />
+                </Link>
+            </div>
+            {/* Pagination */}
         </section>
     );
 };
 
 export default FilterTours;
 
-const Filter = ({ onClose }) => {
+const Filter = ({ onClose, data = [] }) => {
+    const listDeparture = data[0] || [];
+    const listTravelstyle = data[1] || [];
     const { t } = useTranslation();
+
+    const MAX_VISIBLE = 4;
+
+    const [showAllDepartures, setShowAllDepartures] = useState(false);
+    const [showAllTravelstyles, setShowAllTravelstyles] = useState(false);
+
+    const visibleDepartureItems = showAllDepartures
+        ? listDeparture
+        : listDeparture.slice(0, MAX_VISIBLE);
+    const visibleTravelstyleItems = showAllTravelstyles
+        ? listTravelstyle
+        : listTravelstyle.slice(0, MAX_VISIBLE);
+
+    const hasMoreDepartures = listDeparture.length > MAX_VISIBLE;
+    const hasMoreTravelstyles = listTravelstyle.length > MAX_VISIBLE;
+
     return (
-        <div style={{}} className="w-full lg:w-auto">
+        <div className="w-full lg:w-auto">
+            {/* Filter Header */}
             <div className="w-full lg:min-w-[297px] mb-[24px] flex items-center justify-between font-bold bg-[#F6F6FA] text-[#1A2A44] rounded-[8px] p-[10px_15px]">
                 <div className="flex gap-[12px] items-center">
                     <img src={iconFilter} alt="Applied filters" />
@@ -116,104 +185,116 @@ const Filter = ({ onClose }) => {
                     ✕
                 </button>
             </div>
-            <div>
-                <p className="text-[18px] font-bold mb-[16px]">Duration</p>
-                <ul className="flex flex-col gap-[15px]">
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            Full day
-                        </label>
-                    </li>
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />1 to 3 days
-                        </label>
-                    </li>
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />4 to 7 days
-                        </label>
-                    </li>
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            &gt; 7 days
-                        </label>
-                    </li>
-                </ul>
-            </div>
-            <hr className="my-[24px]" />
+
+            {/* Duration */}
             <div>
                 <p className="text-[18px] font-bold mb-[16px]">
-                    Departure point
+                    {t("Duration")}
                 </p>
                 <ul className="flex flex-col gap-[15px]">
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            Hanoi
-                        </label>
-                    </li>
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            Ho Chi Minh City
-                        </label>
-                    </li>
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            Da Nang
-                        </label>
-                    </li>
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            Phu Quoc
-                        </label>
-                    </li>
+                    {[
+                        { label: t("Full day"), value: 1 },
+                        { label: t("1 to 3 days"), value: 2 },
+                        { label: t("4 to 7 days"), value: 3 },
+                        { label: t("> 7 days"), value: 4 },
+                    ].map(({ label, value }) => (
+                        <li key={value}>
+                            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
+                                <Checkbox value={value} />
+                                {label}
+                            </label>
+                        </li>
+                    ))}
                 </ul>
             </div>
+
             <hr className="my-[24px]" />
+
+            {/* Departure Point */}
             <div>
-                <p className="text-[18px] font-bold mb-[16px]">Travel styles</p>
+                <p className="text-[18px] font-bold mb-[16px]">
+                    {t("Departure point")}
+                </p>
                 <ul className="flex flex-col gap-[15px]">
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            Festival & Events
-                        </label>
-                    </li>
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            In-depth Cultural
-                        </label>
-                    </li>
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            Explorer
-                        </label>
-                    </li>
-                    <li>
-                        <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44]">
-                            <Checkbox />
-                            Hiking & Trekking
-                        </label>
-                    </li>
+                    {visibleDepartureItems.map((item) => (
+                        <li key={item.departure_point_id}>
+                            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44] font-visitqatar font-medium leading-[24px]">
+                                <Checkbox value={item.departure_point_id} />
+                                {item.title}
+                            </label>
+                        </li>
+                    ))}
+                    {hasMoreDepartures && (
+                        <li
+                            className="text-[#1A2A44] font-visitqatar text-[16px] font-medium leading-[24px] flex items-center gap-[8px] cursor-pointer select-none"
+                            onClick={() =>
+                                setShowAllDepartures(!showAllDepartures)
+                            }
+                        >
+                            {showAllDepartures
+                                ? t("Show less")
+                                : t("Show more")}
+                            <IoChevronDown
+                                className={`transition-transform duration-300 ${
+                                    showAllDepartures ? "rotate-180" : ""
+                                }`}
+                            />
+                        </li>
+                    )}
                 </ul>
             </div>
+
             <hr className="my-[24px]" />
+
+            {/* Travel Styles */}
             <div>
-                <p className="text-[18px] font-bold mb-[16px]">Travel agency</p>
+                <p className="text-[18px] font-bold mb-[16px]">
+                    {t("Travel styles")}
+                </p>
+                <ul className="flex flex-col gap-[15px]">
+                    {visibleTravelstyleItems.map((item) => (
+                        <li key={item.tourcat_id}>
+                            <label className="flex gap-[15px] items-center text-[16px] text-[#1A2A44] font-visitqatar font-medium leading-[24px]">
+                                <Checkbox value={item.tourcat_id} />
+                                {item.title}
+                            </label>
+                        </li>
+                    ))}
+                    {hasMoreTravelstyles && (
+                        <li
+                            className="text-[#1A2A44] font-visitqatar text-[16px] font-medium leading-[24px] flex items-center gap-[8px] cursor-pointer select-none"
+                            onClick={() =>
+                                setShowAllTravelstyles(!showAllTravelstyles)
+                            }
+                        >
+                            {showAllTravelstyles
+                                ? t("Show less")
+                                : t("Show more")}
+                            <IoChevronDown
+                                className={`transition-transform duration-300 ${
+                                    showAllTravelstyles ? "rotate-180" : ""
+                                }`}
+                            />
+                        </li>
+                    )}
+                </ul>
             </div>
-            <input
-                type="text"
-                className="w-full rounded-[8px] border border-solid border-[#C8CBD0] p-[10px_15px] text-[16px] text-[#1A2A44]"
-                placeholder="Search"
-            />
+
+            <hr className="my-[24px]" />
+
+            {/* Travel Agency Search */}
+            <div>
+                <p className="text-[18px] font-bold mb-[16px]">
+                    {t("Travel agency")}
+                </p>
+                <input
+                    type="text"
+                    className="w-full rounded-[8px] border border-solid border-[#C8CBD0] p-[10px_15px] text-[16px] text-[#1A2A44]"
+                    placeholder={t("Search")}
+                />
+            </div>
+
+            {/* Advertising Image */}
             <img
                 src={advertising}
                 alt="Advertising"

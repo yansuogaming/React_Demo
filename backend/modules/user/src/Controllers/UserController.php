@@ -109,7 +109,6 @@ class UserController
     #[Get('/logout')]
     public function logout(Request $request)
     {
-        dd($request->fullUrl());
         return Response::json([
             'message' => 'Đăng xuất thành công',
         ])

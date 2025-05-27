@@ -174,8 +174,11 @@ class Http
             $path = $urlInfo['path'];
         }
 
-        if (isset($urlInfo['query']) && in_array($method, ['GET', 'HEAD'])) {
-            parse_str($urlInfo['query'], $query);
+        if (in_array($method, ['GET', 'HEAD'])) {
+            $query = [];
+            if (isset($urlInfo['query'])) {
+                parse_str($urlInfo['query'], $query);
+            }
             $this->query = array_merge($this->query, $query, $params);
         }
 

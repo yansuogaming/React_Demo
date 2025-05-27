@@ -20,7 +20,7 @@ const Destination = () => {
   const [selectedImage, setSelectedImage] = useState();
   const item = detailResource; // For readability
 
-  console.log("detailResource", detailResource);
+ 
   useEffect(() => {
     if (item?.list_images?.length > 0) {
       setSelectedImage(item?.list_images?.[0]?.thumb);

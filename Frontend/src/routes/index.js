@@ -10,6 +10,7 @@ import TourService from "@services/TourService";
 import MapService from "@services/MapService";
 import RegionService from "@services/RegionService";
 import { t } from "i18next";
+import AttractionService from "@services/AttractionService";
 
 const routes = [
     ...routesAdmin,
@@ -48,14 +49,14 @@ const routes = [
                         },
                     },
                     {
-                        path: ROUTES.CITY, // "city/:slug"
+                        path: ROUTES.CITY,
                         Component: lazy(() => import("@pages/City")),
                         loader: async ({ params }) => {
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
                                 EventService.getOngoingAndUpcomingEvents(),
                                 CityService.getCityBySlug(params.slug),
-                                MapService.getListDestination(),
+                                MapService.getListDestination(params.slug),
                             ]);
 
                             const weather = await WeatherService.getCityWeather(
@@ -95,15 +96,40 @@ const routes = [
                     {
                         path: ROUTES.ITINERARIES, // "itineraries"
                         Component: lazy(() => import("@pages/Itineraries")),
-                        loader: async () => {
+                        loader: async ({ request }) => {
+                            const url = new URL(request.url);
+                            const query = Object.fromEntries(
+                                url.searchParams.entries()
+                            );
+                            const currentPage = query?.page ?? 1;
+                            const keyword = query?.keyword ?? "";
+                            const duration = query?.duration ?? "";
+                            const departurePoint = query?.departurePoint ?? "";
+                            const travelStyle = query?.travelStyle ?? "";
+                            const lang_id = query?.lang_id ?? "en";
                             const res = await Promise.all([
                                 TourService.getListTrending(),
-                                TourService.getListItineraries(),
+                                TourService.getListItineraries(
+                                    keyword,
+                                    currentPage,
+                                    duration,
+                                    departurePoint,
+                                    travelStyle
+                                ),
+                                TourService.getListDeparture(lang_id),
+                                TourService.getListTravelStyle(lang_id),
                             ]);
-
                             return {
                                 listTrendingTours: res[0],
-                                itineraries: res[1],
+                                listTours: res[1].itineraries ?? [],
+                                totalPage: res[1].total_page,
+                                currentPage,
+                                // keyword,
+                                // duration,
+                                // departurePoint,
+                                // travelStyle,
+                                listDeparture: res[2].list_departure,
+                                listTravelstyle: res[3].list_travelstyle,
                             };
                         },
                     },
@@ -294,9 +320,11 @@ const routes = [
                         loader: async () => {
                             const res = await Promise.all([
                                 FAQService.getListFAQs(),
+                                AttractionService.listAttraction({})
                             ]);
                             return {
-                                FAQs: res[0]
+                                FAQs: res[0],
+                                attractions: res[1].potentials ?? [],
                             };
                         },
                     },

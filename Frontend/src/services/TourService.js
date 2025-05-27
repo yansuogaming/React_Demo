@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import HttpClient from "./HttpClient";
 
 const TourService = {
@@ -13,7 +14,7 @@ const TourService = {
         departure_point = "",
         travel_style = ""
     ) => {
-        const res = await HttpClient.get("/tour/list-tour", {
+        const res = await HttpClient.post("/tour/list-tour", {
             params: {
                 keyword,
                 page,
@@ -22,9 +23,34 @@ const TourService = {
                 travel_style,
             },
         });
+
         return {
-            itineraries: res.data.data,
+            itineraries: res.data.itineraries,
             total_page: res.data.total_page,
+        };
+    },
+
+    getListDeparture: async () => {
+        const res = await HttpClient.post("/tour/list-departure", {
+            params: {
+                lang_id: i18next.language === "vi" ? "vn" : i18next.language,
+            },
+        });
+
+        return {
+            list_departure: res.data.list_departure,
+        };
+    },
+
+    getListTravelStyle: async () => {
+        const res = await HttpClient.post("/tour/list-travelstyle", {
+            params: {
+                lang_id: i18next.language === "vi" ? "vn" : i18next.language,
+            },
+        });
+
+        return {
+            list_travelstyle: res.data.list_travelstyle,
         };
     },
 };
